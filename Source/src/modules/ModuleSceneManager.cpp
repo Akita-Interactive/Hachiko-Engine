@@ -109,8 +109,10 @@ void Hachiko::ModuleSceneManager::LoadScene(const char* file_path)
 {
     delete main_scene;
     main_scene = SceneImporter::LoadScene(file_path);
+#ifdef PLAY_BUILD
     App->camera->SetMainCamera(main_scene->GetMainCamera());
     main_scene->Start();
+#endif
 }
 
 void Hachiko::ModuleSceneManager::SaveScene(const char* file_path) const
