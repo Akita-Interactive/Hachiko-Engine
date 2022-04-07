@@ -90,7 +90,6 @@ const Hachiko::GameObject* Hachiko::ModuleDebugMode::FindPlayer() const
 			return child;
 		}
 	}
-	return nullptr;
 }
 
 void Hachiko::ModuleDebugMode::DrawGUI()
@@ -99,9 +98,9 @@ void Hachiko::ModuleDebugMode::DrawGUI()
 	float vram_free = (float)hw_info.vram_free / 1024.0f;
 	float vram_usage = vram_total - vram_free;
 	// Do not try this at home, delete asap
-	float3 player_pos_editor;
 	player = FindPlayer();
-	if(player) player_pos_editor = player->GetTransform()->GetGlobalPosition();	
+	float3 player_pos_editor = player->GetTransform()->GetGlobalPosition();
+	
 	
 	UpdateRenderValues();
 
@@ -133,15 +132,11 @@ void Hachiko::ModuleDebugMode::DrawGUI()
 		}
 		ImGui::Separator();
 
-		if (player)
+		ImGui::Text("Player position: ");
+		if (ImGui::DragFloat3("(x, y, z)", player_pos_editor.ptr(), 0.1f, -inf, inf))
 		{
-			ImGui::Text("Player position: ");
-			if (ImGui::DragFloat3("(x, y, z)", player_pos_editor.ptr(), 0.1f, -inf, inf))
-			{
-				player->GetTransform()->SetGlobalPosition(player_pos_editor);
-			}
+			player->GetTransform()->SetGlobalPosition(player_pos_editor);
 		}
-		
 	}
 	ImGui::End();
 }
