@@ -1,5 +1,7 @@
 #include "core/hepch.h"
 
+#include "core/ErrorHandler.h"
+
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModuleProgram.h"
@@ -19,8 +21,6 @@ Hachiko::ModuleRender::ModuleRender() = default;
 
 Hachiko::ModuleRender::~ModuleRender() = default;
 
-void __stdcall OurOpenGLErrorFunction(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
-
 bool Hachiko::ModuleRender::Init()
 {
     HE_LOG("Init Module render");
@@ -36,7 +36,7 @@ bool Hachiko::ModuleRender::Init()
 #ifdef _DEBUG
     glEnable(GL_DEBUG_OUTPUT); // Enable output callback
     glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-    glDebugMessageCallback(&OurOpenGLErrorFunction, nullptr); // Set the callback
+    glDebugMessageCallback(&ErrorHandler::HandleOpenGlError, nullptr); // Set the callback
     glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, true); // Filter notifications
 #endif
 
@@ -332,13 +332,11 @@ void Hachiko::ModuleRender::AddFrame(const float delta)
 
 void Hachiko::ModuleRender::RetrieveLibVersions()
 {
-    gl.glew = (unsigned char*)glewGetString(GLEW_VERSION);
-    gl.opengl = (unsigned char*)glGetString(GL_VERSION);
-    gl.glsl = (unsigned char*)glGetString(GL_SHADING_LANGUAGE_VERSION);
-
-    HE_LOG("Using Glew %s", gl.glew);
-    HE_LOG("OpenGL version supported %s", gl.opengl);
-    HE_LOG("GLSL: %s", gl.glsl);
+    HE_LOG("GPU Vendor: %s", glGetString(GL_VENDOR));
+    HE_LOG("Renderer: %s", glGetString(GL_RENDERER));
+    HE_LOG("Using Glew %s", glewGetString(GLEW_VERSION));
+    HE_LOG("OpenGL version supported %s", glGetString(GL_VERSION));
+    HE_LOG("GLSL: %s", glGetString(GL_SHADING_LANGUAGE_VERSION));
 }
 
 void Hachiko::ModuleRender::RetrieveGpuInfo()
@@ -357,75 +355,4 @@ bool Hachiko::ModuleRender::CleanUp()
     SDL_GL_DeleteContext(context);
 
     return true;
-}
-
-void __stdcall OurOpenGLErrorFunction(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam)
-{
-    auto tmp_source = "", tmp_type = "", tmp_severity = "";
-    switch (source)
-    {
-    case GL_DEBUG_SOURCE_API:
-        tmp_source = "API";
-        break;
-    case GL_DEBUG_SOURCE_WINDOW_SYSTEM:
-        tmp_source = "Window System";
-        break;
-    case GL_DEBUG_SOURCE_SHADER_COMPILER:
-        tmp_source = "Shader Compiler";
-        break;
-    case GL_DEBUG_SOURCE_THIRD_PARTY:
-        tmp_source = "Third Party";
-        break;
-    case GL_DEBUG_SOURCE_APPLICATION:
-        tmp_source = "Application";
-        break;
-    case GL_DEBUG_SOURCE_OTHER:
-        tmp_source = "Other";
-        break;
-    }
-    switch (type)
-    {
-    case GL_DEBUG_TYPE_ERROR:
-        tmp_type = "Error";
-        break;
-    case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
-        tmp_type = "Deprecated Behaviour";
-        break;
-    case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
-        tmp_type = "Undefined Behaviour";
-        break;
-    case GL_DEBUG_TYPE_PORTABILITY:
-        tmp_type = "Portability";
-        break;
-    case GL_DEBUG_TYPE_PERFORMANCE:
-        tmp_type = "Performance";
-        break;
-    case GL_DEBUG_TYPE_MARKER:
-        tmp_type = "Marker";
-        break;
-    case GL_DEBUG_TYPE_PUSH_GROUP:
-        tmp_type = "Push Group";
-        break;
-    case GL_DEBUG_TYPE_POP_GROUP:
-        tmp_type = "Pop Group";
-        break;
-    case GL_DEBUG_TYPE_OTHER:
-        tmp_type = "Other";
-        break;
-    }
-    switch (severity)
-    {
-    case GL_DEBUG_SEVERITY_HIGH:
-        tmp_severity = "high";
-        break;
-    case GL_DEBUG_SEVERITY_MEDIUM:
-        tmp_severity = "medium";
-        break;
-    case GL_DEBUG_SEVERITY_LOW:
-        return;
-    // case GL_DEBUG_SEVERITY_NOTIFICATION: tmp_severity = "notification"; break;
-    default:
-        return;
-    }
-    HE_LOG("<Source:%s> <Type:%s> <Severity:%s> <ID:%d> <Message:%s>\n", tmp_source, tmp_type, tmp_severity, id, message);
 }

@@ -1,9 +1,12 @@
 #pragma once
+#include "core/logging/Logger.h"
+#include "core/logging/ConsoleLogger.h"
 
-__declspec(dllexport) void LogFunction(const char file[], int line, const char* format, ...);
+inline Hachiko::ConsoleLogger logger;
 
 #define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
-#define HE_LOG(format, ...) LogFunction(__FILENAME__, __LINE__, format, __VA_ARGS__)
+#define HE_LOG(format, ...) logger.Log(Hachiko::LogLevel::Debug, __FILENAME__, __LINE__, format, __VA_ARGS__)
+#define HE_ERROR(format, ...) logger.Log(Hachiko::LogLevel::Error, __FILENAME__, __LINE__, format, __VA_ARGS__)
 
 #define HACHIKO_PI 3.14159265358979323846
 constexpr float TO_RAD = static_cast<float>(HACHIKO_PI) / 180.0f;

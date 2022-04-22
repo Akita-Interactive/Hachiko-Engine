@@ -156,8 +156,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\logging\ConsoleLogger.cpp" />
+    <ClCompile Include="src\core\logging\ImGuiLogger.cpp" />
     <ClCompile Include="src\Gameplay.cpp" />
-    <ClCompile Include="src\LogFunction.cpp" />
     <ClCompile Include="src\scripting\serialization\SerializedField.cpp" />
     <ClCompile Include="src\scripting\Script.cpp" />
     <ClCompile Include="src\modules\ModuleScriptingSystem.cpp" />
@@ -361,7 +362,6 @@
     <ClCompile Include="src\Skybox.cpp" />
     <ClCompile Include="src\Program.cpp" />
     <ClCompile Include="src\ui\WindowProject.cpp" />
-    <ClCompile Include="src\utils\Logger.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\components\ComponentCamera.cpp" />
     <ClCompile Include="src\components\ComponentMaterial.cpp" />
@@ -632,6 +632,10 @@
     <ClCompile Include="src\ui\WindowTimers.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\ErrorHandler.h" />
+    <ClInclude Include="src\core\logging\ConsoleLogger.h" />
+    <ClInclude Include="src\core\logging\ImGuiLogger.h" />
+    <ClInclude Include="src\core\logging\Logger.h" />
     <ClInclude Include="src\events\GameStateEventPayload.h" />
     <ClInclude Include="src\events\SceneLoadEventPayload.h" />
     <ClInclude Include="src\Gameplay.h" />
@@ -1005,7 +1009,6 @@
     <ClInclude Include="src\Skybox.h" />
     <ClInclude Include="src\Program.h" />
     <ClInclude Include="src\ui\WindowProject.h" />
-    <ClInclude Include="src\utils\Logger.h" />
     <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\components\Component.h" />
     <ClInclude Include="src\components\ComponentCamera.h" />

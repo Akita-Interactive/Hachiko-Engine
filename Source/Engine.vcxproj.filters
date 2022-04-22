@@ -303,9 +303,6 @@
     <ClCompile Include="src\core\GameObject.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\Logger.cpp">
-      <Filter>Logging</Filter>
-    </ClCompile>
     <ClCompile Include="src\Quadtree.cpp">
       <Filter>Core\Rendering</Filter>
     </ClCompile>
@@ -453,7 +450,6 @@
     <ClCompile Include="src\utils\FileSystem.cpp">
       <Filter>Core\Util</Filter>
     </ClCompile>
-    <ClCompile Include="src\LogFunction.cpp" />
     <ClCompile Include="src\Gameplay.cpp">
       <Filter>Scripting</Filter>
     </ClCompile>
@@ -495,6 +491,12 @@
     </ClCompile>
     <ClCompile Include="src\utils\WindowsFileUtil.cpp">
       <Filter>Vendors\Glm</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\logging\ImGuiLogger.cpp">
+      <Filter>Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\logging\ConsoleLogger.cpp">
+      <Filter>Logging</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -890,9 +892,6 @@
     <ClInclude Include="src\core\GameObject.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\utils\Logger.h">
-      <Filter>Logging</Filter>
-    </ClInclude>
     <ClInclude Include="src\utils\PathNode.h">
       <Filter>UI</Filter>
     </ClInclude>
@@ -1198,8 +1197,6 @@
     <ClInclude Include="src\utils\FileSystem.h">
       <Filter>Core\Util</Filter>
     </ClInclude>
-    <ClInclude Include="src\HachikoApiDefine.h" />
-    <ClInclude Include="src\utils\WindowsFileUtil.h" />
     <ClInclude Include="src\events\GameStateEventPayload.h">
       <Filter>Core\Events\Payload</Filter>
     </ClInclude>
@@ -1229,9 +1226,6 @@
     </ClInclude>
     <ClInclude Include="src\events\GameStateEventPayload.h">
       <Filter>Core\Events\Payload</Filter>
-    </ClInclude>
-    <ClInclude Include="src\instrumentation\MemoryLeaks.h">
-      <Filter>Vendors\Glm</Filter>
     </ClInclude>
     <ClInclude Include="vendors\glm\detail\_vectorize.hpp">
       <Filter>Vendors\Glm</Filter>
@@ -2096,6 +2090,27 @@
     </ClInclude>
     <ClInclude Include="vendors\glm\gtx\wrap.hpp">
       <Filter>Vendors\Glm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\instrumentation\MemoryLeaks.h">
+      <Filter>Instrumentation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\ErrorHandler.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\WindowsFileUtil.h">
+      <Filter>Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HachikoApiDefine.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\logging\Logger.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\logging\ImGuiLogger.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\logging\ConsoleLogger.h">
+      <Filter>Logging</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

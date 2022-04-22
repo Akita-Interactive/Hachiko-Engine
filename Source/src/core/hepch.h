@@ -70,12 +70,15 @@
 #include "core/serialization/TypeConverter.h"
 #include "core/serialization/Definitions.h"
 
+#include "core/logging/Logger.h"
+#include "core/logging/ConsoleLogger.h"
+#include "core/logging/ImGuiLogger.h"
+
 #include "core/preferences/Preferences.h"
 #include "core/preferences/PreferenceManager.h"
 
 #include "utils/JsonFormatterValue.h"
 #include "utils/PathNode.h"
-#include "utils/Logger.h"
 #include "utils/Timer.h"
 #include "utils/UUID.h"
 #include "utils/StringUtils.h"

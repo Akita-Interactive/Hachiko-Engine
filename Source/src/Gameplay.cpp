@@ -1,10 +1,8 @@
 #include "core/hepch.h"
-#include "utils/Logger.h"
 #include "modules/ModuleInput.h"
 #include "modules/ModuleSceneManager.h"
 #include "modules/ModuleCamera.h"
 #include "Gameplay.h"
-#include "Time.h"
 
 
 /*TIME-----------------------------------------------------------------------*/

@@ -3,9 +3,31 @@
 #include "modules/ModuleEditor.h"
 
 Hachiko::WindowConsole::WindowConsole() :
-    Window("Console", true) {}
+    Window("Console", true),
+    imgui_logger(new ImGuiLogger())
+{
+    logger.Register(imgui_logger);
+    auto lambda = [&](std::string&& str, LogLevel& logLevel) {
+        Add(str, logLevel);
+    };
+    imgui_logger->SetCallBack(lambda);
+}
 
-Hachiko::WindowConsole::~WindowConsole() = default;
+Hachiko::WindowConsole::~WindowConsole()
+{
+    logger.Unregister(imgui_logger);
+    delete imgui_logger;
+    lines.clear();
+}
+
+void Hachiko::WindowConsole::Add(std::string& str, LogLevel& logLevel)
+{
+    if (lines.size() >= DISPLAY_THRESHOLD)
+    {
+        lines.erase(lines.begin());
+    }
+    lines.emplace_back(str, logLevel);
+}
 
 void Hachiko::WindowConsole::Update()
 {
@@ -44,37 +66,37 @@ void Hachiko::WindowConsole::Update()
 
         ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
 
-        const char* buf_start = Logging->buff.begin();
-        const char* buf_end = Logging->buff.end();
-
+        auto filtered_lines = std::vector<std::pair<std::string, LogLevel>>{};
         if (filter.IsActive())
         {
-            for (int line_no = 0; line_no < Logging->line_offsets.Size; line_no++)
+            for (const auto& [str, logLevel] : lines)
             {
-                const char* line_start = buf_start + Logging->line_offsets[line_no];
-                const char* line_end = (line_no + 1 < Logging->line_offsets.Size) ? (buf_start + Logging->line_offsets[line_no + 1] - 1) : buf_end;
-                if (filter.PassFilter(line_start, line_end))
+                if (filter.PassFilter(str.c_str()))
                 {
-                    ImGui::TextUnformatted(line_start, line_end);
+                    filtered_lines.emplace_back(str, logLevel);
                 }
             }
-        }
-        else
+        } else
         {
-            ImGuiListClipper clipper;
-            clipper.Begin(Logging->line_offsets.Size);
-            while (clipper.Step())
-            {
-                for (int line_no = clipper.DisplayStart; line_no < clipper.DisplayEnd; line_no++)
-                {
-                    const char* line_start = buf_start + Logging->line_offsets[line_no];
-                    const char* line_end = (line_no + 1 < Logging->line_offsets.Size) ? (buf_start + Logging->line_offsets[line_no + 1] - 1) : buf_end;
-                    ImGui::TextUnformatted(line_start, line_end);
-                }
-            }
-            clipper.End();
+            filtered_lines = lines;
         }
 
+        for (const auto& [str, logLevel] : filtered_lines)
+        {
+            if (logLevel == LogLevel::Error)
+            {
+                ImVec4 color(1.0f, 0.4f, 0.4f, 1.0f);
+                ImGui::PushStyleColor(ImGuiCol_Text, color);
+            }
+            ImGui::TextUnformatted(str.c_str());
+            if (logLevel == LogLevel::Error)
+            {
+                ImGui::PopStyleColor();
+            }
+        }
+
+        filtered_lines.clear();
+        
         ImGui::PopStyleVar();
 
         if (autoscroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
@@ -89,9 +111,7 @@ void Hachiko::WindowConsole::Update()
 
 void Hachiko::WindowConsole::Clear()
 {
-    Logging->buff.clear();
-    Logging->line_offsets.clear();
-    Logging->line_offsets.push_back(0);
+    lines.clear();
 }
 
 void Hachiko::WindowConsole::CleanUp()
