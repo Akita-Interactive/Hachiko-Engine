@@ -303,16 +303,16 @@
     <ClCompile Include="src\core\GameObject.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Quadtree.cpp">
+    <ClCompile Include="src\core\rendering\Quadtree.cpp">
       <Filter>Core\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="src\RenderList.cpp">
+    <ClCompile Include="src\core\rendering\RenderList.cpp">
       <Filter>Core\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="src\Program.cpp">
+    <ClCompile Include="src\core\rendering\Program.cpp">
       <Filter>Core\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="src\Skybox.cpp">
+    <ClCompile Include="src\core\rendering\Skybox.cpp">
       <Filter>Core\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="src\utils\JsonFormatterValue.cpp">
@@ -895,16 +895,16 @@
     <ClInclude Include="src\utils\PathNode.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="src\Quadtree.h">
+    <ClInclude Include="src\core\rendering\Quadtree.h">
       <Filter>Core\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="src\RenderList.h">
+    <ClInclude Include="src\core\rendering\RenderList.h">
       <Filter>Core\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="src\Program.h">
+    <ClInclude Include="src\core\rendering\Program.h">
       <Filter>Core\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="src\Skybox.h">
+    <ClInclude Include="src\core\rendering\Skybox.h">
       <Filter>Core\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="src\utils\JsonFormatterValue.h">
@@ -1359,7 +1359,7 @@
     <ClInclude Include="vendors\glm\gtx\gradient_paint.hpp">
       <Filter>Vendors\Glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\HachikoApiDefine.h">
+    <ClInclude Include="src\core\HachikoApiDefine.h">
       <Filter>Vendors\Glm</Filter>
     </ClInclude>
     <ClInclude Include="vendors\glm\gtx\handed_coordinate_space.hpp">

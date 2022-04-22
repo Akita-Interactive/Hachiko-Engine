@@ -7,7 +7,7 @@
 #include "modules/ModuleProgram.h"
 #include "modules/ModuleCamera.h"
 
-#include "Program.h"
+#include "core/rendering/Program.h"
 
 
 Hachiko::ComponentText::ComponentText(GameObject* container) 

@@ -6,7 +6,7 @@
 #include "ComponentTransform2D.h"
 #include "ComponentText.h"
 
-#include "Program.h"
+#include "core/rendering/Program.h"
 
 Hachiko::ComponentCanvasRenderer::ComponentCanvasRenderer(GameObject* container) : Component(Type::CANVAS_RENDERER, container) {}
 

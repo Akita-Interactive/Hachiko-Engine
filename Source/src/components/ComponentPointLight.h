@@ -1,7 +1,7 @@
 #pragma once
 
 #include "components/Component.h"
-#include "HachikoApiDefine.h"
+#include "core/HachikoApiDefine.h"
 
 namespace Hachiko
 {
