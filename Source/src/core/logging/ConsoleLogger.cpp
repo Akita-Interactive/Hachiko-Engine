@@ -2,7 +2,7 @@
 
 namespace Hachiko
 {
-    void ConsoleLogger::Log(LogLevel log_level, const char* file, int line, const char* format, ...)
+    HACHIKO_API void ConsoleLogger::Log(LogLevel log_level, const char* file, int line, const char* format, ...)
     {
         static char tmp_string[4096];
         static va_list args;
@@ -25,7 +25,7 @@ namespace Hachiko
         }
     }
 
-    void ConsoleLogger::Log(const char* str, LogLevel& level)
+    HACHIKO_API void ConsoleLogger::Log(const char* str, LogLevel& level)
     {
         //console logger currently does not care about log level, everything goes as a debug message
         OutputDebugString(StringUtils::Concat(str, "\n").c_str());

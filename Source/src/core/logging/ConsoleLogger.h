@@ -1,4 +1,5 @@
 #pragma once
+#include "HachikoApiDefine.h"
 #include "core/logging/Logger.h"
 
 namespace Hachiko
@@ -7,7 +8,7 @@ namespace Hachiko
     {
     public:
         ~ConsoleLogger() override = default;
-        void Log(const char* str, LogLevel& level) override;
-        void Log(LogLevel log_level, const char* file, int line, const char* format, ...);
+        HACHIKO_API void Log(const char* str, LogLevel& level) override;
+        HACHIKO_API void Log(LogLevel log_level, const char* file, int line, const char* format, ...);
     };
 }

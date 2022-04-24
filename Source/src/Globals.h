@@ -1,5 +1,4 @@
 #pragma once
-#include "core/logging/Logger.h"
 #include "core/logging/ConsoleLogger.h"
 
 inline Hachiko::ConsoleLogger logger;
