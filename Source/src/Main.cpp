@@ -11,12 +11,10 @@ enum class MainStates
 };
 
 Hachiko::Application* App = nullptr;
-Hachiko::Logger* Logging = nullptr;
 
 int main(int argc, char** argv)
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    Logging = new Hachiko::Logger();
 
     int main_return = EXIT_FAILURE;
     auto state = MainStates::MAIN_CREATION;
@@ -76,6 +74,5 @@ int main(int argc, char** argv)
 
     delete App;
     HE_LOG("Bye :)\n");
-    delete Logging;
     return main_return;
 }

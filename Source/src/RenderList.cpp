@@ -63,7 +63,7 @@ void Hachiko::RenderList::CollectObjects(ComponentCamera* camera, const float3& 
         // Call for all children (What to do if it is duplicated when collecting)?
         if (!quadtree->IsLeaf())
         {
-            for (QuadtreeNode* child : quadtree->childs)
+            for (QuadtreeNode* child : quadtree->children)
             {
                 CollectObjects(camera, camera_pos, child);
             }
@@ -77,7 +77,7 @@ void Hachiko::RenderList::CollectMesh(const float3& camera_pos, GameObject* game
     if (mesh && mesh->IsVisible())
     {
         RenderTarget target;
-        target.name = game_object->name.c_str();
+        target.name = game_object->GetName().c_str();
         target.game_object = game_object;
         target.mesh = mesh;
         target.distance = (game_object->GetOBB().CenterPoint() - camera_pos).LengthSq();

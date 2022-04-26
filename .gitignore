@@ -358,7 +358,16 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
+Source/.idea/
+
+# ImGui
 imgui.ini
 
+# Hachiko Engine
 Source/VTune Profiler Results/
-Source/.idea/
+Game/gameplayBin
+Game/Gameplay*
+Game/Hachiko*
+Game/*.scene
+Game/library/*
+Game/settings/*

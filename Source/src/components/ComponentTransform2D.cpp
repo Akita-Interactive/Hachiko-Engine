@@ -5,6 +5,7 @@
 #include "ComponentImage.h"
 #include "ComponentCanvasRenderer.h"
 #include "ComponentProgressBar.h"
+#include "ComponentText.h"
 
 #include "debugdraw.h"
 
@@ -234,52 +235,25 @@ bool Hachiko::ComponentTransform2D::Intersects(const float2& mouse_pos) const
     return aabb.Contains(mouse_pos);
 }
 
-void Hachiko::ComponentTransform2D::Save(JsonFormatterValue j_component) const
+void Hachiko::ComponentTransform2D::Save(YAML::Node& node) const
 {
-    const JsonFormatterValue j_position = j_component["Position"];
-    const JsonFormatterValue j_size = j_component["Size"];
-    const JsonFormatterValue j_scale = j_component["Scale"];
-    const JsonFormatterValue j_rotation = j_component["Rotation"];
-    const JsonFormatterValue j_pivot = j_component["Pivot"];
-    const JsonFormatterValue j_anchor = j_component["Anchor"];
-    
-    j_position[0] = position.x;
-    j_position[1] = position.y;
-    j_position[2] = position.z;
 
-    j_size[0] = size.x;
-    j_size[1] = size.y;
-
-    j_scale[0] = scale.x;
-    j_scale[1] = scale.y;
-
-    j_rotation[0] = rotation.x;
-    j_rotation[1] = rotation.y;
-    j_rotation[2] = rotation.z;
-    j_rotation[3] = rotation.w;
-
-    j_pivot[0] = pivot_pct_position.x;
-    j_pivot[1] = pivot_pct_position.y;
-
-    j_anchor[0] = anchor_pct_position.x;
-    j_anchor[1] = anchor_pct_position.y;
+    node[TRANSFORM_POSITION] = position;
+    node[TRANSFORM_SIZE] = size;
+    node[TRANSFORM_SCALE] = scale.xy();
+    node[TRANSFORM_ROTATION] = rotation;
+    node[TRANSFORM_PIVOT] = pivot_pct_position;
+    node[TRANSFORM_ANCHOR] = anchor_pct_position;
 }
 
-void Hachiko::ComponentTransform2D::Load(JsonFormatterValue j_component)
+void Hachiko::ComponentTransform2D::Load(const YAML::Node& node)
 {
-    const JsonFormatterValue j_position = j_component["Position"];
-    const JsonFormatterValue j_size = j_component["Size"];
-    const JsonFormatterValue j_scale = j_component["Scale"];
-    const JsonFormatterValue j_rotation = j_component["Rotation"];
-    const JsonFormatterValue j_pivot = j_component["Pivot"];
-    const JsonFormatterValue j_anchor = j_component["Anchor"];
-    
-    SetAnchor(float2(j_anchor[0], j_anchor[1]));
-    SetPivot(float2(j_pivot[0], j_pivot[1]));
-    SetRotation(Quat(j_rotation[0], j_rotation[1], j_rotation[2], j_rotation[3]));
-    SetScale(float2(j_scale[0], j_scale[1]));
-    SetSize(float2(j_size[0], j_size[1]));
-    SetPosition(float3(j_position[0], j_position[1], j_position[2]));
+    SetPosition(node[TRANSFORM_POSITION].as<float3>());
+    SetSize(node[TRANSFORM_SIZE].as<float2>());
+    SetScale(node[TRANSFORM_SCALE].as<float2>());
+    SetRotation(node[TRANSFORM_ROTATION].as<Quat>());
+    SetPivot(node[TRANSFORM_PIVOT].as<float2>());
+    SetAnchor(node[TRANSFORM_ANCHOR].as<float2>());
 }
 
 void Hachiko::ComponentTransform2D::Invalidate()
@@ -327,6 +301,11 @@ void Hachiko::ComponentTransform2D::UpdateTransforms()
 
 void Hachiko::ComponentTransform2D::UpdateUIComponents()
 {
+    ComponentText* text = game_object->GetComponent<ComponentText>();
+    if (text)
+    {
+        text->Invalidate();
+    }
 }
 
 void Hachiko::ComponentTransform2D::UpdateBoundingBox()

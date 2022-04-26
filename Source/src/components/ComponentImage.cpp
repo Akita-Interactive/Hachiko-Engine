@@ -4,6 +4,8 @@
 #include "ComponentButton.h"
 
 #include "modules/ModuleProgram.h"
+#include "Application.h"
+#include "modules/ModuleUserInterface.h"
 
 #include "Program.h"
 
@@ -57,8 +59,9 @@ void Hachiko::ComponentImage::DrawGui()
 void Hachiko::ComponentImage::Draw(ComponentTransform2D* transform, Program* program) const
 {
 	// Bind matrix
+    program->Activate();
+    App->ui->BindSquare();
     program->BindUniformFloat4x4("model", transform->GetGlobalScaledTransform().ptr());
-    // TODO
     const Texture* img_to_draw = &image;
     const float4* render_color = &color;
     bool render_img = use_image;    
@@ -79,20 +82,16 @@ void Hachiko::ComponentImage::Draw(ComponentTransform2D* transform, Program* pro
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
-void Hachiko::ComponentImage::Save(JsonFormatterValue j_component) const
+void Hachiko::ComponentImage::Save(YAML::Node& node) const
 {
-    const JsonFormatterValue j_image_path = j_component["ImagePath"];
-    const JsonFormatterValue j_hover_image_path = j_component["HoverImagePath"];
-    j_image_path = image.path.c_str();
-    j_hover_image_path = hover_image.path.c_str();
+    node[IMAGE_PATH] = image.path.c_str();
+    node[HOVER_IMAGE_PATH] = hover_image.path.c_str();
 }
 
-void Hachiko::ComponentImage::Load(JsonFormatterValue j_component)
+void Hachiko::ComponentImage::Load(const YAML::Node& node)
 {
-    const JsonFormatterValue j_image_path = j_component["ImagePath"];
-    const JsonFormatterValue j_hover_image_path = j_component["HoverImagePath"];
-    const std::string image_path = j_image_path;
-    const std::string hover_image_path = j_hover_image_path;
+    const std::string image_path = node[IMAGE_PATH].as<std::string>();
+    const std::string hover_image_path = node[HOVER_IMAGE_PATH].as<std::string>();
 
     if (!image_path.empty())
     {
@@ -106,6 +105,7 @@ void Hachiko::ComponentImage::Load(JsonFormatterValue j_component)
     if (!hover_image_path.empty())
     {
         hover_image = ModuleTexture::Load(hover_image_path.c_str());
+        use_hover_image = true;
     }
 }
 

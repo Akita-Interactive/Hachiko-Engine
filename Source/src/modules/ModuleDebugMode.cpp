@@ -74,7 +74,10 @@ UpdateStatus Hachiko::ModuleDebugMode::Update(const float delta)
         if (line.Intersects(plane, &d))
         {
             player = FindPlayer();
-            player->GetTransform()->SetGlobalPosition(line.GetPoint(d));
+            if (player)
+            {
+                player->GetTransform()->SetGlobalPosition(line.GetPoint(d));
+            }
         }
 	}
 
@@ -82,43 +85,50 @@ UpdateStatus Hachiko::ModuleDebugMode::Update(const float delta)
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == Hachiko::KeyState::KEY_DOWN)
 	{
         player = FindPlayer();
-        float3 currentPosition = player->GetTransform()->GetGlobalPosition();
-		
-		float dist = 1000.0f;
-		int loc = 0;
-		for (int i = 0; i < playerLocations.size(); ++i)
+		if (player)
 		{
-            if (dist > math::Distance(currentPosition, playerLocations[i]) && math::Distance(currentPosition, playerLocations[i]) != 0)
-			{
-                dist = math::Distance(currentPosition, playerLocations[i]);
-                loc = i;
-			}
+            float3 currentPosition = player->GetTransform()->GetGlobalPosition();
+
+            float dist = 1000.0f;
+            int loc = 0;
+            for (int i = 0; i < playerLocations.size(); ++i)
+            {
+                if (dist > math::Distance(currentPosition, playerLocations[i]) && math::Distance(currentPosition, playerLocations[i]) != 0)
+                {
+                    dist = math::Distance(currentPosition, playerLocations[i]);
+                    loc = i;
+                }
+            }
+            player->GetTransform()->SetGlobalPosition(playerLocations[loc]);
 		}
-        player->GetTransform()->SetGlobalPosition(playerLocations[loc]);
 	}
 	
 	// Teleport player to the next position in playerLocations
     if (App->input->GetKey(SDL_SCANCODE_RETURN) == Hachiko::KeyState::KEY_DOWN)
 	{
         player = FindPlayer();
-        float3 currentPosition = player->GetTransform()->GetGlobalPosition();
-        
-		int loc = 0;
-		for (int i = 0; i < playerLocations.size(); ++i)
+		if (player)
 		{
-            if (math::Distance(currentPosition, playerLocations[i]) == 0)
-			{
-                loc = i + 1;
-                break;
-			}
-		}
+            float3 currentPosition = player->GetTransform()->GetGlobalPosition();
 
-		if (loc == playerLocations.size())
-		{
-            loc = 0;
-		}
+            int loc = 0;
+            for (int i = 0; i < playerLocations.size(); ++i)
+            {
+                if (math::Distance(currentPosition, playerLocations[i]) == 0)
+                {
+                    loc = i + 1;
+                    break;
+                }
+            }
 
-        player->GetTransform()->SetGlobalPosition(playerLocations[loc]);
+            if (loc == playerLocations.size())
+            {
+                loc = 0;
+            }
+
+            player->GetTransform()->SetGlobalPosition(playerLocations[loc]);
+
+		}
 	}
 
 	return UpdateStatus::UPDATE_CONTINUE;

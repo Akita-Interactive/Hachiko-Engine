@@ -131,7 +131,6 @@ void Hachiko::WindowScene::DrawScene()
         if (auto* payload = ImGui::AcceptDragDropPayload("path"))
         {
             auto path = static_cast<const char*>(payload->Data);
-            App->scene_manager->LoadModel(path);
         }
         ImGui::EndDragDropTarget();
     }
@@ -208,9 +207,9 @@ Hachiko::GameObject* Hachiko::WindowScene::SelectObject(ComponentCamera* camera,
     const float x_normalized = mouse_viewport_pos.x / texture_size.x * 2.f - 1.f;
     const float y_normalized = -(mouse_viewport_pos.y / texture_size.y * 2.f - 1.f);
 
-    const LineSegment line = camera->RayCast(x_normalized, y_normalized);
+    const LineSegment line = camera->Raycast(x_normalized, y_normalized);
     App->debug_mode->SetLine(line);
-    GameObject* selected = scene->RayCast(line);
+    GameObject* selected = scene->Raycast(line);
 
     return selected;
 }

@@ -8,6 +8,11 @@ namespace Hachiko
         return uid_distribution(generator);
     }
 
+    UID UUID::StringToUID(const std::string& in)
+    {
+        return static_cast<UID>(std::stoull(in));
+    }
+
     std::string UUID::GenerateUUIDv4()
     {
         std::stringstream ss;

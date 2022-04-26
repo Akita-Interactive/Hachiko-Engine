@@ -21,6 +21,6 @@ void Hachiko::ComponentButton::DrawGui()
     ImGui::PopID();
 }
 
-void Hachiko::ComponentButton::Save(JsonFormatterValue j_component) const {}
+void Hachiko::ComponentButton::Save(YAML::Node& node) const {}
 
-void Hachiko::ComponentButton::Load(JsonFormatterValue j_component) {}
+void Hachiko::ComponentButton::Load(const YAML::Node& node) {}

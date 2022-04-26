@@ -4,6 +4,8 @@
 
 namespace Hachiko
 {
+    class Hardware;
+
     class WindowAbout final : public Window
     {
     public:
@@ -11,5 +13,8 @@ namespace Hachiko
 
         ~WindowAbout() override;
         void Update() override;
+
+    private:
+        Hardware* hardware;
     };
 }

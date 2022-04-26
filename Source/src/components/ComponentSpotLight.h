@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component.h"
+#include "components/Component.h"
 
 namespace Hachiko
 {
@@ -31,8 +31,8 @@ namespace Hachiko
         float3 GetPosition() const;
         float3 GetDirection() const;
 
-        void Save(JsonFormatterValue j_component) const override;
-        void Load(JsonFormatterValue j_component) override;
+        void Save(YAML::Node& node) const override;
+        void Load(const YAML::Node& node) override;
 
         void DrawGui() override;
 

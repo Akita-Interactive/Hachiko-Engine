@@ -6,7 +6,8 @@
 #include <list>
 
 #define QUADTREE_MAX_ITEMS 8
-#define QUADTREE_MIN_SIZE 10.0f
+#define QUADTREE_MIN_SIZE 50.f
+#define QUADTREE_MAX_DEPTH 3
 
 namespace Hachiko
 {
@@ -22,7 +23,7 @@ namespace Hachiko
     class QuadtreeNode
     {
     public:
-        QuadtreeNode(const AABB& box, QuadtreeNode* parent);
+        QuadtreeNode(const AABB& box, QuadtreeNode* parent, int depth);
         ~QuadtreeNode();
 
         void Insert(GameObject* game_object);
@@ -32,7 +33,7 @@ namespace Hachiko
 
         [[nodiscard]] bool IsLeaf() const
         {
-            return childs[0] == nullptr;
+            return children[0] == nullptr;
         }
 
         [[nodiscard]] const AABB& GetBox() const
@@ -48,11 +49,12 @@ namespace Hachiko
         template<typename T>
         void GetIntersections(std::vector<GameObject*>& objects, const T& primitive) const;
 
-        QuadtreeNode* childs[static_cast<int>(Quadrants::COUNT)]{};
+        QuadtreeNode* children[static_cast<int>(Quadrants::COUNT)] {};
 
         void DebugDraw();
 
     private:
+        int depth = 0;
         AABB box;
         QuadtreeNode* parent;
         std::list<GameObject*> objects;
@@ -96,13 +98,13 @@ namespace Hachiko
             }
 
             // If it has one child all exist
-            if (childs[0] != nullptr)
+            if (children[0] != nullptr)
             {
                 for (int i = 0; i < 4; ++i)
                 {
-                    childs[i]->GetIntersections(intersected, primitive);
+                    children[i]->GetIntersections(intersected, primitive);
                 }
             }
         }
     }
-}
+} // namespace Hachiko

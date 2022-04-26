@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component.h"
+#include "components/Component.h"
 #include "Globals.h"
 
 namespace Hachiko
@@ -11,7 +11,7 @@ namespace Hachiko
     {
     public:
         // This component will contain canvas and canvas renderer unity functionality
-        // Canvas will be in charge of rendering all childs
+        // Canvas will be in charge of rendering all children
         ComponentCanvas(GameObject* container);
         ~ComponentCanvas() override;
 

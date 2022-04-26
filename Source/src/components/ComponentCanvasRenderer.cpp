@@ -4,6 +4,7 @@
 #include "ComponentButton.h"
 #include "ComponentCanvas.h"
 #include "ComponentTransform2D.h"
+#include "ComponentText.h"
 
 #include "Program.h"
 
@@ -33,7 +34,7 @@ Hachiko::ComponentCanvas* Hachiko::ComponentCanvasRenderer::FindClosestParentCan
     return canvas;
 }
 
-void Hachiko::ComponentCanvasRenderer::Render(Program* program) const
+void Hachiko::ComponentCanvasRenderer::Render(Program* img_program, Program* txt_program) const
 {
     ComponentCanvas* canvas = FindClosestParentCanvas();
     ComponentTransform2D* transform = game_object->GetComponent<ComponentTransform2D>();
@@ -44,8 +45,13 @@ void Hachiko::ComponentCanvasRenderer::Render(Program* program) const
         ComponentImage* image = game_object->GetComponent<ComponentImage>();
         if (image && image->IsActive())
         {
-            image->Draw(transform, program);
+            image->Draw(transform, img_program);
         }
-        
+
+        ComponentText* text = game_object->GetComponent<ComponentText>();
+        if (text && text->IsActive())
+        {
+            text->Draw(transform, txt_program);
+        }
     }
 }

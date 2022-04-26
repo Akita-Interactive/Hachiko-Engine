@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Component.h"
+#include "components/Component.h"
 #include "Globals.h"
-#include "ISelectable.h"
+#include "components/ISelectable.h"
 
 namespace Hachiko
 {
@@ -10,7 +10,7 @@ namespace Hachiko
 
     class ComponentTransform2D;
 
-    class ComponentButton : public Component, public ISelectable
+    class HACHIKO_API ComponentButton : public Component, public ISelectable
     {
     public:
         ComponentButton(GameObject* container);
@@ -22,8 +22,8 @@ namespace Hachiko
 
         void DrawGui() override;
 
-        void Save(JsonFormatterValue j_component) const override;
-        void Load(JsonFormatterValue j_component) override;
+        void Save(YAML::Node& node) const override;
+        void Load(const YAML::Node& node) override;
     };
     
     inline Component::Type Hachiko::ComponentButton::GetType()

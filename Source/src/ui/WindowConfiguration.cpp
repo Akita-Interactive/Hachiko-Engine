@@ -5,17 +5,15 @@
 #include "modules/ModuleProgram.h"
 #include "modules/ModuleCamera.h"
 #include "modules/ModuleWindow.h"
+#include "modules/ModuleSceneManager.h"
 
 #include "components/ComponentCamera.h"
-
-// TODO: REMOVE
-#include "modules/ModuleSceneManager.h"
-//
+#include "core/preferences/src/EditorPreferences.h"
 
 Hachiko::WindowConfiguration::WindowConfiguration() :
-    Window("Configuration", true) {}
-
-Hachiko::WindowConfiguration::~WindowConfiguration() = default;
+    Window("Configuration", true)
+{
+}
 
 void Hachiko::WindowConfiguration::Update()
 {
@@ -26,24 +24,11 @@ void Hachiko::WindowConfiguration::Update()
         {
             App->renderer->OptionsMenu();
             ImGui::Separator();
+            App->scene_manager->OptionsMenu();
+            ImGui::Separator();
             ImGui::Text("Shader Options");
             App->program->OptionsMenu();
         }
-
-        // TODO: REMOVE
-        if (ImGui::Button("Toggle editor camera"))
-        {
-            App->camera->RestoreOriginCamera();
-        }
-        if (ImGui::Button("Load scene: first_deliver_scene.scene"))
-        {
-            App->scene_manager->SwitchTo(ASSETS_FOLDER "/Scenes/first_deliver_scene.scene");
-        }
-        if (ImGui::Button("Load scene: untitled.scene"))
-        {
-            App->scene_manager->SwitchTo(ASSETS_FOLDER "/Scenes/untitled.scene");
-        }
-        //
 
         //It is already a collapsing header
         App->camera->GetMainCamera()->DrawGui();

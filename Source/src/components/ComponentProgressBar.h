@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Component.h"
-#include "ComponentTransform2D.h"
+#include "components/Component.h"
+#include "components/ComponentTransform2D.h"
 #include "Globals.h"
 
 namespace Hachiko
@@ -67,8 +67,8 @@ namespace Hachiko
             fill_direction = new_direction;
         }
 
-        void Save(JsonFormatterValue j_component) const override;
-        void Load(JsonFormatterValue j_component) override;
+        void Save(YAML::Node& node) const override;
+        void Load(const YAML::Node& node) override;
 
     private:
         GameObject* background = nullptr;

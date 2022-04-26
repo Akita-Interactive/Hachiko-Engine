@@ -1,11 +1,18 @@
 #pragma once
-#include "Component.h"
+
+#include "components/Component.h"
+
+#if defined(HACHIKO_API)
+// Do Nothing
+#elif defined(_MSC_VER)
+#define HACHIKO_API __declspec(dllexport)
+#endif
 
 namespace Hachiko
 {
     class GameObject;
 
-    class ComponentTransform : public Component
+    class HACHIKO_API ComponentTransform : public Component
     {
 
     public:
@@ -55,18 +62,14 @@ namespace Hachiko
         [[nodiscard]] const Quat& GetGlobalRotation();
         [[nodiscard]] const float3& GetGlobalRotationEuler();
 
-
-
-
-        void Save(JsonFormatterValue j_component) const override;
-        void Load(JsonFormatterValue j_component) override;
+        void Save(YAML::Node& node) const override;
+        void Load(const YAML::Node& node) override;
 
         void DrawGui() override;        
 
     private:
         void Invalidate();
         void UpdateTransform();  
-
 
     private:
         bool dirty;

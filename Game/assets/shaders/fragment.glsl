@@ -2,7 +2,8 @@
 
 #define DIFFUSE_SAMPLER 0
 #define SPECULAR_SAMPLER 1
-#define N_2D_SAMPLERS 2
+#define NORMAL_SAMPLER 2
+#define N_2D_SAMPLERS 3
 
 #define MAX_POINT_LIGHTS 4
 #define MAX_SPOT_LIGHTS 4
@@ -54,6 +55,7 @@ layout(std140, binding = 1) uniform Material
     vec4 specular_color;
     uint diffuse_flag;
     uint specular_flag;
+    uint normal_flag;
     float shininess;
 } material;
 
@@ -73,6 +75,7 @@ uniform sampler2D textures[N_2D_SAMPLERS];
 struct VertexData
 {
     vec3 normal;
+    vec3 tangent;
     vec3 pos;
     vec2 tex_coord;
 };
@@ -171,9 +174,23 @@ vec3 SpotPBR(const vec3 frag_pos, const vec3 normal, const vec3 view_dir, const 
     return PBR(normal, view_dir, L, light.color.rgb, diffuse_color, specular_color, shininess, attenuation * cone) * light.intensity;
 }
 
+mat3 CreateTangentSpace(const vec3 normal, const vec3 tangent)
+{
+	vec3 ortho_tangent = normalize(tangent - dot(tangent, normal) * normal); // Gram-Schmidt
+	vec3 bitangent = cross(normal, ortho_tangent);
+	return mat3(tangent, bitangent, normal);
+}
+
 void main()
 {
     vec3 norm = normalize(fragment.normal);
+    if (material.normal_flag > 0)
+    {
+        mat3 tbn = CreateTangentSpace(normalize(fragment.normal), normalize(fragment.tangent));
+	    vec3 fragmentNormal = tbn * (texture(textures[NORMAL_SAMPLER], fragment.tex_coord).xyz * 2.0 - 1.0);
+	    norm = normalize(fragmentNormal);
+    }
+
     vec3 view_dir = normalize(camera.pos - fragment.pos);
     
     vec3 diffuse_color = material.diffuse_color.rgb;

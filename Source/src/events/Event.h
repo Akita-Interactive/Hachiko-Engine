@@ -9,11 +9,15 @@
 #include "MouseEventPayload.h"
 #include "InputEventPayload.h"
 #include "GameStateEventPayload.h"
+#include "SceneLoadEventPayload.h"
 
 namespace Hachiko
 {
     //std::monostate is added just so we can have an empty std::variant
-    using EventData = std::variant<std::monostate, SelectionChangedEventPayload, FileAddedEventPayload, AssetsAddedEventPayload, MouseEventPayload, InputEventPayload, GameStateEventPayload>;
+    using EventData = std::variant<std::monostate, 
+        SelectionChangedEventPayload, FileAddedEventPayload, 
+        AssetsAddedEventPayload, MouseEventPayload, InputEventPayload, 
+        GameStateEventPayload, SceneLoadEventPayload>;
 
     class Event
     {
@@ -29,6 +33,7 @@ namespace Hachiko
             MOUSE_ACTION,
             INPUT,
             GAME_STATE,
+            SCENE_LOADED,
             COUNT
         };
 
@@ -67,4 +72,4 @@ namespace Hachiko
     {
         return std::get<T>(data);
     }
-} // namespace BoxerEngine
+} // namespace Hachiko

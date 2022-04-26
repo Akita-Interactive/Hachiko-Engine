@@ -1,7 +1,6 @@
 #include "core/hepch.h"
 
 #include "ModuleEditor.h"
-#include "ModuleFileSystem.h"
 #include "ModuleWindow.h"
 #include "ModuleRender.h"
 #include "ModuleSceneManager.h"
@@ -10,17 +9,15 @@ Hachiko::ModuleEditor::ModuleEditor()
 {
     HE_LOG("Creating windows");
 
-#ifdef PLAY_BUILD
-    windows.push_back(&w_configuration);
-#else
+#ifndef PLAY_BUILD
     windows.push_back(&w_configuration);
     windows.push_back(&w_hierarchy);
     windows.push_back(&w_scene);
     windows.push_back(&w_inspector);
     windows.push_back(&w_about);
     windows.push_back(&w_console);
-    // windows.push_back(&w_resource);
-    //windows.push_back(&w_project);
+    windows.push_back(&w_resource);
+    windows.push_back(&w_project);
     windows.push_back(&w_timers);
 #endif
 }
@@ -142,7 +139,7 @@ UpdateStatus Hachiko::ModuleEditor::Update(const float delta)
             const std::string file_path_name = ImGuiFileDialog::Instance()->GetFilePathName();
 
             //TODO: Make a function inside file sys to get relative path Assets/Scenes/X.scene
-            const std::string file_name_extension = App->file_sys->GetFileNameAndExtension(file_path_name.c_str());
+            const std::string file_name_extension = FileSystem::GetFileNameAndExtension(file_path_name.c_str());
 
             const std::string file_path = std::string(ASSETS_FOLDER_SCENES) + "/" + file_name_extension;
 
@@ -275,7 +272,7 @@ void Hachiko::ModuleEditor::FileMenu() const
     }
     if (ImGui::MenuItem(ICON_FA_SAVE "Save", nullptr, false, true)) // TODO: Use internal timer to disable/enable
     {
-        const std::string temp_scene_file_path = std::string(ASSETS_FOLDER_SCENES) + "/" + "untitled" + SCENE_EXTENSION;
+        const std::string temp_scene_file_path = std::string(ASSETS_FOLDER_SCENES) + "/" + UNNAMED_SCENE + SCENE_EXTENSION;
         App->scene_manager->SaveScene(temp_scene_file_path.c_str());
     }
     if (ImGui::MenuItem("Save as", nullptr, false, true)) // TODO: Use internal timer
@@ -398,7 +395,7 @@ void Hachiko::ModuleEditor::GoMenu() const
 
     if (ImGui::MenuItem("Add GameObject"))
     {
-        App->scene_manager->GetActiveScene()->CreateNewGameObject("GameObject", App->scene_manager->GetActiveScene()->GetRoot());
+        App->scene_manager->GetActiveScene()->CreateNewGameObject(App->scene_manager->GetActiveScene()->GetRoot(), "GameObject");
     }
 
     ImGui::EndMenu();

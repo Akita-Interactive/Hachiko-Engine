@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component.h"
+#include "components/Component.h"
 #include "Globals.h"
 
 namespace Hachiko
@@ -22,7 +22,7 @@ namespace Hachiko
 
 
         ComponentCanvas* FindClosestParentCanvas() const;
-        void Render(Program* program) const;
+        void Render(Program* img_program, Program* txt_program) const;
     };
 } // namespace Hachiko
 

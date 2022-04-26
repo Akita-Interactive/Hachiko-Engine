@@ -1,16 +1,25 @@
 #pragma once
 
-#include "utils/UUID.h"
-#include <assimp/scene.h>
+class aiMesh;
 
 namespace Hachiko
 {
     class ResourceMesh;
 
-    namespace MeshImporter
+    class MeshImporter : public Importer
     {
-        ResourceMesh* Import(const aiMesh* ai_mesh);
-        void Save(ResourceMesh* r_mesh, UID uid);
-        ResourceMesh* Load(UID uid);
-    }; // namespace MeshImporter
+        friend class ModelImporter;
+    public:
+        MeshImporter();
+        void Import(const char* path) override;
+        void Save(const Resource* mesh) override;
+        Resource* Load(const char* path) override;
+        bool IsImported(const char* path) override
+        {
+            return false;
+        }
+
+    private:
+        void Import(const aiMesh* ai_mesh, const UID& id = 0);
+    };
 }

@@ -1,6 +1,5 @@
 #include "core/hepch.h"
 #include "WindowProject.h"
-#include "modules/ModuleFileSystem.h"
 #include "modules/ModuleEditor.h"
 
 Hachiko::WindowProject::WindowProject() :
@@ -90,7 +89,7 @@ void Hachiko::WindowProject::CreateBreadCrumps()
         {
             if (tmp != all_assets.localPath)
             {
-                all_assets = App->file_sys->GetAllFiles(tmp, nullptr, nullptr);
+                all_assets = FileSystem::GetAllFiles(tmp, nullptr, nullptr);
             }
         }
         ImGui::SameLine();
@@ -140,7 +139,7 @@ void Hachiko::WindowProject::ShowDir(PathNode& node)
 
         previous_path = full.substr(0, pos_last_separator);
 
-        all_assets = App->file_sys->GetAllFiles(previous_path.c_str(), nullptr, nullptr);
+        all_assets = FileSystem::GetAllFiles(previous_path.c_str(), nullptr, nullptr);
 
         ImGui::PopItemWidth();
         ImGui::EndChild();
@@ -225,7 +224,7 @@ void Hachiko::WindowProject::ShowFilesOnFolder()
                         break;
                     }
                     PathNode& node = all_assets.children[idx];
-                    const bool is_resource = node.children.empty() && ModuleFileSystem::HasExtension(node.path.c_str());
+                    const bool is_resource = node.children.empty() && FileSystem::HasExtension(node.path.c_str());
                     if (is_resource)
                     {
                         // bool selected = find on resource and search match
@@ -306,7 +305,7 @@ void Hachiko::WindowProject::GetAssets()
 {
     std::vector<std::string> ignore_ext;
     ignore_ext.emplace_back("meta");
-    all_assets = App->file_sys->GetAllFiles(ASSETS_FOLDER, nullptr, &ignore_ext);
+    all_assets = FileSystem::GetAllFiles(ASSETS_FOLDER, nullptr, &ignore_ext);
 }
 
 int Hachiko::WindowProject::GetThumbnailIndex(int i, int j, int columns) const

@@ -6,7 +6,7 @@
 
 Hachiko::Skybox::Skybox()
 {
-    const char* paths[6] = {"Assets/Skybox/right.jpg", "Assets/Skybox/left.jpg", "Assets/Skybox/top.jpg", "Assets/Skybox/bottom.jpg", "Assets/Skybox/front.jpg", "Assets/Skybox/back.jpg"};
+    const char* paths[6] = {"Assets/Skybox/skybox_right.png", "Assets/Skybox/skybox_left.png", "Assets/Skybox/skybox_top.png", "Assets/Skybox/skybox_bottom.png", "Assets/Skybox/skybox_center.png", "Assets/Skybox/skybox_back.png"};
     texture = ModuleTexture::LoadCubeMap(paths);
 
     constexpr float vertices[] = {

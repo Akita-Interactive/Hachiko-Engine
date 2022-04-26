@@ -2,7 +2,7 @@
 
 namespace Hachiko
 {
-    class ISelectable
+    class HACHIKO_API ISelectable
     {
     public:
         virtual ~ISelectable() {}

@@ -1,83 +1,92 @@
 #include "core/hepch.h"
 
+#include "modules/ModuleProgram.h"
+#include "modules/ModuleResources.h"
+
+#include "resources/ResourceMesh.h"
+
 #include "ComponentMesh.h"
 #include "ComponentCamera.h"
 #include "ComponentTransform.h"
 #include "ComponentMaterial.h"
 
-#include "modules/ModuleProgram.h"
-#include "importers/MeshImporter.h"
-
-Hachiko::ComponentMesh::ComponentMesh(GameObject* container) :
-    Component(Type::MESH, container) {}
-
-Hachiko::ComponentMesh::~ComponentMesh()
+Hachiko::ComponentMesh::ComponentMesh(GameObject* container, UID id, ResourceMesh* res) 
+    : Component(Type::MESH, container)
 {
-    RELEASE(resource);
-}
-
-void Hachiko::ComponentMesh::Import(const aiMesh* mesh)
-{
-    // TODO: This is ugly. Maybe we should find a better approach,
-    // for example MeshImporter::Import can take resource as ref
-    // and do this check internally.
-
-    if (resource != nullptr && resource->loaded)
+    if (res != nullptr)
     {
-        resource->CleanUp();
+        mesh = res;
     }
-
-    resource = MeshImporter::Import(mesh);
 }
 
 void Hachiko::ComponentMesh::Draw(ComponentCamera* camera, Program* program)
 {
-    assert(resource->loaded == true);
+    if (mesh == nullptr)
+    {
+        return;
+    }
+    
     program->BindUniformFloat4x4("model", game_object->GetTransform()->GetGlobalMatrix().ptr());
 
     const ComponentMaterial* material = game_object->GetComponent<ComponentMaterial>();
     App->program->UpdateMaterial(material);
-
-    glBindVertexArray(resource->vao);
-    glDrawElements(GL_TRIANGLES, resource->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::INDICES)], GL_UNSIGNED_INT, nullptr);
+    glBindVertexArray(mesh->vao);
+    glDrawElements(GL_TRIANGLES, mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::INDICES)], GL_UNSIGNED_INT, nullptr);
 }
 
 void Hachiko::ComponentMesh::DrawStencil(ComponentCamera* camera, Program* program) const
 {
-    assert(resource->loaded == true);
+    if (mesh == nullptr)
+    {
+        return;
+    }
+    
     program->BindUniformFloat4x4("model", game_object->GetTransform()->GetGlobalMatrix().ptr());
 
-    glBindVertexArray(resource->vao);
-    glDrawElements(GL_TRIANGLES, resource->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::INDICES)], GL_UNSIGNED_INT, nullptr);
+    glBindVertexArray(mesh->vao);
+    glDrawElements(GL_TRIANGLES, mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::INDICES)], GL_UNSIGNED_INT, nullptr);
 }
 
-void Hachiko::ComponentMesh::Save(JsonFormatterValue j_component) const
+void Hachiko::ComponentMesh::LoadMesh(const char* mesh_path)
 {
-    MeshImporter::Save(resource, game_object->getUID());
+    std::filesystem::path m_path(mesh_path);
+    LoadMesh(Hachiko::UUID::StringToUID(m_path.filename().replace_extension().string()));
 }
 
-void Hachiko::ComponentMesh::Load(JsonFormatterValue j_component)
+void Hachiko::ComponentMesh::LoadMesh(UID mesh_id)
 {
-    // TODO: This is ugly. Maybe we should find a better approach,
-    // for example MeshImporter::Import can take resource as ref
-    // and do this check internally.
-
-    if (resource != nullptr && resource->loaded)
-    {
-        resource->CleanUp();
-    }
-
-    resource = MeshImporter::Load(game_object->getUID());
+    mesh = App->resources->GetMesh(mesh_id, asset_path, mesh_index);
 }
 
 void Hachiko::ComponentMesh::DrawGui()
 {
     if (ImGui::CollapsingHeader("Mesh", ImGuiTreeNodeFlags_DefaultOpen))
     {
+        if (mesh == nullptr)
+        {
+            return;
+        }
+
         ImGui::Text("%d Triangles\n%d vertices\n%d indices",
-                    resource->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::INDICES)] / 3,
-                    resource->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::VERTICES)] / 3,
-                    resource->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::INDICES)]);
+                    mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::INDICES)] / 3,
+                    mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::VERTICES)],
+                    mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::INDICES)]);
         ImGui::Checkbox("Visible", &visible);
     }
+}
+
+void Hachiko::ComponentMesh::Save(YAML::Node& node) const
+{
+    node[MODEL_FILE_PATH] = asset_path;
+    node[MODEL_NAME] = model_name;
+    node[NODE_MESH_INDEX] = mesh_index;
+}
+
+void Hachiko::ComponentMesh::Load(const YAML::Node& node)
+{
+    asset_path = node[MODEL_FILE_PATH].as<std::string>();
+    model_name = node[MODEL_NAME].as<std::string>();
+    mesh_index = node[NODE_MESH_INDEX].as<int>();
+    SetID(node[COMPONENT_ID].as<UID>());
+    LoadMesh(node[COMPONENT_ID].as<UID>());
 }

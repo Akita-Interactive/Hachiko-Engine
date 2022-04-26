@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Window.h"
 
 namespace Hachiko
@@ -7,7 +8,12 @@ namespace Hachiko
     {
     public:
         WindowResource();
-        ~WindowResource() override;
+        ~WindowResource() override = default;
+
         void Update() override;
+    private:
+        void LoadResource(const std::string& path);
+        std::filesystem::path current_directory = "./assets";
+        std::string auxiliary_name;
     };
 }

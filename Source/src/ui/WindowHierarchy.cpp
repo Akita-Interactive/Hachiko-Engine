@@ -83,7 +83,7 @@ void Hachiko::WindowHierarchy::DrawGameObject(GameObject* game_object)
 
         if (ImGui::IsMouseClicked(1))
         {
-            ImGui::OpenPopup(game_object->name.c_str());
+            ImGui::OpenPopup(game_object->GetName().c_str());
         }
         
         if (ImGui::IsMouseClicked(0) && flags == isSelected)
@@ -98,7 +98,7 @@ void Hachiko::WindowHierarchy::DrawGameObject(GameObject* game_object)
     }
 
     // TODO: Make robust to repeted game object names
-    if (ImGui::BeginPopup(game_object->name.c_str()))
+    if (ImGui::BeginPopup(game_object->GetName().c_str()))
     {
         // Alternativs: ImGui::Selectable, ImGuiHelper::ValueSelection
         // TODO: Open options to create/destroy new object or move up down in the list of children
@@ -110,7 +110,7 @@ void Hachiko::WindowHierarchy::DrawGameObject(GameObject* game_object)
                 App->editor->SetSelectedGO(nullptr);
             }
 
-            App->scene_manager->GetActiveScene()->CreateNewGameObject("New Game Object", game_object);
+            App->scene_manager->GetActiveScene()->CreateNewGameObject(game_object, "New Game Object");
             ImGui::CloseCurrentPopup();
         }
         if (ImGui::MenuItem("Delete Game Object"))

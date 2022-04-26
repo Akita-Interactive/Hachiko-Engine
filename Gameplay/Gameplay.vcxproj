@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Play|x64">
+      <Configuration>Play</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{d86e2193-a088-41c0-bb52-334db6500dae}</ProjectGuid>
+    <RootNamespace>Gameplay</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Play|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Play|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..\Game\gameplayBin</OutDir>
+    <IntDir>$(SolutionDir)bin\build\$(Platform)\$(Configuration)\</IntDir>
+    <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)vendors;</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\Game\gameplayBin</OutDir>
+    <IntDir>$(SolutionDir)bin\build\$(Platform)\$(Configuration)\</IntDir>
+    <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)vendors;</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Play|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\Game\gameplayBin\</OutDir>
+    <IntDir>$(SolutionDir)bin\build\$(Platform)\$(Configuration)\</IntDir>
+    <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)vendors;</ExternalIncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>GAMEPLAY_EXPORTS;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;NOMINMAX;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;_CONSOLE;LOGGING_SUPPORT_DISABLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>scriptingUtil/gameplaypch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)src;$(SolutionDir)vendors\SDL\include;$(SolutionDir)vendors\glew-2.1.0\include\GL;$(SolutionDir)vendors\imgui;$(SolutionDir)vendors\MathGeoLib;$(SolutionDir)vendors\DevIL\include\IL;$(SolutionDir)vendors\DebugDraw;$(SolutionDir)vendors\assimp\include;$(SolutionDir)vendors\ImGuiFileDialog-0.6.3;$(SolutionDir)vendors\ImGuizmo;$(SolutionDir)vendors\rapidjson\include;$(SolutionDir)vendors\optick\include;$(SolutionDir)vendors\PhysicsFS;$(SolutionDir)vendors\yaml-cpp\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>Hachiko.lib;glew32.lib;opengl32.lib;DevIL.lib;ILU.lib;ILUT.lib;SDL2.lib;SDL2main.lib;assimp-vc143-mt.lib;OptickCore.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir)..\;$(SolutionDir)vendors\glew-2.1.0\lib;$(SolutionDir)vendors\DevIL\lib; $(SolutionDir)vendors\SDL\lib;$(SolutionDir)vendors\assimp\lib;$(SolutionDir)vendors\optick\lib;$(SolutionDir)vendors\yaml-cpp\lib\x64\Release</AdditionalLibraryDirectories>
+    </Link>
+    <PreBuildEvent>
+      <Command>call $(ProjectDir)buildEvents\generate_code.bat;</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>xcopy "$(TargetDir)\$(TargetName).exp" "$(TargetDir)..\" /Y
+xcopy "$(TargetDir)\$(TargetName).pdb" "$(TargetDir)..\" /Y
+xcopy "$(TargetDir)\$(TargetName).lib" "$(TargetDir)..\" /Y
+xcopy "$(TargetPath)" "$(TargetDir)..\" /Y
+RD /S /Q "$(TargetDir)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;GAMEPLAY_EXPORTS;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;NOMINMAX;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;_CONSOLE;_SILENCE_ALLCXX17_DEPRECATION_WARNINGS;LOGGING_SUPPORT_DISABLED;%(PreprocessorDefinitions);_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>scriptingUtil/gameplaypch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)src;$(SolutionDir)vendors\SDL\include;$(SolutionDir)vendors\glew-2.1.0\include\GL;$(SolutionDir)vendors\imgui;$(SolutionDir)vendors\MathGeoLib;$(SolutionDir)vendors\DevIL\include\IL;$(SolutionDir)vendors\DebugDraw;$(SolutionDir)vendors\assimp\include;$(SolutionDir)vendors\ImGuiFileDialog-0.6.3;$(SolutionDir)vendors\ImGuizmo;$(SolutionDir)vendors\rapidjson\include;$(SolutionDir)vendors\optick\include;$(SolutionDir)vendors\PhysicsFS;$(SolutionDir)vendors\yaml-cpp\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>Hachiko.lib;glew32.lib;opengl32.lib;DevIL.lib;ILU.lib;ILUT.lib;SDL2.lib;SDL2main.lib;assimp-vc143-mt.lib;OptickCore.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir)..\;$(SolutionDir)vendors\glew-2.1.0\lib;$(SolutionDir)vendors\DevIL\lib; $(SolutionDir)vendors\SDL\lib;$(SolutionDir)vendors\assimp\lib;$(SolutionDir)vendors\optick\lib;$(SolutionDir)vendors\yaml-cpp\lib\x64\Release</AdditionalLibraryDirectories>
+    </Link>
+    <PreBuildEvent>
+      <Command>call $(ProjectDir)buildEvents\generate_code.bat;</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>xcopy "$(TargetDir)\$(TargetName).exp" "$(TargetDir)..\" /Y
+xcopy "$(TargetDir)\$(TargetName).pdb" "$(TargetDir)..\" /Y
+xcopy "$(TargetDir)\$(TargetName).lib" "$(TargetDir)..\" /Y
+xcopy "$(TargetPath)" "$(TargetDir)..\" /Y
+RD /S /Q "$(TargetDir)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Play|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;GAMEPLAY_EXPORTS;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;NOMINMAX;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;_CONSOLE;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;LOGGING_SUPPORT_DISABLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>scriptingUtil/gameplaypch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)src;$(SolutionDir)vendors\SDL\include;$(SolutionDir)vendors\glew-2.1.0\include\GL;$(SolutionDir)vendors\imgui;$(SolutionDir)vendors\MathGeoLib;$(SolutionDir)vendors\DevIL\include\IL;$(SolutionDir)vendors\DebugDraw;$(SolutionDir)vendors\assimp\include;$(SolutionDir)vendors\ImGuiFileDialog-0.6.3;$(SolutionDir)vendors\ImGuizmo;$(SolutionDir)vendors\rapidjson\include;$(SolutionDir)vendors\optick\include;$(SolutionDir)vendors\PhysicsFS;$(SolutionDir)vendors\yaml-cpp\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>Hachiko.lib;glew32.lib;opengl32.lib;DevIL.lib;ILU.lib;ILUT.lib;SDL2.lib;SDL2main.lib;assimp-vc143-mt.lib;OptickCore.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir)..\;$(SolutionDir)vendors\glew-2.1.0\lib;$(SolutionDir)vendors\DevIL\lib; $(SolutionDir)vendors\SDL\lib;$(SolutionDir)vendors\assimp\lib;$(SolutionDir)vendors\optick\lib;$(SolutionDir)vendors\yaml-cpp\lib\x64\Release</AdditionalLibraryDirectories>
+    </Link>
+    <PreBuildEvent>
+      <Command>call $(ProjectDir)buildEvents\generate_code.bat;</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>xcopy "$(TargetDir)\$(TargetName).exp" "$(TargetDir)..\" /Y
+xcopy "$(TargetDir)\$(TargetName).pdb" "$(TargetDir)..\" /Y
+xcopy "$(TargetDir)\$(TargetName).lib" "$(TargetDir)..\" /Y
+xcopy "$(TargetPath)" "$(TargetDir)..\" /Y
+RD /S /Q "$(TargetDir)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Source\vendors\DebugDraw\debugdraw.h" />
+    <ClInclude Include="..\Source\vendors\DebugDraw\debug_draw.hpp" />
+    <ClInclude Include="..\Source\vendors\ImGuiFileDialog-0.6.3\dirent\dirent.h" />
+    <ClInclude Include="..\Source\vendors\ImGuiFileDialog-0.6.3\ImGuiFileDialog.h" />
+    <ClInclude Include="..\Source\vendors\ImGuiFileDialog-0.6.3\ImGuiFileDialogConfig.h" />
+    <ClInclude Include="..\Source\vendors\ImGuiFileDialog-0.6.3\stb\stb_image.h" />
+    <ClInclude Include="..\Source\vendors\ImGuiFileDialog-0.6.3\stb\stb_image_resize.h" />
+    <ClInclude Include="..\Source\vendors\imGuizmo\GraphEditor.h" />
+    <ClInclude Include="..\Source\vendors\imGuizmo\ImCurveEdit.h" />
+    <ClInclude Include="..\Source\vendors\imGuizmo\ImGradient.h" />
+    <ClInclude Include="..\Source\vendors\imGuizmo\ImGuizmo.h" />
+    <ClInclude Include="..\Source\vendors\imGuizmo\ImSequencer.h" />
+    <ClInclude Include="..\Source\vendors\imGuizmo\ImZoomSlider.h" />
+    <ClInclude Include="..\Source\vendors\imgui\IconsFontAwesome5.h" />
+    <ClInclude Include="..\Source\vendors\imgui\imconfig.h" />
+    <ClInclude Include="..\Source\vendors\imgui\imgui.h" />
+    <ClInclude Include="..\Source\vendors\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\Source\vendors\imgui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="..\Source\vendors\imgui\imgui_impl_sdl.h" />
+    <ClInclude Include="..\Source\vendors\imgui\imgui_internal.h" />
+    <ClInclude Include="..\Source\vendors\imgui\imgui_stdlib.h" />
+    <ClInclude Include="..\Source\vendors\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\Source\vendors\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\Source\vendors\imgui\imstb_truetype.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Algorithm\GJK.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Algorithm\GJK2D.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Algorithm\Random\LCG.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Algorithm\SAT.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\AABB.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\AABB2D.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\Capsule.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\Circle.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\Circle2D.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\Frustum.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\GeometryAll.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\GeomType.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\HitInfo.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\KDTree.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\Line.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\LineSegment.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\LineSegment2D.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\OBB.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\OBB2D.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\PBVolume.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\Plane.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\Polygon.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\Polygon2DRef.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\Polyhedron.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\QuadTree.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\Ray.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\Sphere.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\Triangle.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\Triangle2D.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Geometry\TriangleMesh.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\MathBuildConfig.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\MathGeoLib.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\MathGeoLibFwd.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\assume.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\BitFuncs.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\BitOps.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\Callstack.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\FixedPoint.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\float2.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\float3.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\float3x3.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\float3x4.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\float4.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\float4d.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\float4x4.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\float4x4_neon.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\float4x4_sse.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\float4_neon.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\float4_sse.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\FloatCmp.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\grisu3.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\InclWindows.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\Interpolate.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\MathAll.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\MathConstants.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\MathFunc.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\MathLog.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\MathNamespace.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\MathTypes.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\MatrixProxy.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\MiniFloat.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\MultiLineMacro.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\myassert.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\Polynomial.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\Quat.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\quat_simd.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\Rect.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\Reinterpret.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\simd.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\SSEMath.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\sse_mathfun.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\Swap.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\TransformOps.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Math\vec2d.h" />
+    <ClInclude Include="..\Source\vendors\MathGeoLib\Time\Clock.h" />
+    <ClInclude Include="..\Source\vendors\PhysicsFS\physfs.h" />
+    <ClInclude Include="..\Source\vendors\PhysicsFS\physfs_casefolding.h" />
+    <ClInclude Include="..\Source\vendors\PhysicsFS\physfs_internal.h" />
+    <ClInclude Include="..\Source\vendors\PhysicsFS\physfs_lzmasdk.h" />
+    <ClInclude Include="..\Source\vendors\PhysicsFS\physfs_miniz.h" />
+    <ClInclude Include="..\Source\vendors\PhysicsFS\physfs_platforms.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\anchor.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\binary.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\contrib\anchordict.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\contrib\graphbuilder.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\depthguard.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\dll.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\emitfromevents.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\emitter.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\emitterdef.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\emittermanip.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\emitterstyle.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\eventhandler.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\exceptions.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\mark.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\convert.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\detail\impl.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\detail\iterator.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\detail\iterator_fwd.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\detail\memory.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\detail\node.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\detail\node_data.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\detail\node_iterator.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\detail\node_ref.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\emit.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\impl.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\iterator.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\node.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\parse.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\ptr.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\node\type.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\noexcept.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\null.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\ostream_wrapper.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\parser.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\stlemitter.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\traits.h" />
+    <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\yaml.h" />
+    <ClInclude Include="BackToMainMenu.h" />
+    <ClInclude Include="DynamicCamera.h" />
+    <ClInclude Include="generated\Factory.h" />
+    <ClInclude Include="MainMenuManager.h" />
+    <ClInclude Include="PlayerCamera.h" />
+    <ClInclude Include="PlayerController.h" />
+    <ClInclude Include="Scenes.h" />
+    <ClInclude Include="scriptingUtil\framework.h" />
+    <ClInclude Include="scriptingUtil\gameplaypch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Source\vendors\ImGuiFileDialog-0.6.3\ImGuiFileDialog.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\imGuizmo\GraphEditor.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\imGuizmo\ImCurveEdit.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\imGuizmo\ImGradient.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\imGuizmo\ImGuizmo.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\imGuizmo\ImSequencer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\imgui\imgui.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\imgui\imgui_draw.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\imgui\imgui_impl_opengl3.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\imgui\imgui_impl_sdl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\imgui\imgui_stdlib.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\imgui\imgui_tables.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\imgui\imgui_widgets.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Algorithm\GJK.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Algorithm\GJK2D.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Algorithm\Random\LCG.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Algorithm\SAT.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\AABB.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\Capsule.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\Circle.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\Circle2D.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\Frustum.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\Line.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\LineSegment.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\LineSegment2D.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\OBB.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\PBVolume.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\Plane.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\Polygon.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\Polyhedron.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\Ray.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\Sphere.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\Triangle.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\Triangle2D.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Geometry\TriangleMesh.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\BitOps.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\Callstack.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\float2.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\float3.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\float3x3.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\float3x4.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\float4.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\float4d.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\float4x4.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\grisu3.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\grisu3_cpp.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\MathFunc.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\MathLog.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\MathOps.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\MiniFloat.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\Polynomial.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\Quat.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\SSEMath.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Math\TransformOps.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\MathGeoLib\Time\Clock.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_archiver_7z.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_archiver_dir.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_archiver_grp.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_archiver_hog.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_archiver_iso9660.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_archiver_mvl.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_archiver_qpak.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_archiver_slb.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_archiver_unpacked.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_archiver_vdf.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_archiver_wad.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_archiver_zip.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_byteorder.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_platform_haiku.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_platform_os2.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_platform_posix.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_platform_qnx.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_platform_unix.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_platform_windows.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_platform_winrt.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Source\vendors\PhysicsFS\physfs_unicode.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="BackToMainMenu.cpp" />
+    <ClCompile Include="DynamicCamera.cpp" />
+    <ClCompile Include="generated\Factory.cpp" />
+    <ClCompile Include="generated\SerializationMethods.cpp" />
+    <ClCompile Include="MainMenuManager.cpp" />
+    <ClCompile Include="PlayerCamera.cpp" />
+    <ClCompile Include="PlayerController.cpp" />
+    <ClCompile Include="scriptingUtil\gameplaypch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Source\vendors\MathGeoLib\Geometry\KDTree.inl" />
+    <None Include="..\Source\vendors\MathGeoLib\Geometry\QuadTree.inl" />
+    <None Include="..\Source\vendors\MathGeoLib\Geometry\TriangleMesh_IntersectRay_AVX.inl" />
+    <None Include="..\Source\vendors\MathGeoLib\Geometry\TriangleMesh_IntersectRay_CPP.inl" />
+    <None Include="..\Source\vendors\MathGeoLib\Geometry\TriangleMesh_IntersectRay_SSE.inl" />
+    <None Include="..\Source\vendors\MathGeoLib\Math\float2.inl" />
+    <None Include="..\Source\vendors\MathGeoLib\Math\Matrix.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,8 +1,6 @@
 #pragma once
 
-#include <assimp/scene.h>
-#include <string>
-#include <vector>
+#include "core/serialization/ISerializable.h"
 
 namespace Hachiko
 {
@@ -15,8 +13,10 @@ namespace Hachiko
     class ComponentSpotLight;
     class Skybox;
     class Quadtree;
+    class ResourceModel;
+    class ResourceMaterial;
 
-    class Scene
+    class Scene : public ISerializable
     {
         friend class ModuleSceneManager;
 
@@ -24,21 +24,23 @@ namespace Hachiko
         Scene();
         ~Scene();
 
-        void CleanScene() const;
+        void CleanScene();
 
         // --- Life cycle Scene --- //
         void Start() const;
         void Update() const;
-        void Save(JsonFormatterValue j_scene) const;
-        void Load(JsonFormatterValue j_scene);
 
         // --- GameObject Management --- //
         ComponentCamera* GetMainCamera() const;
         ComponentCamera* SearchMainCamera(GameObject* game_object) const;
         void AddGameObject(GameObject* new_object, GameObject* parent = nullptr) const;
         void DestroyGameObject(GameObject* game_object) const;
-        GameObject* CreateNewGameObject(const char* name, GameObject* parent = nullptr);
+        GameObject* CreateNewGameObject(GameObject* parent = nullptr, const char* name = nullptr);
 
+        void HandleInputModel(ResourceModel* model);
+        void HandleInputMaterial(ResourceMaterial* material);
+
+        [[nodiscard]] GameObject* Raycast(const LineSegment& segment) const;
         [[nodiscard]] GameObject* GetRoot() const
         {
             return root;
@@ -69,30 +71,38 @@ namespace Hachiko
             return skybox;
         }
 
-        [[nodiscard]] GameObject* RayCast(const float3& origin, const float3& destination) const;
-        [[nodiscard]] GameObject* RayCast(const LineSegment& segment) const;
+        bool IsLoaded() const 
+        {
+            return loaded;
+        }
 
+        [[nodiscard]] const char* GetName() const 
+        {
+            return name.c_str();
+        }
+        [[nodiscard]] GameObject* Raycast(const float3& origin, const float3& destination) const;
+
+        void SetName(const char* new_name)
+        {
+            name = new_name;
+        }
+
+        void Save(YAML::Node& node) const override;
+        void Load(const YAML::Node& node) override;
+        
         void CreateLights();
         std::vector<ComponentDirLight*> dir_lights;
         std::vector<ComponentPointLight*> point_lights;
         std::vector<ComponentSpotLight*> spot_lights;
 
-        // --- Importer --- // TODO: Move to importer
-        GameObject* LoadFBX(const std::string& path);
-        GameObject* LoadImageObject(const std::string& path);
-
     private:
-        // TODO: Fix leaks from resource material pointers when doing import system
-        void LoadNode(const aiScene* scene, const aiNode* node, GameObject* parent, const std::string& model_path);
-        //std::vector<ResourceMaterial*> LoadMaterials(const aiScene* scene, const std::string& model_path, const std::string& model_name);
-
-    private:
+        bool draw_all_bounding_boxes = false;
+        std::string name;
         GameObject* root = nullptr;
         ComponentCamera* culling_camera = nullptr;
+        bool loaded = false;
 
         Skybox* skybox;
         Quadtree* quadtree = nullptr;
-
-        bool draw_all_bounding_boxes = false;
     };
 }

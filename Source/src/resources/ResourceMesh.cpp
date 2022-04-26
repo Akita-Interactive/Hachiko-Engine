@@ -22,18 +22,34 @@ void Hachiko::ResourceMesh::GenerateBuffers()
     glEnableVertexAttribArray(0);
 
     // Normals (3 values per coord)
-    glGenBuffers(1, &buffer_ids[static_cast<int>(Buffers::NORMALS)]);
-    glBindBuffer(GL_ARRAY_BUFFER, buffer_ids[static_cast<int>(Buffers::NORMALS)]);
-    glBufferData(GL_ARRAY_BUFFER, buffer_sizes[static_cast<int>(Buffers::NORMALS)] * sizeof(float), normals, GL_STATIC_DRAW);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), static_cast<void*>(nullptr));
-    glEnableVertexAttribArray(1);
+    if (buffer_sizes[static_cast<int>(Buffers::NORMALS)] > 0)
+    {
+        glGenBuffers(1, &buffer_ids[static_cast<int>(Buffers::NORMALS)]);
+        glBindBuffer(GL_ARRAY_BUFFER, buffer_ids[static_cast<int>(Buffers::NORMALS)]);
+        glBufferData(GL_ARRAY_BUFFER, buffer_sizes[static_cast<int>(Buffers::NORMALS)] * sizeof(float), normals, GL_STATIC_DRAW);
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), static_cast<void*>(nullptr));
+        glEnableVertexAttribArray(1);
+    }
 
     // Texture Coords (2 values per coord)
-    glGenBuffers(1, &buffer_ids[static_cast<int>(Buffers::TEX_COORDS)]);
-    glBindBuffer(GL_ARRAY_BUFFER, buffer_ids[static_cast<int>(Buffers::TEX_COORDS)]);
-    glBufferData(GL_ARRAY_BUFFER, buffer_sizes[static_cast<int>(Buffers::TEX_COORDS)] * sizeof(float), tex_coords, GL_STATIC_DRAW);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), static_cast<void*>(nullptr));
-    glEnableVertexAttribArray(2);
+    if (buffer_sizes[static_cast<int>(Buffers::TEX_COORDS)] > 0)
+    {
+        glGenBuffers(1, &buffer_ids[static_cast<int>(Buffers::TEX_COORDS)]);
+        glBindBuffer(GL_ARRAY_BUFFER, buffer_ids[static_cast<int>(Buffers::TEX_COORDS)]);
+        glBufferData(GL_ARRAY_BUFFER, buffer_sizes[static_cast<int>(Buffers::TEX_COORDS)] * sizeof(float), tex_coords, GL_STATIC_DRAW);
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), static_cast<void*>(nullptr));
+        glEnableVertexAttribArray(2);
+    }
+
+    // Tangents (3 values per coord)
+    if (buffer_sizes[static_cast<int>(Buffers::TANGENTS)] > 0)
+    {
+        glGenBuffers(1, &buffer_ids[static_cast<int>(Buffers::TANGENTS)]);
+        glBindBuffer(GL_ARRAY_BUFFER, buffer_ids[static_cast<int>(Buffers::TANGENTS)]);
+        glBufferData(GL_ARRAY_BUFFER, buffer_sizes[static_cast<int>(Buffers::TANGENTS)] * sizeof(float), tangents, GL_STATIC_DRAW);
+        glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), static_cast<void*>(nullptr));
+        glEnableVertexAttribArray(3);
+    }
 
     // Indices (1 value)
     glGenBuffers(1, &buffer_ids[static_cast<int>(Buffers::INDICES)]);
@@ -56,16 +72,19 @@ void Hachiko::ResourceMesh::CleanUp()
         glDeleteBuffers(1, &buffer_ids[static_cast<int>(Buffers::VERTICES)]);
         glDeleteBuffers(1, &buffer_ids[static_cast<int>(Buffers::NORMALS)]);
         glDeleteBuffers(1, &buffer_ids[static_cast<int>(Buffers::TEX_COORDS)]);
+        glDeleteBuffers(1, &buffer_ids[static_cast<int>(Buffers::TANGENTS)]);
 
         delete[] indices;
         delete[] vertices;
         delete[] normals;
         delete[] tex_coords;
+        delete[] tangents;
 
         buffer_sizes[static_cast<int>(Buffers::INDICES)] = 0;
         buffer_sizes[static_cast<int>(Buffers::VERTICES)] = 0;
         buffer_sizes[static_cast<int>(Buffers::NORMALS)] = 0;
         buffer_sizes[static_cast<int>(Buffers::TEX_COORDS)] = 0;
+        buffer_sizes[static_cast<int>(Buffers::TANGENTS)] = 0;
     }
     loaded = false;
 }

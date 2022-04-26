@@ -72,20 +72,18 @@ void Hachiko::ComponentProgressBar::DrawGui()
     }
 }
 
-void Hachiko::ComponentProgressBar::Save(JsonFormatterValue j_component) const
+void Hachiko::ComponentProgressBar::Save(YAML::Node& node) const
 {
-    const JsonFormatterValue j_params = j_component["Params"];    
-    j_params["Min"] = min;
-    j_params["Max"] = max;
-    j_params["Filled"] = filled_value;
-    j_params["Direction"] = static_cast<int>(fill_direction);
+    node[BAR_PARAMS][BAR_MIN] = min;
+    node[BAR_PARAMS][BAR_MAX] = max;
+    node[BAR_PARAMS][BAR_FILLED] = filled_value;
+    node[BAR_PARAMS][BAR_DIRECTION] = static_cast<int>(fill_direction);
 }
 
-void Hachiko::ComponentProgressBar::Load(JsonFormatterValue j_component)
+void Hachiko::ComponentProgressBar::Load(const YAML::Node& node)
 {
-    const JsonFormatterValue j_params = j_component["Params"];    
-    SetMin(j_params["Min"]);
-    SetMax(j_params["Max"]);
-    SetFilledValue(j_params["Filled"]);
-    SetDirection(static_cast<FillingDirection>(static_cast<int>(j_params["Direction"])));
+    SetMin(node[BAR_PARAMS][BAR_MIN].as<float>());
+    SetMax(node[BAR_PARAMS][BAR_MAX].as<float>());
+    SetFilledValue(node[BAR_PARAMS][BAR_FILLED].as<float>());
+    SetDirection(static_cast<FillingDirection>(node[BAR_PARAMS][BAR_DIRECTION].as<int>()));
 }

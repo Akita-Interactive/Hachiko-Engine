@@ -1,9 +1,8 @@
 #pragma once
-#include "Component.h"
+#include "components/Component.h"
 
 #include "resources/ResourceMesh.h"
 
-#include <assimp/scene.h>
 #include <MathGeoLib.h>
 
 namespace Hachiko
@@ -15,8 +14,8 @@ namespace Hachiko
     class ComponentMesh : public Component
     {
     public:
-        ComponentMesh(GameObject* container);
-        ~ComponentMesh() override;
+        ComponentMesh(GameObject* container, UID id = 0, ResourceMesh* res = nullptr);
+        ~ComponentMesh() override = default;
 
         void Draw(ComponentCamera* camera, Program* program) override;
         void DrawStencil(ComponentCamera* camera, Program* program) const;
@@ -28,7 +27,7 @@ namespace Hachiko
 
         [[nodiscard]] bool IsLoaded() const
         {
-            return resource->loaded;
+            return mesh != nullptr;
         }
 
         [[nodiscard]] bool IsVisible() const
@@ -38,38 +37,76 @@ namespace Hachiko
 
         [[nodiscard]] AABB GetAABB() const
         {
-            return resource->bounding_box;
+            return mesh->bounding_box;
         }
 
         [[nodiscard]] unsigned GetBufferSize(ResourceMesh::Buffers buffer) const
         {
-            return resource->buffer_sizes[static_cast<int>(buffer)];
+            return mesh->buffer_sizes[static_cast<int>(buffer)];
         }
 
         [[nodiscard]] unsigned GetBufferId(ResourceMesh::Buffers buffer) const
         {
-            return resource->buffer_ids[static_cast<int>(buffer)];
+            return mesh->buffer_ids[static_cast<int>(buffer)];
         }
 
         [[nodiscard]] const float* GetVertices() const
         {
-            return resource->vertices;
+            return mesh->vertices;
         }
 
         [[nodiscard]] const unsigned* GetIndices() const
         {
-            return resource->indices;
+            return mesh->indices;
         }
 
-        void Import(const aiMesh* mesh);
+        [[nodiscard]] const std::string& GetResourcePath() const
+        {
+            return asset_path;
+        }
 
-        void Save(JsonFormatterValue j_component) const override;
-        void Load(JsonFormatterValue j_component) override;
+        void SetResourcePath(const std::string& path)
+        {
+            asset_path = path;
+        }
 
+        [[nodiscard]] const std::string& GetModelName() const
+        {
+            return model_name;
+        }
+
+        void SetModelName(const std::string& name)
+        {
+            model_name = name;
+        }
+
+        [[nodiscard]] int GetMeshIndex() const
+        {
+            return mesh_index;
+        }
+
+        void SetMeshIndex(int index)
+        {
+            mesh_index = index;
+        }
+
+        void AddResourceMesh(ResourceMesh* res)
+        {
+            mesh = res;
+        }
+
+        void LoadMesh(const char* mesh_path);
+        void LoadMesh(UID mesh_id);
         void DrawGui() override;
+
+        void Save(YAML::Node& node) const override;
+        void Load(const YAML::Node& node) override;
 
     private:
         bool visible = true;
-        ResourceMesh* resource = nullptr;
+        int mesh_index;
+        std::string asset_path;
+        std::string model_name;
+        ResourceMesh* mesh = nullptr;
     };
 }

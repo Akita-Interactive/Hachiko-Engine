@@ -33,6 +33,8 @@ namespace Hachiko
 
         static UID GenerateUID();
 
+        static UID StringToUID(const std::string& in);
+
         static std::string GenerateUUIDv4();
     };
 }

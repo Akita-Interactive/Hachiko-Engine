@@ -29,6 +29,7 @@ namespace Hachiko
         {
             DIFFUSE = 0,
             SPECULAR,
+            NORMAL,
             COUNT,
         };
 
@@ -61,9 +62,14 @@ namespace Hachiko
             return stencil_program;
         }
 
-        [[nodiscard]] Program* GetUserInterfaceProgram() const
+        [[nodiscard]] Program* GetUserInterfaceImageProgram() const
         {
-            return ui_program;
+            return ui_image_program;
+        }
+
+        [[nodiscard]] Program* GetUserInterfaceTextProgram() const
+        {
+            return ui_text_program;
         }
 
         void UpdateCamera(const ComponentCamera* camera) const;
@@ -82,12 +88,14 @@ namespace Hachiko
         Program* CreateMainProgram();
         Program* CreateSkyboxProgram();
         Program* CreateStencilProgram();
-        Program* CreateUserInterfaceProgram();
+        Program* CreateUserInterfaceImageProgram();
+        Program* CreateUserInterfaceTextProgram();
 
-        Program* main_program{};
-        Program* skybox_program{};
-        Program* stencil_program{};
-        Program* ui_program;
+        Program* main_program = nullptr;
+        Program* skybox_program = nullptr;
+        Program* stencil_program = nullptr;
+        Program* ui_image_program = nullptr;
+        Program* ui_text_program = nullptr;
 
         // Assume the shader already manages its binding points
         void CreateUBO(UBOPoints binding_point, unsigned size);
@@ -104,6 +112,7 @@ namespace Hachiko
             float4 specular_color;
             unsigned diffuse_flag{};
             unsigned specular_flag{};
+            unsigned normal_flag{};
             float shininess{};
         };
 

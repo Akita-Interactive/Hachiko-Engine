@@ -7,8 +7,7 @@ namespace Hachiko
     {
     public:
         WindowConfiguration();
-
-        ~WindowConfiguration() override;
+        ~WindowConfiguration() override = default;
         void Update() override;
     };
 }

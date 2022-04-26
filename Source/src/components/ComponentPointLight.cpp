@@ -40,31 +40,21 @@ float3 Hachiko::ComponentPointLight::GetPosition() const
     return transform->GetGlobalPosition();
 }
 
-void Hachiko::ComponentPointLight::Save(JsonFormatterValue j_component) const
+void Hachiko::ComponentPointLight::Save(YAML::Node& node) const
 {
-    j_component["LightType"] = static_cast<int>(Type::POINTLIGHT);
-
-    const JsonFormatterValue j_color = j_component["Color"];
-    j_color[0] = color.x;
-    j_color[1] = color.y;
-    j_color[2] = color.z;
-    j_color[3] = color.w;
-
-    j_component["intensity"] = intensity;
-    j_component["radius"] = radius;
-    j_component["active"] = active;
-    j_component["drawSphere"] = draw_sphere;
+    node[LIGHT_TYPE] = static_cast<int>(Type::POINTLIGHT);
+    node[LIGHT_COLOR] = color;
+    node[LIGHT_INTENSITY] = intensity;
+    node[LIGHT_RADIUS] = radius;
+    node[LIGHT_DRAW_SPHERE] = draw_sphere;
 }
 
-void Hachiko::ComponentPointLight::Load(JsonFormatterValue j_component)
+void Hachiko::ComponentPointLight::Load(const YAML::Node& node)
 {
-    const JsonFormatterValue j_color = j_component["Color"];
-    color = float4(j_color[0], j_color[1], j_color[2], j_color[3]);
-
-    intensity = j_component["intensity"];
-    radius = j_component["radius"];
-    active = j_component["active"];
-    draw_sphere = j_component["drawSphere"];
+    color = node[LIGHT_COLOR].as<float4>();
+    intensity = node[LIGHT_INTENSITY].as<float>();
+    radius = node[LIGHT_RADIUS].as<float>();
+    draw_sphere = node[LIGHT_DRAW_SPHERE].as<bool>();
 }
 
 void Hachiko::ComponentPointLight::DrawGui()
