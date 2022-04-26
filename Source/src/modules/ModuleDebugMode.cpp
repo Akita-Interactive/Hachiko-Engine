@@ -22,11 +22,22 @@ bool Hachiko::ModuleDebugMode::Init()
 	player = FindPlayer();
 
 	// God mode
-    playerLocations.push_back(float3(0.0f, 0.0f, 0.0f));
-    playerLocations.push_back(float3(10.0f, 0.0f, 0.0f));
-    playerLocations.push_back(float3(10.0f, 0.0f, 7.0f));
-    playerLocations.push_back(float3(7.0f, 0.0f, 7.0f));
-	
+    playerLocations.push_back(float3(-50.0f, 1.0f, 280.0f));
+    playerLocations.push_back(float3(-11.0f, 1.0f, 192.0f));
+    playerLocations.push_back(float3(-38.0f, 1.0f, 132.0f));
+    playerLocations.push_back(float3(-68.0f, 1.0f, 136.0f));
+    playerLocations.push_back(float3(-33.0f, 1.0f, 168.0f));
+    playerLocations.push_back(float3(-36.0f, 11.0f, 182.0f));
+    playerLocations.push_back(float3(16.0, 11.0f, 160.0f));
+    playerLocations.push_back(float3(11.0, 7.5f, 123.0f));
+    playerLocations.push_back(float3(-2.5, 4.0f, 97.0f));
+    playerLocations.push_back(float3(-40.0, 3.0f, 66.0f));
+    playerLocations.push_back(float3(-62.0, 3.0f, 39.0f));
+    playerLocations.push_back(float3(-107.0, 2.7f, 25.0f));
+    playerLocations.push_back(float3(-135.0, 2.7f, -15.0f));
+    playerLocations.push_back(float3(-133.0, -23.0f, -50.0f));
+    playerLocations.push_back(float3(-146.0, -23.0f, -110.0f));
+ 	
 	SetupWindow();
 
 	return true;

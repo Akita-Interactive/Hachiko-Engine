@@ -22,7 +22,8 @@ Hachiko::Scene::Scene():
     skybox(new Skybox()),
     quadtree(new Quadtree())
 {
-    quadtree->SetBox(AABB(float3(-500, 0, -500), float3(500, 250, 500)));
+    // TODO: Send hardcoded values to preferences
+    quadtree->SetBox(AABB(float3(-100000000, -100000000, -100000000), float3(100000000, 100000000, 100000000)));
 }
 
 Hachiko::Scene::~Scene()

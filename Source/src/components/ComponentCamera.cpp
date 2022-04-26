@@ -13,7 +13,7 @@ Hachiko::ComponentCamera::ComponentCamera(GameObject* container) :
     horizontal_fov(65.0f)
 {
     frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
-    frustum.SetViewPlaneDistances(0.1f, 1000.0f);
+    frustum.SetViewPlaneDistances(0.1f, 1000000000000.0f);
     SetCameraType(CameraType::STATIC);
     HE_LOG("TEST LOG: INIT COMPONENT CAMERA");
     frustum.SetHorizontalFovAndAspectRatio(DegToRad(horizontal_fov), static_cast<float>(DEFAULT_CAMERA_WIDTH) / static_cast<float>(DEFAULT_CAMERA_HEIGHT));
