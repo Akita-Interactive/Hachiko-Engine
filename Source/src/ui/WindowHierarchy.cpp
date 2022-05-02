@@ -33,7 +33,7 @@ void Hachiko::WindowHierarchy::DrawHierarchyTree(const GameObject* game_object)
        RecursiveDraw(go);
     }
 
-    if (!App->input->GetMouseButton(SDL_BUTTON_LEFT))
+    if (!App->input->IsMouseButtonPressed(SDL_BUTTON_LEFT))
     {
         dragged_object = nullptr;
     }

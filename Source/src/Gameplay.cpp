@@ -22,27 +22,29 @@ float Hachiko::Time::DeltaTime()
 
 /*INPUT----------------------------------------------------------------------*/
 
-bool Hachiko::Input::GetKeyUp(KeyCode key)
+bool Hachiko::Input::IsKeyPressed(KeyCode key)
 {
-    return App->input->GetKey(static_cast<SDL_Scancode>(key)) 
-        == KeyState::KEY_UP;
+    return App->input->IsKeyPressed(static_cast<int>(key));
 }
 
-bool Hachiko::Input::GetKey(KeyCode key)
+bool Hachiko::Input::GetKeyUp(KeyCode key)
 {
-    return App->input->GetKey(static_cast<SDL_Scancode>(key)) 
-        == KeyState::KEY_REPEAT;
+    return App->input->GetKey(static_cast<SDL_Scancode>(key)) == KeyState::KEY_UP;
 }
 
 bool Hachiko::Input::GetKeyDown(KeyCode key)
 {
-    return App->input->GetKey(static_cast<SDL_Scancode>(key)) 
-        == KeyState::KEY_DOWN;
+    return App->input->GetKey(static_cast<SDL_Scancode>(key)) == KeyState::KEY_DOWN;
 }
 
-bool Hachiko::Input::GetMouseButton(MouseButton mouse_button)
+bool Hachiko::Input::IsModifierPressed(KeyCode modifier)
 {
-    return App->input->GetMouseButton(static_cast<int>(mouse_button));
+    return App->input->IsModifierPressed(static_cast<SDL_Keymod>(modifier));
+}
+
+bool Hachiko::Input::IsMouseButtonPressed(MouseButton mouse_button)
+{
+    return App->input->IsMouseButtonPressed(static_cast<int>(mouse_button));
 }
 
 int Hachiko::Input::GetScrollWheelDelta()
@@ -50,35 +52,14 @@ int Hachiko::Input::GetScrollWheelDelta()
     return App->input->GetScrollDelta();
 }
 
-math::float2 Hachiko::Input::GetMouseDelta()
+const float2& Hachiko::Input::GetMouseMotion()
 {
-    float delta_x = 0;
-    float delta_y = 0;
-
-    App->input->GetMouseDeltaRelative(delta_x, delta_y);
-
-    return math::float2(delta_x, delta_y);
+    return App->input->GetMouseMotion();
 }
 
-math::float2 Hachiko::Input::GetMousePosition()
+const float2& Hachiko::Input::GetMousePosition()
 {
-    float position_x = 0;
-    float position_y = 0;
-
-    App->input->GetMousePositionRelative(position_x, position_y);
-
-    return math::float2(position_x, position_y);
-}
-
-void Hachiko::Input::GetMouseDeltaPixels(int& out_delta_x, int& out_delta_y) 
-{
-    App->input->GetMouseDelta(out_delta_x, out_delta_y);
-}
-
-void Hachiko::Input::GetMousePositionPixels(int& out_position_x, 
-    int& out_position_y) 
-{
-    App->input->GetMousePosition(out_position_x, out_position_y);
+    return App->input->GetMousePosition();
 }
 
 /*---------------------------------------------------------------------------*/

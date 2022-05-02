@@ -7,8 +7,9 @@
 
 
 namespace Hachiko
-{   
-    using Uint8 = unsigned __int8;
+{
+    constexpr int MAX_KEYS = 300;
+    constexpr int NUM_MOUSE_BUTTONS = 5;
 
     enum class KeyState
     {
@@ -33,14 +34,19 @@ namespace Hachiko
             return keyboard[key];
         }
 
-        [[nodiscard]] bool GetKeyMod(SDL_Keymod modifier) const
+        [[nodiscard]] bool IsModifierPressed(SDL_Keymod modifier) const
         {
-            return (keymods & modifier);
+            return (SDL_GetModState() & modifier);
         }
 
-        [[nodiscard]] bool GetMouseButton(int button) const
+        [[nodiscard]] bool IsKeyPressed(const int id) const
         {
-            return (mouse & SDL_BUTTON(button));
+            return keyboard[id] == KeyState::KEY_DOWN || keyboard[id] == KeyState::KEY_REPEAT;
+        }
+
+        [[nodiscard]] bool IsMouseButtonPressed(const int id) const
+        {
+            return mouse[id - 1] == KeyState::KEY_DOWN || mouse[id - 1] == KeyState::KEY_REPEAT;
         }
 
         [[nodiscard]] int GetScrollDelta() const
@@ -48,32 +54,14 @@ namespace Hachiko
             return scroll_delta;
         }
 
-        // TODO: Rename to GetMouseDeltaPixels.
-        void GetMouseDelta(int& x, int& y) const
+        [[nodiscard]] const float2& GetMousePosition() const
         {
-            x = mouse_delta_x;
-            y = mouse_delta_y;
+            return mouse_position;
         }
 
-        // TODO: Rename to GetMouseDelta.
-        void GetMouseDeltaRelative(float& x, float& y) const
+        [[nodiscard]] const float2& GetMouseMotion() const
         {
-            x = _mouse_delta_x_relative;
-            y = _mouse_delta_y_relative;
-        }
-
-        // TODO: Rename to GetMousePositionPixels.
-        void GetMousePosition(int& x, int& y) const
-        {
-            x = mouse_x;
-            y = mouse_y;
-        }
-
-        // TODO: Rename to GetPosition.
-        void GetMousePositionRelative(float& x, float& y) const
-        {
-            x = _mouse_x_relative;
-            y = _mouse_y_relative;
+            return mouse_motion;
         }
 
     private:
@@ -85,18 +73,12 @@ namespace Hachiko
 
     private:
         KeyState* keyboard = nullptr;
-        Uint32 mouse{};
-        SDL_Keymod keymods{};
+        KeyState mouse[NUM_MOUSE_BUTTONS]{};
+        float2 mouse_position = float2::zero;
+        float2 mouse_motion = float2::zero;
+        int scroll_delta{};
 
-        int mouse_x{}, mouse_y{};
-        int mouse_delta_x{}, mouse_delta_y{};
-
-        float _mouse_x_relative{};
-        float _mouse_y_relative{};
-        float _mouse_delta_x_relative{};
-        float _mouse_delta_y_relative{};
         float _window_width_inverse{};
         float _window_height_inverse{};
-        int scroll_delta{};
     };
 }

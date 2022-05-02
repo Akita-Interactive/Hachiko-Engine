@@ -347,7 +347,7 @@ void Hachiko::Scripting::PlayerController::HandleInput(
 	math::float3& current_position)
 {
 	// Ignore the inputs if engine camera input is taken:
-	if (Input::GetMouseButton(Input::MouseButton::RIGHT))
+	if (Input::IsMouseButtonPressed(Input::MouseButton::RIGHT))
 	{
 		return;
 	}

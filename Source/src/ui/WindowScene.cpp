@@ -16,7 +16,10 @@
 
 #include "ui/ImGuiUtils.h"
 
-Hachiko::WindowScene::WindowScene() : Window("Scene", true) {}
+Hachiko::WindowScene::WindowScene() :
+    Window("Scene", true)
+{
+}
 
 Hachiko::WindowScene::~WindowScene() = default;
 
@@ -65,7 +68,9 @@ void Hachiko::WindowScene::Update()
     }
 }
 
-void Hachiko::WindowScene::CleanUp() {}
+void Hachiko::WindowScene::CleanUp()
+{
+}
 
 void Hachiko::WindowScene::GuizmoOptionsController()
 {
@@ -141,7 +146,7 @@ void Hachiko::WindowScene::DrawScene()
     // Bottom left corner in opengl coordinates, bottom is y = 0
     texture_position = float2(guizmo_rect_origin.x, static_cast<float>(App->window->GetHeight()) - guizmo_rect_origin.y - texture_size.y);
 
-    ImGui::Image((void*)static_cast<intptr_t>(App->renderer->GetTextureId()), size, ImVec2 {0, 1}, ImVec2 {1, 0});
+    ImGui::Image((void*)static_cast<intptr_t>(App->renderer->GetTextureId()), size, ImVec2{0, 1}, ImVec2{1, 0});
     // Checking hover on image for more intuitive controls
     hovering = ImGui::IsItemHovered();
 
@@ -158,7 +163,7 @@ void Hachiko::WindowScene::DrawScene()
     // TO AVOID Camera orbit
     if (ImGui::IsWindowFocused())
     {
-        bool guizmo_enabled = !(App->input->GetMouseButton(SDL_BUTTON_RIGHT) || App->input->GetKey(SDL_SCANCODE_LALT) == KeyState::KEY_DOWN);
+        bool guizmo_enabled = !(App->input->IsMouseButtonPressed(SDL_BUTTON_RIGHT) || App->input->GetKey(SDL_SCANCODE_LALT) == KeyState::KEY_DOWN);
         ImGuizmo::Enable(guizmo_enabled);
     }
 
@@ -207,7 +212,7 @@ void Hachiko::WindowScene::DrawScene()
 
 void Hachiko::WindowScene::Controller() const
 {
-    if (!using_guizmo && focused && hovering && App->input->GetMouseButton(SDL_BUTTON_LEFT))
+    if (!using_guizmo && focused && hovering && App->input->IsMouseButtonPressed(SDL_BUTTON_LEFT))
     {
         Scene* scene = App->scene_manager->GetActiveScene();
         GameObject* picked = SelectObject(App->camera->GetRenderingCamera(), scene);

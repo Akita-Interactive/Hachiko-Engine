@@ -7,12 +7,11 @@
 #include "ModuleEvent.h"
 #include "events/Event.h"
 
-#define MAX_KEYS 300
-
 Hachiko::ModuleInput::ModuleInput() :
     keyboard(new KeyState[MAX_KEYS])
 {
     memset(keyboard, static_cast<int>(KeyState::KEY_IDLE), sizeof(KeyState) * MAX_KEYS);
+    memset(mouse, static_cast<int>(KeyState::KEY_IDLE), sizeof(KeyState) * NUM_MOUSE_BUTTONS);
 }
 
 Hachiko::ModuleInput::~ModuleInput()
@@ -38,79 +37,89 @@ bool Hachiko::ModuleInput::Init()
 
 UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
 {
-    SDL_Event event;
-    mouse_delta_x = 0;
-    mouse_delta_y = 0;
+    UpdateInputMaps();
+
+    SDL_Event sdl_event;
+
     scroll_delta = 0;
-    while (SDL_PollEvent(&event) != 0)
+
+    while (SDL_PollEvent(&sdl_event) != 0)
     {
-        ImGui_ImplSDL2_ProcessEvent(&event);
-        switch (event.type)
+        ImGui_ImplSDL2_ProcessEvent(&sdl_event);
+        switch (sdl_event.type)
         {
         case SDL_QUIT:
             return UpdateStatus::UPDATE_STOP;
         case SDL_WINDOWEVENT:
-            if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
+            if (sdl_event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
             {
                 App->window->WindowResized();
-                
+
                 // Update the cached inverses of window size so that we have a
                 // sensitive MousePositionDelta and MousePosition.
-                UpdateWindowSizeInversedCaches(event.window.data1, event.window.data2);
+                UpdateWindowSizeInversedCaches(sdl_event.window.data1, sdl_event.window.data2);
             }
-            
-            break;
-        case SDL_MOUSEMOTION:
-            mouse_delta_x = event.motion.xrel;
-            mouse_delta_y = event.motion.yrel;
-            _mouse_delta_x_relative = mouse_delta_x * _window_width_inverse;
-            _mouse_delta_y_relative = mouse_delta_x * _window_height_inverse;
+
             break;
         case SDL_MOUSEBUTTONDOWN:
-            if (event.button.button == SDL_BUTTON_LEFT)
+            mouse[sdl_event.button.button - 1] = KeyState::KEY_DOWN;
+            if (sdl_event.button.button == SDL_BUTTON_LEFT)
             {
-                ImVec2 mouse_pos = ImGui::GetMousePos();
+                const ImVec2 mouse_pos = ImGui::GetMousePos();
                 NotifyMouseAction(float2(mouse_pos.x, mouse_pos.y), MouseEventPayload::Action::CLICK);
             }
             break;
         case SDL_MOUSEBUTTONUP:
-            if (event.button.button == SDL_BUTTON_LEFT)
+            mouse[sdl_event.button.button - 1] = KeyState::KEY_UP;
+            if (sdl_event.button.button == SDL_BUTTON_LEFT)
             {
-                ImVec2 mouse_pos = ImGui::GetMousePos();
+                const ImVec2 mouse_pos = ImGui::GetMousePos();
                 NotifyMouseAction(float2(mouse_pos.x, mouse_pos.y), MouseEventPayload::Action::RELEASE);
             }
             break;
-        case SDL_MOUSEWHEEL:
-            scroll_delta = event.wheel.y;
+        case SDL_MOUSEMOTION:
+            mouse_motion.x = sdl_event.motion.xrel * _window_width_inverse;
+            mouse_motion.y = sdl_event.motion.yrel * _window_height_inverse;
+            mouse_position.x = sdl_event.motion.x / 2.0f;
+            mouse_position.y = sdl_event.motion.y / 2.0f;
+
             break;
-        case SDL_DROPFILE: 
-            {
-                HE_LOG("Dropped file: %s", event.drop.file);
-                Hachiko::Event fileDropped(Hachiko::Event::Type::FILE_ADDED);
-                fileDropped.SetEventData<Hachiko::FileAddedEventPayload>(event.drop.file);
-                App->event->Publish(fileDropped);
-                SDL_free(event.drop.file);
-            }
+        case SDL_MOUSEWHEEL:
+            scroll_delta = sdl_event.wheel.y;
+            break;
+        case SDL_DROPFILE:
+        {
+            HE_LOG("Dropped file: %s", sdl_event.drop.file);
+            Hachiko::Event fileDropped(Event::Type::FILE_ADDED);
+            fileDropped.SetEventData<FileAddedEventPayload>(sdl_event.drop.file);
+            App->event->Publish(fileDropped);
+            SDL_free(sdl_event.drop.file);
+        }
+        break;
+        default:
+            scroll_delta = 0.0f;
             break;
         }
     }
-    UpdateInputMaps();  
 
     return UpdateStatus::UPDATE_CONTINUE;
 }
 
 void Hachiko::ModuleInput::UpdateInputMaps()
 {
-    const Uint8* keys_state = SDL_GetKeyboardState(nullptr);
+    mouse_motion = {0, 0};
+
+    const Uint8* keys = SDL_GetKeyboardState(nullptr);
+
     for (int i = 0; i < MAX_KEYS; ++i)
     {
-        if (keys_state[i] == 1)
+        if (keys[i] == 1)
         {
             if (keyboard[i] == KeyState::KEY_IDLE)
             {
                 keyboard[i] = KeyState::KEY_DOWN;
             }
-            else if (keyboard[i] != KeyState::KEY_REPEAT)
+            else
             {
                 keyboard[i] = KeyState::KEY_REPEAT;
             }
@@ -127,15 +136,23 @@ void Hachiko::ModuleInput::UpdateInputMaps()
             }
         }
     }
-    keymods = SDL_GetModState();
-    mouse = SDL_GetMouseState(&mouse_x, &mouse_y);
-    
-    _mouse_x_relative = mouse_x * _window_width_inverse;
-    _mouse_y_relative = mouse_y * _window_height_inverse;
+
+    for (auto& mouse_button : mouse)
+    {
+        if (mouse_button == KeyState::KEY_DOWN)
+        {
+            mouse_button = KeyState::KEY_REPEAT;
+        }
+
+        if (mouse_button == KeyState::KEY_UP)
+        {
+            mouse_button = KeyState::KEY_IDLE;
+        }
+    }
 }
 
-void Hachiko::ModuleInput::UpdateWindowSizeInversedCaches(int width, 
-    int height) 
+void Hachiko::ModuleInput::UpdateWindowSizeInversedCaches(int width,
+                                                          int height)
 {
     _window_width_inverse = 1.0f / width;
     _window_height_inverse = 1.0f / height;

@@ -389,19 +389,17 @@ enum class HACHIKO_API MouseButton
     RIGHT = 3
 };
 
+HACHIKO_API bool IsKeyPressed(KeyCode key);
 HACHIKO_API bool GetKeyUp(KeyCode key);
-HACHIKO_API bool GetKey(KeyCode key);
 HACHIKO_API bool GetKeyDown(KeyCode key);
+HACHIKO_API bool IsModifierPressed(KeyCode modifier);
 
 // TODO: Add MouseButtonDown and MouseButtonUp.
 
-HACHIKO_API bool GetMouseButton(MouseButton mouse_button); 
+HACHIKO_API bool IsMouseButtonPressed(MouseButton mouse_button); 
 HACHIKO_API int GetScrollWheelDelta();
-HACHIKO_API math::float2 GetMouseDelta();
-HACHIKO_API math::float2 GetMousePosition();
-HACHIKO_API void GetMouseDeltaPixels(int& out_delta_x, int& out_delta_y);
-HACHIKO_API void GetMousePositionPixels(int& out_position_x, 
-    int& out_position_y);
+HACHIKO_API const float2& GetMouseMotion();
+HACHIKO_API const float2& GetMousePosition();
 } // namespace Hachiko::Input
 
 namespace Hachiko::SceneManagement
