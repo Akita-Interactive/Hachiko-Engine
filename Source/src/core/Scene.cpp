@@ -6,11 +6,11 @@
 #include "components/ComponentMeshRenderer.h"
 #include "components/ComponentImage.h"
 #include "components/ComponentAnimation.h"
+#include "events/Event.h"
 
-#include "modules/ModuleTexture.h"
 #include "modules/ModuleEditor.h"
 #include "modules/ModuleCamera.h"
-#include "modules/ModuleDebugDraw.h"
+#include "modules/ModuleEvent.h"
 #include "modules/ModuleResources.h"
 #include "modules/ModuleNavigation.h"
 
@@ -81,6 +81,8 @@ Hachiko::GameObject* Hachiko::Scene::CreateNewGameObject(GameObject* parent, con
     GameObject* new_game_object = final_parent->CreateChild();
 
     new_game_object->SetName(name);
+
+    App->event->Publish(Event::Type::CREATE_HISTORY_ENTRY);
 
     // This will insert itself into quadtree on first bounding box update:
     return new_game_object;
@@ -274,4 +276,17 @@ void Hachiko::Scene::Update() const
 {
     OPTICK_CATEGORY("UpdateScene", Optick::Category::Scene);
     root->Update();
+}
+
+Hachiko::Scene::Memento* Hachiko::Scene::CreateSnapshot() const
+{
+    auto other = new GameObject(*root);
+    return new Memento(name, other);
+}
+
+void Hachiko::Scene::Restore(const Memento* memento)
+{
+    name = memento->GetName();
+    root = memento->GetRoot();
+    App->editor->SetSelectedGO(nullptr);
 }

@@ -15,12 +15,18 @@ namespace Hachiko
     public:
         ComponentButton(GameObject* container);
         ~ComponentButton() override = default;
-        
-        void Activate() override {}
+
+        void Activate() override
+        {
+        }
 
         void DrawGui() override;
 
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
+
+        CLONE_COMPONENT(ComponentButton)
+        ComponentButton(const ComponentButton& other) = default;
+        ComponentButton& operator=(const ComponentButton& other) = default;
     };
 } // namespace Hachiko

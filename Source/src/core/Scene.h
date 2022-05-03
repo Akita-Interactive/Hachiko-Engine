@@ -22,7 +22,7 @@ namespace Hachiko
 
     public:
         Scene();
-        ~Scene();
+        ~Scene() override;
 
         void CleanScene();
 
@@ -38,6 +38,7 @@ namespace Hachiko
         void HandleInputMaterial(ResourceMaterial* material);
 
         [[nodiscard]] GameObject* Raycast(const LineSegment& segment) const;
+
         [[nodiscard]] GameObject* GetRoot() const
         {
             return root;
@@ -68,16 +69,16 @@ namespace Hachiko
             return skybox;
         }
 
-        bool IsLoaded() const 
+        [[nodiscard]] bool IsLoaded() const
         {
             return loaded;
         }
 
-        [[nodiscard]] const char* GetName() const 
+        [[nodiscard]] const char* GetName() const
         {
             return name.c_str();
         }
-        
+
         [[nodiscard]] GameObject* Raycast(const float3& origin, const float3& destination) const;
 
         GameObject* Find(UID id) const;
@@ -106,6 +107,38 @@ namespace Hachiko
 
         Skybox* skybox = nullptr;
         Quadtree* quadtree = nullptr;
-        
+
+    public:
+        class Memento
+        {
+        public:
+            Memento(std::string name, GameObject* root) :
+                name(std::move(name)),
+                root(root)
+            {
+            }
+
+            ~Memento()
+            {
+                delete root;
+            }
+
+            [[nodiscard]] std::string GetName() const
+            {
+                return name;
+            }
+
+            [[nodiscard]] GameObject* GetRoot() const
+            {
+                return root;
+            }
+
+        private:
+            std::string name;
+            GameObject* root = nullptr;
+        };
+
+        [[nodiscard]] Memento* CreateSnapshot() const;
+        void Restore(const Memento*);
     };
 }

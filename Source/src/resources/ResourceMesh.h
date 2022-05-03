@@ -66,5 +66,55 @@ namespace Hachiko
 
         unsigned int num_bones = 0;
         std::unique_ptr<Bone[]> bones = nullptr;
+
+    public:
+        CLONE_RESOURCE(ResourceMesh)
+
+        ResourceMesh(const ResourceMesh& other) :
+            Resource(other),
+            loaded(other.loaded),
+            bounding_box(other.bounding_box),
+            vbo(other.vbo),
+            ebo(other.ebo),
+            vao(other.vao),
+            num_bones(other.num_bones)
+        {
+            // *indices = *other.indices;
+            // *vertices = *other.vertices;
+            // *normals = *other.normals;
+            // *tex_coords = *other.tex_coords;
+            // *tangents = *other.tangents;
+
+            bones = std::make_unique<Bone[]>(other.num_bones);
+            for (int i = 0; i < other.num_bones; ++i)
+            {
+                bones[i] = other.bones[i];
+            }
+            //src_bone_indices
+            // src_bone_weights
+            //TODO include missing fields
+        }
+
+        ResourceMesh& operator=(const ResourceMesh& other)
+        {
+            if (this == &other)
+            {
+                return *this;
+            }
+            Resource::operator =(other);
+            loaded = other.loaded;
+            bounding_box = other.bounding_box;
+            vbo = other.vbo;
+            ebo = other.ebo;
+            vao = other.vao;
+            indices = other.indices;
+            vertices = other.vertices;
+            normals = other.normals;
+            tex_coords = other.tex_coords;
+            tangents = other.tangents;
+            num_bones = other.num_bones;
+            return *this;
+            //TODO ensure this works
+        }
     };
 }

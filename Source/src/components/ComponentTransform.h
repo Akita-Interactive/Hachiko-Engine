@@ -14,7 +14,6 @@ namespace Hachiko
 
     class HACHIKO_API ComponentTransform : public Component
     {
-
     public:
         ComponentTransform(GameObject* container);
         ComponentTransform(GameObject* new_object, const float3& new_position_local, const Quat& new_rotation_local, const float3& new_scale_local);
@@ -28,7 +27,7 @@ namespace Hachiko
         void LookAtDirection(const float3& direction);
 
         void SetLocalTransform(const float4x4& new_transform_local);
-        void SetLocalTransform(const float3& new_position_local, const Quat& new_rotation_local, const float3& new_scale_local);        
+        void SetLocalTransform(const float3& new_position_local, const Quat& new_rotation_local, const float3& new_scale_local);
         void SetGlobalTransform(const float4x4& new_transform);
         void SetGlobalTransform(const float3& new_position, const Quat& new_rotation, const float3& new_scale);
         void SetLocalPosition(const float3& new_position_local);
@@ -41,10 +40,22 @@ namespace Hachiko
         void SetGlobalScale(const float3& new_scale);
         void SetGlobalRotation(const Quat& new_rotation);
         void SetGlobalRotationEuler(const float3& new_rotation_euler);
-        
 
-        [[nodiscard]] bool IsDirty() const { return dirty; }
-        [[nodiscard]] bool HasChanged() const { return changed; }        
+
+        static Type GetType()
+        {
+            return Type::TRANSFORM;
+        };
+
+        [[nodiscard]] bool IsDirty() const
+        {
+            return dirty;
+        }
+
+        [[nodiscard]] bool HasChanged() const
+        {
+            return changed;
+        }
 
         [[nodiscard]] const float3& GetLocalPosition();
         [[nodiscard]] const float3& GetLocalScale();
@@ -55,7 +66,7 @@ namespace Hachiko
         [[nodiscard]] const float3& GetRight();
         [[nodiscard]] const float4x4& GetGlobalMatrix();
         [[nodiscard]] const float4x4& GetLocalMatrix();
-        
+
         [[nodiscard]] const float3& GetGlobalPosition();
         [[nodiscard]] const float3& GetGlobalScale();
         [[nodiscard]] const Quat& GetGlobalRotation();
@@ -64,11 +75,11 @@ namespace Hachiko
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
 
-        void DrawGui() override;        
+        void DrawGui() override;
 
     private:
         void Invalidate();
-        void UpdateTransform();  
+        void UpdateTransform();
 
     private:
         bool dirty;
@@ -90,5 +101,10 @@ namespace Hachiko
         float3 right;
         float3 up;
         float3 front;
+
+    public:
+        Hachiko::CLONE_COMPONENT(ComponentTransform)
+        ComponentTransform(const ComponentTransform& other) = default;
+        ComponentTransform& operator=(const ComponentTransform& other) = default;
     };
 } // namespace Hachiko

@@ -1,6 +1,8 @@
 #include "core/hepch.h"
 #include "ComponentTransform.h"
 
+#include "modules/ModuleEvent.h"
+
 /**     CONSTRUCTORS    **/
 
 Hachiko::ComponentTransform::ComponentTransform(GameObject* container) 
@@ -318,6 +320,8 @@ void Hachiko::ComponentTransform::DrawGui()
         if (ImGui::DragFloat3("Local Position", position_local_editor.ptr(), 0.1f, -inf, inf))
         {
             SetLocalPosition(position_local_editor);
+            //TODO validate changing value with mouse dragging to prevent creating multiple events
+            // App->event->Publish(Event::Type::CREATE_HISTORY_ENTRY);
         }
         if (ImGui::DragFloat3("Local Rotation", rotation_local_editor.ptr(), 0.1f, -inf, inf))
         {

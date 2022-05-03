@@ -45,17 +45,19 @@ namespace Hachiko
         {
             return duration;
         }
+
         void SetDuration(unsigned int i_duration)
         {
             duration = i_duration;
         }
 
         // CHANEL MANAGE
-        unsigned int GetNumChannels() const
+        [[nodiscard]] unsigned int GetNumChannels() const
         {
             return unsigned int(channels.size());
         }
-        const Channel* GetChannel(const std::string& name) const;
+
+        [[nodiscard]] const Channel* GetChannel(const std::string& name) const;
 
 
         std::unordered_map<std::string, Channel> channels;
@@ -65,5 +67,31 @@ namespace Hachiko
         unsigned int duration = 0;
 
         std::string name;
+
+    public:
+        CLONE_RESOURCE(ResourceAnimation)
+
+        ResourceAnimation(const ResourceAnimation& other) :
+            Resource(other),
+            // channels(other.channels),
+            nodes(other.nodes),
+            duration(other.duration),
+            name(other.name)
+        {
+        }
+
+        ResourceAnimation& operator=(const ResourceAnimation& other)
+        {
+            if (this == &other)
+            {
+                return *this;
+            }
+            Resource::operator =(other);
+            // channels = other.channels;
+            nodes = other.nodes;
+            duration = other.duration;
+            name = other.name;
+            return *this;
+        }
     };
 } // namespace Hachiko

@@ -23,8 +23,8 @@ namespace Hachiko
             active = is_active;
         }
 
-        float3 GetPosition() const;
-        float3 GetDirection() const;
+        [[nodiscard]] float3 GetPosition() const;
+        [[nodiscard]] float3 GetDirection() const;
 
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
@@ -40,5 +40,27 @@ namespace Hachiko
     private:
         bool active = true;
         bool draw_cone = false;
+
+    public:
+        CLONE_COMPONENT(ComponentSpotLight)
+
+        ComponentSpotLight(const ComponentSpotLight& other) = default;
+
+        ComponentSpotLight& operator=(const ComponentSpotLight& other)
+        {
+            if (this == &other)
+            {
+                return *this;
+            }
+            Component::operator =(other);
+            color = other.color;
+            inner = other.inner;
+            outer = other.outer;
+            intensity = other.intensity;
+            radius = other.radius;
+            active = other.active;
+            draw_cone = other.draw_cone;
+            return *this;
+        }
     };
 }

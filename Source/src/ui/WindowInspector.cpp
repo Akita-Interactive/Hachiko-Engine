@@ -2,6 +2,7 @@
 #include "WindowInspector.h"
 
 #include "modules/ModuleEditor.h"
+#include "modules/ModuleEvent.h"
 #include "modules/ModuleScriptingSystem.h"
 #include "scripting/Script.h"
 
@@ -40,6 +41,7 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
     if (ImGui::InputText("###", game_object_name, 50, name_input_flags))
     {
         game_object->name = game_object_name;
+        App->event->Publish(Event::Type::CREATE_HISTORY_ENTRY);
     }
 
     ImGui::SameLine();
@@ -163,6 +165,7 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
             game_object->CreateComponent(Component::Type::CANVAS_RENDERER);
             game_object->CreateComponent(Component::Type::TEXT);
             ImGui::CloseCurrentPopup();
+            App->event->Publish(Event::Type::CREATE_HISTORY_ENTRY);
         }
 
         ImGui::EndPopup();

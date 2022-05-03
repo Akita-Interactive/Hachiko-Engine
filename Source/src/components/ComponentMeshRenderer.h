@@ -115,5 +115,37 @@ namespace Hachiko
 
         ResourceMesh* mesh = nullptr;
         ResourceMaterial* material = nullptr;
+
+    public:
+        CLONE_COMPONENT(ComponentMesh)
+
+        ComponentMesh(const ComponentMesh& other) :
+            Component(other),
+            visible(other.visible),
+            // node_cache(other.node_cache),
+            mesh_index(other.mesh_index),
+            asset_path(other.asset_path),
+            model_name(other.model_name)
+
+        {
+            mesh = new ResourceMesh(*other.mesh);
+            material = new ResourceMaterial(*other.material);
+        }
+
+        ComponentMesh& operator=(const ComponentMesh& other)
+        {
+            if (this == &other)
+            {
+                return *this;
+            }
+            Component::operator =(other);
+            visible = other.visible;
+            node_cache = other.node_cache;
+            mesh_index = other.mesh_index;
+            asset_path = other.asset_path;
+            model_name = other.model_name;
+            mesh = other.mesh;
+            return *this;
+        }
     };
 }

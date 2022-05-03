@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ComponentDirLight.h"
 #include "components/Component.h"
 #include "core/HachikoApiDefine.h"
 
@@ -38,5 +39,25 @@ namespace Hachiko
     private:
         bool active = true;
         bool draw_sphere = false;
+
+    public:
+        CLONE_COMPONENT(ComponentPointLight)
+
+        ComponentPointLight(const ComponentPointLight& other) = default;
+
+        ComponentPointLight& operator=(const ComponentPointLight& other)
+        {
+            if (this == &other)
+            {
+                return *this;
+            }
+            Component::operator =(other);
+            color = other.color;
+            intensity = other.intensity;
+            radius = other.radius;
+            active = other.active;
+            draw_sphere = other.draw_sphere;
+            return *this;
+        }
     };
 }

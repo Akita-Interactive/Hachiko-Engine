@@ -18,6 +18,11 @@ namespace Hachiko
             return true;
         }
 
+        virtual bool Start()
+        {
+            return true;
+        }
+
         virtual UpdateStatus PreUpdate(const float delta)
         {
             return UpdateStatus::UPDATE_CONTINUE;

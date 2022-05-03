@@ -36,5 +36,24 @@ namespace Hachiko
     private:
         bool active = true;
         bool draw_direction = false;
+
+    public:
+        CLONE_COMPONENT(ComponentDirLight)
+
+        ComponentDirLight(const ComponentDirLight& other) = default;
+
+        ComponentDirLight& operator=(const ComponentDirLight& other)
+        {
+            if (this == &other)
+            {
+                return *this;
+            }
+            Component::operator =(other);
+            color = other.color;
+            intensity = other.intensity;
+            active = other.active;
+            draw_direction = other.draw_direction;
+            return *this;
+        }
     };
 }

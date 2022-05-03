@@ -4,6 +4,12 @@
 
 namespace Hachiko
 {
+#define CLONE_RESOURCE(type)            \
+    Resource* Clone() const override    \
+    {                                   \
+        return new type(*this);         \
+    }
+
     class Resource
     {
     public:
@@ -109,5 +115,27 @@ namespace Hachiko
     private:
         UID id = 0;
         Type type = Type::UNKNOWN;
+
+    public:
+        virtual Resource* Clone() const = 0;
+
+        Resource(const Resource& other) :
+            instances(other.instances),
+            id(other.id),
+            type(other.type)
+        {
+        }
+
+        Resource& operator=(const Resource& other)
+        {
+            if (this == &other)
+            {
+                return *this;
+            }
+            instances = other.instances;
+            id = other.id;
+            type = other.type;
+            return *this;
+        }
     };
 }

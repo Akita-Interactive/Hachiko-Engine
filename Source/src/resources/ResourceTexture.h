@@ -35,11 +35,11 @@ namespace Hachiko
             return path;
         }
 
-        void SetAssetPath(const std::string& new_path) 
+        void SetAssetPath(const std::string& new_path)
         {
             path = new_path;
         }
-        
+
         [[nodiscard]] std::string GetName() const
         {
             return name;
@@ -66,5 +66,33 @@ namespace Hachiko
 
         std::string path;
         std::string name = std::string();
+
+    public:
+        CLONE_RESOURCE(ResourceTexture)
+
+        //TODO check if byte* data is being copied
+        ResourceTexture(const ResourceTexture& other) = default;
+
+        ResourceTexture& operator=(const ResourceTexture& other)
+        {
+            if (this == &other)
+            {
+                return *this;
+            }
+            Resource::operator =(other);
+            id = other.id;
+            width = other.width;
+            height = other.height;
+            format = other.format;
+            bpp = other.bpp;
+            min_filter = other.min_filter;
+            mag_filter = other.mag_filter;
+            wrap = other.wrap;
+            data = other.data;
+            data_size = other.data_size;
+            path = other.path;
+            name = other.name;
+            return *this;
+        }
     };
 } // namespace Hachiko

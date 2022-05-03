@@ -88,7 +88,7 @@ namespace Hachiko
             return name;
         }
 
-        void SetName(const std::string& new_name) 
+        void SetName(const std::string& new_name)
         {
             name = new_name;
         }
@@ -99,10 +99,10 @@ namespace Hachiko
             {
             case ResourceTexture::Type::DIFFUSE:
                 diffuse = res;
-                break;            
+                break;
             case ResourceTexture::Type::SPECULAR:
                 specular = res;
-                break;            
+                break;
             case ResourceTexture::Type::NORMALS:
                 normal = res;
                 break;
@@ -155,5 +155,50 @@ namespace Hachiko
         std::vector<std::string> transparency = {"Opaque", "Transparent"};
         std::vector<std::string> material_types = {"Specular", "Metallic"};
         std::vector<std::string> alpha_channels = {"Diffuse", ""}; // The empty channel will have the selected name on materialTypes
+
+    public:
+        CLONE_RESOURCE(ResourceMaterial)
+
+        ResourceMaterial(const ResourceMaterial& other) :
+            Resource(other),
+            diffuse_color(other.diffuse_color),
+            specular_color(other.specular_color),
+            smoothness(other.smoothness),
+            metalness_value(other.metalness_value),
+            is_metallic(other.is_metallic),
+            smoothness_alpha(other.smoothness_alpha),
+            is_transparent(other.is_transparent),
+            name(other.name)
+        {
+            diffuse = new ResourceTexture(*other.diffuse);
+            specular = new ResourceTexture(*other.specular);
+            normal = new ResourceTexture(*other.normal);
+            metalness = new ResourceTexture(*other.metalness);
+        }
+
+        ResourceMaterial& operator=(const ResourceMaterial& other)
+        {
+            if (this == &other)
+            {
+                return *this;
+            }
+            Resource::operator =(other);
+            diffuse = other.diffuse;
+            specular = other.specular;
+            normal = other.normal;
+            metalness = other.metalness;
+            diffuse_color = other.diffuse_color;
+            specular_color = other.specular_color;
+            smoothness = other.smoothness;
+            metalness_value = other.metalness_value;
+            is_metallic = other.is_metallic;
+            smoothness_alpha = other.smoothness_alpha;
+            is_transparent = other.is_transparent;
+            name = other.name;
+            transparency = other.transparency;
+            material_types = other.material_types;
+            alpha_channels = other.alpha_channels;
+            return *this;
+        }
     };
 }

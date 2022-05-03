@@ -13,6 +13,7 @@ namespace Hachiko
     {
     public:
         void Publish(Event& event);
+        void Publish(Event::Type type);
         void Subscribe(Event::Type type, std::function<void(Event&)>& subscriber);
 
     private:

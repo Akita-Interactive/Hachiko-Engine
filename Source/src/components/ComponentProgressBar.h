@@ -25,27 +25,27 @@ namespace Hachiko
         void Update() override;
         void DrawGui() override;
 
-        float GetMin() 
+        [[nodiscard]] float GetMin() const
         {
             return min;
         }
 
-        float GetMax() 
+        [[nodiscard]] float GetMax() const
         {
             return max;
         }
-        
-        float GetFilledValue() 
+
+        [[nodiscard]] float GetFilledValue() const
         {
             return filled_value;
         }
-        
-        FillingDirection GetDirection() 
+
+        FillingDirection GetDirection()
         {
             return fill_direction;
         }
-        
-        void SetMin(float new_min) 
+
+        void SetMin(float new_min)
         {
             min = new_min;
         }
@@ -54,12 +54,12 @@ namespace Hachiko
         {
             max = new_max;
         }
-        
+
         void SetFilledValue(float new_filled_value)
         {
             filled_value = new_filled_value;
         }
-        
+
         void SetDirection(FillingDirection new_direction)
         {
             fill_direction = new_direction;
@@ -78,6 +78,39 @@ namespace Hachiko
 
         FillingDirection fill_direction = FillingDirection::LEFT_TO_RIGHT;
         int direction_index = 0;
-        inline static const char* filling_directions[] {"Left to right", "Right to Left", "Bottom to top", "Top to bottom"};
+        inline static const char* filling_directions[]{"Left to right", "Right to Left", "Bottom to top", "Top to bottom"};
+
+    public:
+        CLONE_COMPONENT(ComponentProgressBar)
+
+        ComponentProgressBar(const ComponentProgressBar& other) :
+            Component(other),
+
+            min(other.min),
+            max(other.max),
+            filled_value(other.filled_value),
+            fill_direction(other.fill_direction),
+            direction_index(other.direction_index)
+        {
+            background = new GameObject(*other.background);
+            fill = new GameObject(*other.fill);
+        }
+
+        ComponentProgressBar& operator=(const ComponentProgressBar& other)
+        {
+            if (this == &other)
+            {
+                return *this;
+            }
+            Component::operator =(other);
+            background = other.background;
+            fill = other.fill;
+            min = other.min;
+            max = other.max;
+            filled_value = other.filled_value;
+            fill_direction = other.fill_direction;
+            direction_index = other.direction_index;
+            return *this;
+        }
     };
 } // namespace Hachiko

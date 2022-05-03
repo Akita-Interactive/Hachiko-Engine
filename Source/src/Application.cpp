@@ -63,6 +63,11 @@ bool Hachiko::Application::Init()
         ret = (*it)->Init();
     }
 
+    for (auto it = modules.begin(); it != modules.end() && ret; ++it)
+    {
+        ret = (*it)->Start();
+    }
+
     delta = 0;
     EngineTimer::Start();
     #ifdef PLAY_BUILD 

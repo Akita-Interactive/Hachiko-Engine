@@ -10,6 +10,12 @@ void Hachiko::ModuleEvent::Publish(Event& event)
     }
 }
 
+void Hachiko::ModuleEvent::Publish(Event::Type type)
+{
+    Event evt(type);
+    Publish(evt);
+}
+
 void Hachiko::ModuleEvent::Subscribe(Event::Type type, std::function<void(Event&)>& subscriber)
 {
     subscribers.insert(std::make_pair(type, subscriber));

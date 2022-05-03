@@ -11,6 +11,12 @@
 
 namespace Hachiko
 {
+#define CLONE_COMPONENT(type)           \
+    Component* Clone() override   \
+    {                                   \
+        return new type(*this);         \
+    }
+
     class GameObject;
     class ComponentCamera;
     class Program;
@@ -42,16 +48,27 @@ namespace Hachiko
             UNKNOWN
         };
 
-        Component(const Type type, GameObject* container, UID id = 0);
+        Component(Type type, GameObject* container, UID id = 0);
 
         virtual ~Component() = default;
 
         // --- COMPONENT EVENTS --- //
 
-        virtual void Start() {}
-        virtual void Stop() {}
-        virtual void Update() {}
-        virtual void OnTransformUpdated() {}
+        virtual void Start()
+        {
+        }
+
+        virtual void Stop()
+        {
+        }
+
+        virtual void Update()
+        {
+        }
+
+        virtual void OnTransformUpdated()
+        {
+        }
 
         [[nodiscard]] Type GetType() const
         {
@@ -98,21 +115,31 @@ namespace Hachiko
             game_object = container;
         }
 
-        virtual void DrawGui() {}
+        virtual void DrawGui()
+        {
+        }
 
-        virtual void Draw(ComponentCamera* camera, Program* program) {}
+        virtual void Draw(ComponentCamera* camera, Program* program)
+        {
+        }
 
-        virtual void DebugDraw() {}
+        virtual void DebugDraw()
+        {
+        }
 
-        virtual void Save(YAML::Node& node) const {}
+        void Save(YAML::Node& node) const override
+        {
+        }
 
-        virtual void Load(const YAML::Node& node) {}
+        void Load(const YAML::Node& node) override
+        {
+        }
 
-        virtual bool CanBeRemoved() const;
+        [[nodiscard]] virtual bool CanBeRemoved() const;
         virtual bool HasDependentComponents(GameObject* game_object) const;
 
     protected:
-        void OverrideUID(UID new_uid) 
+        void OverrideUID(UID new_uid)
         {
             uid = new_uid;
         }
@@ -122,5 +149,28 @@ namespace Hachiko
         bool active = true;
         Type type = Type::UNKNOWN;
         UID uid = 0;
+
+    public:
+        virtual Component* Clone() = 0;
+
+        Component(const Component& other) :
+            active(other.active),
+            type(other.type),
+            uid(other.uid)
+        {
+        }
+
+        Component& operator=(const Component& other)
+        {
+            if (this == &other)
+            {
+                return *this;
+            }
+            // game_object = other.game_object;
+            active = other.active;
+            type = other.type;
+            uid = other.uid;
+            return *this;
+        }
     };
 }

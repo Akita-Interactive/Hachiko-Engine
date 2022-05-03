@@ -15,6 +15,8 @@ namespace Hachiko
         ComponentTransform2D(GameObject* container);
         ~ComponentTransform2D() override = default;
 
+        static Type GetType();
+
         void DrawGui() override;
         void DebugDraw() override;
 
@@ -43,7 +45,7 @@ namespace Hachiko
         {
             return scale;
         }
-        
+
         [[nodiscard]] float3 GetPivotOffsetFromParent() const;
         [[nodiscard]] float3 GetPivotScreenPosition() const;
 
@@ -80,7 +82,7 @@ namespace Hachiko
         // Check if needed (GO already has his own)
         float4x4 local_transform = float4x4::identity;
         float4x4 global_transform = float4x4::identity;
-        
+
         // Used to check click intersections
         AABB2D aabb = {{0, 0}, {0, 0}};
 
@@ -88,5 +90,37 @@ namespace Hachiko
 
         // Dirty flag pattern
         bool dirty = true;
+
+    public:
+        CLONE_COMPONENT(ComponentTransform2D)
+
+        ComponentTransform2D(const ComponentTransform2D& other) = default;
+
+        ComponentTransform2D& operator=(const ComponentTransform2D& other)
+        {
+            if (this == &other)
+            {
+                return *this;
+            }
+            Component::operator =(other);
+            position = other.position;
+            size = other.size;
+            scale = other.scale;
+            rotation = other.rotation;
+            rotation_euler = other.rotation_euler;
+            pivot_pct_position = other.pivot_pct_position;
+            anchor_pct_position = other.anchor_pct_position;
+            local_transform = other.local_transform;
+            global_transform = other.global_transform;
+            aabb = other.aabb;
+            has_canvas = other.has_canvas;
+            dirty = other.dirty;
+            return *this;
+        }
     };
+}
+
+inline Hachiko::Component::Type Hachiko::ComponentTransform2D::GetType()
+{
+    return Component::Type::TRANSFORM_2D;
 }
