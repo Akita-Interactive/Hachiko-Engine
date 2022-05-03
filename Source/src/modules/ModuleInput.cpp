@@ -39,6 +39,15 @@ UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
 {
     UpdateInputMaps();
 
+    ImVec2 m_pos = ImGui::GetMousePos();
+    mouse_position.x = m_pos.x;
+    mouse_position.y = m_pos.y;
+
+    mouse_normalized_motion.x = 0;
+    mouse_normalized_motion.y = 0;
+    mouse_pixels_motion.x = 0;
+    mouse_pixels_motion.y = 0;
+
     SDL_Event sdl_event;
 
     scroll_delta = 0;
@@ -78,10 +87,11 @@ UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
             }
             break;
         case SDL_MOUSEMOTION:
-            mouse_motion.x = sdl_event.motion.xrel * _window_width_inverse;
-            mouse_motion.y = sdl_event.motion.yrel * _window_height_inverse;
-            mouse_position.x = sdl_event.motion.x / 2.0f;
-            mouse_position.y = sdl_event.motion.y / 2.0f;
+            mouse_normalized_motion.x = sdl_event.motion.xrel * _window_width_inverse;
+            mouse_normalized_motion.y = sdl_event.motion.yrel * _window_height_inverse;
+
+            mouse_pixels_motion.x = sdl_event.motion.xrel;
+            mouse_pixels_motion.y = sdl_event.motion.yrel;
 
             break;
         case SDL_MOUSEWHEEL:
@@ -107,7 +117,7 @@ UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
 
 void Hachiko::ModuleInput::UpdateInputMaps()
 {
-    mouse_motion = {0, 0};
+    mouse_normalized_motion = {0, 0};
 
     const Uint8* keys = SDL_GetKeyboardState(nullptr);
 

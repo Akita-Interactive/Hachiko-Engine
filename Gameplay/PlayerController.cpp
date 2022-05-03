@@ -450,8 +450,7 @@ void Hachiko::Scripting::PlayerController::HandleInput(
 		_dash_progress = 0.0f;
 		_dash_start = current_position;
 		_dash_timer = _dash_timer == 0.0f ? 0.0001f : _dash_timer;
-		const math::float3 dash_end = GetRaycastPosition(
-			_dash_start);
+		const math::float3 dash_end = GetRaycastPosition(_dash_start);
 		
 		//const math::float2 mouse_direction = GetMouseDirectionRelativeToCenter();
 

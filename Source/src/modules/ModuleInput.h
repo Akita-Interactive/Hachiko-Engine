@@ -59,9 +59,14 @@ namespace Hachiko
             return mouse_position;
         }
 
-        [[nodiscard]] const float2& GetMouseMotion() const
+        [[nodiscard]] const float2& GetMouseNormalizedMotion() const
         {
-            return mouse_motion;
+            return mouse_normalized_motion;
+        }
+
+        [[nodiscard]] const float2& GetMousePixelsMotion() const
+        {
+            return mouse_pixels_motion;
         }
 
     private:
@@ -75,7 +80,8 @@ namespace Hachiko
         KeyState* keyboard = nullptr;
         KeyState mouse[NUM_MOUSE_BUTTONS]{};
         float2 mouse_position = float2::zero;
-        float2 mouse_motion = float2::zero;
+        float2 mouse_normalized_motion = float2::zero;
+        float2 mouse_pixels_motion = float2::zero;
         int scroll_delta{};
 
         float _window_width_inverse{};

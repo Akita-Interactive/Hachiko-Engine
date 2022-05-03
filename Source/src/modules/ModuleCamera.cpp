@@ -95,7 +95,7 @@ void Hachiko::ModuleCamera::Controller(const float delta) const
     // Keyboard movement ---------------
     if (App->input->IsMouseButtonPressed(SDL_BUTTON_RIGHT))
     {
-        const float2 moved = App->input->GetMouseMotion();
+        const float2 moved = App->input->GetMousePixelsMotion();
 
         Rotate(-moved.x * delta * rot_speed, moved.y * delta * rot_speed);
         MovementController(delta);
@@ -111,7 +111,7 @@ void Hachiko::ModuleCamera::Controller(const float delta) const
 
     if (App->input->GetKey(SDL_SCANCODE_LALT) == KeyState::KEY_REPEAT)
     {
-        const float2 moved = App->input->GetMouseMotion();
+        const float2 moved = App->input->GetMousePixelsMotion();
         Orbit(moved.x * 1.5f, moved.y * 1.5f);
     }
     if (App->input->GetKey(SDL_SCANCODE_F) == KeyState::KEY_DOWN)
@@ -125,7 +125,7 @@ void Hachiko::ModuleCamera::Controller(const float delta) const
     }
     if (App->input->IsMouseButtonPressed(SDL_BUTTON_MIDDLE))
     {
-        const float2 moved = App->input->GetMouseMotion();
+        const float2 moved = App->input->GetMousePixelsMotion();
 
         PerpendicularMovement(moved.x * delta * perpendicular_movement_speed, moved.y * delta * perpendicular_movement_speed);
     }
@@ -285,12 +285,8 @@ void Hachiko::ModuleCamera::RunDynamicScript(const float delta)
         static const float max_distance = 25.0f;
         float effective_speed = move_speed;
 
-<<<<<<< HEAD
-
         auto* transform = rendering_camera->GetGameObject()->GetTransform();
-=======
-        auto* transform = main_camera->GetGameObject()->GetTransform();
->>>>>>> 2e2d0c7 (updating input module API)
+
         float3 deltaRight = float3::zero, deltaUp = float3::zero, deltaFwd = float3::zero;
         const float distanceFromReference = rendering_camera->camera_pinned_pos.Distance(transform->GetLocalPosition());
         if (distanceFromReference < max_distance)
@@ -299,14 +295,8 @@ void Hachiko::ModuleCamera::RunDynamicScript(const float delta)
             transform->SetLocalPosition(transform->GetGlobalPosition() + deltaFwd + deltaRight + deltaUp);
         }
         else
-<<<<<<< HEAD
-            transform->SetLocalPosition(rendering_camera->camera_pinned_pos);
-
-
-=======
         {
-            transform->SetLocalPosition(main_camera->camera_pinned_pos);
+            transform->SetLocalPosition(rendering_camera->camera_pinned_pos);
         }
->>>>>>> 2e2d0c7 (updating input module API)
     }
 }
