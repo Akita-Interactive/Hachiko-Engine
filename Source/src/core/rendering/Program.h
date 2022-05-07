@@ -1,4 +1,6 @@
 #pragma once
+#include "utils/Cache.h"
+
 namespace Hachiko
 {
     class Program
@@ -10,6 +12,7 @@ namespace Hachiko
         static void Deactivate();
         void CleanUp() const;
 
+        //TODO centralize uniform binding in ModuleProgram with a cleaner API
         void BindUniformFloat4x4(const char* name, const float* data, bool transpose = true) const;
         void BindUniformFloat3(const char* name, const float* data) const;
         void BindUniformFloat4(const char* name, const float* data) const;
@@ -24,5 +27,10 @@ namespace Hachiko
 
     private:
         unsigned id = 0;
+        std::unique_ptr<Cache<const char*, int>> uniforms_cache;
+
+        //handy function to manage store/retrieve from cache
+        int GetUniformLocation(const char*) const;
     };
+
 }

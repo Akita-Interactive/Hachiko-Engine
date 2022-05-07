@@ -2,7 +2,8 @@
 #include "Program.h"
 
 Hachiko::Program::Program(unsigned vtx_shader, unsigned frg_shader) :
-    id(glCreateProgram())
+    id(glCreateProgram()),
+    uniforms_cache(std::make_unique<Cache<const char*, int>>(0))
 {
     glAttachShader(id, vtx_shader);
     glAttachShader(id, frg_shader);
@@ -39,34 +40,47 @@ void Hachiko::Program::Deactivate()
 void Hachiko::Program::CleanUp() const
 {
     glDeleteProgram(id);
+    uniforms_cache->Clear();
 }
 
 void Hachiko::Program::BindUniformFloat4x4(const char* name, const float* data, bool transpose) const
 {
-    glUniformMatrix4fv(glGetUniformLocation(id, name), 1, transpose, data);
+    glUniformMatrix4fv(GetUniformLocation(name), 1, transpose, data);
 }
 
 void Hachiko::Program::BindUniformFloat3(const char* name, const float* data) const
 {
-    glUniform3fv(glGetUniformLocation(id, name), 1, data);
+    glUniform3fv(GetUniformLocation(name), 1, data);
 }
 
 void Hachiko::Program::BindUniformFloat4(const char* name, const float* data) const
 {
-    glUniform4fv(glGetUniformLocation(id, name), 1, data);
+    glUniform4fv(GetUniformLocation(name), 1, data);
 }
 
 void Hachiko::Program::BindUniformFloat(const char* name, const float* data) const
 {
-    glUniform1fv(glGetUniformLocation(id, name), 1, data);
+    glUniform1fv(GetUniformLocation(name), 1, data);
 }
 
 void Hachiko::Program::BindUniformBool(const char* name, bool value) const
 {
-    glUniform1i(glGetUniformLocation(id, name), value);
+    glUniform1i(GetUniformLocation(name), value);
 }
 
 void Hachiko::Program::BindUniformInts(const char* name, unsigned size, const int* data) const
 {
-    glUniform1iv(glGetUniformLocation(id, name), size, data);
+    glUniform1iv(GetUniformLocation(name), size, data);
+}
+
+int Hachiko::Program::GetUniformLocation(const char* key) const
+{
+    if(const auto value = uniforms_cache->Get(key) != uniforms_cache->NotFound())
+    {
+        return value;
+    }
+    const auto value = glGetUniformLocation(id, key);
+    // assert(value == -1 && "The uniform does not exist in the program");
+    uniforms_cache->Set(key, value);
+    return value;
 }
