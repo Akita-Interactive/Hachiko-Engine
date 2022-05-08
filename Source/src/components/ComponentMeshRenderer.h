@@ -111,15 +111,15 @@ namespace Hachiko
       
         // SKINING
         const GameObject** node_cache = nullptr;
-        std::vector<float4x4> palette;
+        std::vector<float4x4> palette{};
 
         ResourceMesh* mesh = nullptr;
         ResourceMaterial* material = nullptr;
 
     public:
-        CLONE_COMPONENT(ComponentMesh)
+        CLONE_COMPONENT(ComponentMeshRenderer)
 
-        ComponentMesh(const ComponentMesh& other) :
+        ComponentMeshRenderer(const ComponentMeshRenderer& other) :
             Component(other),
             visible(other.visible),
             // node_cache(other.node_cache),
@@ -132,7 +132,7 @@ namespace Hachiko
             material = new ResourceMaterial(*other.material);
         }
 
-        ComponentMesh& operator=(const ComponentMesh& other)
+        ComponentMeshRenderer& operator=(const ComponentMeshRenderer& other)
         {
             if (this == &other)
             {
