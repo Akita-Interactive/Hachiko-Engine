@@ -143,14 +143,17 @@ void Hachiko::ComponentText::LoadFont(UID id)
     try
     {
         font = static_cast<ResourceFont*>(App->resources->GetResource(Resource::Type::FONT, id));
-        BuildLabel(game_object->GetComponent<ComponentTransform2D>());
-        // TODO: Fix how this works, right now it uses component id to find font
-        SetID(id);
+        if (font)
+        {
+            BuildLabel(game_object->GetComponent<ComponentTransform2D>());
+            // TODO: Fix how this works, right now it uses component id to find font
+            SetID(id);
+        }
     }
     catch (std::exception& e)
     {
         // Catch exception and return unloaded font if fails
-        HE_LOG("Failed to load font %d", id);
+        HE_LOG("Failed to load font %s", std::to_string(id).c_str());
     }    
 }
 

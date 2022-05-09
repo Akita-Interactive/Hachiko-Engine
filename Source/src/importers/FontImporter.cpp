@@ -38,6 +38,10 @@ void Hachiko::FontImporter::Import(const char* path, YAML::Node& meta)
 Hachiko::Resource* Hachiko::FontImporter::Load(UID id)
 {
     const std::string file_path = GetResourcePath(Resource::Type::ANIMATION, id) +".ttf";
+    if (!std::filesystem::exists(file_path))
+    {
+        return nullptr;
+    }
     ResourceFont* font = new ResourceFont(id);
     font->gl_font = std::make_unique<GLFont>(file_path.c_str(), freetype_lib);
 

@@ -4,6 +4,7 @@
 #include "modules/ModuleSceneManager.h"
 #include "modules/ModuleInput.h"
 #include "modules/ModuleEditor.h"
+#include "modules/ModuleEvent.h"
 
 Hachiko::WindowHierarchy::WindowHierarchy() :
     Window("Hierarchy", true) {}
@@ -137,12 +138,14 @@ bool Hachiko::WindowHierarchy::DrawGameObject(GameObject* game_object, bool stop
 
             App->scene_manager->GetActiveScene()->CreateNewGameObject(game_object, "New Game Object");
             ImGui::CloseCurrentPopup();
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
         if (ImGui::MenuItem("Delete Game Object"))
         {
             RELEASE(game_object);
             dragged_object = nullptr;
             ImGui::CloseCurrentPopup();
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
         ImGui::EndPopup();
     }
@@ -187,6 +190,7 @@ bool Hachiko::WindowHierarchy::DragAndDrop(GameObject* game_object)
                 parent_check = parent_check->parent;
             }
             payload_n->SetNewParent(game_object);
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
         ImGui::EndDragDropTarget();
     }
