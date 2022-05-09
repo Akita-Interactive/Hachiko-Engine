@@ -328,8 +328,7 @@ void Hachiko::Scripting::PlayerController::Rotate(
 			? 1.0f 
 			: _rotation_progress;
 
-		transform->SetGlobalRotation(
-			Quat::Lerp(_rotation_start, _rotation_target, _rotation_progress));
+		transform->SetGlobalRotation(Quat::Lerp(_rotation_start, _rotation_target, _rotation_progress));
 
 		_should_rotate = _rotation_progress < 1.0f;
 
@@ -343,8 +342,7 @@ void Hachiko::Scripting::PlayerController::Rotate(
 	}
 }
 
-void Hachiko::Scripting::PlayerController::HandleInput(
-	math::float3& current_position)
+void Hachiko::Scripting::PlayerController::HandleInput(math::float3& current_position)
 {
 	// Ignore the inputs if engine camera input is taken:
 	if (Input::IsMouseButtonPressed(Input::MouseButton::RIGHT))
@@ -458,7 +456,7 @@ void Hachiko::Scripting::PlayerController::HandleInput(
 		_dash_direction.Normalize();
 	}
 
-	if (Input::GetKeyDown(Input::KeyCode::KEY_G))
+	if (Input::IsKeyDown(Input::KeyCode::KEY_G))
 	{
 		_is_god_mode = !_is_god_mode;
 		_stats._god_mode = _is_god_mode;
