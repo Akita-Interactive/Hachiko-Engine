@@ -11,10 +11,10 @@
 
 namespace Hachiko
 {
-#define CLONE_COMPONENT(type)           \
-    Component* Clone() override   \
-    {                                   \
-        return new type(*this);         \
+#define CREATE_HISTORY_ENTRY_AFTER_EDIT()                               \
+    if (ImGui::IsItemDeactivatedAfterEdit())                            \
+    {                                                                   \
+        App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);  \
     }
 
     class GameObject;
@@ -149,28 +149,5 @@ namespace Hachiko
         bool active = true;
         Type type = Type::UNKNOWN;
         UID uid = 0;
-
-    public:
-        virtual Component* Clone() = 0;
-
-        Component(const Component& other) :
-            active(other.active),
-            type(other.type),
-            uid(other.uid)
-        {
-        }
-
-        Component& operator=(const Component& other)
-        {
-            if (this == &other)
-            {
-                return *this;
-            }
-            // game_object = other.game_object;
-            active = other.active;
-            type = other.type;
-            uid = other.uid;
-            return *this;
-        }
     };
 }

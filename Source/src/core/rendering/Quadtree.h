@@ -56,8 +56,8 @@ namespace Hachiko
     private:
         int depth = 0;
         AABB box;
-        QuadtreeNode* parent;
-        std::list<GameObject*> objects;
+        QuadtreeNode* parent =  nullptr;
+        std::list<GameObject*> objects{};
     };
 
     class Quadtree
@@ -72,7 +72,7 @@ namespace Hachiko
         void Insert(GameObject* game_object) const;
         void Remove(GameObject* game_object) const;
 
-        QuadtreeNode* GetRoot() const
+        [[nodiscard]] QuadtreeNode* GetRoot() const
         {
             return root;
         }

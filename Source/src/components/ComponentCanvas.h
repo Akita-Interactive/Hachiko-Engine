@@ -29,23 +29,6 @@ namespace Hachiko
     private:
         unsigned size_x = 0;
         unsigned size_y = 0;
-
-    public:
-        CLONE_COMPONENT(ComponentCanvas)
-
-        ComponentCanvas(const ComponentCanvas& other) = default;
-
-        ComponentCanvas& operator=(const ComponentCanvas& other)
-        {
-            if (this == &other)
-            {
-                return *this;
-            }
-            Component::operator =(other);
-            size_x = other.size_x;
-            size_y = other.size_y;
-            return *this;
-        }
     };
 } // namespace Hachiko
 

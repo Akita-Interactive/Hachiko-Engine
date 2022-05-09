@@ -37,11 +37,5 @@ namespace Hachiko
         float4 hover_color = float4::one;
         bool use_image = false;
         bool use_hover_image = false;
-
-    public:
-        CLONE_COMPONENT(ComponentImage)
-
-        ComponentImage(const ComponentImage& other) = default;
-        ComponentImage& operator=(const ComponentImage& other) = default;
     };
 } // namespace Hachiko

@@ -81,41 +81,5 @@ namespace Hachiko
         CameraType camera_type;
         unsigned resolution_x = DEFAULT_CAMERA_WIDTH;
         unsigned resolution_y = DEFAULT_CAMERA_HEIGHT;
-
-    public:
-        ComponentCamera(const ComponentCamera& other) :
-            Component(other),
-            reference_point(other.reference_point),
-            draw_frustum(other.draw_frustum),
-            preview_cam(other.preview_cam),
-            camera_pinned_pos(other.camera_pinned_pos),
-            horizontal_fov(other.horizontal_fov),
-            frustum(other.frustum),
-            camera_type(other.camera_type),
-            resolution_x(other.resolution_x),
-            resolution_y(other.resolution_y)
-        {
-        }
-
-        ComponentCamera& operator=(const ComponentCamera& other)
-        {
-            if (this == &other)
-            {
-                return *this;
-            }
-            Component::operator =(other);
-            reference_point = other.reference_point;
-            draw_frustum = other.draw_frustum;
-            preview_cam = other.preview_cam;
-            camera_pinned_pos = other.camera_pinned_pos;
-            horizontal_fov = other.horizontal_fov;
-            frustum = other.frustum;
-            camera_type = other.camera_type;
-            resolution_x = other.resolution_x;
-            resolution_y = other.resolution_y;
-            return *this;
-        }
-
-        Hachiko::CLONE_COMPONENT(ComponentCamera)
     };
 }

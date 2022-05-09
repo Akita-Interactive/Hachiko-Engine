@@ -79,38 +79,5 @@ namespace Hachiko
         FillingDirection fill_direction = FillingDirection::LEFT_TO_RIGHT;
         int direction_index = 0;
         inline static const char* filling_directions[]{"Left to right", "Right to Left", "Bottom to top", "Top to bottom"};
-
-    public:
-        CLONE_COMPONENT(ComponentProgressBar)
-
-        ComponentProgressBar(const ComponentProgressBar& other) :
-            Component(other),
-
-            min(other.min),
-            max(other.max),
-            filled_value(other.filled_value),
-            fill_direction(other.fill_direction),
-            direction_index(other.direction_index)
-        {
-            background = new GameObject(*other.background);
-            fill = new GameObject(*other.fill);
-        }
-
-        ComponentProgressBar& operator=(const ComponentProgressBar& other)
-        {
-            if (this == &other)
-            {
-                return *this;
-            }
-            Component::operator =(other);
-            background = other.background;
-            fill = other.fill;
-            min = other.min;
-            max = other.max;
-            filled_value = other.filled_value;
-            fill_direction = other.fill_direction;
-            direction_index = other.direction_index;
-            return *this;
-        }
     };
 } // namespace Hachiko

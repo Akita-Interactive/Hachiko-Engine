@@ -8,7 +8,7 @@
 #include "modules/ModuleUserInterface.h"
 
 #include "core/rendering/Program.h"
-
+#include "modules/ModuleEvent.h"
 
 
 Hachiko::ComponentImage::ComponentImage(GameObject* container) 
@@ -29,20 +29,26 @@ void Hachiko::ComponentImage::DrawGui()
             ModuleTexture::Unload(image);
             std::string destination = std::string(ASSETS_FOLDER_TEXTURES) + "/" + image_filename_buffer;
             image = ModuleTexture::Load(destination.c_str());
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
         if (!use_image || !image.loaded)
         {
             ImGuiUtils::CompactColorPicker("Color", color.ptr());
+            CREATE_HISTORY_ENTRY_AFTER_EDIT() 
         }       
 
-        ImGui::Checkbox("Use Hover Image", &use_hover_image);
+        if(ImGui::Checkbox("Use Hover Image", &use_hover_image))
+        {
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+        }
 
         if (ImGui::InputText("Hover Image File", hover_image_filename_buffer, MAX_PATH, ImGuiInputTextFlags_EnterReturnsTrue))
         {
             ModuleTexture::Unload(hover_image);
             std::string destination = std::string(ASSETS_FOLDER_TEXTURES) + "/" + hover_image_filename_buffer;
             hover_image = ModuleTexture::Load(destination.c_str());
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
         if (!use_hover_image || !hover_image.loaded)

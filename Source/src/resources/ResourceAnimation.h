@@ -15,9 +15,7 @@ namespace Hachiko
         struct Channel
         {
             Channel() = default;
-            Channel(const Channel& o) = default;
             Channel(Channel&& o) = default;
-            Channel& operator=(const Channel& o) = default;
             Channel& operator=(Channel&& o) = default;
 
             std::unique_ptr<float3[]> positions;
@@ -54,7 +52,7 @@ namespace Hachiko
         // CHANEL MANAGE
         [[nodiscard]] unsigned int GetNumChannels() const
         {
-            return unsigned int(channels.size());
+            return static_cast<unsigned>(channels.size());
         }
 
         [[nodiscard]] const Channel* GetChannel(const std::string& name) const;
@@ -67,31 +65,5 @@ namespace Hachiko
         unsigned int duration = 0;
 
         std::string name;
-
-    public:
-        CLONE_RESOURCE(ResourceAnimation)
-
-        ResourceAnimation(const ResourceAnimation& other) :
-            Resource(other),
-            // channels(other.channels),
-            nodes(other.nodes),
-            duration(other.duration),
-            name(other.name)
-        {
-        }
-
-        ResourceAnimation& operator=(const ResourceAnimation& other)
-        {
-            if (this == &other)
-            {
-                return *this;
-            }
-            Resource::operator =(other);
-            // channels = other.channels;
-            nodes = other.nodes;
-            duration = other.duration;
-            name = other.name;
-            return *this;
-        }
     };
 } // namespace Hachiko

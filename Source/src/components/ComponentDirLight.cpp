@@ -2,6 +2,7 @@
 
 #include "ComponentDirLight.h"
 #include "ComponentTransform.h"
+#include "modules/ModuleEvent.h"
 
 #include <debugdraw.h>
 
@@ -61,12 +62,21 @@ void Hachiko::ComponentDirLight::DrawGui()
     ImGui::PushID(this);
     if (ImGuiUtils::CollapsingHeader(game_object, this, "Dir Light"))
     {
-        ImGui::Checkbox("D.Active", &active);
-        ImGui::Checkbox("Draw Direction", &draw_direction);
+        if (ImGui::Checkbox("D.Active", &active))
+        {
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+        }
+        if (ImGui::Checkbox("Draw Direction", &draw_direction))
+        {
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+        }
+
         ImGui::PushItemWidth(100.0f);
         ImGui::InputFloat("D.Intensity", &intensity);
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
         ImGui::PopItemWidth();
         ImGuiUtils::CompactColorPicker("Dir Color", &color[0]);
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
     }
     ImGui::PopID();
 }

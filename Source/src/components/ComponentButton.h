@@ -24,9 +24,5 @@ namespace Hachiko
 
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
-
-        CLONE_COMPONENT(ComponentButton)
-        ComponentButton(const ComponentButton& other) = default;
-        ComponentButton& operator=(const ComponentButton& other) = default;
     };
 } // namespace Hachiko

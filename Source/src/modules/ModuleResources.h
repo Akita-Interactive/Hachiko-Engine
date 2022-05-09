@@ -32,7 +32,7 @@ namespace Hachiko
         void LoadAsset(const std::string& path);
 
     private:
-        std::map<UID, Resource*> loaded_resources;
+        std::map<UID, Resource*> loaded_resources{};
 
         std::vector<std::pair<Hachiko::Resource::AssetType, std::string>> supported_extensions = 
         {

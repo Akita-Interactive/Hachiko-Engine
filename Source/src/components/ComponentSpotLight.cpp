@@ -1,6 +1,7 @@
 #include "core/hepch.h"
 #include "ComponentSpotLight.h"
 #include "ComponentTransform.h"
+#include "modules/ModuleEvent.h"
 
 #include <debugdraw.h>
 
@@ -74,14 +75,25 @@ void Hachiko::ComponentSpotLight::DrawGui()
     if (ImGuiUtils::CollapsingHeader(game_object, this, "Spot Light"))
     {
         ImGui::PushItemWidth(100.0f);
-        ImGui::Checkbox("S.Active", &active);
-        ImGui::Checkbox("Draw Cone", &draw_cone);
+        if (ImGui::Checkbox("S.Active", &active))
+        {
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+        }
+        if (ImGui::Checkbox("Draw Cone", &draw_cone))
+        {
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+        }
         ImGui::InputFloat("S.Intensity", &intensity);
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
         ImGui::InputFloat("S.Radius", &radius);
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
         ImGui::InputFloat("Inner Angle", &inner);
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
         ImGui::InputFloat("Outer Angle", &outer);
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
         ImGui::PopItemWidth();
         ImGuiUtils::CompactColorPicker("Spot Color", &color[0]);
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
     }
     ImGui::PopID();
 }

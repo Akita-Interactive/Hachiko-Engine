@@ -2240,6 +2240,9 @@
     <ClInclude Include="src\core\preferences\src\AudioPreferences.h">
       <Filter>Core\Preferences\Source</Filter>
     </ClInclude>
+    <ClInclude Include="src\events\EditorHistoryEntryRestore.h">
+      <Filter>Core\Events\Payload</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">

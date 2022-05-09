@@ -1,21 +1,19 @@
 #include "core/hepch.h"
 #include "ComponentText.h"
 #include "ComponentTransform2D.h"
-#include "ComponentButton.h"
 #include "ComponentCamera.h"
 #include "resources/ResourceFont.h"
 
-#include "modules/ModuleProgram.h"
 #include "modules/ModuleCamera.h"
 #include "modules/ModuleResources.h"
 
 #include "core/rendering/Program.h"
 
+#include "modules/ModuleEvent.h"
 
 Hachiko::ComponentText::ComponentText(GameObject* container) 
 	: Component(Type::TEXT, container) {
 }
-
 
 void Hachiko::ComponentText::DrawGui()
 {
@@ -32,11 +30,11 @@ void Hachiko::ComponentText::DrawGui()
         {
             ImGui::TextColored(warn_color, "No Generated Label!");
         }
-        
 
         if (ImGui::InputText("Text", &label_text, ImGuiInputTextFlags_EnterReturnsTrue))
         {
             SetText(label_text.c_str());
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
         if (ImGui::DragFloat("Font Size", &font_size, 2.0f, 0.0f, FLT_MAX))
@@ -44,11 +42,13 @@ void Hachiko::ComponentText::DrawGui()
             
             SetFontSize(static_cast<int>(font_size));
         }
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
         if (ImGuiUtils::CompactColorPicker("Font Color", font_color.ptr()))
         {
             SetFontColor(font_color);
         }
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
         const std::string title = "Select Font";
         if (ImGui::Button("Change Font"))
@@ -63,7 +63,7 @@ void Hachiko::ComponentText::DrawGui()
                                                         | ImGuiFileDialogFlags_HideColumnDate);
         }
 
-        if (ImGuiFileDialog::Instance()->Display(title.c_str()))
+        if (ImGuiFileDialog::Instance()->Display(title))
         {
             if (ImGuiFileDialog::Instance()->IsOk())
             {
@@ -71,6 +71,7 @@ void Hachiko::ComponentText::DrawGui()
                 font_path.append(META_EXTENSION);
                 YAML::Node font_node = YAML::LoadFile(font_path);              
                 LoadFont(font_node[RESOURCES][0][RESOURCE_ID].as<UID>());
+                App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
             }
 
             ImGuiFileDialog::Instance()->Close();

@@ -94,7 +94,7 @@ namespace Hachiko
 
         // Main menu bar
         UpdateStatus MainMenuBar();
-        UpdateStatus FileMenu() const;
+        UpdateStatus FileMenu();
         void EditMenu();
         void GoMenu() const;
         void ViewMenu();

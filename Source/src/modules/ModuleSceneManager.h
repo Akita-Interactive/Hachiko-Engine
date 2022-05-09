@@ -61,6 +61,8 @@ namespace Hachiko
         void OptionsMenu();
 
     private:
+        void SwapScene(Scene*);
+
         Scene* main_scene = nullptr;
         SceneSerializer* serializer = nullptr;
         ResourcesPreferences* preferences = nullptr;

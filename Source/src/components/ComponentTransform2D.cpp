@@ -8,14 +8,16 @@
 #include "ComponentText.h"
 
 #include "debugdraw.h"
+#include "modules/ModuleEvent.h"
 
-Hachiko::ComponentTransform2D::ComponentTransform2D(GameObject* container) 
-    : Component(Type::TRANSFORM_2D, container)
+Hachiko::ComponentTransform2D::ComponentTransform2D(GameObject* container) :
+    Component(Type::TRANSFORM_2D, container)
 {
     Invalidate();
 }
 
-void Hachiko::ComponentTransform2D::DrawGui(){
+void Hachiko::ComponentTransform2D::DrawGui()
+{
     static bool debug_transforms = false;
     has_canvas = static_cast<bool>(game_object->GetComponent<ComponentCanvas>());
 
@@ -24,12 +26,12 @@ void Hachiko::ComponentTransform2D::DrawGui(){
 
     if (ImGui::CollapsingHeader("2D Transform", ImGuiTreeNodeFlags_DefaultOpen))
     {
-        
         float3 ed_pos = position;
         if (ImGui::DragFloat3("Position", ed_pos.ptr(), 0.05f))
         {
             SetPosition(ed_pos);
         }
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
         if (!has_canvas)
         {
@@ -38,42 +40,45 @@ void Hachiko::ComponentTransform2D::DrawGui(){
             {
                 SetSize(ed_siz);
             }
-        }        
+            CREATE_HISTORY_ENTRY_AFTER_EDIT()
+        }
 
         float3 ed_sc = scale;
         if (ImGui::DragFloat2("Scale", ed_sc.ptr(), 0.05f))
         {
             SetScale(ed_sc.xy());
         }
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
         float3 ed_rot = rotation_euler;
         if (ImGui::DragFloat("Rotation (z)", &ed_rot.z, 0.05f))
         {
             SetRotation(ed_rot);
         }
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
         float2 ed_anch = anchor_pct_position;
         if (ImGui::DragFloat2("Anchor (Percent)", ed_anch.ptr(), 0.05f))
         {
             SetAnchor(ed_anch);
         }
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
         float2 ed_piv = pivot_pct_position;
-        if (ImGui::DragFloat2("Pivot (Pefcent)", ed_piv.ptr(), 0.05f))
+        if (ImGui::DragFloat2("Pivot (Percent)", ed_piv.ptr(), 0.05f))
         {
             SetPivot(ed_piv);
         }
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
         ImGui::Checkbox("Debug Transform2D matrix", &debug_transforms);
         if (debug_transforms)
         {
-
             ImGui::Separator();
             ImGui::Text("Scaled Transform");
             const float4x4& scaled = GetGlobalScaledTransform();
             for (int r = 0; r < 4; ++r)
             {
-                
                 const float4& row = scaled.Row(r);
                 ImGui::Text("%.2f, %.2f, %.2f, %.2f", row.x, row.y, row.z, row.w);
             }
@@ -82,7 +87,6 @@ void Hachiko::ComponentTransform2D::DrawGui(){
             ImGui::Text("Bounding 2D");
             ImGui::Text("%.2f %.2f, %.2f %.2f", aabb.minPoint.x, aabb.minPoint.y, aabb.maxPoint.x, aabb.maxPoint.y);
         }
-
     }
 
     ImGui::PopID();
@@ -147,7 +151,7 @@ void Hachiko::ComponentTransform2D::SetPivot(float2 new_pivot_position)
     // Update position to keep item in the same place
     position.x += pivot_delta.x * size.x;
     position.y += pivot_delta.y * size.y;
-    
+
     Invalidate();
 }
 
@@ -159,7 +163,6 @@ void Hachiko::ComponentTransform2D::SetAnchor(float2 new_anchor_position)
 
 float3 Hachiko::ComponentTransform2D::GetPivotOffsetFromParent() const
 {
-
     float3 effective_position = position;
     GameObject* parent = game_object->parent;
 
@@ -213,8 +216,8 @@ bool Hachiko::ComponentTransform2D::HasDependentComponents(GameObject* game_obje
 {
     bool found = game_object->GetComponent<ComponentCanvas>();
     found = found || game_object->GetComponent<ComponentCanvasRenderer>();
-    
-    found = found || game_object->GetComponent<ComponentImage>();  
+
+    found = found || game_object->GetComponent<ComponentImage>();
     found = found || game_object->GetComponent<ComponentButton>();
     found = found || game_object->GetComponent<ComponentProgressBar>();
 
@@ -224,7 +227,7 @@ bool Hachiko::ComponentTransform2D::HasDependentComponents(GameObject* game_obje
         if (found)
         {
             break;
-        }         
+        }
     }
     return found;
 }
@@ -236,7 +239,6 @@ bool Hachiko::ComponentTransform2D::Intersects(const float2& mouse_pos) const
 
 void Hachiko::ComponentTransform2D::Save(YAML::Node& node) const
 {
-
     node[TRANSFORM_POSITION] = position;
     node[TRANSFORM_SIZE] = size;
     node[TRANSFORM_SCALE] = scale.xy();

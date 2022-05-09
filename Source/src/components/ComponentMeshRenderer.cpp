@@ -13,6 +13,8 @@
 #include "ComponentCamera.h"
 #include "ComponentTransform.h"
 
+#include "modules/ModuleEvent.h"
+
 Hachiko::ComponentMeshRenderer::ComponentMeshRenderer(GameObject* container, UID id, ResourceMesh* res) 
     : Component(Type::MESH_RENDERER, container)
 {
@@ -110,8 +112,14 @@ void Hachiko::ComponentMeshRenderer::DrawGui()
                             mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::VERTICES)],
                             mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::INDICES)],
                             mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::BONES)]);
-                ImGui::Checkbox("Visible", &visible);
-                ImGui::Checkbox("Navigable", &navigable);
+                if(ImGui::Checkbox("Visible", &visible))
+                {
+                    App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+                }
+                if(ImGui::Checkbox("Navigable", &navigable))
+                {
+                    App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+                }
             }
             ImGui::TreePop();
         }

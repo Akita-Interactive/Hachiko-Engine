@@ -118,7 +118,7 @@ bool Hachiko::ModuleEditor::Init()
     std::function create_history_entry = [&](Event& evt) {
         CreateSnapshot();
     };
-    App->event->Subscribe(Event::Type::CREATE_HISTORY_ENTRY, create_history_entry);
+    App->event->Subscribe(Event::Type::CREATE_EDITOR_HISTORY_ENTRY, create_history_entry);
 
     return true;
 }
@@ -161,7 +161,10 @@ UpdateStatus Hachiko::ModuleEditor::Update(const float delta)
             const std::string file_path = std::string(ASSETS_FOLDER_SCENES) + "/" + file_name_extension;
 
             HE_LOG("Loading scene: %s", file_path_name.c_str());
+
+            history.CleanUp();
             App->scene_manager->LoadScene(file_path.c_str());
+            history.Init();
         }
 
         ImGuiFileDialog::Instance()->Close();
@@ -285,7 +288,7 @@ void Hachiko::ModuleEditor::GenerateDockingSpace()
     }
 }
 
-UpdateStatus Hachiko::ModuleEditor::FileMenu() const
+UpdateStatus Hachiko::ModuleEditor::FileMenu()
 {
     auto status = UpdateStatus::UPDATE_CONTINUE;
     // TODO: shortcuts
@@ -297,7 +300,9 @@ UpdateStatus Hachiko::ModuleEditor::FileMenu() const
     }
     if (ImGui::MenuItem(ICON_FA_PLUS "New"))
     {
+        history.CleanUp();
         App->scene_manager->CreateEmptyScene();
+        history.Init();
     }
     if (ImGui::MenuItem(ICON_FA_SAVE "Save", nullptr, false, true)) // TODO: Use internal timer to disable/enable
     {
@@ -462,6 +467,7 @@ void Hachiko::ModuleEditor::History::Init()
 
 void Hachiko::ModuleEditor::History::CleanUp()
 {
+    HE_LOG("Clearing action history");
     mementos.erase(mementos.begin(), mementos.end());
     mementos.clear();
 }

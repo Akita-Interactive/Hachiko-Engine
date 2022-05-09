@@ -10,6 +10,7 @@
 #include "InputEventPayload.h"
 #include "GameStateEventPayload.h"
 #include "SceneLoadEventPayload.h"
+#include "EditorHistoryEntryRestore.h"
 
 namespace Hachiko
 {
@@ -17,7 +18,7 @@ namespace Hachiko
     using EventData = std::variant<std::monostate,
                                    SelectionChangedEventPayload, FileAddedEventPayload,
                                    AssetsAddedEventPayload, MouseEventPayload, InputEventPayload,
-                                   GameStateEventPayload, SceneLoadEventPayload>;
+                                   GameStateEventPayload, SceneLoadEventPayload, EditorHistoryEntryRestore>;
 
     class Event
     {
@@ -34,7 +35,8 @@ namespace Hachiko
             INPUT,
             GAME_STATE,
             SCENE_LOADED,
-            CREATE_HISTORY_ENTRY,
+            CREATE_EDITOR_HISTORY_ENTRY,
+            RESTORE_EDITOR_HISTORY_ENTRY,
             COUNT
         };
 

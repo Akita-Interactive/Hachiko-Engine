@@ -670,6 +670,7 @@
     <ClInclude Include="src\core\logging\Logger.h" />
     <ClInclude Include="src\events\GameStateEventPayload.h" />
     <ClInclude Include="src\events\SceneLoadEventPayload.h" />
+    <ClInclude Include="src\events\EditorHistoryEntryRestore.h" />
     <ClInclude Include="src\Gameplay.h" />
     <ClInclude Include="src\core\HachikoApiDefine.h" />
     <ClInclude Include="src\scripting\serialization\IRuntimeSerializable.h" />

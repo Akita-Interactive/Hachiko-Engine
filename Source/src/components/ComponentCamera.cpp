@@ -2,6 +2,7 @@
 
 #include "modules/ModuleSceneManager.h"
 #include "modules/ModuleCamera.h"
+#include "modules/ModuleEvent.h"
 
 #include "ComponentCamera.h"
 #include "ComponentTransform.h"
@@ -208,6 +209,7 @@ void Hachiko::ComponentCamera::DrawGui()
     if (ImGuiUtils::CollapsingHeader(game_object, this, "Camera"))
     {
         ImGui::Checkbox("Draw Frustum", &draw_frustum);
+
         ImGui::SameLine();
         #ifndef PLAY_BUILD
             ImGui::Checkbox("Preview Camera", &preview_cam);
@@ -223,10 +225,14 @@ void Hachiko::ComponentCamera::DrawGui()
         {
             SetPlaneDistances(planes[0], planes[1]);
         }
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
+
         if (ImGui::SliderFloat("H. Fov", &horizontal_fov, 30.f, 180.f))
         {
             SetHorizontalFov(horizontal_fov);
         }
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
+
         if (ImGui::Button("Culling Camera"))
         {
             App->scene_manager->GetActiveScene()->SetCullingCamera(this);
@@ -237,22 +243,26 @@ void Hachiko::ComponentCamera::DrawGui()
             if (ImGui::RadioButton("Static", &cam_type_selector, static_cast<int>(CameraType::STATIC)))
             {
                 SetCameraType(CameraType::STATIC);
-            };
+                App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+            }
             ImGui::SameLine();
             if (ImGui::RadioButton("Dynamic", &cam_type_selector, static_cast<int>(CameraType::DYNAMIC)))
             {
                 SetCameraType(CameraType::DYNAMIC);
-            };
+                App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+            }
             ImGui::SameLine();
             if (ImGui::RadioButton("God", &cam_type_selector, static_cast<int>(CameraType::GOD)))
             {
                 SetCameraType(CameraType::GOD);
-            };
+                App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+            }
             ImGui::SameLine();
             if (ImGui::RadioButton("Player", &cam_type_selector, static_cast<int>(CameraType::PLAYER)))
             {
                 SetCameraType(CameraType::PLAYER);
-            };
+                App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+            }
 
             if (ImGui::Button("Set Initial Position"))
             {

@@ -41,7 +41,7 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
     if (ImGui::InputText("###", game_object_name, 50, name_input_flags))
     {
         game_object->name = game_object_name;
-        App->event->Publish(Event::Type::CREATE_HISTORY_ENTRY);
+        App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
     }
 
     ImGui::SameLine();
@@ -49,6 +49,7 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
     if (ImGui::Checkbox("Active", &activate))
     {
         game_object->SetActive(activate);
+        App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
     }
 
     std::vector<Component*> game_object_components = game_object->GetComponents();
@@ -73,24 +74,28 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
         {
             game_object->CreateComponent(Component::Type::CAMERA);
             ImGui::CloseCurrentPopup();
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
         if (ImGui::MenuItem("Point Light"))
         {
             game_object->CreateComponent(Component::Type::POINTLIGHT);
             ImGui::CloseCurrentPopup();
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
         if (ImGui::MenuItem("Spot Light"))
         {
             game_object->CreateComponent(Component::Type::SPOTLIGHT);
             ImGui::CloseCurrentPopup();
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
         if (ImGui::MenuItem("Dir Light"))
         {
             game_object->CreateComponent(Component::Type::DIRLIGHT);
             ImGui::CloseCurrentPopup();
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
         if (ImGui::MenuItem("Script"))
@@ -103,6 +108,7 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
         {
             game_object->CreateComponent(Component::Type::ANIMATION);
             ImGui::CloseCurrentPopup();
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
         if (ImGui::MenuItem("Obstacle"))
@@ -126,6 +132,7 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
             game_object->CreateComponent(Component::Type::TRANSFORM_2D);
             game_object->CreateComponent(Component::Type::CANVAS);
             ImGui::CloseCurrentPopup();
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
         if (ImGui::MenuItem("Button"))
@@ -134,6 +141,7 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
             game_object->CreateComponent(Component::Type::CANVAS_RENDERER);
             game_object->CreateComponent(Component::Type::BUTTON);
             ImGui::CloseCurrentPopup();
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
         if (ImGui::MenuItem("Image"))
@@ -142,6 +150,7 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
             game_object->CreateComponent(Component::Type::CANVAS_RENDERER);
             game_object->CreateComponent(Component::Type::IMAGE);
             ImGui::CloseCurrentPopup();
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
         if (ImGui::MenuItem("Progress Bar"))
@@ -157,6 +166,7 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
             fill->CreateComponent(Component::Type::CANVAS_RENDERER);
             fill->CreateComponent(Component::Type::IMAGE);
             ImGui::CloseCurrentPopup();
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
         if (ImGui::MenuItem("Text Label"))
@@ -165,7 +175,7 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
             game_object->CreateComponent(Component::Type::CANVAS_RENDERER);
             game_object->CreateComponent(Component::Type::TEXT);
             ImGui::CloseCurrentPopup();
-            App->event->Publish(Event::Type::CREATE_HISTORY_ENTRY);
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
         ImGui::EndPopup();
@@ -198,6 +208,7 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
             if (script != nullptr)
             {
                 game_object->AddComponent(script);
+                App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
             }
                
             ImGui::CloseCurrentPopup();

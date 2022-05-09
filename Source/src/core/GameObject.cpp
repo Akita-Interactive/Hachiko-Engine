@@ -71,6 +71,7 @@ Hachiko::GameObject::~GameObject()
     {
         RELEASE(component);
     }
+    scene_owner = nullptr;
 }
 
 void Hachiko::GameObject::RemoveChild(GameObject* game_object)

@@ -1,5 +1,6 @@
 #include "core/hepch.h"
 #include "ComponentProgressBar.h"
+#include "modules/ModuleEvent.h"
 
 Hachiko::ComponentProgressBar::ComponentProgressBar(GameObject* container) : Component(Type::PROGRESS_BAR, container) 
 {
@@ -64,10 +65,14 @@ void Hachiko::ComponentProgressBar::DrawGui()
     if (ImGui::CollapsingHeader("Progress Bar", ImGuiTreeNodeFlags_DefaultOpen))
     {
         ImGui::DragFloat("Min", &min, 1.0f, -inf, max - 1);
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
         ImGui::DragFloat("Max", &max, 1.0f, min + 1, inf);
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
         ImGui::DragFloat("Filled", &filled_value, (max-min) / 100, min, max);
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
         ImGui::Combo("Filling Direction", &direction_index, filling_directions, IM_ARRAYSIZE(filling_directions));
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
         fill_direction = static_cast<FillingDirection>(direction_index);
     }
 }

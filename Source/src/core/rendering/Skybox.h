@@ -17,5 +17,9 @@ namespace Hachiko
         TextureCube texture;
         unsigned vao{};
         unsigned vbo{};
+
+    public:
+        Skybox(const Skybox& other) = default;
+        Skybox& operator=(const Skybox& other) = default;
     };
 }

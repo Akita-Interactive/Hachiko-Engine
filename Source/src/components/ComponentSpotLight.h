@@ -40,27 +40,5 @@ namespace Hachiko
     private:
         bool active = true;
         bool draw_cone = false;
-
-    public:
-        CLONE_COMPONENT(ComponentSpotLight)
-
-        ComponentSpotLight(const ComponentSpotLight& other) = default;
-
-        ComponentSpotLight& operator=(const ComponentSpotLight& other)
-        {
-            if (this == &other)
-            {
-                return *this;
-            }
-            Component::operator =(other);
-            color = other.color;
-            inner = other.inner;
-            outer = other.outer;
-            intensity = other.intensity;
-            radius = other.radius;
-            active = other.active;
-            draw_cone = other.draw_cone;
-            return *this;
-        }
     };
 }

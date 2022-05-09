@@ -92,10 +92,10 @@ namespace Hachiko
         void Load(const YAML::Node& node);
 
         void GetNavmeshData(std::vector<float>& scene_vertices, std::vector<int>& scene_triangles, std::vector<float>& scene_normals, AABB& scene_bounds);
-        
-        std::vector<ComponentDirLight*> dir_lights;
-        std::vector<ComponentPointLight*> point_lights;
-        std::vector<ComponentSpotLight*> spot_lights;
+
+        std::vector<ComponentDirLight*> dir_lights{};
+        std::vector<ComponentPointLight*> point_lights{};
+        std::vector<ComponentSpotLight*> spot_lights{};
 
         
 
@@ -112,33 +112,24 @@ namespace Hachiko
         class Memento
         {
         public:
-            Memento(std::string name, GameObject* root) :
-                name(std::move(name)),
-                root(root)
+            Memento(std::string content) :
+                // content(std::move(content))
+            content(content)
             {
             }
 
-            ~Memento()
-            {
-                delete root;
-            }
+            ~Memento() = default;
 
-            [[nodiscard]] std::string GetName() const
+            [[nodiscard]] std::string GetContent() const
             {
-                return name;
+                return content;
             }
-
-            [[nodiscard]] GameObject* GetRoot() const
-            {
-                return root;
-            }
-
+            
         private:
-            std::string name;
-            GameObject* root = nullptr;
+            std::string content;
         };
 
         [[nodiscard]] Memento* CreateSnapshot() const;
-        void Restore(const Memento*);
+        void Restore(const Memento*) const;
     };
 }

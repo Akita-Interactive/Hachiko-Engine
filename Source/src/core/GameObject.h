@@ -207,8 +207,8 @@ namespace Hachiko
             return nullptr;
         }
 
-        std::vector<Component*> GetComponents(Component::Type type) const;
-        std::vector<Component*> GetComponentsInDescendants(Component::Type type) const;
+        [[nodiscard]] std::vector<Component*> GetComponents(Component::Type type) const;
+        [[nodiscard]] std::vector<Component*> GetComponentsInDescendants(Component::Type type) const;
 
         GameObject* GetFirstChildWithName(const std::string& child_name) const;
         Hachiko::GameObject* FindDescendantWithName(const std::string& child_name) const;
@@ -217,12 +217,12 @@ namespace Hachiko
         std::string name;
         Scene* scene_owner = nullptr;
         GameObject* parent = nullptr;
-        std::vector<GameObject*> children;
+        std::vector<GameObject*> children{};
         bool active = true;
 
     private:
         bool started = false;
-        std::vector<Component*> components;
+        std::vector<Component*> components{};
         ComponentTransform* transform = nullptr;
         //bool in_quadtree = false;
         AABB aabb;

@@ -90,33 +90,6 @@ namespace Hachiko
 
         // Dirty flag pattern
         bool dirty = true;
-
-    public:
-        CLONE_COMPONENT(ComponentTransform2D)
-
-        ComponentTransform2D(const ComponentTransform2D& other) = default;
-
-        ComponentTransform2D& operator=(const ComponentTransform2D& other)
-        {
-            if (this == &other)
-            {
-                return *this;
-            }
-            Component::operator =(other);
-            position = other.position;
-            size = other.size;
-            scale = other.scale;
-            rotation = other.rotation;
-            rotation_euler = other.rotation_euler;
-            pivot_pct_position = other.pivot_pct_position;
-            anchor_pct_position = other.anchor_pct_position;
-            local_transform = other.local_transform;
-            global_transform = other.global_transform;
-            aabb = other.aabb;
-            has_canvas = other.has_canvas;
-            dirty = other.dirty;
-            return *this;
-        }
     };
 }
 

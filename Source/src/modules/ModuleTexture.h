@@ -21,6 +21,10 @@ namespace Hachiko
         unsigned id{};
         unsigned widths[6]{};
         unsigned heighths[6]{};
+
+        TextureCube() = default;
+        TextureCube(const TextureCube& other) = default;
+        TextureCube& operator=(const TextureCube& other) =  default;
     };
     
     class ResourceTexture;

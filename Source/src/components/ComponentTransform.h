@@ -101,10 +101,5 @@ namespace Hachiko
         float3 right;
         float3 up;
         float3 front;
-
-    public:
-        Hachiko::CLONE_COMPONENT(ComponentTransform)
-        ComponentTransform(const ComponentTransform& other) = default;
-        ComponentTransform& operator=(const ComponentTransform& other) = default;
     };
 } // namespace Hachiko

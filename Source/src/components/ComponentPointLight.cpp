@@ -1,6 +1,7 @@
 #include "core/hepch.h"
 #include "ComponentPointLight.h"
 #include "ComponentTransform.h"
+#include "modules/ModuleEvent.h"
 
 #include <debugdraw.h>
 
@@ -62,13 +63,22 @@ void Hachiko::ComponentPointLight::DrawGui()
     ImGui::PushID(this);
     if (ImGuiUtils::CollapsingHeader(game_object, this, "Point Light"))
     {
-        ImGui::Checkbox("P.Active", &active);
-        ImGui::Checkbox("Draw Sphere", &draw_sphere);
+        if (ImGui::Checkbox("P.Active", &active))
+        {
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+        }
+        if (ImGui::Checkbox("Draw Sphere", &draw_sphere))
+        {
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+        }
         ImGui::PushItemWidth(100.0f);
         ImGui::InputFloat("P.Intensity", &intensity);
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
         ImGui::InputFloat("P.Radius", &radius);
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
         ImGui::PopItemWidth();
         ImGuiUtils::CompactColorPicker("Point Color", &color[0]);
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
     }
     ImGui::PopID();
 }
