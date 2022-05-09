@@ -1,0 +1,18 @@
+General:
+  id: 17043091975731737084
+  type: 3
+  hash: 3240750227861920051
+model_name: plane
+material:
+  - id: 16999050792984117325
+    name: DefaultMaterial
+mesh:
+  - id: 11896092071257975730
+    material_index: 0
+name: RootNode
+transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+child:
+  - name: Plane001
+    transform: [1, 0, 0, 0, 0, 5.96046448e-08, 0.99999994, 0, 0, -0.99999994, 5.96046448e-08, 0, 0, 0, 0, 1]
+    mesh_index:
+      - 0

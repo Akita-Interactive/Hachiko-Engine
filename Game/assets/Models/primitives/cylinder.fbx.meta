@@ -1,0 +1,18 @@
+General:
+  id: 14455713309684640125
+  type: 3
+  hash: 230705047336641219
+model_name: cylinder
+material:
+  - id: 4461126322033528019
+    name: DefaultMaterial
+mesh:
+  - id: 18186254919152766070
+    material_index: 0
+name: RootNode
+transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+child:
+  - name: Cylinder001
+    transform: [1, 0, 0, 0, 0, 5.96046448e-08, 0.99999994, 0, 0, -0.99999994, 5.96046448e-08, 0, 0, 0, 0, 1]
+    mesh_index:
+      - 0

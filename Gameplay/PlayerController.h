@@ -44,6 +44,7 @@ private:
 	SERIALIZE_FIELD(float, _dash_duration);
 	SERIALIZE_FIELD(float, _dash_distance);
 	SERIALIZE_FIELD(float, _dash_progress);
+	SERIALIZE_FIELD(float, _dash_cooldown);
 	SERIALIZE_FIELD(bool, _is_dashing);
 	SERIALIZE_FIELD(math::float3, _dash_start);
 	SERIALIZE_FIELD(math::float3, _dash_direction);

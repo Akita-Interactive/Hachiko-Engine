@@ -1,0 +1,272 @@
+scene_name: UnnamedScene
+root_id: 4657189094069642553
+child:
+  - id: 14976678926782416133
+    name: PlayerC
+    enabled: true
+    parent_id: 4657189094069642553
+    component:
+      - id: 6975760212175362040
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [1, 1, 1]
+      - id: 15184489991082493448
+        type: 15
+        enabled: true
+        class_name: PlayerController
+    child:
+      - id: 13959622791734644144
+        name: Torso_01
+        enabled: true
+        parent_id: 14976678926782416133
+        component:
+          - id: 17724530636051697688
+            type: 1
+            enabled: true
+            position: [0, 0.647756636, -0.0772219971]
+            rotation: [3.09086232e-08, 0.707106829, 0.707106829, -3.09086232e-08]
+            scale: [0.0168984495, 0.0168984309, 0.0168984309]
+          - id: 10194157800895111827
+            type: 2
+            enabled: true
+            mesh_id: 10717222656367717016
+            material_id: 6602734086879450457
+      - id: 18013596184385821119
+        name: Arm_01
+        enabled: true
+        parent_id: 14976678926782416133
+        component:
+          - id: 16176788452758113306
+            type: 1
+            enabled: true
+            position: [-0.102162249, 0.440588713, -0.117372878]
+            rotation: [-0.572700977, 0.0554051884, -0.366084248, 0.731386483]
+            scale: [0.0304086301, 0.0304086208, 0.0304086208]
+          - id: 14084056588909532130
+            type: 2
+            enabled: true
+            mesh_id: 409839569499748245
+            material_id: 6602734086879450457
+          - id: 12964980945407856483
+            type: 2
+            enabled: true
+            mesh_id: 6925634500986915724
+            material_id: 17159773374694001131
+          - id: 18003837010464906329
+            type: 2
+            enabled: true
+            mesh_id: 12698579663557520628
+            material_id: 5472379486361956812
+      - id: 9564960937621331230
+        name: Leg_01
+        enabled: true
+        parent_id: 14976678926782416133
+        component:
+          - id: 14839789111698407997
+            type: 1
+            enabled: true
+            position: [-0.148603737, -0.29355067, -0.0482582934]
+            rotation: [-0.70710665, 0, 0, 0.707106948]
+            scale: [0.0253999997, 0.0253999941, 0.0253999941]
+          - id: 13465290342200174215
+            type: 2
+            enabled: true
+            mesh_id: 11951575091778018600
+            material_id: 6602734086879450457
+      - id: 16262996394195476333
+        name: TorsoArmour_01
+        enabled: true
+        parent_id: 14976678926782416133
+        component:
+          - id: 7578687916342526380
+            type: 1
+            enabled: true
+            position: [-0.00357382488, 0.465125591, -0.0798330978]
+            rotation: [0.642787874, 0, 0, 0.766044259]
+            scale: [0.0253999997, 0.0254000202, 0.0254000202]
+          - id: 10627895222125387247
+            type: 2
+            enabled: true
+            mesh_id: 110240814316066827
+            material_id: 17159773374694001131
+          - id: 12187074907237909187
+            type: 2
+            enabled: true
+            mesh_id: 9318557607629896249
+            material_id: 5472379486361956812
+      - id: 808121332932020634
+        name: HipArmour_01
+        enabled: true
+        parent_id: 14976678926782416133
+        component:
+          - id: 12913855477772206820
+            type: 1
+            enabled: true
+            position: [-2.28536878e-09, 0.21267128, -0.0762471482]
+            rotation: [-0.70710665, 0, 0, 0.707106948]
+            scale: [0.0253999997, 0.0253999941, 0.0253999941]
+          - id: 4493135149889987360
+            type: 2
+            enabled: true
+            mesh_id: 8992279919188196795
+            material_id: 17159773374694001131
+      - id: 11140382422677179233
+        name: MechanicLeg_01
+        enabled: true
+        parent_id: 14976678926782416133
+        component:
+          - id: 7870264110832085496
+            type: 1
+            enabled: true
+            position: [-0.119662777, -0.0179719888, -0.0130566554]
+            rotation: [0.041600924, -0.0131165022, -0.130402103, 0.990501225]
+            scale: [0.0254000034, 0.0253999997, 0.0253999997]
+          - id: 7857680406665994342
+            type: 2
+            enabled: true
+            mesh_id: 16055804133171197452
+            material_id: 5472379486361956812
+          - id: 15321666729243959406
+            type: 2
+            enabled: true
+            mesh_id: 6965009335435922179
+            material_id: 17159773374694001131
+      - id: 3659994995657983202
+        name: MaskPiece_01
+        enabled: true
+        parent_id: 14976678926782416133
+        component:
+          - id: 6540866096161559911
+            type: 1
+            enabled: true
+            position: [-0.0770082325, 0.667488158, -0.00711565465]
+            rotation: [-0.70710665, 0, 0, 0.707106948]
+            scale: [0.0253999997, 0.0253999941, 0.0253999941]
+          - id: 1993527799435405434
+            type: 2
+            enabled: true
+            mesh_id: 13955986685535741766
+            material_id: 5472379486361956812
+          - id: 16222074285139388464
+            type: 2
+            enabled: true
+            mesh_id: 662018195323233288
+            material_id: 17159773374694001131
+      - id: 5429157679868880687
+        name: MechanicArm_01
+        enabled: true
+        parent_id: 14976678926782416133
+        component:
+          - id: 922878714358928951
+            type: 1
+            enabled: true
+            position: [-0.335916042, -0.0544057339, 1.07213855e-05]
+            rotation: [0.253588229, 0.596063077, 0.604468226, -0.46370253]
+            scale: [0.0253999941, 0.0253999922, 0.0254000034]
+          - id: 1125923265649336913
+            type: 2
+            enabled: true
+            mesh_id: 79277979695433491
+            material_id: 5472379486361956812
+          - id: 13021531912167465671
+            type: 2
+            enabled: true
+            mesh_id: 18292761388469490586
+            material_id: 17159773374694001131
+      - id: 7262824612995013536
+        name: Reproportion_01
+        enabled: true
+        parent_id: 14976678926782416133
+        component:
+          - id: 15963569639817630052
+            type: 1
+            enabled: true
+            position: [0.393518627, 0.00644586375, -0.0880567729]
+            rotation: [-0.0913622752, 0.722277522, 0.0895021707, 0.679674506]
+            scale: [0.0254000127, 0.0253999978, 0.0254000127]
+          - id: 6239153093056015066
+            type: 2
+            enabled: true
+            mesh_id: 11821329333512996007
+            material_id: 10010667294930998680
+          - id: 16171619006089677455
+            type: 2
+            enabled: true
+            mesh_id: 2589862148726551157
+            material_id: 12772232074399907064
+          - id: 18240930602632537489
+            type: 2
+            enabled: true
+            mesh_id: 10121855210839995817
+            material_id: 5472379486361956812
+          - id: 11020480565091983481
+            type: 2
+            enabled: true
+            mesh_id: 17856524049814810571
+            material_id: 6602734086879450457
+      - id: 9145665312429159171
+        name: Jetpack_01
+        enabled: true
+        parent_id: 14976678926782416133
+        component:
+          - id: 12068240901295877097
+            type: 1
+            enabled: true
+            position: [0, 0.414363265, -0.192427292]
+            rotation: [-0.57357651, 0, 0, 0.819151998]
+            scale: [0.0389276855, 0.0389276743, 0.0389276743]
+          - id: 17223911560607997801
+            type: 2
+            enabled: true
+            mesh_id: 7538676287600863399
+            material_id: 6602734086879450457
+          - id: 15304891236628800720
+            type: 2
+            enabled: true
+            mesh_id: 10267607189628802485
+            material_id: 17159773374694001131
+          - id: 6654174794783373266
+            type: 2
+            enabled: true
+            mesh_id: 316787956160441383
+            material_id: 5472379486361956812
+      - id: 1240505985342779950
+        name: DashIndicator
+        enabled: true
+        parent_id: 14976678926782416133
+        component:
+          - id: 3308573049074183709
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+  - id: 16833469038698170268
+    name: MainCamera
+    enabled: true
+    parent_id: 4657189094069642553
+    component:
+      - id: 12521965300316852998
+        type: 1
+        enabled: true
+        position: [-3.34957875e-08, 0, 0]
+        rotation: [3.96159763e-08, 0.906307876, -0.42261833, 1.84732336e-08]
+        scale: [1.00024879, 1.00000155, 1.00011373]
+      - id: 12674244948453810394
+        type: 4
+        enabled: true
+        frustum:
+          near_distance: 0.100000001
+          far_distance: 1000
+          fov: 65
+          position: [-3.34957875e-08, 0, 0]
+          front: [-3.55311771e-15, -0.766131759, -0.642861009]
+          up: [8.74229329e-08, 0.64278847, -0.766045809]
+          type: 2
+          pinned_camera: [0, 0, 0]
+      - id: 6608675067535680901
+        type: 15
+        enabled: true
+        class_name: PlayerCamera

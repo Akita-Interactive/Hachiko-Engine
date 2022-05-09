@@ -13,6 +13,7 @@ Hachiko::Scripting::PlayerController::PlayerController(GameObject* game_object)
 	, _dash_duration(0.0f)
 	, _dash_distance(0.0f)
 	, _dash_progress(0.0f)
+	, _dash_cooldown(0.0f)
 	, _is_dashing(false)
 	, _dash_start(math::float3::zero)
 	, _dash_direction(math::float3::zero)
@@ -28,6 +29,7 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 {
 	_dash_distance = 5.0f;
 	_dash_duration = 0.15f;
+	_dash_cooldown = 0.25f;
 	_movement_speed = 10.0f;
 	_rotation_duration = 0.075f;
 	_dash_indicator = game_object->GetFirstChildWithName("DashIndicator");
@@ -45,19 +47,21 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 	Dash(current_position);
 
 	// Rotate player to the necessary direction:
-	Rotate(transform, current_position);
+	//Rotate(transform, current_position);
 
 	// Move the dash indicator:
-	MoveDashIndicator(current_position);
+	//MoveDashIndicator(current_position);
 
 	// Attack:
 	Attack(transform, current_position);
 
 	// Apply the position:
 	transform->SetGlobalPosition(current_position);
+	transform->LookAtTarget(GetRaycastPosition(current_position));
 
 	// Instantiate GameObject in current scene test:
 	SpawnGameObject();
+
 } 
 
 math::float3 Hachiko::Scripting::PlayerController::GetRaycastPosition(
@@ -124,7 +128,7 @@ void Hachiko::Scripting::PlayerController::Attack(ComponentTransform* transform,
 	}
 
 	// Make the player look the mouse:
-	transform->LookAtTarget(GetRaycastPosition(current_position));
+	
 }
 
 void Hachiko::Scripting::PlayerController::Dash(math::float3& current_position)
@@ -152,6 +156,7 @@ void Hachiko::Scripting::PlayerController::Dash(math::float3& current_position)
 
 	const math::float3 _dash_end = 
 		_dash_start + _dash_direction * _dash_distance;
+
 
 	current_position = math::float3::Lerp(_dash_start, _dash_end, 
 		_dash_progress);
@@ -260,6 +265,7 @@ void Hachiko::Scripting::PlayerController::HandleInput(
 
 	if (Input::GetKeyDown(Input::KeyCode::KEY_SPACE))
 	{
+
 		_is_dashing = true;
 		_dash_progress = 0.0f;
 		_dash_start = current_position;
@@ -269,5 +275,7 @@ void Hachiko::Scripting::PlayerController::HandleInput(
 		
 		_dash_direction = dash_end - _dash_start;
 		_dash_direction.Normalize();
+
 	}
+
 }

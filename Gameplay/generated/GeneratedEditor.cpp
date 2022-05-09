@@ -35,21 +35,23 @@ void Hachiko::Scripting::MainMenuManager::OnEditor()
 
 void Hachiko::Scripting::PlayerCamera::OnEditor()
 {
-	Editor::Show("_distance_to_player", _distance_to_player);
+	Editor::Show("_relative_position_to_player", _relative_position_to_player);
 	Editor::Show("_player", _player);
+	Editor::Show("_follow_delay", _follow_delay);
 }
 
 void Hachiko::Scripting::PlayerController::OnEditor()
 {
 	Editor::Show("_movement_speed", _movement_speed);
+	Editor::Show("_dash_indicator", _dash_indicator);
 	Editor::Show("_dash_duration", _dash_duration);
 	Editor::Show("_dash_distance", _dash_distance);
-	Editor::Show("_is_dashing", _is_dashing);
 	Editor::Show("_dash_progress", _dash_progress);
+	Editor::Show("_dash_cooldown", _dash_cooldown);
+	Editor::Show("_is_dashing", _is_dashing);
 	Editor::Show("_dash_start", _dash_start);
-	Editor::Show("_rotation_speed", _rotation_speed);
-	Editor::Show("_is_falling", _is_falling);
-	Editor::Show("_original_y", _original_y);
-	Editor::Show("_speed_y", _speed_y);
-	Editor::Show("_starting_position", _starting_position);
+	Editor::Show("_dash_direction", _dash_direction);
+	Editor::Show("_should_rotate", _should_rotate);
+	Editor::Show("_rotation_progress", _rotation_progress);
+	Editor::Show("_rotation_duration", _rotation_duration);
 }
