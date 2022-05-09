@@ -29,9 +29,16 @@ namespace Hachiko
         UpdateStatus PreUpdate(float delta) override;
         bool CleanUp() override;
 
+        //general function to get the state of a key
         [[nodiscard]] KeyState GetKey(SDL_Scancode key) const
         {
             return keyboard[key];
+        }
+
+        //general function to get the state of a mouse button
+        [[nodiscard]] KeyState GetMouseButton(const int id) const
+        {
+            return mouse[id - 1];
         }
 
         [[nodiscard]] bool IsModifierPressed(SDL_Keymod modifier) const
@@ -44,9 +51,19 @@ namespace Hachiko
             return keyboard[id] == KeyState::KEY_DOWN || keyboard[id] == KeyState::KEY_REPEAT;
         }
 
+        [[nodiscard]] bool IsKeyReleased(const int id) const
+        {
+            return keyboard[id] == KeyState::KEY_UP;
+        }
+
         [[nodiscard]] bool IsMouseButtonPressed(const int id) const
         {
             return mouse[id - 1] == KeyState::KEY_DOWN || mouse[id - 1] == KeyState::KEY_REPEAT;
+        }
+
+        [[nodiscard]] bool IsMouseButtonReleased(const int id) const
+        {
+            return mouse[id - 1] == KeyState::KEY_UP;
         }
 
         [[nodiscard]] int GetScrollDelta() const

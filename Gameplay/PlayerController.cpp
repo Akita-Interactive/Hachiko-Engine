@@ -131,8 +131,8 @@ void Hachiko::Scripting::PlayerController::MoveDashIndicator(
 void Hachiko::Scripting::PlayerController::SpawnGameObject() const
 {
 	static int times_hit_g = 0;
-
-	if (!Input::GetKeyDown(Input::KeyCode::KEY_G))
+	
+	if (!Input::IsKeyDown(Input::KeyCode::KEY_G))
 	{
 		return;
 	}
@@ -154,7 +154,13 @@ void Hachiko::Scripting::PlayerController::Attack(ComponentTransform* transform,
 	// For now this only makes player look at to the direction to the mouse
 	// on left mouse button is clicked, can be used as a base to build the 
 	// actual combat upon.
+<<<<<<< HEAD
 	if (_is_dashing || (attack_current_cd > 0.0f) )
+=======
+	// TODO: Improve this method and implement actual attacking.
+	
+	if (_is_dashing || !Input::IsMouseButtonPressed(Input::MouseButton::LEFT) || (attack_current_cd > 0.0f) )
+>>>>>>> dfde40ea (added methods for mouse up/down and key up/down)
 	{
 		attack_current_cd -= Time::DeltaTime();
 		return;
@@ -407,38 +413,38 @@ void Hachiko::Scripting::PlayerController::HandleInput(
 	const math::float3 delta_y = math::float3::unitY * velocity;
 	const math::float3 delta_z = math::float3::unitZ * velocity;
 
-	if (Input::GetKey(Input::KeyCode::KEY_W))
+	if (Input::IsKeyPressed(Input::KeyCode::KEY_W))
 	{
 		current_position -= delta_z;
 		_state = PlayerState::WALKING;
 	}
-	else if (Input::GetKey(Input::KeyCode::KEY_S))
+	else if (Input::IsKeyPressed(Input::KeyCode::KEY_S))
 	{
 		current_position += delta_z;
 		_state = PlayerState::WALKING;
 	}
 
-	if (Input::GetKey(Input::KeyCode::KEY_D))
+	if (Input::IsKeyPressed(Input::KeyCode::KEY_D))
 	{
 		current_position += delta_x;
 		_state = PlayerState::WALKING;
 	}
-	else if (Input::GetKey(Input::KeyCode::KEY_A))
+	else if (Input::IsKeyPressed(Input::KeyCode::KEY_A))
 	{
 		current_position -= delta_x;
 		_state = PlayerState::WALKING;
 	}
 
-	if (_is_god_mode && Input::GetKey(Input::KeyCode::KEY_Q))
+	if (_is_god_mode && Input::IsKeyPressed(Input::KeyCode::KEY_Q))
 	{
 		current_position += delta_y;
 	}
-	else if (_is_god_mode && Input::GetKey(Input::KeyCode::KEY_E))
+	else if (_is_god_mode && Input::IsKeyPressed(Input::KeyCode::KEY_E))
 	{
 		current_position -= delta_y;
 	}
 
-	if (Input::GetKeyDown(Input::KeyCode::KEY_SPACE))
+	if (Input::IsKeyDown(Input::KeyCode::KEY_SPACE))
 	{
 		_has_cooldown = (_dash_count <= 0);
 		if (_has_cooldown)

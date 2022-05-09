@@ -40,15 +40,15 @@ void Hachiko::WindowScene::Update()
 {
     if (focused && App->editor->GetSelectedGameObject())
     {
-        if (App->input->GetKey(SDL_SCANCODE_W) == KeyState::KEY_REPEAT)
+        if (App->input->IsKeyPressed(SDL_SCANCODE_W))
         {
             guizmo_operation = ImGuizmo::TRANSLATE;
         }
-        if (App->input->GetKey(SDL_SCANCODE_E) == KeyState::KEY_REPEAT)
+        if (App->input->IsKeyPressed(SDL_SCANCODE_E))
         {
             guizmo_operation = ImGuizmo::ROTATE;
         }
-        if (App->input->GetKey(SDL_SCANCODE_R) == KeyState::KEY_REPEAT)
+        if (App->input->IsKeyPressed(SDL_SCANCODE_R))
         {
             guizmo_operation = ImGuizmo::SCALE;
         }
@@ -163,7 +163,7 @@ void Hachiko::WindowScene::DrawScene()
     // TO AVOID Camera orbit
     if (ImGui::IsWindowFocused())
     {
-        bool guizmo_enabled = !(App->input->IsMouseButtonPressed(SDL_BUTTON_RIGHT) || App->input->GetKey(SDL_SCANCODE_LALT) == KeyState::KEY_DOWN);
+        bool guizmo_enabled = !(App->input->IsMouseButtonPressed(SDL_BUTTON_RIGHT) || App->input->IsKeyPressed(SDL_SCANCODE_LALT));
         ImGuizmo::Enable(guizmo_enabled);
     }
 

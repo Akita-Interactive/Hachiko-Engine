@@ -37,7 +37,7 @@ bool Hachiko::ModuleCamera::Init()
 
 UpdateStatus Hachiko::ModuleCamera::Update(const float delta)
 {
-    if (App->input->GetKey(SDL_SCANCODE_C) == KeyState::KEY_DOWN)
+    if (App->input->IsKeyPressed(SDL_SCANCODE_C))
     {
         int buffer_size = camera_buffer.size();
         if (last_it < buffer_size)
@@ -109,12 +109,12 @@ void Hachiko::ModuleCamera::Controller(const float delta) const
         Zoom(static_cast<float>(scrolled_y) * zoom_speed);
     }
 
-    if (App->input->GetKey(SDL_SCANCODE_LALT) == KeyState::KEY_REPEAT)
+    if (App->input->IsKeyPressed(SDL_SCANCODE_LALT))
     {
         const float2 moved = App->input->GetMousePixelsMotion();
         Orbit(moved.x * 1.5f, moved.y * 1.5f);
     }
-    if (App->input->GetKey(SDL_SCANCODE_F) == KeyState::KEY_DOWN)
+    if (App->input->IsKeyPressed(SDL_SCANCODE_F))
     {
         const float distance = (rendering_camera->reference_point - rendering_camera->GetGameObject()->GetTransform()->GetLocalPosition()).Length();
         GameObject* go = App->editor->GetSelectedGameObject();
@@ -207,27 +207,27 @@ void Hachiko::ModuleCamera::MovementController(const float delta) const
     auto* transform = rendering_camera->GetGameObject()->GetTransform();
     float3 deltaRight = float3::zero, deltaUp = float3::zero, deltaFwd = float3::zero;
 
-    if (App->input->GetKey(SDL_SCANCODE_W) == KeyState::KEY_REPEAT)
+    if (App->input->IsKeyPressed(SDL_SCANCODE_W))
     {
         deltaFwd += transform->GetFront() * delta * effective_speed;
     }
-    if (App->input->GetKey(SDL_SCANCODE_S) == KeyState::KEY_REPEAT)
+    if (App->input->IsKeyPressed(SDL_SCANCODE_S))
     {
         deltaFwd -= transform->GetFront() * delta * effective_speed;
     }
-    if (App->input->GetKey(SDL_SCANCODE_A) == KeyState::KEY_REPEAT)
+    if (App->input->IsKeyPressed(SDL_SCANCODE_A))
     {
         deltaRight += transform->GetRight() * delta * effective_speed;
     }
-    if (App->input->GetKey(SDL_SCANCODE_D) == KeyState::KEY_REPEAT)
+    if (App->input->IsKeyPressed(SDL_SCANCODE_D))
     {
         deltaRight -= transform->GetRight() * delta * effective_speed;
     }
-    if (App->input->GetKey(SDL_SCANCODE_Q) == KeyState::KEY_REPEAT)
+    if (App->input->IsKeyPressed(SDL_SCANCODE_Q))
     {
         deltaUp += float3::unitY * delta * effective_speed;
     }
-    if (App->input->GetKey(SDL_SCANCODE_E) == KeyState::KEY_REPEAT)
+    if (App->input->IsKeyPressed(SDL_SCANCODE_E))
     {
         deltaUp -= float3::unitY * delta * effective_speed;
     }

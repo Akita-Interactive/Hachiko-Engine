@@ -39,8 +39,8 @@ UpdateStatus Hachiko::ModuleDebugMode::PreUpdate(const float delta)
 
 UpdateStatus Hachiko::ModuleDebugMode::Update(const float delta)
 {
-	if (App->input->GetKey(SDL_SCANCODE_LALT) == Hachiko::KeyState::KEY_REPEAT &&
-		App->input->GetKey(SDL_SCANCODE_D) == Hachiko::KeyState::KEY_DOWN)
+	if (App->input->IsKeyPressed(SDL_SCANCODE_LALT) &&
+		App->input->IsKeyPressed(SDL_SCANCODE_D))
 	{
 		Toggle();
 	}
@@ -56,7 +56,7 @@ UpdateStatus Hachiko::ModuleDebugMode::Update(const float delta)
 	// God mode
 	
 	// Teleport player with mouse double click
-	if (App->input->GetKey(SDL_SCANCODE_RALT) == Hachiko::KeyState::KEY_REPEAT && ImGui::IsMouseDoubleClicked(0))
+	if (App->input->IsKeyPressed(SDL_SCANCODE_RALT) && ImGui::IsMouseDoubleClicked(0))
 	{
         Plane plane(vec(50, 0, 50), vec(50, 0, -50), vec(-50, 0, -50));
         float d = 0;
@@ -71,7 +71,7 @@ UpdateStatus Hachiko::ModuleDebugMode::Update(const float delta)
 	}
 
 	// Teleport player to the nearest position in playerLocations
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == Hachiko::KeyState::KEY_DOWN)
+	if (App->input->IsKeyPressed(SDL_SCANCODE_SPACE))
 	{
         player = FindPlayer();
 		if (player)
@@ -93,7 +93,7 @@ UpdateStatus Hachiko::ModuleDebugMode::Update(const float delta)
 	}
 	
 	// Teleport player to the next position in playerLocations
-    if (App->input->GetKey(SDL_SCANCODE_RETURN) == Hachiko::KeyState::KEY_DOWN)
+    if (App->input->IsKeyPressed(SDL_SCANCODE_RETURN))
 	{
         player = FindPlayer();
 		if (player)

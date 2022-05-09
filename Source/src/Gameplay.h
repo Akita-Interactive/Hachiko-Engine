@@ -394,9 +394,9 @@ HACHIKO_API bool IsKeyUp(KeyCode key);
 HACHIKO_API bool IsKeyDown(KeyCode key);
 HACHIKO_API bool IsModifierPressed(KeyCode modifier);
 
-// TODO: Add MouseButtonDown and MouseButtonUp.
-
-HACHIKO_API bool IsMouseButtonPressed(MouseButton mouse_button); 
+HACHIKO_API bool IsMouseButtonPressed(MouseButton mouse_button);
+HACHIKO_API bool IsMouseButtonUp(MouseButton mouse_button);
+HACHIKO_API bool IsMouseButtonDown(MouseButton mouse_button);
 HACHIKO_API int GetScrollWheelDelta();
 HACHIKO_API const float2& GetMouseNormalizedMotion();
 HACHIKO_API const float2& GetMousePixelsMotion();

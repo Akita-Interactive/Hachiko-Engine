@@ -29,7 +29,7 @@ bool Hachiko::Input::IsKeyPressed(KeyCode key)
 
 bool Hachiko::Input::IsKeyUp(KeyCode key)
 {
-    return App->input->GetKey(static_cast<SDL_Scancode>(key)) == KeyState::KEY_UP;
+    return App->input->IsKeyReleased(static_cast<SDL_Scancode>(key));
 }
 
 bool Hachiko::Input::IsKeyDown(KeyCode key)
@@ -45,6 +45,16 @@ bool Hachiko::Input::IsModifierPressed(KeyCode modifier)
 bool Hachiko::Input::IsMouseButtonPressed(MouseButton mouse_button)
 {
     return App->input->IsMouseButtonPressed(static_cast<int>(mouse_button));
+}
+
+bool Hachiko::Input::IsMouseButtonUp(MouseButton mouse_button)
+{
+    return App->input->IsMouseButtonReleased(static_cast<int>(mouse_button));
+}
+
+bool Hachiko::Input::IsMouseButtonDown(MouseButton mouse_button)
+{
+    return App->input->GetMouseButton(static_cast<int>(mouse_button)) == KeyState::KEY_DOWN; 
 }
 
 int Hachiko::Input::GetScrollWheelDelta()
