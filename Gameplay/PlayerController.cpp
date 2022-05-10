@@ -154,20 +154,14 @@ void Hachiko::Scripting::PlayerController::Attack(ComponentTransform* transform,
 	// For now this only makes player look at to the direction to the mouse
 	// on left mouse button is clicked, can be used as a base to build the 
 	// actual combat upon.
-<<<<<<< HEAD
 	if (_is_dashing || (attack_current_cd > 0.0f) )
-=======
-	// TODO: Improve this method and implement actual attacking.
-	
-	if (_is_dashing || !Input::IsMouseButtonPressed(Input::MouseButton::LEFT) || (attack_current_cd > 0.0f) )
->>>>>>> dfde40ea (added methods for mouse up/down and key up/down)
 	{
 		attack_current_cd -= Time::DeltaTime();
 		return;
 	}
 
 
-	if (Input::GetMouseButton(Input::MouseButton::RIGHT))
+	if (Input::IsMouseButtonPressed(Input::MouseButton::RIGHT))
 	{
 		// Make the player look the mouse:
 		transform->LookAtTarget(GetRaycastPosition(current_position));
@@ -176,7 +170,7 @@ void Hachiko::Scripting::PlayerController::Attack(ComponentTransform* transform,
 
 		attack_current_cd = _stats._attack_cd;
 	}
-	else if (Input::GetMouseButton(Input::MouseButton::LEFT))
+	else if (Input::IsMouseButtonPressed(Input::MouseButton::LEFT))
 	{
 		transform->LookAtTarget(GetRaycastPosition(current_position));
 		_state = PlayerState::MELEE_ATTACKING;

@@ -51,7 +51,12 @@ namespace Hachiko
             return keyboard[id] == KeyState::KEY_DOWN || keyboard[id] == KeyState::KEY_REPEAT;
         }
 
-        [[nodiscard]] bool IsKeyReleased(const int id) const
+        [[nodiscard]] bool IsKeyDown(const int id) const
+        {
+            return keyboard[id] == KeyState::KEY_DOWN;
+        }
+
+        [[nodiscard]] bool IsKeyUp(const int id) const
         {
             return keyboard[id] == KeyState::KEY_UP;
         }
@@ -61,9 +66,14 @@ namespace Hachiko
             return mouse[id - 1] == KeyState::KEY_DOWN || mouse[id - 1] == KeyState::KEY_REPEAT;
         }
 
-        [[nodiscard]] bool IsMouseButtonReleased(const int id) const
+        [[nodiscard]] bool IsMouseButtonUp(const int id) const
         {
             return mouse[id - 1] == KeyState::KEY_UP;
+        }
+
+        [[nodiscard]] bool IsMouseButtonDown(const int id) const
+        {
+            return mouse[id - 1] == KeyState::KEY_DOWN;
         }
 
         [[nodiscard]] int GetScrollDelta() const

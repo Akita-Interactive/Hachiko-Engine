@@ -37,7 +37,7 @@ bool Hachiko::ModuleCamera::Init()
 
 UpdateStatus Hachiko::ModuleCamera::Update(const float delta)
 {
-    if (App->input->IsKeyPressed(SDL_SCANCODE_C))
+    if (App->input->IsKeyDown(SDL_SCANCODE_C))
     {
         int buffer_size = camera_buffer.size();
         if (last_it < buffer_size)
