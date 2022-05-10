@@ -348,7 +348,7 @@ void Hachiko::GameObject::DebugDraw() const
 {
     //if (in_quadtree)
     //{
-        DrawBoundingBox();
+    DrawBoundingBox();
     //}
     DrawBones();
     for (Component* component : components)
@@ -432,7 +432,7 @@ void Hachiko::GameObject::UpdateBoundingBoxes()
             quadtree->Insert(this);
         }
     } */
-    
+
     ComponentMeshRenderer* component_mesh_renderer = GetComponent<ComponentMeshRenderer>();
     if (component_mesh_renderer != nullptr)
     {

@@ -74,6 +74,8 @@ namespace Hachiko
             return active;
         }
 
+        [[nodiscard]] GameObject* Find(UID id) const;
+
         void OnTransformUpdated();
 
         void DebugDrawAll();
