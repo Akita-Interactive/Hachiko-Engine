@@ -160,7 +160,6 @@ void Hachiko::Scripting::PlayerController::Attack(ComponentTransform* transform,
 		return;
 	}
 
-
 	if (Input::IsMouseButtonPressed(Input::MouseButton::RIGHT))
 	{
 		// Make the player look the mouse:
@@ -178,7 +177,6 @@ void Hachiko::Scripting::PlayerController::Attack(ComponentTransform* transform,
 
 		attack_current_cd = _stats._attack_cd;
 	}
-	
 }
 
 void Hachiko::Scripting::PlayerController::MeleeAttack(ComponentTransform* transform,
