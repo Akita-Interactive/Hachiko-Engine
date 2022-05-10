@@ -48,7 +48,11 @@ void Hachiko::Scripting::PlayerController::OnEditor()
 	Editor::Show("_dash_distance", _dash_distance);
 	Editor::Show("_dash_progress", _dash_progress);
 	Editor::Show("_dash_cooldown", _dash_cooldown);
+	Editor::Show("_dash_timer", _dash_timer);
+	Editor::Show("_dash_count", _dash_count);
+	Editor::Show("_max_dash_count", _max_dash_count);
 	Editor::Show("_is_dashing", _is_dashing);
+	Editor::Show("_has_cooldown", _has_cooldown);
 	Editor::Show("_dash_start", _dash_start);
 	Editor::Show("_dash_direction", _dash_direction);
 	Editor::Show("_should_rotate", _should_rotate);

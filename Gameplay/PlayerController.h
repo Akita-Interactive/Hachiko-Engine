@@ -3,57 +3,63 @@
 #include <scripting/Script.h>
 
 namespace Hachiko
-{ 
-class GameObject;
-
-namespace Scripting
 {
-class PlayerController : public Script
-{
-	SERIALIZATION_METHODS(false)
+	class GameObject;
 
-public:
-	PlayerController(GameObject* game_object);
-	~PlayerController() override = default;
+	namespace Scripting
+	{
+		class PlayerController : public Script
+		{
+			SERIALIZATION_METHODS(false)
 
-	void OnAwake() override;
-	void OnUpdate() override;
+		public:
+			PlayerController(GameObject* game_object);
+			~PlayerController() override = default;
 
-private:
-	math::float3 GetRaycastPosition(
-		const math::float3& current_position) const;
-	
-	void MoveDashIndicator(const math::float3& current_position) const;
-	
-	void SpawnGameObject() const;
-	
-	void Attack(ComponentTransform* transform, 
-		const math::float3& current_position);
+			void OnAwake() override;
+			void OnUpdate() override;
 
-	void Dash(math::float3& current_position);
+		private:
+			math::float3 GetRaycastPosition(
+				const math::float3& current_position) const;
 
-	void Rotate(ComponentTransform* transform, 
-		const math::float3& current_position);
-	
-	void HandleInput(math::float3& current_position);
+			void MoveDashIndicator(const math::float3& current_position) const;
 
-private:
-	SERIALIZE_FIELD(float, _movement_speed);
+			void SpawnGameObject() const;
 
-	SERIALIZE_FIELD(GameObject*, _dash_indicator);
-	SERIALIZE_FIELD(float, _dash_duration);
-	SERIALIZE_FIELD(float, _dash_distance);
-	SERIALIZE_FIELD(float, _dash_progress);
-	SERIALIZE_FIELD(float, _dash_cooldown);
-	SERIALIZE_FIELD(bool, _is_dashing);
-	SERIALIZE_FIELD(math::float3, _dash_start);
-	SERIALIZE_FIELD(math::float3, _dash_direction);
+			void Attack(ComponentTransform* transform,
+				const math::float3& current_position);
 
-	SERIALIZE_FIELD(bool, _should_rotate);
-	SERIALIZE_FIELD(float, _rotation_progress);
-	SERIALIZE_FIELD(float, _rotation_duration);
-	SERIALIZE_FIELD(math::Quat, _rotation_start);
-	SERIALIZE_FIELD(math::Quat, _rotation_target);
-};
-} // namespace Scripting
-} // namespace Hachiko
+			void Dash(math::float3& current_position);
+
+			void Rotate(ComponentTransform* transform,
+				const math::float3& current_position);
+
+			void HandleInput(math::float3& current_position);
+
+		private:
+			SERIALIZE_FIELD(float, _movement_speed);
+
+			SERIALIZE_FIELD(GameObject*, _dash_indicator);
+			SERIALIZE_FIELD(float, _dash_duration);
+			SERIALIZE_FIELD(float, _dash_distance);
+			SERIALIZE_FIELD(float, _dash_progress);
+			SERIALIZE_FIELD(float, _dash_cooldown);
+			SERIALIZE_FIELD(float, _dash_timer);
+			SERIALIZE_FIELD(int, _dash_count);
+			SERIALIZE_FIELD(int, _max_dash_count);
+			SERIALIZE_FIELD(bool, _is_dashing);
+			SERIALIZE_FIELD(bool, _has_cooldown);
+			SERIALIZE_FIELD(math::float3, _dash_start);
+			SERIALIZE_FIELD(math::float3, _dash_direction);
+
+			SERIALIZE_FIELD(bool, _should_rotate);
+			SERIALIZE_FIELD(float, _rotation_progress);
+			SERIALIZE_FIELD(float, _rotation_duration);
+			SERIALIZE_FIELD(math::Quat, _rotation_start);
+			SERIALIZE_FIELD(math::Quat, _rotation_target);
+			float dash_timer;
+			int init_dash_count;
+		};
+	}; // namespace Scripting
+}; // namespace Hachiko

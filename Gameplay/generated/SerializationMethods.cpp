@@ -316,12 +316,48 @@ void Hachiko::Scripting::PlayerController::DeserializeFrom(std::unordered_map<st
 		}
 	}
 
+	if(serialized_fields.find("_dash_timer") != serialized_fields.end())
+	{
+		const SerializedField& _dash_timer_sf = serialized_fields["_dash_timer"];
+		if (_dash_timer_sf.type_name == "float")
+		{
+			_dash_timer = std::any_cast<float>(_dash_timer_sf.copy);
+		}
+	}
+
+	if(serialized_fields.find("_dash_count") != serialized_fields.end())
+	{
+		const SerializedField& _dash_count_sf = serialized_fields["_dash_count"];
+		if (_dash_count_sf.type_name == "int")
+		{
+			_dash_count = std::any_cast<int>(_dash_count_sf.copy);
+		}
+	}
+
+	if(serialized_fields.find("_max_dash_count") != serialized_fields.end())
+	{
+		const SerializedField& _max_dash_count_sf = serialized_fields["_max_dash_count"];
+		if (_max_dash_count_sf.type_name == "int")
+		{
+			_max_dash_count = std::any_cast<int>(_max_dash_count_sf.copy);
+		}
+	}
+
 	if(serialized_fields.find("_is_dashing") != serialized_fields.end())
 	{
 		const SerializedField& _is_dashing_sf = serialized_fields["_is_dashing"];
 		if (_is_dashing_sf.type_name == "bool")
 		{
 			_is_dashing = std::any_cast<bool>(_is_dashing_sf.copy);
+		}
+	}
+
+	if(serialized_fields.find("_has_cooldown") != serialized_fields.end())
+	{
+		const SerializedField& _has_cooldown_sf = serialized_fields["_has_cooldown"];
+		if (_has_cooldown_sf.type_name == "bool")
+		{
+			_has_cooldown = std::any_cast<bool>(_has_cooldown_sf.copy);
 		}
 	}
 
@@ -405,7 +441,15 @@ void Hachiko::Scripting::PlayerController::SerializeTo(std::unordered_map<std::s
 
 	serialized_fields["_dash_cooldown"] = SerializedField(std::string("_dash_cooldown"), std::make_any<float>(_dash_cooldown), std::string("float"));
 
+	serialized_fields["_dash_timer"] = SerializedField(std::string("_dash_timer"), std::make_any<float>(_dash_timer), std::string("float"));
+
+	serialized_fields["_dash_count"] = SerializedField(std::string("_dash_count"), std::make_any<int>(_dash_count), std::string("int"));
+
+	serialized_fields["_max_dash_count"] = SerializedField(std::string("_max_dash_count"), std::make_any<int>(_max_dash_count), std::string("int"));
+
 	serialized_fields["_is_dashing"] = SerializedField(std::string("_is_dashing"), std::make_any<bool>(_is_dashing), std::string("bool"));
+
+	serialized_fields["_has_cooldown"] = SerializedField(std::string("_has_cooldown"), std::make_any<bool>(_has_cooldown), std::string("bool"));
 
 	serialized_fields["_dash_start"] = SerializedField(std::string("_dash_start"), std::make_any<math::float3>(_dash_start), std::string("math::float3"));
 
