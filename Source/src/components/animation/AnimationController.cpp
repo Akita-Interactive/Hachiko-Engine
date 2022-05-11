@@ -15,7 +15,7 @@ Hachiko::AnimationController::~AnimationController() {
 
 void Hachiko::AnimationController::Play(ResourceAnimation* current_animation, bool loop, unsigned fade_time) 
 {
-    Instance* new_instance = new Instance;
+    Instance* new_instance = new Instance();
 
     new_instance->current_animation = current_animation;
     new_instance->loop = loop;
@@ -33,7 +33,8 @@ void Hachiko::AnimationController::Update(unsigned elapsed)
     }
 }
 
-void Hachiko::AnimationController::Stop() {
+void Hachiko::AnimationController::Stop() 
+{
     if (current != nullptr)
     {
         ReleaseInstance(current);
@@ -62,7 +63,10 @@ void Hachiko::AnimationController::UpdateInstance(Instance* instance, unsigned e
             instance->time = current->current_animation->GetDuration();
         }
 
-        assert(instance->time <= current->current_animation->GetDuration());
+        instance->time = instance->time > current->current_animation->GetDuration() ? current->current_animation->GetDuration() : instance->time;
+
+
+        //assert(instance->time <= current->current_animation->GetDuration());
     }
 
     if (instance->previous != nullptr)
@@ -89,18 +93,22 @@ void Hachiko::AnimationController::ReleaseInstance(Instance* instance)
         Instance* next = instance->previous;
         delete instance;
         instance = next;
-    } while (instance != nullptr);
+    } 
+    while (instance != nullptr);
 }
 
 bool Hachiko::AnimationController::GetTransform(Instance* instance, const std::string& channel_name, math::float3& position, Quat& rotation) const
 {
-    if (instance->current_animation != nullptr)
+    if (instance != nullptr && instance->current_animation != nullptr)
     {
         const ResourceAnimation::Channel* channel = instance->current_animation->GetChannel(channel_name);
 
         if (channel != nullptr)
         {
-            assert(instance->time <= instance->current_animation->GetDuration());
+
+            instance->time = instance->time > instance->current_animation->GetDuration() ? instance->current_animation->GetDuration() : instance->time;
+
+            //assert(instance->time <= instance->current_animation->GetDuration());
 
             float pos_key = float(instance->time * (channel->num_positions - 1)) / float(instance->current_animation->GetDuration());
             float rot_key = float(instance->time * (channel->num_rotations - 1)) / float(instance->current_animation->GetDuration());

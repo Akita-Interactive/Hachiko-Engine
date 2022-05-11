@@ -12,25 +12,39 @@
 #include "animation/AnimationController.h"
 #include "importers/AnimationImporter.h"
 
-Hachiko::ComponentAnimation::ComponentAnimation(GameObject* container) : Component(Type::ANIMATION, container)
+Hachiko::ComponentAnimation::ComponentAnimation(GameObject* container) 
+    : Component(Type::ANIMATION, container)
 {
     controller = new AnimationController();
 }
 
 Hachiko::ComponentAnimation::~ComponentAnimation()
 {
+    delete controller;
     animations.clear();
 }
 
-void Hachiko::ComponentAnimation::Start()
+void Hachiko::ComponentAnimation::StartAnimating(unsigned int animation_index, bool on_loop, unsigned int fade_in_time_ms) 
+{
+    if (animation_index >= animations.size())
+    {
+        return;
+    }
+
+    current_animation = animations[animation_index];
+
+    StartAnimating(on_loop, fade_in_time_ms);
+}
+
+void Hachiko::ComponentAnimation::StartAnimating(bool on_loop, unsigned int fade_in_time_ms)
 {
     if (!animations.empty())
     {
-        controller->Play(current_animation, true, 0);
+        controller->Play(current_animation, on_loop, fade_in_time_ms);
     }
 }
 
-void Hachiko::ComponentAnimation::Stop()
+void Hachiko::ComponentAnimation::StopAnimating()
 {
     controller->Stop();
 }
@@ -71,18 +85,34 @@ void Hachiko::ComponentAnimation::DrawGui()
     
     if (ImGuiUtils::CollapsingHeader(game_object, this, "Animation"))
     {
+        constexpr int NO_DELETION = -1;
+        int removed_index = NO_DELETION;
         for (unsigned i = 0; i < animations.size(); ++i)
         {
             char animation_name[50];
             strcpy_s(animation_name, 50, animations[i]->GetName().c_str());
+            
             if (ImGui::Button(StringUtils::Concat(ICON_FA_PLAY, " ", animation_name, std::to_string(i)).c_str()))
             {
                 current_animation = animations[i];
-                this->Start();
+                this->StartAnimating(true, 200);
             }
 
-            // TODO: ADD STOP
+            ImGui::SameLine();
+
+            ImGui::PushID(StringUtils::Concat(std::to_string(i), "##animation").c_str());
+            if (ImGui::Button(ICON_FA_TRASH))
+            {
+                removed_index = i;   
+            }
+            ImGui::PopID();
         }
+
+        if (removed_index != NO_DELETION)
+        {
+            animations.erase(animations.begin() + removed_index);
+        }
+        
 
         const std::string title = StringUtils::Concat("Select Animation#", std::to_string(uid));
 
@@ -116,6 +146,10 @@ void Hachiko::ComponentAnimation::DrawGui()
             ImGuiFileDialog::Instance()->Close();
         }
 
+        if (current_animation != nullptr && ImGui::Button(StringUtils::Concat(ICON_FA_STOP, " ", current_animation->GetName().c_str()).c_str()))
+        {
+            StopAnimating();
+        }
     }
    
     ImGui::PopID();
@@ -125,15 +159,18 @@ void Hachiko::ComponentAnimation::Save(YAML::Node& node) const
 {
     for (unsigned i = 0; i < animations.size(); ++i)
     {
-        node["animarions"][i] = animations[i]->GetID();
+        node[ANIMATIONS][i] = animations[i]->GetID();
     }
 }
 
 void Hachiko::ComponentAnimation::Load(const YAML::Node& node) 
 {
-    for (unsigned i = 0; i < node["animarions"].size(); ++i)
+    if (node[ANIMATIONS].IsDefined())
     {
-        ResourceAnimation* r_animation = static_cast<ResourceAnimation*>(App->resources->GetResource(Resource::Type::ANIMATION, node["animarions"][i].as<UID>()));
-        animations.push_back(r_animation);
+        for (unsigned i = 0; i < node[ANIMATIONS].size(); ++i)
+        {
+            ResourceAnimation* r_animation = static_cast<ResourceAnimation*>(App->resources->GetResource(Resource::Type::ANIMATION, node[ANIMATIONS][i].as<UID>()));
+            animations.push_back(r_animation);
+        }
     }
 }

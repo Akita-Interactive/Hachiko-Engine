@@ -11,6 +11,7 @@
 
 #include <components/Component.h>
 #include <components/ComponentButton.h>
+#include <components/ComponentAnimation.h>
 #include <core/GameObject.h>
 #include <Gameplay.h>
 #include <Globals.h>

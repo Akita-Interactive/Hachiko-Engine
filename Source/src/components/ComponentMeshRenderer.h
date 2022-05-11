@@ -16,7 +16,7 @@ namespace Hachiko
     {
     public:
         ComponentMeshRenderer(GameObject* container, UID id = 0, ResourceMesh* res = nullptr);
-        ~ComponentMeshRenderer() override = default;
+        ~ComponentMeshRenderer() override;
 
         void Update() override;
         void Draw(ComponentCamera* camera, Program* program) override;

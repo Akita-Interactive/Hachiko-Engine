@@ -317,8 +317,10 @@ RD /S /Q "$(TargetDir)"</Command>
     <ClInclude Include="DynamicCamera.h" />
     <ClInclude Include="generated\Factory.h" />
     <ClInclude Include="MainMenuManager.h" />
+    <ClInclude Include="PlayerAnimationManager.h" />
     <ClInclude Include="PlayerCamera.h" />
     <ClInclude Include="PlayerController.h" />
+    <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Scenes.h" />
     <ClInclude Include="scriptingUtil\framework.h" />
     <ClInclude Include="scriptingUtil\gameplaypch.h" />
@@ -716,6 +718,7 @@ RD /S /Q "$(TargetDir)"</Command>
     <ClCompile Include="generated\SaveAndLoadMethods.cpp" />
     <ClCompile Include="generated\SerializationMethods.cpp" />
     <ClCompile Include="MainMenuManager.cpp" />
+    <ClCompile Include="PlayerAnimationManager.cpp" />
     <ClCompile Include="PlayerCamera.cpp" />
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="scriptingUtil\gameplaypch.cpp">

@@ -22,6 +22,11 @@ Hachiko::ComponentMeshRenderer::ComponentMeshRenderer(GameObject* container, UID
     }
 }
 
+Hachiko::ComponentMeshRenderer::~ComponentMeshRenderer() 
+{
+    delete[] node_cache;
+}
+
 void Hachiko::ComponentMeshRenderer::Update() {
     if (mesh == nullptr)
     {

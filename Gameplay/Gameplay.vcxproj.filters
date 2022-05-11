@@ -505,6 +505,8 @@
       <Filter>Vendors\Yaml-cpp\Contrib</Filter>
     </ClInclude>
     <ClInclude Include="Scenes.h" />
+    <ClInclude Include="PlayerAnimationManager.h" />
+    <ClInclude Include="PlayerState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scriptingUtil\gameplaypch.cpp">
@@ -761,6 +763,7 @@
     <ClCompile Include="generated\SaveAndLoadMethods.cpp">
       <Filter>Generated</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerAnimationManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\vendors\MathGeoLib\Math\float2.inl">

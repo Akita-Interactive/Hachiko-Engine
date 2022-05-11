@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Component.h"
-#include "resources/ResourceAnimation.h"
 
 namespace Hachiko
 {
@@ -19,9 +18,11 @@ namespace Hachiko
         {
             return Type::ANIMATION;
         }
-
-        void Start() override;
-        void Stop() override;
+        
+        HACHIKO_API void StartAnimating(unsigned int animation_index, bool on_loop = true, unsigned int fade_in_time_ms = 0);
+        HACHIKO_API void StartAnimating(bool on_loop = true, unsigned int fade_in_time_ms = 0);
+        HACHIKO_API void StopAnimating();
+        
         void Update() override;
 
         void UpdatedGameObject(GameObject* go);
