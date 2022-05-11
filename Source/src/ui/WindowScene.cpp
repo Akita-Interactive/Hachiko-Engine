@@ -10,6 +10,7 @@
 
 #include "components/ComponentCamera.h"
 #include "components/ComponentTransform.h"
+#include "modules/ModuleEvent.h"
 
 #include "modules/ModuleWindow.h"
 
@@ -19,16 +20,35 @@ Hachiko::WindowScene::WindowScene() : Window("Scene", true) {}
 
 Hachiko::WindowScene::~WindowScene() = default;
 
+void Hachiko::WindowScene::Init()
+{
+    std::function updateViewportSize = [&](Event& evt) {
+        const auto state = evt.GetEventData<GameStateEventPayload>().GetState();
+        if (state == GameStateEventPayload::State::STARTED)
+        {
+            DrawScene();
+        }
+    };
+    App->event->Subscribe(Event::Type::GAME_STATE, updateViewportSize);
+}
+
+
 void Hachiko::WindowScene::Update()
 {
-    if (!App->input->GetMouseButton(SDL_BUTTON_RIGHT))
+    if (focused && App->editor->GetSelectedGameObject())
     {
         if (App->input->GetKey(SDL_SCANCODE_W) == KeyState::KEY_REPEAT)
+        {
             guizmo_operation = ImGuizmo::TRANSLATE;
+        }
         if (App->input->GetKey(SDL_SCANCODE_E) == KeyState::KEY_REPEAT)
+        {
             guizmo_operation = ImGuizmo::ROTATE;
+        }
         if (App->input->GetKey(SDL_SCANCODE_R) == KeyState::KEY_REPEAT)
+        {
             guizmo_operation = ImGuizmo::SCALE;
+        }
     }
     ImGui::SetNextWindowDockID(App->editor->dock_main_id, ImGuiCond_FirstUseEver);
     if (ImGui::Begin((std::string(ICON_FA_GLOBE " ") + name).c_str(), &active))
@@ -156,7 +176,9 @@ void Hachiko::WindowScene::DrawScene()
 
     GameObject* selected_object = App->editor->GetSelectedGameObject();
     if (!selected_object)
+    {
         return;
+    }
 
     if (selected_object)
     {
@@ -190,7 +212,9 @@ void Hachiko::WindowScene::Controller() const
         Scene* scene = App->scene_manager->GetActiveScene();
         GameObject* picked = SelectObject(App->camera->GetRenderingCamera(), scene);
         if (picked)
+        {
             App->editor->SetSelectedGO(picked);
+        }
     }
 }
 

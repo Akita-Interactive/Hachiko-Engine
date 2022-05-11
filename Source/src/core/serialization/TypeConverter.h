@@ -7,6 +7,7 @@
 #include <Math/Quat.h>
 #include <Math/float4x4.h>
 #include <assimp/vector3.h>
+#include <assimp/matrix4x4.h>
 #include "utils/UUID.h"
 
 namespace YAML

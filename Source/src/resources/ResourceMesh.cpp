@@ -121,7 +121,9 @@ void Hachiko::ResourceMesh::GenerateBoneData(const aiMesh* mesh, float scale) {
             unsigned* bone_idx = &bone_indices[index * 4];
             float* bone_weight = &bone_weights[index * 4];
 
-            assert(bone_weight[3] == 0.0f);
+            // TODO: Ask Eric if this should stay.
+            //assert(bone_weight[3] == 0.0f);
+
             for (unsigned l = 0; l < 4; ++l)
             {
                 if (bone_weight[l] == 0.0f)

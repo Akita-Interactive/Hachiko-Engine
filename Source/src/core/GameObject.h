@@ -129,6 +129,8 @@ public:
         name = new_name;
     }
 
+    GameObject* Find(UID id) const;
+
     template<typename RetComponent>
     RetComponent* GetComponent()
     {

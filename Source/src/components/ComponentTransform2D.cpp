@@ -179,7 +179,6 @@ float3 Hachiko::ComponentTransform2D::GetPivotOffsetFromParent() const
 
 float3 Hachiko::ComponentTransform2D::GetPivotScreenPosition() const
 {
-    //HE_LOG("b");
     float3 screen_position = GetPivotOffsetFromParent();
 
     GameObject* parent = game_object->parent;

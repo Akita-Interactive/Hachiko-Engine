@@ -79,7 +79,10 @@ namespace Hachiko
         {
             return name.c_str();
         }
+        
         [[nodiscard]] GameObject* Raycast(const float3& origin, const float3& destination) const;
+
+        GameObject* Find(UID id) const;
 
         void SetName(const char* new_name)
         {

@@ -40,6 +40,7 @@ Hachiko::Skybox::~Skybox()
 void Hachiko::Skybox::Draw(ComponentCamera* camera) const
 {
     // Use for optimized version (draw at the end) glDepthFunc(GL_LEQUAL);
+    OPTICK_CATEGORY("Draw", Optick::Category::Rendering);
 
     glDepthFunc(GL_ALWAYS);
     Program* program = App->program->GetSkyboxProgram();

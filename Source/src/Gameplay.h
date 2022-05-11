@@ -409,6 +409,7 @@ namespace Hachiko::SceneManagement
 HACHIKO_API void SwitchScene(const char* name);
 HACHIKO_API GameObject* Raycast(const float3& origin, 
     const float3& destination);
+HACHIKO_API GameObject* FindInCurrentScene(unsigned long long id);
 } // namespace Hachiko::SceneManagement
 
 namespace Hachiko::Debug
@@ -438,6 +439,7 @@ HACHIKO_API void Show(const char* field_name, bool& field);
 HACHIKO_API void Show(const char* field_name, math::float2& field);
 HACHIKO_API void Show(const char* field_name, math::float3& field);
 HACHIKO_API void Show(const char* field_name, math::float4& field);
+HACHIKO_API void Show(const char* field_name, math::Quat& field);
 HACHIKO_API void Show(const char* field_name, std::string& field);
 HACHIKO_API void Show(const char* field_name, GameObject*& field);
 

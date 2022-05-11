@@ -25,7 +25,8 @@ void Hachiko::ModelImporter::Import(const char* path, YAML::Node& meta)
     const std::string model_output_path = StringUtils::Concat(model_path.parent_path().string(), "\\", model_path.filename().replace_extension(MODEL_EXTENSION).string());
 
     unsigned flags = aiProcess_CalcTangentSpace | aiProcess_GenSmoothNormals | aiProcess_JoinIdenticalVertices | aiProcess_ImproveCacheLocality | aiProcess_LimitBoneWeights
-                     | aiProcess_SplitLargeMeshes | aiProcess_Triangulate | aiProcess_GenUVCoords | aiProcess_SortByPType | aiProcess_FindDegenerates | aiProcess_FindInvalidData | 0;
+                     | aiProcess_SplitLargeMeshes | aiProcess_Triangulate | aiProcess_GenUVCoords | aiProcess_SortByPType | aiProcess_FindDegenerates | aiProcess_FindInvalidData 
+                     | aiProcess_GlobalScale;
     
     scene = import.ReadFile(path, flags);
 
@@ -61,6 +62,13 @@ void Hachiko::ModelImporter::ImportWithMeta(const char* path, YAML::Node& meta)
         mesh_importer.Import(scene->mMeshes[i], meta[MODEL_MESH_NODE][i][MODEL_MESH_ID].as<UID>());
     }
 
+    // 3 - Import Animation
+    AnimationImporter animation_importer;
+    for (int i = 0; i < meta[ANIMATION_IDS].size(); ++i)
+    {
+        animation_importer.Import(scene->mAnimations[i], meta[ANIMATION_IDS][i].as<UID>());
+    }
+
     FileSystem::Save(StringUtils::Concat(GetResourcesPreferences()->GetLibraryPath(Resource::Type::MODEL), meta[GENERAL_NODE][GENERAL_ID].as<std::string>()).c_str(), meta);
 }
 
@@ -90,15 +98,19 @@ void Hachiko::ModelImporter::ImportModel(const aiScene* scene, YAML::Node& node)
 
     if (scene->HasAnimations())
     {
-        Hachiko::UID animation_id = UUID::GenerateUID();
-        node[ANIMATIONS] = true;
-        // animation_importer.Import(scene->mAnimations, animation_id);
+        node[ANIMATIONS] = scene->mNumAnimations;
+        for (unsigned int i = 0; i < scene->mNumAnimations; ++i)
+        {
+            Hachiko::UID animation_id = UUID::GenerateUID();
+            node[ANIMATION_IDS][i] = animation_id;
+            animation_importer.Import(scene->mAnimations[i], animation_id);
+        }
     }
 
-    ImportNode(scene->mRootNode, node);
+    ImportNode(scene->mRootNode, node, !scene->HasAnimations());
 }
 
-void Hachiko::ModelImporter::ImportNode(const aiNode* assimp_node, YAML::Node& node)
+void Hachiko::ModelImporter::ImportNode(const aiNode* assimp_node, YAML::Node& node, bool load_auxiliar)
 {
     std::string node_name = assimp_node->mName.C_Str();
 
@@ -115,20 +127,25 @@ void Hachiko::ModelImporter::ImportNode(const aiNode* assimp_node, YAML::Node& n
     while (dummy_node)
     {
         dummy_node = false;
-        if (node_name.find(AUXILIAR_NODE) != std::string::npos && assimp_node->mNumChildren == 1)
+
+        if (load_auxiliar)
         {
-            assimp_node = assimp_node->mChildren[0];
-            assimp_node->mTransformation.Decompose(aiScale, aiRotation, aiTranslation);
+            if (node_name.find(AUXILIAR_NODE) != std::string::npos && assimp_node->mNumChildren == 1)
+            {
+                assimp_node = assimp_node->mChildren[0];
+                assimp_node->mTransformation.Decompose(aiScale, aiRotation, aiTranslation);
 
-            pos = float3(aiTranslation.x, aiTranslation.y, aiTranslation.z);
-            rot = Quat(aiRotation.x, aiRotation.y, aiRotation.z, aiRotation.w);
-            scale = float3(aiScale.x, aiScale.y, aiScale.z);
+                pos = float3(aiTranslation.x, aiTranslation.y, aiTranslation.z);
+                rot = Quat(aiRotation.x, aiRotation.y, aiRotation.z, aiRotation.w);
+                scale = float3(aiScale.x, aiScale.y, aiScale.z);
 
-            transform = transform * float4x4::FromTRS(pos, rot, scale);;
+                transform = transform * float4x4::FromTRS(pos, rot, scale);;
 
-            node_name = assimp_node->mName.C_Str();
-            dummy_node = true;
+                node_name = assimp_node->mName.C_Str();
+                dummy_node = true;
+            }
         }
+
     }
 
     node[NODE_NAME] = assimp_node->mName.C_Str();
@@ -142,7 +159,7 @@ void Hachiko::ModelImporter::ImportNode(const aiNode* assimp_node, YAML::Node& n
     for (unsigned i = 0; i < assimp_node->mNumChildren; ++i)
     {
         auto child_node = assimp_node->mChildren[i];
-        ImportNode(child_node, node[NODE_CHILD][i]);
+        ImportNode(child_node, node[NODE_CHILD][i], load_auxiliar);
         ++child_node;
     }
 }
@@ -175,9 +192,18 @@ Hachiko::Resource* Hachiko::ModelImporter::Load(UID id)
         model_output->materials.push_back(material_info);
     }
 
-    if (model_node[ANIMATIONS])
+    if (model_node[ANIMATIONS].IsDefined())
     {
-        model_output->have_animation = true;
+        model_output->have_animation = model_node[ANIMATIONS].as<unsigned int>();
+
+        model_output->materials.reserve(model_output->have_animation);
+
+        for (unsigned i = 0; i < model_output->have_animation; ++i)
+        {
+            AnimationInfo animation_info;
+            animation_info.animation_id = model_node[ANIMATION_IDS][i].as<UID>();
+            model_output->animations.push_back(animation_info);
+        }
     }
 
     LoadChildren(model_node[NODE_CHILD], model_node[MODEL_MESH_NODE], model_node[MODEL_MATERIAL_NODE], model_output->child_nodes);

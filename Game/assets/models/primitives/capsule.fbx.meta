@@ -1,0 +1,18 @@
+General:
+  id: 13620119391704734395
+  type: 3
+  hash: 7006234088666238769
+model_name: capsule
+material:
+  - id: 5614469339356137633
+    name: DefaultMaterial
+mesh:
+  - id: 12445546451817017520
+    material_index: 0
+name: RootNode
+transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+child:
+  - name: Capsule001
+    transform: [1, 0, 0, 0, 0, 5.96046448e-08, 0.99999994, 0, 0, -0.99999994, 5.96046448e-08, 0, 0, 0, 0, 1]
+    mesh_index:
+      - 0

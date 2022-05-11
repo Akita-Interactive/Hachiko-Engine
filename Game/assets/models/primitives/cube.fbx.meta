@@ -1,0 +1,18 @@
+General:
+  id: 2642438144854273684
+  type: 3
+  hash: 2921237583184484729
+model_name: cube
+material:
+  - id: 6780833447252723560
+    name: DefaultMaterial
+mesh:
+  - id: 9120608222671923524
+    material_index: 0
+name: RootNode
+transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+child:
+  - name: Box001
+    transform: [1, 0, 0, 0, 0, 5.96046448e-08, 0.99999994, 0, 0, -0.99999994, 5.96046448e-08, 0, 0, 0, 0, 1]
+    mesh_index:
+      - 0

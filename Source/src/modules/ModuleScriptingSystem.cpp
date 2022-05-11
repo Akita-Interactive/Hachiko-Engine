@@ -293,9 +293,14 @@ void Hachiko::ModuleScriptingSystem::SubscribeToEvents()
         _waiting_for_scene_load = 
             event_data.GetState() == SceneLoadEventPayload::State::NOT_LOADED;
         
-        if (_in_play_mode && !_waiting_for_scene_load)
+        if (!_waiting_for_scene_load)
         {
-            AwakeAllScriptsOnCurrentScene();
+            ExecuteOnLoadForAllScripts();
+
+            if (_in_play_mode)
+            {
+                AwakeAllScriptsOnCurrentScene();
+            }
         }
     };
 
@@ -460,6 +465,19 @@ void Hachiko::ModuleScriptingSystem::AwakeAllScriptsOnCurrentScene() const
     for (Component* script : scripts)
     {
         static_cast<Scripting::Script*>(script)->Start();
+    }
+
+    scripts.clear();
+}
+
+void Hachiko::ModuleScriptingSystem::ExecuteOnLoadForAllScripts() const 
+{
+    // Get all the scripts inside the current scene:
+    std::vector<Component*>& scripts = App->scene_manager->GetRoot()->GetComponentsInDescendants(Component::Type::SCRIPT);
+
+    for (Component* script : scripts)
+    {
+        static_cast<Scripting::Script*>(script)->OnLoad();
     }
 
     scripts.clear();

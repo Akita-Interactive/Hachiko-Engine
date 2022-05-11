@@ -39,6 +39,7 @@ private:
     void FreeDll(HMODULE dll, unsigned int load_index);
     void DeleteAllScriptsOnCurrentScene() const; 
     void AwakeAllScriptsOnCurrentScene() const; 
+    void ExecuteOnLoadForAllScripts() const; 
     bool IsDllVersionChanged();
 
 private:

@@ -23,6 +23,9 @@ private:
 	SERIALIZE_FIELD(math::float3, _relative_position_to_player);
 	SERIALIZE_FIELD(GameObject*, _player);
 	SERIALIZE_FIELD(float, _follow_delay);
+
+	float2 MoveCameraWithMouse();
+	void ScrollWheelZoom(float3* cam_pos);
 };
 } // namespace Scripting
 } // namespace Hachiko

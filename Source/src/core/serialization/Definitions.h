@@ -25,6 +25,7 @@
 #define MODEL_MATERIAL_ID "id"
 #define MODEL_MATERIAL_NODE "material"
 #define ANIMATIONS "animations"
+#define ANIMATION_IDS "animation_id"
 
 // Node
 #define NODE_NAME "name"

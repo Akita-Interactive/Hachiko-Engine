@@ -260,6 +260,8 @@ void Hachiko::GameObject::Update()
 
 void Hachiko::GameObject::DrawAll(ComponentCamera* camera, Program* program) const
 {
+    OPTICK_CATEGORY("Draw", Optick::Category::Rendering);
+
     // Draw yourself
     Draw(camera, program);
     // Draw children recursively
@@ -271,6 +273,7 @@ void Hachiko::GameObject::DrawAll(ComponentCamera* camera, Program* program) con
 
 void Hachiko::GameObject::Draw(ComponentCamera* camera, Program* program) const
 {
+    OPTICK_CATEGORY("Draw", Optick::Category::Rendering);
     // Call draw on all components
     for (Component* component : components)
     {
@@ -346,7 +349,7 @@ void Hachiko::GameObject::DrawBones() const
     if (parent != nullptr)
     {
         dd::line(this->GetTransform()->GetGlobalPosition(), parent->GetTransform()->GetGlobalPosition(), dd::colors::Blue);
-        dd::axisTriad(this->GetTransform()->GetGlobalMatrix(), 1, 10);
+        dd::axisTriad(this->GetTransform()->GetGlobalMatrix(), 0.005f, 0.1f);
     }
 }
 
@@ -497,10 +500,11 @@ void Hachiko::GameObject::Load(const YAML::Node& node)
         else
         {
             component = CreateComponent(type);
-            component->SetID(c_uid);
-            component->Load(components_node[i]);
-            active ? component->Enable() : component->Disable();
         }
+
+        component->SetID(c_uid);
+        component->Load(components_node[i]);
+        active ? component->Enable() : component->Disable();
     }
 
     const YAML::Node children_nodes = node[CHILD_NODE];
@@ -517,6 +521,26 @@ void Hachiko::GameObject::Load(const YAML::Node& node)
         child->scene_owner = scene_owner;
         child->Load(children_nodes[i]);
     }
+}
+
+Hachiko::GameObject* Hachiko::GameObject::Find(UID id) const
+{
+    for (GameObject* child : children)
+    {
+        if (child->uid == id)
+        {
+            return child;
+        }
+
+        GameObject* descendant = child->Find(id);
+
+        if (descendant != nullptr)
+        {
+            return descendant;
+        }
+    }
+
+    return nullptr;
 }
 
 std::vector<Hachiko::Component*> 

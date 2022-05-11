@@ -16,6 +16,8 @@ namespace Hachiko
     public:
         WindowScene();
         ~WindowScene() override;
+
+        void Init() override;
         void Update() override;
 
         void CleanUp() override;

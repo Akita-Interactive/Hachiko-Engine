@@ -90,8 +90,8 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>Hachiko.lib;glew32.lib;opengl32.lib;DevIL.lib;ILU.lib;ILUT.lib;SDL2.lib;SDL2main.lib;assimp-vc143-mt.lib;OptickCore.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OutDir)..\;$(SolutionDir)vendors\glew-2.1.0\lib;$(SolutionDir)vendors\DevIL\lib; $(SolutionDir)vendors\SDL\lib;$(SolutionDir)vendors\assimp\lib;$(SolutionDir)vendors\optick\lib;$(SolutionDir)vendors\yaml-cpp\lib\x64\Release</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Hachiko.lib;yaml-cppd.lib;glew32.lib;opengl32.lib;DevIL.lib;ILU.lib;ILUT.lib;SDL2.lib;SDL2main.lib;assimp-vc143-mt.lib;OptickCore.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir)..\;$(SolutionDir)vendors\glew-2.1.0\lib;$(SolutionDir)vendors\DevIL\lib;$(SolutionDir)vendors\SDL\lib;$(SolutionDir)vendors\assimp\lib;$(SolutionDir)vendors\optick\lib;$(SolutionDir)vendors\yaml-cpp\lib\x64\Debug</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>call $(ProjectDir)buildEvents\generate_code.bat;</Command>
@@ -123,7 +123,7 @@ RD /S /Q "$(TargetDir)"</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>Hachiko.lib;glew32.lib;opengl32.lib;DevIL.lib;ILU.lib;ILUT.lib;SDL2.lib;SDL2main.lib;assimp-vc143-mt.lib;OptickCore.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Hachiko.lib;glew32.lib;opengl32.lib;DevIL.lib;ILU.lib;ILUT.lib;SDL2.lib;SDL2main.lib;assimp-vc143-mt.lib;OptickCore.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;yaml-cpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir)..\;$(SolutionDir)vendors\glew-2.1.0\lib;$(SolutionDir)vendors\DevIL\lib; $(SolutionDir)vendors\SDL\lib;$(SolutionDir)vendors\assimp\lib;$(SolutionDir)vendors\optick\lib;$(SolutionDir)vendors\yaml-cpp\lib\x64\Release</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
@@ -713,6 +713,7 @@ RD /S /Q "$(TargetDir)"</Command>
     <ClCompile Include="DynamicCamera.cpp" />
     <ClCompile Include="generated\Factory.cpp" />
     <ClCompile Include="generated\GeneratedEditor.cpp" />
+    <ClCompile Include="generated\SaveAndLoadMethods.cpp" />
     <ClCompile Include="generated\SerializationMethods.cpp" />
     <ClCompile Include="MainMenuManager.cpp" />
     <ClCompile Include="PlayerCamera.cpp" />

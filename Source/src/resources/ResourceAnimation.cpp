@@ -12,7 +12,3 @@ const Hachiko::ResourceAnimation::Channel* Hachiko::ResourceAnimation::GetChanne
     auto it = channels.find(name);
     return it != channels.end() ? &it->second : nullptr;
 }
-
-void Hachiko::ResourceAnimation::AddNode(const std::string& name) {}
-
-void Hachiko::ResourceAnimation::RemoveNode(unsigned int index) {}

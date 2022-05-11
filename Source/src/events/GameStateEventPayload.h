@@ -4,7 +4,7 @@ namespace Hachiko
 {
     struct GameStateEventPayload
     {
-        enum State
+        enum class State
         {
             STARTED,
             RESUMED,

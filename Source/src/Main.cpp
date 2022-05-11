@@ -44,8 +44,9 @@ int main(int argc, char** argv)
 
         case MainStates::MAIN_UPDATE:
         {
-            const UpdateStatus update_return = App->Update();
             OPTICK_FRAME("MainThread");
+            
+            const UpdateStatus update_return = App->Update();
 
             if (update_return == UpdateStatus::UPDATE_ERROR)
             {

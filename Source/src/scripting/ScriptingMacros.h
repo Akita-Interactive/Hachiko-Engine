@@ -14,7 +14,10 @@ public:                                                                       \
     virtual void DeserializeFrom(                                             \
         std::unordered_map<std::string, SerializedField>& serialized_fields   \
     ) override;                                                               \
-    virtual void OnEditor() override;
+    virtual void OnEditor() override;                                         \
+    virtual void OnLoad() override;                                           \
+    virtual void OnSave(YAML::Node& node) const override;                                           
+
 #define SERIALIZATION_METHODS_false                                           \
 public:                                                                       \
     void SerializeTo(                                                         \
@@ -23,7 +26,9 @@ public:                                                                       \
     void DeserializeFrom(                                                     \
         std::unordered_map<std::string, SerializedField>& serialized_fields   \
     ) override;                                                               \
-    void OnEditor() override;
+    void OnEditor() override;                                                 \
+    void OnLoad() override;                                                   \
+    void OnSave(YAML::Node& node) const override;                                           
 
 #define SCRIPTING_METHODS_BASE                                                \
 public:                                                                       \
@@ -33,7 +38,9 @@ public:                                                                       \
     virtual void DeserializeFrom(                                             \
         std::unordered_map<std::string, SerializedField>& serialized_fields   \
     ) override;                                                               \
-    virtual void OnEditor() {};
+    virtual void OnEditor() {};                                               \
+    virtual void OnLoad() {};                                                 \
+    virtual void OnSave(YAML::Node& node) const {};
 
 // This needs to be added to all script sub classes:
 #define SERIALIZATION_METHODS(is_virtual) SERIALIZATION_METHODS_##is_virtual

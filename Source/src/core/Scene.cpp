@@ -94,9 +94,14 @@ void Hachiko::Scene::HandleInputModel(ResourceModel* model)
 {
     GameObject* game_object = CreateNewGameObject(nullptr, model->model_name.c_str());
 
-    if (model->have_animation)
+    if (model->have_animation > 0)
     {
         ComponentAnimation* component_animation = static_cast<ComponentAnimation*>(game_object->CreateComponent(Component::Type::ANIMATION));
+        for (unsigned int i = 0; i < model->have_animation; ++i)
+        {
+            ResourceAnimation* r_animation = static_cast<ResourceAnimation*>(App->resources->GetResource(Resource::Type::ANIMATION, model->animations[i].animation_id));
+            component_animation->animations.push_back(r_animation);
+        }
     }
 
     std::function<void(GameObject*, const std::vector<ResourceNode*>&)> create_children_function = [&](GameObject* parent, const std::vector<ResourceNode*>& children) {
@@ -152,6 +157,11 @@ Hachiko::GameObject* Hachiko::Scene::Raycast(const float3& origin, const float3&
 {
     LineSegment line_seg(origin, destination);
     return Raycast(line_seg);
+}
+
+Hachiko::GameObject* Hachiko::Scene::Find(UID id) const
+{
+    return root->Find(id);
 }
 
 Hachiko::GameObject* Hachiko::Scene::Raycast(const LineSegment& segment) const
@@ -300,5 +310,6 @@ void Hachiko::Scene::Start() const
 
 void Hachiko::Scene::Update() const
 {
+    OPTICK_CATEGORY("UpdateScene", Optick::Category::Scene);
     root->Update();
 }

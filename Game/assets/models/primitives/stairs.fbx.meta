@@ -1,0 +1,18 @@
+General:
+  id: 5390263264224378250
+  type: 3
+  hash: 18155678859365038655
+model_name: stairs
+material:
+  - id: 10113153204319719806
+    name: DefaultMaterial
+mesh:
+  - id: 3608843935239186656
+    material_index: 0
+name: RootNode
+transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+child:
+  - name: StraightStair001
+    transform: [-0.999430597, 0.0337430872, 0, 0.481437802, -2.01124473e-09, -5.95707057e-08, 0.99999994, -0.458333284, 0.0337430835, 0.999430537, 5.96046448e-08, -0.558229804, 0, 0, 0, 1]
+    mesh_index:
+      - 0

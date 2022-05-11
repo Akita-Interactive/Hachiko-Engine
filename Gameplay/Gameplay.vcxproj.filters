@@ -77,6 +77,7 @@
     <ClInclude Include="MainMenuManager.h" />
     <ClInclude Include="PlayerCamera.h" />
     <ClInclude Include="BackToMainMenu.h" />
+    <ClInclude Include="Scenes.h" />
     <ClInclude Include="..\Source\vendors\imgui\imgui_stdlib.h">
       <Filter>Vendors\ImGui</Filter>
     </ClInclude>
@@ -520,6 +521,9 @@
     <ClCompile Include="MainMenuManager.cpp" />
     <ClCompile Include="PlayerCamera.cpp" />
     <ClCompile Include="BackToMainMenu.cpp" />
+    <ClCompile Include="generated\GeneratedEditor.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\vendors\imgui\imgui_stdlib.cpp">
       <Filter>Vendors\ImGui</Filter>
     </ClCompile>
@@ -752,6 +756,9 @@
       <Filter>Vendors\PhysicsFS</Filter>
     </ClCompile>
     <ClCompile Include="generated\GeneratedEditor.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\SaveAndLoadMethods.cpp">
       <Filter>Generated</Filter>
     </ClCompile>
   </ItemGroup>

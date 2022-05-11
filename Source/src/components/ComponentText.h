@@ -14,7 +14,7 @@ namespace Hachiko
     class ResourceFont;
     class Program;
 
-    class ComponentText : public Component
+    class HACHIKO_API ComponentText : public Component
     {
     public:
         ComponentText(GameObject* container);
@@ -30,6 +30,10 @@ namespace Hachiko
 
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
+
+        void SetText(const char* new_text);
+        void SetFontSize(int new_size);
+        void SetFontColor(const float4& new_color);
         
 
         void Invalidate()

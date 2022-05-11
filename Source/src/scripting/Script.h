@@ -7,8 +7,6 @@
 
 #include <unordered_map>
 
-struct ImGuiContext;
-
 namespace Hachiko
 {
 class GameObject;
@@ -40,9 +38,11 @@ public:
 protected:
     explicit Script(GameObject* new_game_object, std::string new_name);
 
+protected:
+    YAML::Node load_node;
+
 private:
     std::string name;
-
 };
 } // mamespace Scripting
 } // namespace Hachiko

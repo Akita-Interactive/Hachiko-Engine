@@ -8,6 +8,7 @@
 
 #include "Application.h"
 
+#include "ComponentAnimation.h"
 #include "ComponentMeshRenderer.h"
 #include "ComponentCamera.h"
 #include "ComponentTransform.h"
@@ -17,7 +18,7 @@ Hachiko::ComponentMeshRenderer::ComponentMeshRenderer(GameObject* container, UID
 {
     if (res != nullptr)
     {
-        mesh = res;
+        AddResourceMesh(res);
     }
 }
 
@@ -44,6 +45,8 @@ void Hachiko::ComponentMeshRenderer::Update() {
 
 void Hachiko::ComponentMeshRenderer::Draw(ComponentCamera* camera, Program* program)
 {
+    OPTICK_CATEGORY("Draw", Optick::Category::Rendering);
+
     if (mesh == nullptr || !visible)
     {
         return;
@@ -79,7 +82,7 @@ void Hachiko::ComponentMeshRenderer::DrawStencil(ComponentCamera* camera, Progra
 
 void Hachiko::ComponentMeshRenderer::LoadMesh(UID mesh_id)
 {
-    mesh = static_cast<ResourceMesh*> (App->resources->GetResource(Resource::Type::MESH, mesh_id));
+    AddResourceMesh(static_cast<ResourceMesh*> (App->resources->GetResource(Resource::Type::MESH, mesh_id)));
 }
 
 void Hachiko::ComponentMeshRenderer::LoadMaterial(UID material_id)
@@ -161,29 +164,40 @@ void Hachiko::ComponentMeshRenderer::Load(const YAML::Node& node)
     }
 }
 
+Hachiko::GameObject* GetRoot(Hachiko::GameObject* posible_root) 
+{
+    if (posible_root->GetComponent<Hachiko::ComponentAnimation>())
+    {
+        return posible_root;
+    }
+    GetRoot(posible_root->parent);
+}
+
 void Hachiko::ComponentMeshRenderer::UpdateSkinPalette(std::vector<float4x4>& palette) const
 {
-    const GameObject* root = game_object->parent;
-
-    if (mesh && mesh->num_bones > 0 && root)
+    
+    if (mesh && mesh->num_bones > 0)
     {
+        const GameObject* root = GetRoot(game_object);
+
+        if (!root)
+            return;
+
         float4x4 root_transform = root->GetTransform()->GetGlobalMatrix().Inverted();
 
         for (unsigned i = 0; i < mesh->num_bones; ++i)
         {
             const ResourceMesh::Bone& bone = mesh->bones[i];
-            /* const GameObject* bone_node = node_cache[i];
+            const GameObject* bone_node = node_cache[i];
 
             if (bone_node == nullptr)
             {
                 bone_node = node_cache[i] = root ? root->FindDescendantWithName(bone.name) : nullptr;
-            }*/
-
-            const GameObject* bone_node = root->FindDescendantWithName(bone.name);
+            }
 
             if (bone_node)
             {
-                palette[i] = bone_node->GetTransform()->GetGlobalMatrix() * bone.bind;
+                palette[i] = root_transform * bone_node->GetTransform()->GetGlobalMatrix() * bone.bind;
             }
             else
             {

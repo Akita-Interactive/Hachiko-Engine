@@ -32,6 +32,12 @@ namespace Hachiko
         std::string material_name;
     };
 
+    struct AnimationInfo
+    {
+        UID animation_id;
+        std::string animation_name;
+    };
+
     class ResourceModel final : public Resource
     {
     public:
@@ -41,8 +47,9 @@ namespace Hachiko
 
         std::vector<MeshInfo> meshes {};
         std::vector<MaterialInfo> materials {};
+        std::vector<AnimationInfo> animations {};
 
-        bool have_animation = false;
+        unsigned int have_animation = 0;
 
         std::vector<ResourceNode*> child_nodes;
         std::string model_path;

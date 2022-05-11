@@ -8,6 +8,7 @@ namespace Hachiko
 
     class AnimationImporter final : public Importer
     {
+        friend class ModelImporter;
     public:
         AnimationImporter();
         ~AnimationImporter() override = default;

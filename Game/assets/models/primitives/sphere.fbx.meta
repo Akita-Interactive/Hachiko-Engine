@@ -1,0 +1,18 @@
+General:
+  id: 16483543554264066734
+  type: 3
+  hash: 14431016664718813603
+model_name: sphere
+material:
+  - id: 9234475820254915276
+    name: DefaultMaterial
+mesh:
+  - id: 6111700358156225143
+    material_index: 0
+name: RootNode
+transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+child:
+  - name: Sphere001
+    transform: [1, 0, 0, 0, 0, 5.96046448e-08, 0.99999994, 0, 0, -0.99999994, 5.96046448e-08, 0, 0, 0, 0, 1]
+    mesh_index:
+      - 0
