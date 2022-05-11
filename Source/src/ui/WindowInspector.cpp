@@ -15,7 +15,7 @@ Hachiko::WindowInspector::~WindowInspector() = default;
 void Hachiko::WindowInspector::Update()
 {
     ImGui::SetNextWindowDockID(App->editor->dock_right_id, ImGuiCond_FirstUseEver);
-    if (ImGui::Begin(StringUtils::Concat(ICON_FA_EYE, " ", name).c_str(), &active))
+    if (ImGui::Begin(StringUtils::Concat(ICON_FA_EYE, " ", name).c_str(), &active, ImGuiWindowFlags_NoNavInputs))
     {
         DrawGameObject(App->editor->GetSelectedGameObject());
     }

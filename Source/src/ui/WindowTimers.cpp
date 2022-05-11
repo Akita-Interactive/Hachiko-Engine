@@ -28,7 +28,7 @@ void ClockDisplay(bool running, bool paused, double time)
 
 void Hachiko::WindowTimers::Update()
 {
-    if (ImGui::Begin(name, &active, ImGuiWindowFlags_AlwaysAutoResize))
+    if (ImGui::Begin(name, &active, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoNavInputs))
     {
         ImGui::Text("Game Timer");
         ImGui::SameLine();

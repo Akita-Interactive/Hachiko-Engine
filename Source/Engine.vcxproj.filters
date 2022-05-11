@@ -2207,9 +2207,6 @@
     <ClInclude Include="vendors\wwise\include\AK\SoundEngine\IO\stdafx.h">
       <Filter>Vendors\Wwise</Filter>
     </ClInclude>
-    <ClInclude Include="src\modules\ModuleAudio.h">
-      <Filter>Modules\Source</Filter>
-    </ClInclude>
     <ClInclude Include="src\resources\ResourceNavMesh.h">
       <Filter>Resources</Filter>
     </ClInclude>
@@ -2239,6 +2236,9 @@
     </ClInclude>
     <ClInclude Include="src\core\serialization\TypeConverter.h">
       <Filter>Core\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\ModuleAudio.h">
+      <Filter>Modules\Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

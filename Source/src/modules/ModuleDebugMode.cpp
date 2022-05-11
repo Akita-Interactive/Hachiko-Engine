@@ -146,7 +146,7 @@ bool Hachiko::ModuleDebugMode::CleanUp()
 ImGuiWindowFlags Hachiko::ModuleDebugMode::SetupWindow()
 {
 	window_flags = ImGuiWindowFlags_NoDocking |
-		ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar;
+		ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoNavInputs;
 	return window_flags;
 }
 

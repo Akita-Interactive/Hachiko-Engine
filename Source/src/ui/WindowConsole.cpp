@@ -32,7 +32,7 @@ void Hachiko::WindowConsole::Add(std::string& str, LogLevel& logLevel)
 void Hachiko::WindowConsole::Update()
 {
     ImGui::SetNextWindowDockID(App->editor->dock_down_id, ImGuiCond_FirstUseEver);
-    if (ImGui::Begin((std::string(ICON_FA_TERMINAL " ") + name).c_str(), &active))
+    if (ImGui::Begin((std::string(ICON_FA_TERMINAL " ") + name).c_str(), &active, ImGuiWindowFlags_NoNavInputs))
     {
         if (ImGui::BeginPopup("Options"))
         {
@@ -53,7 +53,7 @@ void Hachiko::WindowConsole::Update()
         filter.Draw("Filter", -100.0f);
 
         ImGui::Separator();
-        ImGui::BeginChild("scrolling", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar);
+        ImGui::BeginChild("scrolling", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoNavInputs);
 
         if (clear)
         {

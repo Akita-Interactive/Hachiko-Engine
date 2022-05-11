@@ -15,7 +15,7 @@ Hachiko::WindowResource::WindowResource() :
 void Hachiko::WindowResource::Update()
 {
     ImGui::SetNextWindowSize(ImVec2(1100, 170), ImGuiCond_FirstUseEver);
-    if (!ImGui::Begin(StringUtils::Concat(ICON_FA_IMAGES, " ", name).c_str(), &active))
+    if (!ImGui::Begin(StringUtils::Concat(ICON_FA_IMAGES, " ", name).c_str(), &active, ImGuiWindowFlags_NoNavInputs))
     {
         ImGui::End();
         return;

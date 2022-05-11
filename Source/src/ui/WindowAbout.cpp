@@ -17,7 +17,7 @@ Hachiko::WindowAbout::~WindowAbout()
 void Hachiko::WindowAbout::Update()
 {
     ImGui::SetNextWindowSize(ImVec2(400.0f, 200.0f), ImGuiCond_FirstUseEver);
-    if (ImGui::Begin(name, &active, ImGuiWindowFlags_AlwaysAutoResize))
+    if (ImGui::Begin(name, &active, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_NoNavInputs))
     {
         ImGui::Text("Engine name: %s", TITLE);
         ImGui::Text("Version: %s", ENGINE_VERSION);

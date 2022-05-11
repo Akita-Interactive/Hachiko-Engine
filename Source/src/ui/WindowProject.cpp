@@ -16,7 +16,7 @@ void Hachiko::WindowProject::Init()
 void Hachiko::WindowProject::Update()
 {
     ImGui::SetNextWindowDockID(App->editor->dock_down_id, ImGuiCond_FirstUseEver);
-    if (ImGui::Begin((std::string(ICON_FA_IMAGES " ") + name).c_str(), &active))
+    if (ImGui::Begin((std::string(ICON_FA_IMAGES " ") + name).c_str(), &active, ImGuiWindowFlags_NoNavInputs))
     {
         ImGui::PushItemWidth(100);
         if (ImGui::InputTextWithHint("##filter", "Filter", m_filter, sizeof(m_filter)))
@@ -125,7 +125,7 @@ void Hachiko::WindowProject::Thumbnail(PathNode& node, float size, bool selected
 void Hachiko::WindowProject::ShowDir(PathNode& node)
 {
     const ImVec2 size(std::max(120.f, m_left_column_width), 0);
-    ImGui::BeginChild("left_col", size);
+    ImGui::BeginChild("left_col", size, false, ImGuiWindowFlags_NoNavInputs);
     ImGui::PushItemWidth(120);
 
     PathNode new_root;
@@ -169,7 +169,7 @@ void Hachiko::WindowProject::ShowDir(PathNode& node)
 
 void Hachiko::WindowProject::ShowFilesOnFolder()
 {
-    if (ImGui::BeginChild("main_col"))
+    if (ImGui::BeginChild("main_col",ImVec2(0,0), false, ImGuiWindowFlags_NoNavInputs))
     {
         const float w = ImGui::GetContentRegionAvail().x;
         int columns = static_cast<int>(w) / static_cast<int>(96 * 1.f);
