@@ -48,8 +48,8 @@ namespace Hachiko
             float trail[ResourceNavMesh::AGENT_MAX_TRAIL * 3];
             int htrail;
         };
-        AgentTrail m_trails[ResourceNavMesh::MAX_AGENTS];
-        dtCrowdAgentDebugInfo agent_debug;
+        AgentTrail m_trails[ResourceNavMesh::MAX_AGENTS]{};
+        dtCrowdAgentDebugInfo agent_debug{};
         dtObstacleAvoidanceDebugData* avoid_debug = nullptr;
     };
 }

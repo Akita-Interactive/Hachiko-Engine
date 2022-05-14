@@ -122,7 +122,7 @@ Hachiko::TextureCube Hachiko::ModuleTexture::LoadCubeMap(const char* paths[6])
                      0,
                      ilGetInteger(IL_IMAGE_BPP),
                      cube.widths[i] = ilGetInteger(IL_IMAGE_WIDTH),
-                     cube.heighths[i] = ilGetInteger(IL_IMAGE_HEIGHT),
+                     cube.heights[i] = ilGetInteger(IL_IMAGE_HEIGHT),
                      0,
                      ilGetInteger(IL_IMAGE_FORMAT),
                      GL_UNSIGNED_BYTE,

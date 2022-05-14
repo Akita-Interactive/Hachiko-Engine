@@ -1,6 +1,7 @@
 #pragma once
 
 #include "utils/UUID.h"
+#include <utility>
 
 namespace Hachiko
 {
@@ -14,7 +15,6 @@ namespace Hachiko
     class Skybox;
     class Quadtree;
     class ResourceMaterial;
-    class ResourceNavMesh;
 
     class Scene
     {
@@ -114,7 +114,7 @@ namespace Hachiko
         public:
             Memento(std::string content) :
                 // content(std::move(content))
-            content(content)
+            content(std::move(content))
             {
             }
 
