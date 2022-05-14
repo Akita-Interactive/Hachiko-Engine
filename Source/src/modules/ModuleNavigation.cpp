@@ -46,7 +46,7 @@ bool Hachiko::ModuleNavigation::BuildNavmesh(Scene* scene)
         initial_params = navmesh->build_params;
     }
 
-    RELEASE(navmesh);
+    CleanUp();
 
     navmesh = new ResourceNavMesh(0);
     navmesh->build_params = initial_params;

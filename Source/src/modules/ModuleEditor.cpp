@@ -462,6 +462,7 @@ bool Hachiko::ModuleEditor::History::CanRedo() const
 
 void Hachiko::ModuleEditor::History::Init()
 {
+    current_position = 0;
     Save(App->scene_manager->GetActiveScene()->CreateSnapshot());
 }
 
