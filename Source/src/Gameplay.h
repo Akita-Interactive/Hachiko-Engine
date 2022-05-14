@@ -400,7 +400,8 @@ HACHIKO_API bool IsMouseButtonDown(MouseButton mouse_button);
 HACHIKO_API int GetScrollWheelDelta();
 HACHIKO_API const float2& GetMouseNormalizedMotion();
 HACHIKO_API const float2& GetMousePixelsMotion();
-HACHIKO_API const float2& GetMousePosition();
+HACHIKO_API const float2& GetMousePixelPosition();
+HACHIKO_API const float2& GetMouseNormalizedPosition();
 } // namespace Hachiko::Input
 
 namespace Hachiko::SceneManagement

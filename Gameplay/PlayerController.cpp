@@ -102,7 +102,7 @@ math::float3 Hachiko::Scripting::PlayerController::GetRaycastPosition(
 		math::float3(0.0f, 1.0f, 0.0f));
 
 	const math::float2 mouse_position_view =
-		ComponentCamera::ScreenPositionToView(Input::GetMousePosition());
+		ComponentCamera::ScreenPositionToView(Input::GetMouseNormalizedPosition());
 
 	const math::LineSegment ray = Debug::GetRenderingCamera()->Raycast(
 		mouse_position_view.x, mouse_position_view.y);

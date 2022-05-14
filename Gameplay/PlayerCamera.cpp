@@ -73,7 +73,7 @@ void Hachiko::Scripting::PlayerCamera::OnUpdate()
 float2 Hachiko::Scripting::PlayerCamera::MoveCameraWithMouse()
 {
 	float2 added_movement, mouse_pos;
-	mouse_pos = Input::GetMousePosition();
+	mouse_pos = Input::GetMouseNormalizedPosition();
 	mouse_pos = mouse_pos - float2(0.5f, 0.5f);
 	if (mouse_pos.x > -0.25f && mouse_pos.x < 0.25f)
 	{

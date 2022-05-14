@@ -36,7 +36,7 @@ UpdateStatus Hachiko::ModuleUserInterface::Update(float delta)
     int height, width;
     App->window->GetWindowSize(width, height);
     
-    float2 mouse_pos = Input::GetMousePosition();
+    float2 mouse_pos = Input::GetMousePixelPosition();
     // We center the mouse:
     mouse_pos = float2(mouse_pos.x - 0.5f, (mouse_pos.y - 0.5f) * -1); 
      // We scale it from normalizedL
@@ -141,7 +141,7 @@ void Hachiko::ModuleUserInterface::HandleMouseAction(Hachiko::Event& evt)
     int height, width;
     App->window->GetWindowSize(width, height);
     
-    float2 mouse_pos = Input::GetMousePosition();
+    float2 mouse_pos = Input::GetMousePixelPosition();
     // We center the mouse:
     mouse_pos = float2(mouse_pos.x - 0.5f, (mouse_pos.y - 0.5f) * -1);
     // We scale it from normalized:

@@ -40,8 +40,8 @@ UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
     UpdateInputMaps();
 
     ImVec2 m_pos = ImGui::GetMousePos();
-    mouse_position.x = m_pos.x;
-    mouse_position.y = m_pos.y;
+    mouse_pixel_position.x = m_pos.x;
+    mouse_pixel_position.y = m_pos.y;
 
     mouse_normalized_motion.x = 0;
     mouse_normalized_motion.y = 0;
@@ -72,11 +72,13 @@ UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
             break;
         case SDL_MOUSEBUTTONDOWN:
             mouse[sdl_event.button.button - 1] = KeyState::KEY_DOWN;
+            
             if (sdl_event.button.button == SDL_BUTTON_LEFT)
             {
                 const ImVec2 mouse_pos = ImGui::GetMousePos();
                 NotifyMouseAction(float2(mouse_pos.x, mouse_pos.y), MouseEventPayload::Action::CLICK);
             }
+
             break;
         case SDL_MOUSEBUTTONUP:
             mouse[sdl_event.button.button - 1] = KeyState::KEY_UP;
@@ -92,6 +94,9 @@ UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
 
             mouse_pixels_motion.x = sdl_event.motion.xrel;
             mouse_pixels_motion.y = sdl_event.motion.yrel;
+
+            mouse_normalized_position.x = mouse_pixel_position.x * _window_width_inverse;
+            mouse_normalized_position.y = mouse_pixel_position.y * _window_height_inverse;
 
             break;
         case SDL_MOUSEWHEEL:

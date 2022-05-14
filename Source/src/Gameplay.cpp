@@ -72,9 +72,16 @@ HACHIKO_API const float2& Hachiko::Input::GetMousePixelsMotion()
     return App->input->GetMousePixelsMotion();
 }
 
-const float2& Hachiko::Input::GetMousePosition()
+const float2& Hachiko::Input::GetMousePixelPosition()
 {
-    return App->input->GetMousePosition();
+    return App->input->GetMousePixelPosition();
+}
+
+HACHIKO_API const float2& Hachiko::Input::GetMouseNormalizedPosition()
+{
+    HE_LOG("Position got as: %f, %f", App->input->GetMouseNormalizedPosition().x, App->input->GetMouseNormalizedPosition().y);
+    
+    return App->input->GetMouseNormalizedPosition();
 }
 
 /*---------------------------------------------------------------------------*/
