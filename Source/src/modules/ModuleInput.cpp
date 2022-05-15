@@ -57,19 +57,27 @@ UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
         ImGui_ImplSDL2_ProcessEvent(&sdl_event);
         switch (sdl_event.type)
         {
+        case SDL_WINDOWEVENT:
+            if (event.window.windowID == SDL_GetWindowID(App->window->GetWindow()))
+            {
+                if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
+                {
+                    App->window->WindowResized();
+
+                    // Update the cached inverses of window size so that we have a
+                    // sensitive MousePositionDelta and MousePosition.
+                    UpdateWindowSizeInversedCaches(event.window.data1, event.window.data2);
+                }
+                if (event.window.event == SDL_WINDOWEVENT_CLOSE)
+                {
+                    event.type = SDL_QUIT;
+                    SDL_PushEvent(&event);
+                }
+            }
+            break;
+
         case SDL_QUIT:
             return UpdateStatus::UPDATE_STOP;
-        case SDL_WINDOWEVENT:
-            if (sdl_event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
-            {
-                App->window->WindowResized();
-
-                // Update the cached inverses of window size so that we have a
-                // sensitive MousePositionDelta and MousePosition.
-                UpdateWindowSizeInversedCaches(sdl_event.window.data1, sdl_event.window.data2);
-            }
-
-            break;
         case SDL_MOUSEBUTTONDOWN:
             mouse[sdl_event.button.button - 1] = KeyState::KEY_DOWN;
             
@@ -173,7 +181,7 @@ void Hachiko::ModuleInput::UpdateWindowSizeInversedCaches(int width,
     _window_height_inverse = 1.0f / height;
 }
 
-void Hachiko::ModuleInput::NotifyMouseAction(float2 position, Hachiko::MouseEventPayload::Action action)
+void Hachiko::ModuleInput::NotifyMouseAction(float2 position, MouseEventPayload::Action action)
 {
     Event mouse_action(Event::Type::MOUSE_ACTION);
     mouse_action.SetEventData<MouseEventPayload>(action, position);

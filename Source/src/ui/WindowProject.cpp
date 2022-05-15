@@ -16,48 +16,50 @@ void Hachiko::WindowProject::Init()
 void Hachiko::WindowProject::Update()
 {
     ImGui::SetNextWindowDockID(App->editor->dock_down_id, ImGuiCond_FirstUseEver);
-    if (ImGui::Begin((std::string(ICON_FA_IMAGES " ") + name).c_str(), &active, ImGuiWindowFlags_NoNavInputs))
+    if (!ImGui::Begin((std::string(ICON_FA_IMAGES " ") + name).c_str(), &active, ImGuiWindowFlags_NoNavInputs))
     {
-        ImGui::PushItemWidth(100);
-        if (ImGui::InputTextWithHint("##filter", "Filter", m_filter, sizeof(m_filter)))
-        {
-            DoFilter();
-        }
-        ImGui::PopItemWidth();
-        ImGui::SameLine();
-        if (ImGuiUtils::IconButton(ICON_FA_TIMES, "Reset filter"))
-        {
-            m_filter[0] = '\0';
-            DoFilter();
-        }
-
-        ImGui::SameLine();
-        CreateBreadCrumps();
-        ImGui::Separator();
-
-        const float content_w = ImGui::GetContentRegionAvail().x;
-        ImVec2 left_size(m_left_column_width, 0);
-        if (left_size.x < 10)
-        {
-            left_size.x = 10;
-        }
-        if (left_size.x > content_w - 10)
-        {
-            left_size.x = content_w - 10;
-        }
-
-        ShowDir(all_assets);
-
-        ImGui::SameLine();
-        ImGuiUtils::VSplitter("vsplit1", &left_size);
-        if (left_size.x >= 120)
-        {
-            m_left_column_width = left_size.x;
-        }
-        ImGui::SameLine();
-
-        ShowFilesOnFolder();
+        ImGui::End();
+        return;
     }
+    ImGui::PushItemWidth(100);
+    if (ImGui::InputTextWithHint("##filter", "Filter", m_filter, sizeof(m_filter)))
+    {
+        DoFilter();
+    }
+    ImGui::PopItemWidth();
+    ImGui::SameLine();
+    if (ImGuiUtils::IconButton(ICON_FA_TIMES, "Reset filter"))
+    {
+        m_filter[0] = '\0';
+        DoFilter();
+    }
+
+    ImGui::SameLine();
+    CreateBreadCrumps();
+    ImGui::Separator();
+
+    const float content_w = ImGui::GetContentRegionAvail().x;
+    ImVec2 left_size(m_left_column_width, 0);
+    if (left_size.x < 10)
+    {
+        left_size.x = 10;
+    }
+    if (left_size.x > content_w - 10)
+    {
+        left_size.x = content_w - 10;
+    }
+
+    ShowDir(all_assets);
+
+    ImGui::SameLine();
+    ImGuiUtils::VSplitter("vsplit1", &left_size);
+    if (left_size.x >= 120)
+    {
+        m_left_column_width = left_size.x;
+    }
+    ImGui::SameLine();
+
+    ShowFilesOnFolder();
     ImGui::End();
 }
 
@@ -125,46 +127,49 @@ void Hachiko::WindowProject::Thumbnail(PathNode& node, float size, bool selected
 void Hachiko::WindowProject::ShowDir(PathNode& node)
 {
     const ImVec2 size(std::max(120.f, m_left_column_width), 0);
-    ImGui::BeginChild("left_col", size, false, ImGuiWindowFlags_NoNavInputs);
-    ImGui::PushItemWidth(120);
-
-    PathNode new_root;
-    bool selected_item = false;
-    if ((node.path != ASSETS_FOLDER) && ImGui::Selectable("..", &selected_item))
+    if (ImGui::BeginChild("left_col", size, false, ImGuiWindowFlags_NoNavInputs))
     {
-        const char* tmp = node.path.c_str();
-        std::string previous_path;
-        const std::string full(tmp);
-        const size_t pos_last_separator = full.find_last_of("\\/");
+        ImGui::PushItemWidth(120);
 
-        previous_path = full.substr(0, pos_last_separator);
-
-        all_assets = FileSystem::GetAllFiles(previous_path.c_str(), nullptr, nullptr);
-
-        ImGui::PopItemWidth();
-        ImGui::EndChild();
-
-        return;
-    }
-
-    for (auto& subdir : node.children)
-    {
-        if (!subdir.isFile)
+        PathNode new_root;
+        bool selected_item = false;
+        if ((node.path != ASSETS_FOLDER) && ImGui::Selectable("..", &selected_item))
         {
-            if (ImGui::Selectable(subdir.localPath.c_str(), &selected_item))
+            const char* tmp = node.path.c_str();
+            std::string previous_path;
+            const std::string full(tmp);
+            const size_t pos_last_separator = full.find_last_of("\\/");
+
+            previous_path = full.substr(0, pos_last_separator);
+
+            all_assets = FileSystem::GetAllFiles(previous_path.c_str(), nullptr, nullptr);
+
+            ImGui::PopItemWidth();
+            ImGui::EndChild();
+
+            return;
+        }
+
+        for (auto& subdir : node.children)
+        {
+            if (!subdir.isFile)
             {
-                new_root = subdir;
+                if (ImGui::Selectable(subdir.localPath.c_str(), &selected_item))
+                {
+                    new_root = subdir;
+                }
             }
         }
-    }
 
-    if (selected_item)
-    {
-        all_assets = new_root;
-    }
+        if (selected_item)
+        {
+            all_assets = new_root;
+        }
 
-    ImGui::PopItemWidth();
-    ImGui::EndChild();
+        ImGui::PopItemWidth();
+
+        ImGui::EndChild();
+    }
 }
 
 void Hachiko::WindowProject::ShowFilesOnFolder()

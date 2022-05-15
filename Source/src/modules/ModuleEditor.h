@@ -27,6 +27,7 @@ namespace Hachiko
         bool Init() override;
         UpdateStatus PreUpdate(float delta) override;
         UpdateStatus Update(float delta) override;
+        UpdateStatus PostUpdate(const float delta) override;
         bool CleanUp() override;
 
         void UpdateTheme() const;
@@ -85,7 +86,6 @@ namespace Hachiko
         mutable float4 scene_background{0.1f, 0.1f, 0.1f, 0.1f};
 
     private:
-        static void RenderGui();
         void GenerateDockingSpace();
 
         // Main menu bar

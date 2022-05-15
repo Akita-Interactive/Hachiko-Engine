@@ -54,18 +54,20 @@ void Hachiko::WindowScene::Update()
         }
     }
     ImGui::SetNextWindowDockID(App->editor->dock_main_id, ImGuiCond_FirstUseEver);
-    if (ImGui::Begin((std::string(ICON_FA_GLOBE " ") + name).c_str(), &active, ImGuiWindowFlags_NoNavInputs))
+    if (!ImGui::Begin((std::string(ICON_FA_GLOBE " ") + name).c_str(), &active, ImGuiWindowFlags_NoNavInputs))
     {
-        focused = ImGui::IsWindowFocused();
-        GuizmoOptionsController();
-        ImGui::SameLine();
-        ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);
-        ImGui::SameLine();
-        ToolbarMenu();
-        DrawScene();
-        Controller();
         ImGui::End();
+        return;
     }
+    focused = ImGui::IsWindowFocused();
+    GuizmoOptionsController();
+    ImGui::SameLine();
+    ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);
+    ImGui::SameLine();
+    ToolbarMenu();
+    DrawScene();
+    Controller();
+    ImGui::End();
 }
 
 void Hachiko::WindowScene::CleanUp()

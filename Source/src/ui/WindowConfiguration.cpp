@@ -18,26 +18,28 @@ Hachiko::WindowConfiguration::WindowConfiguration() :
 void Hachiko::WindowConfiguration::Update()
 {
     ImGui::SetNextWindowDockID(App->editor->dock_right_id, ImGuiCond_FirstUseEver);
-    if (ImGui::Begin((std::string(ICON_FA_COG " ") + name).c_str(), &active, ImGuiWindowFlags_NoNavInputs))
+    if (!ImGui::Begin((std::string(ICON_FA_COG " ") + name).c_str(), &active, ImGuiWindowFlags_NoNavInputs))
     {
-        if (ImGui::CollapsingHeader("Scene"))
-        {
-            App->renderer->OptionsMenu();
-            ImGui::Separator();
-            App->scene_manager->OptionsMenu();
-            ImGui::Separator();
-            ImGui::Text("Shader Options");
-            App->program->OptionsMenu();
-        }
+        ImGui::End();
+        return;
+    }
+    if (ImGui::CollapsingHeader("Scene"))
+    {
+        App->renderer->OptionsMenu();
+        ImGui::Separator();
+        App->scene_manager->OptionsMenu();
+        ImGui::Separator();
+        ImGui::Text("Shader Options");
+        App->program->OptionsMenu();
+    }
 
-        //It is already a collapsing header
-        App->camera->GetRenderingCamera()->DrawGui();
+    //It is already a collapsing header
+    App->camera->GetRenderingCamera()->DrawGui();
 
-        if (ImGui::CollapsingHeader("Engine"))
-        {
-            App->window->OptionsMenu();
-            App->renderer->PerformanceMenu();
-        }
+    if (ImGui::CollapsingHeader("Engine"))
+    {
+        App->window->OptionsMenu();
+        App->renderer->PerformanceMenu();
     }
     ImGui::End();
 }

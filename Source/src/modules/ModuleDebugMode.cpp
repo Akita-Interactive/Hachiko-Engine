@@ -50,9 +50,6 @@ UpdateStatus Hachiko::ModuleDebugMode::Update(const float delta)
 		DrawGUI();
 	}
 
-	RenderGui();
-
-
 	// God mode
 	
 	// Teleport player with mouse double click
@@ -123,16 +120,6 @@ UpdateStatus Hachiko::ModuleDebugMode::Update(const float delta)
 	return UpdateStatus::UPDATE_CONTINUE;
 }
 
-void Hachiko::ModuleDebugMode::RenderGui() const
-{
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-	ImGui::UpdatePlatformWindows();
-	ImGui::RenderPlatformWindowsDefault();
-	SDL_GL_MakeCurrent(App->window->GetWindow(), App->renderer->GetGLContext());
-}
-
 UpdateStatus Hachiko::ModuleDebugMode::PostUpdate(const float delta)
 {
 	return UpdateStatus::UPDATE_CONTINUE;
@@ -178,58 +165,63 @@ void Hachiko::ModuleDebugMode::SetLine(LineSegment newLine)
 
 void Hachiko::ModuleDebugMode::DrawGUI()
 {
-	static const float vram_total = (float)hw_info.vram_capacity / 1024.0f;
-	float vram_free = (float)hw_info.vram_free / 1024.0f;
+	static const float vram_total = static_cast<float>(hw_info.vram_capacity) / 1024.0f;
+	float vram_free = static_cast<float>(hw_info.vram_free) / 1024.0f;
 	float vram_usage = vram_total - vram_free;
 	// Do not try this at home, delete asap
 	float3 player_pos_editor;
 	player = FindPlayer();
-	if(player) player_pos_editor = player->GetTransform()->GetGlobalPosition();	
+    if (player)
+    {
+        player_pos_editor = player->GetTransform()->GetGlobalPosition();
+    }
 	
 	UpdateRenderValues();
 
-	if (ImGui::Begin("InGame Window", &is_gui_active, window_flags))
-	{
-		App->renderer->FpsGraph();
-		ImGui::Separator();
+    if (ImGui::Begin("InGame Window", &is_gui_active, window_flags))
+    {
+        ImGui::End();
+        return;
+    }
+    App->renderer->FpsGraph();
+    ImGui::Separator();
 
-		ImGui::Text("Polycount (On screen): %i", poly_on_screen);
-		ImGui::Text("Polycount (Total loaded): %i", poly_total);
-		ImGui::Separator();
-		ImGui::Text("CPUs: %d", hw_info.cpu);
-		ImGui::Text("System RAM: %.1f Gb", hw_info.ram);
-		ImGui::Text("GPU: %s", hw_info.gpu);
-		ImGui::Text("Vendor: %s", hw_info.gpu_vendor);
-		ImGui::Text("VRAM: %.1f Mb", vram_free);
-		ImGui::Text("Vram Usage:  %.1f Mb", vram_usage);
-		ImGui::Text("Vram Available:  %.1f Mb", vram_free);
-		ImGui::Separator();
+    ImGui::Text("Polycount (On screen): %i", poly_on_screen);
+    ImGui::Text("Polycount (Total loaded): %i", poly_total);
+    ImGui::Separator();
+    ImGui::Text("CPUs: %d", hw_info.cpu);
+    ImGui::Text("System RAM: %.1f Gb", hw_info.ram);
+    ImGui::Text("GPU: %s", hw_info.gpu);
+    ImGui::Text("Vendor: %s", hw_info.gpu_vendor);
+    ImGui::Text("VRAM: %.1f Mb", vram_free);
+    ImGui::Text("Vram Usage:  %.1f Mb", vram_usage);
+    ImGui::Text("Vram Available:  %.1f Mb", vram_free);
+    ImGui::Separator();
 
-		if(ImGui::Button("Toggle Solid"))
-		{
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		}
-		ImGui::SameLine();
-		if(ImGui::Button("Toggle Wire"))
-		{
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		}
-		ImGui::Separator();
+    if (ImGui::Button("Toggle Solid"))
+    {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Toggle Wire"))
+    {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    }
+    ImGui::Separator();
 
-		if (player)
-		{
-			ImGui::Text("Player position: ");
-			if (ImGui::DragFloat3("(x, y, z)", player_pos_editor.ptr(), 0.1f, -inf, inf))
-			{
-				player->GetTransform()->SetGlobalPosition(player_pos_editor);
-			}
-            ImGui::Separator();
-		}
-
-		if (ImGui::Button("Reload current scene"))
+    if (player)
+    {
+        ImGui::Text("Player position: ");
+        if (ImGui::DragFloat3("(x, y, z)", player_pos_editor.ptr(), 0.1f, -inf, inf))
         {
-            App->scene_manager->ReloadScene();
-        }	
-	}
-	ImGui::End();
+            player->GetTransform()->SetGlobalPosition(player_pos_editor);
+        }
+        ImGui::Separator();
+    }
+
+    if (ImGui::Button("Reload current scene"))
+    {
+        App->scene_manager->ReloadScene();
+    }
+    ImGui::End();
 }

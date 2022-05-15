@@ -28,31 +28,38 @@ void ClockDisplay(bool running, bool paused, double time)
 
 void Hachiko::WindowTimers::Update()
 {
-    if (ImGui::Begin(name, &active, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoNavInputs))
+    if (!ImGui::Begin(name, &active, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoNavInputs))
     {
-        ImGui::Text("Game Timer");
-        ImGui::SameLine();
-        ClockDisplay(GameTimer::running, GameTimer::paused, GameTimer::total_time);
-
-        ImGui::Separator();
-        ImGui::Text("Engine Timer");
-        ImGui::SameLine();
-        ClockDisplay(EngineTimer::running, false, EngineTimer::total_time);
-
-        ImGui::Separator();
-        ImGui::Text("Test Timer");
-        ImGui::SameLine();
-        ClockDisplay(timer.IsRunning(), false, timer.Read());
-
-        if (ImGui::Button("Start"))
-            timer.Start();
-        ImGui::SameLine();
-        if (ImGui::Button("Stop"))
-            timer.Stop();
-        ImGui::SameLine();
-        if (ImGui::Button("Resume"))
-            timer.Resume();
+        ImGui::End();
+        return;
     }
+    ImGui::Text("Game Timer");
+    ImGui::SameLine();
+    ClockDisplay(GameTimer::running, GameTimer::paused, GameTimer::total_time);
 
+    ImGui::Separator();
+    ImGui::Text("Engine Timer");
+    ImGui::SameLine();
+    ClockDisplay(EngineTimer::running, false, EngineTimer::total_time);
+
+    ImGui::Separator();
+    ImGui::Text("Test Timer");
+    ImGui::SameLine();
+    ClockDisplay(timer.IsRunning(), false, timer.Read());
+
+    if (ImGui::Button("Start"))
+    {
+        timer.Start();
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Stop"))
+    {
+        timer.Stop();
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Resume"))
+    {
+        timer.Resume();
+    }
     ImGui::End();
 }

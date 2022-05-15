@@ -32,29 +32,32 @@ void Hachiko::WindowConsole::Add(std::string& str, LogLevel& logLevel)
 void Hachiko::WindowConsole::Update()
 {
     ImGui::SetNextWindowDockID(App->editor->dock_down_id, ImGuiCond_FirstUseEver);
-    if (ImGui::Begin((std::string(ICON_FA_TERMINAL " ") + name).c_str(), &active, ImGuiWindowFlags_NoNavInputs))
+    if (!ImGui::Begin((std::string(ICON_FA_TERMINAL " ") + name).c_str(), &active, ImGuiWindowFlags_NoNavInputs))
     {
-        if (ImGui::BeginPopup("Options"))
-        {
-            ImGui::Checkbox("Auto-scroll", &autoscroll);
-            ImGui::EndPopup();
-        }
+        ImGui::End();
+        return;
+    }
+    if (ImGui::BeginPopup("Options"))
+    {
+        ImGui::Checkbox("Auto-scroll", &autoscroll);
+        ImGui::EndPopup();
+    }
 
-        if (ImGui::Button("Options"))
-        {
-            ImGui::OpenPopup("Options");
-        }
+    if (ImGui::Button("Options"))
+    {
+        ImGui::OpenPopup("Options");
+    }
 
-        ImGui::SameLine();
-        const bool clear = ImGui::Button("Clear");
-        ImGui::SameLine();
-        const bool copy = ImGui::Button("Copy");
-        ImGui::SameLine();
-        filter.Draw("Filter", -100.0f);
+    ImGui::SameLine();
+    const bool clear = ImGui::Button("Clear");
+    ImGui::SameLine();
+    const bool copy = ImGui::Button("Copy");
+    ImGui::SameLine();
+    filter.Draw("Filter", -100.0f);
 
-        ImGui::Separator();
-        ImGui::BeginChild("scrolling", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoNavInputs);
-
+    ImGui::Separator();
+    if (ImGui::BeginChild("scrolling", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoNavInputs))
+    {
         if (clear)
         {
             Clear();
@@ -66,7 +69,7 @@ void Hachiko::WindowConsole::Update()
 
         ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
 
-        auto filtered_lines = std::vector<std::pair<std::string, LogLevel>>{};
+        auto filtered_lines = std::vector<std::pair<std::string, LogLevel>> {};
         if (filter.IsActive())
         {
             for (const auto& [str, logLevel] : lines)
@@ -76,7 +79,8 @@ void Hachiko::WindowConsole::Update()
                     filtered_lines.emplace_back(str, logLevel);
                 }
             }
-        } else
+        }
+        else
         {
             filtered_lines = lines;
         }
@@ -96,7 +100,7 @@ void Hachiko::WindowConsole::Update()
         }
 
         filtered_lines.clear();
-        
+
         ImGui::PopStyleVar();
 
         if (autoscroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY())

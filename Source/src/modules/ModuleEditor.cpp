@@ -162,8 +162,23 @@ UpdateStatus Hachiko::ModuleEditor::Update(const float delta)
         }
     }
 
-    //RenderGui();
     return retval;
+}
+
+UpdateStatus Hachiko::ModuleEditor::PostUpdate(const float delta)
+{
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    ImGuiIO& io = ImGui::GetIO();
+
+    if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+    {
+        ImGui::UpdatePlatformWindows();
+        ImGui::RenderPlatformWindowsDefault();
+        SDL_GL_MakeCurrent(App->window->GetWindow(), App->renderer->GetGLContext());
+    }
+    return UpdateStatus::UPDATE_CONTINUE;
 }
 
 UpdateStatus Hachiko::ModuleEditor::MainMenuBar()
@@ -232,12 +247,6 @@ void Hachiko::ModuleEditor::GenerateDockingSpace()
         host_window_flags |= ImGuiWindowFlags_NoBackground;
     }
 
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
-    ImGui::Begin("DockSpace Window", nullptr, host_window_flags);
-    ImGui::PopStyleVar(3);
-
     const ImGuiID dockspace_id = ImGui::GetID("DockSpace");
 
     if (!ImGui::DockBuilderGetNode(dockspace_id))
@@ -253,8 +262,16 @@ void Hachiko::ModuleEditor::GenerateDockingSpace()
         dock_left_id = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Left, 0.25f, nullptr, &dock_main_id);
     }
 
-    ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags, nullptr);
-    ImGui::End();
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
+
+    if (ImGui::Begin("DockSpace Window", nullptr, host_window_flags))
+    {
+        ImGui::PopStyleVar(3);
+        ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags, nullptr);
+        ImGui::End();
+    }
 }
 
 void Hachiko::ModuleEditor::FileMenu() const
@@ -399,16 +416,6 @@ void Hachiko::ModuleEditor::GoMenu() const
     }
 
     ImGui::EndMenu();
-}
-
-void Hachiko::ModuleEditor::RenderGui()
-{
-    ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-    ImGui::UpdatePlatformWindows();
-    ImGui::RenderPlatformWindowsDefault();
-    SDL_GL_MakeCurrent(App->window->GetWindow(), App->renderer->GetGLContext());
 }
 
 bool Hachiko::ModuleEditor::CleanUp()

@@ -14,7 +14,6 @@
 #include "components/ComponentTransform.h"
 
 
-
 struct HardwareInfo {
 	unsigned char* system;
 	int cpu;
@@ -32,8 +31,8 @@ namespace Hachiko
 	{
 	public:
 		ModuleDebugMode() : is_gui_active(false), poly_on_screen(0), poly_total(0), player_pos(0, 0, 0),
-							window_flags(ImGuiWindowFlags_None), hw_info(), player(nullptr) {};
-		~ModuleDebugMode() = default;
+							hw_info(), window_flags(ImGuiWindowFlags_None), player(nullptr) {}
+		~ModuleDebugMode() override = default;
 
 		bool Init() override;
 		UpdateStatus PreUpdate(const float delta) override;
@@ -51,10 +50,8 @@ namespace Hachiko
 		void DrawGUI();
 		ImGuiWindowFlags SetupWindow();
 		void UpdateRenderValues();
-		const GameObject* FindPlayer() const;
+        [[nodiscard]] const GameObject* FindPlayer() const;
 
-		//TODO: Remove ASAP
-		void RenderGui() const;
 	private:
 		bool is_gui_active;
 		unsigned poly_on_screen;
