@@ -429,12 +429,12 @@ void Hachiko::ModuleEditor::Redo()
 
 void Hachiko::ModuleEditor::EditMenu()
 {
-    if (App->input->GetKeyMod(SDL_Keymod::KMOD_CTRL) && App->input->GetKey(SDL_SCANCODE_Z) == KeyState::KEY_DOWN)
+    if (App->input->IsModifierPressed(KMOD_CTRL) && App->input->IsKeyDown(SDL_SCANCODE_Z))
     {
         Undo();
     }
 
-    if (App->input->GetKeyMod(SDL_Keymod::KMOD_CTRL) && App->input->GetKey(SDL_SCANCODE_Y) == KeyState::KEY_DOWN)
+    if (App->input->IsModifierPressed(KMOD_CTRL) && App->input->IsKeyDown(SDL_SCANCODE_Y))
     {
         Redo();
     }

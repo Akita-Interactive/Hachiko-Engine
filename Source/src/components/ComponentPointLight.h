@@ -1,6 +1,5 @@
 #pragma once
 
-#include "ComponentDirLight.h"
 #include "components/Component.h"
 #include "core/HachikoApiDefine.h"
 

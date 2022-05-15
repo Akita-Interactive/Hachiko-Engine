@@ -258,7 +258,7 @@ void Hachiko::GameObject::Start()
 
 void Hachiko::GameObject::Update()
 {
-    if (transform && transform->HasChanged())
+    if (transform->HasChanged())
     {
         OnTransformUpdated();
     }
