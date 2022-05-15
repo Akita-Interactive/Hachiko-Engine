@@ -78,9 +78,6 @@ void Hachiko::ModuleSceneManager::AttemptScenePlay()
         
         GameTimer::Resume();
     }
-    Event e(Event::Type::EDITOR_ACTION);
-    e.SetEventData<EditorActionPayload>(EditorActionPayload::Action::PLAY);
-    App->event->Publish(e);
 }
 
 void Hachiko::ModuleSceneManager::AttemptSceneStop()
