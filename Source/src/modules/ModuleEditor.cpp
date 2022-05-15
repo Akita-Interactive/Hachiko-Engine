@@ -115,11 +115,18 @@ bool Hachiko::ModuleEditor::Init()
     theme = editor_prefs->GetTheme();
     UpdateTheme();
 
+#ifndef PLAY_BUILD
     std::function create_history_entry = [&](Event& evt) {
         CreateSnapshot();
     };
     App->event->Subscribe(Event::Type::CREATE_EDITOR_HISTORY_ENTRY, create_history_entry);
 
+    std::function enable_history = [&](Event& evt) {
+        const auto state = evt.GetEventData<GameStateEventPayload>().GetState();
+        history_enabled = state == GameStateEventPayload::State::STOPPED;
+    };
+    App->event->Subscribe(Event::Type::GAME_STATE, enable_history);
+#endif
     return true;
 }
 
@@ -420,59 +427,6 @@ void Hachiko::ModuleEditor::Redo()
     }
 }
 
-Hachiko::Scene::Memento* Hachiko::ModuleEditor::History::Undo()
-{
-    if (CanUndo())
-    {
-        return mementos[--current_position - 1].get();
-    }
-    return nullptr;
-}
-
-Hachiko::Scene::Memento* Hachiko::ModuleEditor::History::Redo()
-{
-    if (CanRedo())
-    {
-        return mementos[current_position++].get();
-    }
-    return nullptr;
-}
-
-void Hachiko::ModuleEditor::History::Save(Scene::Memento* memento)
-{
-    if (CanRedo())
-    {
-        //remove unused mementos branch
-        const auto it = mementos.begin() + current_position;
-        mementos.erase(it, mementos.end());
-    }
-    current_position++;
-    mementos.emplace_back(memento);
-}
-
-bool Hachiko::ModuleEditor::History::CanUndo() const
-{
-    return current_position > 1;
-}
-
-bool Hachiko::ModuleEditor::History::CanRedo() const
-{
-    return current_position < mementos.size();
-}
-
-void Hachiko::ModuleEditor::History::Init()
-{
-    current_position = 0;
-    Save(App->scene_manager->GetActiveScene()->CreateSnapshot());
-}
-
-void Hachiko::ModuleEditor::History::CleanUp()
-{
-    HE_LOG("Clearing action history");
-    mementos.erase(mementos.begin(), mementos.end());
-    mementos.clear();
-}
-
 void Hachiko::ModuleEditor::EditMenu()
 {
     if (App->input->GetKeyMod(SDL_Keymod::KMOD_CTRL) && App->input->GetKey(SDL_SCANCODE_Z) == KeyState::KEY_DOWN)
@@ -543,6 +497,7 @@ bool Hachiko::ModuleEditor::CleanUp()
         }
     }
 
+    history_enabled = true; //ensure history is enabled so we can clear it
     history.CleanUp();
 
     ImGui_ImplOpenGL3_Shutdown();
@@ -551,4 +506,67 @@ bool Hachiko::ModuleEditor::CleanUp()
 
     editor_prefs->SetTheme(theme);
     return true;
+}
+
+
+Hachiko::Scene::Memento* Hachiko::ModuleEditor::History::Undo()
+{
+    if (CanUndo())
+    {
+        return mementos[--current_position - 1].get();
+    }
+    return nullptr;
+}
+
+Hachiko::Scene::Memento* Hachiko::ModuleEditor::History::Redo()
+{
+    if (CanRedo())
+    {
+        return mementos[current_position++].get();
+    }
+    return nullptr;
+}
+
+void Hachiko::ModuleEditor::History::Save(Scene::Memento* memento)
+{
+    if (history_enabled)
+    {
+        if (CanRedo())
+        {
+            //remove unused mementos branch
+            const auto it = mementos.begin() + current_position;
+            mementos.erase(it, mementos.end());
+        }
+        current_position++;
+        mementos.emplace_back(memento);
+    }
+}
+
+bool Hachiko::ModuleEditor::History::CanUndo() const
+{
+    return history_enabled && current_position > 1;
+}
+
+bool Hachiko::ModuleEditor::History::CanRedo() const
+{
+    return history_enabled && current_position < mementos.size();
+}
+
+void Hachiko::ModuleEditor::History::Init()
+{
+    if (history_enabled)
+    {
+        current_position = 0;
+        Save(App->scene_manager->GetActiveScene()->CreateSnapshot());
+    }
+}
+
+void Hachiko::ModuleEditor::History::CleanUp()
+{
+    if (history_enabled)
+    {
+        HE_LOG("Clearing action history");
+        mementos.erase(mementos.begin(), mementos.end());
+        mementos.clear();
+    }
 }

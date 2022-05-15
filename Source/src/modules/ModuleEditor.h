@@ -139,5 +139,10 @@ namespace Hachiko
         };
 
         History history;
+#ifndef PLAY_BUILD
+        inline static bool history_enabled = true;
+#else
+        inline static bool history_enabled = false;
+#endif
     };
 }
