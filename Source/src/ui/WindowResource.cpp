@@ -72,6 +72,7 @@ void Hachiko::WindowResource::Update()
                     filename.insert(0, "\\");
                     filename.insert(0, current_directory.string().c_str());
                     LoadAsset(filename);
+                    App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
                 }
             }            
         }

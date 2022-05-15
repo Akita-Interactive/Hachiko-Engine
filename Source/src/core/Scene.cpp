@@ -89,8 +89,6 @@ Hachiko::GameObject* Hachiko::Scene::CreateNewGameObject(GameObject* parent, con
 
     new_game_object->SetName(name);
 
-    App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
-
     // This will insert itself into quadtree on first bounding box update:
     return new_game_object;
 }

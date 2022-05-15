@@ -480,6 +480,7 @@ void Hachiko::ModuleEditor::GoMenu() const
     if (ImGui::MenuItem("Add GameObject"))
     {
         App->scene_manager->GetActiveScene()->CreateNewGameObject(App->scene_manager->GetActiveScene()->GetRoot(), "GameObject");
+        App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
     }
 
     ImGui::EndMenu();
