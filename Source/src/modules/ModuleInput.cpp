@@ -58,20 +58,20 @@ UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
         switch (sdl_event.type)
         {
         case SDL_WINDOWEVENT:
-            if (event.window.windowID == SDL_GetWindowID(App->window->GetWindow()))
+            if (sdl_event.window.windowID == SDL_GetWindowID(App->window->GetWindow()))
             {
-                if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
+                if (sdl_event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
                 {
                     App->window->WindowResized();
 
                     // Update the cached inverses of window size so that we have a
                     // sensitive MousePositionDelta and MousePosition.
-                    UpdateWindowSizeInversedCaches(event.window.data1, event.window.data2);
+                    UpdateWindowSizeInversedCaches(sdl_event.window.data1, sdl_event.window.data2);
                 }
-                if (event.window.event == SDL_WINDOWEVENT_CLOSE)
+                if (sdl_event.window.event == SDL_WINDOWEVENT_CLOSE)
                 {
-                    event.type = SDL_QUIT;
-                    SDL_PushEvent(&event);
+                    sdl_event.type = SDL_QUIT;
+                    SDL_PushEvent(&sdl_event);
                 }
             }
             break;
