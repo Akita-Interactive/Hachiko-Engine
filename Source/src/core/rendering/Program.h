@@ -27,7 +27,7 @@ namespace Hachiko
 
     private:
         unsigned id = 0;
-        std::unique_ptr<Cache<const char*, int>> uniforms_cache;
+        std::unique_ptr<Cache<const char*, int>> uniforms_cache = std::make_unique<Cache<const char*, int>>(-1);
 
         //handy function to manage store/retrieve from cache
         int GetUniformLocation(const char*) const;

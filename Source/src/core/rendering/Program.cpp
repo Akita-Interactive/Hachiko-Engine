@@ -2,8 +2,7 @@
 #include "Program.h"
 
 Hachiko::Program::Program(unsigned vtx_shader, unsigned frg_shader) :
-    id(glCreateProgram()),
-    uniforms_cache(std::make_unique<Cache<const char*, int>>(0))
+    id(glCreateProgram())
 {
     glAttachShader(id, vtx_shader);
     glAttachShader(id, frg_shader);
@@ -75,12 +74,12 @@ void Hachiko::Program::BindUniformInts(const char* name, unsigned size, const in
 
 int Hachiko::Program::GetUniformLocation(const char* key) const
 {
-    if(const auto value = uniforms_cache->Get(key) != uniforms_cache->NotFound())
+    int value = uniforms_cache->Get(key);
+    if(value != uniforms_cache->NotFound())
     {
         return value;
     }
-    const auto value = glGetUniformLocation(id, key);
-    // assert(value == -1 && "The uniform does not exist in the program");
+    value = glGetUniformLocation(id, key);
     uniforms_cache->Set(key, value);
     return value;
 }
