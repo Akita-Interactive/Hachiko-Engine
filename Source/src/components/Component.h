@@ -127,11 +127,11 @@ namespace Hachiko
         {
         }
 
-        void Save(YAML::Node& node) const override
+        virtual void Save(YAML::Node& node) const
         {
         }
 
-        void Load(const YAML::Node& node) override
+        virtual void Load(const YAML::Node& node)
         {
         }
 

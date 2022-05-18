@@ -22,7 +22,7 @@ namespace Hachiko
 
     public:
         Scene();
-        ~Scene() override;
+        ~Scene();
 
         void CleanScene();
 
@@ -31,7 +31,7 @@ namespace Hachiko
         void Update() const;
 
         // --- GameObject Management --- //
-        ComponentCamera* GetMainCamera() const;
+        [[nodiscard]] ComponentCamera* GetMainCamera() const;
         void DestroyGameObject(GameObject* game_object) const;
         GameObject* CreateNewGameObject(GameObject* parent = nullptr, const char* name = nullptr);
 
@@ -81,7 +81,7 @@ namespace Hachiko
 
         [[nodiscard]] GameObject* Raycast(const float3& origin, const float3& destination) const;
 
-        GameObject* Find(UID id) const;
+        [[nodiscard]] GameObject* Find(UID id) const;
 
         void SetName(const char* new_name)
         {
