@@ -74,6 +74,7 @@ void Hachiko::ResourceMesh::GenerateBuffers()
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, buffer_sizes[static_cast<int>(Buffers::INDICES)] * sizeof(unsigned), indices, GL_STATIC_DRAW);
 
     glBindVertexArray(0);
+    loaded = true;
 }
 
 void Hachiko::ResourceMesh::GenerateAABB()
@@ -86,7 +87,7 @@ void Hachiko::ResourceMesh::GenerateBoneData(const aiMesh* mesh, float scale) {
 
     num_bones = mesh->mNumBones;
     bones = std::make_unique<Bone[]>(num_bones);
-    
+
     for (unsigned i = 0; i < num_bones; ++i)
     {
         const aiBone* bone = mesh->mBones[i];
@@ -106,7 +107,7 @@ void Hachiko::ResourceMesh::GenerateBoneData(const aiMesh* mesh, float scale) {
     for (unsigned i = 0; i < mesh->mNumVertices * 4; ++i)
     {
         bone_indices[i] = 0;
-        bone_weights[i] = 0;
+        bone_weights[i] = 0.0f;
     }
 
     for (unsigned i = 0; i < num_bones; ++i)
@@ -183,4 +184,9 @@ void Hachiko::ResourceMesh::CleanUp()
         buffer_sizes[static_cast<int>(Buffers::BONES_WEIGHTS)] = 0;
     }
     loaded = false;
+}
+
+bool Hachiko::operator==(const ResourceMesh::Layout& l, const ResourceMesh::Layout& r)
+{
+    return (l.normals == r.normals && l.text_coords == r.text_coords);
 }

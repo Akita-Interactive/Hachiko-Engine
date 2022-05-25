@@ -43,6 +43,17 @@ void Hachiko::ComponentMeshRenderer::Update()
 
     }
 
+    // Material override
+    if (override_material)
+    {
+        override_timer -= GameTimer::delta_time;
+        if (override_timer <= 0)
+        {
+            override_material = false;
+            override_timer = 0;
+        }
+    }
+
     if (palette.empty())
     {
         palette.resize(mesh->num_bones);
@@ -200,7 +211,7 @@ void Hachiko::ComponentMeshRenderer::Save(YAML::Node& node) const
     else
     {
         node[RENDERER_MESH_ID] = 0;
-        node[MODEL_NAME] = 0;
+        node[MESH_NAVIGABLE] = false;
         node[MESH_VISIBLE] = true;
     }
 
@@ -233,22 +244,30 @@ void Hachiko::ComponentMeshRenderer::Load(const YAML::Node& node)
 
 Hachiko::GameObject* GetRoot(Hachiko::GameObject* posible_root) 
 {
+    if (!posible_root)
+    {
+        return nullptr;
+    }
+
     if (posible_root->GetComponent<Hachiko::ComponentAnimation>())
     {
         return posible_root;
     }
+
     GetRoot(posible_root->parent);
 }
 
 void Hachiko::ComponentMeshRenderer::UpdateSkinPalette(std::vector<float4x4>& palette) const
 {
-    
     if (mesh && mesh->num_bones > 0)
     {
         const GameObject* root = GetRoot(game_object);
 
         if (!root)
+        {
+            HE_LOG("Root not found");
             return;
+        }     
 
         float4x4 root_transform = root->GetTransform()->GetGlobalMatrix().Inverted();
 
@@ -308,6 +327,13 @@ void Hachiko::ComponentMeshRenderer::ChangeMaterial()
 
         ImGuiFileDialog::Instance()->Close();
     }
+}
+
+void Hachiko::ComponentMeshRenderer::OverrideEmissive(float4 color, float time) 
+{
+    override_material = true;
+    override_timer = time;
+    override_emissive = color;
 }
 
 void Hachiko::ComponentMeshRenderer::UpdateBoundingBoxes()

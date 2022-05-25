@@ -1,6 +1,7 @@
 #include "core/hepch.h"
 #include "ResourceMaterial.h"
 #include "modules/ModuleResources.h"
+#include "modules/ModuleSceneManager.h"
 #include "importers/MaterialImporter.h"
 
 Hachiko::ResourceMaterial::ResourceMaterial(UID uid) : Resource(uid, Type::MATERIAL) {}
@@ -14,7 +15,7 @@ void Hachiko::ResourceMaterial::DrawGui()
 
     ImGuiUtils::Combo("Material Type", material_types, is_metallic);
 
-    ImGuiUtils::Combo("", transparency, is_transparent);
+    ImGuiUtils::Combo("Transparency", transparency, is_transparent);
 
     if (ImGui::TreeNodeEx((void*)&diffuse, texture_flags, "Diffuse"))
     {
@@ -121,6 +122,7 @@ void Hachiko::ResourceMaterial::DrawGui()
         }
         ImGui::TreePop();
     }
+
     if (ImGui::TreeNodeEx((void*)&emissive, texture_flags, "Emissive"))
     {
         if (emissive != nullptr)
@@ -156,20 +158,24 @@ void Hachiko::ResourceMaterial::SetTexture(ResourceTexture* res, ResourceTexture
     switch (type)
     {
     case ResourceTexture::Type::DIFFUSE:
-        App->resources->ReleaseResource(diffuse);
+        //App->resources->ReleaseResource(diffuse);
         diffuse = res;
         break;
     case ResourceTexture::Type::SPECULAR:
-        App->resources->ReleaseResource(specular);
+        //App->resources->ReleaseResource(specular);
         specular = res;
         break;
     case ResourceTexture::Type::NORMALS:
-        App->resources->ReleaseResource(normal);
+        //App->resources->ReleaseResource(normal);
         normal = res;
         break;
     case ResourceTexture::Type::METALNESS:
-        App->resources->ReleaseResource(metalness);
+        //App->resources->ReleaseResource(metalness);
         metalness = res;
+        break;
+    case ResourceTexture::Type::EMISSIVE:
+        //App->resources->ReleaseResource(emissive);
+        emissive = res;
         break;
     }
 }
@@ -194,13 +200,13 @@ std::string Hachiko::ResourceMaterial::TypeToString(ResourceTexture::Type type)
 void Hachiko::ResourceMaterial::AddTexture(ResourceTexture::Type type)
 {
     const std::string title = StringUtils::Concat("Select texture ", TypeToString(type)) + "##" + name;
-    ResourceTexture* res = nullptr;
+    const char* filters = "Image files{.png,.tif,.jpg,.tga}";
 
     if (ImGui::Button(StringUtils::Concat(TypeToString(type).c_str(), " Texture").c_str()))
     {
         ImGuiFileDialog::Instance()->OpenDialog(title.c_str(),
                                                 "Select Texture",
-                                                ".png,.tif,.jpg,.tga",
+                                                filters,
                                                 "./assets/textures/",
                                                 1,
                                                 nullptr,
@@ -214,17 +220,22 @@ void Hachiko::ResourceMaterial::AddTexture(ResourceTexture::Type type)
         {
             std::string texture_path = ImGuiFileDialog::Instance()->GetFilePathName();
             texture_path.append(META_EXTENSION);
-            YAML::Node texture_node = YAML::LoadFile(texture_path);
 
-            res = static_cast<ResourceTexture*>(App->resources->GetResource(Resource::Type::TEXTURE, texture_node[RESOURCES][0][RESOURCE_ID].as<UID>()));
+            YAML::Node texture_node = YAML::LoadFile(texture_path);
+            ResourceTexture* res = static_cast<ResourceTexture*>(App->resources->GetResource(Resource::Type::TEXTURE, texture_node[RESOURCES][0][RESOURCE_ID].as<UID>()));
+
+            if (res != nullptr)
+            {
+                SetTexture(res, type);
+                UpdateMaterial();
+            }
+            else
+            {
+                HE_ERROR("Failed when loading the texture.");
+            }
         }
 
         ImGuiFileDialog::Instance()->Close();
-    }
-    if (res != nullptr)
-    {
-        SetTexture(res, type);
-        UpdateMaterial();
     }
 }
 
@@ -250,13 +261,14 @@ void Hachiko::ResourceMaterial::RemoveTexture(ResourceTexture::Type type)
             emissive = nullptr;
             break;
         }
+        UpdateMaterial();
     }
-
-    UpdateMaterial();
 }
 
 void Hachiko::ResourceMaterial::UpdateMaterial()
 {
     MaterialImporter material_importer;
     material_importer.Save(GetID(), this);
+
+    App->scene_manager->GetActiveScene()->OnMeshesChanged();
 }

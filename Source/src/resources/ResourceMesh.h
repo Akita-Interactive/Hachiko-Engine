@@ -25,6 +25,18 @@ namespace Hachiko
             COUNT,
         };
 
+        struct Layout
+        {
+            bool normals = false;
+            bool text_coords = false;
+            bool bones = false;
+
+            bool Equal(Layout layout) 
+            {
+                return normals == layout.normals && text_coords == layout.text_coords && bones == layout.bones;
+            }
+        };
+
         ResourceMesh(UID id);
         ~ResourceMesh() override;
 
@@ -42,6 +54,7 @@ namespace Hachiko
 
         bool loaded = false;
 
+        Layout layout;
         AABB bounding_box;
 
         // Store the ids of buffers in opengl
@@ -60,6 +73,9 @@ namespace Hachiko
         float* tex_coords{};
         float* tangents{};
 
+        // UID of the model
+        UID model_id; // TODO: USE IT
+
         // BONES
         std::unique_ptr<unsigned[]> src_bone_indices = nullptr;
         std::unique_ptr<float4[]> src_bone_weights = nullptr;
@@ -67,4 +83,6 @@ namespace Hachiko
         unsigned int num_bones = 0;
         std::unique_ptr<Bone[]> bones = nullptr;
     };
+
+    bool operator==(const ResourceMesh::Layout& l, const ResourceMesh::Layout& r);
 }

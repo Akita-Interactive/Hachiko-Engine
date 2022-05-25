@@ -57,7 +57,7 @@ namespace Hachiko
     private:
         int depth = 0;
         AABB box;
-        QuadtreeNode* parent =  nullptr;
+        QuadtreeNode* parent = nullptr;
         std::list<ComponentMeshRenderer*> meshes {};
     };
 

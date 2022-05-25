@@ -2,6 +2,7 @@
 #include "Module.h"
 #include "Globals.h"
 
+#include "batching/BatchManager.h"
 #include "core/rendering/RenderList.h"
 
 #include <vector>

@@ -36,7 +36,7 @@ namespace Hachiko
             // SHADER = 5,
             // AUDIO = 6,
             VIDEO = 7,
-            // SKYBOX = 8,
+            SKYBOX = 8,
             FONT = 9,
             PREFAB = 10,
         };

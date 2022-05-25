@@ -2,6 +2,7 @@
 #include "Module.h"
 
 #include <vector>
+#include "Batching/TextureBatch.h"
 
 #define MAX_POINT_LIGHTS 4
 #define MAX_SPOT_LIGHTS 4
@@ -14,9 +15,19 @@ namespace Hachiko
     class ComponentSpotLight;
     class ComponentMeshRenderer;
 
+    struct PalettePerInstance;
+
     class ModuleProgram : public Module
     {
     public:
+        enum class BINDING
+        {
+            MATERIAL = 1,
+            MODEL = 3,
+            PALETTE = 4,
+            PALETTE_PER_INSTANCE = 5,
+        };
+
         enum class UBOPoints
         {
             CAMERA = 0,
@@ -81,6 +92,8 @@ namespace Hachiko
 
         void OptionsMenu();
 
+        void* CreatePersistentBuffers(unsigned& buffer_id, int binding_point, unsigned size);
+
     private:
         static char* LoadShaderSource(const char* shader_file_name);
         unsigned int CompileShader(unsigned type, const char* source) const;
@@ -102,12 +115,11 @@ namespace Hachiko
         // Assume the shader already manages its binding points
         void CreateUBO(UBOPoints binding_point, unsigned size);
         void UpdateUBO(UBOPoints binding_point, unsigned size, void* data, unsigned offset = 0) const;
-        void CreateCameraUBO();
-        void CreateMaterialUBO();
-        void CreateLightsUBO();
+        void CreateSSBO(UBOPoints binding_point, unsigned size);
+        void UpdateSSBO(UBOPoints binding_point, unsigned size, void* data, unsigned offset = 0) const;
 
-        unsigned ubos[static_cast<int>(UBOPoints::COUNT)]{};
-        
+        unsigned buffers[static_cast<int>(UBOPoints::COUNT)] {};
+
         struct MaterialData
         {
             float4 diffuse_color;
@@ -130,24 +142,24 @@ namespace Hachiko
         {
             float4 color = float4::one;
             float intensity = 0.05f;
-            float padding[3]{};
+            float padding[3] {};
         };
 
         struct DirLight
         {
             float4 direction = float4::zero;
             float4 color = float4::zero;
-            float intensity{};
-            float padding[3]{};
+            float intensity {};
+            float padding[3] {};
         };
 
         struct PointLight
         {
             float4 position = float4::zero;
             float4 color = float4::zero;
-            float intensity{};
-            float radius{};
-            float padding[2]{};
+            float intensity {};
+            float radius {};
+            float padding[2] {};
         };
 
         struct SpotLight
@@ -155,10 +167,10 @@ namespace Hachiko
             float4 position = float4::zero;
             float4 direction = float4::zero;
             float4 color = float4::zero;
-            float inner{};
-            float outer{};
-            float intensity{};
-            float radius{};
+            float inner {};
+            float outer {};
+            float intensity {};
+            float radius {};
         };
 
         struct Lights
@@ -167,11 +179,11 @@ namespace Hachiko
             DirLight directional;
             PointLight points[MAX_POINT_LIGHTS];
             SpotLight spots[MAX_SPOT_LIGHTS];
-            unsigned int n_points{};
-            unsigned int n_spots{};
+            unsigned int n_points {};
+            unsigned int n_spots {};
         };
 
         AmbientLight ambient_light;
         float ambient_strength = 0.05f;
     };
-}
+} // namespace Hachiko

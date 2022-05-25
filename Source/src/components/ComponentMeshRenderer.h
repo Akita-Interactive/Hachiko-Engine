@@ -84,14 +84,19 @@ namespace Hachiko
 
         void SetResourceMesh(ResourceMesh* res);
 
-        [[nodiscard]] const ResourceMaterial* GetMaterial() const
-        {
-            return material;
-        }
-
         void AddResourceMaterial(ResourceMaterial* res)
         {
             material = res;
+        }
+
+        [[nodiscard]] const ResourceMesh* GetResourceMesh() const
+        {
+            return mesh;
+        }
+
+        [[nodiscard]] const ResourceMaterial* GetResourceMaterial() const
+        {
+            return material;
         }
 
         void LoadMesh(UID mesh_id);
@@ -106,6 +111,20 @@ namespace Hachiko
 
         void ChangeMaterial();
 
+        std::vector<float4x4> palette{}; // TODO: MOVE TO PRIVATE AGAIN
+
+        // Scripting
+        [[nodiscard]] bool OverrideMaterialActive() const
+        {
+            return override_material;
+        }
+        void OverrideEmissive(float4 color, float time);
+
+        [[nodiscard]] float4 GetOverrideEmissiveColor() const
+        {
+            return override_emissive;
+        }
+
     private:
         void UpdateBoundingBoxes();
         bool visible = true;       
@@ -116,9 +135,15 @@ namespace Hachiko
       
         // SKINING
         const GameObject** node_cache = nullptr;
-        std::vector<float4x4> palette{};
+        //std::vector<float4x4> palette{};
 
         ResourceMesh* mesh = nullptr;
         ResourceMaterial* material = nullptr;
+
+        // Scripting
+        bool override_material = false;
+        float override_timer = 0;
+        float4 override_emissive;
+
     };
-}
+} // namespace Hachiko

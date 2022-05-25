@@ -93,7 +93,7 @@ namespace Hachiko
         }
 
         void Save(YAML::Node& node, bool as_prefab = false) const;
-        void Load(const YAML::Node& node, bool as_prefab = false);
+        void Load(const YAML::Node& node, bool as_prefab = false, bool meshes_only = false);
 
 
         [[nodiscard]] const std::vector<Component*>& GetComponents() const

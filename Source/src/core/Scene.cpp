@@ -17,12 +17,15 @@
 #include <debugdraw.h>
 #include <algorithm>
 
+#include "batching/BatchManager.h"
+
 Hachiko::Scene::Scene() :
     name(UNNAMED_SCENE),
     root(new GameObject(nullptr, float4x4::identity, "Root")),
     culling_camera(App->camera->GetRenderingCamera()),
     skybox(new Skybox()),
-    quadtree(new Quadtree())
+    quadtree(new Quadtree()),
+    batch_manager(new BatchManager())
 {
     // Root's scene_owner should always be this scene:
     root->scene_owner = this;
@@ -42,10 +45,11 @@ void Hachiko::Scene::CleanScene()
     delete root;
     delete skybox;
     delete quadtree;
+    delete batch_manager;
     loaded = false;
 }
 
-void Hachiko::Scene::DestroyGameObject(GameObject* game_object) const
+void Hachiko::Scene::DestroyGameObject(GameObject* game_object)
 {
     if (App->editor->GetSelectedGameObject() == game_object)
     {
@@ -75,6 +79,8 @@ Hachiko::GameObject* Hachiko::Scene::CreateNewGameObject(GameObject* parent, con
 
     new_game_object->SetName(name);
 
+    OnMeshesChanged();
+
     // This will insert itself into quadtree on first bounding box update:
     return new_game_object;
 }
@@ -92,6 +98,17 @@ void Hachiko::Scene::HandleInputMaterial(ResourceMaterial* material)
     if (component_mesh_renderer != nullptr)
     {
         component_mesh_renderer->AddResourceMaterial(material);
+    }
+}
+
+void Hachiko::Scene::RebuildBatching() 
+{
+    if (rebuild_batch)
+    {
+        batch_manager->CleanUp();
+        batch_manager->CollectMeshes(root);
+        batch_manager->BuildBatches();
+        rebuild_batch = false;
     }
 }
 
@@ -174,7 +191,7 @@ void Hachiko::Scene::Save(YAML::Node& node)
     }
 }
 
-void Hachiko::Scene::Load(const YAML::Node& node)
+void Hachiko::Scene::Load(const YAML::Node& node, bool meshes_only)
 {
     SetName(node[SCENE_NAME].as<std::string>().c_str());
     navmesh_id = node[NAVMESH_ID].as<UID>();
@@ -182,16 +199,18 @@ void Hachiko::Scene::Load(const YAML::Node& node)
 
     RELEASE(skybox);
 
-    TextureCube cube;
-    for (unsigned i = 0; i < static_cast<unsigned>(TextureCube::Side::COUNT); ++i)
+    if (!meshes_only)
     {
-        std::string side_name = TextureCube::SideString(static_cast<TextureCube::Side>(i));
-        // Store UID 0 if no resource is present
-        cube.uids[i] = node[SKYBOX_NODE][side_name].as<UID>();
+        TextureCube cube;
+        for (unsigned i = 0; i < static_cast<unsigned>(TextureCube::Side::COUNT); ++i)
+        {
+            std::string side_name = TextureCube::SideString(static_cast<TextureCube::Side>(i));
+            // Store UID 0 if no resource is present
+            cube.uids[i] = node[SKYBOX_NODE][side_name].as<UID>();
+        }
+        // Pass skybox with used uids to be loaded
+        skybox = new Skybox(cube);
     }
-    // Pass skybox with used uids to be loaded
-    skybox = new Skybox(cube);
-
 
     if (!node[CHILD_NODE].IsDefined())
     {
@@ -208,7 +227,9 @@ void Hachiko::Scene::Load(const YAML::Node& node)
         UID child_uid = children_node[i][GAME_OBJECT_ID].as<UID>();
         const auto child = new GameObject(root, child_name.c_str(), child_uid);
         child->scene_owner = this;
-        child->Load(children_node[i]);
+        // Scene will never be loaded as a prefab, it needs to maintain the existing uids
+        constexpr bool as_prefab = false;
+        child->Load(children_node[i], as_prefab, meshes_only);
     }
 
     loaded = true;
@@ -216,7 +237,6 @@ void Hachiko::Scene::Load(const YAML::Node& node)
 
 void Hachiko::Scene::GetNavmeshData(std::vector<float>& scene_vertices, std::vector<int>& scene_triangles, std::vector<float>& scene_normals, AABB& scene_bounds)
 {
-    // Ensure that all scene is fresh (bounding boxes were not updated if using right after loading scene)
     root->Update();
     // TODO: Have an array of meshes on scene to not make this recursive ?
     scene_vertices.clear();
@@ -288,7 +308,7 @@ void Hachiko::Scene::Start() const
     root->Start();
 }
 
-void Hachiko::Scene::Update() const
+void Hachiko::Scene::Update()
 {
     OPTICK_CATEGORY("UpdateScene", Optick::Category::Scene);
     root->Update();

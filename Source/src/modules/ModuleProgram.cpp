@@ -7,6 +7,8 @@
 #include "components/ComponentSpotLight.h"
 #include "components/ComponentMeshRenderer.h"
 #include "resources/ResourceMaterial.h"
+#include "batching/GeometryBatch.h"
+#include "batching/TextureBatch.h"
 
 //TODO centralize cache on module program
 Hachiko::ModuleProgram::ModuleProgram() = default;
@@ -25,9 +27,9 @@ bool Hachiko::ModuleProgram::Init()
         return false;
     }
 
-    CreateCameraUBO();
-    CreateMaterialUBO();
-    CreateLightsUBO();
+    CreateUBO(UBOPoints::CAMERA, sizeof(CameraData));
+    CreateUBO(UBOPoints::LIGHTS, sizeof(Lights));
+
     return true;
 }
 
@@ -140,33 +142,45 @@ Hachiko::Program* Hachiko::ModuleProgram::CreateUserInterfaceTextProgram()
 
 void Hachiko::ModuleProgram::CreateUBO(UBOPoints binding_point, unsigned size)
 {
-    glGenBuffers(1, &ubos[static_cast<int>(binding_point)]);
-    glBindBuffer(GL_UNIFORM_BUFFER, ubos[static_cast<int>(binding_point)]);
+    glGenBuffers(1, &buffers[static_cast<int>(binding_point)]);
+    glBindBuffer(GL_UNIFORM_BUFFER, buffers[static_cast<int>(binding_point)]);
     glBufferData(GL_UNIFORM_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
-    glBindBufferBase(GL_UNIFORM_BUFFER, static_cast<int>(binding_point), ubos[static_cast<int>(binding_point)]);
+    glBindBufferBase(GL_UNIFORM_BUFFER, static_cast<int>(binding_point), buffers[static_cast<int>(binding_point)]);
     glBindBuffer(GL_UNIFORM_BUFFER, 0);
 }
 
 void Hachiko::ModuleProgram::UpdateUBO(UBOPoints binding_point, unsigned size, void* data, unsigned offset) const
 {
-    glBindBuffer(GL_UNIFORM_BUFFER, ubos[static_cast<int>(binding_point)]);
+    glBindBuffer(GL_UNIFORM_BUFFER, buffers[static_cast<int>(binding_point)]);
     glBufferSubData(GL_UNIFORM_BUFFER, offset, size, data);
     glBindBuffer(GL_UNIFORM_BUFFER, 0);
 }
 
-void Hachiko::ModuleProgram::CreateCameraUBO()
+void Hachiko::ModuleProgram::CreateSSBO(UBOPoints binding_point, unsigned size)
 {
-    CreateUBO(UBOPoints::CAMERA, sizeof(CameraData));
+    glGenBuffers(1, &buffers[static_cast<int>(binding_point)]);
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, buffers[static_cast<int>(binding_point)]);
+    glBufferData(GL_SHADER_STORAGE_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, static_cast<int>(binding_point), buffers[static_cast<int>(binding_point)]);
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
 }
 
-void Hachiko::ModuleProgram::CreateMaterialUBO()
+void Hachiko::ModuleProgram::UpdateSSBO(UBOPoints binding_point, unsigned size, void* data, unsigned offset) const
 {
-    CreateUBO(UBOPoints::MATERIAL, sizeof(MaterialData));
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, buffers[static_cast<int>(binding_point)]);
+    glBufferData(GL_SHADER_STORAGE_BUFFER, size, data, GL_DYNAMIC_DRAW);
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
 }
 
-void Hachiko::ModuleProgram::CreateLightsUBO()
+void* Hachiko::ModuleProgram::CreatePersistentBuffers(unsigned& buffer_id, int binding_point, unsigned size)
 {
-    CreateUBO(UBOPoints::LIGHTS, sizeof(Lights));
+    const unsigned flags = GL_MAP_WRITE_BIT | GL_MAP_PERSISTENT_BIT | GL_MAP_COHERENT_BIT;
+
+    glGenBuffers(1, &buffer_id);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer_id);
+    glBufferStorage(GL_ARRAY_BUFFER, size, 0, flags);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, binding_point, buffer_id); // CHECK THIS
+    return glMapBufferRange(GL_ARRAY_BUFFER, 0, size, flags);
 }
 
 bool Hachiko::ModuleProgram::CleanUp()
@@ -197,7 +211,7 @@ void Hachiko::ModuleProgram::UpdateCamera(const ComponentCamera* camera) const
 
 void Hachiko::ModuleProgram::UpdateCamera(const CameraData& camera_data) const
 {
-    UpdateUBO(UBOPoints::CAMERA, sizeof(CameraData), (void*) &camera_data);
+    UpdateUBO(UBOPoints::CAMERA, sizeof(CameraData), (void*)&camera_data);
 }
 
 void Hachiko::ModuleProgram::UpdateMaterial(const ComponentMeshRenderer* component_mesh_renderer) const
@@ -209,7 +223,7 @@ void Hachiko::ModuleProgram::UpdateMaterial(const ComponentMeshRenderer* compone
                                                                        static_cast<int>(TextureSlots::EMISSIVE)};
     main_program->BindUniformInts("textures", static_cast<int>(TextureSlots::COUNT), &texture_slots[0]);
 
-    const ResourceMaterial* material = component_mesh_renderer->GetMaterial();
+    const ResourceMaterial* material = component_mesh_renderer->GetResourceMaterial();
 
     if (material == nullptr)
     {

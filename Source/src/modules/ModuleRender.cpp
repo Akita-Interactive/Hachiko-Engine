@@ -136,7 +136,8 @@ UpdateStatus Hachiko::ModuleRender::PreUpdate(const float delta)
 UpdateStatus Hachiko::ModuleRender::Update(const float delta)
 {    
     ComponentCamera* camera = App->camera->GetRenderingCamera();
-    const Scene* active_scene = App->scene_manager->GetActiveScene();   
+    Scene* active_scene = App->scene_manager->GetActiveScene();   
+    active_scene->RebuildBatching();
 
 #ifdef PLAY_BUILD
     int width, height;
@@ -218,14 +219,22 @@ void Hachiko::ModuleRender::Draw(Scene* scene, ComponentCamera* camera, Componen
 
     GameObject* selected_go = App->editor->GetSelectedGameObject();
     RenderTarget* outline_target = nullptr;
+
+    BatchManager* batch_manager = scene->GetBatchManager();
+
+    batch_manager->ClearBatchesDrawList();
     for (RenderTarget& target : render_list.GetNodes())
     {
-        target.game_object->Draw(camera, program);
-        if (selected_go && target.game_object == selected_go)
+        batch_manager->AddDrawComponent(target.mesh);
+        // target.game_object->Draw(camera, program);
+        if (selected_go && target.mesh->GetGameObject() == selected_go)
         {
             outline_target = &target;
         }
     }
+
+    batch_manager->DrawBatches();
+    
     Program::Deactivate();
 
     if (outline_selection && outline_target)
@@ -236,7 +245,7 @@ void Hachiko::ModuleRender::Draw(Scene* scene, ComponentCamera* camera, Componen
 
         Program* outline_program = App->program->GetStencilProgram();
         outline_program->Activate();
-        outline_target->game_object->DrawStencil(camera, outline_program);
+        outline_target->mesh->GetGameObject()->DrawStencil(camera, outline_program);
         Program::Deactivate();
 
         glStencilMask(0XFF);

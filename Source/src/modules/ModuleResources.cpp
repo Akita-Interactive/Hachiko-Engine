@@ -226,14 +226,19 @@ void Hachiko::ModuleResources::AssetsLibraryCheck()
 
     // Ignores files that dont need any short of importing themselves
     // Metas are searched for based on what's on assets
-    std::vector<std::string> ignore_extensions {"meta"};
-    PathNode assets_folder = FileSystem::GetAllFiles(ASSETS_FOLDER, nullptr, &ignore_extensions);
-    GenerateLibrary(assets_folder);
+    std::vector<std::string> ignore_extensions {"meta"};    
 
+    // Call it this way to control asset import order (we need meshes to exist to import scene navmesh)
+    const auto& asset_paths = preferences->GetAssetsPathsMap();
+    for (auto it = asset_paths.begin(); it != asset_paths.end(); ++it)
+    {
+        const PathNode folder = FileSystem::GetAllFiles(it->second.c_str(), nullptr, &ignore_extensions);
+        GenerateLibrary(folder);
+    }
     HE_LOG("Assets/Library check finished.");
 }
 
-void Hachiko::ModuleResources::GenerateLibrary(const PathNode& folder) 
+void Hachiko::ModuleResources::GenerateLibrary(const PathNode& folder)
 {
     // Iterate all files found in assets except metas and scene
     for (const PathNode& path_node : folder.children)

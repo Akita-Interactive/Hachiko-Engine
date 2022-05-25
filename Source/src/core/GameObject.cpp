@@ -26,7 +26,6 @@
 #include "modules/ModuleSceneManager.h"
 #include "modules/ModuleScriptingSystem.h" // For instantiating Scripts.
 
-
 #include <debugdraw.h>
 
 Hachiko::GameObject::GameObject(const char* name, UID uid) :
@@ -36,17 +35,13 @@ Hachiko::GameObject::GameObject(const char* name, UID uid) :
     AddComponent(new ComponentTransform(this, float3::zero, Quat::identity, float3::one));
 }
 
-Hachiko::GameObject::GameObject(GameObject* parent, const float4x4& transform, const char* name, UID uid) :
-    name(name),
-    uid(uid)
+Hachiko::GameObject::GameObject(GameObject* parent, const float4x4& transform, const char* name, UID uid) : name(name), uid(uid)
 {
     AddComponent(new ComponentTransform(this, transform));
     SetNewParent(parent);
 }
 
-Hachiko::GameObject::GameObject(GameObject* parent, const char* name, UID uid, const float3& translation, const Quat& rotation, const float3& scale) :
-    name(name),
-    uid(uid)
+Hachiko::GameObject::GameObject(GameObject* parent, const char* name, UID uid, const float3& translation, const Quat& rotation, const float3& scale) : name(name), uid(uid)
 {
     AddComponent(new ComponentTransform(this, translation, rotation, scale));
     SetNewParent(parent);
@@ -124,18 +119,18 @@ void Hachiko::GameObject::AddComponent(Component* component)
     switch (component->GetType())
     {
     case (Component::Type::TRANSFORM):
-    {
-        components.push_back(component);
-        transform = static_cast<ComponentTransform*>(component);
-        component->SetGameObject(this);
-        break;
-    }
+        {
+            components.push_back(component);
+            transform = static_cast<ComponentTransform*>(component);
+            component->SetGameObject(this);
+            break;
+        }
     default:
-    {
-        components.push_back(component);
-        component->SetGameObject(this);
-        break;
-    }
+        {
+            components.push_back(component);
+            component->SetGameObject(this);
+            break;
+        }
     }
 }
 
@@ -401,7 +396,7 @@ void Hachiko::GameObject::Save(YAML::Node& node, bool as_prefab) const
     
     node[GAME_OBJECT_NAME] = name.c_str();
     node[GAME_OBJECT_ENABLED] = active;
-   
+
     for (unsigned i = 0; i < components.size(); ++i)
     {
         if (!as_prefab)
@@ -420,12 +415,11 @@ void Hachiko::GameObject::Save(YAML::Node& node, bool as_prefab) const
     }
 }
 
-void Hachiko::GameObject::Load(const YAML::Node& node, bool as_prefab)
+void Hachiko::GameObject::Load(const YAML::Node& node, bool as_prefab, bool meshes_only)
 {   
     const YAML::Node components_node = node[COMPONENT_NODE];
     for (unsigned i = 0; i < components_node.size(); ++i)
     {
-
         UID component_id;
         if (!as_prefab)
         {
@@ -437,12 +431,20 @@ void Hachiko::GameObject::Load(const YAML::Node& node, bool as_prefab)
         }
         
         bool active = components_node[i][COMPONENT_ENABLED].as<bool>();
-        const auto type = static_cast<Component::Type>(
-            components_node[i][COMPONENT_TYPE].as<int>());
+        const auto type = static_cast<Component::Type>(components_node[i][COMPONENT_TYPE].as<int>());
 
         Component* component = nullptr;
 
-        if (type == Component::Type::SCRIPT)
+        if (meshes_only)
+        {
+            if (type == Component::Type::MESH_RENDERER)
+            {
+                component = CreateComponent(type);
+            }
+            continue;
+        }
+
+        else if(type == Component::Type::SCRIPT)
         {
             std::string script_name =
                 components_node[i][SCRIPT_NAME].as<std::string>();
@@ -512,8 +514,7 @@ Hachiko::GameObject* Hachiko::GameObject::Find(UID id) const
     return nullptr;
 }
 
-std::vector<Hachiko::Component*> 
-Hachiko::GameObject::GetComponents(Component::Type type) const
+std::vector<Hachiko::Component*> Hachiko::GameObject::GetComponents(Component::Type type) const
 {
     std::vector<Component*> components_of_type;
 
@@ -530,37 +531,30 @@ Hachiko::GameObject::GetComponents(Component::Type type) const
     return components_of_type;
 }
 
-std::vector<Hachiko::Component*>
-Hachiko::GameObject::GetComponentsInDescendants(Component::Type type) const
+std::vector<Hachiko::Component*> Hachiko::GameObject::GetComponentsInDescendants(Component::Type type) const
 {
     std::vector<Component*> components_in_descendants;
 
     for (GameObject* child : children)
     {
-        std::vector<Component*> components_in_child =
-            child->GetComponents(type);
+        std::vector<Component*> components_in_child = child->GetComponents(type);
 
         for (Component* component_in_child : components_in_child)
         {
             components_in_descendants.push_back(component_in_child);
         }
 
-        std::vector<Component*> components_in_childs_descendants =
-            child->GetComponentsInDescendants(type);
-
-        for (Component* component_in_childs_descendants :
-             components_in_childs_descendants)
+        std::vector<Component*> components_in_childs_descendants = child->GetComponentsInDescendants(type);
+        for (Component* component_in_childs_descendants : components_in_childs_descendants)
         {
-            components_in_descendants.push_back(
-                component_in_childs_descendants);
+            components_in_descendants.push_back(component_in_childs_descendants);
         }
     }
 
     return components_in_descendants;
 }
 
-Hachiko::GameObject* Hachiko::GameObject::GetFirstChildWithName(
-    const std::string& child_name) const
+Hachiko::GameObject* Hachiko::GameObject::GetFirstChildWithName(const std::string& child_name) const
 {
     for (GameObject* child : children)
     {

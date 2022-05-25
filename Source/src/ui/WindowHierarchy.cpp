@@ -68,6 +68,7 @@ bool Hachiko::WindowHierarchy::RecursiveDraw(GameObject* game_object)
 
 bool Hachiko::WindowHierarchy::DrawGameObject(GameObject* game_object, bool stop)
 {
+    ImGui::PushID(game_object);
     ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow;
 
     if (game_object->children.empty())
@@ -163,6 +164,8 @@ bool Hachiko::WindowHierarchy::DrawGameObject(GameObject* game_object, bool stop
     }
 
     ImGui::PopStyleColor();
+
+    ImGui::PopID();
 
     return stop;
 }

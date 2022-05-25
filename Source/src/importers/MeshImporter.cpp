@@ -119,6 +119,8 @@ Hachiko::Resource* Hachiko::MeshImporter::Load(UID id)
         size_bytes = sizeof(float) * sizes[static_cast<int>(ResourceMesh::Buffers::NORMALS)];
         memcpy(mesh->normals, cursor, size_bytes);
         cursor += size_bytes;
+
+        mesh->layout.normals = true;
     }
 
     if (sizes[static_cast<int>(ResourceMesh::Buffers::TEX_COORDS)] > 0)
@@ -127,6 +129,8 @@ Hachiko::Resource* Hachiko::MeshImporter::Load(UID id)
         size_bytes = sizeof(float) * sizes[static_cast<int>(ResourceMesh::Buffers::TEX_COORDS)];
         memcpy(mesh->tex_coords, cursor, size_bytes);
         cursor += size_bytes;
+
+        mesh->layout.text_coords = true;
     }
     
     if (sizes[static_cast<int>(ResourceMesh::Buffers::TANGENTS)] > 0)
@@ -160,6 +164,7 @@ Hachiko::Resource* Hachiko::MeshImporter::Load(UID id)
         memcpy(mesh->bones.get(), cursor, size_bytes);
         cursor += size_bytes;
 
+        mesh->layout.bones = true;
         mesh->num_bones = sizes[static_cast<int>(ResourceMesh::Buffers::BONES)];
     }
 
@@ -185,6 +190,8 @@ void Hachiko::MeshImporter::ImportFromAssimp(UID uid, const aiMesh* ai_mesh)
         mesh->GenerateBoneData(ai_mesh, 1);
         mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::BONES_INDICES)] = 4 * ai_mesh->mNumVertices;
         mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::BONES_WEIGHTS)] = ai_mesh->mNumVertices;
+
+        mesh->layout.bones = true;
     }
     else
     {
@@ -198,6 +205,8 @@ void Hachiko::MeshImporter::ImportFromAssimp(UID uid, const aiMesh* ai_mesh)
         mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::NORMALS)] = ai_mesh->mNumVertices * 3;
         mesh->normals = new float[mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::NORMALS)]];
         memcpy(mesh->normals, ai_mesh->mNormals, mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::NORMALS)] * sizeof(float));
+
+        mesh->layout.normals = true;
     }
     else
     {
@@ -212,6 +221,8 @@ void Hachiko::MeshImporter::ImportFromAssimp(UID uid, const aiMesh* ai_mesh)
         {
             memcpy(&mesh->tex_coords[i * 2], &ai_mesh->mTextureCoords[0][i], 2 * sizeof(unsigned));
         }
+
+        mesh->layout.text_coords = true;
     }
     else
     {

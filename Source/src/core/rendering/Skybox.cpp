@@ -17,7 +17,6 @@ Hachiko::Skybox::Skybox(TextureCube new_cube) : cube(new_cube)
 {
     cube = ModuleTexture::LoadCubeMap(cube);
     CreateBuffers();
-    
 }
 
 Hachiko::Skybox::~Skybox()
@@ -36,6 +35,13 @@ void Hachiko::Skybox::Draw(ComponentCamera* camera) const
     program->Activate();
     // Draw skybox
     glBindVertexArray(vao);
+
+    //const int texture_slots = 0;
+    //App->program->GetMainProgram()->BindUniformInts("skybox", 1, &texture_slots);
+
+    GLint skybox_binding = glGetUniformLocation(program->GetId(), "skybox");
+    glUniform1i(skybox_binding, 0);
+
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_CUBE_MAP, cube.id);
     glDrawArrays(GL_TRIANGLES, 0, 36);

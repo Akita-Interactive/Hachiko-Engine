@@ -157,6 +157,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\batching\GeometryBatch.cpp" />
+    <ClCompile Include="src\batching\BatchManager.cpp" />
+    <ClCompile Include="src\batching\TextureBatch.cpp" />
     <ClCompile Include="src\importers\NavmeshImporter.cpp" />
     <ClCompile Include="src\components\ComponentAudioListener.cpp" />
     <ClCompile Include="src\components\ComponentAudioSource.cpp" />
@@ -455,6 +458,9 @@
     <ClCompile Include="vendors\recast\include\Recast\SampleInterfaces.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\batching\DrawCommand.h" />
+    <ClInclude Include="src\batching\GeometryBatch.h" />
+    <ClInclude Include="src\batching\BatchManager.h" />
     <ClInclude Include="src\importers\NavmeshImporter.h" />
     <ClInclude Include="src\components\ComponentAudioListener.h" />
     <ClInclude Include="src\components\ComponentAudioSource.h" />
@@ -520,6 +526,7 @@
     <ClInclude Include="src\ui\WindowResource.h" />
     <ClInclude Include="src\utils\Cache.h" />
     <ClInclude Include="src\utils\StringUtils.h" />
+    <ClInclude Include="src\batching\TextureBatch.h" />
     <ClInclude Include="vendors\GLFont\FontAtlas.h" />
     <ClInclude Include="vendors\GLFont\FTLabel.h" />
     <ClInclude Include="vendors\GLFont\GLFont.h" />

@@ -69,6 +69,6 @@ namespace Hachiko
         int max_width{};
         int max_height{};
         int refresh_rate{};
-        bool vsync{};
+        bool vsync = true;
     };
 }

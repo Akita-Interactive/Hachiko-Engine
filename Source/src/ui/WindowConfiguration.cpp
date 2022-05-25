@@ -7,6 +7,7 @@
 #include "modules/ModuleWindow.h"
 #include "modules/ModuleSceneManager.h"
 #include "modules/ModuleAudio.h"
+#include "batching/BatchManager.h"
 
 #include "components/ComponentCamera.h"
 #include "core/preferences/src/EditorPreferences.h"
@@ -47,6 +48,11 @@ void Hachiko::WindowConfiguration::Update()
         App->window->OptionsMenu();
         App->renderer->PerformanceMenu();
 
+    }
+
+    if (ImGui::CollapsingHeader("Batching"))
+    {
+        App->scene_manager->GetActiveScene()->GetBatchManager()->DebugMenu();
     }
     ImGui::End();
 }

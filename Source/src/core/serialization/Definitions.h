@@ -151,7 +151,6 @@
 #define GAME_OBJECT_NAME "name"
 #define GAME_OBJECT_ENABLED "enabled"
 #define GAME_OBJECT_ID "id"
-#define GAME_OBJECT_PARENT_ID "parent_id"
 
 // Component
 #define COMPONENT_NODE "component"

@@ -4,6 +4,9 @@
 #include "resources/ResourceTexture.h"
 #include "modules/ModuleResources.h"
 
+#include "GLFont.h"
+#include "FTLabel.h"
+
 Hachiko::ModuleTexture::ModuleTexture() = default;
 
 Hachiko::ModuleTexture::~ModuleTexture() = default;
@@ -13,6 +16,13 @@ bool Hachiko::ModuleTexture::Init()
     // Initialize image library
     ilInit();
 
+    // Initialize fonts library
+    if (FT_Init_FreeType(&freetype_lib))
+    {
+        HE_LOG("Failed to load FreeType library.");
+        return false;
+    }
+
     return true;
 }
 
@@ -20,6 +30,9 @@ bool Hachiko::ModuleTexture::CleanUp()
 {
     // Release image library
     ilShutDown();
+
+    // Release fonts library
+    FT_Done_FreeType(freetype_lib);
 
     return true;
 }
@@ -54,7 +67,7 @@ Hachiko::ResourceTexture* Hachiko::ModuleTexture::ImportTextureResource(UID uid,
 
     DeleteImg(img_id);
 
-    return texture;    
+    return texture;
 }
 
 Hachiko::Texture Hachiko::ModuleTexture::Load(const char* path, bool flip)
@@ -122,7 +135,7 @@ Hachiko::TextureCube Hachiko::ModuleTexture::LoadCubeMap(TextureCube& cube)
         // iluFlipImage();
         // Take advantage of opengl enum with index
         glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
-                     0, cube_face->bpp, cube_face->width, cube_face->height,
+                     0, cube_face->format, cube_face->width, cube_face->height,//0, cube_face->bpp, cube_face->width, cube_face->height,
                      0, cube_face->format, GL_UNSIGNED_BYTE, cube_face->data);
     }
 
@@ -131,6 +144,8 @@ Hachiko::TextureCube Hachiko::ModuleTexture::LoadCubeMap(TextureCube& cube)
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+    glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 
     return cube;
 }
@@ -148,6 +163,24 @@ void Hachiko::ModuleTexture::Unbind(unsigned slot)
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+Hachiko::Font Hachiko::ModuleTexture::LoadFont(const char* path)
+{
+    Font font;
+    font.path = path;
+    try
+    {
+        font.gl_font = std::shared_ptr<GLFont>(new GLFont(path, freetype_lib));
+        font.loaded = true;
+
+        return font;
+    }
+    catch (std::exception& e)
+    {
+        // Catch exception and return unloaded font if fails
+        return font;
+    }
+}
+
 void SetOption(unsigned option, unsigned value)
 {
     glTexParameteri(GL_TEXTURE_2D, option, value);
@@ -157,8 +190,8 @@ void Hachiko::ModuleTexture::OptionsMenu() const
 {
     const char* labels_mag[] = {"Linear", "Nearest"};
     const unsigned values_mag[] = {GL_LINEAR, GL_NEAREST};
-    const char* labels_min[] = {"Nearest", "Linear", "Nearest Mipmaps Nearest Criteria", "Nearest Mipmap Linear Criteria", "Linear Mipmaps (Two Closest) Nearest Criteria",
-                                "Linear Mipmaps (Two Closest) Linear Criteria"};
+    const char* labels_min[]
+        = {"Nearest", "Linear", "Nearest Mipmaps Nearest Criteria", "Nearest Mipmap Linear Criteria", "Linear Mipmaps (Two Closest) Nearest Criteria", "Linear Mipmaps (Two Closest) Linear Criteria"};
     const unsigned values_min[] = {GL_NEAREST, GL_LINEAR, GL_NEAREST_MIPMAP_NEAREST, GL_LINEAR_MIPMAP_NEAREST, GL_NEAREST_MIPMAP_LINEAR, GL_LINEAR_MIPMAP_LINEAR};
     static int mag_filter = 0; // Default is GL_LINEAR
     static int min_filter = 3; // Default is GL_NEAREST_MIPMAP_LINEAR
@@ -180,6 +213,11 @@ unsigned int Hachiko::ModuleTexture::LoadImg(const char* path, bool flip)
     if (flip)
         iluFlipImage();
     return img_id;
+}
+
+::byte* Hachiko::ModuleTexture::GetData()
+{
+    return ilGetData();
 }
 
 void Hachiko::ModuleTexture::DeleteImg(unsigned& img_id)
