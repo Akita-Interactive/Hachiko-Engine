@@ -6,7 +6,6 @@
 #include "ModuleEditor.h"
 #include "ModuleInput.h"
 #include "ModuleEvent.h"
-#include "ModuleWindow.h"
 
 #include "core/Scene.h"
 #include "core/GameObject.h"
@@ -24,7 +23,14 @@ Hachiko::ModuleUserInterface::~ModuleUserInterface() = default;
 bool Hachiko::ModuleUserInterface::Init()
 {
     CreateSquare();
-    std::function handle_mouse_action = [&](Event& evt) { HandleMouseAction(evt); };
+    std::function handle_mouse_action = [&](Event& evt) {
+        const auto& payload = evt.GetEventData<MouseEventPayload>();
+        const auto action = payload.GetAction();
+        if (action == MouseEventPayload::Action::CLICK)
+        {
+            HandleMouseAction(payload.GetCoords());
+        }
+    };
     App->event->Subscribe(Event::Type::MOUSE_ACTION, handle_mouse_action);
     return true;
 }
@@ -131,12 +137,8 @@ void Hachiko::ModuleUserInterface::RecursiveCheckMousePos(GameObject* game_objec
     }
 }
 
-void Hachiko::ModuleUserInterface::HandleMouseAction(Hachiko::Event& evt)
+void Hachiko::ModuleUserInterface::HandleMouseAction(const float2& coords)
 {
-    const auto& payload = evt.GetEventData<MouseEventPayload>();
-    MouseEventPayload::Action action = payload.GetAction();
-    float2 coords = payload.GetCoords();
-
 #ifdef PLAY_BUILD
     int height, width;
     App->window->GetWindowSize(width, height);
@@ -151,7 +153,7 @@ void Hachiko::ModuleUserInterface::HandleMouseAction(Hachiko::Event& evt)
     RecursiveCheckMousePos(App->scene_manager->GetActiveScene()->GetRoot(), mouse_pos, is_click);
 #else
     const WindowScene* w_scene = App->editor->GetSceneWindow();
-    float2 click_pos = w_scene->ImguiToScreenPos(coords);
+    const float2 click_pos = w_scene->ImguiToScreenPos(coords);
 
     constexpr bool is_click = true;
     RecursiveCheckMousePos(App->scene_manager->GetActiveScene()->GetRoot(), click_pos, is_click);

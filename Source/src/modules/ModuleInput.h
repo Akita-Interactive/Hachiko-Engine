@@ -106,7 +106,7 @@ namespace Hachiko
         // TODO: Make ModuleWindow store window size instead of monitor
         // size. And get width and height from there.
         void UpdateWindowSizeInversedCaches(int width, int height);
-        void NotifyMouseAction(float2 position, MouseEventPayload::Action action);
+        void NotifyMouseAction(const float2& position, MouseEventPayload::Action action);
 
     private:
         KeyState* keyboard = nullptr;

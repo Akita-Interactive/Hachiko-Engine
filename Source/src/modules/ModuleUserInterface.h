@@ -1,9 +1,5 @@
 #pragma once
 #include "Module.h"
-#include "Globals.h"
-#include "MathGeoLib.h"
-
-#include "ui/WindowScene.h"
 
 namespace Hachiko
 {
@@ -23,7 +19,7 @@ namespace Hachiko
         void RecursiveDrawUI(GameObject* game_object, Program* img_program, Program* txt_program);
         void RecursiveCheckMousePos(GameObject* game_object, const float2& mouse_pos, bool is_click = false);
         
-        void HandleMouseAction(Event& evt);
+        void HandleMouseAction(const float2&);
 
         void CreateSquare();
         void BindSquare();

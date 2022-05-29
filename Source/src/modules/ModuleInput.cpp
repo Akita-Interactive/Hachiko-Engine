@@ -181,7 +181,7 @@ void Hachiko::ModuleInput::UpdateWindowSizeInversedCaches(int width,
     _window_height_inverse = 1.0f / height;
 }
 
-void Hachiko::ModuleInput::NotifyMouseAction(float2 position, MouseEventPayload::Action action)
+void Hachiko::ModuleInput::NotifyMouseAction(const float2& position, MouseEventPayload::Action action)
 {
     Event mouse_action(Event::Type::MOUSE_ACTION);
     mouse_action.SetEventData<MouseEventPayload>(action, position);
