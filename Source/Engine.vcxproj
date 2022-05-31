@@ -161,6 +161,11 @@
     <ClCompile Include="src\batching\GeometryBatch.cpp" />
     <ClCompile Include="src\batching\BatchManager.cpp" />
     <ClCompile Include="src\batching\TextureBatch.cpp" />
+    <ClCompile Include="src\core\particles\modules\ColorParticleModule.cpp" />
+    <ClCompile Include="src\core\particles\modules\ForceParticleModule.cpp" />
+    <ClCompile Include="src\core\particles\modules\SizeParticleModule.cpp" />
+    <ClCompile Include="src\core\particles\modules\SpeedParticleModule.cpp" />
+    <ClCompile Include="src\core\particles\ParticleModule.cpp" />
     <ClCompile Include="src\importers\NavmeshImporter.cpp" />
     <ClCompile Include="src\components\ComponentAudioListener.cpp" />
     <ClCompile Include="src\components\ComponentAudioSource.cpp" />
@@ -230,7 +235,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="vendors\imgui\imgui_color_gradient.cpp" />
+    <ClCompile Include="src\components\ComponentParticleSystem.cpp" />
+    <ClCompile Include="vendors\imgui\imgui_color_gradient.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="vendors\imgui\imgui_stdlib.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -680,6 +690,13 @@
     <ClInclude Include="src\batching\DrawCommand.h" />
     <ClInclude Include="src\batching\GeometryBatch.h" />
     <ClInclude Include="src\batching\BatchManager.h" />
+    <ClInclude Include="src\core\particles\modules\ColorParticleModule.h" />
+    <ClInclude Include="src\core\particles\modules\ForceParticleModule.h" />
+    <ClInclude Include="src\core\particles\modules\SizeParticleModule.h" />
+    <ClInclude Include="src\core\particles\modules\SpeedParticleModule.h" />
+    <ClInclude Include="src\core\particles\ParticleModule.h" />
+    <ClInclude Include="src\core\particles\ParticleSystem.h" />
+    <ClInclude Include="src\events\CurveEditorEventPayload.h" />
     <ClInclude Include="src\importers\NavmeshImporter.h" />
     <ClInclude Include="src\components\ComponentAudioListener.h" />
     <ClInclude Include="src\components\ComponentAudioSource.h" />
@@ -747,6 +764,11 @@
     <ClInclude Include="src\modules\ModuleDebugMode.h" />
     <ClInclude Include="src\modules\ModuleUserInterface.h" />
     <ClInclude Include="src\ui\editor\Theme.h" />
+    <ClInclude Include="src\ui\widgets\AxisSlider.h" />
+    <ClInclude Include="src\ui\widgets\CollapsingHeader.h" />
+    <ClInclude Include="src\ui\widgets\Combo.h" />
+    <ClInclude Include="src\ui\widgets\MultiTypeSelector.h" />
+    <ClInclude Include="src\ui\widgets\Widgets.h" />
     <ClInclude Include="src\ui\WindowResource.h" />
     <ClInclude Include="src\ui\WindowStateMachine.h" />
     <ClInclude Include="src\utils\Cache.h" />
@@ -1050,6 +1072,8 @@
     <ClInclude Include="vendors\ImGuiFileDialog-0.6.3\ImGuiFileDialogConfig.h" />
     <ClInclude Include="vendors\ImGuiFileDialog-0.6.3\stb\stb_image.h" />
     <ClInclude Include="vendors\ImGuiFileDialog-0.6.3\stb\stb_image_resize.h" />
+    <ClInclude Include="src\components\ComponentParticleSystem.h" />
+    <ClInclude Include="vendors\imgui\curve.h" />
     <ClInclude Include="vendors\imgui\imgui_color_gradient.h" />
     <ClInclude Include="vendors\imgui\imgui_stdlib.h" />
     <ClInclude Include="src\core\hepch.h" />

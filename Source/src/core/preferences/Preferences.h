@@ -2,9 +2,9 @@
 
 #include <yaml-cpp/yaml.h>
 
-// TODO: This class has to be removed as each preference type are different from eachother
 namespace Hachiko
 {
+    // TODO: This class has to be removed as each preference type are different from eachother
     class Preferences
     {
     public:

@@ -570,12 +570,11 @@ bool Hachiko::ModuleDebugDraw::CleanUp()
 
 UpdateStatus Hachiko::ModuleDebugDraw::Update(const float delta)
 {
-#ifndef PLAY_BUILD
-    dd::xzSquareGrid(-30, 30, -0.1f, 1.0f, dd::colors::Gray);
-#endif
-
     if (debug_draw)
     {
+#ifndef PLAY_BUILD
+        dd::xzSquareGrid(-30, 30, -0.1f, 1.0f, dd::colors::Gray);
+#endif
         Scene* scene = App->scene_manager->GetActiveScene();
         if (scene)
         {

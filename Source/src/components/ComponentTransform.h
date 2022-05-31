@@ -41,12 +41,6 @@ namespace Hachiko
         void SetGlobalRotation(const Quat& new_rotation);
         void SetGlobalRotationEuler(const float3& new_rotation_euler);
 
-
-        static Type GetType()
-        {
-            return Type::TRANSFORM;
-        };
-
         [[nodiscard]] bool IsDirty() const
         {
             return dirty;

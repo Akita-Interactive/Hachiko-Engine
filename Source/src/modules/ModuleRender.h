@@ -17,7 +17,8 @@ namespace Hachiko
     {
         unsigned char* name;
         unsigned char* brand;
-        float vram_budget_mb;
+        int vram_budget_mb = 0;
+        int vram_free = 0;
     };
 
     struct GlVersion
@@ -138,13 +139,13 @@ namespace Hachiko
         bool render_forward_pass = true;
 
         // float4 clear_color;
-        bool draw_skybox = true;
+        bool draw_skybox = false;
         bool draw_navmesh = false;
         bool outline_selection = true;
 
         GpuData gpu{};
         GlVersion gl{};
-        int vram_free{};
+
 
         static const unsigned n_bins = 50;
         std::vector<float> fps_log;

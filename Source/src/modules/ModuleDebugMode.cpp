@@ -14,12 +14,22 @@ bool Hachiko::ModuleDebugMode::Init()
 	hw_info.cpu = SDL_GetCPUCount();
 	hw_info.ram = (float)SDL_GetSystemRAM() / 1024.0f;
 	hw_info.gpu = (unsigned char*)glGetString(GL_RENDERER);
-	hw_info.gpu_vendor = (unsigned char*)glGetString(GL_VENDOR);
-	glGetIntegerv(GL_GPU_MEMORY_INFO_TOTAL_AVAILABLE_MEMORY_NVX, &hw_info.vram_capacity);
-	glGetIntegerv(GL_GPU_MEMORY_INFO_CURRENT_AVAILABLE_VIDMEM_NVX, &hw_info.vram_free);
-	SDL_GetVersion(&hw_info.sdl_version);
-	
-	SetupWindow();
+    hw_info.gpu_vendor = (unsigned char*)glGetString(GL_VENDOR);
+    SDL_GetVersion(&hw_info.sdl_version);
+
+    GLint count;
+    glGetIntegerv(GL_NUM_EXTENSIONS, &count);
+    for (GLint i = 0; i < count; ++i)
+    {
+        const char* extension = reinterpret_cast<const char*>(glGetStringi(GL_EXTENSIONS, i));
+        if (!strcmp(extension, "GL_NVX_gpu_memory_info"))
+        {
+            glGetIntegerv(GL_GPU_MEMORY_INFO_TOTAL_AVAILABLE_MEMORY_NVX, &hw_info.vram_capacity);
+            glGetIntegerv(GL_GPU_MEMORY_INFO_CURRENT_AVAILABLE_VIDMEM_NVX, &hw_info.vram_free);
+        }
+    }
+
+    SetupWindow();
 
 	return true;
 }

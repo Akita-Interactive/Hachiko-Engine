@@ -2,6 +2,7 @@
 #include "ComponentTransform.h"
 
 #include "modules/ModuleEvent.h"
+#include "ui/widgets/AxisSlider.h"
 
 /**     CONSTRUCTORS    **/
 
@@ -15,7 +16,6 @@ Hachiko::ComponentTransform::ComponentTransform(GameObject* container)
     , local_scale(float3::zero)
     , local_rotation(Quat::identity)
     , local_rotation_euler(float3::zero)
-
     , right(float3::unitX)
     , up(float3::unitY)
     , front(float3::unitZ)
@@ -313,32 +313,30 @@ void Hachiko::ComponentTransform::DrawGui()
     static bool locked_scale = true;
     static bool debug_transforms = false;
 
-    if (ImGui::CollapsingHeader("Local Transform", ImGuiTreeNodeFlags_DefaultOpen))
+    if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen))
     {
         float3 position_local_editor = local_position;
         float3 scale_local_editor = local_scale;
         float3 rotation_local_editor = local_rotation_euler;
-        if (ImGui::DragFloat3("Local Position", position_local_editor.ptr(), 0.1f, -inf, inf))
+
+        if(Widgets::AxisSlider("Position",position_local_editor))
         {
             SetLocalPosition(position_local_editor);
         }
-        //this checks on the previous item, so we need the check after every DragFloat3
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
-        if (ImGui::DragFloat3("Local Rotation", rotation_local_editor.ptr(), 0.1f, -inf, inf))
+        if(Widgets::AxisSlider("Rotation",rotation_local_editor))
         {
             SetLocalRotationEuler(rotation_local_editor);
         }
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
-        if (ImGui::DragFloat3("Local Scale", scale_local_editor.ptr(), 0.1f, 0.0001f, inf, "%.3f", ImGuiSliderFlags_AlwaysClamp))
+        Widgets::AxisSliderConfig scale_config;
+        scale_config.min = float3(0.001f);
+        if(AxisSlider("Scale",scale_local_editor, &scale_config))
         {
             SetLocalScale(scale_local_editor);
         }
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
-        
 
-        ImGui::Checkbox("Debug Transforms", &debug_transforms);
+        ImGui::Checkbox("Debug info", &debug_transforms);
         if (debug_transforms)
         {
             float3 position_editor = position;
@@ -346,41 +344,24 @@ void Hachiko::ComponentTransform::DrawGui()
             float3 scale_editor = scale;
 
             ImGui::Separator();
-            if (ImGui::DragFloat3("Position", position_editor.ptr(), 0.1f, -inf, inf))
+            ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 0, 0, 255));
+            ImGui::Text("Global transform");
+            ImGui::PopStyleColor();
+
+            if (Widgets::AxisSlider("Position", position_editor))
             {
                 SetGlobalPosition(position_editor);
             }
-            CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
-            if (ImGui::DragFloat3("Local Rotation", rotation_local_editor.ptr(), 0.1f, -inf, inf))
-            {
-                SetLocalRotationEuler(rotation_local_editor);
-            }
-            CREATE_HISTORY_ENTRY_AFTER_EDIT()
-
-            if (ImGui::DragFloat3("Rotation", rotation_editor.ptr(), 0.1f, -inf, inf))
+            if (Widgets::AxisSlider("Rotation", rotation_editor))
             {
                 SetGlobalRotationEuler(rotation_editor);
             }
-            CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
-            if (ImGui::DragFloat3("Local Rotation", rotation_local_editor.ptr(), 0.1f, -inf, inf))
-            {
-                SetLocalRotationEuler(rotation_local_editor);
-            }
-            CREATE_HISTORY_ENTRY_AFTER_EDIT()
-
-            if (ImGui::DragFloat3("Scale", scale_editor.ptr(), 0.1f, 0.0001f, inf, "%.3f", ImGuiSliderFlags_AlwaysClamp))
+            if (Widgets::AxisSlider("Scale", scale_editor, &scale_config))
             {
                 SetGlobalScale(scale_editor);
             }
-            CREATE_HISTORY_ENTRY_AFTER_EDIT()
-
-            if (ImGui::DragFloat3("Local Rotation", rotation_local_editor.ptr(), 0.1f, -inf, inf))
-            {
-                SetLocalRotationEuler(rotation_local_editor);
-            }
-            CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
             ImGui::Separator();
             ImGui::Text("Local");

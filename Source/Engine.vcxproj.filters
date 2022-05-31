@@ -375,18 +375,6 @@
     <ClCompile Include="src\importers\ImporterManager.cpp">
       <Filter>Importers</Filter>
     </ClCompile>
-    <ClCompile Include="src\importers\MaterialImporter.cpp">
-      <Filter>Importers\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\importers\MeshImporter.cpp">
-      <Filter>Importers\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Importers\ModelImporter.cpp">
-      <Filter>Importers\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Importers\TextureImporter.cpp">
-      <Filter>Importers\Source</Filter>
-    </ClCompile>
     <ClCompile Include="src\ui\WindowResource.cpp">
       <Filter>UI\Window</Filter>
     </ClCompile>
@@ -425,9 +413,6 @@
     </ClCompile>
     <ClCompile Include="src\components\animation\AnimationController.cpp">
       <Filter>Core\Components\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="src\importers\AnimationImporter.cpp">
-      <Filter>Importers\Source</Filter>
     </ClCompile>
     <ClCompile Include="src\resources\ResourceAnimation.cpp">
       <Filter>Resources</Filter>
@@ -486,9 +471,6 @@
     <ClCompile Include="src\core\logging\ConsoleLogger.cpp">
       <Filter>Logging</Filter>
     </ClCompile>
-    <ClCompile Include="src\importers\FontImporter.cpp">
-      <Filter>Importers\Source</Filter>
-    </ClCompile>
     <ClCompile Include="src\resources\ResourceFont.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
@@ -531,7 +513,6 @@
     <ClCompile Include="vendors\recast\include\Recast\SampleInterfaces.cpp">
       <Filter>Vendors\Recast</Filter>
     </ClCompile>
-    <ClCompile Include="src\modules\ModuleSceneManager.cpp" />
     <ClCompile Include="src\ui\WindowStateMachine.cpp">
       <Filter>UI\Window</Filter>
     </ClCompile>
@@ -562,8 +543,6 @@
     <ClCompile Include="src\core\preferences\src\AudioPreferences.cpp">
       <Filter>Core\Preferences\Source</Filter>
     </ClCompile>
-    <ClCompile Include="src\resources\ResourcePrefab.cpp" />
-    <ClCompile Include="src\resources\ResourceScene.cpp" />
     <ClCompile Include="src\components\ComponentAudioListener.cpp">
       <Filter>Core\Components</Filter>
     </ClCompile>
@@ -573,16 +552,9 @@
     <ClCompile Include="src\components\ComponentBillboard.cpp">
       <Filter>Core\Components</Filter>
     </ClCompile>
-    <ClCompile Include="vendors\imgui\imgui_color_gradient.cpp">
-      <Filter>Vendors\ImGui</Filter>
-    </ClCompile>
     <ClCompile Include="src\core\rendering\GBuffer.cpp">
       <Filter>Core\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="src\batching\GeometryBatch.cpp" />
-    <ClCompile Include="src\batching\BatchManager.cpp" />
-    <ClCompile Include="src\batching\TextureBatch.cpp" />
-    <ClCompile Include="src\resources\ResourceSkybox.cpp" />
     <ClCompile Include="vendors\imgui-node-editor-0.9\NodeEditor\Source\crude_json.cpp">
       <Filter>Vendors\NodeEditor</Filter>
     </ClCompile>
@@ -610,8 +582,65 @@
     <ClCompile Include="src\importers\VideoImporter.cpp">
       <Filter>Importers\Source</Filter>
     </ClCompile>
+    <ClCompile Include="src\components\ComponentParticleSystem.cpp">
+      <Filter>Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\imgui\imgui_color_gradient.cpp">
+      <Filter>Vendors\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\importers\PrefabImporter.cpp">
       <Filter>Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\importers\AnimationImporter.cpp">
+      <Filter>Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\importers\FontImporter.cpp">
+      <Filter>Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\importers\MaterialImporter.cpp">
+      <Filter>Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\importers\MeshImporter.cpp">
+      <Filter>Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\importers\ModelImporter.cpp">
+      <Filter>Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\importers\TextureImporter.cpp">
+      <Filter>Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\batching\TextureBatch.cpp">
+      <Filter>Core\Rendering\Batching</Filter>
+    </ClCompile>
+    <ClCompile Include="src\batching\GeometryBatch.cpp">
+      <Filter>Core\Rendering\Batching</Filter>
+    </ClCompile>
+    <ClCompile Include="src\batching\BatchManager.cpp">
+      <Filter>Core\Rendering\Batching</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resources\ResourcePrefab.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resources\ResourceScene.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\particles\ParticleModule.cpp">
+      <Filter>Core\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resources\ResourceSkybox.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\particles\modules\ColorParticleModule.cpp">
+      <Filter>Core\Particles\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\particles\modules\ForceParticleModule.cpp">
+      <Filter>Core\Particles\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\particles\modules\SizeParticleModule.cpp">
+      <Filter>Core\Particles\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\particles\modules\SpeedParticleModule.cpp">
+      <Filter>Core\Particles\Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1223,18 +1252,6 @@
     <ClInclude Include="src\importers\ImporterManager.h">
       <Filter>Importers</Filter>
     </ClInclude>
-    <ClInclude Include="src\importers\MaterialImporter.h">
-      <Filter>Importers\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="src\importers\MeshImporter.h">
-      <Filter>Importers\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Importers\ModelImporter.h">
-      <Filter>Importers\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Importers\TextureImporter.h">
-      <Filter>Importers\Source</Filter>
-    </ClInclude>
     <ClInclude Include="src\ui\WindowResource.h">
       <Filter>UI\Window</Filter>
     </ClInclude>
@@ -1265,31 +1282,21 @@
     <ClInclude Include="src\components\ISelectable.h">
       <Filter>Core\Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\serialization\TypeConverter.h" />
-    <ClInclude Include="src\core\serialization\TypeConverter.h" />
     <ClInclude Include="src\modules\ModuleDebugMode.h">
       <Filter>Modules\Headers</Filter>
     </ClInclude>
     <ClInclude Include="src\modules\ModuleUserInterface.h">
       <Filter>Modules\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\serialization\TypeConverter.h" />
-    <ClInclude Include="src\core\serialization\TypeConverter.h" />
     <ClInclude Include="src\components\ComponentAnimation.h">
       <Filter>Core\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\animation\AnimationController.h">
       <Filter>Core\Components\animation</Filter>
     </ClInclude>
-    <ClInclude Include="src\importers\AnimationImporter.h">
-      <Filter>Importers\Source</Filter>
-    </ClInclude>
     <ClInclude Include="src\resources\ResourceAnimation.h">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\serialization\TypeConverter.h" />
-    <ClInclude Include="src\core\serialization\TypeConverter.h" />
-    <ClInclude Include="src\core\serialization\TypeConverter.h" />
     <ClInclude Include="src\utils\Hardware.h">
       <Filter>Core\Util</Filter>
     </ClInclude>
@@ -2205,9 +2212,6 @@
     <ClInclude Include="src\core\logging\ConsoleLogger.h">
       <Filter>Logging</Filter>
     </ClInclude>
-    <ClInclude Include="src\importers\FontImporter.h">
-      <Filter>Importers\Source</Filter>
-    </ClInclude>
     <ClInclude Include="src\resources\ResourceFont.h">
       <Filter>Resources</Filter>
     </ClInclude>
@@ -2283,9 +2287,6 @@
     <ClInclude Include="vendors\recast\include\Recast\MeshLoaderObj.h">
       <Filter>Navigation</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\serialization\TypeConverter.h">
-      <Filter>Core\Serialization</Filter>
-    </ClInclude>
     <ClInclude Include="src\modules\ModuleAudio.h">
       <Filter>Modules\Headers</Filter>
     </ClInclude>
@@ -2295,13 +2296,9 @@
     <ClInclude Include="src\core\preferences\src\AudioPreferences.h">
       <Filter>Core\Preferences\Source</Filter>
     </ClInclude>
-    <ClInclude Include="src\resources\ResourcePrefab.h" />
-    <ClInclude Include="src\resources\ResourceScene.h" />
     <ClInclude Include="src\events\EditorHistoryEntryRestore.h">
       <Filter>Core\Events\Payload</Filter>
     </ClInclude>
-    <ClInclude Include="src\importers\PrefabImporter.h" />
-    <ClInclude Include="src\resources\ResourcePrefab.h" />
     <ClInclude Include="src\components\ComponentAudioListener.h">
       <Filter>Core\Components</Filter>
     </ClInclude>
@@ -2311,17 +2308,9 @@
     <ClInclude Include="src\components\ComponentBillboard.h">
       <Filter>Core\Components</Filter>
     </ClInclude>
-    <ClInclude Include="vendors\imgui\imgui_color_gradient.h">
-      <Filter>Vendors\ImGui</Filter>
-    </ClInclude>
     <ClInclude Include="src\core\rendering\GBuffer.h">
       <Filter>Core\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="src\batching\DrawCommand.h" />
-    <ClInclude Include="src\batching\GeometryBatch.h" />
-    <ClInclude Include="src\batching\BatchManager.h" />
-    <ClInclude Include="src\batching\TextureBatch.h" />
-    <ClInclude Include="src\resources\ResourceSkybox.h" />
     <ClInclude Include="src\core\HachikoApiDefine.h" />
     <ClInclude Include="vendors\imgui-node-editor-0.9\NodeEditor\Source\crude_json.h">
       <Filter>Vendors\NodeEditor</Filter>
@@ -2356,10 +2345,94 @@
     <ClInclude Include="src\importers\VideoImporter.h">
       <Filter>Importers\Source</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\ComponentParticleSystem.h">
+      <Filter>Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\imgui\curve.h">
+      <Filter>Vendors\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\imgui\imgui_color_gradient.h">
+      <Filter>Vendors\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\importers\PrefabImporter.h">
       <Filter>Importers</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="src\importers\AnimationImporter.h">
+      <Filter>Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\importers\FontImporter.h">
+      <Filter>Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\importers\MaterialImporter.h">
+      <Filter>Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\importers\ModelImporter.h">
+      <Filter>Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\importers\TextureImporter.h">
+      <Filter>Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\batching\TextureBatch.h">
+      <Filter>Core\Rendering\Batching</Filter>
+    </ClInclude>
+    <ClInclude Include="src\batching\GeometryBatch.h">
+      <Filter>Core\Rendering\Batching</Filter>
+    </ClInclude>
+    <ClInclude Include="src\batching\DrawCommand.h">
+      <Filter>Core\Rendering\Batching</Filter>
+    </ClInclude>
+    <ClInclude Include="src\batching\BatchManager.h">
+      <Filter>Core\Rendering\Batching</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resources\ResourceScene.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\widgets\AxisSlider.h">
+      <Filter>UI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\widgets\MultiTypeSelector.h">
+      <Filter>UI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\particles\ParticleSystem.h">
+      <Filter>Core\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\particles\ParticleModule.h">
+      <Filter>Core\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resources\ResourcePrefab.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resources\ResourceSkybox.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\serialization\TypeConverter.h">
+      <Filter>Core\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\widgets\Combo.h">
+      <Filter>UI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\widgets\CollapsingHeader.h">
+      <Filter>UI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\CurveEditorEventPayload.h">
+      <Filter>Core\Events\Payload</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\particles\modules\ColorParticleModule.h">
+      <Filter>Core\Particles\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\particles\modules\ForceParticleModule.h">
+      <Filter>Core\Particles\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\particles\modules\SizeParticleModule.h">
+      <Filter>Core\Particles\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\particles\modules\SpeedParticleModule.h">
+      <Filter>Core\Particles\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\widgets\Widgets.h">
+      <Filter>UI\Widgets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -2479,9 +2552,6 @@
     <Filter Include="Core\Preferences\Source">
       <UniqueIdentifier>{6a048cf4-659f-4f54-8848-fb3bbf97538b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Importers\Source">
-      <UniqueIdentifier>{bbd110d9-ae9b-4357-815d-ebfdb99fdb40}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Components\animation">
       <UniqueIdentifier>{14cf1f89-e3ac-4fb9-a69e-24875059d36e}</UniqueIdentifier>
     </Filter>
@@ -2512,8 +2582,14 @@
     <Filter Include="Vendors\NodeEditor">
       <UniqueIdentifier>{f4b8878d-771c-4575-879e-dc75cc85244e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Particles">
-      <UniqueIdentifier>{48cdd47c-ca2b-4a24-a993-297a7700dfeb}</UniqueIdentifier>
+    <Filter Include="Core\Rendering\Batching">
+      <UniqueIdentifier>{38f832c4-b2ae-4b80-a41a-76327363084e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Particles">
+      <UniqueIdentifier>{bd6b065e-6db7-421c-9468-2607cf6ad29a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Particles\Modules">
+      <UniqueIdentifier>{7ca3566d-4da4-49fd-b4d5-fded29595756}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

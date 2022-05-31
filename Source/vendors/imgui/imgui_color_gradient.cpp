@@ -4,7 +4,6 @@
 //
 //  Created by David Gallardo on 11/06/16.
 
-#include "core/hepch.h"
 #include "imgui_color_gradient.h"
 #include "imgui_internal.h"
 
@@ -39,8 +38,8 @@ void ImGradient::addMark(float position, ImColor const color)
 
 void ImGradient::removeMark(ImGradientMark* mark)
 {
-    delete mark;
     m_marks.remove(mark);
+    delete mark;
     refreshCache();
 }
 

@@ -101,10 +101,12 @@ bool Hachiko::ImGuiUtils::ToolbarButton(ImFont* const font, const char* font_ico
         ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
         bg_color.w = 0.5f;
     }
-    ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0, 0, 0, 0));
+
+    const ImVec4 color{0, 0, 0, 0};
+    ImGui::PushStyleColor(ImGuiCol_FrameBg, color);
     ImGui::PushStyleColor(ImGuiCol_Text, bg_color);
-    ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
-    ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0, 0, 0, 0));
+    ImGui::PushStyleColor(ImGuiCol_Button, color);
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, color);
     ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0, ImGui::GetStyle().FramePadding.y));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, frame_padding);
     ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 0);
@@ -160,9 +162,3 @@ void Hachiko::ImGuiUtils::Combo(const char* label, std::vector<std::string> list
         ImGui::EndCombo();
     }
 }
-
-/*
-ImVec2 Hachiko::ImGuiUtils::operator+(const ImVec2& lhs, const ImVec2& rhs)
-{
-    return {lhs.x + rhs.x, lhs.y + rhs.y};
-}*/

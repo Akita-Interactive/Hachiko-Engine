@@ -44,8 +44,7 @@ void Hachiko::WindowAbout::Update()
     ImGui::Text("Brand: %s", hardware->GetInfo().gpu_brand);
     ImGui::Text("VRAM Budget: %.1f Mb", static_cast<float>(hardware->GetInfo().vram_mb_budget));
     ImGui::Text("Vram Avaliable:  %.1f Mb", static_cast<float>(hardware->GetInfo().vram_mb_free));
-    ImGui::Text("Vram Usage:  %.1f Mb",
-                (float)(hardware->GetInfo().vram_mb_budget) - (float)(hardware->GetInfo().vram_mb_free));
+    ImGui::Text("Vram Usage:  %.1f Mb", (float)(hardware->GetInfo().vram_mb_budget) - (float)(hardware->GetInfo().vram_mb_free));
     ImGui::Separator();
     ImGui::Text("DevIL lib version %d", IL_VERSION);
     ImGui::End();

@@ -27,7 +27,5 @@ namespace Hachiko
 
         void Combo(const char* label, std::vector<std::string> list, unsigned& index);
 
-        //ImVec2 operator+(const ImVec2& lhs, const ImVec2& rhs);
-
     }; // namespace ImGuiUtils
 }

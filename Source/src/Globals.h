@@ -11,6 +11,12 @@ inline Hachiko::ConsoleLogger logger;
 constexpr float TO_RAD = static_cast<float>(HACHIKO_PI) / 180.0f;
 constexpr float TO_DEG = 180.0f / static_cast<float>(HACHIKO_PI);
 
+#define CREATE_HISTORY_ENTRY_AFTER_EDIT()                               \
+    if (ImGui::IsItemDeactivatedAfterEdit())                            \
+    {                                                                   \
+        App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);  \
+    }
+
 enum class UpdateStatus
 {
 	UPDATE_CONTINUE = 1,

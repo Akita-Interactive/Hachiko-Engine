@@ -10,7 +10,7 @@ namespace Hachiko
 
     UID UUID::StringToUID(const std::string& in)
     {
-        return static_cast<UID>(std::stoull(in));
+        return std::stoull(in);
     }
 
     std::string UUID::GenerateUUIDv4()
