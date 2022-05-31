@@ -170,7 +170,6 @@
     <ClCompile Include="src\importers\NavmeshImporter.cpp" />
     <ClCompile Include="src\components\ComponentAudioListener.cpp" />
     <ClCompile Include="src\components\ComponentAudioSource.cpp" />
-    <ClCompile Include="src\components\ComponentBillboard.cpp" />
     <ClCompile Include="src\importers\PrefabImporter.cpp" />
     <ClCompile Include="src\importers\SceneImporter.cpp" />
     <ClCompile Include="src\importers\SkyboxImporter.cpp" />
@@ -237,7 +236,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\components\ComponentParticleSystem.cpp" />
-    <ClCompile Include="vendors\imgui\imgui_color_gradient.cpp" />
+    <ClCompile Include="vendors\imgui\imgui_color_gradient.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="vendors\imgui\imgui_stdlib.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -698,7 +701,6 @@
     <ClInclude Include="src\importers\NavmeshImporter.h" />
     <ClInclude Include="src\components\ComponentAudioListener.h" />
     <ClInclude Include="src\components\ComponentAudioSource.h" />
-    <ClInclude Include="src\components\ComponentBillboard.h" />
     <ClInclude Include="src\importers\PrefabImporter.h" />
     <ClInclude Include="src\importers\SceneImporter.h" />
     <ClInclude Include="src\importers\SkyboxImporter.h" />

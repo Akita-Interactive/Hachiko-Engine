@@ -4,7 +4,7 @@ namespace Hachiko
 {
     class Particle;
 
-    class ParticleModule //Forces
+    class ParticleModule
     {
     public:
 

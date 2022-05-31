@@ -645,11 +645,6 @@
     <ClCompile Include="src\core\particles\modules\SpeedParticleModule.cpp">
       <Filter>Core\Particles\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="src\batching\GeometryBatch.cpp" />
-    <ClCompile Include="src\batching\BatchManager.cpp" />
-    <ClCompile Include="src\batching\TextureBatch.cpp" />
-    <ClCompile Include="src\importers\SkyboxImporter.cpp" />
-    <ClCompile Include="src\resources\ResourceSkybox.cpp" />
     <ClCompile Include="src\core\particles\Particle.cpp">
       <Filter>Core\Particles</Filter>
     </ClCompile>
@@ -2450,12 +2445,6 @@
     <ClInclude Include="vendors\imgui\imgui_color_gradient.h">
       <Filter>Vendors\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\batching\DrawCommand.h" />
-    <ClInclude Include="src\batching\GeometryBatch.h" />
-    <ClInclude Include="src\batching\BatchManager.h" />
-    <ClInclude Include="src\batching\TextureBatch.h" />
-    <ClInclude Include="src\importers\SkyboxImporter.h" />
-    <ClInclude Include="src\resources\ResourceSkybox.h" />
     <ClInclude Include="src\core\particles\Particle.h">
       <Filter>Core\Particles</Filter>
     </ClInclude>
@@ -2616,9 +2605,6 @@
     </Filter>
     <Filter Include="Core\Particles\Modules">
       <UniqueIdentifier>{7ca3566d-4da4-49fd-b4d5-fded29595756}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Particles">
-      <UniqueIdentifier>{48cdd47c-ca2b-4a24-a993-297a7700dfeb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
