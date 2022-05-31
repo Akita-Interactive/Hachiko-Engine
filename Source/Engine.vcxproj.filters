@@ -1255,6 +1255,9 @@
     <ClInclude Include="src\Core\serialization\Definitions.h">
       <Filter>Core\Serialization</Filter>
     </ClInclude>
+    <ClInclude Include="src\core\serialization\TypeConverter.h">
+      <Filter>Core\Serialization</Filter>
+    </ClInclude>
     <ClInclude Include="src\Importers\Importer.h">
       <Filter>Importers</Filter>
     </ClInclude>
@@ -2421,9 +2424,6 @@
     <ClInclude Include="src\resources\ResourceSkybox.h">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\serialization\TypeConverter.h">
-      <Filter>Core\Serialization</Filter>
-    </ClInclude>
     <ClInclude Include="src\ui\widgets\Combo.h">
       <Filter>UI\Widgets</Filter>
     </ClInclude>
@@ -2459,9 +2459,6 @@
     </ClInclude>
     <ClInclude Include="src\utils\Bool3.h">
       <Filter>Core\Util</Filter>
-    </ClInclude>
-    <ClInclude Include="src\core\serialization\TypeConverter.h">
-      <Filter>Core\Serialization</Filter>
     </ClInclude>
     <ClInclude Include="src\ui\widgets\DragFloat.h">
       <Filter>UI\Widgets</Filter>
