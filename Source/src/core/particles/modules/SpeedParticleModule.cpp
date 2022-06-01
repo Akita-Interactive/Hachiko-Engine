@@ -6,7 +6,7 @@ Hachiko::SpeedParticleModule::SpeedParticleModule(const std::string& name):
 {
 }
 
-void Hachiko::SpeedParticleModule::Update(ParticleSystem::Particle& particle)
+void Hachiko::SpeedParticleModule::Update(Particle& particle)
 {
 }
 

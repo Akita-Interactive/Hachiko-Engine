@@ -6,7 +6,7 @@ Hachiko::SizeParticleModule::SizeParticleModule(const std::string& name):
 {
 }
 
-void Hachiko::SizeParticleModule::Update(ParticleSystem::Particle& particle)
+void Hachiko::SizeParticleModule::Update(Particle& particle)
 {
 }
 

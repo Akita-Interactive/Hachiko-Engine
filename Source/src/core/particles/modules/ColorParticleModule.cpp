@@ -6,7 +6,7 @@ Hachiko::ColorParticleModule::ColorParticleModule(const std::string& name) :
 {
 }
 
-void Hachiko::ColorParticleModule::Update(ParticleSystem::Particle& particle)
+void Hachiko::ColorParticleModule::Update(Particle& particle)
 {
 }
 

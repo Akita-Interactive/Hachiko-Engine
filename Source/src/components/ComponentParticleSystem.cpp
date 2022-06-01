@@ -2,13 +2,15 @@
 #include "components/ComponentParticleSystem.h"
 #include "components/ComponentTransform.h"
 
+#include "modules/ModuleSceneManager.h"
+
+#include "core/particles/Particle.h"
 #include "core/particles/modules/SpeedParticleModule.h"
 #include "core/particles/modules/SizeParticleModule.h"
 #include "core/particles/modules/ColorParticleModule.h"
 #include "core/particles/modules/ForceParticleModule.h"
 
 #include "debugdraw.h"
-
 
 #include "ui/widgets/Widgets.h"//REMOVE
 
@@ -32,6 +34,11 @@ Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container)
 Hachiko::ComponentParticleSystem::~ComponentParticleSystem()
 {
     particle_modules.clear();
+    App->scene_manager->GetActiveScene()->RemoveParticleComponent(GetID());
+    for (auto& particle : particles)
+    {
+        delete particle;
+    }
 }
 
 void Hachiko::ComponentParticleSystem::Start()
@@ -40,6 +47,25 @@ void Hachiko::ComponentParticleSystem::Start()
 
 void Hachiko::ComponentParticleSystem::Update()
 {
+    if (!in_scene)
+    {
+        App->scene_manager->GetActiveScene()->AddParticleComponent(this);
+        in_scene = true;
+        particles.push_back(new Particle());
+    }
+}
+
+void Hachiko::ComponentParticleSystem::Draw(ComponentCamera* camera, Program* program)
+{
+    for (auto& particle : particles)
+    {
+        if (particle == nullptr)
+        {
+            continue;
+        }
+
+        particle->Draw(camera, program);
+    }
 }
 
 void Hachiko::ComponentParticleSystem::DrawGui()

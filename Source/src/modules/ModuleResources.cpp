@@ -41,7 +41,7 @@ bool ModuleResources::Init()
     FileSystem::CreateDir(ASSETS_FOLDER_GENERATED_PREFAB);
 
     AssetsLibraryCheck();
-    ClearUnusedResources(managed_uids);
+    //ClearUnusedResources(managed_uids);
 
     HE_LOG("Finished aligning assets: %d assets imported, %d unused resources cleaned", imported_assets, cleaned_resources);
 

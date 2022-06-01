@@ -1,10 +1,9 @@
 #pragma once
 
-#include <string>
-#include "components/ComponentParticleSystem.h"
-
 namespace Hachiko
 {
+    class Particle;
+
     class ParticleModule //Forces
     {
     public:
@@ -15,7 +14,7 @@ namespace Hachiko
         ParticleModule(std::string name, bool active);
         virtual ~ParticleModule() = default;
 
-        virtual void Update(ParticleSystem::Particle&)
+        virtual void Update(Particle&)
         {
         }
 

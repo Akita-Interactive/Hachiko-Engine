@@ -11,6 +11,7 @@
 #include "components/ComponentObstacle.h"
 #include "components/ComponentAudioListener.h"
 #include "components/ComponentAudioSource.h"
+#include "components/ComponentParticleSystem.h"
 #include "components/ComponentBillboard.h"
 
 // UI

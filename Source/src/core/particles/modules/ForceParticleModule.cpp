@@ -6,7 +6,7 @@ Hachiko::ForceParticleModule::ForceParticleModule(const std::string& name) :
 {
 }
 
-void Hachiko::ForceParticleModule::Update(ParticleSystem::Particle& particle)
+void Hachiko::ForceParticleModule::Update(Particle& particle)
 {
 }
 

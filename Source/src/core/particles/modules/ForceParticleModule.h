@@ -9,7 +9,7 @@ namespace Hachiko
         ForceParticleModule(const std::string& name);
         ~ForceParticleModule() override = default;
 
-        void Update(ParticleSystem::Particle&) override;
+        void Update(Particle&) override;
         void DrawGui() override;
     };
 }

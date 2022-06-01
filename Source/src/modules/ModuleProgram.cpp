@@ -198,6 +198,12 @@ Hachiko::Program* Hachiko::ModuleProgram::CreateDeferredLightingPassProgram()
     return deferred_lighting_program;
 }
 
+Hachiko::Program* Hachiko::ModuleProgram::CreateParticleProgram()
+{
+    particle_program = CreateProgram(SHADERS_FOLDER "vertex_particle.glsl", SHADERS_FOLDER "fragment_particle.glsl");
+    return particle_program;
+}
+
 void Hachiko::ModuleProgram::CreateUBO(UBOPoints binding_point, unsigned size)
 {
     glGenBuffers(1, &buffers[static_cast<int>(binding_point)]);
@@ -266,7 +272,7 @@ bool Hachiko::ModuleProgram::CleanUp()
     
     particle_program->CleanUp();
     delete particle_program;
-
+    
     return true;
 }
 

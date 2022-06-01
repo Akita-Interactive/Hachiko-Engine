@@ -99,6 +99,11 @@ namespace Hachiko
         
         [[nodiscard]] float2 GetFrameBufferSize() const;
 
+        [[nodiscard]] const unsigned& GetParticleVao() const
+        {
+            return particle_vao;
+        }
+    
     private:
         void GenerateFrameBuffer();
         void ResizeFrameBuffer(int width, int height) const;

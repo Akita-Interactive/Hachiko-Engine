@@ -71,21 +71,5 @@ namespace Hachiko
             float2 curve[CURVE_TICKS];
             bool curve_enabled = true;
         };
-
-        class Particle
-        {
-        private:
-            float initial_life = 0.0f;
-            float initial_speed = 0.0f;
-            float4 initial_color = float4::zero;
-            float2 initial_size = float2::zero;
-            float3 initial_position = float3::zero;
-
-
-            float current_life = 0.0f;
-            float current_speed = 0.0f;
-            float4 current_color = float4::zero;
-            float2 current_size = float2::zero;
-        };
     }
 }

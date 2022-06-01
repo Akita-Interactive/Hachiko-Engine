@@ -10,7 +10,7 @@ namespace Hachiko
         SpeedParticleModule(const std::string& name);
         ~SpeedParticleModule() override = default;
 
-        void Update(ParticleSystem::Particle&) override;
+        void Update(Particle&) override;
         void DrawGui() override;
     };
 }

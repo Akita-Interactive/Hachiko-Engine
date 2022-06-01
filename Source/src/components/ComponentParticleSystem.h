@@ -1,13 +1,8 @@
 #pragma once
 
-#include "components/Component.h"
-#include "core/particles/ParticleSystem.h"
-
-#include <memory>
-#include <vector>
-
 namespace Hachiko
 {
+    class Particle;
     class ParticleModule;
 
     class HACHIKO_API ComponentParticleSystem : public Component
@@ -18,6 +13,7 @@ namespace Hachiko
 
         void Start() override;
         void Update() override;
+        void Draw(ComponentCamera* camera, Program* program) override;
         void DrawGui() override;
         void DebugDraw() override;
 
@@ -45,15 +41,17 @@ namespace Hachiko
         ParticleSystem::VariableTypeProperty rotation = {float2::zero};
 
         //emitter
-
         ParticleSystem::Emitter::Type emitter_type = ParticleSystem::Emitter::Type::CONE;
         ParticleSystem::Emitter::Properties emitter_properties;
 
         float2* current_curve_editing = nullptr;
         std::string current_curve_edition_title;
 
+        //render
+        bool in_scene = false;
+
         //particles
-        std::vector<ParticleSystem::Particle> particles{1000};
+        std::vector<Particle*> particles{10};
 
         //modules
         std::vector<std::shared_ptr<ParticleModule>> particle_modules{};
