@@ -12,8 +12,6 @@
 
 #include "debugdraw.h"
 
-#include "ui/widgets/Widgets.h"//REMOVE
-
 Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container) :
     Component(Type::PARTICLE_SYSTEM, container)
 {
@@ -35,10 +33,6 @@ Hachiko::ComponentParticleSystem::~ComponentParticleSystem()
 {
     particle_modules.clear();
     App->scene_manager->GetActiveScene()->RemoveParticleComponent(GetID());
-    for (auto& particle : particles)
-    {
-        delete particle;
-    }
 }
 
 void Hachiko::ComponentParticleSystem::Start()
@@ -51,7 +45,11 @@ void Hachiko::ComponentParticleSystem::Update()
     {
         App->scene_manager->GetActiveScene()->AddParticleComponent(this);
         in_scene = true;
-        particles.push_back(new Particle());
+    }
+
+    for (const auto& particle_module : particle_modules)
+    {
+        particle_module->Update(particles);
     }
 }
 
@@ -59,12 +57,7 @@ void Hachiko::ComponentParticleSystem::Draw(ComponentCamera* camera, Program* pr
 {
     for (auto& particle : particles)
     {
-        if (particle == nullptr)
-        {
-            continue;
-        }
-
-        particle->Draw(camera, program);
+        particle.Draw(camera, program);
     }
 }
 
@@ -205,7 +198,7 @@ void Hachiko::ComponentParticleSystem::DebugDraw()
     switch (emitter_type)
     {
     case ParticleSystem::Emitter::Type::CONE:
-        dd::cone(current_model.TranslatePart(), direction, dd::colors::White, emitter_properties.angle/90, emitter_properties.radius);
+        dd::cone(current_model.TranslatePart(), direction, dd::colors::White, emitter_properties.angle / 90, emitter_properties.radius);
         break;
     case ParticleSystem::Emitter::Type::BOX:
     {

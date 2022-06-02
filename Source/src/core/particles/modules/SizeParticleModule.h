@@ -10,7 +10,7 @@ namespace Hachiko
         SizeParticleModule(const std::string& name);
         ~SizeParticleModule() override = default;
 
-        void Update(Particle&) override;
+        void Update(std::vector<Particle>&) override;
         void DrawGui() override;
     };
 }

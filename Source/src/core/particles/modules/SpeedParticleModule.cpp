@@ -6,8 +6,9 @@ Hachiko::SpeedParticleModule::SpeedParticleModule(const std::string& name):
 {
 }
 
-void Hachiko::SpeedParticleModule::Update(Particle& particle)
+void Hachiko::SpeedParticleModule::Update(std::vector<Particle>& particles)
 {
+    ParticleModule::Update(particles);
 }
 
 void Hachiko::SpeedParticleModule::DrawGui()

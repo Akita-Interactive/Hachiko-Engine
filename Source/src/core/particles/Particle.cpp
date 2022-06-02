@@ -6,7 +6,7 @@
 
 using namespace Hachiko;
 
-void Particle::Draw(ComponentCamera* camera, Program* program)
+void Particle::Draw(ComponentCamera* camera, Program* program) const
 {
     glActiveTexture(GL_TEXTURE0);
     int glTexture = 0;
@@ -64,3 +64,115 @@ void Particle::Draw(ComponentCamera* camera, Program* program)
     glDepthMask(GL_TRUE);
     return;
 }
+
+float Particle::GetInitialLife() const
+{
+    return initial_life;
+}
+
+void Particle::SetInitialLife(const float initial_life)
+{
+    this->initial_life = initial_life;
+}
+
+float Particle::GetInitialSpeed() const
+{
+    return initial_speed;
+}
+
+void Particle::SetInitialSpeed(const float initial_speed)
+{
+    this->initial_speed = initial_speed;
+}
+
+const float4& Particle::GetInitialColor() const
+{
+    return initial_color;
+}
+
+void Particle::SetInitialColor(const float4& initial_color)
+{
+    this->initial_color = initial_color;
+}
+
+const float2& Particle::GetInitialSize() const
+{
+    return initial_size;
+}
+
+void Particle::SetInitialSize(const float2& initial_size)
+{
+    this->initial_size = initial_size;
+}
+
+const float3& Particle::GetInitialPosition() const
+{
+    return initial_position;
+}
+
+void Particle::SetInitialPosition(const float3& initial_position)
+{
+    this->initial_position = initial_position;
+}
+
+float Particle::GetCurrentLife() const
+{
+    return current_life;
+}
+
+void Particle::SetCurrentLife(const float current_life)
+{
+    this->current_life = current_life;
+}
+
+float Particle::GetCurrentSpeed() const
+{
+    return current_speed;
+}
+
+void Particle::SetCurrentSpeed(const float current_speed)
+{
+    this->current_speed = current_speed;
+}
+
+const float4& Particle::GetCurrentColor() const
+{
+    return current_color;
+}
+
+void Particle::SetCurrentColor(const float4& current_color)
+{
+    this->current_color = current_color;
+}
+
+const float2& Particle::GetCurrentSize() const
+{
+    return current_size;
+}
+
+void Particle::SetCurrentSize(const float2& current_size)
+{
+    this->current_size = current_size;
+}
+
+const float3& Particle::GetCurrentPosition() const
+{
+    return current_position;
+}
+
+void Particle::SetCurrentPosition(const float3& current_position)
+{
+    this->current_position = current_position;
+}
+
+ParticleRenderMode Particle::GetRenderMode() const
+{
+    return render_mode;
+}
+
+void Particle::SetRenderMode(const ParticleRenderMode render_mode)
+{
+    this->render_mode = render_mode;
+}
+
+

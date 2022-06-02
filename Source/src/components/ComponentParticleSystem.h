@@ -51,7 +51,7 @@ namespace Hachiko
         bool in_scene = false;
 
         //particles
-        std::vector<Particle*> particles{10};
+        std::vector<Particle> particles{10};
 
         //modules
         std::vector<std::shared_ptr<ParticleModule>> particle_modules{};

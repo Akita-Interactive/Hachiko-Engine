@@ -108,3 +108,10 @@
 
 #include "core/particles/ParticleModule.h"
 #include "core/particles/ParticleSystem.h"
+#include "core/particles/Particle.h"
+
+//particle modules
+#include "core/particles/modules/ColorParticleModule.h"
+#include "core/particles/modules/ForceParticleModule.h"
+#include "core/particles/modules/SizeParticleModule.h"
+#include "core/particles/modules/SpeedParticleModule.h"

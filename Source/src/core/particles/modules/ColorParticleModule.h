@@ -9,7 +9,7 @@ namespace Hachiko
         ColorParticleModule(const std::string& name);
         ~ColorParticleModule() override = default;
 
-        void Update(Particle&) override;
+        void Update(std::vector<Particle>&) override;
         void DrawGui() override;
     };
 }

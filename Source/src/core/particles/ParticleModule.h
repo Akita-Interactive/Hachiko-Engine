@@ -14,7 +14,7 @@ namespace Hachiko
         ParticleModule(std::string name, bool active);
         virtual ~ParticleModule() = default;
 
-        virtual void Update(Particle&)
+        virtual void Update(std::vector<Particle>&)
         {
         }
 
