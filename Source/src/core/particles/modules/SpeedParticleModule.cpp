@@ -8,10 +8,18 @@ Hachiko::SpeedParticleModule::SpeedParticleModule(const std::string& name):
 
 void Hachiko::SpeedParticleModule::Update(std::vector<Particle>& particles)
 {
-    ParticleModule::Update(particles);
+    for (auto& particle : particles)
+    {
+        UpdateSpeedOverTime(particle);
+    }
 }
 
 void Hachiko::SpeedParticleModule::DrawGui()
 {
-    ImGui::TextUnformatted("Speed over lifetime content");
+    ImGui::SliderFloat("Particle speed##speed_particle", &speed, 0.0f, 1.0f);
+}
+
+void Hachiko::SpeedParticleModule::UpdateSpeedOverTime(Particle& particle)
+{
+    particle.SetCurrentSpeed(speed);
 }

@@ -12,5 +12,8 @@ namespace Hachiko
 
         void Update(std::vector<Particle>&) override;
         void DrawGui() override;
+    private:
+        float speed = 0.0f;
+        void UpdateSpeedOverTime(Particle& particle);
     };
 }

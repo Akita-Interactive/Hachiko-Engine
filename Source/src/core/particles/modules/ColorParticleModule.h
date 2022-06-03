@@ -7,9 +7,18 @@ namespace Hachiko
     {
     public:
         ColorParticleModule(const std::string& name);
-        ~ColorParticleModule() override = default;
+        ~ColorParticleModule() override;
 
         void Update(std::vector<Particle>&) override;
         void DrawGui() override;
+
+    private:
+        bool color_loop = false;
+        int color_cycles = 1;
+        ImGradient* gradient = nullptr;
+        ImGradientMark* draggingGradient = nullptr;
+        ImGradientMark* selectedGradient = nullptr;
+
+        void UpdateColorOverTime(Particle& particle);
     };
 }

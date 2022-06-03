@@ -37,6 +37,11 @@ Hachiko::ComponentParticleSystem::~ComponentParticleSystem()
 
 void Hachiko::ComponentParticleSystem::Start()
 {
+    for (auto& particle : particles)
+    {
+        particle.SetEmitter(this);
+        particle.SetInitialLife(life.values.x);
+    }
 }
 
 void Hachiko::ComponentParticleSystem::Update()
@@ -45,8 +50,14 @@ void Hachiko::ComponentParticleSystem::Update()
     {
         App->scene_manager->GetActiveScene()->AddParticleComponent(this);
         in_scene = true;
+        Start(); // TODO: For DEBUG as Start is not called
     }
 
+    for (auto& particle : particles)
+    {
+        particle.Update();
+    }
+    
     for (const auto& particle_module : particle_modules)
     {
         particle_module->Update(particles);
@@ -226,5 +237,10 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
 }
 
 void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
+{}
+
+Hachiko::ParticleSystem::VariableTypeProperty 
+Hachiko::ComponentParticleSystem::GetParticlesLife() const
 {
+    return life;
 }

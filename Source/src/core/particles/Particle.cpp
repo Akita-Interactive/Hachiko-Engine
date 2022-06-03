@@ -3,8 +3,26 @@
 
 #include "modules/ModuleRender.h"
 #include "components/ComponentCamera.h"
+#include "components/ComponentTransform.h"
+#include "components/ComponentParticleSystem.h"
 
 using namespace Hachiko;
+
+void Hachiko::Particle::Update()
+{
+    current_life -= EngineTimer::delta_time;
+
+    if (current_life <= 0)
+    {
+        Reset();
+    }
+}
+
+void Hachiko::Particle::Reset()
+{
+    current_life = emitter->GetParticlesLife().values.x;
+    current_position = emitter->GetGameObject()->GetTransform()->GetGlobalPosition();
+}
 
 void Particle::Draw(ComponentCamera* camera, Program* program) const
 {
@@ -31,7 +49,7 @@ void Particle::Draw(ComponentCamera* camera, Program* program) const
     }
 
     float4x4 model_matrix = float4x4::identity;
-    //GetOrientationMatrix(camera, model_matrix);
+    GetModelMatrix(camera, model_matrix);
     program->BindUniformFloat4x4("model", model_matrix.ptr());
     program->BindUniformFloat4x4("view", &camera->GetViewMatrix()[0][0]);
     program->BindUniformFloat4x4("proj", &camera->GetProjectionMatrix()[0][0]);
@@ -40,13 +58,8 @@ void Particle::Draw(ComponentCamera* camera, Program* program) const
     //program->BindUniformFloat("y_factor", &y_factor);
     //program->BindUniformFloat("current_frame", &current_frame);
     //program->BindUniformFloat2("animation_index", animation_index.ptr());
-    float4 color = float4::one;
-    //if (has_color_gradient)
-    //{
-    //    gradient->getColorAt(color_frame, color.ptr());
-    //}
 
-    program->BindUniformFloat4("input_color", color.ptr());
+    program->BindUniformFloat4("input_color", current_color.ptr());
     //program->BindUniformInts("has_texture", 1, &has_texture);
 
     //int flip_x = has_flip_x ? 1 : 0;
@@ -63,6 +76,15 @@ void Particle::Draw(ComponentCamera* camera, Program* program) const
     glDisable(GL_BLEND);
     glDepthMask(GL_TRUE);
     return;
+}
+
+void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_matrix) const
+{
+    // Vertical (cilindrical) orientation
+    float3 cameraPos = camera->GetFrustum()->Pos();
+    float3 cameraDir = (float3(cameraPos.x, current_position.y, cameraPos.z) - current_position).Normalized();
+    out_matrix = float4x4::LookAt(float3::unitZ, cameraDir, float3::unitY, float3::unitY);
+    out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart(), float3(current_size, 0.0f));
 }
 
 float Particle::GetInitialLife() const
@@ -173,6 +195,16 @@ ParticleRenderMode Particle::GetRenderMode() const
 void Particle::SetRenderMode(const ParticleRenderMode render_mode)
 {
     this->render_mode = render_mode;
+}
+
+void Hachiko::Particle::SetEmitter(ComponentParticleSystem* emitter) 
+{
+    this->emitter = emitter;
+}
+
+const ComponentParticleSystem* Hachiko::Particle::GetEmitter()
+{
+    return emitter;
 }
 
 

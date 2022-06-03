@@ -20,6 +20,8 @@ namespace Hachiko
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
 
+        [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesLife() const;
+
     private:
         //sections
         bool parameters_section = true;

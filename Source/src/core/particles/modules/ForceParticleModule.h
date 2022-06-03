@@ -11,5 +11,8 @@ namespace Hachiko
 
         void Update(std::vector<Particle>&) override;
         void DrawGui() override;
+
+    private:
+        void UpdatePositionOverTime(Particle& particle);
     };
 }
