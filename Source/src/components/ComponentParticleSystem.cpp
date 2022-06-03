@@ -53,7 +53,7 @@ void Hachiko::ComponentParticleSystem::Update()
     {
         particle.Update();
     }
-
+    
     for (const auto& particle_module : particle_modules)
     {
         particle_module->Update(particles);
@@ -258,7 +258,12 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
 }
 
 void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
+{}
+
+Hachiko::ParticleSystem::VariableTypeProperty 
+Hachiko::ComponentParticleSystem::GetParticlesLife() const
 {
+    return life;
 }
 
 Hachiko::ParticleSystem::VariableTypeProperty
