@@ -12,5 +12,9 @@ namespace Hachiko
 
         void Update(std::vector<Particle>&) override;
         void DrawGui() override;
+
+    private:
+        float2 size = float2::zero;
+        void UpdateSizeOverTime(Particle& particle);
     };
 }

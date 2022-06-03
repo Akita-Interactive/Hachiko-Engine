@@ -21,6 +21,7 @@ namespace Hachiko
         void Load(const YAML::Node& node) override;
 
         [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesLife() const;
+        [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesSize() const;
 
     private:
         //sections

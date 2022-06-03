@@ -244,3 +244,9 @@ Hachiko::ComponentParticleSystem::GetParticlesLife() const
 {
     return life;
 }
+
+Hachiko::ParticleSystem::VariableTypeProperty 
+Hachiko::ComponentParticleSystem::GetParticlesSize() const
+{
+    return size;
+}

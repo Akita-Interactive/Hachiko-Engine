@@ -16,7 +16,7 @@ void Hachiko::SpeedParticleModule::Update(std::vector<Particle>& particles)
 
 void Hachiko::SpeedParticleModule::DrawGui()
 {
-    ImGui::SliderFloat("Particle speed##speed_particle", &speed, 0.0f, 1.0f);
+    ImGui::SliderFloat("Particle speed##speed_particle", &speed, 0.0f, 0.1f);
 }
 
 void Hachiko::SpeedParticleModule::UpdateSpeedOverTime(Particle& particle)

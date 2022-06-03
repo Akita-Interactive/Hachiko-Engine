@@ -15,6 +15,11 @@ Hachiko::ColorParticleModule::~ColorParticleModule()
 
 void Hachiko::ColorParticleModule::Update(std::vector<Particle>& particles)
 {
+    if (!IsActive())
+    {
+        return;
+    }
+
     for (auto& particle : particles)
     {
         UpdateColorOverTime(particle);
@@ -23,16 +28,11 @@ void Hachiko::ColorParticleModule::Update(std::vector<Particle>& particles)
 
 void Hachiko::ColorParticleModule::DrawGui()
 {
-    // Color Over Lifetime
-    if (ImGui::CollapsingHeader("Color over lifetime"))
-    {
-        ImGui::Checkbox("Loop##color_loop", &color_loop);
-        ImGui::PushItemWidth(200);
-        ImGui::GradientEditor(gradient, draggingGradient, selectedGradient);
-        ImGui::PushItemWidth(150);
-        ImGui::NewLine();
-        ImGui::DragInt("Cycles over lifetime##color_cycles", &color_cycles, 1, 1, inf);
-    }
+    ImGui::PushItemWidth(200);
+    ImGui::GradientEditor(gradient, draggingGradient, selectedGradient);
+    ImGui::PushItemWidth(150);
+    ImGui::NewLine();
+    ImGui::DragInt("Cycles over lifetime##color_cycles", &color_cycles, 1, 1, inf);
 }
 
 void Hachiko::ColorParticleModule::UpdateColorOverTime(Particle& particle)

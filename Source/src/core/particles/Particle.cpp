@@ -22,6 +22,7 @@ void Hachiko::Particle::Reset()
 {
     current_life = emitter->GetParticlesLife().values.x;
     current_position = emitter->GetGameObject()->GetTransform()->GetGlobalPosition();
+    current_size = emitter->GetParticlesSize().values;
 }
 
 void Particle::Draw(ComponentCamera* camera, Program* program) const
