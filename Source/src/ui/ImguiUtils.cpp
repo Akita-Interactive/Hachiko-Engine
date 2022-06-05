@@ -1,10 +1,9 @@
 #include "core/hepch.h"
 #include "ImGuiUtils.h"
-#include <IconsFontAwesome5.h>
+#include "core/GameObject.h"
 
 #include <imgui_internal.h>
 
-#include "core/GameObject.h"
 #include "components/Component.h"
 #include "modules/ModuleEditor.h"
 
@@ -69,7 +68,7 @@ bool Hachiko::ImGuiUtils::CollapsingHeader(GameObject* game_object, const Compon
 
     ImGui::Indent(ImGui::GetWindowContentRegionMax().x - spacing);
 
-    if (ImGui::Button(std::string(ICON_FA_TIMES).c_str()))
+    if (ImGui::Button(std::string(ICON_FA_XMARK).c_str()))
     {
         ImGui::OpenPopup(header_name);
     }

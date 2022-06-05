@@ -76,15 +76,15 @@ void Hachiko::WindowScene::CleanUp()
 
 void Hachiko::WindowScene::GuizmoOptionsController()
 {
-    if (ImGuiUtils::ToolbarButton(App->editor->m_big_icon_font, ICON_FA_ARROWS_ALT, guizmo_operation == ImGuizmo::TRANSLATE, "Move Tool"))
+    if (ImGuiUtils::ToolbarButton(App->editor->m_big_icon_font, ICON_FA_ARROWS_UP_DOWN_LEFT_RIGHT, guizmo_operation == ImGuizmo::TRANSLATE, "Move Tool"))
     {
         guizmo_operation = ImGuizmo::TRANSLATE;
     }
-    if (ImGuiUtils::ToolbarButton(App->editor->m_big_icon_font, ICON_FA_UNDO, guizmo_operation == ImGuizmo::ROTATE, "Rotate Tool"))
+    if (ImGuiUtils::ToolbarButton(App->editor->m_big_icon_font, ICON_FA_ARROW_ROTATE_LEFT, guizmo_operation == ImGuizmo::ROTATE, "Rotate Tool"))
     {
         guizmo_operation = ImGuizmo::ROTATE;
     }
-    if (ImGuiUtils::ToolbarButton(App->editor->m_big_icon_font, ICON_FA_EXPAND_ALT, guizmo_operation == ImGuizmo::SCALE, "Scale Tool"))
+    if (ImGuiUtils::ToolbarButton(App->editor->m_big_icon_font, ICON_FA_MAXIMIZE, guizmo_operation == ImGuizmo::SCALE, "Scale Tool"))
     {
         guizmo_operation = ImGuizmo::SCALE;
     }
@@ -93,7 +93,7 @@ void Hachiko::WindowScene::GuizmoOptionsController()
     ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);
     ImGui::SameLine();
 
-    if (ImGuiUtils::ToolbarButton(App->editor->m_big_icon_font, ICON_FA_HOME, guizmo_mode == ImGuizmo::LOCAL, "Switches to Local Gizmos mode.", guizmo_operation != ImGuizmo::SCALE))
+    if (ImGuiUtils::ToolbarButton(App->editor->m_big_icon_font, ICON_FA_HOUSE, guizmo_mode == ImGuizmo::LOCAL, "Switches to Local Gizmos mode.", guizmo_operation != ImGuizmo::SCALE))
     {
         guizmo_mode = ImGuizmo::LOCAL;
     }

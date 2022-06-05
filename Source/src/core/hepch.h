@@ -48,7 +48,7 @@
 #include <ilu.h>
 #include <physfs.h>
 #include <ImGuizmo.h>
-#include <IconsFontAwesome5.h>
+#include <IconsFontAwesome6.h>
 #include <MathGeoLib.h>
 #include <yaml-cpp/yaml.h>
 

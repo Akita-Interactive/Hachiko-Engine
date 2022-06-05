@@ -11,7 +11,7 @@
 
 namespace Hachiko::Widgets
 {
-    struct AxisSliderConfig
+    struct DragFloat3Config
     {
         const char* label_x = "X";
         const char* label_y = "Y";
@@ -24,7 +24,7 @@ namespace Hachiko::Widgets
         int flags = ImGuiSliderFlags_AlwaysClamp;
     };
 
-    inline bool AxisSlider(const std::string& label, float3& values, const AxisSliderConfig* config = nullptr)
+    inline bool DragFloat3(const std::string& label, float3& values, const DragFloat3Config* config = nullptr)
     {
         static const ImVec4 red = ImVec4(0.75f, 0.0f, 0.0f, 1.0f);
         static const ImVec4 green = ImVec4(0.0f, 0.75f, 0.0f, 1.0f);
@@ -39,7 +39,7 @@ namespace Hachiko::Widgets
 
         if (!config)
         {
-            const AxisSliderConfig cfg;
+            const DragFloat3Config cfg;
             config = &cfg;
         }
 

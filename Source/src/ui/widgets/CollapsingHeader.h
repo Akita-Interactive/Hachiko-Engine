@@ -10,10 +10,11 @@ namespace Hachiko::Widgets
         None = 0,
         Space,
         Checkbox,
+        Icon,
         Default
     };
 
-    inline bool CollapsingHeader(const char* label, bool* active, CollapsibleHeaderType type = CollapsibleHeaderType::None, ImGuiTreeNodeFlags flags_ = 0)
+    inline bool CollapsingHeader(const char* label, bool* active, CollapsibleHeaderType type = CollapsibleHeaderType::None, const char* icon = nullptr, ImGuiTreeNodeFlags flags_ = 0)
     {
         //Copied from ImGui::TreeNodeBehavior
 
@@ -203,6 +204,20 @@ namespace Hachiko::Widgets
                 text_pos.x += text_offset_x;
             }
 
+            if (type == CollapsibleHeaderType::Icon && icon)
+            {
+                const float spacing = padding.x - 1;
+                ImGui::SameLine();
+                ImGui::Unindent(spacing);
+
+                window->DC.CursorPos.x += 4;
+
+                ImGui::TextUnformatted(icon);
+
+                ImGui::Indent(spacing);
+                text_pos.x += text_offset_x;
+            }
+
             if (type == CollapsibleHeaderType::Checkbox)
             {
                 ImGui::PushID(active);
@@ -211,7 +226,8 @@ namespace Hachiko::Widgets
                 ImGui::Unindent(spacing);
                 ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 4.0f);
                 ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(style.FramePadding.x, style.FramePadding.y - 4));
-
+                ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(style.ItemInnerSpacing.x, style.ItemInnerSpacing.y - 4));
+                
                 window->DC.CursorPos.x += 4;
                 window->DC.CursorPos.y += 4;
                 if (App->editor->GetTheme() == Editor::Theme::Type::DARK)
@@ -226,9 +242,9 @@ namespace Hachiko::Widgets
                 {
                     ImGui::PopStyleColor(4);
                 }
-
-                ImGui::PopStyleVar(2);
-
+                
+                ImGui::PopStyleVar(3);
+                //
                 ImGui::Indent(spacing);
                 text_pos.x += text_offset_x;
                 ImGui::PopID();

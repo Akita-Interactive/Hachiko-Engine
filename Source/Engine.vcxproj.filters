@@ -651,6 +651,9 @@
     <ClCompile Include="src\utils\Bool3.cpp">
       <Filter>Core\Util</Filter>
     </ClCompile>
+    <ClCompile Include="src\utils\Random.cpp">
+      <Filter>Core\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vendors\imgui\imgui_impl_opengl3.h">
@@ -1021,7 +1024,7 @@
     <ClInclude Include="src\ui\ImGuiUtils.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="vendors\imgui\IconsFontAwesome5.h">
+    <ClInclude Include="vendors\imgui\IconsFontAwesome6.h">
       <Filter>Vendors\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="src\resources\Resource.h">
@@ -2397,7 +2400,10 @@
     <ClInclude Include="src\resources\ResourceScene.h">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="src\ui\widgets\AxisSlider.h">
+    <ClInclude Include="src\resources\ResourcePrefab.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\widgets\DragFloat3.h">
       <Filter>UI\Widgets</Filter>
     </ClInclude>
     <ClInclude Include="src\ui\widgets\MultiTypeSelector.h">
@@ -2456,6 +2462,12 @@
     </ClInclude>
     <ClInclude Include="src\core\serialization\TypeConverter.h">
       <Filter>Core\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\widgets\DragFloat.h">
+      <Filter>UI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\Random.h">
+      <Filter>Core\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

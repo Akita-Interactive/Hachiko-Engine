@@ -28,7 +28,7 @@ void Hachiko::WindowProject::Update()
     }
     ImGui::PopItemWidth();
     ImGui::SameLine();
-    if (ImGuiUtils::IconButton(ICON_FA_TIMES, "Reset filter"))
+    if (ImGuiUtils::IconButton(ICON_FA_XMARK, "Reset filter"))
     {
         m_filter[0] = '\0';
         DoFilter();

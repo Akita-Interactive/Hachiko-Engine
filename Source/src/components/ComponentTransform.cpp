@@ -2,7 +2,7 @@
 #include "ComponentTransform.h"
 
 #include "modules/ModuleEvent.h"
-#include "ui/widgets/AxisSlider.h"
+#include "ui/widgets/DragFloat3.h"
 
 /**     CONSTRUCTORS    **/
 
@@ -319,19 +319,19 @@ void Hachiko::ComponentTransform::DrawGui()
         float3 scale_local_editor = local_scale;
         float3 rotation_local_editor = local_rotation_euler;
 
-        if(Widgets::AxisSlider("Position",position_local_editor))
+        if(Widgets::DragFloat3("Position",position_local_editor))
         {
             SetLocalPosition(position_local_editor);
         }
 
-        if(Widgets::AxisSlider("Rotation",rotation_local_editor))
+        if(Widgets::DragFloat3("Rotation",rotation_local_editor))
         {
             SetLocalRotationEuler(rotation_local_editor);
         }
 
-        Widgets::AxisSliderConfig scale_config;
+        Widgets::DragFloat3Config scale_config;
         scale_config.min = float3(0.001f);
-        if(AxisSlider("Scale",scale_local_editor, &scale_config))
+        if(DragFloat3("Scale",scale_local_editor, &scale_config))
         {
             SetLocalScale(scale_local_editor);
         }
@@ -348,17 +348,17 @@ void Hachiko::ComponentTransform::DrawGui()
             ImGui::Text("Global transform");
             ImGui::PopStyleColor();
 
-            if (Widgets::AxisSlider("Position", position_editor))
+            if (Widgets::DragFloat3("Position", position_editor))
             {
                 SetGlobalPosition(position_editor);
             }
 
-            if (Widgets::AxisSlider("Rotation", rotation_editor))
+            if (Widgets::DragFloat3("Rotation", rotation_editor))
             {
                 SetGlobalRotationEuler(rotation_editor);
             }
 
-            if (Widgets::AxisSlider("Scale", scale_editor, &scale_config))
+            if (Widgets::DragFloat3("Scale", scale_editor, &scale_config))
             {
                 SetGlobalScale(scale_editor);
             }

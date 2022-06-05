@@ -158,6 +158,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\core\rendering\GBuffer.cpp" />
+    <ClCompile Include="src\utils\Random.cpp" />
     <ClCompile Include="src\core\particles\Particle.cpp" />
     <ClCompile Include="src\batching\GeometryBatch.cpp" />
     <ClCompile Include="src\batching\BatchManager.cpp" />
@@ -689,6 +690,8 @@
   <ItemGroup>
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\core\rendering\GBuffer.h" />
+    <ClInclude Include="src\utils\Random.h" />
+    <ClInclude Include="src\ui\widgets\DragFloat.h" />
     <ClInclude Include="src\core\particles\Particle.h" />
     <ClInclude Include="src\batching\DrawCommand.h" />
     <ClInclude Include="src\batching\GeometryBatch.h" />
@@ -767,7 +770,7 @@
     <ClInclude Include="src\modules\ModuleDebugMode.h" />
     <ClInclude Include="src\modules\ModuleUserInterface.h" />
     <ClInclude Include="src\ui\editor\Theme.h" />
-    <ClInclude Include="src\ui\widgets\AxisSlider.h" />
+    <ClInclude Include="src\ui\widgets\DragFloat3.h" />
     <ClInclude Include="src\ui\widgets\CollapsingHeader.h" />
     <ClInclude Include="src\ui\widgets\Combo.h" />
     <ClInclude Include="src\ui\widgets\MultiTypeSelector.h" />
@@ -1121,7 +1124,7 @@
     <ClInclude Include="src\components\ComponentTransform.h" />
     <ClInclude Include="vendors\DebugDraw\debugdraw.h" />
     <ClInclude Include="vendors\DebugDraw\debug_draw.hpp" />
-    <ClInclude Include="vendors\imgui\IconsFontAwesome5.h" />
+    <ClInclude Include="vendors\imgui\IconsFontAwesome6.h" />
     <ClInclude Include="vendors\MathGeoLib\Math\assume.h" />
     <ClInclude Include="vendors\MathGeoLib\Math\BitFuncs.h" />
     <ClInclude Include="vendors\MathGeoLib\Math\BitOps.h" />

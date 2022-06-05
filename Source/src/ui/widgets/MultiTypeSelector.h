@@ -47,7 +47,7 @@ namespace Hachiko::Widgets
         }
         else
         {
-            if(ImGui::Button("Edit curve"))
+            if (ImGui::Button(StringUtils::Concat(ICON_FA_BEZIER_CURVE, "Edit curve").c_str()))
             {
                 Event evt(Event::Type::CURVE_EDITOR);
                 evt.SetEventData<CurveEditorEventPayload>(label, variable_type_property.curve);

@@ -74,7 +74,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
     {
         ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 3.0f);
         ImGui::Indent();
-        if (CollapsingHeader("Parameters", &parameters_section, Widgets::CollapsibleHeaderType::Space))
+        if (CollapsingHeader("Parameters", &parameters_section, Widgets::CollapsibleHeaderType::Icon, ICON_FA_BURST))
         {
             Widgets::MultiTypeSelector("Start delay", delay);
             Widgets::MultiTypeSelector("Start lifetime", life);
@@ -86,38 +86,69 @@ void Hachiko::ComponentParticleSystem::DrawGui()
         if (CollapsingHeader("Emission", &emission_section, Widgets::CollapsibleHeaderType::Checkbox))
         {
             ImGui::BeginDisabled(!emission_section);
-            Widgets::MultiTypeSelector("Rate over time", delay);
+            Widgets::MultiTypeSelector("Rate over time", rate_over_time);
             ImGui::EndDisabled();
         }
 
         if (CollapsingHeader("Shape", &shape_section, Widgets::CollapsibleHeaderType::Checkbox))
         {
             ImGui::BeginDisabled(!shape_section);
-            const char* items[] = {"Cone", "Box", "Sphere", "Circle", "Rectangle"};
+            const char* shapes[] = {"Cone", "Box", "Sphere", "Circle", "Rectangle"};
+            const char* emit_from_options[] = {"Volume", "Shell", "Edge"};
 
             int emitter = static_cast<int>(emitter_type);
-            if (Widgets::Combo("Shape", &emitter, items, IM_ARRAYSIZE(items)))
+            int emit_from = static_cast<int>(emitter_properties.emit_from);
+
+            if (Widgets::Combo("Shape", &emitter, shapes, IM_ARRAYSIZE(shapes)))
             {
                 emitter_type = static_cast<ParticleSystem::Emitter::Type>(emitter);
                 App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
             }
 
-            Widgets::AxisSliderConfig scale_config;
+            Widgets::DragFloat3Config scale_config;
             scale_config.min = float3(0.001f);
+            Widgets::DragFloatConfig top;
+            Widgets::DragFloatConfig radius;
+            radius.min = 0.001f;
+            radius.speed = 0.05f;
+
+            Widgets::DragFloatConfig thickness;
+            thickness.min = 0.001f;
+            thickness.max = 1.0f;
+            thickness.speed = 0.05f;
+
+            Widgets::DragFloatConfig arc;
+            arc.min = 0.0f;
+            arc.max = 360.0f;
+            arc.speed = 1.0f;
+            arc.format = "%.f";
 
             switch (emitter_type)
             {
             case ParticleSystem::Emitter::Type::CONE:
+                top.speed = 0.01f;
+                top.min = 0.001f;
+                DragFloat("Top", emitter_properties.top, &top);
+                DragFloat("Radius", emitter_properties.radius, &radius);
+                DragFloat("Radius thickness", emitter_properties.radius_thickness, &thickness);
+                DragFloat("Arc", emitter_properties.arc, &arc);
 
                 break;
             case ParticleSystem::Emitter::Type::BOX:
-
+                if (Widgets::Combo("Emit from", &emit_from, emit_from_options, IM_ARRAYSIZE(emit_from_options)))
+                {
+                    emitter_properties.emit_from = static_cast<ParticleSystem::Emitter::EmitFrom>(emit_from);
+                }
                 break;
             case ParticleSystem::Emitter::Type::SPHERE:
-
+                DragFloat("Radius", emitter_properties.radius, &radius);
+                DragFloat("Radius thickness", emitter_properties.radius_thickness, &thickness);
+                DragFloat("Arc", emitter_properties.arc, &arc);
                 break;
             case ParticleSystem::Emitter::Type::CIRCLE:
-
+                DragFloat("Radius", emitter_properties.radius, &radius);
+                DragFloat("Radius thickness", emitter_properties.radius_thickness, &thickness);
+                DragFloat("Arc", emitter_properties.arc, &arc);
                 break;
             case ParticleSystem::Emitter::Type::RECTANGLE:
                 scale_config.enabled = bool3(true, false, true);
@@ -125,9 +156,9 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             }
 
             ImGuiUtils::DisplayTooltip("Selects the shape of this particle system");
-            Widgets::AxisSlider("Position", emitter_properties.position);
-            Widgets::AxisSlider("Rotation", emitter_properties.rotation);
-            Widgets::AxisSlider("Scale", emitter_properties.scale, &scale_config);
+            Widgets::DragFloat3("Position", emitter_properties.position);
+            Widgets::DragFloat3("Rotation", emitter_properties.rotation);
+            Widgets::DragFloat3("Scale", emitter_properties.scale, &scale_config);
             ImGui::EndDisabled();
         }
 
@@ -158,14 +189,14 @@ void Hachiko::ComponentParticleSystem::DrawGui()
         if (current_curve_editing)
         {
             bool always_open = true;
-            if (CollapsingHeader("Curve editor", &always_open, Widgets::CollapsibleHeaderType::Space, ImGuiTreeNodeFlags_DefaultOpen))
+            if (CollapsingHeader("Curve editor", &always_open, Widgets::CollapsibleHeaderType::Icon, ICON_FA_BEZIER_CURVE, ImGuiTreeNodeFlags_DefaultOpen))
             {
                 ImGui::TextUnformatted("Current curve:");
                 ImGui::SameLine();
                 ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 0, 0, 255));
                 ImGui::TextWrapped(current_curve_editing_title.c_str());
-                ImGui::PopStyleColor();
                 ImGui::Spacing();
+                ImGui::PopStyleColor();
 
                 ImGui::Curve("##",
                              ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetCurrentContext()->FontSize * 5.0f),
