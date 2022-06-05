@@ -165,7 +165,7 @@
     <ClCompile Include="src\core\particles\modules\ColorParticleModule.cpp" />
     <ClCompile Include="src\core\particles\modules\ForceParticleModule.cpp" />
     <ClCompile Include="src\core\particles\modules\SizeParticleModule.cpp" />
-    <ClCompile Include="src\core\particles\modules\SpeedParticleModule.cpp" />
+    <ClCompile Include="src\core\particles\modules\VelocityParticleModule.cpp" />
     <ClCompile Include="src\core\particles\ParticleModule.cpp" />
     <ClCompile Include="src\importers\NavmeshImporter.cpp" />
     <ClCompile Include="src\components\ComponentAudioListener.cpp" />
@@ -195,6 +195,7 @@
     <ClCompile Include="src\scripting\Script.cpp" />
     <ClCompile Include="src\modules\ModuleScriptingSystem.cpp" />
     <ClCompile Include="src\ui\WindowStateMachine.cpp" />
+    <ClCompile Include="src\utils\Bool3.cpp" />
     <ClCompile Include="src\utils\WindowsFileUtil.cpp" />
     <ClCompile Include="src\resources\ResourceAnimation.cpp" />
     <ClCompile Include="src\importers\AnimationImporter.cpp" />
@@ -695,7 +696,7 @@
     <ClInclude Include="src\core\particles\modules\ColorParticleModule.h" />
     <ClInclude Include="src\core\particles\modules\ForceParticleModule.h" />
     <ClInclude Include="src\core\particles\modules\SizeParticleModule.h" />
-    <ClInclude Include="src\core\particles\modules\SpeedParticleModule.h" />
+    <ClInclude Include="src\core\particles\modules\VelocityParticleModule.h" />
     <ClInclude Include="src\core\particles\ParticleModule.h" />
     <ClInclude Include="src\core\particles\ParticleSystem.h" />
     <ClInclude Include="src\events\CurveEditorEventPayload.h" />
@@ -773,6 +774,7 @@
     <ClInclude Include="src\ui\widgets\Widgets.h" />
     <ClInclude Include="src\ui\WindowResource.h" />
     <ClInclude Include="src\ui\WindowStateMachine.h" />
+    <ClInclude Include="src\utils\Bool3.h" />
     <ClInclude Include="src\utils\Cache.h" />
     <ClInclude Include="src\utils\StringUtils.h" />
     <ClInclude Include="src\batching\TextureBatch.h" />

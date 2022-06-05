@@ -96,6 +96,9 @@
 #include "utils/StringUtils.h"
 #include "utils/FileSystem.h"
 #include "utils/WindowsFileUtil.h"
+#include "utils/Bool3.h"
+
+#include "modules/ModuleEvent.h"
 
 #include "components/Component.h"
 #include "importers/Importer.h"
@@ -114,4 +117,4 @@
 #include "core/particles/modules/ColorParticleModule.h"
 #include "core/particles/modules/ForceParticleModule.h"
 #include "core/particles/modules/SizeParticleModule.h"
-#include "core/particles/modules/SpeedParticleModule.h"
+#include "core/particles/modules/VelocityParticleModule.h"

@@ -7,6 +7,8 @@
 #include <imgui_internal.h>
 #include <Math/float3.h>
 
+#include "utils/Bool3.h"
+
 namespace Hachiko::Widgets
 {
     struct AxisSliderConfig
@@ -17,6 +19,7 @@ namespace Hachiko::Widgets
         float3 speed = float3(0.1f);
         float3 min = float3(std::numeric_limits<float>::lowest());
         float3 max = float3(std::numeric_limits<float>::max());
+        bool3 enabled = bool3::True;
         const char* format = "%.2f";
         int flags = ImGuiSliderFlags_AlwaysClamp;
     };
@@ -28,7 +31,7 @@ namespace Hachiko::Widgets
         static const ImVec4 blue = ImVec4(0.0f, 0.0f, 0.75f, 1.0f);
         static const ImVec4 white = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
         const ImGuiWindow* window = ImGui::GetCurrentWindow();
-        ImGuiContext& g = *GImGui;
+
         if (window->SkipItems)
         {
             return false;
@@ -36,8 +39,8 @@ namespace Hachiko::Widgets
 
         if (!config)
         {
-            const AxisSliderConfig g;
-            config = &g;
+            const AxisSliderConfig cfg;
+            config = &cfg;
         }
 
         bool changed = false;
@@ -69,6 +72,8 @@ namespace Hachiko::Widgets
         ImGui::TableNextColumn();
 
         ImGui::PushItemWidth(item_width);
+
+        ImGui::BeginDisabled(!config->enabled.x);
         ImGui::PushID(1);
         ImGui::PushStyleColor(ImGuiCol_Text, white);
         ImGui::PushStyleColor(ImGuiCol_Button, red);
@@ -89,7 +94,9 @@ namespace Hachiko::Widgets
         ImGui::TableNextColumn();
         ImGui::PushItemWidth(item_width);
         CREATE_HISTORY_ENTRY_AFTER_EDIT()
+        ImGui::EndDisabled();
 
+        ImGui::BeginDisabled(!config->enabled.y);
         ImGui::PushID(2);
         ImGui::PushStyleColor(ImGuiCol_Text, white);
         ImGui::PushStyleColor(ImGuiCol_Button, green);
@@ -109,7 +116,9 @@ namespace Hachiko::Widgets
         ImGui::TableNextColumn();
         ImGui::PushItemWidth(item_width);
         CREATE_HISTORY_ENTRY_AFTER_EDIT()
+        ImGui::EndDisabled();
 
+        ImGui::BeginDisabled(!config->enabled.z);
         ImGui::PushID(3);
         ImGui::PushStyleColor(ImGuiCol_Text, white);
         ImGui::PushStyleColor(ImGuiCol_Button, blue);
@@ -127,6 +136,7 @@ namespace Hachiko::Widgets
 
         ImGui::PopItemWidth();
         CREATE_HISTORY_ENTRY_AFTER_EDIT()
+        ImGui::EndDisabled();
 
         ImGui::EndTable();
         ImGui::PopStyleVar(2);

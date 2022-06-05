@@ -4,16 +4,16 @@
 
 namespace Hachiko
 {
-    class SpeedParticleModule : public ParticleModule
+    class VelocityParticleModule : public ParticleModule
     {
     public:
-        SpeedParticleModule(const std::string& name);
-        ~SpeedParticleModule() override = default;
+        VelocityParticleModule(const std::string& name);
+        ~VelocityParticleModule() override = default;
 
         void Update(std::vector<Particle>&) override;
         void DrawGui() override;
     private:
         float speed = 0.0f;
-        void UpdateSpeedOverTime(Particle& particle);
+        void UpdateVelocityOverTime(Particle& particle);
     };
 }

@@ -5,7 +5,7 @@
 #include "modules/ModuleSceneManager.h"
 
 #include "core/particles/Particle.h"
-#include "core/particles/modules/SpeedParticleModule.h"
+#include "core/particles/modules/VelocityParticleModule.h"
 #include "core/particles/modules/SizeParticleModule.h"
 #include "core/particles/modules/ColorParticleModule.h"
 #include "core/particles/modules/ForceParticleModule.h"
@@ -15,14 +15,14 @@
 Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container) :
     Component(Type::PARTICLE_SYSTEM, container)
 {
-    particle_modules.push_back(std::make_shared<SpeedParticleModule>("Speed over lifetime"));
+    particle_modules.push_back(std::make_shared<VelocityParticleModule>("Velocity over lifetime"));
     particle_modules.push_back(std::make_shared<SizeParticleModule>("Size over lifetime"));
     particle_modules.push_back(std::make_shared<ColorParticleModule>("Color over lifetime"));
     particle_modules.push_back(std::make_shared<ForceParticleModule>("Force over lifetime"));
 
     std::function edit_curve = [&](Event& evt) {
         const auto data = evt.GetEventData<CurveEditorEventPayload>();
-        current_curve_edition_title = data.GetTitle();
+        current_curve_editing_title = data.GetTitle();
         current_curve_editing = current_curve_editing == data.GetCurve() ? nullptr : data.GetCurve();
 
     };
@@ -57,7 +57,7 @@ void Hachiko::ComponentParticleSystem::Update()
     {
         particle.Update();
     }
-    
+
     for (const auto& particle_module : particle_modules)
     {
         particle_module->Update(particles);
@@ -90,7 +90,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
         if (CollapsingHeader("Emission", &emission_section, Widgets::CollapsibleHeaderType::Checkbox))
         {
             ImGui::BeginDisabled(!emission_section);
-
+            Widgets::MultiTypeSelector("Rate over time", delay);
             ImGui::EndDisabled();
         }
 
@@ -106,31 +106,32 @@ void Hachiko::ComponentParticleSystem::DrawGui()
                 App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
             }
 
+            Widgets::AxisSliderConfig scale_config;
+            scale_config.min = float3(0.001f);
+
             switch (emitter_type)
             {
             case ParticleSystem::Emitter::Type::CONE:
-                //Cone specific code here
+
                 break;
             case ParticleSystem::Emitter::Type::BOX:
-                //Box specific code here
+
                 break;
             case ParticleSystem::Emitter::Type::SPHERE:
-                //Box specific code here
+
                 break;
             case ParticleSystem::Emitter::Type::CIRCLE:
-                //Box specific code here
+
                 break;
             case ParticleSystem::Emitter::Type::RECTANGLE:
-                //Box specific code here
+                scale_config.enabled = bool3(true, false, true);
                 break;
             }
 
             ImGuiUtils::DisplayTooltip("Selects the shape of this particle system");
             Widgets::AxisSlider("Position", emitter_properties.position);
             Widgets::AxisSlider("Rotation", emitter_properties.rotation);
-            Widgets::AxisSliderConfig scale_config;
-            scale_config.min = float3(0.001f);
-            AxisSlider("Scale", emitter_properties.scale, &scale_config);
+            Widgets::AxisSlider("Scale", emitter_properties.scale, &scale_config);
             ImGui::EndDisabled();
         }
 
@@ -144,21 +145,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             }
         }
 
-        if (CollapsingHeader("Collision", &collision_section, Widgets::CollapsibleHeaderType::Checkbox))
-        {
-            ImGui::BeginDisabled(renderer_section);
-
-            ImGui::EndDisabled();
-        }
-
         if (CollapsingHeader("Lights", &lights_section, Widgets::CollapsibleHeaderType::Checkbox))
-        {
-            ImGui::BeginDisabled(renderer_section);
-
-            ImGui::EndDisabled();
-        }
-
-        if (CollapsingHeader("Trails", &trails_section, Widgets::CollapsibleHeaderType::Checkbox))
         {
             ImGui::BeginDisabled(renderer_section);
 
@@ -180,7 +167,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
                 ImGui::TextUnformatted("Current curve:");
                 ImGui::SameLine();
                 ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 0, 0, 255));
-                ImGui::TextWrapped(current_curve_edition_title.c_str());
+                ImGui::TextWrapped(current_curve_editing_title.c_str());
                 ImGui::PopStyleColor();
                 ImGui::Spacing();
 
@@ -205,29 +192,35 @@ void Hachiko::ComponentParticleSystem::DebugDraw()
                                                emitter_properties.scale);
     const float4x4 current_model = model * emitter;
     const float3 direction = (current_model.RotatePart() * float3::unitY).Normalized();
-
     switch (emitter_type)
     {
     case ParticleSystem::Emitter::Type::CONE:
-        dd::cone(current_model.TranslatePart(), direction, dd::colors::White, emitter_properties.angle / 90, emitter_properties.radius);
+        dd::cone(current_model.TranslatePart(),
+                 direction,
+                 dd::colors::White,
+                 emitter_properties.top,
+                 emitter_properties.radius);
+        dd::cone(current_model.TranslatePart(),
+                 direction,
+                 dd::colors::White,
+                 emitter_properties.top * (1 - emitter_properties.radius_thickness),
+                 emitter_properties.radius * (1 - emitter_properties.radius_thickness));
         break;
     case ParticleSystem::Emitter::Type::BOX:
     {
-        const OBB obb = OBB(current_model.TranslatePart(), current_model.GetScale(), current_model.RotatePart().WorldX(), current_model.RotatePart().WorldY(), current_model.RotatePart().WorldZ());
-        float3 p[8];
-        static const int order[8] = {0, 1, 5, 4, 2, 3, 7, 6};
-        for (int i = 0; i < 8; ++i)
-        {
-            p[i] = obb.CornerPoint(order[i]);
-        }
-        dd::box(p, dd::colors::White);
+        dd::box(current_model.TranslatePart(), dd::colors::White, current_model.GetScale().x, current_model.GetScale().y, current_model.GetScale().z);
     }
     break;
     case ParticleSystem::Emitter::Type::SPHERE:
+        dd::sphere(current_model.TranslatePart(), dd::colors::White, emitter_properties.radius);
+        dd::sphere(current_model.TranslatePart(), dd::colors::White, emitter_properties.radius * (1 - emitter_properties.radius_thickness));
         break;
     case ParticleSystem::Emitter::Type::CIRCLE:
+        dd::circle(current_model.TranslatePart(), direction, dd::colors::White, emitter_properties.radius, 50.0f);
+        dd::circle(current_model.TranslatePart(), direction, dd::colors::White, emitter_properties.radius * (1 - emitter_properties.radius_thickness), 50.0f);
         break;
     case ParticleSystem::Emitter::Type::RECTANGLE:
+        dd::box(current_model.TranslatePart(), dd::colors::White, current_model.GetScale().x, 0.0001f, current_model.GetScale().z);
         break;
     }
 }
@@ -237,15 +230,16 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
 }
 
 void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
-{}
+{
+}
 
-Hachiko::ParticleSystem::VariableTypeProperty 
+Hachiko::ParticleSystem::VariableTypeProperty
 Hachiko::ComponentParticleSystem::GetParticlesLife() const
 {
     return life;
 }
 
-Hachiko::ParticleSystem::VariableTypeProperty 
+Hachiko::ParticleSystem::VariableTypeProperty
 Hachiko::ComponentParticleSystem::GetParticlesSize() const
 {
     return size;

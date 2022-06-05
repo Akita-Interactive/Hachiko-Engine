@@ -29,9 +29,9 @@ namespace Hachiko
 
             struct Properties
             {
-                float angle = 25.0f;
-                float radius = 1.0f;
-                float radius_thickness = 1.0f;
+                float top = 1.0f;
+                float radius = 0.5f;
+                float radius_thickness = 0.25f;
                 float arc = 360.0f;
                 EmitFrom emit_from = EmitFrom::VOLUME;
                 float3 position = float3::zero;

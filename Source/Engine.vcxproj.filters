@@ -642,11 +642,14 @@
     <ClCompile Include="src\core\particles\modules\SizeParticleModule.cpp">
       <Filter>Core\Particles\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\particles\modules\SpeedParticleModule.cpp">
+    <ClCompile Include="src\core\particles\modules\VelocityParticleModule.cpp">
       <Filter>Core\Particles\Modules</Filter>
     </ClCompile>
     <ClCompile Include="src\core\particles\Particle.cpp">
       <Filter>Core\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\Bool3.cpp">
+      <Filter>Core\Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2433,7 +2436,7 @@
     <ClInclude Include="src\core\particles\modules\SizeParticleModule.h">
       <Filter>Core\Particles\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\particles\modules\SpeedParticleModule.h">
+    <ClInclude Include="src\core\particles\modules\VelocityParticleModule.h">
       <Filter>Core\Particles\Modules</Filter>
     </ClInclude>
     <ClInclude Include="src\ui\widgets\Widgets.h">
@@ -2447,6 +2450,12 @@
     </ClInclude>
     <ClInclude Include="src\core\particles\Particle.h">
       <Filter>Core\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\Bool3.h">
+      <Filter>Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\serialization\TypeConverter.h">
+      <Filter>Core\Serialization</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

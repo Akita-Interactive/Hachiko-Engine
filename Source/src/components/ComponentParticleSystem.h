@@ -28,9 +28,7 @@ namespace Hachiko
         bool parameters_section = true;
         bool emission_section = true;
         bool shape_section = true;
-        bool collision_section = false;
         bool lights_section = false;
-        bool trails_section = false;
         bool renderer_section = true;
 
         //particle config
@@ -43,12 +41,15 @@ namespace Hachiko
         ParticleSystem::VariableTypeProperty size = {float2::one};
         ParticleSystem::VariableTypeProperty rotation = {float2::zero};
 
-        //emitter
+        //emission
+        ParticleSystem::VariableTypeProperty rate_over_time{float2(10)};
+
+        //emitter (shape)
         ParticleSystem::Emitter::Type emitter_type = ParticleSystem::Emitter::Type::CONE;
         ParticleSystem::Emitter::Properties emitter_properties;
 
         float2* current_curve_editing = nullptr;
-        std::string current_curve_edition_title;
+        std::string current_curve_editing_title;
 
         //render
         bool in_scene = false;
