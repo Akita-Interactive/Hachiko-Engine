@@ -237,15 +237,10 @@ namespace Hachiko::Widgets
             ImGui::RenderTextClipped(text_pos, frame_bb.Max, label, label_end, &label_size);
         }
 
-        if
-        (is_open &&
-         !
-         (flags & ImGuiTreeNodeFlags_NoTreePushOnOpen)
-        )
+        if (is_open && ! (flags & ImGuiTreeNodeFlags_NoTreePushOnOpen))
         {
             ImGui::TreePushOverrideID(id);
         }
-        return
-            is_open;
+        return is_open;
     }
 }

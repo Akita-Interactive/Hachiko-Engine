@@ -15,12 +15,12 @@ namespace Hachiko::Widgets
 
         ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0, 2));
 
-        const float spacing = ImGui::GetStyle().IndentSpacing;
+        const float spacing = ImGui::GetStyle().IndentSpacing + 1;
 
         ImGui::BeginTable("", 3, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_NoBordersInBody);
         ImGui::TableSetupColumn("##1", ImGuiTableColumnFlags_WidthStretch, 0.25f);
         ImGui::TableSetupColumn("##2", ImGuiTableColumnFlags_WidthStretch, 0.725f);
-        ImGui::TableSetupColumn("##3", ImGuiTableColumnFlags_WidthFixed, spacing + 1);
+        ImGui::TableSetupColumn("##3", ImGuiTableColumnFlags_WidthFixed, spacing);
         ImGui::TableNextRow();
         ImGui::TableSetColumnIndex(0);
 

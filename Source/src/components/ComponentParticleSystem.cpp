@@ -4,11 +4,7 @@
 
 #include "modules/ModuleSceneManager.h"
 
-#include "core/particles/Particle.h"
-#include "core/particles/modules/VelocityParticleModule.h"
-#include "core/particles/modules/SizeParticleModule.h"
-#include "core/particles/modules/ColorParticleModule.h"
-#include "core/particles/modules/ForceParticleModule.h"
+#include "ui/widgets/Widgets.h"
 
 #include "debugdraw.h"
 
@@ -178,6 +174,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             }
         }
         ImGui::PopStyleVar();
+        ImGui::Unindent();
     }
 }
 

@@ -60,23 +60,21 @@ bool Hachiko::ImGuiUtils::CompactColorPicker(const char* name, float* color)
     return ret;
 }
 
-bool Hachiko::ImGuiUtils::CollapsingHeader(GameObject* game_object, Component* component, const char* header_name)
+bool Hachiko::ImGuiUtils::CollapsingHeader(GameObject* game_object, const Component* component, const char* header_name)
 {
+    ImGui::PushID(component);
     bool open = ImGui::CollapsingHeader(header_name, ImGuiTreeNodeFlags_AllowItemOverlap | ImGuiTreeNodeFlags_DefaultOpen);
-
+    const float spacing = ImGui::GetStyle().IndentSpacing + ImGui::GetStyle().FramePadding.x + 1;
     ImGui::SameLine();
-    if (ImGui::GetWindowWidth() > 170)
-    {
-        ImGui::Indent(ImGui::GetWindowWidth() - 43);
-    }
+
+    ImGui::Indent(ImGui::GetWindowContentRegionMax().x - spacing);
+
     if (ImGui::Button(std::string(ICON_FA_TIMES).c_str()))
     {
         ImGui::OpenPopup(header_name);
     }
-    if (ImGui::GetWindowWidth() > 170)
-    {
-        ImGui::Unindent(ImGui::GetWindowWidth() - 43);
-    }
+
+    ImGui::Unindent(ImGui::GetWindowContentRegionMax().x - spacing);
 
     if (ImGui::BeginPopup(header_name))
     {
@@ -85,6 +83,7 @@ bool Hachiko::ImGuiUtils::CollapsingHeader(GameObject* game_object, Component* c
         ImGui::EndPopup();
         return false;
     }
+    ImGui::PopID();
 
     return open;
 }

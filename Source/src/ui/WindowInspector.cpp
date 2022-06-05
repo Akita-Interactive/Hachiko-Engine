@@ -59,15 +59,24 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
     }
 
     ImGui::Separator();
-    const float x = (ImGui::GetContentRegionAvail().x - ImGui::CalcTextSize(StringUtils::Concat(ICON_FA_PLUS, " ", "Add component").c_str()).x - ImGui::GetStyle().FramePadding.x * 2) * 0.5f;
-    ImGui::SetCursorPosX(x);
-    if (ImGui::Button(StringUtils::Concat(ICON_FA_PLUS, " ", "Add component").c_str()))
+    if (ImGui::Button(StringUtils::Concat(ICON_FA_PLUS, " ", "Add component").c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         ImGui::OpenPopup("AddComponentPopup");
     }
 
     static bool add_script = false;
 
+    const auto current_pos = ImGui::GetCurrentWindow()->DC.CursorPos;
+    float pivot_y = 0.0f;
+    float adjust_y = 0.0f;
+    constexpr float default_popup_size_y = 250.0f;
+    if (ImGui::GetCurrentWindow()->Size.y - current_pos.y < default_popup_size_y)
+    {
+        pivot_y = 1.0f;
+        adjust_y = ImGui::GetCurrentWindow()->DC.PrevLineSize.y + ImGui::GetStyle().WindowPadding.y;
+    }
+    ImGui::SetNextWindowSize(ImVec2(ImGui::GetContentRegionAvail().x, default_popup_size_y));
+    ImGui::SetNextWindowPos(ImVec2(current_pos.x, current_pos.y - adjust_y), 0, ImVec2(0, pivot_y));
     if (ImGui::BeginPopup("AddComponentPopup"))
     {
         if (ImGui::MenuItem("Camera"))
