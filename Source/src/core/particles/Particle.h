@@ -32,7 +32,7 @@ namespace Hachiko
         //render
         ParticleRenderMode render_mode = ParticleRenderMode::PARTICLE_ADDITIVE;
 
-        ComponentParticleSystem* emitter;
+        ComponentParticleSystem* emitter = nullptr;
         
         void GetModelMatrix(ComponentCamera* camera, float4x4& out_matrix) const;
         
@@ -66,6 +66,7 @@ namespace Hachiko
         [[nodiscard]] float GetInitialSpeed() const;
         [[nodiscard]] const float2& GetInitialSize() const;
         [[nodiscard]] const float3& GetInitialPosition() const;
+        [[nodiscard]] const float3& GetInitialDirection() const;
         void SetEmitter(ComponentParticleSystem* emitter);
     };
 }

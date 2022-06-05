@@ -34,8 +34,8 @@ void Hachiko::ForceParticleModule::UpdatePositionOverTime(Particle& particle)
 
 void Hachiko::ForceParticleModule::UpdateDirectionOverTime(Particle& particle)
 {
-    float3 direction = particle.GetCurrentDirection();
-    direction = float3(Random::RandomFloat(), Random::RandomFloat(), Random::RandomFloat());
-    direction.Normalize();
-    particle.SetCurrentDirection(direction);
+    //float3 direction = particle.GetCurrentDirection();
+    //direction = float3(Random::RandomFloat(), Random::RandomFloat(), Random::RandomFloat());
+    //direction.Normalize();
+    //particle.SetCurrentDirection(direction);
 }

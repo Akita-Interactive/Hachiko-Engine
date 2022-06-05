@@ -106,7 +106,7 @@
 
 #include "ui/Window.h"
 #include "ui/editor/Theme.h"
-// #include "ui/widgets/Widgets.h"
+#include "ui/widgets/Widgets.h"
 
 #include "resources/Resource.h"
 

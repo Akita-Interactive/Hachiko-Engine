@@ -4,8 +4,6 @@
 
 #include "modules/ModuleSceneManager.h"
 
-#include "ui/widgets/Widgets.h"
-
 #include "debugdraw.h"
 
 Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container) :
@@ -299,6 +297,17 @@ Hachiko::ComponentParticleSystem::GetParticlesColor() const
     return Hachiko::ParticleSystem::VariableTypeProperty();
 }
 
+float3 Hachiko::ComponentParticleSystem::GetParticlesDirection() const
+{
+    const float4x4 model = game_object->GetComponent<ComponentTransform>()->GetGlobalMatrix();
+    const float4x4 emitter = float4x4::FromTRS(emitter_properties.position,
+                                               Quat::FromEulerXYZ(DegToRad(emitter_properties.rotation.x), DegToRad(emitter_properties.rotation.y), DegToRad(emitter_properties.rotation.z)),
+                                               emitter_properties.scale);
+    const float4x4 current_model = model * emitter;
+    const float3 direction = (current_model.RotatePart() * float3::unitY).Normalized();
+    return direction;
+}
+
 void Hachiko::ComponentParticleSystem::UpdateActiveParticles()
 {
     for (auto& particle : particles)
@@ -323,26 +332,18 @@ void Hachiko::ComponentParticleSystem::UpdateModules()
 void Hachiko::ComponentParticleSystem::ActivateParticles()
 {
     time += EngineTimer::delta_time;
-    if (time <= one_second)
+    if (time * 1000.0f <= ONE_SEC_IN_MS / (int)rate_over_time.values.x)
     {
         return;
     }
 
     time = 0.0f;
-    int activation_counter = 0;
     for (auto& particle : particles)
     {
-        if (activation_counter == (int)rate_over_time.values.x)
+        if (!particle.IsActive())
         {
+            particle.Activate();
             return;
         }
-
-        if (particle.IsActive())
-        {
-            continue;
-        }
-
-        particle.Activate();
-        ++activation_counter;
     }
 }

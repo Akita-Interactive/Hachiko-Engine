@@ -25,6 +25,7 @@ void Hachiko::Particle::Reset()
     current_position = GetInitialPosition();
     current_size = GetInitialSize();
     current_speed = GetInitialSpeed();
+    current_direction = GetInitialDirection();
 }
 
 void Particle::Draw(ComponentCamera* camera, Program* program) const
@@ -123,6 +124,11 @@ const float2& Particle::GetInitialSize() const
 const float3& Particle::GetInitialPosition() const
 {
     return emitter->GetGameObject()->GetTransform()->GetGlobalPosition();
+}
+
+const float3& Hachiko::Particle::GetInitialDirection() const
+{
+    return emitter->GetParticlesDirection();
 }
 
 float Particle::GetCurrentLife() const
