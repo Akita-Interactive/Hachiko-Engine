@@ -22,6 +22,11 @@ void Hachiko::ColorParticleModule::Update(std::vector<Particle>& particles)
 
     for (auto& particle : particles)
     {
+        if (!particle.IsActive())
+        {
+            continue;
+        }
+
         UpdateColorOverTime(particle);
     }
 }
@@ -37,7 +42,7 @@ void Hachiko::ColorParticleModule::DrawGui()
 
 void Hachiko::ColorParticleModule::UpdateColorOverTime(Particle& particle)
 {
-    float particle_life = particle.GetEmitter()->GetParticlesLife().values.x;
+    float particle_life = particle.GetInitialLife();
     float color_frame = 1 - (particle.GetCurrentLife() / particle_life);
     float4 color = float4::one;
     gradient->getColorAt(color_frame, color.ptr());

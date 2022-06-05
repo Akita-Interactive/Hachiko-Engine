@@ -15,14 +15,19 @@ void Hachiko::SizeParticleModule::Update(std::vector<Particle>& particles)
 
     for (auto& particle : particles)
     {
+        if (!particle.IsActive())
+        {
+            continue;
+        }
+
         UpdateSizeOverTime(particle);
     }
 }
 
 void Hachiko::SizeParticleModule::DrawGui()
 {
-    ImGui::SliderFloat("Particle size x##size_particle", &size.x, 0.0f, 0.1f);
-    ImGui::SliderFloat("Particle size y##size_particle", &size.y, 0.0f, 0.1f);
+    Widgets::DragFloat("Size x", size.x);
+    Widgets::DragFloat("Size y", size.y);
 }
 
 void Hachiko::SizeParticleModule::UpdateSizeOverTime(Particle& particle)

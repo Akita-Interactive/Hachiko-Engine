@@ -21,12 +21,7 @@ namespace Hachiko
         void Draw(ComponentCamera* camera, Program* program) const;
 
     private:
-        float initial_life = 0.0f;
-        float initial_speed = 0.0f;
-        float4 initial_color = float4::zero;
-        float2 initial_size = float2::one;
-        float3 initial_position = float3::zero;
-
+        bool active = false;
         float current_life = 0.0f;
         float current_speed = 0.0f;
         float4 current_color = float4::zero;
@@ -42,21 +37,10 @@ namespace Hachiko
         void GetModelMatrix(ComponentCamera* camera, float4x4& out_matrix) const;
         
     public:
-        [[nodiscard]] float GetInitialLife() const;
-        void SetInitialLife(float initial_life);
-
-        [[nodiscard]] float GetInitialSpeed() const;
-        void SetInitialSpeed(float initial_speed);
-
-        [[nodiscard]] const float4& GetInitialColor() const;
-        void SetInitialColor(const float4& initial_color);
-
-        [[nodiscard]] const float2& GetInitialSize() const;
-        void SetInitialSize(const float2& initial_size);
-
-        [[nodiscard]] const float3& GetInitialPosition() const;
-        void SetInitialPosition(const float3& initial_position);
-
+        [[nodiscard]] bool IsActive() const;
+        void Activate();
+        void Deactivate();
+        
         [[nodiscard]] float GetCurrentLife() const;
         void SetCurrentLife(float current_life);
 
@@ -75,7 +59,13 @@ namespace Hachiko
         [[nodiscard]] ParticleRenderMode GetRenderMode() const;
         void SetRenderMode(ParticleRenderMode render_mode);
 
+        [[nodiscard]] const float3& GetCurrentDirection() const;
+        void SetCurrentDirection(const float3& current_direction);
+
+        [[nodiscard]] float GetInitialLife() const;
+        [[nodiscard]] float GetInitialSpeed() const;
+        [[nodiscard]] const float2& GetInitialSize() const;
+        [[nodiscard]] const float3& GetInitialPosition() const;
         void SetEmitter(ComponentParticleSystem* emitter);
-        [[nodiscard]] const ComponentParticleSystem* GetEmitter();
     };
 }

@@ -20,9 +20,11 @@ void Hachiko::Particle::Update()
 
 void Hachiko::Particle::Reset()
 {
-    current_life = emitter->GetParticlesLife().values.x;
-    current_position = emitter->GetGameObject()->GetTransform()->GetGlobalPosition();
-    current_size = emitter->GetParticlesSize().values;
+    active = false;
+    current_life = GetInitialLife();
+    current_position = GetInitialPosition();
+    current_size = GetInitialSize();
+    current_speed = GetInitialSpeed();
 }
 
 void Particle::Draw(ComponentCamera* camera, Program* program) const
@@ -88,54 +90,39 @@ void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_ma
     out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart(), float3(current_size, 0.0f));
 }
 
-float Particle::GetInitialLife() const
+bool Hachiko::Particle::IsActive() const
 {
-    return initial_life;
+    return active;
 }
 
-void Particle::SetInitialLife(const float initial_life)
+void Hachiko::Particle::Activate()
 {
-    this->initial_life = initial_life;
+    active = true;
+}
+
+void Hachiko::Particle::Deactivate()
+{
+    active = false;
+}
+
+float Particle::GetInitialLife() const
+{
+    return emitter->GetParticlesLife().values.x;
 }
 
 float Particle::GetInitialSpeed() const
 {
-    return initial_speed;
-}
-
-void Particle::SetInitialSpeed(const float initial_speed)
-{
-    this->initial_speed = initial_speed;
-}
-
-const float4& Particle::GetInitialColor() const
-{
-    return initial_color;
-}
-
-void Particle::SetInitialColor(const float4& initial_color)
-{
-    this->initial_color = initial_color;
+    return emitter->GetParticlesSpeed().values.x;
 }
 
 const float2& Particle::GetInitialSize() const
 {
-    return initial_size;
-}
-
-void Particle::SetInitialSize(const float2& initial_size)
-{
-    this->initial_size = initial_size;
+    return emitter->GetParticlesSize().values;
 }
 
 const float3& Particle::GetInitialPosition() const
 {
-    return initial_position;
-}
-
-void Particle::SetInitialPosition(const float3& initial_position)
-{
-    this->initial_position = initial_position;
+    return emitter->GetGameObject()->GetTransform()->GetGlobalPosition();
 }
 
 float Particle::GetCurrentLife() const
@@ -198,14 +185,19 @@ void Particle::SetRenderMode(const ParticleRenderMode render_mode)
     this->render_mode = render_mode;
 }
 
+const float3& Hachiko::Particle::GetCurrentDirection() const
+{
+    return current_direction;
+}
+
+void Hachiko::Particle::SetCurrentDirection(const float3& current_direction)
+{
+    this->current_direction = current_direction;
+}
+
 void Hachiko::Particle::SetEmitter(ComponentParticleSystem* emitter) 
 {
     this->emitter = emitter;
-}
-
-const ComponentParticleSystem* Hachiko::Particle::GetEmitter()
-{
-    return emitter;
 }
 
 

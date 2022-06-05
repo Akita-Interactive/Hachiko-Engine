@@ -10,7 +10,12 @@ void Hachiko::ForceParticleModule::Update(std::vector<Particle>& particles)
 {
     for (auto& particle : particles)
     {
-        //TODO: Add UpdateDirectionOverTime();
+        if (!particle.IsActive())
+        {
+            continue;
+        }
+
+        UpdateDirectionOverTime(particle);
         UpdatePositionOverTime(particle);
     }
 }
@@ -23,6 +28,14 @@ void Hachiko::ForceParticleModule::DrawGui()
 void Hachiko::ForceParticleModule::UpdatePositionOverTime(Particle& particle) 
 {
     float3 position = particle.GetCurrentPosition();
-    position.y += particle.GetCurrentSpeed(); // TODO: This should be position += particle.GetCurrentDirection() * particle.GetCurrentSpeed();
+    position += particle.GetCurrentDirection() * particle.GetCurrentSpeed();
     particle.SetCurrentPosition(position);
+}
+
+void Hachiko::ForceParticleModule::UpdateDirectionOverTime(Particle& particle)
+{
+    float3 direction = particle.GetCurrentDirection();
+    direction = float3(Random::RandomFloat(), Random::RandomFloat(), Random::RandomFloat());
+    direction.Normalize();
+    particle.SetCurrentDirection(direction);
 }

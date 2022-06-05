@@ -10,16 +10,21 @@ void Hachiko::VelocityParticleModule::Update(std::vector<Particle>& particles)
 {
     for (auto& particle : particles)
     {
+        if (!particle.IsActive())
+        {
+            continue;
+        }
+
         UpdateVelocityOverTime(particle);
     }
 }
 
 void Hachiko::VelocityParticleModule::DrawGui()
 {
-    ImGui::SliderFloat("Particle velocity##velocity_particle", &speed, 0.0f, 0.1f);
+    Widgets::DragFloat("Particle velocity", speed);
 }
 
 void Hachiko::VelocityParticleModule::UpdateVelocityOverTime(Particle& particle)
 {
-    particle.SetCurrentSpeed(speed);
+    particle.SetCurrentSpeed(speed * 0.1f);
 }

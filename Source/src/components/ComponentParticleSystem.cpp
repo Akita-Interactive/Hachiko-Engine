@@ -36,7 +36,6 @@ void Hachiko::ComponentParticleSystem::Start()
     for (auto& particle : particles)
     {
         particle.SetEmitter(this);
-        particle.SetInitialLife(life.values.x);
     }
 }
 
@@ -48,22 +47,21 @@ void Hachiko::ComponentParticleSystem::Update()
         in_scene = true;
         Start(); // TODO: For DEBUG as Start is not called
     }
-
-    for (auto& particle : particles)
-    {
-        particle.Update();
-    }
     
-    for (const auto& particle_module : particle_modules)
-    {
-        particle_module->Update(particles);
-    }
+    ActivateParticles();
+    UpdateActiveParticles();
+    UpdateModules();
 }
 
 void Hachiko::ComponentParticleSystem::Draw(ComponentCamera* camera, Program* program)
 {
     for (auto& particle : particles)
     {
+        if (!particle.IsActive())
+        {
+            continue;
+        }
+
         particle.Draw(camera, program);
     }
 }
@@ -276,4 +274,64 @@ Hachiko::ParticleSystem::VariableTypeProperty
 Hachiko::ComponentParticleSystem::GetParticlesSize() const
 {
     return size;
+}
+
+Hachiko::ParticleSystem::VariableTypeProperty
+Hachiko::ComponentParticleSystem::GetParticlesSpeed() const
+{
+    return speed;
+}
+
+Hachiko::ParticleSystem::VariableTypeProperty
+Hachiko::ComponentParticleSystem::GetParticlesColor() const
+{
+    return Hachiko::ParticleSystem::VariableTypeProperty();
+}
+
+void Hachiko::ComponentParticleSystem::UpdateActiveParticles()
+{
+    for (auto& particle : particles)
+    {
+        if (!particle.IsActive())
+        {
+            continue;
+        }
+
+        particle.Update();
+    }
+}
+
+void Hachiko::ComponentParticleSystem::UpdateModules()
+{
+    for (const auto& particle_module : particle_modules)
+    {
+        particle_module->Update(particles);
+    }
+}
+
+void Hachiko::ComponentParticleSystem::ActivateParticles()
+{
+    time += EngineTimer::delta_time;
+    if (time <= one_second)
+    {
+        return;
+    }
+
+    time = 0.0f;
+    int activation_counter = 0;
+    for (auto& particle : particles)
+    {
+        if (activation_counter == (int)rate_over_time.values.x)
+        {
+            return;
+        }
+
+        if (particle.IsActive())
+        {
+            continue;
+        }
+
+        particle.Activate();
+        ++activation_counter;
+    }
 }

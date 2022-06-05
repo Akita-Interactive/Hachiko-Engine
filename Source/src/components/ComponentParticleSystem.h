@@ -22,6 +22,8 @@ namespace Hachiko
 
         [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesLife() const;
         [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesSize() const;
+        [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesSpeed() const;
+        [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesColor() const;
 
     private:
         //sections
@@ -42,6 +44,8 @@ namespace Hachiko
         ParticleSystem::VariableTypeProperty rotation = {float2::zero};
 
         //emission
+        float time = 0.0f;
+        const float one_second = 2.0f;
         ParticleSystem::VariableTypeProperty rate_over_time{float2(10)};
 
         //emitter (shape)
@@ -55,9 +59,13 @@ namespace Hachiko
         bool in_scene = false;
 
         //particles
-        std::vector<Particle> particles{10};
+        std::vector<Particle> particles {10};
 
         //modules
         std::vector<std::shared_ptr<ParticleModule>> particle_modules{};
+
+        void UpdateActiveParticles();
+        void UpdateModules();
+        void ActivateParticles();
     };
 } // namespace Hachiko
