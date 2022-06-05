@@ -1,5 +1,6 @@
 #pragma once
 
+#include "core/particles/ParticleSystem.h"
 #include "core/particles/ParticleModule.h"
 
 namespace Hachiko
@@ -14,7 +15,7 @@ namespace Hachiko
         void DrawGui() override;
 
     private:
-        float2 size = float2::zero;
+        ParticleSystem::VariableTypeProperty size {float2::one, true, false};
         void UpdateSizeOverTime(Particle& particle);
     };
 }

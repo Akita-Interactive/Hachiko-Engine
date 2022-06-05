@@ -1,6 +1,8 @@
 #include "core/hepch.h"
 #include "core/particles/modules/SizeParticleModule.h"
 
+#include "ui/widgets/MultiTypeSelector.h"
+
 Hachiko::SizeParticleModule::SizeParticleModule(const std::string& name):
     ParticleModule(name, false)
 {
@@ -26,13 +28,12 @@ void Hachiko::SizeParticleModule::Update(std::vector<Particle>& particles)
 
 void Hachiko::SizeParticleModule::DrawGui()
 {
-    Widgets::DragFloat("Size x", size.x);
-    Widgets::DragFloat("Size y", size.y);
+    Widgets::MultiTypeSelector("Size over lifetime", size);
 }
 
 void Hachiko::SizeParticleModule::UpdateSizeOverTime(Particle& particle)
 {
     float2 particle_size = particle.GetCurrentSize();
-    particle_size += size;
+    particle_size += size.values;
     particle.SetCurrentSize(particle_size);
 }

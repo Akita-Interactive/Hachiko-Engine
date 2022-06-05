@@ -54,9 +54,10 @@ namespace Hachiko
             {
             }
 
-            VariableTypeProperty(const float2& values, bool curve_enabled = true):
+            VariableTypeProperty(const float2& values, bool curve_enabled = true, bool constant_enabled = true):
                 values(values),
-                curve_enabled(curve_enabled)
+                curve_enabled(curve_enabled),
+                constant_enabled(constant_enabled)
             {
                 //init curve as linear
                 curve[0].x = curve[0].y = 0.0f;
@@ -70,6 +71,7 @@ namespace Hachiko
             float2 values = float2::zero;
             float2 curve[CURVE_TICKS];
             bool curve_enabled = true;
+            bool constant_enabled = true;
             bool selected = false;
         };
     }

@@ -16,6 +16,11 @@ namespace Hachiko::Widgets
         ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0, 2));
 
         const float spacing = ImGui::GetStyle().IndentSpacing + 1;
+        const int offset = !variable_type_property.constant_enabled;
+        if (!variable_type_property.constant_enabled && variable_type_property.selected_option == ParticleSystem::Selection::CONSTANT)
+        {
+            variable_type_property.selected_option = ParticleSystem::Selection::BETWEEN_VALUES;
+        }
 
         ImGui::BeginTable("", 3, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_NoBordersInBody);
         ImGui::TableSetupColumn("##1", ImGuiTableColumnFlags_WidthStretch, 0.25f);
@@ -68,17 +73,29 @@ namespace Hachiko::Widgets
         }
         ImGui::TableNextColumn();
 
-        const char* items[] = {"Constant", "Random between two values", "Curve"};
-        const int size = 2 + static_cast<int>(variable_type_property.curve_enabled);
+        const int size = 1 + static_cast<int>(variable_type_property.constant_enabled) + static_cast<int>(variable_type_property.curve_enabled);
+        const char* items[3];
 
-        if (ImGui::BeginCombo("###", items[static_cast<int>(variable_type_property.selected_option)], ImGuiComboFlags_NoPreview))
+        if (variable_type_property.constant_enabled)
+        {
+            items[0] = "Constant";
+            items[1] = "Random between two values";
+            items[2] = "Curve";
+        }
+        else
+        {
+            items[0] = "Random between two values";
+            items[1] = "Curve";
+        }
+
+        if (ImGui::BeginCombo("###", items[static_cast<int>(variable_type_property.selected_option)-offset], ImGuiComboFlags_NoPreview))
         {
             for (int i = 0; i < size; i++)
             {
-                const bool is_selected = static_cast<int>(variable_type_property.selected_option) == i;
+                const bool is_selected = static_cast<int>(variable_type_property.selected_option)-offset == i;
                 if (ImGui::Selectable(items[i], is_selected))
                 {
-                    variable_type_property.selected_option = static_cast<ParticleSystem::Selection>(i);
+                    variable_type_property.selected_option = static_cast<ParticleSystem::Selection>(i +offset);
                 }
                 if (is_selected)
                 {

@@ -26,9 +26,9 @@ Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container)
         }
         else
         {
-        current_curve_editing_property = data.GetValue();
-        current_curve_editing_title = data.GetTitle();
-        data.GetValue()->selected = true;
+            current_curve_editing_property = data.GetValue();
+            current_curve_editing_title = data.GetTitle();
+            data.GetValue()->selected = true;
         }
     };
     App->event->Subscribe(Event::Type::CURVE_EDITOR, edit_curve);
@@ -273,26 +273,22 @@ Hachiko::ComponentParticleSystem::GetParticlesLife() const
     return life;
 }
 
-Hachiko::ParticleSystem::VariableTypeProperty
-Hachiko::ComponentParticleSystem::GetParticlesLife() const
+Hachiko::ParticleSystem::VariableTypeProperty Hachiko::ComponentParticleSystem::GetParticlesLife() const
 {
     return life;
 }
 
-Hachiko::ParticleSystem::VariableTypeProperty
-Hachiko::ComponentParticleSystem::GetParticlesSize() const
+Hachiko::ParticleSystem::VariableTypeProperty Hachiko::ComponentParticleSystem::GetParticlesSize() const
 {
     return size;
 }
 
-Hachiko::ParticleSystem::VariableTypeProperty
-Hachiko::ComponentParticleSystem::GetParticlesSpeed() const
+Hachiko::ParticleSystem::VariableTypeProperty Hachiko::ComponentParticleSystem::GetParticlesSpeed() const
 {
     return speed;
 }
 
-Hachiko::ParticleSystem::VariableTypeProperty
-Hachiko::ComponentParticleSystem::GetParticlesColor() const
+Hachiko::ParticleSystem::VariableTypeProperty Hachiko::ComponentParticleSystem::GetParticlesColor() const
 {
     return Hachiko::ParticleSystem::VariableTypeProperty();
 }
