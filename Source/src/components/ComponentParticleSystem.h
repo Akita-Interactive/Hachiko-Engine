@@ -52,7 +52,7 @@ namespace Hachiko
         ParticleSystem::Emitter::Type emitter_type = ParticleSystem::Emitter::Type::CONE;
         ParticleSystem::Emitter::Properties emitter_properties;
 
-        float2* current_curve_editing = nullptr;
+        ParticleSystem::VariableTypeProperty* current_curve_editing_property = nullptr;
         std::string current_curve_editing_title;
 
         //render

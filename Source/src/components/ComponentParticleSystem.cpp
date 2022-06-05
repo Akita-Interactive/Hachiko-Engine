@@ -18,9 +18,20 @@ Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container)
 
     std::function edit_curve = [&](Event& evt) {
         const auto data = evt.GetEventData<CurveEditorEventPayload>();
+        if (current_curve_editing_property)
+        {
+            current_curve_editing_property->selected = false;
+        }
+        if (current_curve_editing_property == data.GetValue())
+        {
+            current_curve_editing_property = nullptr;
+        }
+        else
+        {
+        current_curve_editing_property = data.GetValue();
         current_curve_editing_title = data.GetTitle();
-        current_curve_editing = current_curve_editing == data.GetCurve() ? nullptr : data.GetCurve();
-
+        data.GetValue()->selected = true;
+        }
     };
     App->event->Subscribe(Event::Type::CURVE_EDITOR, edit_curve);
 }
@@ -184,7 +195,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             ImGui::EndDisabled();
         }
 
-        if (current_curve_editing)
+        if (current_curve_editing_property)
         {
             bool always_open = true;
             if (CollapsingHeader("Curve editor", &always_open, Widgets::CollapsibleHeaderType::Icon, ICON_FA_BEZIER_CURVE, ImGuiTreeNodeFlags_DefaultOpen))
@@ -199,7 +210,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
                 ImGui::Curve("##",
                              ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetCurrentContext()->FontSize * 5.0f),
                              ParticleSystem::CURVE_TICKS - 1,
-                             reinterpret_cast<ImVec2*>(current_curve_editing));
+                             reinterpret_cast<ImVec2*>(current_curve_editing_property->curve));
             }
         }
         ImGui::PopStyleVar();

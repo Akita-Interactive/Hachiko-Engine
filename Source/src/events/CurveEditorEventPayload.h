@@ -1,12 +1,19 @@
 #pragma once
+#include "core/particles/ParticleSystem.h"
+
 namespace Hachiko
 {
     struct CurveEditorEventPayload
     {
-        CurveEditorEventPayload(const std::string& title, float2* curve):
-            title(title),
-            curve(curve)
+        CurveEditorEventPayload(ParticleSystem::VariableTypeProperty* value, const std::string& label):
+            title(label),
+            value(value)
         {
+        }
+
+        [[nodiscard]] ParticleSystem::VariableTypeProperty* GetValue() const
+        {
+            return value;
         }
 
         [[nodiscard]] const std::string& GetTitle() const
@@ -14,13 +21,8 @@ namespace Hachiko
             return title;
         }
 
-        [[nodiscard]] float2* GetCurve() const
-        {
-            return curve;
-        }
-
     private:
-        std::string title;
-        float2* curve;
+        const std::string title;
+        ParticleSystem::VariableTypeProperty* value;
     };
 }

@@ -18,6 +18,7 @@
 namespace ImGui
 {
     int Curve(const char *label, const ImVec2& size, int maxpoints, ImVec2 *points);
+    bool Curve(const ImVec2& size, const ImVec2 *points, int maxpoints);
     float CurveValue(float p, int maxpoints, const ImVec2 *points);
     float CurveValueSmooth(float p, int maxpoints, const ImVec2 *points);
 };
@@ -628,9 +629,7 @@ namespace ImGui
                 ImVec2 p = points[i];
                 p.y = 1 - p.y;
                 p = p * (bb.Max - bb.Min) + bb.Min;
-                ImVec2 a = p - ImVec2(2, 2);
-                ImVec2 b = p + ImVec2(2, 2);
-                window->DrawList->AddRect(a, b, GetColorU32(ImGuiCol_PlotLinesHovered));
+                window->DrawList->AddCircleFilled(p, 5, GetColorU32(ImGuiCol_PlotLinesHovered));
             }
         }
 
@@ -716,6 +715,43 @@ namespace ImGui
         RenderTextClipped(ImVec2(bb.Min.x, bb.Min.y + style.FramePadding.y), bb.Max, str, NULL, NULL, ImVec2(0.5f, 0.5f));
 
         return modified;
+    }
+
+    inline bool Curve(const ImVec2& size, const ImVec2* points, const int maxpoints)
+    {
+        ImGuiWindow* window = GetCurrentWindow();
+        
+        if (window->SkipItems)
+        {
+            return false;
+        }
+        const ImRect bb(window->DC.CursorPos, window->DC.CursorPos + size);
+        ItemSize(bb);
+
+        if (!ItemAdd(bb, NULL))
+        {
+            return false;
+        }
+        PushID(points);
+
+        RenderFrame(bb.Min, bb.Max, GetColorU32(ImGuiCol_FrameBg, 1), true, GetStyle().FrameRounding);
+
+        const bool clicked = IsMouseHoveringRect(bb.Min, bb.Max) && IsMouseClicked(ImGuiMouseButton_Left);
+        // smooth curve
+        enum { smoothness = 256 }; // the higher the smoother
+        for (int i = 0; i <= (smoothness - 1); ++i)
+        {
+            float px = (i + 0) / static_cast<float>(smoothness);
+            float qx = (i + 1) / static_cast<float>(smoothness);
+            float py = 1 - CurveValueSmooth(px, maxpoints, points);
+            float qy = 1 - CurveValueSmooth(qx, maxpoints, points);
+            ImVec2 p(px * (bb.Max.x - bb.Min.x) + bb.Min.x, py * (bb.Max.y - bb.Min.y) + bb.Min.y);
+            ImVec2 q(qx * (bb.Max.x - bb.Min.x) + bb.Min.x, qy * (bb.Max.y - bb.Min.y) + bb.Min.y);
+            window->DrawList->AddLine(p, q, GetColorU32(ImGuiCol_PlotLines));
+        } 
+        
+        PopID();
+        return clicked;
     }
 
 };

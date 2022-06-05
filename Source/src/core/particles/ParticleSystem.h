@@ -70,6 +70,7 @@ namespace Hachiko
             float2 values = float2::zero;
             float2 curve[CURVE_TICKS];
             bool curve_enabled = true;
+            bool selected = false;
         };
     }
 }

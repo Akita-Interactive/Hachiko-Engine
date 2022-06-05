@@ -20,7 +20,7 @@ namespace Hachiko
                                    SelectionChangedEventPayload, FileAddedEventPayload,
                                    AssetsAddedEventPayload, MouseEventPayload, InputEventPayload,
                                    GameStateEventPayload, SceneLoadEventPayload, EditorHistoryEntryRestore,
-                                    CurveEditorEventPayload>;
+                                   CurveEditorEventPayload>;
 
     class Event
     {

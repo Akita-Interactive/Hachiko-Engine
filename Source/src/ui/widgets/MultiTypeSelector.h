@@ -1,7 +1,7 @@
 #pragma once
 #include "core/particles/ParticleSystem.h"
 
-#include "modules/ModuleEvent.h";
+#include "modules/ModuleEvent.h"
 
 #include <imgui.h>
 #include <string>
@@ -47,11 +47,23 @@ namespace Hachiko::Widgets
         }
         else
         {
-            if (ImGui::Button(StringUtils::Concat(ICON_FA_BEZIER_CURVE, "Edit curve").c_str()))
+            const bool selected = variable_type_property.selected;
+            if (selected)
+            {
+                ImGui::PushStyleColor(ImGuiCol_PlotLines, IM_COL32(255, 0, 0, 255));
+            }
+            if (ImGui::Curve(
+                ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetCurrentContext()->FontSize + 4),
+                reinterpret_cast<ImVec2*>(variable_type_property.curve),
+                ParticleSystem::CURVE_TICKS - 1))
             {
                 Event evt(Event::Type::CURVE_EDITOR);
-                evt.SetEventData<CurveEditorEventPayload>(label, variable_type_property.curve);
+                evt.SetEventData<CurveEditorEventPayload>(&variable_type_property, label);
                 App->event->Publish(evt);
+            }
+            if (selected)
+            {
+                ImGui::PopStyleColor();
             }
         }
         ImGui::TableNextColumn();
