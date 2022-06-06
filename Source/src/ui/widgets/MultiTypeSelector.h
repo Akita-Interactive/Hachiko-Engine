@@ -39,7 +39,7 @@ namespace Hachiko::Widgets
             const float item_width = variable_type_property.selected_option == ParticleSystem::Selection::CONSTANT ? -FLT_MIN : -ImGui::GetContentRegionAvail().x * 0.5f;
 
             ImGui::PushItemWidth(item_width);
-            ImGui::DragFloat("##x", &variable_type_property.values.x, 1, 0,FLT_MAX, "%.2f", ImGuiSliderFlags_AlwaysClamp);
+            ImGui::DragFloat("##x", &variable_type_property.values.x, 0.1f, 0,FLT_MAX, "%.2f", ImGuiSliderFlags_AlwaysClamp);
             ImGui::PopItemWidth();
 
             if (variable_type_property.selected_option == ParticleSystem::Selection::BETWEEN_VALUES)
