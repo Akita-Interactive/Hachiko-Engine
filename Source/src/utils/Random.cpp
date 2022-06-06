@@ -1,7 +1,12 @@
 #include "core/hepch.h"
 #include "Random.h"
 
-float Hachiko::Random::RandomFloat()
+float Hachiko::Random::RandomUnsignedFloat()
 {
-    return dist(gen);
+    return u_dist(gen);
+}
+
+float Hachiko::Random::RandomSignedFloat()
+{
+    return s_dist(gen);
 }

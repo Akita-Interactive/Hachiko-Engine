@@ -67,5 +67,6 @@ namespace Hachiko
         void UpdateActiveParticles();
         void UpdateModules();
         void ActivateParticles();
+        float3 GetParticlesDirectionFromShape() const;
     };
 } // namespace Hachiko

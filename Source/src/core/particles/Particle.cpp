@@ -20,12 +20,12 @@ void Hachiko::Particle::Update()
 
 void Hachiko::Particle::Reset()
 {
-    active = false;
-    current_life = GetInitialLife();
-    current_position = GetInitialPosition();
-    current_size = GetInitialSize();
-    current_speed = GetInitialSpeed();
-    current_direction = GetInitialDirection();
+    Deactivate();
+    SetCurrentLife(GetInitialLife());
+    SetCurrentPosition(GetInitialPosition());
+    SetCurrentSize(GetInitialSize());
+    SetCurrentSpeed(GetInitialSpeed());
+    SetCurrentDirection(GetInitialDirection());
 }
 
 void Particle::Draw(ComponentCamera* camera, Program* program) const
@@ -168,7 +168,9 @@ const float2& Particle::GetCurrentSize() const
 
 void Particle::SetCurrentSize(const float2& current_size)
 {
-    this->current_size = current_size;
+    // Apply same size for both coordinates. Particles are always squares!
+    this->current_size.x = current_size.x;
+    this->current_size.y = current_size.x;
 }
 
 const float3& Particle::GetCurrentPosition() const

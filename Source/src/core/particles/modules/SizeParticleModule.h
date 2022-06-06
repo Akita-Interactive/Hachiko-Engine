@@ -15,7 +15,8 @@ namespace Hachiko
         void DrawGui() override;
 
     private:
-        ParticleSystem::VariableTypeProperty size {float2::one, true, false};
+        ParticleSystem::VariableTypeProperty size {float2::zero, true, false};
+        Widgets::DragFloatConfig cfg;
         void UpdateSizeOverTime(Particle& particle);
     };
 }

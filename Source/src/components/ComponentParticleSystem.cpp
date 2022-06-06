@@ -296,12 +296,13 @@ Hachiko::ParticleSystem::VariableTypeProperty Hachiko::ComponentParticleSystem::
 float3 Hachiko::ComponentParticleSystem::GetParticlesDirection() const
 {
     const float4x4 model = game_object->GetComponent<ComponentTransform>()->GetGlobalMatrix();
+    const float3 shape_direction = GetParticlesDirectionFromShape();
     const float4x4 emitter = float4x4::FromTRS(emitter_properties.position,
-                                               Quat::FromEulerXYZ(DegToRad(emitter_properties.rotation.x), DegToRad(emitter_properties.rotation.y), DegToRad(emitter_properties.rotation.z)),
-                                               emitter_properties.scale);
+                                  Quat::FromEulerXYZ(shape_direction.x, shape_direction.y, shape_direction.z),
+                                  emitter_properties.scale);
     const float4x4 current_model = model * emitter;
-    const float3 direction = (current_model.RotatePart() * float3::unitY).Normalized();
-    return direction;
+    const float3 random_direction = (current_model.RotatePart() * float3::unitY).Normalized();
+    return random_direction;
 }
 
 void Hachiko::ComponentParticleSystem::UpdateActiveParticles()
@@ -342,4 +343,34 @@ void Hachiko::ComponentParticleSystem::ActivateParticles()
             return;
         }
     }
+}
+
+float3 Hachiko::ComponentParticleSystem::GetParticlesDirectionFromShape() const
+{
+    float3 particle_direction = float3::one;
+    switch (emitter_type)
+    {
+    case ParticleSystem::Emitter::Type::CONE:
+        {
+            float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
+            particle_direction.x = emitter_properties.rotation.x + effective_radius * Random::RandomSignedFloat();
+            particle_direction.z = emitter_properties.rotation.z + effective_radius * Random::RandomSignedFloat();
+            break;
+        }
+    case ParticleSystem::Emitter::Type::SPHERE:
+        {
+            // TODO: This is not working perfectly. Emission depends on the size of the radius and it shouldn't
+            float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
+            particle_direction.x = emitter_properties.rotation.x + effective_radius * Random::RandomSignedFloat();
+            particle_direction.y = emitter_properties.rotation.y * (Random::RandomSignedFloat() > 0.0 ? 1.0 : -1.0);
+            particle_direction.z = emitter_properties.rotation.z + effective_radius * Random::RandomSignedFloat();
+            break;
+        }
+    case ParticleSystem::Emitter::Type::BOX:
+    case ParticleSystem::Emitter::Type::CIRCLE:
+    case ParticleSystem::Emitter::Type::RECTANGLE:
+        break;
+    }
+
+    return particle_direction;
 }

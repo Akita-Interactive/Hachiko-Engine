@@ -14,6 +14,7 @@ namespace Hachiko
         void DrawGui() override;
     private:
         float speed = 0.0f;
+        Widgets::DragFloatConfig cfg;
         void UpdateVelocityOverTime(Particle& particle);
     };
 }

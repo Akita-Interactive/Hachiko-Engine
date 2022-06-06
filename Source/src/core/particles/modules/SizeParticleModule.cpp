@@ -6,6 +6,10 @@
 Hachiko::SizeParticleModule::SizeParticleModule(const std::string& name):
     ParticleModule(name, false)
 {
+    cfg.min = -1.0f;
+    cfg.max = 1.0f;
+    cfg.speed = 0.001f;
+    cfg.format = "%.3f";
 }
 
 void Hachiko::SizeParticleModule::Update(std::vector<Particle>& particles)
@@ -28,7 +32,7 @@ void Hachiko::SizeParticleModule::Update(std::vector<Particle>& particles)
 
 void Hachiko::SizeParticleModule::DrawGui()
 {
-    Widgets::MultiTypeSelector("Size over lifetime", size);
+    Widgets::DragFloat("Size", size.values.x, &cfg);
 }
 
 void Hachiko::SizeParticleModule::UpdateSizeOverTime(Particle& particle)
