@@ -296,6 +296,10 @@
 #define EMITTER_DELAY "emitter_delay"
 #define EMITTER_TYPE "emitter_type"
 #define EMITTER_PROPERTIES "emitter_properties"
+// particle modules
+#define VELOCITY_OVER_TIME "velocity_over_time"
+#define SIZE_OVER_TIME "size_over_time"
+#define COLOR_OVER_TIME "size_over_time"
 
 // ComponentMeshRenderer
 #define RENDERER_MESH_ID "mesh_id"

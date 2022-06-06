@@ -6,8 +6,8 @@ Hachiko::VelocityParticleModule::VelocityParticleModule(const std::string& name)
 {
     cfg.min = -10.0f;
     cfg.max = 10.0f;
-    cfg.speed = 0.01f;
-    cfg.format = "%.2f";
+    cfg.speed = 0.001f;
+    cfg.format = "%.3f";
 }
 
 void Hachiko::VelocityParticleModule::Update(std::vector<Particle>& particles)
@@ -28,7 +28,17 @@ void Hachiko::VelocityParticleModule::DrawGui()
     Widgets::DragFloat("Particle velocity", speed, &cfg);
 }
 
+void Hachiko::VelocityParticleModule::Save(YAML::Node& node) const
+{
+    node[VELOCITY_OVER_TIME] = speed;
+}
+
+void Hachiko::VelocityParticleModule::Load(const YAML::Node& node)
+{
+    speed = node[VELOCITY_OVER_TIME].IsDefined() ? node[VELOCITY_OVER_TIME].as<float>() : speed;
+}
+
 void Hachiko::VelocityParticleModule::UpdateVelocityOverTime(Particle& particle)
 {
-    particle.SetCurrentSpeed(speed * 0.1f);
+    particle.SetCurrentSpeed(speed);
 }

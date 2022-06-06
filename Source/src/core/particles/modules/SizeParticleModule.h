@@ -14,6 +14,9 @@ namespace Hachiko
         void Update(std::vector<Particle>&) override;
         void DrawGui() override;
 
+        void Save(YAML::Node& node) const override;
+        void Load(const YAML::Node& node) override;
+
     private:
         ParticleSystem::VariableTypeProperty size {float2::zero, true, false};
         Widgets::DragFloatConfig cfg;

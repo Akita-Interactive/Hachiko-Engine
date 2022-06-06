@@ -37,11 +37,11 @@ namespace Hachiko
             this->active = is_active;
         }
         
-        void Save(YAML::Node& node) const
+        virtual void Save(YAML::Node& node) const
         {
         }
 
-        void Load(const YAML::Node& node)
+        virtual void Load(const YAML::Node& node)
         {
         }
 

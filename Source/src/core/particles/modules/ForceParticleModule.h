@@ -11,6 +11,9 @@ namespace Hachiko
 
         void Update(std::vector<Particle>&) override;
         void DrawGui() override;
+        
+        void Save(YAML::Node& node) const override;
+        void Load(const YAML::Node& node) override;
 
     private:
         void UpdatePositionOverTime(Particle& particle);

@@ -25,6 +25,10 @@ void Hachiko::ForceParticleModule::DrawGui()
     ImGui::TextUnformatted("Force over lifetime content");
 }
 
+void Hachiko::ForceParticleModule::Save(YAML::Node& node) const {}
+
+void Hachiko::ForceParticleModule::Load(const YAML::Node& node) {}
+
 void Hachiko::ForceParticleModule::UpdatePositionOverTime(Particle& particle) 
 {
     float3 position = particle.GetCurrentPosition();

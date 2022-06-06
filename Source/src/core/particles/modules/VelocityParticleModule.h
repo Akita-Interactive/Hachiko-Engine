@@ -12,6 +12,10 @@ namespace Hachiko
 
         void Update(std::vector<Particle>&) override;
         void DrawGui() override;
+
+        void Save(YAML::Node& node) const override;
+        void Load(const YAML::Node& node) override;
+    
     private:
         float speed = 0.0f;
         Widgets::DragFloatConfig cfg;

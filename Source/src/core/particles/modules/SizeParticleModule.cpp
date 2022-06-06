@@ -35,6 +35,16 @@ void Hachiko::SizeParticleModule::DrawGui()
     Widgets::DragFloat("Size", size.values.x, &cfg);
 }
 
+void Hachiko::SizeParticleModule::Save(YAML::Node& node) const
+{
+    node[SIZE_OVER_TIME] = size;
+}
+
+void Hachiko::SizeParticleModule::Load(const YAML::Node& node)
+{
+    size = node[SIZE_OVER_TIME].IsDefined() ? node[SIZE_OVER_TIME].as<ParticleSystem::VariableTypeProperty>() : size;
+}
+
 void Hachiko::SizeParticleModule::UpdateSizeOverTime(Particle& particle)
 {
     float2 particle_size = particle.GetCurrentSize();
