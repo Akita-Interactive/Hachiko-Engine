@@ -225,6 +225,7 @@
     <ClCompile Include="src\modules\ModuleAudio.cpp" />
     <ClCompile Include="src\modules\ModuleDebugMode.cpp" />
     <ClCompile Include="src\modules\ModuleUserInterface.cpp" />
+    <ClCompile Include="src\core\particles\modules\TextureParticleModule.cpp" />
     <ClCompile Include="vendors\GLFont\FontAtlas.cpp" />
     <ClCompile Include="vendors\GLFont\FTLabel.cpp" />
     <ClCompile Include="vendors\GLFont\GLFont.cpp" />
@@ -781,6 +782,7 @@
     <ClInclude Include="src\utils\Cache.h" />
     <ClInclude Include="src\utils\StringUtils.h" />
     <ClInclude Include="src\batching\TextureBatch.h" />
+    <ClInclude Include="src\core\particles\modules\TextureParticleModule.h" />
     <ClInclude Include="vendors\GLFont\FontAtlas.h" />
     <ClInclude Include="vendors\GLFont\FTLabel.h" />
     <ClInclude Include="vendors\GLFont\GLFont.h" />

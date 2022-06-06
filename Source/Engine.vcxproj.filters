@@ -654,6 +654,9 @@
     <ClCompile Include="src\utils\Random.cpp">
       <Filter>Core\Util</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\particles\modules\TextureParticleModule.cpp">
+      <Filter>Core\Particles\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vendors\imgui\imgui_impl_opengl3.h">
@@ -2471,6 +2474,9 @@
     </ClInclude>
     <ClInclude Include="src\utils\Random.h">
       <Filter>Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\particles\modules\TextureParticleModule.h">
+      <Filter>Core\Particles\Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

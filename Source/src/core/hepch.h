@@ -119,3 +119,4 @@
 #include "core/particles/modules/ForceParticleModule.h"
 #include "core/particles/modules/SizeParticleModule.h"
 #include "core/particles/modules/VelocityParticleModule.h"
+#include "core/particles/modules/TextureParticleModule.h"

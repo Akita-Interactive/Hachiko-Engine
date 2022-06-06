@@ -1,10 +1,15 @@
 #include "core/hepch.h"
+
 #include "Particle.h"
 
 #include "modules/ModuleRender.h"
+#include "modules/ModuleProgram.h"
+
 #include "components/ComponentCamera.h"
 #include "components/ComponentTransform.h"
 #include "components/ComponentParticleSystem.h"
+
+#include "resources/ResourceTexture.h"
 
 using namespace Hachiko;
 
@@ -28,17 +33,17 @@ void Hachiko::Particle::Reset()
     SetCurrentDirection(GetInitialDirection());
 }
 
-void Particle::Draw(ComponentCamera* camera, Program* program) const
+void Particle::Draw(ComponentCamera* camera, Program* program)
 {
     glActiveTexture(GL_TEXTURE0);
     int glTexture = 0;
-    //has_texture = 0;
-    //if (texture != nullptr)
-    //{
-    //    glTexture = texture->GetImageId();
-    //    Hachiko::ModuleTexture::Bind(glTexture, static_cast<int>(Hachiko::ModuleProgram::TextureSlots::DIFFUSE));
-    //    has_texture = 1;
-    //}
+    has_texture = 0;
+    if (texture != nullptr)
+    {
+        glTexture = texture->GetImageId();
+        Hachiko::ModuleTexture::Bind(glTexture, static_cast<int>(Hachiko::ModuleProgram::TextureSlots::DIFFUSE));
+        has_texture = 1;
+    }
 
     glDepthMask(GL_FALSE);
     glEnable(GL_BLEND);
@@ -58,13 +63,13 @@ void Particle::Draw(ComponentCamera* camera, Program* program) const
     program->BindUniformFloat4x4("view", &camera->GetViewMatrix()[0][0]);
     program->BindUniformFloat4x4("proj", &camera->GetProjectionMatrix()[0][0]);
 
-    //program->BindUniformFloat("x_factor", &x_factor);
-    //program->BindUniformFloat("y_factor", &y_factor);
+    program->BindUniformFloat("x_factor", &x_factor);
+    program->BindUniformFloat("y_factor", &y_factor);
     //program->BindUniformFloat("current_frame", &current_frame);
     //program->BindUniformFloat2("animation_index", animation_index.ptr());
 
     program->BindUniformFloat4("input_color", current_color.ptr());
-    //program->BindUniformInts("has_texture", 1, &has_texture);
+    program->BindUniformInts("has_texture", 1, &has_texture);
 
     //int flip_x = has_flip_x ? 1 : 0;
     //int flip_y = has_flip_y ? 1 : 0;

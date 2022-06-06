@@ -18,7 +18,13 @@ namespace Hachiko
 
         void Update();
         void Reset();
-        void Draw(ComponentCamera* camera, Program* program) const;
+        void Draw(ComponentCamera* camera, Program* program);
+        
+        // Texture
+        int has_texture = 0;
+        ResourceTexture* texture = nullptr;
+        float x_factor = 1.0f;
+        float y_factor = 1.0f;
 
     private:
         bool active = false;
@@ -34,6 +40,7 @@ namespace Hachiko
 
         ComponentParticleSystem* emitter = nullptr;
         
+
         void GetModelMatrix(ComponentCamera* camera, float4x4& out_matrix) const;
         
     public:

@@ -5,7 +5,6 @@
 #include "modules/ModuleSceneManager.h"
 
 #include "debugdraw.h"
-#include "core/serialization/Definitions.h"
 
 Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container) :
     Component(Type::PARTICLE_SYSTEM, container)
@@ -14,6 +13,7 @@ Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container)
     particle_modules.push_back(std::make_shared<SizeParticleModule>("Size over lifetime"));
     particle_modules.push_back(std::make_shared<ColorParticleModule>("Color over lifetime"));
     particle_modules.push_back(std::make_shared<ForceParticleModule>("Force over lifetime"));
+    particle_modules.push_back(std::make_shared<TextureParticleModule>("Texture over lifetime"));
 
     std::function edit_curve = [&](Event& evt) {
         const auto data = evt.GetEventData<CurveEditorEventPayload>();
