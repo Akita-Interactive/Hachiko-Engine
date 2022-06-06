@@ -10,6 +10,7 @@
 #include <assimp/matrix4x4.h>
 #include <imgui_color_gradient.h>
 #include "utils/UUID.h"
+#include "core/particles/ParticleSystem.h"
 
 namespace YAML
 {
@@ -356,22 +357,78 @@ namespace YAML
         }
     };
 
-    /* template<>
-    struct convert<uint64_t>
+    template<>
+    struct convert<Hachiko::ParticleSystem::VariableTypeProperty>
     {
-        static Node encode(const uint64_t& rhs)
+        static Node encode(const Hachiko::ParticleSystem::VariableTypeProperty& rhs)
         {
             Node node;
-            node = static_cast<unsigned long long>(rhs);
 
+            node.push_back(rhs.constant_enabled);
+            // TODO: Add curve serialization
+            node.push_back(rhs.curve_enabled);
+            node.push_back(rhs.selected);
+            node.push_back(static_cast<int>(rhs.selected_option));
+            node.push_back(rhs.values);
+
+            node.SetStyle(EmitterStyle::Flow);
             return node;
         }
 
-        static bool decode(const Node& node, uint64_t& rhs)
+        static bool decode(const Node& node, Hachiko::ParticleSystem::VariableTypeProperty& rhs)
         {
-            rhs = node.as<unsigned long long>();
+            if (!node.IsSequence() || node.size() != 5)
+            {
+                return false;
+            }
 
+            rhs.constant_enabled = node[0].as<bool>();
+            // TODO: Add curve serialization
+            rhs.curve_enabled = node[1].as<bool>();
+            rhs.selected = node[2].as<bool>();
+            rhs.selected_option = static_cast<Hachiko::ParticleSystem::Selection>(node[3].as<int>());
+            rhs.values = node[4].as<float2>();
             return true;
         }
-    };*/
+    };
+    
+    template<>
+    struct convert<Hachiko::ParticleSystem::Emitter::Properties>
+    {
+        static Node encode(const Hachiko::ParticleSystem::Emitter::Properties& rhs)
+        {
+            Node node;
+            node.push_back(rhs.arc);
+            node.push_back(static_cast<int>(rhs.emit_from));
+            node.push_back(rhs.position);
+            node.push_back(rhs.radius);
+            node.push_back(rhs.radius_thickness);
+            node.push_back(rhs.rotation);
+            node.push_back(rhs.scale);
+            node.push_back(rhs.top);
+
+            node.SetStyle(EmitterStyle::Flow);
+            return node;
+        }
+
+        static bool decode(const Node& node, Hachiko::ParticleSystem::Emitter::Properties& rhs)
+        {
+            if (!node.IsSequence() || node.size() != 8)
+            {
+                return false;
+            }
+
+            rhs.arc = node[0].as<float>();
+            rhs.emit_from = static_cast<Hachiko::ParticleSystem::Emitter::EmitFrom>(node[1].as<int>());
+            rhs.position = node[2].as<float3>();
+            rhs.radius = node[3].as<float>();
+            rhs.radius_thickness = node[4].as<float>();
+            rhs.rotation = node[5].as<float3>();
+            rhs.scale = node[6].as<float3>();
+            rhs.top = node[7].as<float>();
+            
+            return true;
+        }
+    };
+    
 } // namespace YAML

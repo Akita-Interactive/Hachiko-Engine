@@ -276,6 +276,27 @@
 #define ANIMATION_LOOP "animation_loop"
 #define SKIP_FRAMES "skip_frames"
 
+// Component Particle System
+// sections
+#define PARAMETER_SECTION "parameters_section"
+#define EMISSION_SECTION "emission_section"
+#define SHAPE_SECTION "shape_section"
+#define LIGHTS_SECTION "lights_section"
+#define RENDERER_SECTION "renderer_section"
+//particle config
+#define PARTICLES_DURATION "particles_duration"
+#define PARTICLES_LOOP "particles_loop"
+#define PARTICLES_LIFE "particles_life"
+#define PARTICLES_SPEED "particles_speed"
+#define PARTICLES_SIZE "particles_size"
+#define PARTICLES_ROTATION "particles_rotation" 
+// emission
+#define RATE_OVER_TIME "rate_over_time"
+// emitter
+#define EMITTER_DELAY "emitter_delay"
+#define EMITTER_TYPE "emitter_type"
+#define EMITTER_PROPERTIES "emitter_properties"
+
 // ComponentMeshRenderer
 #define RENDERER_MESH_ID "mesh_id"
 #define RENDERER_MATERIAL_ID "material_id"

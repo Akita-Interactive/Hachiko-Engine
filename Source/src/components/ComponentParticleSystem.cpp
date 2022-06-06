@@ -5,6 +5,7 @@
 #include "modules/ModuleSceneManager.h"
 
 #include "debugdraw.h"
+#include "core/serialization/Definitions.h"
 
 Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container) :
     Component(Type::PARTICLE_SYSTEM, container)
@@ -262,10 +263,67 @@ void Hachiko::ComponentParticleSystem::DebugDraw()
 
 void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
 {
+    // sections
+    node[PARAMETER_SECTION] = parameters_section;
+    node[EMISSION_SECTION] = emission_section;
+    node[SHAPE_SECTION] = shape_section;
+    node[LIGHTS_SECTION] = lights_section;
+    node[RENDERER_SECTION] = renderer_section;
+
+    // particle config
+    node[PARTICLES_DURATION] = duration;
+    node[PARTICLES_LOOP] = loop;
+
+    node[PARTICLES_LIFE] = life;
+    node[PARTICLES_SPEED] = speed;
+    node[PARTICLES_SIZE] = size;
+    node[PARTICLES_ROTATION] = rotation;
+
+    // emission
+    node[RATE_OVER_TIME] = rate_over_time;
+
+    // emitter
+    node[EMITTER_DELAY] = delay;
+    node[EMITTER_TYPE] = static_cast<int>(emitter_type);
+    node[EMITTER_PROPERTIES] = emitter_properties;
+
+    for (auto particle_module : particle_modules)
+    {
+        particle_module->Save(node);
+    }
 }
 
 void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
-{}
+{
+    // sections
+    parameters_section = node[PARAMETER_SECTION].as<bool>();
+    emission_section = node[EMISSION_SECTION].as<bool>();
+    shape_section = node[SHAPE_SECTION].as<bool>();
+    lights_section = node[LIGHTS_SECTION].as<bool>();
+    renderer_section = node[RENDERER_SECTION].as<bool>();
+
+    // particle config
+    duration = node[PARTICLES_DURATION].as<float>();
+    loop = node[PARTICLES_LOOP].as<bool>();
+
+    life = node[PARTICLES_LIFE].as<Hachiko::ParticleSystem::VariableTypeProperty>();
+    speed = node[PARTICLES_SPEED].as<Hachiko::ParticleSystem::VariableTypeProperty>();
+    size = node[PARTICLES_SIZE].as<Hachiko::ParticleSystem::VariableTypeProperty>();
+    rotation = node[PARTICLES_ROTATION].as<Hachiko::ParticleSystem::VariableTypeProperty>();
+
+    // emission
+    rate_over_time = node[RATE_OVER_TIME].as<Hachiko::ParticleSystem::VariableTypeProperty>();
+
+    // emitter
+    delay = node[EMITTER_DELAY].as<Hachiko::ParticleSystem::VariableTypeProperty>();
+    emitter_type = static_cast<Hachiko::ParticleSystem::Emitter::Type>(node[EMITTER_TYPE].as<int>());
+    emitter_properties = node[EMITTER_PROPERTIES].as<Hachiko::ParticleSystem::Emitter::Properties>();
+
+    for (auto particle_module : particle_modules)
+    {
+        particle_module->Load(node);
+    }
+}
 
 Hachiko::ParticleSystem::VariableTypeProperty 
 Hachiko::ComponentParticleSystem::GetParticlesLife() const
@@ -298,6 +356,11 @@ float3 Hachiko::ComponentParticleSystem::GetParticlesDirection() const
     const float4x4 current_model = model * emitter;
     const float3 random_direction = (current_model.RotatePart() * float3::unitY).Normalized();
     return random_direction;
+}
+
+float3 Hachiko::ComponentParticleSystem::GetParticlesEmissionPosition() const
+{
+    return emitter_properties.position + game_object->GetComponent<ComponentTransform>()->GetGlobalPosition();
 }
 
 void Hachiko::ComponentParticleSystem::UpdateActiveParticles()

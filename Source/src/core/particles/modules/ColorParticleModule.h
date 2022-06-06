@@ -13,7 +13,6 @@ namespace Hachiko
         void DrawGui() override;
 
     private:
-        bool color_loop = false;
         int color_cycles = 1;
         ImGradient* gradient = nullptr;
         ImGradientMark* draggingGradient = nullptr;

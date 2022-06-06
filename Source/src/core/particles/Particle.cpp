@@ -123,7 +123,7 @@ const float2& Particle::GetInitialSize() const
 
 const float3& Particle::GetInitialPosition() const
 {
-    return emitter->GetGameObject()->GetTransform()->GetGlobalPosition();
+    return emitter->GetParticlesEmissionPosition();
 }
 
 const float3& Hachiko::Particle::GetInitialDirection() const

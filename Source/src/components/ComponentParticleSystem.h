@@ -25,6 +25,7 @@ namespace Hachiko
         [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesSpeed() const;
         [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesColor() const;
         [[nodiscard]] float3 GetParticlesDirection() const;
+        [[nodiscard]] float3 GetParticlesEmissionPosition() const;
 
     private:
         //sections
