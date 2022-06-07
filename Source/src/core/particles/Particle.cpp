@@ -49,7 +49,7 @@ void Particle::Draw(ComponentCamera* camera, Program* program)
     glDepthMask(GL_FALSE);
     glEnable(GL_BLEND);
     glBlendEquation(GL_FUNC_ADD);
-    if (render_mode == ParticleRenderMode::PARTICLE_ADDITIVE)
+    if (emitter->GetParticlesRenderMode() == ParticleSystem::ParticleRenderMode::PARTICLE_ADDITIVE)
     {
         glBlendFunc(GL_ONE, GL_ONE);
     }
@@ -213,16 +213,6 @@ const float3& Particle::GetCurrentPosition() const
 void Particle::SetCurrentPosition(const float3& current_position)
 {
     this->current_position = current_position;
-}
-
-ParticleRenderMode Particle::GetRenderMode() const
-{
-    return render_mode;
-}
-
-void Particle::SetRenderMode(const ParticleRenderMode render_mode)
-{
-    this->render_mode = render_mode;
 }
 
 const float3& Hachiko::Particle::GetCurrentDirection() const

@@ -33,6 +33,7 @@ namespace Hachiko
         [[nodiscard]] float GetYFactor() const;
         [[nodiscard]] bool HasFlipTextureX();
         [[nodiscard]] bool HasFlipTextureY();
+        [[nodiscard]] ParticleSystem::ParticleRenderMode GetParticlesRenderMode();
 
     private:
         //sections
@@ -46,6 +47,9 @@ namespace Hachiko
         //particle config
         float duration = 5.0f;
         bool loop = false;
+        ParticleSystem::ParticleRenderMode particles_render_mode = 
+            ParticleSystem::ParticleRenderMode::PARTICLE_ADDITIVE;
+        float alpha_channel = 1.0f;
 
         ParticleSystem::VariableTypeProperty delay{float2::zero, false};
         ParticleSystem::VariableTypeProperty life = {float2(5.0f)};

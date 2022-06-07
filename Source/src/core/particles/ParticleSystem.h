@@ -75,5 +75,12 @@ namespace Hachiko
             bool constant_enabled = true;
             bool selected = false;
         };
+
+        enum class ParticleRenderMode
+        {
+            PARTICLE_ADDITIVE,
+            PARTICLE_TRANSPARENT,
+            NONE
+        };
     }
 }

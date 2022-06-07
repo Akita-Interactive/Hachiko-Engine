@@ -289,6 +289,7 @@
 #define PARTICLES_SIZE "size"
 #define PARTICLES_ROTATION "rotation"
 #define PARTICLE_DELAY "delay"
+#define PARTICLE_RENDER_MODE "render_mode"
 // emission
 #define PARTICLE_EMISSION "emission"
 #define RATE "rate"

@@ -3,13 +3,6 @@ namespace Hachiko
 {
     class ComponentParticleSystem;
 
-    enum class ParticleRenderMode
-    {
-        PARTICLE_ADDITIVE,
-        PARTICLE_TRANSPARENT,
-        NONE
-    };
-
     class Particle
     {
     public:
@@ -31,11 +24,7 @@ namespace Hachiko
         float4 current_color = float4::zero;
         unsigned current_animation_frame = 1;
 
-        //render
-        ParticleRenderMode render_mode = ParticleRenderMode::PARTICLE_ADDITIVE;
-
-        ComponentParticleSystem* emitter = nullptr;
-        
+        ComponentParticleSystem* emitter = nullptr;        
 
         void GetModelMatrix(ComponentCamera* camera, float4x4& out_matrix) const;
         
@@ -61,9 +50,6 @@ namespace Hachiko
 
         [[nodiscard]] const float3& GetCurrentPosition() const;
         void SetCurrentPosition(const float3& current_position);
-
-        [[nodiscard]] ParticleRenderMode GetRenderMode() const;
-        void SetRenderMode(ParticleRenderMode render_mode);
 
         [[nodiscard]] const float3& GetCurrentDirection() const;
         void SetCurrentDirection(const float3& current_direction);

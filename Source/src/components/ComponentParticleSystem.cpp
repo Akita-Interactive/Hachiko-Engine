@@ -85,6 +85,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
 {
     if (ImGuiUtils::CollapsingHeader(game_object, this, "Particle system"))
     {
+        const char* particle_render_modes[] = {"Additive", "Transparent"};
         ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 3.0f);
         ImGui::Indent();
         if (CollapsingHeader("Parameters", &parameters_section, Widgets::CollapsibleHeaderType::Icon, ICON_FA_BURST))
@@ -96,6 +97,14 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             Widgets::MultiTypeSelector("Start speed", speed);
             Widgets::MultiTypeSelector("Start size", size);
             Widgets::MultiTypeSelector("Start rotation", rotation);
+            
+            int render_mode = static_cast<int>(particles_render_mode);
+            if (Widgets::Combo("Particle Render Mode", &render_mode, particle_render_modes, IM_ARRAYSIZE(particle_render_modes)))
+            {
+                particles_render_mode = static_cast<ParticleSystem::ParticleRenderMode>(render_mode);
+                App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+            }
+            Widgets::DragFloat("Alpha channel", alpha_channel);
         }
 
         if (CollapsingHeader("Emission", &emission_section, Widgets::CollapsibleHeaderType::Checkbox))
@@ -110,7 +119,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             ImGui::BeginDisabled(!shape_section);
             const char* shapes[] = {"Cone", "Box", "Sphere", "Circle", "Rectangle"};
             const char* emit_from_options[] = {"Volume", "Shell", "Edge"};
-
+            
             int emitter = static_cast<int>(emitter_type);
             int emit_from = static_cast<int>(emitter_properties.emit_from);
 
@@ -331,6 +340,7 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
     config[PARTICLES_SIZE] = size;
     config[PARTICLES_ROTATION] = rotation;
     config[PARTICLE_DELAY] = delay;
+    config[PARTICLE_RENDER_MODE] = static_cast<int>(particles_render_mode);
     node[PARTICLE_PARAMETERS] = config;
 
     // emission
@@ -377,6 +387,8 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
     size = node[PARTICLE_PARAMETERS][PARTICLES_SIZE].as<ParticleSystem::VariableTypeProperty>();
     rotation = node[PARTICLE_PARAMETERS][PARTICLES_ROTATION].as<ParticleSystem::VariableTypeProperty>();
     delay = node[PARTICLE_PARAMETERS][PARTICLE_DELAY].as<ParticleSystem::VariableTypeProperty>();
+    particles_render_mode = static_cast<ParticleSystem::ParticleRenderMode>
+        (node[PARTICLE_PARAMETERS][PARTICLE_RENDER_MODE].as<int>());
 
     // emission
     rate_over_time = node[PARTICLE_EMISSION][RATE].as<ParticleSystem::VariableTypeProperty>();
@@ -599,4 +611,10 @@ bool Hachiko::ComponentParticleSystem::HasFlipTextureX()
 bool Hachiko::ComponentParticleSystem::HasFlipTextureY()
 {
     return flip_texture_y;
+}
+
+Hachiko::ParticleSystem::ParticleRenderMode 
+Hachiko::ComponentParticleSystem::GetParticlesRenderMode()
+{
+    return particles_render_mode;
 }
