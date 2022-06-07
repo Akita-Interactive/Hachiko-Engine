@@ -68,7 +68,6 @@ void Particle::Draw(ComponentCamera* camera, Program* program)
     float y_factor = emitter->GetYFactor();
     program->BindUniformFloat("x_factor", &x_factor);
     program->BindUniformFloat("y_factor", &y_factor);
-    program->BindUniformFloat("current_frame", &current_frame);
     program->BindUniformFloat2("animation_index", animation_index.ptr());
 
     program->BindUniformFloat4("input_color", current_color.ptr());
