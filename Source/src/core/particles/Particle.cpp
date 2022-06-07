@@ -138,6 +138,11 @@ const float2& Hachiko::Particle::GetTextureTiles() const
     return emitter->GetTextureTiles();
 }
 
+int Hachiko::Particle::GetTextureTotalTiles() const
+{
+    return emitter->GetTextureTotalTiles();
+}
+
 const float3& Particle::GetInitialPosition() const
 {
     return emitter->GetParticlesEmissionPosition();
@@ -228,6 +233,16 @@ const float3& Hachiko::Particle::GetCurrentDirection() const
 void Hachiko::Particle::SetCurrentDirection(const float3& current_direction)
 {
     this->current_direction = current_direction;
+}
+
+unsigned Hachiko::Particle::GetCurrentAnimationFrame() const
+{
+    return current_animation_frame;
+}
+
+void Hachiko::Particle::SetCurrentAnimationFrame(unsigned current_animation_frame)
+{
+    this->current_animation_frame = current_animation_frame;
 }
 
 void Hachiko::Particle::SetEmitter(ComponentParticleSystem* emitter) 

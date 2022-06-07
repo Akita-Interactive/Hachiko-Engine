@@ -29,6 +29,7 @@ namespace Hachiko
         float3 current_position = float3::zero;
         float3 current_direction = float3::unitY;
         float4 current_color = float4::zero;
+        unsigned current_animation_frame = 1;
 
         //render
         ParticleRenderMode render_mode = ParticleRenderMode::PARTICLE_ADDITIVE;
@@ -67,7 +68,11 @@ namespace Hachiko
         [[nodiscard]] const float3& GetCurrentDirection() const;
         void SetCurrentDirection(const float3& current_direction);
 
+        [[nodiscard]] unsigned GetCurrentAnimationFrame() const;
+        void SetCurrentAnimationFrame(unsigned current_animation_frame);
+
         [[nodiscard]] bool HasTexture() const;
+        [[nodiscard]] int GetTextureTotalTiles() const;
         [[nodiscard]] float GetInitialLife() const;
         [[nodiscard]] float GetInitialSpeed() const;
         [[nodiscard]] const float2& GetInitialSize() const;

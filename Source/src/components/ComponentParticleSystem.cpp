@@ -204,7 +204,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
                 AddTexture();
             }
 
-            if (ImGui::DragScalar("Xtiles", ImGuiDataType_U32, &x_tiles))
+            if (ImGui::DragScalar("X tiles", ImGuiDataType_U32, &x_tiles))
             {
                 if (x_tiles)
                 {
@@ -212,7 +212,8 @@ void Hachiko::ComponentParticleSystem::DrawGui()
                     HE_LOG("x_factor: %f", x_factor);
                 }
             }
-            if (ImGui::DragScalar("Ytiles", ImGuiDataType_U32, &y_tiles))
+
+            if (ImGui::DragScalar("Y tiles", ImGuiDataType_U32, &y_tiles))
             {
                 if (y_tiles)
                 {
@@ -221,7 +222,8 @@ void Hachiko::ComponentParticleSystem::DrawGui()
                 }
             }
 
-            //ImGui::DragInt("Cycles##animation_cycles", &animation_cycles, 1, 1, inf);
+            ImGui::DragScalar("Total tiles", ImGuiDataType_U32, &total_tiles);
+
             ImGui::Checkbox("FlipX##animation_loop", &flip_texture_x);
             ImGui::SameLine();
             ImGui::Checkbox("FlipY##animation_loop", &flip_texture_y);
@@ -456,6 +458,11 @@ const Hachiko::ResourceTexture* Hachiko::ComponentParticleSystem::GetTexture() c
 const float2& Hachiko::ComponentParticleSystem::GetTextureTiles() const
 {
     return float2(static_cast<float>(x_tiles), static_cast<float>(y_tiles));
+}
+
+int Hachiko::ComponentParticleSystem::GetTextureTotalTiles() const
+{
+    return total_tiles;
 }
 
 float Hachiko::ComponentParticleSystem::GetXFactor() const

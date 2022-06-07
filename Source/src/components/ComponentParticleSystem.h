@@ -28,6 +28,7 @@ namespace Hachiko
         [[nodiscard]] float3 GetParticlesEmissionPosition() const;
         [[nodiscard]] const ResourceTexture* GetTexture() const;
         [[nodiscard]] const float2& GetTextureTiles() const;
+        [[nodiscard]] int GetTextureTotalTiles() const;
         [[nodiscard]] float GetXFactor() const;
         [[nodiscard]] float GetYFactor() const;
         [[nodiscard]] bool HasFlipTextureX();
@@ -77,6 +78,7 @@ namespace Hachiko
         bool flip_texture_y = false;
         int x_tiles = 1;
         int y_tiles = 1;
+        int total_tiles = 1;
         float x_factor = 1.0f;
         float y_factor = 1.0f;
         ResourceTexture* texture = nullptr;

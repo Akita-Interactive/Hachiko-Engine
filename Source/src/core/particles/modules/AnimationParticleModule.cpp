@@ -59,21 +59,31 @@ void Hachiko::AnimationParticleModule::UpdateAnimation(Particle& particle)
         return;
     }
 
-    if (particle.GetAnimationIndex().x < particle.GetTextureTiles().x - 1)
+    unsigned animation_frame = particle.GetCurrentAnimationFrame();
+    float2 animation_idx = particle.GetAnimationIndex();
+
+    if (animation_frame >= particle.GetTextureTotalTiles())
     {
-        float2 idx = particle.GetAnimationIndex();
-        idx.x += 1.0f;
-        particle.SetAnimationIndex(idx);
+        particle.SetCurrentAnimationFrame(1);
+        particle.SetAnimationIndex(float2::zero);
+        return;
+    }
+    else if (animation_idx.x < particle.GetTextureTiles().x - 1)
+    {
+        animation_idx.x += 1.0f;
+        particle.SetCurrentAnimationFrame(++animation_frame);
+        particle.SetAnimationIndex(animation_idx);
         return;
     }
     else if (particle.GetAnimationIndex().y < particle.GetTextureTiles().y - 1)
     {
-        float2 idx = particle.GetAnimationIndex();
-        idx.x = 0.0f;
-        idx.y += 1.0f;
-        particle.SetAnimationIndex(idx);
+        animation_idx.x = 0.0f;
+        animation_idx.y += 1.0f;
+        particle.SetCurrentAnimationFrame(++animation_frame);
+        particle.SetAnimationIndex(animation_idx);
         return;
     }
 
+    particle.SetCurrentAnimationFrame(1);
     particle.SetAnimationIndex(float2::zero);
 }
