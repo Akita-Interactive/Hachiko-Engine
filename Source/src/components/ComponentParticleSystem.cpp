@@ -400,7 +400,8 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
         y_factor = 1 / (float)y_tiles;
     }
 
-    UID texture_id = node[PARTICLES_TEXTURE_ID].IsDefined() ? node[PARTICLES_TEXTURE_ID].as<UID>() : 0;
+    UID texture_id = node[PARTICLES_TEXTURE][PARTICLES_TEXTURE_ID].IsDefined() ?
+        node[PARTICLES_TEXTURE][PARTICLES_TEXTURE_ID].as<UID>() : 0;
     if (texture_id)
     {
         texture = static_cast<ResourceTexture*>(App->resources->GetResource(Resource::Type::TEXTURE, texture_id));
