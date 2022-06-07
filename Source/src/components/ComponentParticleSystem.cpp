@@ -229,12 +229,12 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             ImGui::Checkbox("FlipY##animation_loop", &flip_texture_y);
         }
 
-        if (CollapsingHeader("Lights", &lights_section, Widgets::CollapsibleHeaderType::Checkbox))
-        {
-            ImGui::BeginDisabled(renderer_section);
-
-            ImGui::EndDisabled();
-        }
+        // if (CollapsingHeader("Lights", &lights_section, Widgets::CollapsibleHeaderType::Checkbox))
+        // {
+        //     ImGui::BeginDisabled(renderer_section);
+        //
+        //     ImGui::EndDisabled();
+        // }
 
         if (CollapsingHeader("Renderer", &renderer_section, Widgets::CollapsibleHeaderType::Checkbox))
         {
