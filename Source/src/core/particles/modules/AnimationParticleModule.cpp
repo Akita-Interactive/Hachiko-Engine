@@ -14,6 +14,11 @@ Hachiko::AnimationParticleModule::AnimationParticleModule(const std::string& nam
 
 void Hachiko::AnimationParticleModule::Update(std::vector<Particle>& particles)
 {
+    if (!IsActive())
+    {
+        return;
+    }
+
     time += EngineTimer::delta_time;
     if (time <= skip_frames)
     {

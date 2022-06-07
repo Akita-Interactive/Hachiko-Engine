@@ -14,15 +14,18 @@ Hachiko::ColorParticleModule::~ColorParticleModule()
 
 void Hachiko::ColorParticleModule::Update(std::vector<Particle>& particles)
 {
-    if (!IsActive())
-    {
-        return;
-    }
+
 
     for (auto& particle : particles)
     {
         if (!particle.IsActive())
         {
+            continue;
+        }
+
+        if (!IsActive())
+        {
+            particle.SetCurrentColor(float4::one);
             continue;
         }
 
