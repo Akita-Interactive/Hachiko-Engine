@@ -21,6 +21,6 @@ namespace Hachiko
         ImGradientMark* draggingGradient = nullptr;
         ImGradientMark* selectedGradient = nullptr;
 
-        void UpdateColorOverTime(Particle& particle);
+        void UpdateColorOverTime(Particle& particle) const;
     };
 }

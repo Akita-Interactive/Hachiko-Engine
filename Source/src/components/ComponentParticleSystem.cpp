@@ -6,6 +6,8 @@
 
 #include "debugdraw.h"
 
+#include "ui/widgets/Widgets.h"
+
 Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container) :
     Component(Type::PARTICLE_SYSTEM, container)
 {
@@ -14,6 +16,23 @@ Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container)
     particle_modules.push_back(std::make_shared<ColorParticleModule>("Color over lifetime"));
     particle_modules.push_back(std::make_shared<ForceParticleModule>("Force over lifetime"));
     particle_modules.push_back(std::make_shared<TextureParticleModule>("Texture over lifetime"));
+}
+
+
+Hachiko::ComponentParticleSystem::~ComponentParticleSystem()
+{
+    App->event->Unsubscribe(Event::Type::CURVE_EDITOR, GetID());
+    particle_modules.clear();
+    App->scene_manager->GetActiveScene()->RemoveParticleComponent(GetID());
+    current_curve_editing_property = nullptr;
+}
+
+void Hachiko::ComponentParticleSystem::Start()
+{
+    for (auto& particle : particles)
+    {
+        particle.SetEmitter(this);
+    }
 
     std::function edit_curve = [&](Event& evt) {
         const auto data = evt.GetEventData<CurveEditorEventPayload>();
@@ -32,21 +51,7 @@ Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container)
             data.GetValue()->selected = true;
         }
     };
-    App->event->Subscribe(Event::Type::CURVE_EDITOR, edit_curve);
-}
-
-Hachiko::ComponentParticleSystem::~ComponentParticleSystem()
-{
-    particle_modules.clear();
-    App->scene_manager->GetActiveScene()->RemoveParticleComponent(GetID());
-}
-
-void Hachiko::ComponentParticleSystem::Start()
-{
-    for (auto& particle : particles)
-    {
-        particle.SetEmitter(this);
-    }
+    App->event->Subscribe(Event::Type::CURVE_EDITOR, edit_curve, GetID());
 }
 
 void Hachiko::ComponentParticleSystem::Update()
@@ -57,7 +62,7 @@ void Hachiko::ComponentParticleSystem::Update()
         in_scene = true;
         Start(); // TODO: For DEBUG as Start is not called
     }
-    
+
     ActivateParticles();
     UpdateActiveParticles();
     UpdateModules();
@@ -84,6 +89,8 @@ void Hachiko::ComponentParticleSystem::DrawGui()
         ImGui::Indent();
         if (CollapsingHeader("Parameters", &parameters_section, Widgets::CollapsibleHeaderType::Icon, ICON_FA_BURST))
         {
+            Widgets::DragFloat("Duration", duration);
+            Widgets::Checkbox("Loop", &loop);
             Widgets::MultiTypeSelector("Start delay", delay);
             Widgets::MultiTypeSelector("Start lifetime", life);
             Widgets::MultiTypeSelector("Start speed", speed);
@@ -149,10 +156,6 @@ void Hachiko::ComponentParticleSystem::DrawGui()
                 }
                 break;
             case ParticleSystem::Emitter::Type::SPHERE:
-                DragFloat("Radius", emitter_properties.radius, &radius);
-                DragFloat("Radius thickness", emitter_properties.radius_thickness, &thickness);
-                DragFloat("Arc", emitter_properties.arc, &arc);
-                break;
             case ParticleSystem::Emitter::Type::CIRCLE:
                 DragFloat("Radius", emitter_properties.radius, &radius);
                 DragFloat("Radius thickness", emitter_properties.radius_thickness, &thickness);
@@ -166,7 +169,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             ImGuiUtils::DisplayTooltip("Selects the shape of this particle system");
             Widgets::DragFloat3("Position", emitter_properties.position);
             Widgets::DragFloat3("Rotation", emitter_properties.rotation);
-            Widgets::DragFloat3("Scale", emitter_properties.scale, &scale_config);
+            DragFloat3("Scale", emitter_properties.scale, &scale_config);
             ImGui::EndDisabled();
         }
 
@@ -263,69 +266,76 @@ void Hachiko::ComponentParticleSystem::DebugDraw()
 
 void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
 {
+    node.SetTag("particle_system");
     // sections
-    node[PARAMETER_SECTION] = parameters_section;
-    node[EMISSION_SECTION] = emission_section;
-    node[SHAPE_SECTION] = shape_section;
-    node[LIGHTS_SECTION] = lights_section;
-    node[RENDERER_SECTION] = renderer_section;
+    YAML::Node sections;
+    sections[PARAMETER_SECTION] = parameters_section;
+    sections[EMISSION_SECTION] = emission_section;
+    sections[SHAPE_SECTION] = shape_section;
+    sections[LIGHTS_SECTION] = lights_section;
+    sections[RENDERER_SECTION] = renderer_section;
+    node[PARTICLE_SECTIONS] = sections;
 
     // particle config
-    node[PARTICLES_DURATION] = duration;
-    node[PARTICLES_LOOP] = loop;
-
-    node[PARTICLES_LIFE] = life;
-    node[PARTICLES_SPEED] = speed;
-    node[PARTICLES_SIZE] = size;
-    node[PARTICLES_ROTATION] = rotation;
+    YAML::Node config;
+    config[PARTICLES_DURATION] = duration;
+    config[PARTICLES_LOOP] = loop;
+    config[PARTICLES_LIFE] = life;
+    config[PARTICLES_SPEED] = speed;
+    config[PARTICLES_SIZE] = size;
+    config[PARTICLES_ROTATION] = rotation;
+    config[PARTICLE_DELAY] = delay;
+    node[PARTICLE_PARAMETERS] = config;
 
     // emission
-    node[RATE_OVER_TIME] = rate_over_time;
+    node[PARTICLE_EMISSION][RATE] = rate_over_time;
 
     // emitter
-    node[EMITTER_DELAY] = delay;
-    node[EMITTER_TYPE] = static_cast<int>(emitter_type);
-    node[EMITTER_PROPERTIES] = emitter_properties;
+    YAML::Node emitter;
+    emitter[EMITTER_TYPE] = static_cast<int>(emitter_type);
+    emitter[EMITTER_PROPERTIES] = emitter_properties;
+    node[EMITTER] = emitter;
 
-    for (auto particle_module : particle_modules)
+    YAML::Node modules;
+    for (const auto& particle_module : particle_modules)
     {
-        particle_module->Save(node);
+        particle_module->Save(modules);
     }
+    node[PARTICLE_MODULES] = modules;
 }
 
 void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
 {
     // sections
-    parameters_section = node[PARAMETER_SECTION].as<bool>();
-    emission_section = node[EMISSION_SECTION].as<bool>();
-    shape_section = node[SHAPE_SECTION].as<bool>();
-    lights_section = node[LIGHTS_SECTION].as<bool>();
-    renderer_section = node[RENDERER_SECTION].as<bool>();
+    parameters_section = node[PARTICLE_SECTIONS][PARAMETER_SECTION].as<bool>();
+    emission_section = node[PARTICLE_SECTIONS][EMISSION_SECTION].as<bool>();
+    shape_section = node[PARTICLE_SECTIONS][SHAPE_SECTION].as<bool>();
+    lights_section = node[PARTICLE_SECTIONS][LIGHTS_SECTION].as<bool>();
+    renderer_section = node[PARTICLE_SECTIONS][RENDERER_SECTION].as<bool>();
 
     // particle config
-    duration = node[PARTICLES_DURATION].as<float>();
-    loop = node[PARTICLES_LOOP].as<bool>();
-
-    life = node[PARTICLES_LIFE].as<Hachiko::ParticleSystem::VariableTypeProperty>();
-    speed = node[PARTICLES_SPEED].as<Hachiko::ParticleSystem::VariableTypeProperty>();
-    size = node[PARTICLES_SIZE].as<Hachiko::ParticleSystem::VariableTypeProperty>();
-    rotation = node[PARTICLES_ROTATION].as<Hachiko::ParticleSystem::VariableTypeProperty>();
-
+    duration = node[PARTICLE_PARAMETERS][PARTICLES_DURATION].as<float>();
+    loop = node[PARTICLE_PARAMETERS][PARTICLES_LOOP].as<bool>();
+    life = node[PARTICLE_PARAMETERS][PARTICLES_LIFE].as<ParticleSystem::VariableTypeProperty>();
+    speed = node[PARTICLE_PARAMETERS][PARTICLES_SPEED].as<ParticleSystem::VariableTypeProperty>();
+    size = node[PARTICLE_PARAMETERS][PARTICLES_SIZE].as<ParticleSystem::VariableTypeProperty>();
+    rotation = node[PARTICLE_PARAMETERS][PARTICLES_ROTATION].as<ParticleSystem::VariableTypeProperty>();
+    delay = node[PARTICLE_PARAMETERS][PARTICLE_DELAY].as<ParticleSystem::VariableTypeProperty>();
     // emission
-    rate_over_time = node[RATE_OVER_TIME].as<Hachiko::ParticleSystem::VariableTypeProperty>();
+    rate_over_time = node[PARTICLE_EMISSION][RATE].as<ParticleSystem::VariableTypeProperty>();
 
     // emitter
-    delay = node[EMITTER_DELAY].as<Hachiko::ParticleSystem::VariableTypeProperty>();
-    emitter_type = static_cast<Hachiko::ParticleSystem::Emitter::Type>(node[EMITTER_TYPE].as<int>());
-    emitter_properties = node[EMITTER_PROPERTIES].as<Hachiko::ParticleSystem::Emitter::Properties>();
 
-    for (auto particle_module : particle_modules)
+    emitter_type = static_cast<ParticleSystem::Emitter::Type>(node[EMITTER][EMITTER_TYPE].as<int>());
+    emitter_properties = node[EMITTER][EMITTER_PROPERTIES].as<ParticleSystem::Emitter::Properties>();
+
+    for (const auto& particle_module : particle_modules)
     {
-        particle_module->Load(node);
+        particle_module->Load(node[PARTICLE_MODULES]);
     }
 }
 
-Hachiko::ParticleSystem::VariableTypeProperty 
+Hachiko::ParticleSystem::VariableTypeProperty
 Hachiko::ComponentParticleSystem::GetParticlesLife() const
 {
     return life;
@@ -343,7 +353,7 @@ Hachiko::ParticleSystem::VariableTypeProperty Hachiko::ComponentParticleSystem::
 
 Hachiko::ParticleSystem::VariableTypeProperty Hachiko::ComponentParticleSystem::GetParticlesColor() const
 {
-    return Hachiko::ParticleSystem::VariableTypeProperty();
+    return ParticleSystem::VariableTypeProperty();
 }
 
 float3 Hachiko::ComponentParticleSystem::GetParticlesDirection() const
@@ -351,8 +361,8 @@ float3 Hachiko::ComponentParticleSystem::GetParticlesDirection() const
     const float4x4 model = game_object->GetComponent<ComponentTransform>()->GetGlobalMatrix();
     const float3 shape_direction = GetParticlesDirectionFromShape();
     const float4x4 emitter = float4x4::FromTRS(emitter_properties.position,
-                                  Quat::FromEulerXYZ(shape_direction.x, shape_direction.y, shape_direction.z),
-                                  emitter_properties.scale);
+                                               Quat::FromEulerXYZ(shape_direction.x, shape_direction.y, shape_direction.z),
+                                               emitter_properties.scale);
     const float4x4 current_model = model * emitter;
     const float3 random_direction = (current_model.RotatePart() * float3::unitY).Normalized();
     return random_direction;
@@ -409,21 +419,21 @@ float3 Hachiko::ComponentParticleSystem::GetParticlesDirectionFromShape() const
     switch (emitter_type)
     {
     case ParticleSystem::Emitter::Type::CONE:
-        {
-            float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
-            particle_direction.x = emitter_properties.rotation.x + effective_radius * Random::RandomSignedFloat();
-            particle_direction.z = emitter_properties.rotation.z + effective_radius * Random::RandomSignedFloat();
-            break;
-        }
+    {
+        float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
+        particle_direction.x = emitter_properties.rotation.x + effective_radius * Random::RandomSignedFloat();
+        particle_direction.z = emitter_properties.rotation.z + effective_radius * Random::RandomSignedFloat();
+        break;
+    }
     case ParticleSystem::Emitter::Type::SPHERE:
-        {
-            // TODO: This is not working perfectly. Emission depends on the size of the radius and it shouldn't
-            float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
-            particle_direction.x = emitter_properties.rotation.x + effective_radius * Random::RandomSignedFloat();
-            particle_direction.y = emitter_properties.rotation.y * (Random::RandomSignedFloat() > 0.0 ? 1.0 : -1.0);
-            particle_direction.z = emitter_properties.rotation.z + effective_radius * Random::RandomSignedFloat();
-            break;
-        }
+    {
+        // TODO: This is not working perfectly. Emission depends on the size of the radius and it shouldn't
+        float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
+        particle_direction.x = emitter_properties.rotation.x + effective_radius * Random::RandomSignedFloat();
+        particle_direction.y = emitter_properties.rotation.y * (Random::RandomSignedFloat() > 0.0 ? 1.0 : -1.0);
+        particle_direction.z = emitter_properties.rotation.z + effective_radius * Random::RandomSignedFloat();
+        break;
+    }
     case ParticleSystem::Emitter::Type::BOX:
     case ParticleSystem::Emitter::Type::CIRCLE:
     case ParticleSystem::Emitter::Type::RECTANGLE:

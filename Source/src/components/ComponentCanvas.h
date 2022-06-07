@@ -21,10 +21,11 @@ namespace Hachiko
 
         void DrawGui() override;
         void DebugDraw() override;
+        void Save(YAML::Node& node) const override;
 
         void UpdateSize(bool force = false);
 
-        virtual bool HasDependentComponents(GameObject* game_object) const override;
+        bool HasDependentComponents(GameObject* game_object) const override;
 
     private:
         unsigned size_x = 0;

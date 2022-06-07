@@ -37,13 +37,9 @@ namespace Hachiko
             this->active = is_active;
         }
         
-        virtual void Save(YAML::Node& node) const
-        {
-        }
+        virtual void Save(YAML::Node& node) const;
 
-        virtual void Load(const YAML::Node& node)
-        {
-        }
+        virtual void Load(const YAML::Node& node);
 
     private:
         std::string name;

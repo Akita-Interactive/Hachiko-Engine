@@ -25,9 +25,16 @@ void Hachiko::ForceParticleModule::DrawGui()
     ImGui::TextUnformatted("Force over lifetime content");
 }
 
-void Hachiko::ForceParticleModule::Save(YAML::Node& node) const {}
+void Hachiko::ForceParticleModule::Save(YAML::Node& node) const
+{
+    YAML::Node force_module = node[MODULE_FORCE];
+    ParticleModule::Save(force_module);
+}
 
-void Hachiko::ForceParticleModule::Load(const YAML::Node& node) {}
+void Hachiko::ForceParticleModule::Load(const YAML::Node& node)
+{
+    ParticleModule::Load(node[MODULE_FORCE]);
+}
 
 void Hachiko::ForceParticleModule::UpdatePositionOverTime(Particle& particle) 
 {

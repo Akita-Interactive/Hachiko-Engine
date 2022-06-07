@@ -383,6 +383,7 @@ void Hachiko::ComponentAnimation::AnimationSelector(unsigned clip_idx)
 
 void Hachiko::ComponentAnimation::Save(YAML::Node& node) const
 {
+    node.SetTag("animation");
     if (state_machine == nullptr)
     {
         node[M_STATE_MACHINE] = 0;

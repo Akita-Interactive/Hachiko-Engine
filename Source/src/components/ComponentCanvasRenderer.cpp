@@ -18,6 +18,11 @@ void Hachiko::ComponentCanvasRenderer::DrawGui()
     }
 }
 
+void Hachiko::ComponentCanvasRenderer::Save(YAML::Node& node) const
+{
+    node.SetTag("canvas_renderer");
+}
+
 Hachiko::ComponentCanvas* Hachiko::ComponentCanvasRenderer::FindClosestParentCanvas() const
 {
     ComponentCanvas* canvas = nullptr;

@@ -35,6 +35,11 @@ void Hachiko::ComponentCanvas::DebugDraw()
 {
 }
 
+void Hachiko::ComponentCanvas::Save(YAML::Node& node) const
+{
+    node.SetTag("canvas");
+}
+
 void Hachiko::ComponentCanvas::UpdateSize(bool force)
 {
     unsigned width, height;

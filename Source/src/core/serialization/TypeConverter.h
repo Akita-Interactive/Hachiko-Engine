@@ -9,7 +9,6 @@
 #include <assimp/vector3.h>
 #include <assimp/matrix4x4.h>
 #include <imgui_color_gradient.h>
-#include "utils/UUID.h"
 #include "core/particles/ParticleSystem.h"
 
 namespace YAML
@@ -157,8 +156,7 @@ namespace YAML
 
         static bool decode(const Node& node, float4x4& rhs)
         {
-            if (!node.IsSequence() || 
-                node.size() != 16)
+            if (!node.IsSequence() || node.size() != 16)
             {
                 return false;
             }
@@ -274,7 +272,7 @@ namespace YAML
             return true;
         }
     };
-    
+
     template<>
     struct convert<FILETIME>
     {
@@ -287,7 +285,7 @@ namespace YAML
             node.SetStyle(EmitterStyle::Flow);
             return node;
         }
-        
+
         static bool decode(const Node& node, FILETIME& rhs)
         {
             if (!node.IsSequence() || node.size() != 2)
@@ -365,33 +363,38 @@ namespace YAML
             Node node;
 
             node.push_back(rhs.constant_enabled);
-            // TODO: Add curve serialization
             node.push_back(rhs.curve_enabled);
-            node.push_back(rhs.selected);
             node.push_back(static_cast<int>(rhs.selected_option));
             node.push_back(rhs.values);
-
+            for (const auto& curve : rhs.curve)
+            {
+                node.push_back(curve);
+            }
             node.SetStyle(EmitterStyle::Flow);
             return node;
         }
 
         static bool decode(const Node& node, Hachiko::ParticleSystem::VariableTypeProperty& rhs)
         {
-            if (!node.IsSequence() || node.size() != 5)
+            if (!node.IsSequence() || node.size() != 4 + Hachiko::ParticleSystem::CURVE_TICKS)
             {
                 return false;
             }
 
             rhs.constant_enabled = node[0].as<bool>();
-            // TODO: Add curve serialization
             rhs.curve_enabled = node[1].as<bool>();
-            rhs.selected = node[2].as<bool>();
-            rhs.selected_option = static_cast<Hachiko::ParticleSystem::Selection>(node[3].as<int>());
-            rhs.values = node[4].as<float2>();
+            rhs.selected_option = static_cast<Hachiko::ParticleSystem::Selection>(node[2].as<int>());
+            rhs.values = node[3].as<float2>();
+
+            for (int i = 0; i < Hachiko::ParticleSystem::CURVE_TICKS; ++i)
+            {
+                constexpr int offset = 4; //current node offset
+                rhs.curve[i] = node[i + offset].as<float2>();
+            }
             return true;
         }
     };
-    
+
     template<>
     struct convert<Hachiko::ParticleSystem::Emitter::Properties>
     {
@@ -426,9 +429,8 @@ namespace YAML
             rhs.rotation = node[5].as<float3>();
             rhs.scale = node[6].as<float3>();
             rhs.top = node[7].as<float>();
-            
+
             return true;
         }
     };
-    
 } // namespace YAML

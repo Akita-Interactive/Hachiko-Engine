@@ -18,7 +18,7 @@
 namespace ImGui
 {
     int Curve(const char *label, const ImVec2& size, int maxpoints, ImVec2 *points);
-    bool Curve(const ImVec2& size, const ImVec2 *points, int maxpoints);
+    bool CurveThumbnail(const ImVec2& size, const ImVec2 *points, int maxpoints);
     float CurveValue(float p, int maxpoints, const ImVec2 *points);
     float CurveValueSmooth(float p, int maxpoints, const ImVec2 *points);
 };
@@ -717,7 +717,7 @@ namespace ImGui
         return modified;
     }
 
-    inline bool Curve(const ImVec2& size, const ImVec2* points, const int maxpoints)
+    inline bool CurveThumbnail(const ImVec2& size, const ImVec2* points, const int maxpoints)
     {
         ImGuiWindow* window = GetCurrentWindow();
         

@@ -178,6 +178,7 @@ void Hachiko::ComponentObstacle::RefreshObstacle()
 
 void Hachiko::ComponentObstacle::Save(YAML::Node& node) const
 {
+    node.SetTag("obstacle");
     node[OBSTACLE_TYPE] = static_cast<unsigned int>(obstacle_type);
     node[OBSTACLE_SIZE] = size;
 }

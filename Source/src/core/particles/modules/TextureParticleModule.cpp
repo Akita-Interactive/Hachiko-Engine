@@ -23,9 +23,9 @@ void Hachiko::TextureParticleModule::Update(std::vector<Particle>& particles)
 void Hachiko::TextureParticleModule::DrawGui()
 {
     ImGui::Checkbox("Loop##animation_loop", &animation_loop);
-    static const ImGuiTreeNodeFlags texture_flags = ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
+    static constexpr ImGuiTreeNodeFlags texture_flags = ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
 
-    if (ImGui::TreeNodeEx((void*)&texture, texture_flags, "Texture"))
+    if (ImGui::TreeNodeEx(&texture, texture_flags, "Texture"))
     {
         if (texture != nullptr)
         {
@@ -51,7 +51,7 @@ void Hachiko::TextureParticleModule::DrawGui()
     {
         if (x_tiles)
         {
-            x_factor = 1 / (float)x_tiles;
+            x_factor = 1 / static_cast<float>(x_tiles);
             HE_LOG("x_factor: %f", x_factor);
         }
     }
@@ -59,7 +59,7 @@ void Hachiko::TextureParticleModule::DrawGui()
     {
         if (y_tiles)
         {
-            y_factor = 1 / (float)y_tiles;
+            y_factor = 1 / static_cast<float>(y_tiles);
             HE_LOG("y_factor: %f", y_factor);
         }
     }
@@ -72,10 +72,14 @@ void Hachiko::TextureParticleModule::DrawGui()
 
 void Hachiko::TextureParticleModule::Save(YAML::Node& node) const 
 {
+    YAML::Node texture_module = node[MODULE_TEXTURE];
+    ParticleModule::Save(texture_module);
 }
 
 void Hachiko::TextureParticleModule::Load(const YAML::Node& node)
-{}
+{
+    ParticleModule::Load(node[MODULE_TEXTURE]);
+}
 
 void Hachiko::TextureParticleModule::UpdateTextureOverTime(Particle& particle)
 {

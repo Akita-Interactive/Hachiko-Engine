@@ -294,6 +294,7 @@ void Hachiko::ComponentAgent::DrawGui()
 
 void Hachiko::ComponentAgent::Save(YAML::Node& node) const
 {
+    node.SetTag("agent");
     node[MAX_SPEED] = max_speed;
     node[MAX_ACCELERATION] = max_acceleration;
     node[AVOID_OBSTACLES] = avoid_obstacles;

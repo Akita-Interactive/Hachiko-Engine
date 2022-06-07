@@ -292,6 +292,7 @@ inline void Hachiko::ComponentBillboard::Reset()
 
 void Hachiko::ComponentBillboard::Save(YAML::Node& node) const
 {
+    node.SetTag("billboard");
     node[BILLBOARD_TYPE] = static_cast<int>(type);
     node[BILLBOARD_PLAY_ON_AWAKE] = play_on_awake;
     if (texture != nullptr)

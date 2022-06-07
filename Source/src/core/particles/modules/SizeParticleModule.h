@@ -2,6 +2,7 @@
 
 #include "core/particles/ParticleSystem.h"
 #include "core/particles/ParticleModule.h"
+#include "ui/widgets/DragFloat.h"
 
 namespace Hachiko
 {
@@ -20,6 +21,6 @@ namespace Hachiko
     private:
         ParticleSystem::VariableTypeProperty size {float2::zero, true, false};
         Widgets::DragFloatConfig cfg;
-        void UpdateSizeOverTime(Particle& particle);
+        void UpdateSizeOverTime(Particle& particle) const;
     };
 }

@@ -32,20 +32,23 @@ void Hachiko::SizeParticleModule::Update(std::vector<Particle>& particles)
 
 void Hachiko::SizeParticleModule::DrawGui()
 {
-    Widgets::DragFloat("Size", size.values.x, &cfg);
+    MultiTypeSelector("Size", size, &cfg);
 }
 
 void Hachiko::SizeParticleModule::Save(YAML::Node& node) const
 {
-    node[SIZE_OVER_TIME] = size;
+    YAML::Node size_module = node[MODULE_SIZE];
+    ParticleModule::Save(size_module);
+    size_module[SIZE] = size;
 }
 
 void Hachiko::SizeParticleModule::Load(const YAML::Node& node)
 {
-    size = node[SIZE_OVER_TIME].IsDefined() ? node[SIZE_OVER_TIME].as<ParticleSystem::VariableTypeProperty>() : size;
+    ParticleModule::Load(node[MODULE_SIZE]);
+    size = node[MODULE_SIZE][SIZE].IsDefined() ? node[MODULE_SIZE][SIZE].as<ParticleSystem::VariableTypeProperty>() : size;
 }
 
-void Hachiko::SizeParticleModule::UpdateSizeOverTime(Particle& particle)
+void Hachiko::SizeParticleModule::UpdateSizeOverTime(Particle& particle) const
 {
     float2 particle_size = particle.GetCurrentSize();
     particle_size += size.values;

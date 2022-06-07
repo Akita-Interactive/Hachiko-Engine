@@ -213,6 +213,7 @@ void Hachiko::ComponentMeshRenderer::DrawGui()
 
 void Hachiko::ComponentMeshRenderer::Save(YAML::Node& node) const
 {
+    node.SetTag("mesh_renderer");
     if (mesh != nullptr)
     {
         node[RENDERER_MESH_ID] = mesh->GetID();

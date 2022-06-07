@@ -21,6 +21,9 @@ void Hachiko::ComponentButton::DrawGui()
     ImGui::PopID();
 }
 
-void Hachiko::ComponentButton::Save(YAML::Node& node) const {}
+void Hachiko::ComponentButton::Save(YAML::Node& node) const
+{
+    node.SetTag("button");
+}
 
 void Hachiko::ComponentButton::Load(const YAML::Node& node) {}

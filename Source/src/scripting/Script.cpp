@@ -91,6 +91,7 @@ void Hachiko::Scripting::Script::Awake()
 
 void Hachiko::Scripting::Script::Save(YAML::Node& node) const
 {
+    node.SetTag("script");
     node[SCRIPT_NAME] = name;
     
     OnSave(node);

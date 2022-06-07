@@ -239,6 +239,7 @@ bool Hachiko::ComponentTransform2D::Intersects(const float2& mouse_pos) const
 
 void Hachiko::ComponentTransform2D::Save(YAML::Node& node) const
 {
+    node.SetTag("transform_2d");
     node[TRANSFORM_POSITION] = position;
     node[TRANSFORM_SIZE] = size;
     node[TRANSFORM_SCALE] = scale.xy();

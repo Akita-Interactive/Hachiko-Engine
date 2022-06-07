@@ -8,8 +8,13 @@
 
 namespace Hachiko::Widgets
 {
-    inline bool MultiTypeSelector(const std::string& label, ParticleSystem::VariableTypeProperty& variable_type_property)
+    inline bool MultiTypeSelector(const std::string& label, ParticleSystem::VariableTypeProperty& variable_type_property, DragFloatConfig* config = nullptr)
     {
+        if (!config)
+        {
+            DragFloatConfig cfg;
+            config = &cfg;
+        }
         ImGui::PushID(label.c_str());
         ImGui::PushID(&variable_type_property);
 
@@ -39,14 +44,14 @@ namespace Hachiko::Widgets
             const float item_width = variable_type_property.selected_option == ParticleSystem::Selection::CONSTANT ? -FLT_MIN : -ImGui::GetContentRegionAvail().x * 0.5f;
 
             ImGui::PushItemWidth(item_width);
-            ImGui::DragFloat("##x", &variable_type_property.values.x, 0.1f, 0,FLT_MAX, "%.2f", ImGuiSliderFlags_AlwaysClamp);
+            ImGui::DragFloat("##x", &variable_type_property.values.x, config->speed, config->min, config->max, config->format, config->flags);
             ImGui::PopItemWidth();
 
             if (variable_type_property.selected_option == ParticleSystem::Selection::BETWEEN_VALUES)
             {
                 ImGui::SameLine();
                 ImGui::PushItemWidth(-FLT_MIN);
-                ImGui::DragFloat("##y", &variable_type_property.values.y, 1, 0,FLT_MAX, "%.2f", ImGuiSliderFlags_AlwaysClamp);
+                ImGui::DragFloat("##y", &variable_type_property.values.y, config->speed, config->min, config->max, config->format, config->flags);
                 ImGui::PopItemWidth();
             }
         }
@@ -57,7 +62,7 @@ namespace Hachiko::Widgets
             {
                 ImGui::PushStyleColor(ImGuiCol_PlotLines, IM_COL32(255, 0, 0, 255));
             }
-            if (ImGui::Curve(
+            if (ImGui::CurveThumbnail(
                 ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetCurrentContext()->FontSize + 4),
                 reinterpret_cast<ImVec2*>(variable_type_property.curve),
                 ParticleSystem::CURVE_TICKS - 1))
@@ -88,14 +93,14 @@ namespace Hachiko::Widgets
             items[1] = "Curve";
         }
 
-        if (ImGui::BeginCombo("###", items[static_cast<int>(variable_type_property.selected_option)-offset], ImGuiComboFlags_NoPreview))
+        if (ImGui::BeginCombo("###", items[static_cast<int>(variable_type_property.selected_option) - offset], ImGuiComboFlags_NoPreview))
         {
             for (int i = 0; i < size; i++)
             {
-                const bool is_selected = static_cast<int>(variable_type_property.selected_option)-offset == i;
+                const bool is_selected = static_cast<int>(variable_type_property.selected_option) - offset == i;
                 if (ImGui::Selectable(items[i], is_selected))
                 {
-                    variable_type_property.selected_option = static_cast<ParticleSystem::Selection>(i +offset);
+                    variable_type_property.selected_option = static_cast<ParticleSystem::Selection>(i + offset);
                 }
                 if (is_selected)
                 {

@@ -25,17 +25,20 @@ void Hachiko::VelocityParticleModule::Update(std::vector<Particle>& particles)
 
 void Hachiko::VelocityParticleModule::DrawGui()
 {
-    Widgets::DragFloat("Particle velocity", speed, &cfg);
+    DragFloat("Particle velocity", speed, &cfg);
 }
 
 void Hachiko::VelocityParticleModule::Save(YAML::Node& node) const
 {
-    node[VELOCITY_OVER_TIME] = speed;
+    YAML::Node velocity_module = node[MODULE_VELOCITY];
+    ParticleModule::Save(velocity_module);
+    velocity_module[SPEED] = speed;
 }
 
 void Hachiko::VelocityParticleModule::Load(const YAML::Node& node)
 {
-    speed = node[VELOCITY_OVER_TIME].IsDefined() ? node[VELOCITY_OVER_TIME].as<float>() : speed;
+    ParticleModule::Load(node[MODULE_VELOCITY]);
+    speed = node[MODULE_VELOCITY][SPEED].IsDefined() ? node[MODULE_VELOCITY][SPEED].as<float>() : speed;
 }
 
 void Hachiko::VelocityParticleModule::UpdateVelocityOverTime(Particle& particle)

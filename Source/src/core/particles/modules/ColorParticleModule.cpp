@@ -1,6 +1,5 @@
 #include "core/hepch.h"
 #include "core/particles/modules/ColorParticleModule.h"
-#include "components/ComponentParticleSystem.h"
 
 Hachiko::ColorParticleModule::ColorParticleModule(const std::string& name) :
     ParticleModule(name, false)
@@ -42,29 +41,32 @@ void Hachiko::ColorParticleModule::DrawGui()
 
 void Hachiko::ColorParticleModule::Save(YAML::Node& node) const
 {
-    node[COLOR_GRADIENT] = *gradient;
-    node[COLOR_CYCLES] = color_cycles;
+    YAML::Node color_module = node[MODULE_COLOR];
+    ParticleModule::Save(color_module);
+    color_module[COLOR_GRADIENT] = *gradient;
+    color_module[COLOR_CYCLES] = color_cycles;
 }
 
 void Hachiko::ColorParticleModule::Load(const YAML::Node& node)
 {
-    color_cycles = node[COLOR_CYCLES].IsDefined() ? node[COLOR_CYCLES].as<int>() : 0;
+    ParticleModule::Load(node[MODULE_COLOR]);
+    color_cycles = node[MODULE_COLOR][COLOR_CYCLES].IsDefined() ? node[MODULE_COLOR][COLOR_CYCLES].as<int>() : 0;
 
-    if (node[COLOR_GRADIENT].IsDefined())
+    if (node[MODULE_COLOR][COLOR_GRADIENT].IsDefined())
     {
         gradient->clearMarks();
-        for (int i = 0; i < node[COLOR_GRADIENT].size(); ++i)
+        for (size_t i = 0; i < node[MODULE_COLOR][COLOR_GRADIENT].size(); ++i)
         {
-            auto mark = node[COLOR_GRADIENT][i].as<ImGradientMark>();
+            const auto mark = node[MODULE_COLOR][COLOR_GRADIENT][i].as<ImGradientMark>();
             gradient->addMark(mark.position, ImColor(mark.color[0], mark.color[1], mark.color[2], mark.color[3]));
         }
     }
 }
 
-void Hachiko::ColorParticleModule::UpdateColorOverTime(Particle& particle)
+void Hachiko::ColorParticleModule::UpdateColorOverTime(Particle& particle) const
 {
-    float particle_life = particle.GetInitialLife();
-    float color_frame = 1 - (particle.GetCurrentLife() / particle_life);
+    const float particle_life = particle.GetInitialLife();
+    const float color_frame = 1 - (particle.GetCurrentLife() / particle_life);
     float4 color = float4::one;
     gradient->getColorAt(color_frame, color.ptr());
     particle.SetCurrentColor(color);

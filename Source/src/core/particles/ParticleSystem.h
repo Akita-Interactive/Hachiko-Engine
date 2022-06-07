@@ -65,6 +65,7 @@ namespace Hachiko
                 curve[2].x = curve[2].y = 0.5f;
                 curve[3].x = curve[3].y = 0.75f;
                 curve[4].x = curve[4].y = 1.0f;
+                curve[5].x = curve[5].y = 0.0f;
             }
 
             Selection selected_option = Selection::CONSTANT; //constant, curve, random between two numbers.

@@ -149,6 +149,7 @@ float2 Hachiko::ComponentCamera::ScreenPositionToView(const float2& screen_posit
 
 void Hachiko::ComponentCamera::Save(YAML::Node& node) const
 {
+    node.SetTag("camera");
     YAML::Node node_frustum = node[FRUSTUM];
     node_frustum[NEAR_DISTANCE] = frustum.NearPlaneDistance();
     node_frustum[FAR_DISTANCE] = frustum.FarPlaneDistance();

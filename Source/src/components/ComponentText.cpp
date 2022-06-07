@@ -104,7 +104,8 @@ void Hachiko::ComponentText::Draw(ComponentTransform2D* transform, Program* prog
 }
 
 void Hachiko::ComponentText::Save(YAML::Node& node) const
-{    
+{
+    node.SetTag("text");
     node[FONT_ID] = font ? font->GetID() : 0;
     node[FONT_COLOR] = font_color;
     node[FONT_SIZE] = font_size;

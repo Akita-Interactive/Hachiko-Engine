@@ -79,6 +79,7 @@ void Hachiko::ComponentProgressBar::DrawGui()
 
 void Hachiko::ComponentProgressBar::Save(YAML::Node& node) const
 {
+    node.SetTag("progress_bar");
     node[BAR_PARAMS][BAR_MIN] = min;
     node[BAR_PARAMS][BAR_MAX] = max;
     node[BAR_PARAMS][BAR_FILLED] = filled_value;

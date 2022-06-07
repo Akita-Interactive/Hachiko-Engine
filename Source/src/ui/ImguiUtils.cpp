@@ -78,6 +78,7 @@ bool Hachiko::ImGuiUtils::CollapsingHeader(GameObject* game_object, const Compon
     if (ImGui::BeginPopup(header_name))
     {
         App->editor->to_remove = component;
+        App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         
         ImGui::EndPopup();
         return false;

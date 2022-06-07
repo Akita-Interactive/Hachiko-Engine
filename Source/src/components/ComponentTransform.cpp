@@ -293,6 +293,7 @@ void Hachiko::ComponentTransform::Invalidate()
 
 void Hachiko::ComponentTransform::Save(YAML::Node& node) const
 {
+    node.SetTag("transform");
     node[TRANSFORM_POSITION] = local_position;
     node[TRANSFORM_ROTATION] = local_rotation;
     node[TRANSFORM_SCALE] = local_scale;
