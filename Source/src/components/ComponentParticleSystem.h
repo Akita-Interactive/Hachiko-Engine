@@ -26,6 +26,12 @@ namespace Hachiko
         [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesColor() const;
         [[nodiscard]] float3 GetParticlesDirection() const;
         [[nodiscard]] float3 GetParticlesEmissionPosition() const;
+        [[nodiscard]] const ResourceTexture* GetTexture() const;
+        [[nodiscard]] const float2& GetTextureTiles() const;
+        [[nodiscard]] float GetXFactor() const;
+        [[nodiscard]] float GetYFactor() const;
+        [[nodiscard]] bool HasFlipTextureX();
+        [[nodiscard]] bool HasFlipTextureY();
 
     private:
         //sections
@@ -34,6 +40,7 @@ namespace Hachiko
         bool shape_section = true;
         bool lights_section = false;
         bool renderer_section = true;
+        bool texture_section = true;
 
         //particle config
         float duration = 5.0f;
@@ -65,6 +72,17 @@ namespace Hachiko
         //modules
         std::vector<std::shared_ptr<ParticleModule>> particle_modules{};
 
+        //texture
+        bool flip_texture_x = false;
+        bool flip_texture_y = false;
+        int x_tiles = 1;
+        int y_tiles = 1;
+        float x_factor = 1.0f;
+        float y_factor = 1.0f;
+        ResourceTexture* texture = nullptr;
+        void AddTexture();
+        void RemoveTexture();
+        
         void UpdateActiveParticles();
         void UpdateModules();
         void ActivateParticles();

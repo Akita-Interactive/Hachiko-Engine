@@ -654,7 +654,7 @@
     <ClCompile Include="src\utils\Random.cpp">
       <Filter>Core\Util</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\particles\modules\TextureParticleModule.cpp">
+    <ClCompile Include="src\core\particles\modules\AnimationParticleModule.cpp">
       <Filter>Core\Particles\Modules</Filter>
     </ClCompile>
   </ItemGroup>
@@ -2475,7 +2475,7 @@
     <ClInclude Include="src\utils\Random.h">
       <Filter>Core\Util</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\particles\modules\TextureParticleModule.h">
+    <ClInclude Include="src\core\particles\modules\AnimationParticleModule.h">
       <Filter>Core\Particles\Modules</Filter>
     </ClInclude>
     <ClInclude Include="src\ui\widgets\Checkbox.h">

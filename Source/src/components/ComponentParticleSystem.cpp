@@ -3,6 +3,7 @@
 #include "components/ComponentTransform.h"
 
 #include "modules/ModuleSceneManager.h"
+#include "modules/ModuleResources.h"
 
 #include "debugdraw.h"
 
@@ -15,9 +16,8 @@ Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container)
     particle_modules.push_back(std::make_shared<SizeParticleModule>("Size over lifetime"));
     particle_modules.push_back(std::make_shared<ColorParticleModule>("Color over lifetime"));
     particle_modules.push_back(std::make_shared<ForceParticleModule>("Force over lifetime"));
-    particle_modules.push_back(std::make_shared<TextureParticleModule>("Texture over lifetime"));
+    particle_modules.push_back(std::make_shared<AnimationParticleModule>("Animation over lifetime"));
 }
-
 
 Hachiko::ComponentParticleSystem::~ComponentParticleSystem()
 {
@@ -183,6 +183,50 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             }
         }
 
+        if (CollapsingHeader("Texture", &texture_section, Widgets::CollapsibleHeaderType::Checkbox))
+        {
+            if (texture != nullptr)
+            {
+                ImGui::Image(reinterpret_cast<void*>(texture->GetImageId()), ImVec2(80, 80));
+                ImGui::SameLine();
+                ImGui::BeginGroup();
+                ImGui::Text("%dx%d", texture->width, texture->height);
+                ImGui::Text("Path: %s", texture->path.c_str());
+                if (ImGui::Button("Remove Texture##remove_texture"))
+                {
+                    RemoveTexture();
+                }
+
+                ImGui::EndGroup();
+            }
+            else
+            {
+                AddTexture();
+            }
+
+            if (ImGui::DragScalar("Xtiles", ImGuiDataType_U32, &x_tiles))
+            {
+                if (x_tiles)
+                {
+                    x_factor = 1 / (float)x_tiles;
+                    HE_LOG("x_factor: %f", x_factor);
+                }
+            }
+            if (ImGui::DragScalar("Ytiles", ImGuiDataType_U32, &y_tiles))
+            {
+                if (y_tiles)
+                {
+                    y_factor = 1 / (float)y_tiles;
+                    HE_LOG("y_factor: %f", y_factor);
+                }
+            }
+
+            //ImGui::DragInt("Cycles##animation_cycles", &animation_cycles, 1, 1, inf);
+            ImGui::Checkbox("FlipX##animation_loop", &flip_texture_x);
+            ImGui::SameLine();
+            ImGui::Checkbox("FlipY##animation_loop", &flip_texture_y);
+        }
+
         if (CollapsingHeader("Lights", &lights_section, Widgets::CollapsibleHeaderType::Checkbox))
         {
             ImGui::BeginDisabled(renderer_section);
@@ -295,6 +339,16 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
     emitter[EMITTER_TYPE] = static_cast<int>(emitter_type);
     emitter[EMITTER_PROPERTIES] = emitter_properties;
     node[EMITTER] = emitter;
+    
+    // texture
+    if (texture != nullptr)
+    {
+        node[PARTICLES_TEXTURE][PARTICLES_TEXTURE_ID] = texture->GetID();
+    }
+    node[PARTICLES_TEXTURE][X_TILES] = x_tiles;
+    node[PARTICLES_TEXTURE][Y_TILES] = y_tiles;
+    node[PARTICLES_TEXTURE][FLIP_X] = flip_texture_x;
+    node[PARTICLES_TEXTURE][FLIP_Y] = flip_texture_y;
 
     YAML::Node modules;
     for (const auto& particle_module : particle_modules)
@@ -321,13 +375,34 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
     size = node[PARTICLE_PARAMETERS][PARTICLES_SIZE].as<ParticleSystem::VariableTypeProperty>();
     rotation = node[PARTICLE_PARAMETERS][PARTICLES_ROTATION].as<ParticleSystem::VariableTypeProperty>();
     delay = node[PARTICLE_PARAMETERS][PARTICLE_DELAY].as<ParticleSystem::VariableTypeProperty>();
+
     // emission
     rate_over_time = node[PARTICLE_EMISSION][RATE].as<ParticleSystem::VariableTypeProperty>();
 
     // emitter
-
     emitter_type = static_cast<ParticleSystem::Emitter::Type>(node[EMITTER][EMITTER_TYPE].as<int>());
     emitter_properties = node[EMITTER][EMITTER_PROPERTIES].as<ParticleSystem::Emitter::Properties>();
+
+    // texture
+    flip_texture_x = node[PARTICLES_TEXTURE][FLIP_X].IsDefined() ? node[PARTICLES_TEXTURE][FLIP_X].as<bool>() : false;
+    flip_texture_y = node[PARTICLES_TEXTURE][FLIP_Y].IsDefined() ? node[PARTICLES_TEXTURE][FLIP_Y].as<bool>() : false;
+    if (node[PARTICLES_TEXTURE][X_TILES].IsDefined() && !node[PARTICLES_TEXTURE][X_TILES].IsNull())
+    {
+        x_tiles = node[PARTICLES_TEXTURE][X_TILES].as<int>();
+        x_factor = 1 / (float)x_tiles;
+    }
+
+    if (node[PARTICLES_TEXTURE][Y_TILES].IsDefined() && !node[PARTICLES_TEXTURE][Y_TILES].IsNull())
+    {
+        y_tiles = node[PARTICLES_TEXTURE][Y_TILES].as<int>();
+        y_factor = 1 / (float)y_tiles;
+    }
+
+    UID texture_id = node[PARTICLES_TEXTURE_ID].IsDefined() ? node[PARTICLES_TEXTURE_ID].as<UID>() : 0;
+    if (texture_id)
+    {
+        texture = static_cast<ResourceTexture*>(App->resources->GetResource(Resource::Type::TEXTURE, texture_id));
+    }
 
     for (const auto& particle_module : particle_modules)
     {
@@ -371,6 +446,26 @@ float3 Hachiko::ComponentParticleSystem::GetParticlesDirection() const
 float3 Hachiko::ComponentParticleSystem::GetParticlesEmissionPosition() const
 {
     return emitter_properties.position + game_object->GetComponent<ComponentTransform>()->GetGlobalPosition();
+}
+
+const Hachiko::ResourceTexture* Hachiko::ComponentParticleSystem::GetTexture() const
+{
+    return texture;
+}
+
+const float2& Hachiko::ComponentParticleSystem::GetTextureTiles() const
+{
+    return float2(static_cast<float>(x_tiles), static_cast<float>(y_tiles));
+}
+
+float Hachiko::ComponentParticleSystem::GetXFactor() const
+{
+    return x_factor;
+}
+
+float Hachiko::ComponentParticleSystem::GetYFactor() const
+{
+    return y_factor;
 }
 
 void Hachiko::ComponentParticleSystem::UpdateActiveParticles()
@@ -441,4 +536,59 @@ float3 Hachiko::ComponentParticleSystem::GetParticlesDirectionFromShape() const
     }
 
     return particle_direction;
+}
+
+void Hachiko::ComponentParticleSystem::AddTexture()
+{
+    const std::string title = "Select billboard texture ";
+    std::string texture_path;
+    ResourceTexture* res = nullptr;
+
+    if (ImGui::Button("Add Texture"))
+    {
+        ImGuiFileDialog::Instance()->OpenDialog(
+            title.c_str(), "Select Texture", ".png,.tif,.jpg,.tga", "./assets/textures/", 1, nullptr,
+            ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton |
+            ImGuiFileDialogFlags_HideColumnType | ImGuiFileDialogFlags_HideColumnDate);
+    }
+
+    if (ImGuiFileDialog::Instance()->Display(title.c_str()))
+    {
+        if (ImGuiFileDialog::Instance()->IsOk())
+        {
+            texture_path = ImGuiFileDialog::Instance()->GetFilePathName();
+        }
+
+        ImGuiFileDialog::Instance()->Close();
+    }
+
+    texture_path.append(META_EXTENSION);
+    if (!std::filesystem::exists(texture_path.c_str()))
+    {
+        return;
+    }
+
+    YAML::Node texture_node = YAML::LoadFile(texture_path);
+    res = static_cast<ResourceTexture*>(App->resources->GetResource
+        (Resource::Type::TEXTURE, texture_node[RESOURCES][0][RESOURCE_ID].as<UID>()));
+
+    if (res != nullptr)
+    {
+        texture = res;
+    }
+}
+
+void Hachiko::ComponentParticleSystem::RemoveTexture()
+{
+    texture = nullptr;
+}
+
+bool Hachiko::ComponentParticleSystem::HasFlipTextureX()
+{
+    return flip_texture_x;
+}
+
+bool Hachiko::ComponentParticleSystem::HasFlipTextureY()
+{
+    return flip_texture_y;
 }

@@ -37,10 +37,11 @@ void Particle::Draw(ComponentCamera* camera, Program* program)
 {
     glActiveTexture(GL_TEXTURE0);
     int glTexture = 0;
-    has_texture = 0;
-    if (texture != nullptr)
+    int has_texture = 0;
+    auto texture_resource = emitter->GetTexture();
+    if (texture_resource != nullptr)
     {
-        glTexture = texture->GetImageId();
+        glTexture = texture_resource->GetImageId();
         Hachiko::ModuleTexture::Bind(glTexture, static_cast<int>(Hachiko::ModuleProgram::TextureSlots::DIFFUSE));
         has_texture = 1;
     }
@@ -63,18 +64,20 @@ void Particle::Draw(ComponentCamera* camera, Program* program)
     program->BindUniformFloat4x4("view", &camera->GetViewMatrix()[0][0]);
     program->BindUniformFloat4x4("proj", &camera->GetProjectionMatrix()[0][0]);
 
+    float x_factor = emitter->GetXFactor();
+    float y_factor = emitter->GetYFactor();
     program->BindUniformFloat("x_factor", &x_factor);
     program->BindUniformFloat("y_factor", &y_factor);
-    //program->BindUniformFloat("current_frame", &current_frame);
-    //program->BindUniformFloat2("animation_index", animation_index.ptr());
+    program->BindUniformFloat("current_frame", &current_frame);
+    program->BindUniformFloat2("animation_index", animation_index.ptr());
 
     program->BindUniformFloat4("input_color", current_color.ptr());
     program->BindUniformInts("has_texture", 1, &has_texture);
 
-    //int flip_x = has_flip_x ? 1 : 0;
-    //int flip_y = has_flip_y ? 1 : 0;
-    //program->BindUniformInts("flip_x", 1, &flip_x);
-    //program->BindUniformInts("flip_y", 1, &flip_y);
+    int flip_x = emitter->HasFlipTextureX() ? 1 : 0;
+    int flip_y = emitter->HasFlipTextureY() ? 1 : 0;
+    program->BindUniformInts("flip_x", 1, &flip_x);
+    program->BindUniformInts("flip_y", 1, &flip_y);
 
     glBindVertexArray(App->renderer->GetParticleVao());
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
@@ -111,6 +114,11 @@ void Hachiko::Particle::Deactivate()
     active = false;
 }
 
+bool Hachiko::Particle::HasTexture() const
+{
+    return emitter->GetTexture() != nullptr;
+}
+
 float Particle::GetInitialLife() const
 {
     return emitter->GetParticlesLife().values.x;
@@ -124,6 +132,11 @@ float Particle::GetInitialSpeed() const
 const float2& Particle::GetInitialSize() const
 {
     return emitter->GetParticlesSize().values;
+}
+
+const float2& Hachiko::Particle::GetTextureTiles() const
+{
+    return emitter->GetTextureTiles();
 }
 
 const float3& Particle::GetInitialPosition() const
@@ -176,6 +189,16 @@ void Particle::SetCurrentSize(const float2& current_size)
     // Apply same size for both coordinates. Particles are always squares!
     this->current_size.x = current_size.x;
     this->current_size.y = current_size.x;
+}
+
+const float2& Particle::GetAnimationIndex() const
+{
+    return animation_index;
+}
+
+void Particle::SetAnimationIndex(const float2& animation_index)
+{
+    this->animation_index = animation_index;
 }
 
 const float3& Particle::GetCurrentPosition() const
