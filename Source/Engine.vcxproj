@@ -675,6 +675,7 @@
     <ClCompile Include="vendors\recast\include\Recast\SampleInterfaces.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="src\core\rendering\GBuffer.h" />
     <ClInclude Include="src\batching\DrawCommand.h" />
     <ClInclude Include="src\batching\GeometryBatch.h" />
@@ -1406,6 +1407,12 @@
     <None Include="vendors\MathGeoLib\Geometry\TriangleMesh_IntersectRay_SSE.inl" />
     <None Include="vendors\MathGeoLib\Math\float2.inl" />
     <None Include="vendors\MathGeoLib\Math\Matrix.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Hachiko.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\hachiko.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

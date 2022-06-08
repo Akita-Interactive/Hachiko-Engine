@@ -2359,6 +2359,7 @@
     <ClInclude Include="src\importers\PrefabImporter.h">
       <Filter>Importers</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -2955,5 +2956,11 @@
     <None Include="vendors\imgui-node-editor-0.9\NodeEditor\Source\imgui_node_editor_internal.inl">
       <Filter>Vendors\NodeEditor</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Hachiko.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\hachiko.ico" />
   </ItemGroup>
 </Project>
