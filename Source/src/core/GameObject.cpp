@@ -68,7 +68,7 @@ Hachiko::GameObject::~GameObject()
         child->parent = nullptr;
         RELEASE(child)
     }
-    for (Component* component : components)
+    for (const Component* component : components)
     {
         RELEASE(component)
     }

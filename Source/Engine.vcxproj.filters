@@ -2332,7 +2332,6 @@
     <ClInclude Include="src\core\rendering\GBuffer.h">
       <Filter>Core\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\HachikoApiDefine.h" />
     <ClInclude Include="vendors\imgui-node-editor-0.9\NodeEditor\Source\crude_json.h">
       <Filter>Vendors\NodeEditor</Filter>
     </ClInclude>
@@ -2490,6 +2489,12 @@
     <ClInclude Include="src\ui\widgets\DragFloat2.h">
       <Filter>UI\Widgets</Filter>
     </ClInclude>
+    <ClInclude Include="src\importers\MeshImporter.h">
+      <Filter>Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\HachikoApiDefine.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -2608,6 +2613,9 @@
     </Filter>
     <Filter Include="Core\Preferences\Source">
       <UniqueIdentifier>{6a048cf4-659f-4f54-8848-fb3bbf97538b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Importers\Source">
+      <UniqueIdentifier>{bbd110d9-ae9b-4357-815d-ebfdb99fdb40}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Components\animation">
       <UniqueIdentifier>{14cf1f89-e3ac-4fb9-a69e-24875059d36e}</UniqueIdentifier>
