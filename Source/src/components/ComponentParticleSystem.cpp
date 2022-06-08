@@ -7,8 +7,6 @@
 
 #include "debugdraw.h"
 
-#include "ui/widgets/Widgets.h"
-
 Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container) :
     Component(Type::PARTICLE_SYSTEM, container)
 {
@@ -97,14 +95,6 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             Widgets::MultiTypeSelector("Start speed", speed);
             Widgets::MultiTypeSelector("Start size", size);
             Widgets::MultiTypeSelector("Start rotation", rotation);
-            
-            int render_mode = static_cast<int>(particles_render_mode);
-            if (Widgets::Combo("Particle Render Mode", &render_mode, particle_render_modes, IM_ARRAYSIZE(particle_render_modes)))
-            {
-                particles_render_mode = static_cast<ParticleSystem::ParticleRenderMode>(render_mode);
-                App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
-            }
-            Widgets::DragFloat("Alpha channel", alpha_channel);
         }
 
         if (CollapsingHeader("Emission", &emission_section, Widgets::CollapsibleHeaderType::Checkbox))
@@ -119,7 +109,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             ImGui::BeginDisabled(!shape_section);
             const char* shapes[] = {"Cone", "Box", "Sphere", "Circle", "Rectangle"};
             const char* emit_from_options[] = {"Volume", "Shell", "Edge"};
-            
+
             int emitter = static_cast<int>(emitter_type);
             int emit_from = static_cast<int>(emitter_properties.emit_from);
 
@@ -131,6 +121,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
 
             Widgets::DragFloat3Config scale_config;
             scale_config.min = float3(0.001f);
+
             Widgets::DragFloatConfig top;
             Widgets::DragFloatConfig radius;
             radius.min = 0.001f;
@@ -194,61 +185,72 @@ void Hachiko::ComponentParticleSystem::DrawGui()
 
         if (CollapsingHeader("Texture", &texture_section, Widgets::CollapsibleHeaderType::Checkbox))
         {
+            ImGui::BeginDisabled(!texture_section);
             if (texture != nullptr)
             {
                 ImGui::Image(reinterpret_cast<void*>(texture->GetImageId()), ImVec2(80, 80));
                 ImGui::SameLine();
                 ImGui::BeginGroup();
                 ImGui::Text("%dx%d", texture->width, texture->height);
-                ImGui::Text("Path: %s", texture->path.c_str());
-                if (ImGui::Button("Remove Texture##remove_texture"))
+                ImGui::TextWrapped("Path: %s", texture->path.c_str());
+                ImGui::Spacing();
+                if (ImGui::Button("Remove texture##remove_texture", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
                 {
                     RemoveTexture();
                 }
-
                 ImGui::EndGroup();
+
+                Widgets::DragFloat2Config cfg;
+                cfg.format = "%.f";
+                cfg.speed = float2::one;
+                cfg.min = float2::zero;
+
+                if (DragFloat2("Tiles", tiles, &cfg))
+                {
+                    if (tiles.x != 0.0f)
+                    {
+                        factor.x = 1 / tiles.x;
+                    }
+                    if (tiles.y != 0.0f)
+                    {
+                        factor.y = 1 / tiles.y;
+                    }
+                }
+
+                Widgets::DragFloatConfig tile_config;
+                tile_config.format = "%.f";
+                tile_config.speed = 1.0f;
+                tile_config.min = 0.0f;
+                DragFloat("Total tiles", total_tiles, &tile_config);
+
+                Widgets::Checkbox("Flip X", &flip_texture.x);
+                Widgets::Checkbox("Flip Y", &flip_texture.y);
             }
             else
             {
                 AddTexture();
             }
 
-            if (ImGui::DragScalar("X tiles", ImGuiDataType_U32, &x_tiles))
-            {
-                if (x_tiles)
-                {
-                    x_factor = 1 / (float)x_tiles;
-                    HE_LOG("x_factor: %f", x_factor);
-                }
-            }
-
-            if (ImGui::DragScalar("Y tiles", ImGuiDataType_U32, &y_tiles))
-            {
-                if (y_tiles)
-                {
-                    y_factor = 1 / (float)y_tiles;
-                    HE_LOG("y_factor: %f", y_factor);
-                }
-            }
-
-            ImGui::DragScalar("Total tiles", ImGuiDataType_U32, &total_tiles);
-
-            ImGui::Checkbox("FlipX##animation_loop", &flip_texture_x);
-            ImGui::SameLine();
-            ImGui::Checkbox("FlipY##animation_loop", &flip_texture_y);
+            ImGui::EndDisabled();
         }
 
         // if (CollapsingHeader("Lights", &lights_section, Widgets::CollapsibleHeaderType::Checkbox))
         // {
-        //     ImGui::BeginDisabled(renderer_section);
+        //     ImGui::BeginDisabled(!renderer_section);
         //
         //     ImGui::EndDisabled();
         // }
 
         if (CollapsingHeader("Renderer", &renderer_section, Widgets::CollapsibleHeaderType::Checkbox))
         {
-            ImGui::BeginDisabled(renderer_section);
-
+            ImGui::BeginDisabled(!renderer_section);
+            int render_mode = static_cast<int>(particles_render_mode);
+            if (Widgets::Combo("Particle Render Mode", &render_mode, particle_render_modes, IM_ARRAYSIZE(particle_render_modes)))
+            {
+                particles_render_mode = static_cast<ParticleSystem::ParticleRenderMode>(render_mode);
+                App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+            }
+            Widgets::DragFloat("Alpha channel", alpha_channel);
             ImGui::EndDisabled();
         }
 
@@ -351,16 +353,14 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
     emitter[EMITTER_TYPE] = static_cast<int>(emitter_type);
     emitter[EMITTER_PROPERTIES] = emitter_properties;
     node[EMITTER] = emitter;
-    
+
     // texture
     if (texture != nullptr)
     {
         node[PARTICLES_TEXTURE][PARTICLES_TEXTURE_ID] = texture->GetID();
     }
-    node[PARTICLES_TEXTURE][X_TILES] = x_tiles;
-    node[PARTICLES_TEXTURE][Y_TILES] = y_tiles;
-    node[PARTICLES_TEXTURE][FLIP_X] = flip_texture_x;
-    node[PARTICLES_TEXTURE][FLIP_Y] = flip_texture_y;
+    node[PARTICLES_TEXTURE][TILES] = tiles;
+    node[PARTICLES_TEXTURE][FLIP] = flip_texture;
 
     YAML::Node modules;
     for (const auto& particle_module : particle_modules)
@@ -398,22 +398,15 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
     emitter_properties = node[EMITTER][EMITTER_PROPERTIES].as<ParticleSystem::Emitter::Properties>();
 
     // texture
-    flip_texture_x = node[PARTICLES_TEXTURE][FLIP_X].IsDefined() ? node[PARTICLES_TEXTURE][FLIP_X].as<bool>() : false;
-    flip_texture_y = node[PARTICLES_TEXTURE][FLIP_Y].IsDefined() ? node[PARTICLES_TEXTURE][FLIP_Y].as<bool>() : false;
-    if (node[PARTICLES_TEXTURE][X_TILES].IsDefined() && !node[PARTICLES_TEXTURE][X_TILES].IsNull())
+    flip_texture = node[PARTICLES_TEXTURE][FLIP].IsDefined() ? node[PARTICLES_TEXTURE][FLIP].as<bool2>() : bool2::False;
+    if (node[PARTICLES_TEXTURE][TILES].IsDefined() && !node[PARTICLES_TEXTURE][TILES].IsNull())
     {
-        x_tiles = node[PARTICLES_TEXTURE][X_TILES].as<int>();
-        x_factor = 1 / (float)x_tiles;
+        tiles = node[PARTICLES_TEXTURE][TILES].as<float2>();
+        factor.x = 1.0f / tiles.x;
+        factor.y = 1.0f / tiles.y;
     }
 
-    if (node[PARTICLES_TEXTURE][Y_TILES].IsDefined() && !node[PARTICLES_TEXTURE][Y_TILES].IsNull())
-    {
-        y_tiles = node[PARTICLES_TEXTURE][Y_TILES].as<int>();
-        y_factor = 1 / (float)y_tiles;
-    }
-
-    UID texture_id = node[PARTICLES_TEXTURE][PARTICLES_TEXTURE_ID].IsDefined() ?
-        node[PARTICLES_TEXTURE][PARTICLES_TEXTURE_ID].as<UID>() : 0;
+    const UID texture_id = node[PARTICLES_TEXTURE][PARTICLES_TEXTURE_ID].IsDefined() ? node[PARTICLES_TEXTURE][PARTICLES_TEXTURE_ID].as<UID>() : 0;
     if (texture_id)
     {
         texture = static_cast<ResourceTexture*>(App->resources->GetResource(Resource::Type::TEXTURE, texture_id));
@@ -441,11 +434,6 @@ Hachiko::ParticleSystem::VariableTypeProperty Hachiko::ComponentParticleSystem::
     return speed;
 }
 
-Hachiko::ParticleSystem::VariableTypeProperty Hachiko::ComponentParticleSystem::GetParticlesColor() const
-{
-    return ParticleSystem::VariableTypeProperty();
-}
-
 float3 Hachiko::ComponentParticleSystem::GetParticlesDirection() const
 {
     const float4x4 model = game_object->GetComponent<ComponentTransform>()->GetGlobalMatrix();
@@ -468,24 +456,24 @@ const Hachiko::ResourceTexture* Hachiko::ComponentParticleSystem::GetTexture() c
     return texture;
 }
 
-const float2& Hachiko::ComponentParticleSystem::GetTextureTiles() const
-{
-    return float2(static_cast<float>(x_tiles), static_cast<float>(y_tiles));
-}
-
 int Hachiko::ComponentParticleSystem::GetTextureTotalTiles() const
 {
     return total_tiles;
 }
 
-float Hachiko::ComponentParticleSystem::GetXFactor() const
+const Hachiko::bool2& Hachiko::ComponentParticleSystem::GetFlipTexture() const
 {
-    return x_factor;
+    return flip_texture;
 }
 
-float Hachiko::ComponentParticleSystem::GetYFactor() const
+const float2& Hachiko::ComponentParticleSystem::GetTextureTiles() const
 {
-    return y_factor;
+    return tiles;
+}
+
+const float2& Hachiko::ComponentParticleSystem::GetFactor() const
+{
+    return factor;
 }
 
 void Hachiko::ComponentParticleSystem::UpdateActiveParticles()
@@ -535,7 +523,7 @@ float3 Hachiko::ComponentParticleSystem::GetParticlesDirectionFromShape() const
     {
     case ParticleSystem::Emitter::Type::CONE:
     {
-        float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
+        const float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
         particle_direction.x = emitter_properties.rotation.x + effective_radius * Random::RandomSignedFloat();
         particle_direction.z = emitter_properties.rotation.z + effective_radius * Random::RandomSignedFloat();
         break;
@@ -543,9 +531,9 @@ float3 Hachiko::ComponentParticleSystem::GetParticlesDirectionFromShape() const
     case ParticleSystem::Emitter::Type::SPHERE:
     {
         // TODO: This is not working perfectly. Emission depends on the size of the radius and it shouldn't
-        float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
+        const float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
         particle_direction.x = emitter_properties.rotation.x + effective_radius * Random::RandomSignedFloat();
-        particle_direction.y = emitter_properties.rotation.y * (Random::RandomSignedFloat() > 0.0 ? 1.0 : -1.0);
+        particle_direction.y = emitter_properties.rotation.y * (Random::RandomSignedFloat() > 0.0f ? 1.0f : -1.0f);
         particle_direction.z = emitter_properties.rotation.z + effective_radius * Random::RandomSignedFloat();
         break;
     }
@@ -560,19 +548,24 @@ float3 Hachiko::ComponentParticleSystem::GetParticlesDirectionFromShape() const
 
 void Hachiko::ComponentParticleSystem::AddTexture()
 {
-    const std::string title = "Select billboard texture ";
+    const char* title = "Select billboard texture";
     std::string texture_path;
     ResourceTexture* res = nullptr;
 
-    if (ImGui::Button("Add Texture"))
+    if (ImGui::Button("Add texture", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         ImGuiFileDialog::Instance()->OpenDialog(
-            title.c_str(), "Select Texture", ".png,.tif,.jpg,.tga", "./assets/textures/", 1, nullptr,
+            title,
+            "Select Texture",
+            ".png,.tif,.jpg,.tga",
+            "./assets/textures/",
+            1,
+            nullptr,
             ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton |
             ImGuiFileDialogFlags_HideColumnType | ImGuiFileDialogFlags_HideColumnDate);
     }
 
-    if (ImGuiFileDialog::Instance()->Display(title.c_str()))
+    if (ImGuiFileDialog::Instance()->Display(title))
     {
         if (ImGuiFileDialog::Instance()->IsOk())
         {
@@ -589,8 +582,7 @@ void Hachiko::ComponentParticleSystem::AddTexture()
     }
 
     YAML::Node texture_node = YAML::LoadFile(texture_path);
-    res = static_cast<ResourceTexture*>(App->resources->GetResource
-        (Resource::Type::TEXTURE, texture_node[RESOURCES][0][RESOURCE_ID].as<UID>()));
+    res = static_cast<ResourceTexture*>(App->resources->GetResource(Resource::Type::TEXTURE, texture_node[RESOURCES][0][RESOURCE_ID].as<UID>()));
 
     if (res != nullptr)
     {
@@ -603,18 +595,7 @@ void Hachiko::ComponentParticleSystem::RemoveTexture()
     texture = nullptr;
 }
 
-bool Hachiko::ComponentParticleSystem::HasFlipTextureX()
-{
-    return flip_texture_x;
-}
-
-bool Hachiko::ComponentParticleSystem::HasFlipTextureY()
-{
-    return flip_texture_y;
-}
-
-Hachiko::ParticleSystem::ParticleRenderMode 
-Hachiko::ComponentParticleSystem::GetParticlesRenderMode()
+Hachiko::ParticleSystem::ParticleRenderMode Hachiko::ComponentParticleSystem::GetParticlesRenderMode() const
 {
     return particles_render_mode;
 }

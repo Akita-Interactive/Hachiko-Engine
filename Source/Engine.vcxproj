@@ -158,6 +158,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\core\rendering\GBuffer.cpp" />
+    <ClCompile Include="src\utils\Bool2.cpp" />
     <ClCompile Include="src\utils\Random.cpp" />
     <ClCompile Include="src\core\particles\Particle.cpp" />
     <ClCompile Include="src\batching\GeometryBatch.cpp" />
@@ -692,6 +693,8 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\core\rendering\GBuffer.h" />
     <ClInclude Include="src\ui\widgets\Checkbox.h" />
+    <ClInclude Include="src\ui\widgets\DragFloat2.h" />
+    <ClInclude Include="src\utils\Bool2.h" />
     <ClInclude Include="src\utils\Random.h" />
     <ClInclude Include="src\ui\widgets\DragFloat.h" />
     <ClInclude Include="src\core\particles\Particle.h" />

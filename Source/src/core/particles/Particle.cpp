@@ -64,8 +64,8 @@ void Particle::Draw(ComponentCamera* camera, Program* program)
     program->BindUniformFloat4x4("view", &camera->GetViewMatrix()[0][0]);
     program->BindUniformFloat4x4("proj", &camera->GetProjectionMatrix()[0][0]);
 
-    float x_factor = emitter->GetXFactor();
-    float y_factor = emitter->GetYFactor();
+    const float x_factor = emitter->GetFactor().x;
+    const float y_factor = emitter->GetFactor().y;
     program->BindUniformFloat("x_factor", &x_factor);
     program->BindUniformFloat("y_factor", &y_factor);
     program->BindUniformFloat2("animation_index", animation_index.ptr());
@@ -73,8 +73,8 @@ void Particle::Draw(ComponentCamera* camera, Program* program)
     program->BindUniformFloat4("input_color", current_color.ptr());
     program->BindUniformInts("has_texture", 1, &has_texture);
 
-    int flip_x = emitter->HasFlipTextureX() ? 1 : 0;
-    int flip_y = emitter->HasFlipTextureY() ? 1 : 0;
+    const int flip_x = emitter->GetFlipTexture().x ? 1 : 0;
+    const int flip_y = emitter->GetFlipTexture().y ? 1 : 0;
     program->BindUniformInts("flip_x", 1, &flip_x);
     program->BindUniformInts("flip_y", 1, &flip_y);
 
@@ -92,8 +92,8 @@ void Particle::Draw(ComponentCamera* camera, Program* program)
 void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_matrix) const
 {
     // Vertical (cilindrical) orientation
-    float3 cameraPos = camera->GetFrustum()->Pos();
-    float3 cameraDir = (float3(cameraPos.x, current_position.y, cameraPos.z) - current_position).Normalized();
+    const float3 cameraPos = camera->GetFrustum()->Pos();
+    const float3 cameraDir = (float3(cameraPos.x, current_position.y, cameraPos.z) - current_position).Normalized();
     out_matrix = float4x4::LookAt(float3::unitZ, cameraDir, float3::unitY, float3::unitY);
     out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart(), float3(current_size, 0.0f));
 }
@@ -235,9 +235,7 @@ void Hachiko::Particle::SetCurrentAnimationFrame(unsigned current_animation_fram
     this->current_animation_frame = current_animation_frame;
 }
 
-void Hachiko::Particle::SetEmitter(ComponentParticleSystem* emitter) 
+void Hachiko::Particle::SetEmitter(ComponentParticleSystem* emitter)
 {
     this->emitter = emitter;
 }
-
-

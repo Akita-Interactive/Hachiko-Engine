@@ -21,6 +21,7 @@ namespace Hachiko
         explicit bool3(bool scalar);
 
         explicit bool3(const bool* data);
+
         static const bool3 True;
         static const bool3 False;
     };

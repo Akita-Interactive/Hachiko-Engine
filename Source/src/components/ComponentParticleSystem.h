@@ -23,17 +23,14 @@ namespace Hachiko
         [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesLife() const;
         [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesSize() const;
         [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesSpeed() const;
-        [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesColor() const;
         [[nodiscard]] float3 GetParticlesDirection() const;
         [[nodiscard]] float3 GetParticlesEmissionPosition() const;
         [[nodiscard]] const ResourceTexture* GetTexture() const;
-        [[nodiscard]] const float2& GetTextureTiles() const;
         [[nodiscard]] int GetTextureTotalTiles() const;
-        [[nodiscard]] float GetXFactor() const;
-        [[nodiscard]] float GetYFactor() const;
-        [[nodiscard]] bool HasFlipTextureX();
-        [[nodiscard]] bool HasFlipTextureY();
-        [[nodiscard]] ParticleSystem::ParticleRenderMode GetParticlesRenderMode();
+        [[nodiscard]] const bool2& GetFlipTexture() const;
+        [[nodiscard]] const float2& GetTextureTiles() const;
+        [[nodiscard]] const float2& GetFactor() const;
+        [[nodiscard]] ParticleSystem::ParticleRenderMode GetParticlesRenderMode() const;
 
     private:
         //sections
@@ -47,8 +44,7 @@ namespace Hachiko
         //particle config
         float duration = 5.0f;
         bool loop = false;
-        ParticleSystem::ParticleRenderMode particles_render_mode = 
-            ParticleSystem::ParticleRenderMode::PARTICLE_ADDITIVE;
+        ParticleSystem::ParticleRenderMode particles_render_mode = ParticleSystem::ParticleRenderMode::PARTICLE_ADDITIVE;
         float alpha_channel = 1.0f;
 
         ParticleSystem::VariableTypeProperty delay{float2::zero, false};
@@ -72,26 +68,24 @@ namespace Hachiko
         bool in_scene = false;
 
         //particles
-        std::vector<Particle> particles {1000};
+        std::vector<Particle> particles{1000};
 
         //modules
         std::vector<std::shared_ptr<ParticleModule>> particle_modules{};
 
         //texture
-        bool flip_texture_x = false;
-        bool flip_texture_y = false;
-        int x_tiles = 1;
-        int y_tiles = 1;
-        int total_tiles = 1;
-        float x_factor = 1.0f;
-        float y_factor = 1.0f;
+        bool2 flip_texture = bool2::False;
+        float2 tiles = float2::one;
+        float2 factor = float2::one;
         ResourceTexture* texture = nullptr;
+        float total_tiles = 1.0f;
+
         void AddTexture();
         void RemoveTexture();
-        
+
+        void ActivateParticles();
         void UpdateActiveParticles();
         void UpdateModules();
-        void ActivateParticles();
-        float3 GetParticlesDirectionFromShape() const;
+        [[nodiscard]] float3 GetParticlesDirectionFromShape() const;
     };
 } // namespace Hachiko

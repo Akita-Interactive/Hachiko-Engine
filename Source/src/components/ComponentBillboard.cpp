@@ -299,9 +299,9 @@ void Hachiko::ComponentBillboard::Save(YAML::Node& node) const
     {
         node[BILLBOARD_TEXTURE_ID] = texture->GetID();
     }
-    node[X_TILES] = x_tiles;
+    node[TILES] = x_tiles;
     node[Y_TILES] = y_tiles;
-    node[FLIP_X] = has_flip_x;
+    node[FLIP] = has_flip_x;
     node[FLIP_Y] = has_flip_y;
     node[BILLBOARD_LIFETIME] = billboard_lifetime;
     node[SKIP_FRAMES] = skip_frames;
@@ -332,9 +332,9 @@ void Hachiko::ComponentBillboard::Load(const YAML::Node& node)
         node[BILLBOARD_PLAY_ON_AWAKE].as<bool>() : false;
 
     x_tiles = 1;
-    if (node[X_TILES].IsDefined() && !node[X_TILES].IsNull())
+    if (node[TILES].IsDefined() && !node[TILES].IsNull())
     {
-        x_tiles = node[X_TILES].as<int>();
+        x_tiles = node[TILES].as<int>();
         x_factor = 1 / (float)x_tiles;
     }
 
@@ -354,8 +354,8 @@ void Hachiko::ComponentBillboard::Load(const YAML::Node& node)
     animation_loop = node[ANIMATION_LOOP].IsDefined() ?
         node[ANIMATION_LOOP].as<bool>() : false;
 
-    has_flip_x = node[FLIP_X].IsDefined() ?
-        node[FLIP_X].as<bool>() : false;
+    has_flip_x = node[FLIP].IsDefined() ?
+        node[FLIP].as<bool>() : false;
 
     has_flip_y = node[FLIP_Y].IsDefined() ?
         node[FLIP_Y].as<bool>() : false;

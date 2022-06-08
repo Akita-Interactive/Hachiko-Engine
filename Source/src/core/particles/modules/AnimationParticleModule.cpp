@@ -39,7 +39,7 @@ void Hachiko::AnimationParticleModule::Update(std::vector<Particle>& particles)
 
 void Hachiko::AnimationParticleModule::DrawGui()
 {
-    ImGui::Checkbox("Fit to lifetime", &fit_to_lifetime);
+    Widgets::Checkbox("Fit to lifetime", &fit_to_lifetime);
     cfg.enabled = !fit_to_lifetime;
     DragFloat("Skip frames", skip_frames, &cfg);
 }
@@ -71,14 +71,12 @@ void Hachiko::AnimationParticleModule::UpdateAnimation(Particle& particle)
     {
         particle.SetCurrentAnimationFrame(1);
         particle.SetAnimationIndex(float2::zero);
-        return;
     }
     else if (animation_idx.x < particle.GetTextureTiles().x - 1)
     {
         animation_idx.x += 1.0f;
         particle.SetCurrentAnimationFrame(++animation_frame);
         particle.SetAnimationIndex(animation_idx);
-        return;
     }
     else if (particle.GetAnimationIndex().y < particle.GetTextureTiles().y - 1)
     {

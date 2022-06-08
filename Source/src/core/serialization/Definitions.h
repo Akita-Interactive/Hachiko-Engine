@@ -300,9 +300,9 @@
 // texture
 #define PARTICLES_TEXTURE "texture"
 #define PARTICLES_TEXTURE_ID "texture_id"
-#define X_TILES "x_tiles"
+#define TILES "tiles"
 #define Y_TILES "y_tiles"
-#define FLIP_X "flip_x"
+#define FLIP "flip"
 #define FLIP_Y "flip_y"
 // particle modules
 #define PARTICLE_MODULES "modules"

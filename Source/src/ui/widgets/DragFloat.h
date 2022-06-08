@@ -45,7 +45,7 @@ namespace Hachiko::Widgets
         ImGui::PushItemWidth(-FLT_MIN);
 
         const bool value_changed = ImGui::DragFloat("##value", &value, config->speed, config->min, config->max, config->format, config->flags);
-
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
         ImGui::PopItemWidth();
         ImGui::EndTable();
         ImGui::PopStyleVar();

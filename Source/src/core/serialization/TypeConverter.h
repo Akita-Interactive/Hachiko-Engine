@@ -10,6 +10,8 @@
 #include <assimp/matrix4x4.h>
 #include <imgui_color_gradient.h>
 #include "core/particles/ParticleSystem.h"
+#include "utils/Bool2.h"
+#include "utils/Bool3.h"
 
 namespace YAML
 {
@@ -430,6 +432,58 @@ namespace YAML
             rhs.scale = node[6].as<float3>();
             rhs.top = node[7].as<float>();
 
+            return true;
+        }
+    };
+
+    template<>
+    struct convert<Hachiko::bool2>
+    {
+        static Node encode(const Hachiko::bool2& rhs)
+        {
+            Node node;
+            node.push_back(rhs.x);
+            node.push_back(rhs.y);
+            node.SetStyle(EmitterStyle::Flow);
+            return node;
+        }
+
+        static bool decode(const Node& node, Hachiko::bool2& rhs)
+        {
+            if (!node.IsSequence() || node.size() != 2)
+            {
+                return false;
+            }
+
+            rhs.x = node[0].as<bool>();
+            rhs.y = node[1].as<bool>();
+            return true;
+        }
+    };
+
+    template<>
+    struct convert<Hachiko::bool3>
+    {
+        static Node encode(const Hachiko::bool3& rhs)
+        {
+            Node node;
+            node.push_back(rhs.x);
+            node.push_back(rhs.y);
+            node.push_back(rhs.z);
+            node.SetStyle(EmitterStyle::Flow);
+            return node;
+        }
+
+        static bool decode(const Node& node, Hachiko::bool3& rhs)
+        {
+            if (!node.IsSequence() || node.size() != 3)
+            {
+                return false;
+            }
+
+            rhs.x = node[0].as<bool>();
+            rhs.y = node[1].as<bool>();
+            rhs.z = node[2].as<bool>();
             return true;
         }
     };

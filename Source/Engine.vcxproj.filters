@@ -657,6 +657,9 @@
     <ClCompile Include="src\core\particles\modules\AnimationParticleModule.cpp">
       <Filter>Core\Particles\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="src\utils\Bool2.cpp">
+      <Filter>Core\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vendors\imgui\imgui_impl_opengl3.h">
@@ -2479,6 +2482,12 @@
       <Filter>Core\Particles\Modules</Filter>
     </ClInclude>
     <ClInclude Include="src\ui\widgets\Checkbox.h">
+      <Filter>UI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\Bool2.h">
+      <Filter>Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\widgets\DragFloat2.h">
       <Filter>UI\Widgets</Filter>
     </ClInclude>
   </ItemGroup>
