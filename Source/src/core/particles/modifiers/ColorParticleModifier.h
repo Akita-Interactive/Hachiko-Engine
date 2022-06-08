@@ -18,8 +18,8 @@ namespace Hachiko
     private:
         int color_cycles = 1;
         ImGradient* gradient = nullptr;
-        ImGradientMark* draggingGradient = nullptr;
-        ImGradientMark* selectedGradient = nullptr;
+        ImGradientMark* dragging_gradient = nullptr;
+        ImGradientMark* selected_gradient = nullptr;
 
         void UpdateColorOverTime(Particle& particle) const;
     };

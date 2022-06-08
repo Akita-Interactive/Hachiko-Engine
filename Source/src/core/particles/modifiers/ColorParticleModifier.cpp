@@ -36,7 +36,7 @@ void Hachiko::ColorParticleModifier::Update(std::vector<Particle>& particles)
 void Hachiko::ColorParticleModifier::DrawGui()
 {
     ImGui::PushItemWidth(200);
-    ImGui::GradientEditor(gradient, draggingGradient, selectedGradient);
+    ImGui::GradientEditor(gradient, dragging_gradient, selected_gradient);
     ImGui::PushItemWidth(150);
     ImGui::NewLine();
     ImGui::DragInt("Cycles over lifetime##color_cycles", &color_cycles, 1, 1, inf);

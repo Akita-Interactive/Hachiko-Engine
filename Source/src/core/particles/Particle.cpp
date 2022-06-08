@@ -98,9 +98,9 @@ void Hachiko::Particle::Draw(ComponentCamera* camera, const Program* program)
 void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_matrix) const
 {
     // Vertical (cilindrical) orientation
-    const float3 cameraPos = camera->GetFrustum()->Pos();
-    const float3 cameraDir = (float3(cameraPos.x, current_position.y, cameraPos.z) - current_position).Normalized();
-    out_matrix = float4x4::LookAt(float3::unitZ, cameraDir, float3::unitY, float3::unitY);
+    const float3 camera_position = camera->GetFrustum()->Pos();
+    const float3 camera_direction = (float3(camera_position.x, current_position.y, camera_position.z) - current_position).Normalized();
+    out_matrix = float4x4::LookAt(float3::unitZ, camera_direction, float3::unitY, float3::unitY);
     out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart(), float3(current_size, 0.0f));
 }
 
