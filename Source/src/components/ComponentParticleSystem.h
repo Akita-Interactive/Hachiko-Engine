@@ -25,6 +25,7 @@ namespace Hachiko
         [[nodiscard]] const ParticleSystem::VariableTypeProperty& GetParticlesSize() const;
 
         [[nodiscard]] const ParticleSystem::Emitter::Properties& GetEmitterProperties() const;
+        [[nodiscard]] const ParticleSystem::ParticleProperties& GetParticlesProperties() const;
 
         [[nodiscard]] float3 CalculateDirectionFromShape() const;
 
@@ -33,8 +34,6 @@ namespace Hachiko
         [[nodiscard]] const bool2& GetFlipTexture() const;
         [[nodiscard]] const float2& GetTextureTiles() const;
         [[nodiscard]] const float2& GetFactor() const;
-        [[nodiscard]] ParticleSystem::ParticleRenderMode GetParticlesRenderMode() const;
-        [[nodiscard]] float GetParticlesAlpha() const;
 
         [[nodiscard]] bool IsLoop() const;
 
@@ -48,10 +47,9 @@ namespace Hachiko
         bool texture_section = true;
 
         //particle config
+        ParticleSystem::ParticleProperties particle_properties;
         float duration = 5.0f;
         bool loop = false;
-        ParticleSystem::ParticleRenderMode particles_render_mode = ParticleSystem::ParticleRenderMode::PARTICLE_ADDITIVE;
-        float alpha_channel = 1.0f;
 
         ParticleSystem::VariableTypeProperty delay{float2::zero, false};
         ParticleSystem::VariableTypeProperty life = {float2(1.0f)};

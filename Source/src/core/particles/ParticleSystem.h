@@ -79,8 +79,22 @@ namespace Hachiko
         enum class ParticleRenderMode
         {
             PARTICLE_ADDITIVE,
-            PARTICLE_TRANSPARENT,
-            NONE
+            PARTICLE_TRANSPARENT
+        };
+
+        enum class ParticleOrientation
+        {
+            NORMAL,
+            VERTICAL,
+            HORIZONTAL,
+            STRETCH
+        };
+
+        struct ParticleProperties
+        {
+            float alpha = 1.0f;
+            ParticleRenderMode render_mode = ParticleRenderMode::PARTICLE_ADDITIVE;
+            ParticleOrientation orientation = ParticleOrientation::NORMAL;
         };
     }
 }

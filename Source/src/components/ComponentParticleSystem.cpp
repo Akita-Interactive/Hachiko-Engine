@@ -84,6 +84,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
     if (ImGuiUtils::CollapsingHeader(game_object, this, "Particle system"))
     {
         const char* particle_render_modes[] = {"Additive", "Transparent"};
+        const char* particle_orientations[] = {"Normal", "Horizontal", "Vertical", "Stretch"};
         ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 3.0f);
         ImGui::Indent();
         if (CollapsingHeader("Parameters", &parameters_section, Widgets::CollapsibleHeaderType::Icon, ICON_FA_BURST))
@@ -244,10 +245,17 @@ void Hachiko::ComponentParticleSystem::DrawGui()
         if (CollapsingHeader("Renderer", &renderer_section, Widgets::CollapsibleHeaderType::Checkbox))
         {
             ImGui::BeginDisabled(!renderer_section);
-            int render_mode = static_cast<int>(particles_render_mode);
+            int orientation = static_cast<int>(particle_properties.orientation);
+            if (Widgets::Combo("Particle Orientations", &orientation, particle_orientations, IM_ARRAYSIZE(particle_orientations)))
+            {
+                particle_properties.orientation = static_cast<ParticleSystem::ParticleOrientation>(orientation);
+                App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+            }
+
+            int render_mode = static_cast<int>(particle_properties.render_mode);
             if (Widgets::Combo("Particle Render Mode", &render_mode, particle_render_modes, IM_ARRAYSIZE(particle_render_modes)))
             {
-                particles_render_mode = static_cast<ParticleSystem::ParticleRenderMode>(render_mode);
+                particle_properties.render_mode = static_cast<ParticleSystem::ParticleRenderMode>(render_mode);
                 App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
             }
 
@@ -256,8 +264,8 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             alpha_config.speed = 0.01f;
             alpha_config.min = 0.00f;
             alpha_config.max = 1.00f;
-            alpha_config.enabled = (particles_render_mode == ParticleSystem::ParticleRenderMode::PARTICLE_TRANSPARENT);
-            Widgets::DragFloat("Alpha channel", alpha_channel, &alpha_config);
+            alpha_config.enabled = (particle_properties.render_mode == ParticleSystem::ParticleRenderMode::PARTICLE_TRANSPARENT);
+            Widgets::DragFloat("Alpha channel", particle_properties.alpha, &alpha_config);
             ImGui::EndDisabled();
         }
 
@@ -349,8 +357,8 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
     config[PARTICLES_SIZE] = size;
     config[PARTICLES_ROTATION] = rotation;
     config[PARTICLES_DELAY] = delay;
-    config[PARTICLES_RENDER_MODE] = static_cast<int>(particles_render_mode);
-    config[PARTICLES_ALPHA] = alpha_channel;
+    config[PARTICLES_RENDER_MODE] = static_cast<int>(particle_properties.render_mode);
+    config[PARTICLES_ALPHA] = particle_properties.alpha;
     node[PARTICLE_PARAMETERS] = config;
 
     // emission
@@ -395,9 +403,9 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
     size = node[PARTICLE_PARAMETERS][PARTICLES_SIZE].as<ParticleSystem::VariableTypeProperty>();
     rotation = node[PARTICLE_PARAMETERS][PARTICLES_ROTATION].as<ParticleSystem::VariableTypeProperty>();
     delay = node[PARTICLE_PARAMETERS][PARTICLES_DELAY].as<ParticleSystem::VariableTypeProperty>();
-    particles_render_mode = static_cast<ParticleSystem::ParticleRenderMode>
+    particle_properties.render_mode = static_cast<ParticleSystem::ParticleRenderMode>
         (node[PARTICLE_PARAMETERS][PARTICLES_RENDER_MODE].as<int>());
-    alpha_channel = node[PARTICLE_PARAMETERS][PARTICLES_ALPHA].as<float>();
+    particle_properties.alpha = node[PARTICLE_PARAMETERS][PARTICLES_ALPHA].as<float>();
     // emission
     rate_over_time = node[PARTICLE_EMISSION][RATE].as<ParticleSystem::VariableTypeProperty>();
 
@@ -444,6 +452,11 @@ const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleS
 const Hachiko::ParticleSystem::Emitter::Properties& Hachiko::ComponentParticleSystem::GetEmitterProperties() const
 {
     return emitter_properties;
+}
+
+const Hachiko::ParticleSystem::ParticleProperties& Hachiko::ComponentParticleSystem::GetParticlesProperties() const
+{
+    return particle_properties;
 }
 
 const Hachiko::ResourceTexture* Hachiko::ComponentParticleSystem::GetTexture() const
@@ -583,16 +596,6 @@ void Hachiko::ComponentParticleSystem::AddTexture()
 void Hachiko::ComponentParticleSystem::RemoveTexture()
 {
     texture = nullptr;
-}
-
-Hachiko::ParticleSystem::ParticleRenderMode Hachiko::ComponentParticleSystem::GetParticlesRenderMode() const
-{
-    return particles_render_mode;
-}
-
-float Hachiko::ComponentParticleSystem::GetParticlesAlpha() const
-{
-    return alpha_channel;
 }
 
 bool Hachiko::ComponentParticleSystem::IsLoop() const

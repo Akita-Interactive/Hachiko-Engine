@@ -56,14 +56,14 @@ void Hachiko::Particle::Draw(ComponentCamera* camera, const Program* program)
     glDepthMask(GL_FALSE);
     glEnable(GL_BLEND);
     glBlendEquation(GL_FUNC_ADD);
-    if (emitter->GetParticlesRenderMode() == ParticleSystem::ParticleRenderMode::PARTICLE_ADDITIVE)
+    if (emitter->GetParticlesProperties().render_mode == ParticleSystem::ParticleRenderMode::PARTICLE_ADDITIVE)
     {
         glBlendFunc(GL_ONE, GL_ONE);
     }
     else
     {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        current_color.w = emitter->GetParticlesAlpha();
+        current_color.w = emitter->GetParticlesProperties().alpha;
     }
 
     float4x4 model_matrix = float4x4::identity;
@@ -103,6 +103,7 @@ void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_ma
     const float3 camera_direction = (float3(camera_position.x, current_position.y, camera_position.z) - current_position).Normalized();
     out_matrix = float4x4::LookAt(float3::unitZ, camera_direction, float3::unitY, float3::unitY);
     out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart(), float3(current_size, 0.0f));
+    return;
 }
 
 bool Hachiko::Particle::IsActive() const
