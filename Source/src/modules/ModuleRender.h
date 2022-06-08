@@ -87,11 +87,6 @@ namespace Hachiko
             return &render_list;
         }
 
-        [[nodiscard]] const unsigned& GetParticleVao() const
-        {
-            return particle_vao;
-        }
-        
         void SetDrawSkybox(const bool v)
         {
             draw_skybox = v;

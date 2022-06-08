@@ -124,7 +124,6 @@ namespace Hachiko
         Program* CreateParticleProgram();
         Program* CreateDeferredGeometryPassProgram();
         Program* CreateDeferredLightingPassProgram();
-        Program* CreateParticleProgram();
 
         Program* forward_program = nullptr;
         Program* deferred_geometry_program = nullptr;

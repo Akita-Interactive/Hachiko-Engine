@@ -14,8 +14,6 @@
 #include "ModuleInput.h"
 
 #include "components/ComponentCamera.h"
-#include "components/ComponentTransform.h"
-#include "resources/ResourceNavMesh.h"
 
 Hachiko::ModuleRender::ModuleRender() = default;
 
@@ -740,37 +738,6 @@ void Hachiko::ModuleRender::FreeDeferredQuad()
     glDeleteBuffers(1, &deferred_quad_ebo);
     glDeleteBuffers(1, &deferred_quad_vbo);
     glDeleteVertexArrays(1, &deferred_quad_vao);
-    glBindVertexArray(0);
-}
-
-void Hachiko::ModuleRender::GenerateParticlesBuffers()
-{
-    float positions[] = {
-        0.5f,  0.5f,  0.0f, 1.0f, 1.0f, // top right
-        0.5f,  -0.5f, 0.0f, 1.0f, 0.0f, // bottom right
-        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
-        -0.5f, 0.5f,  0.0f, 0.0f, 1.0f // top left
-    };
-
-    unsigned int indices[] = {2, 1, 0, 0, 3, 2};
-
-    glGenVertexArrays(1, &particle_vao);
-    glBindVertexArray(particle_vao);
-
-    glGenBuffers(1, &particle_vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, particle_vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
-
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(sizeof(float) * 3));
-
-    glGenBuffers(1, &particle_ebo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, particle_ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
     glBindVertexArray(0);
 }
 

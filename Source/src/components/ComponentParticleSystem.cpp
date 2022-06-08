@@ -508,7 +508,8 @@ void Hachiko::ComponentParticleSystem::UpdateModules()
 void Hachiko::ComponentParticleSystem::ActivateParticles()
 {
     time += EngineTimer::delta_time;
-    if (time * 1000.0f <= ONE_SEC_IN_MS / (int)rate_over_time.values.x)
+    // TODO: Avoid division
+    if (time * 1000.0f <= ONE_SEC_IN_MS / rate_over_time.values.x)
     {
         return;
     }
