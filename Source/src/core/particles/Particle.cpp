@@ -15,7 +15,7 @@ void Hachiko::Particle::Update()
 {
     current_life -= EngineTimer::delta_time;
 
-    if (current_life <= 0 && emitter->IsLoop())
+    if (current_life <= 0)
     {
         Reset();
     }
