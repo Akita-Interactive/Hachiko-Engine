@@ -1,16 +1,16 @@
 #pragma once
 
-#include "core/particles/ParticleModule.h"
+#include "core/particles/ParticleModifier.h"
 
 namespace Hachiko
 {
     class ResourceTexture;
 
-    class AnimationParticleModule : public ParticleModule
+    class AnimationParticleModifier : public ParticleModifier
     {
     public:
-        AnimationParticleModule(const std::string& name);
-        ~AnimationParticleModule() override = default;
+        AnimationParticleModifier(const std::string& name);
+        ~AnimationParticleModifier() override = default;
 
         void Update(std::vector<Particle>&) override;
         void DrawGui() override;

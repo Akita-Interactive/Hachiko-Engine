@@ -1,13 +1,13 @@
 #pragma once
-#include "core/particles/ParticleModule.h"
+#include "core/particles/ParticleModifier.h"
 
 namespace Hachiko
 {
-    class ForceParticleModule : public ParticleModule
+    class ForceParticleModifier : public ParticleModifier
     {
     public:
-        ForceParticleModule(const std::string& name);
-        ~ForceParticleModule() override = default;
+        ForceParticleModifier(const std::string& name);
+        ~ForceParticleModifier() override = default;
 
         void Update(std::vector<Particle>&) override;
         void DrawGui() override;

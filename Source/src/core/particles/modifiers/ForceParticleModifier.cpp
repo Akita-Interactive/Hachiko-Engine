@@ -1,12 +1,12 @@
 #include "core/hepch.h"
-#include "core/particles/modules/ForceParticleModule.h"
+#include "core/particles/modifiers/ForceParticleModifier.h"
 
-Hachiko::ForceParticleModule::ForceParticleModule(const std::string& name) :
-    ParticleModule(name, false)
+Hachiko::ForceParticleModifier::ForceParticleModifier(const std::string& name) :
+    ParticleModifier(name, false)
 {
 }
 
-void Hachiko::ForceParticleModule::Update(std::vector<Particle>& particles)
+void Hachiko::ForceParticleModifier::Update(std::vector<Particle>& particles)
 {
     for (auto& particle : particles)
     {
@@ -20,30 +20,30 @@ void Hachiko::ForceParticleModule::Update(std::vector<Particle>& particles)
     }
 }
 
-void Hachiko::ForceParticleModule::DrawGui()
+void Hachiko::ForceParticleModifier::DrawGui()
 {
     ImGui::TextUnformatted("Force over lifetime content");
 }
 
-void Hachiko::ForceParticleModule::Save(YAML::Node& node) const
+void Hachiko::ForceParticleModifier::Save(YAML::Node& node) const
 {
     YAML::Node force_module = node[MODULE_FORCE];
-    ParticleModule::Save(force_module);
+    ParticleModifier::Save(force_module);
 }
 
-void Hachiko::ForceParticleModule::Load(const YAML::Node& node)
+void Hachiko::ForceParticleModifier::Load(const YAML::Node& node)
 {
-    ParticleModule::Load(node[MODULE_FORCE]);
+    ParticleModifier::Load(node[MODULE_FORCE]);
 }
 
-void Hachiko::ForceParticleModule::UpdatePositionOverTime(Particle& particle) 
+void Hachiko::ForceParticleModifier::UpdatePositionOverTime(Particle& particle) 
 {
     float3 position = particle.GetCurrentPosition();
     position += particle.GetCurrentDirection() * particle.GetCurrentSpeed();
     particle.SetCurrentPosition(position);
 }
 
-void Hachiko::ForceParticleModule::UpdateDirectionOverTime(Particle& particle)
+void Hachiko::ForceParticleModifier::UpdateDirectionOverTime(Particle& particle)
 {
     //float3 direction = particle.GetCurrentDirection();
     //direction = float3(Random::RandomFloat(), Random::RandomFloat(), Random::RandomFloat());

@@ -10,17 +10,17 @@
 Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container) :
     Component(Type::PARTICLE_SYSTEM, container)
 {
-    particle_modules.push_back(std::make_shared<VelocityParticleModule>("Velocity over lifetime"));
-    particle_modules.push_back(std::make_shared<SizeParticleModule>("Size over lifetime"));
-    particle_modules.push_back(std::make_shared<ColorParticleModule>("Color over lifetime"));
-    particle_modules.push_back(std::make_shared<ForceParticleModule>("Force over lifetime"));
-    particle_modules.push_back(std::make_shared<AnimationParticleModule>("Animation over lifetime"));
+    particle_modifiers.push_back(std::make_shared<VelocityParticleModifier>("Velocity over lifetime"));
+    particle_modifiers.push_back(std::make_shared<SizeParticleModifier>("Size over lifetime"));
+    particle_modifiers.push_back(std::make_shared<ColorParticleModifier>("Color over lifetime"));
+    particle_modifiers.push_back(std::make_shared<ForceParticleModifier>("Force over lifetime"));
+    particle_modifiers.push_back(std::make_shared<AnimationParticleModifier>("Animation over lifetime"));
 }
 
 Hachiko::ComponentParticleSystem::~ComponentParticleSystem()
 {
     App->event->Unsubscribe(Event::Type::CURVE_EDITOR, GetID());
-    particle_modules.clear();
+    particle_modifiers.clear();
     App->scene_manager->GetActiveScene()->RemoveParticleComponent(GetID());
     current_curve_editing_property = nullptr;
 }
@@ -173,7 +173,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             ImGui::EndDisabled();
         }
 
-        for (const auto& particle_module : particle_modules)
+        for (const auto& particle_module : particle_modifiers)
         {
             if (CollapsingHeader(particle_module->GetName().c_str(), &particle_module->active, Widgets::CollapsibleHeaderType::Checkbox))
             {
@@ -363,7 +363,7 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
     node[PARTICLES_TEXTURE][FLIP] = flip_texture;
 
     YAML::Node modules;
-    for (const auto& particle_module : particle_modules)
+    for (const auto& particle_module : particle_modifiers)
     {
         particle_module->Save(modules);
     }
@@ -412,43 +412,30 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
         texture = static_cast<ResourceTexture*>(App->resources->GetResource(Resource::Type::TEXTURE, texture_id));
     }
 
-    for (const auto& particle_module : particle_modules)
+    for (const auto& particle_module : particle_modifiers)
     {
         particle_module->Load(node[PARTICLE_MODULES]);
     }
 }
 
-Hachiko::ParticleSystem::VariableTypeProperty
-Hachiko::ComponentParticleSystem::GetParticlesLife() const
+const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleSystem::GetParticlesLife() const
 {
     return life;
 }
 
-Hachiko::ParticleSystem::VariableTypeProperty Hachiko::ComponentParticleSystem::GetParticlesSize() const
-{
-    return size;
-}
-
-Hachiko::ParticleSystem::VariableTypeProperty Hachiko::ComponentParticleSystem::GetParticlesSpeed() const
+const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleSystem::GetParticlesSpeed() const
 {
     return speed;
 }
 
-float3 Hachiko::ComponentParticleSystem::GetParticlesDirection() const
+const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleSystem::GetParticlesSize() const
 {
-    const float4x4 model = game_object->GetComponent<ComponentTransform>()->GetGlobalMatrix();
-    const float3 shape_direction = GetParticlesDirectionFromShape();
-    const float4x4 emitter = float4x4::FromTRS(emitter_properties.position,
-                                               Quat::FromEulerXYZ(shape_direction.x, shape_direction.y, shape_direction.z),
-                                               emitter_properties.scale);
-    const float4x4 current_model = model * emitter;
-    const float3 random_direction = (current_model.RotatePart() * float3::unitY).Normalized();
-    return random_direction;
+    return size;
 }
 
-float3 Hachiko::ComponentParticleSystem::GetParticlesEmissionPosition() const
+const Hachiko::ParticleSystem::Emitter::Properties& Hachiko::ComponentParticleSystem::GetEmitterProperties() const
 {
-    return emitter_properties.position + game_object->GetComponent<ComponentTransform>()->GetGlobalPosition();
+    return emitter_properties;
 }
 
 const Hachiko::ResourceTexture* Hachiko::ComponentParticleSystem::GetTexture() const
@@ -458,7 +445,7 @@ const Hachiko::ResourceTexture* Hachiko::ComponentParticleSystem::GetTexture() c
 
 int Hachiko::ComponentParticleSystem::GetTextureTotalTiles() const
 {
-    return total_tiles;
+    return static_cast<int>(total_tiles);
 }
 
 const Hachiko::bool2& Hachiko::ComponentParticleSystem::GetFlipTexture() const
@@ -491,7 +478,7 @@ void Hachiko::ComponentParticleSystem::UpdateActiveParticles()
 
 void Hachiko::ComponentParticleSystem::UpdateModules()
 {
-    for (const auto& particle_module : particle_modules)
+    for (const auto& particle_module : particle_modifiers)
     {
         particle_module->Update(particles);
     }
@@ -516,7 +503,7 @@ void Hachiko::ComponentParticleSystem::ActivateParticles()
     }
 }
 
-float3 Hachiko::ComponentParticleSystem::GetParticlesDirectionFromShape() const
+float3 Hachiko::ComponentParticleSystem::CalculateDirectionFromShape() const
 {
     float3 particle_direction = float3::one;
     switch (emitter_type)
@@ -598,4 +585,9 @@ void Hachiko::ComponentParticleSystem::RemoveTexture()
 Hachiko::ParticleSystem::ParticleRenderMode Hachiko::ComponentParticleSystem::GetParticlesRenderMode() const
 {
     return particles_render_mode;
+}
+
+bool Hachiko::ComponentParticleSystem::IsLoop() const
+{
+    return loop;
 }

@@ -4,15 +4,15 @@ namespace Hachiko
 {
     class Particle;
 
-    class ParticleModule
+    class ParticleModifier
     {
     public:
 
         friend class ComponentParticleSystem;
 
-        ParticleModule() = default;
-        ParticleModule(std::string name, bool active);
-        virtual ~ParticleModule() = default;
+        ParticleModifier() = default;
+        ParticleModifier(std::string name, bool active);
+        virtual ~ParticleModifier() = default;
 
         virtual void Update(std::vector<Particle>&)
         {

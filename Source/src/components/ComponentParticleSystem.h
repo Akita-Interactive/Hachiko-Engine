@@ -3,7 +3,7 @@
 namespace Hachiko
 {
     class Particle;
-    class ParticleModule;
+    class ParticleModifier;
 
     class HACHIKO_API ComponentParticleSystem : public Component
     {
@@ -20,17 +20,22 @@ namespace Hachiko
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
 
-        [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesLife() const;
-        [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesSize() const;
-        [[nodiscard]] ParticleSystem::VariableTypeProperty GetParticlesSpeed() const;
-        [[nodiscard]] float3 GetParticlesDirection() const;
-        [[nodiscard]] float3 GetParticlesEmissionPosition() const;
+        [[nodiscard]] const ParticleSystem::VariableTypeProperty& GetParticlesLife() const;
+        [[nodiscard]] const ParticleSystem::VariableTypeProperty& GetParticlesSpeed() const;
+        [[nodiscard]] const ParticleSystem::VariableTypeProperty& GetParticlesSize() const;
+
+        [[nodiscard]] const ParticleSystem::Emitter::Properties& GetEmitterProperties() const;
+
+        [[nodiscard]] float3 CalculateDirectionFromShape() const;
+
         [[nodiscard]] const ResourceTexture* GetTexture() const;
         [[nodiscard]] int GetTextureTotalTiles() const;
         [[nodiscard]] const bool2& GetFlipTexture() const;
         [[nodiscard]] const float2& GetTextureTiles() const;
         [[nodiscard]] const float2& GetFactor() const;
         [[nodiscard]] ParticleSystem::ParticleRenderMode GetParticlesRenderMode() const;
+
+        [[nodiscard]] bool IsLoop() const;
 
     private:
         //sections
@@ -71,7 +76,7 @@ namespace Hachiko
         std::vector<Particle> particles{1000};
 
         //modules
-        std::vector<std::shared_ptr<ParticleModule>> particle_modules{};
+        std::vector<std::shared_ptr<ParticleModifier>> particle_modifiers{};
 
         //texture
         bool2 flip_texture = bool2::False;
@@ -86,6 +91,5 @@ namespace Hachiko
         void ActivateParticles();
         void UpdateActiveParticles();
         void UpdateModules();
-        [[nodiscard]] float3 GetParticlesDirectionFromShape() const;
     };
 } // namespace Hachiko

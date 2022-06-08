@@ -1,16 +1,16 @@
 #pragma once
 
 #include "core/particles/ParticleSystem.h"
-#include "core/particles/ParticleModule.h"
+#include "core/particles/ParticleModifier.h"
 #include "ui/widgets/DragFloat.h"
 
 namespace Hachiko
 {
-    class SizeParticleModule : public ParticleModule
+    class SizeParticleModifier : public ParticleModifier
     {
     public:
-        SizeParticleModule(const std::string& name);
-        ~SizeParticleModule() override = default;
+        SizeParticleModifier(const std::string& name);
+        ~SizeParticleModifier() override = default;
 
         void Update(std::vector<Particle>&) override;
         void DrawGui() override;

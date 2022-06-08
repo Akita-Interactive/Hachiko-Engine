@@ -1,10 +1,10 @@
 #include "core/hepch.h"
-#include "AnimationParticleModule.h"
+#include "AnimationParticleModifier.h"
 #include "resources/ResourceTexture.h"
 #include "modules/ModuleResources.h"
 
-Hachiko::AnimationParticleModule::AnimationParticleModule(const std::string& name) 
-    : ParticleModule(name, false) 
+Hachiko::AnimationParticleModifier::AnimationParticleModifier(const std::string& name) 
+    : ParticleModifier(name, false) 
 {
     cfg.min = 0.0f;
     cfg.max = 10.0f;
@@ -12,7 +12,7 @@ Hachiko::AnimationParticleModule::AnimationParticleModule(const std::string& nam
     cfg.format = "%.2f";
 }
 
-void Hachiko::AnimationParticleModule::Update(std::vector<Particle>& particles)
+void Hachiko::AnimationParticleModifier::Update(std::vector<Particle>& particles)
 {
     if (!IsActive())
     {
@@ -37,27 +37,27 @@ void Hachiko::AnimationParticleModule::Update(std::vector<Particle>& particles)
     }
 }
 
-void Hachiko::AnimationParticleModule::DrawGui()
+void Hachiko::AnimationParticleModifier::DrawGui()
 {
     Widgets::Checkbox("Fit to lifetime", &fit_to_lifetime);
     cfg.enabled = !fit_to_lifetime;
     DragFloat("Skip frames", skip_frames, &cfg);
 }
 
-void Hachiko::AnimationParticleModule::Save(YAML::Node& node) const 
+void Hachiko::AnimationParticleModifier::Save(YAML::Node& node) const 
 {
     YAML::Node velocity_module = node[MODULE_ANIMATION];
-    ParticleModule::Save(velocity_module);
+    ParticleModifier::Save(velocity_module);
     velocity_module[SKIP_FRAMES] = skip_frames;
 }
 
-void Hachiko::AnimationParticleModule::Load(const YAML::Node& node) 
+void Hachiko::AnimationParticleModifier::Load(const YAML::Node& node) 
 {
-    ParticleModule::Load(node[MODULE_ANIMATION]);
+    ParticleModifier::Load(node[MODULE_ANIMATION]);
     skip_frames = node[MODULE_ANIMATION][SKIP_FRAMES].IsDefined() ? node[MODULE_ANIMATION][SKIP_FRAMES].as<float>() : skip_frames;
 }
 
-void Hachiko::AnimationParticleModule::UpdateAnimation(Particle& particle) 
+void Hachiko::AnimationParticleModifier::UpdateAnimation(Particle& particle) 
 {
     if (!particle.HasTexture())
     {

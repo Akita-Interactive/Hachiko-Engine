@@ -110,13 +110,13 @@
 
 #include "resources/Resource.h"
 
-#include "core/particles/ParticleModule.h"
+#include "core/particles/ParticleModifier.h"
 #include "core/particles/ParticleSystem.h"
 #include "core/particles/Particle.h"
 
 //particle modules
-#include "core/particles/modules/ColorParticleModule.h"
-#include "core/particles/modules/ForceParticleModule.h"
-#include "core/particles/modules/SizeParticleModule.h"
-#include "core/particles/modules/VelocityParticleModule.h"
-#include "core/particles/modules/AnimationParticleModule.h"
+#include "core/particles/modifiers/ColorParticleModifier.h"
+#include "core/particles/modifiers/ForceParticleModifier.h"
+#include "core/particles/modifiers/SizeParticleModifier.h"
+#include "core/particles/modifiers/VelocityParticleModifier.h"
+#include "core/particles/modifiers/AnimationParticleModifier.h"

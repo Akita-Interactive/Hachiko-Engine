@@ -11,7 +11,7 @@ namespace Hachiko
 
         void Update();
         void Reset();
-        void Draw(ComponentCamera* camera, Program* program);
+        void Draw(ComponentCamera* camera, const Program* program);
 
     private:
         bool active = false;
@@ -34,25 +34,25 @@ namespace Hachiko
         void Deactivate();
         
         [[nodiscard]] float GetCurrentLife() const;
-        void SetCurrentLife(float current_life);
+        void SetCurrentLife(float life);
 
         [[nodiscard]] float GetCurrentSpeed() const;
-        void SetCurrentSpeed(float current_speed);
+        void SetCurrentSpeed(float speed);
 
         [[nodiscard]] const float4& GetCurrentColor() const;
-        void SetCurrentColor(const float4& current_color);
+        void SetCurrentColor(const float4& color);
 
         [[nodiscard]] const float2& GetCurrentSize() const;
-        void SetCurrentSize(const float2& current_size);
+        void SetCurrentSize(const float2& size);
 
         [[nodiscard]] const float2& GetAnimationIndex() const;
-        void SetAnimationIndex(const float2& animation_index);
+        void SetAnimationIndex(const float2& animation_idx);
 
         [[nodiscard]] const float3& GetCurrentPosition() const;
-        void SetCurrentPosition(const float3& current_position);
+        void SetCurrentPosition(const float3& position);
 
         [[nodiscard]] const float3& GetCurrentDirection() const;
-        void SetCurrentDirection(const float3& current_direction);
+        void SetCurrentDirection(const float3& direction);
 
         [[nodiscard]] unsigned GetCurrentAnimationFrame() const;
         void SetCurrentAnimationFrame(unsigned current_animation_frame);
@@ -63,8 +63,6 @@ namespace Hachiko
         [[nodiscard]] float GetInitialSpeed() const;
         [[nodiscard]] const float2& GetInitialSize() const;
         [[nodiscard]] const float2& GetTextureTiles() const;
-        [[nodiscard]] const float3& GetInitialPosition() const;
-        [[nodiscard]] const float3& GetInitialDirection() const;
 
         void SetEmitter(ComponentParticleSystem* emitter);
     };

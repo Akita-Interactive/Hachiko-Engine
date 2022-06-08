@@ -11,13 +11,11 @@
 
 #include "resources/ResourceTexture.h"
 
-using namespace Hachiko;
-
 void Hachiko::Particle::Update()
 {
     current_life -= EngineTimer::delta_time;
 
-    if (current_life <= 0)
+    if (current_life <= 0 && emitter->IsLoop())
     {
         Reset();
     }
@@ -27,22 +25,31 @@ void Hachiko::Particle::Reset()
 {
     Deactivate();
     SetCurrentLife(GetInitialLife());
-    SetCurrentPosition(GetInitialPosition());
     SetCurrentSize(GetInitialSize());
     SetCurrentSpeed(GetInitialSpeed());
-    SetCurrentDirection(GetInitialDirection());
+
+    const float3 position = emitter->GetEmitterProperties().position +
+                            emitter->GetGameObject()->GetComponent<ComponentTransform>()->GetGlobalPosition();
+    SetCurrentPosition(position);
+
+    const float4x4 game_object_model = emitter->GetGameObject()->GetComponent<ComponentTransform>()->GetGlobalMatrix();
+    const float3 shape_direction = emitter->CalculateDirectionFromShape();
+    const float4x4 emitter_model = float4x4::FromTRS(emitter->GetEmitterProperties().position,
+                                                     Quat::FromEulerXYZ(shape_direction.x, shape_direction.y, shape_direction.z),
+                                                     emitter->GetEmitterProperties().scale);
+    const float4x4 current_model = game_object_model * emitter_model;
+    const float3 direction = (current_model.RotatePart() * float3::unitY).Normalized();
+    SetCurrentDirection(direction);
 }
 
-void Particle::Draw(ComponentCamera* camera, Program* program)
+void Hachiko::Particle::Draw(ComponentCamera* camera, const Program* program)
 {
     glActiveTexture(GL_TEXTURE0);
-    int glTexture = 0;
     int has_texture = 0;
-    auto texture_resource = emitter->GetTexture();
+    const auto texture_resource = emitter->GetTexture();
     if (texture_resource != nullptr)
     {
-        glTexture = texture_resource->GetImageId();
-        Hachiko::ModuleTexture::Bind(glTexture, static_cast<int>(Hachiko::ModuleProgram::TextureSlots::DIFFUSE));
+        ModuleTexture::Bind(texture_resource->GetImageId(), static_cast<int>(ModuleProgram::TextureSlots::DIFFUSE));
         has_texture = 1;
     }
 
@@ -86,7 +93,6 @@ void Particle::Draw(ComponentCamera* camera, Program* program)
     glBindTexture(GL_TEXTURE_2D, 0);
     glDisable(GL_BLEND);
     glDepthMask(GL_TRUE);
-    return;
 }
 
 void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_matrix) const
@@ -118,17 +124,17 @@ bool Hachiko::Particle::HasTexture() const
     return emitter->GetTexture() != nullptr;
 }
 
-float Particle::GetInitialLife() const
+float Hachiko::Particle::GetInitialLife() const
 {
     return emitter->GetParticlesLife().values.x;
 }
 
-float Particle::GetInitialSpeed() const
+float Hachiko::Particle::GetInitialSpeed() const
 {
     return emitter->GetParticlesSpeed().values.x;
 }
 
-const float2& Particle::GetInitialSize() const
+const float2& Hachiko::Particle::GetInitialSize() const
 {
     return emitter->GetParticlesSize().values;
 }
@@ -143,76 +149,66 @@ int Hachiko::Particle::GetTextureTotalTiles() const
     return emitter->GetTextureTotalTiles();
 }
 
-const float3& Particle::GetInitialPosition() const
-{
-    return emitter->GetParticlesEmissionPosition();
-}
-
-const float3& Hachiko::Particle::GetInitialDirection() const
-{
-    return emitter->GetParticlesDirection();
-}
-
-float Particle::GetCurrentLife() const
+float Hachiko::Particle::GetCurrentLife() const
 {
     return current_life;
 }
 
-void Particle::SetCurrentLife(const float current_life)
+void Hachiko::Particle::SetCurrentLife(const float life)
 {
-    this->current_life = current_life;
+    this->current_life = life;
 }
 
-float Particle::GetCurrentSpeed() const
+float Hachiko::Particle::GetCurrentSpeed() const
 {
     return current_speed;
 }
 
-void Particle::SetCurrentSpeed(const float current_speed)
+void Hachiko::Particle::SetCurrentSpeed(const float speed)
 {
-    this->current_speed = current_speed;
+    this->current_speed = speed;
 }
 
-const float4& Particle::GetCurrentColor() const
+const float4& Hachiko::Particle::GetCurrentColor() const
 {
     return current_color;
 }
 
-void Particle::SetCurrentColor(const float4& current_color)
+void Hachiko::Particle::SetCurrentColor(const float4& color)
 {
-    this->current_color = current_color;
+    this->current_color = color;
 }
 
-const float2& Particle::GetCurrentSize() const
+const float2& Hachiko::Particle::GetCurrentSize() const
 {
     return current_size;
 }
 
-void Particle::SetCurrentSize(const float2& current_size)
+void Hachiko::Particle::SetCurrentSize(const float2& size)
 {
     // Apply same size for both coordinates. Particles are always squares!
-    this->current_size.x = current_size.x;
-    this->current_size.y = current_size.x;
+    this->current_size.x = size.x;
+    this->current_size.y = size.x;
 }
 
-const float2& Particle::GetAnimationIndex() const
+const float2& Hachiko::Particle::GetAnimationIndex() const
 {
     return animation_index;
 }
 
-void Particle::SetAnimationIndex(const float2& animation_index)
+void Hachiko::Particle::SetAnimationIndex(const float2& animation_idx)
 {
-    this->animation_index = animation_index;
+    this->animation_index = animation_idx;
 }
 
-const float3& Particle::GetCurrentPosition() const
+const float3& Hachiko::Particle::GetCurrentPosition() const
 {
     return current_position;
 }
 
-void Particle::SetCurrentPosition(const float3& current_position)
+void Hachiko::Particle::SetCurrentPosition(const float3& position)
 {
-    this->current_position = current_position;
+    this->current_position = position;
 }
 
 const float3& Hachiko::Particle::GetCurrentDirection() const
@@ -220,9 +216,9 @@ const float3& Hachiko::Particle::GetCurrentDirection() const
     return current_direction;
 }
 
-void Hachiko::Particle::SetCurrentDirection(const float3& current_direction)
+void Hachiko::Particle::SetCurrentDirection(const float3& direction)
 {
-    this->current_direction = current_direction;
+    this->current_direction = direction;
 }
 
 unsigned Hachiko::Particle::GetCurrentAnimationFrame() const

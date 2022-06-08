@@ -3,10 +3,12 @@
 
 void Hachiko::ModuleEvent::Publish(Event& evt)
 {
-    auto [start, end] = subscribers.equal_range(evt.GetType());
-    for (auto i = start; i != end; ++i)
+    for (auto it = subscribers.begin(); it != subscribers.end(); ++it)
     {
-        i->second.second(evt);
+        if(it->first == evt.GetType())
+        {
+            it->second.second(evt);
+        }
     }
 }
 

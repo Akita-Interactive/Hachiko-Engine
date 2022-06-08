@@ -627,23 +627,23 @@
     <ClCompile Include="src\resources\ResourceScene.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\particles\ParticleModule.cpp">
+    <ClCompile Include="src\core\particles\ParticleModifier.cpp">
       <Filter>Core\Particles</Filter>
     </ClCompile>
     <ClCompile Include="src\resources\ResourceSkybox.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\particles\modules\ColorParticleModule.cpp">
-      <Filter>Core\Particles\Modules</Filter>
+    <ClCompile Include="src\core\particles\modifiers\ColorParticleModifier.cpp">
+      <Filter>Core\Particles\Modifiers</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\particles\modules\ForceParticleModule.cpp">
-      <Filter>Core\Particles\Modules</Filter>
+    <ClCompile Include="src\core\particles\modifiers\ForceParticleModifier.cpp">
+      <Filter>Core\Particles\Modifiers</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\particles\modules\SizeParticleModule.cpp">
-      <Filter>Core\Particles\Modules</Filter>
+    <ClCompile Include="src\core\particles\modifiers\SizeParticleModifier.cpp">
+      <Filter>Core\Particles\Modifiers</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\particles\modules\VelocityParticleModule.cpp">
-      <Filter>Core\Particles\Modules</Filter>
+    <ClCompile Include="src\core\particles\modifiers\VelocityParticleModifier.cpp">
+      <Filter>Core\Particles\Modifiers</Filter>
     </ClCompile>
     <ClCompile Include="src\core\particles\Particle.cpp">
       <Filter>Core\Particles</Filter>
@@ -654,8 +654,8 @@
     <ClCompile Include="src\utils\Random.cpp">
       <Filter>Core\Util</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\particles\modules\AnimationParticleModule.cpp">
-      <Filter>Core\Particles\Modules</Filter>
+    <ClCompile Include="src\core\particles\modifiers\AnimationParticleModifier.cpp">
+      <Filter>Core\Particles\Modifiers</Filter>
     </ClCompile>
     <ClCompile Include="src\utils\Bool2.cpp">
       <Filter>Core\Util</Filter>
@@ -2421,7 +2421,7 @@
     <ClInclude Include="src\core\particles\ParticleSystem.h">
       <Filter>Core\Particles</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\particles\ParticleModule.h">
+    <ClInclude Include="src\core\particles\ParticleModifier.h">
       <Filter>Core\Particles</Filter>
     </ClInclude>
     <ClInclude Include="src\resources\ResourcePrefab.h">
@@ -2439,17 +2439,17 @@
     <ClInclude Include="src\events\CurveEditorEventPayload.h">
       <Filter>Core\Events\Payload</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\particles\modules\ColorParticleModule.h">
-      <Filter>Core\Particles\Modules</Filter>
+    <ClInclude Include="src\core\particles\modifiers\ColorParticleModifier.h">
+      <Filter>Core\Particles\Modifiers</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\particles\modules\ForceParticleModule.h">
-      <Filter>Core\Particles\Modules</Filter>
+    <ClInclude Include="src\core\particles\modifiers\ForceParticleModifier.h">
+      <Filter>Core\Particles\Modifiers</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\particles\modules\SizeParticleModule.h">
-      <Filter>Core\Particles\Modules</Filter>
+    <ClInclude Include="src\core\particles\modifiers\SizeParticleModifier.h">
+      <Filter>Core\Particles\Modifiers</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\particles\modules\VelocityParticleModule.h">
-      <Filter>Core\Particles\Modules</Filter>
+    <ClInclude Include="src\core\particles\modifiers\VelocityParticleModifier.h">
+      <Filter>Core\Particles\Modifiers</Filter>
     </ClInclude>
     <ClInclude Include="src\ui\widgets\Widgets.h">
       <Filter>UI\Widgets</Filter>
@@ -2478,8 +2478,8 @@
     <ClInclude Include="src\utils\Random.h">
       <Filter>Core\Util</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\particles\modules\AnimationParticleModule.h">
-      <Filter>Core\Particles\Modules</Filter>
+    <ClInclude Include="src\core\particles\modifiers\AnimationParticleModifier.h">
+      <Filter>Core\Particles\Modifiers</Filter>
     </ClInclude>
     <ClInclude Include="src\ui\widgets\Checkbox.h">
       <Filter>UI\Widgets</Filter>
@@ -2645,7 +2645,7 @@
     <Filter Include="Core\Particles">
       <UniqueIdentifier>{bd6b065e-6db7-421c-9468-2607cf6ad29a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Particles\Modules">
+    <Filter Include="Core\Particles\Modifiers">
       <UniqueIdentifier>{7ca3566d-4da4-49fd-b4d5-fded29595756}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

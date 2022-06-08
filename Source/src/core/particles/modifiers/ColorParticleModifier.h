@@ -1,13 +1,13 @@
 #pragma once
-#include "core/particles/ParticleModule.h"
+#include "core/particles/ParticleModifier.h"
 
 namespace Hachiko
 {
-    class ColorParticleModule : public ParticleModule
+    class ColorParticleModifier : public ParticleModifier
     {
     public:
-        ColorParticleModule(const std::string& name);
-        ~ColorParticleModule() override;
+        ColorParticleModifier(const std::string& name);
+        ~ColorParticleModifier() override;
 
         void Update(std::vector<Particle>&) override;
         void DrawGui() override;

@@ -1,18 +1,18 @@
 #include "core/hepch.h"
-#include "core/particles/modules/ColorParticleModule.h"
+#include "core/particles/modifiers/ColorParticleModifier.h"
 
-Hachiko::ColorParticleModule::ColorParticleModule(const std::string& name) :
-    ParticleModule(name, false)
+Hachiko::ColorParticleModifier::ColorParticleModifier(const std::string& name) :
+    ParticleModifier(name, false)
 {
     gradient = new ImGradient();
 }
 
-Hachiko::ColorParticleModule::~ColorParticleModule()
+Hachiko::ColorParticleModifier::~ColorParticleModifier()
 {
     delete gradient;
 }
 
-void Hachiko::ColorParticleModule::Update(std::vector<Particle>& particles)
+void Hachiko::ColorParticleModifier::Update(std::vector<Particle>& particles)
 {
 
 
@@ -33,7 +33,7 @@ void Hachiko::ColorParticleModule::Update(std::vector<Particle>& particles)
     }
 }
 
-void Hachiko::ColorParticleModule::DrawGui()
+void Hachiko::ColorParticleModifier::DrawGui()
 {
     ImGui::PushItemWidth(200);
     ImGui::GradientEditor(gradient, draggingGradient, selectedGradient);
@@ -42,17 +42,17 @@ void Hachiko::ColorParticleModule::DrawGui()
     ImGui::DragInt("Cycles over lifetime##color_cycles", &color_cycles, 1, 1, inf);
 }
 
-void Hachiko::ColorParticleModule::Save(YAML::Node& node) const
+void Hachiko::ColorParticleModifier::Save(YAML::Node& node) const
 {
     YAML::Node color_module = node[MODULE_COLOR];
-    ParticleModule::Save(color_module);
+    ParticleModifier::Save(color_module);
     color_module[COLOR_GRADIENT] = *gradient;
     color_module[COLOR_CYCLES] = color_cycles;
 }
 
-void Hachiko::ColorParticleModule::Load(const YAML::Node& node)
+void Hachiko::ColorParticleModifier::Load(const YAML::Node& node)
 {
-    ParticleModule::Load(node[MODULE_COLOR]);
+    ParticleModifier::Load(node[MODULE_COLOR]);
     color_cycles = node[MODULE_COLOR][COLOR_CYCLES].IsDefined() ? node[MODULE_COLOR][COLOR_CYCLES].as<int>() : 0;
 
     if (node[MODULE_COLOR][COLOR_GRADIENT].IsDefined())
@@ -66,7 +66,7 @@ void Hachiko::ColorParticleModule::Load(const YAML::Node& node)
     }
 }
 
-void Hachiko::ColorParticleModule::UpdateColorOverTime(Particle& particle) const
+void Hachiko::ColorParticleModifier::UpdateColorOverTime(Particle& particle) const
 {
     const float particle_life = particle.GetInitialLife();
     const float color_frame = 1 - (particle.GetCurrentLife() / particle_life);
