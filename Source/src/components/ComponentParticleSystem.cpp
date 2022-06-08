@@ -250,7 +250,14 @@ void Hachiko::ComponentParticleSystem::DrawGui()
                 particles_render_mode = static_cast<ParticleSystem::ParticleRenderMode>(render_mode);
                 App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
             }
-            Widgets::DragFloat("Alpha channel", alpha_channel);
+
+            Widgets::DragFloatConfig alpha_config;
+            alpha_config.format = "%.2f";
+            alpha_config.speed = 0.01f;
+            alpha_config.min = 0.00f;
+            alpha_config.max = 1.00f;
+            alpha_config.enabled = (particles_render_mode == ParticleSystem::ParticleRenderMode::PARTICLE_TRANSPARENT);
+            Widgets::DragFloat("Alpha channel", alpha_channel, &alpha_config);
             ImGui::EndDisabled();
         }
 
@@ -341,8 +348,9 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
     config[PARTICLES_SPEED] = speed;
     config[PARTICLES_SIZE] = size;
     config[PARTICLES_ROTATION] = rotation;
-    config[PARTICLE_DELAY] = delay;
-    config[PARTICLE_RENDER_MODE] = static_cast<int>(particles_render_mode);
+    config[PARTICLES_DELAY] = delay;
+    config[PARTICLES_RENDER_MODE] = static_cast<int>(particles_render_mode);
+    config[PARTICLES_ALPHA] = alpha_channel;
     node[PARTICLE_PARAMETERS] = config;
 
     // emission
@@ -386,10 +394,10 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
     speed = node[PARTICLE_PARAMETERS][PARTICLES_SPEED].as<ParticleSystem::VariableTypeProperty>();
     size = node[PARTICLE_PARAMETERS][PARTICLES_SIZE].as<ParticleSystem::VariableTypeProperty>();
     rotation = node[PARTICLE_PARAMETERS][PARTICLES_ROTATION].as<ParticleSystem::VariableTypeProperty>();
-    delay = node[PARTICLE_PARAMETERS][PARTICLE_DELAY].as<ParticleSystem::VariableTypeProperty>();
+    delay = node[PARTICLE_PARAMETERS][PARTICLES_DELAY].as<ParticleSystem::VariableTypeProperty>();
     particles_render_mode = static_cast<ParticleSystem::ParticleRenderMode>
-        (node[PARTICLE_PARAMETERS][PARTICLE_RENDER_MODE].as<int>());
-
+        (node[PARTICLE_PARAMETERS][PARTICLES_RENDER_MODE].as<int>());
+    alpha_channel = node[PARTICLE_PARAMETERS][PARTICLES_ALPHA].as<float>();
     // emission
     rate_over_time = node[PARTICLE_EMISSION][RATE].as<ParticleSystem::VariableTypeProperty>();
 
@@ -542,12 +550,7 @@ void Hachiko::ComponentParticleSystem::AddTexture()
     if (ImGui::Button("Add texture", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         ImGuiFileDialog::Instance()->OpenDialog(
-            title,
-            "Select Texture",
-            ".png,.tif,.jpg,.tga",
-            "./assets/textures/",
-            1,
-            nullptr,
+            title, "Select Texture", ".png,.tif,.jpg,.tga", "./assets/textures/", 1, nullptr,
             ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton |
             ImGuiFileDialogFlags_HideColumnType | ImGuiFileDialogFlags_HideColumnDate);
     }
@@ -585,6 +588,11 @@ void Hachiko::ComponentParticleSystem::RemoveTexture()
 Hachiko::ParticleSystem::ParticleRenderMode Hachiko::ComponentParticleSystem::GetParticlesRenderMode() const
 {
     return particles_render_mode;
+}
+
+float Hachiko::ComponentParticleSystem::GetParticlesAlpha() const
+{
+    return alpha_channel;
 }
 
 bool Hachiko::ComponentParticleSystem::IsLoop() const

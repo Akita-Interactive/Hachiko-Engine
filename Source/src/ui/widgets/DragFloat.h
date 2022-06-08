@@ -29,6 +29,12 @@ namespace Hachiko::Widgets
             const DragFloatConfig cfg;
             config = &cfg;
         }
+
+        if (!config->enabled)
+        {
+            return false;
+        }
+
         ImGui::PushID(label.c_str());
         ImGui::PushID(&value);
         ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0, 2));

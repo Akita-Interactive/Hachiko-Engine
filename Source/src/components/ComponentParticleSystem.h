@@ -34,6 +34,7 @@ namespace Hachiko
         [[nodiscard]] const float2& GetTextureTiles() const;
         [[nodiscard]] const float2& GetFactor() const;
         [[nodiscard]] ParticleSystem::ParticleRenderMode GetParticlesRenderMode() const;
+        [[nodiscard]] float GetParticlesAlpha() const;
 
         [[nodiscard]] bool IsLoop() const;
 
@@ -53,8 +54,8 @@ namespace Hachiko
         float alpha_channel = 1.0f;
 
         ParticleSystem::VariableTypeProperty delay{float2::zero, false};
-        ParticleSystem::VariableTypeProperty life = {float2(5.0f)};
-        ParticleSystem::VariableTypeProperty speed = {float2(5.0f)};
+        ParticleSystem::VariableTypeProperty life = {float2(1.0f)};
+        ParticleSystem::VariableTypeProperty speed = {float2(0.0f)};
         ParticleSystem::VariableTypeProperty size = {float2::one};
         ParticleSystem::VariableTypeProperty rotation = {float2::zero};
 

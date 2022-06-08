@@ -10,6 +10,8 @@ Hachiko::SizeParticleModifier::SizeParticleModifier(const std::string& name):
     cfg.max = 1.0f;
     cfg.speed = 0.001f;
     cfg.format = "%.3f";
+    size.constant_enabled = true;
+    size.curve_enabled = true;
 }
 
 void Hachiko::SizeParticleModifier::Update(std::vector<Particle>& particles)

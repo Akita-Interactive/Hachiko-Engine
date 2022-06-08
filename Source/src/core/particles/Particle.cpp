@@ -63,6 +63,7 @@ void Hachiko::Particle::Draw(ComponentCamera* camera, const Program* program)
     else
     {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        current_color.w = emitter->GetParticlesAlpha();
     }
 
     float4x4 model_matrix = float4x4::identity;
