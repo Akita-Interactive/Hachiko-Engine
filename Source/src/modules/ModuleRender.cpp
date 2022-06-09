@@ -93,24 +93,24 @@ void Hachiko::ModuleRender::GenerateFrameBuffer()
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Hachiko::ModuleRender::ResizeFrameBuffer(int heigth, int width) const
+void Hachiko::ModuleRender::ResizeFrameBuffer(const int width, const int height) const
 {
     // Frame buffer texture:
     glBindTexture(GL_TEXTURE_2D, fb_texture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, heigth, width, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
     
     // Handle resizing the textures of g-buffer:
-    g_buffer.Resize(heigth, width);
+    g_buffer.Resize(width, height);
     
     // Unbind:
     glBindTexture(GL_TEXTURE_2D, 0);
 
     glBindRenderbuffer(GL_RENDERBUFFER, depth_stencil_buffer);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, heigth, width);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
     glBindRenderbuffer(GL_RENDERBUFFER, 0);
 }
 
-void Hachiko::ModuleRender::ManageResolution(ComponentCamera* camera)
+void Hachiko::ModuleRender::ManageResolution(const ComponentCamera* camera)
 {
     unsigned res_x, res_y;
     camera->GetResolution(res_x, res_y);

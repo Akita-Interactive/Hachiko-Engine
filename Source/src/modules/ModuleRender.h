@@ -91,7 +91,7 @@ namespace Hachiko
             return particle_vao;
         }
         
-        void SetDrawSkybox(bool v)
+        void SetDrawSkybox(const bool v)
         {
             draw_skybox = v;
         }
@@ -100,8 +100,8 @@ namespace Hachiko
 
     private:
         void GenerateFrameBuffer();
-        void ResizeFrameBuffer(int heigth, int width) const;
-        void ManageResolution(ComponentCamera* camera);
+        void ResizeFrameBuffer(int width, int height) const;
+        void ManageResolution(const ComponentCamera* camera);
         void Draw(Scene* scene, ComponentCamera* camera, ComponentCamera* culling);
         void DrawDeferred(Scene* scene, ComponentCamera* camera, BatchManager* batch_manager);
         void DrawForward(BatchManager* batch_manager);
