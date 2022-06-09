@@ -93,6 +93,7 @@ namespace Hachiko
         struct ParticleProperties
         {
             float alpha = 1.0f;
+            bool orientate_to_direction = false;
             ParticleRenderMode render_mode = ParticleRenderMode::PARTICLE_ADDITIVE;
             ParticleOrientation orientation = ParticleOrientation::NORMAL;
         };

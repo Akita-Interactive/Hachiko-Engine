@@ -289,8 +289,7 @@
 #define PARTICLES_SIZE "size"
 #define PARTICLES_ROTATION "rotation"
 #define PARTICLES_DELAY "delay"
-#define PARTICLES_RENDER_MODE "render_mode"
-#define PARTICLES_ALPHA "alpha"
+#define PARTICLES_PROPERTIES "properties"
 // emission
 #define PARTICLE_EMISSION "emission"
 #define RATE "rate"
@@ -305,8 +304,8 @@
 #define Y_TILES "y_tiles"
 #define FLIP "flip"
 #define FLIP_Y "flip_y"
-// particle modules
-#define PARTICLE_MODULES "modules"
+// particle modifiers
+#define PARTICLE_MODIFIERS "modifiers"
 #define ACTIVE "active"
 #define MODULE_VELOCITY "velocity"
 #define SPEED "speed"

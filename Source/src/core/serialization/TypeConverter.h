@@ -437,6 +437,37 @@ namespace YAML
     };
 
     template<>
+    struct convert<Hachiko::ParticleSystem::ParticleProperties>
+    {
+        static Node encode(const Hachiko::ParticleSystem::ParticleProperties& rhs)
+        {
+            Node node;
+            node.push_back(rhs.alpha);
+            node.push_back(static_cast<int>(rhs.orientation));
+            node.push_back(static_cast<int>(rhs.render_mode));
+            node.push_back(rhs.orientate_to_direction);
+
+            node.SetStyle(EmitterStyle::Flow);
+            return node;
+        }
+
+        static bool decode(const Node& node, Hachiko::ParticleSystem::ParticleProperties& rhs)
+        {
+            if (!node.IsSequence() || node.size() != 4)
+            {
+                return false;
+            }
+
+            rhs.alpha = node[0].as<float>();
+            rhs.orientation = static_cast<Hachiko::ParticleSystem::ParticleOrientation>(node[1].as<int>());
+            rhs.render_mode = static_cast<Hachiko::ParticleSystem::ParticleRenderMode>(node[2].as<int>());
+            rhs.orientate_to_direction = node[3].as<bool>();
+
+            return true;
+        }
+    };
+
+    template<>
     struct convert<Hachiko::bool2>
     {
         static Node encode(const Hachiko::bool2& rhs)

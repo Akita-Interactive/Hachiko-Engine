@@ -84,7 +84,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
     if (ImGuiUtils::CollapsingHeader(game_object, this, "Particle system"))
     {
         const char* particle_render_modes[] = {"Additive", "Transparent"};
-        const char* particle_orientations[] = {"Normal", "Horizontal", "Vertical", "Stretch"};
+        const char* particle_orientations[] = {"Normal", "Vertical", "Horizontal", "Stretch"};
         ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 3.0f);
         ImGui::Indent();
         if (CollapsingHeader("Parameters", &parameters_section, Widgets::CollapsibleHeaderType::Icon, ICON_FA_BURST))
@@ -252,6 +252,11 @@ void Hachiko::ComponentParticleSystem::DrawGui()
                 App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
             }
 
+            if (particle_properties.orientation == ParticleSystem::ParticleOrientation::HORIZONTAL)
+            {
+                ImGui::Checkbox("Orientate to direction", &particle_properties.orientate_to_direction);            
+            }
+
             int render_mode = static_cast<int>(particle_properties.render_mode);
             if (Widgets::Combo("Particle Render Mode", &render_mode, particle_render_modes, IM_ARRAYSIZE(particle_render_modes)))
             {
@@ -357,8 +362,7 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
     config[PARTICLES_SIZE] = size;
     config[PARTICLES_ROTATION] = rotation;
     config[PARTICLES_DELAY] = delay;
-    config[PARTICLES_RENDER_MODE] = static_cast<int>(particle_properties.render_mode);
-    config[PARTICLES_ALPHA] = particle_properties.alpha;
+    config[PARTICLES_PROPERTIES] = particle_properties;
     node[PARTICLE_PARAMETERS] = config;
 
     // emission
@@ -383,7 +387,7 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
     {
         particle_module->Save(modules);
     }
-    node[PARTICLE_MODULES] = modules;
+    node[PARTICLE_MODIFIERS] = modules;
 }
 
 void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
@@ -403,9 +407,8 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
     size = node[PARTICLE_PARAMETERS][PARTICLES_SIZE].as<ParticleSystem::VariableTypeProperty>();
     rotation = node[PARTICLE_PARAMETERS][PARTICLES_ROTATION].as<ParticleSystem::VariableTypeProperty>();
     delay = node[PARTICLE_PARAMETERS][PARTICLES_DELAY].as<ParticleSystem::VariableTypeProperty>();
-    particle_properties.render_mode = static_cast<ParticleSystem::ParticleRenderMode>
-        (node[PARTICLE_PARAMETERS][PARTICLES_RENDER_MODE].as<int>());
-    particle_properties.alpha = node[PARTICLE_PARAMETERS][PARTICLES_ALPHA].as<float>();
+    particle_properties = node[PARTICLE_PARAMETERS][PARTICLES_PROPERTIES].as<ParticleSystem::ParticleProperties>();
+
     // emission
     rate_over_time = node[PARTICLE_EMISSION][RATE].as<ParticleSystem::VariableTypeProperty>();
 
@@ -430,7 +433,7 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
 
     for (const auto& particle_module : particle_modifiers)
     {
-        particle_module->Load(node[PARTICLE_MODULES]);
+        particle_module->Load(node[PARTICLE_MODIFIERS]);
     }
 }
 
