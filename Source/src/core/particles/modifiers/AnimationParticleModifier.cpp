@@ -71,12 +71,14 @@ void Hachiko::AnimationParticleModifier::UpdateAnimation(Particle& particle)
     {
         particle.SetCurrentAnimationFrame(1);
         particle.SetAnimationIndex(float2::zero);
+        return;
     }
     else if (animation_idx.x < particle.GetTextureTiles().x - 1)
     {
         animation_idx.x += 1.0f;
         particle.SetCurrentAnimationFrame(++animation_frame);
         particle.SetAnimationIndex(animation_idx);
+        return;
     }
     else if (particle.GetAnimationIndex().y < particle.GetTextureTiles().y - 1)
     {

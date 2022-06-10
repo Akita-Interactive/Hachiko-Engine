@@ -48,9 +48,10 @@ namespace Hachiko
 
         //particle config
         ParticleSystem::ParticleProperties particle_properties;
-        float duration = 5.0f;
+        
         bool loop = false;
-
+        bool able_to_emit = false;
+        float duration = 5.0f;
         ParticleSystem::VariableTypeProperty delay{float2::zero, false};
         ParticleSystem::VariableTypeProperty life = {float2(1.0f)};
         ParticleSystem::VariableTypeProperty speed = {float2(0.0f)};
@@ -90,5 +91,6 @@ namespace Hachiko
         void ActivateParticles();
         void UpdateActiveParticles();
         void UpdateModules();
+        void UpdateEmitterTimes();
     };
 } // namespace Hachiko

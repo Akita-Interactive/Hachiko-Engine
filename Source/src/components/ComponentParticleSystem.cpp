@@ -61,6 +61,7 @@ void Hachiko::ComponentParticleSystem::Update()
         Start(); // TODO: For DEBUG as Start is not called
     }
 
+    UpdateEmitterTimes();
     ActivateParticles();
     UpdateActiveParticles();
     UpdateModules();
@@ -89,7 +90,9 @@ void Hachiko::ComponentParticleSystem::DrawGui()
         ImGui::Indent();
         if (CollapsingHeader("Parameters", &parameters_section, Widgets::CollapsibleHeaderType::Icon, ICON_FA_BURST))
         {
-            Widgets::DragFloat("Duration", duration);
+            Widgets::DragFloatConfig cfg;
+            cfg.enabled = !loop;
+            Widgets::DragFloat("Duration", duration, &cfg);
             Widgets::Checkbox("Loop", &loop);
             Widgets::MultiTypeSelector("Start delay", delay);
             Widgets::MultiTypeSelector("Start lifetime", life);
@@ -508,20 +511,46 @@ void Hachiko::ComponentParticleSystem::UpdateModules()
     }
 }
 
-void Hachiko::ComponentParticleSystem::ActivateParticles()
+void Hachiko::ComponentParticleSystem::UpdateEmitterTimes() 
 {
     time += EngineTimer::delta_time;
-    // TODO: Avoid division
-    if (time * 1000.0f <= ONE_SEC_IN_MS / rate_over_time.values.x)
+
+    if (!loop)
+    {
+        if (duration > 0.0f)
+        {
+            duration -= EngineTimer::delta_time;
+        }
+        else
+        {
+            able_to_emit = false;
+            return;
+        }
+    }
+
+    if (time * 1000.0f <= ONE_SEC_IN_MS / rate_over_time.GetValue()) // TODO: Avoid division
+    {
+        able_to_emit = false;
+    }
+    else
+    {
+        time = 0.0f;
+        able_to_emit = true;
+    }
+}
+
+void Hachiko::ComponentParticleSystem::ActivateParticles()
+{
+    if (!able_to_emit)
     {
         return;
     }
 
-    time = 0.0f;
     for (auto& particle : particles)
     {
         if (!particle.IsActive())
         {
+            particle.Reset(); // For particles to set current emitter configuration
             particle.Activate();
             return;
         }

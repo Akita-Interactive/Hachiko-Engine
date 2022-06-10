@@ -99,6 +99,7 @@ void Hachiko::Particle::Draw(ComponentCamera* camera, const Program* program)
 void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_matrix) const
 {
     auto transform = emitter->GetGameObject()->GetTransform();
+    float3 particle_size(current_size, current_size, 0.0f);
 
     switch (emitter->GetParticlesProperties().orientation)
     {
@@ -108,7 +109,7 @@ void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_ma
             float3x3 rotate_part = transform->GetGlobalMatrix().RotatePart();
             float4x4 global_model_matrix = transform->GetGlobalMatrix();
             out_matrix = global_model_matrix.LookAt(rotate_part.Col(2), -frustum->Front(), rotate_part.Col(1), float3::unitY);
-            out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart() * rotate_part, float3(current_size, 0.0f));
+            out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart() * rotate_part, particle_size);
             break;
         }
     case ParticleSystem::ParticleOrientation::HORIZONTAL:
@@ -126,12 +127,12 @@ void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_ma
                 new_rotation.SetCol(2, float3::unitY);
                 new_rotation.SetCol(0, direction);
 
-                out_matrix = float4x4::FromTRS(current_position, new_rotation, float3(current_size, 0.0f));
+                out_matrix = float4x4::FromTRS(current_position, new_rotation, particle_size);
             }
             else
             {
                 out_matrix = float4x4::LookAt(float3::unitZ, float3::unitY, float3::unitY, float3::unitY);
-                out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart(), float3(current_size, 0.0f));
+                out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart(), particle_size);
             }
             break;
         }
@@ -140,7 +141,7 @@ void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_ma
             const float3 camera_position = camera->GetFrustum()->Pos();
             const float3 camera_direction = (float3(camera_position.x, current_position.y, camera_position.z) - current_position).Normalized();
             out_matrix = float4x4::LookAt(float3::unitZ, camera_direction, float3::unitY, float3::unitY);
-            out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart(), float3(current_size, 0.0f));
+            out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart(), particle_size);
             break;
         }
     }
@@ -166,19 +167,20 @@ bool Hachiko::Particle::HasTexture() const
     return emitter->GetTexture() != nullptr;
 }
 
-float Hachiko::Particle::GetInitialLife() const
+float Hachiko::Particle::GetInitialLife()
 {
-    return emitter->GetParticlesLife().values.x;
+    total_life = emitter->GetParticlesLife().GetValue();
+    return total_life;
 }
 
 float Hachiko::Particle::GetInitialSpeed() const
 {
-    return emitter->GetParticlesSpeed().values.x;
+    return emitter->GetParticlesSpeed().GetValue();
 }
 
-const float2& Hachiko::Particle::GetInitialSize() const
+float Hachiko::Particle::GetInitialSize() const
 {
-    return emitter->GetParticlesSize().values;
+    return emitter->GetParticlesSize().GetValue();
 }
 
 const float2& Hachiko::Particle::GetTextureTiles() const
@@ -189,6 +191,11 @@ const float2& Hachiko::Particle::GetTextureTiles() const
 int Hachiko::Particle::GetTextureTotalTiles() const
 {
     return emitter->GetTextureTotalTiles();
+}
+
+float Hachiko::Particle::GetLife()
+{
+    return total_life;
 }
 
 float Hachiko::Particle::GetCurrentLife() const
@@ -221,16 +228,14 @@ void Hachiko::Particle::SetCurrentColor(const float4& color)
     this->current_color = color;
 }
 
-const float2& Hachiko::Particle::GetCurrentSize() const
+float Hachiko::Particle::GetCurrentSize() const
 {
     return current_size;
 }
 
-void Hachiko::Particle::SetCurrentSize(const float2& size)
+void Hachiko::Particle::SetCurrentSize(const float size)
 {
-    // Apply same size for both coordinates. Particles are always squares!
-    this->current_size.x = size.x;
-    this->current_size.y = size.x;
+    this->current_size = size;
 }
 
 const float2& Hachiko::Particle::GetAnimationIndex() const

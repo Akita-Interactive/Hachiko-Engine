@@ -2,6 +2,7 @@
 #include "Math/float2.h"
 #include "Math/float3.h"
 #include "Math/float4.h"
+#include "utils/Random.h"
 
 namespace Hachiko
 {
@@ -74,6 +75,20 @@ namespace Hachiko
             bool curve_enabled = true;
             bool constant_enabled = true;
             bool selected = false;
+
+            float GetValue() const
+            {
+                switch (selected_option)
+                {
+                case Selection::CONSTANT:
+                    return values.x;
+                case Selection::BETWEEN_VALUES:
+                    return Random::RandomBetweenFloats(values);
+                case Selection::CURVE:
+                    // TODO: implement
+                    return values.x;
+                }
+            }
         };
 
         enum class ParticleRenderMode
