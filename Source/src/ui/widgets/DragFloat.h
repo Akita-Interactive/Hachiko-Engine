@@ -30,10 +30,7 @@ namespace Hachiko::Widgets
             config = &cfg;
         }
 
-        if (!config->enabled)
-        {
-            return false;
-        }
+        ImGui::BeginDisabled(!config->enabled);
 
         ImGui::PushID(label.c_str());
         ImGui::PushID(&value);
@@ -57,6 +54,7 @@ namespace Hachiko::Widgets
         ImGui::PopStyleVar();
         ImGui::PopID();
         ImGui::PopID();
+        ImGui::EndDisabled();
         return value_changed;
     }
 }

@@ -651,7 +651,7 @@
     <ClCompile Include="src\utils\Bool3.cpp">
       <Filter>Core\Util</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\Random.cpp">
+    <ClCompile Include="src\utils\RandomUtil.cpp">
       <Filter>Core\Util</Filter>
     </ClCompile>
     <ClCompile Include="src\core\particles\modifiers\AnimationParticleModifier.cpp">
@@ -2468,7 +2468,7 @@
     <ClInclude Include="src\ui\widgets\DragFloat.h">
       <Filter>UI\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="src\utils\Random.h">
+    <ClInclude Include="src\utils\RandomUtil.h">
       <Filter>Core\Util</Filter>
     </ClInclude>
     <ClInclude Include="src\ui\widgets\DragFloat.h">

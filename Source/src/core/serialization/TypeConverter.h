@@ -16,6 +16,31 @@
 namespace YAML
 {
     template<>
+    struct convert<ImVec2>
+    {
+        static Node encode(const ImVec2& rhs)
+        {
+            Node node;
+            node.push_back(rhs.x);
+            node.push_back(rhs.y);
+            node.SetStyle(EmitterStyle::Flow);
+            return node;
+        }
+
+        static bool decode(const Node& node, ImVec2& rhs)
+        {
+            if (!node.IsSequence() || node.size() != 2)
+            {
+                return false;
+            }
+
+            rhs.x = node[0].as<float>();
+            rhs.y = node[1].as<float>();
+            return true;
+        }
+    };
+
+    template<>
     struct convert<float2>
     {
         static Node encode(const float2& rhs)
@@ -391,7 +416,7 @@ namespace YAML
             for (int i = 0; i < Hachiko::ParticleSystem::CURVE_TICKS; ++i)
             {
                 constexpr int offset = 4; //current node offset
-                rhs.curve[i] = node[i + offset].as<float2>();
+                rhs.curve[i] = node[i + offset].as<ImVec2>();
             }
             return true;
         }

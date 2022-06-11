@@ -60,6 +60,9 @@ namespace Hachiko
         void SetSelectedGO(GameObject* const selected_game_object)
         {
             selected_go = selected_game_object;
+            Event evt(Event::Type::SELECTION_CHANGED);
+            evt.SetEventData<SelectionChangedEventPayload>(selected_go);
+            App->event->Publish(evt);
         }
 
         [[nodiscard]] const WindowScene* GetSceneWindow() const

@@ -1,11 +1,14 @@
 #include "core/hepch.h"
 #include "components/ComponentParticleSystem.h"
+
+#include "ComponentCamera.h"
 #include "components/ComponentTransform.h"
 
 #include "modules/ModuleSceneManager.h"
 #include "modules/ModuleResources.h"
 
 #include "debugdraw.h"
+#include "modules/ModuleCamera.h"
 
 Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container) :
     Component(Type::PARTICLE_SYSTEM, container)
@@ -20,6 +23,7 @@ Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container)
 Hachiko::ComponentParticleSystem::~ComponentParticleSystem()
 {
     App->event->Unsubscribe(Event::Type::CURVE_EDITOR, GetID());
+    App->event->Unsubscribe(Event::Type::SELECTION_CHANGED, GetID());
     particle_modifiers.clear();
     App->scene_manager->GetActiveScene()->RemoveParticleComponent(GetID());
     current_curve_editing_property = nullptr;
@@ -50,6 +54,15 @@ void Hachiko::ComponentParticleSystem::Start()
         }
     };
     App->event->Subscribe(Event::Type::CURVE_EDITOR, edit_curve, GetID());
+
+    std::function selection_changed = [&](Event& evt) {
+        const auto data = evt.GetEventData<SelectionChangedEventPayload>();
+        if (data.GetSelected() != GetGameObject())
+        {
+            Stop();
+        }
+    };
+    App->event->Subscribe(Event::Type::SELECTION_CHANGED, selection_changed, GetID());
 }
 
 void Hachiko::ComponentParticleSystem::Update()
@@ -90,9 +103,11 @@ void Hachiko::ComponentParticleSystem::DrawGui()
         ImGui::Indent();
         if (CollapsingHeader("Parameters", &parameters_section, Widgets::CollapsibleHeaderType::Icon, ICON_FA_BURST))
         {
-            Widgets::DragFloatConfig cfg;
-            cfg.enabled = !loop;
-            Widgets::DragFloat("Duration", duration, &cfg);
+            Widgets::DragFloatConfig duration_cfg;
+            duration_cfg.min = 0.05f;
+            duration_cfg.enabled = !loop;
+
+            DragFloat("Duration", duration, &duration_cfg);
             Widgets::Checkbox("Loop", &loop);
             Widgets::MultiTypeSelector("Start delay", delay);
             Widgets::MultiTypeSelector("Start lifetime", life);
@@ -104,7 +119,10 @@ void Hachiko::ComponentParticleSystem::DrawGui()
         if (CollapsingHeader("Emission", &emission_section, Widgets::CollapsibleHeaderType::Checkbox))
         {
             ImGui::BeginDisabled(!emission_section);
-            Widgets::MultiTypeSelector("Rate over time", rate_over_time);
+            Widgets::DragFloatConfig rate_cfg;
+            rate_cfg.min = 0.0f;
+
+            Widgets::MultiTypeSelector("Rate over time", rate_over_time, &rate_cfg);
             ImGui::EndDisabled();
         }
 
@@ -257,7 +275,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
 
             if (particle_properties.orientation == ParticleSystem::ParticleOrientation::HORIZONTAL)
             {
-                ImGui::Checkbox("Orientate to direction", &particle_properties.orientate_to_direction);            
+                ImGui::Checkbox("Orientate to direction", &particle_properties.orientate_to_direction);
             }
 
             int render_mode = static_cast<int>(particle_properties.render_mode);
@@ -292,12 +310,15 @@ void Hachiko::ComponentParticleSystem::DrawGui()
                 ImGui::Curve("##",
                              ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetCurrentContext()->FontSize * 5.0f),
                              ParticleSystem::CURVE_TICKS - 1,
-                             reinterpret_cast<ImVec2*>(current_curve_editing_property->curve));
+                             current_curve_editing_property->curve);
             }
         }
         ImGui::PopStyleVar();
         ImGui::Unindent();
     }
+#ifndef PLAY_BUILD
+    DisplayControls();
+#endif
 }
 
 void Hachiko::ComponentParticleSystem::DebugDraw()
@@ -511,7 +532,7 @@ void Hachiko::ComponentParticleSystem::UpdateModules()
     }
 }
 
-void Hachiko::ComponentParticleSystem::UpdateEmitterTimes() 
+void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
 {
     time += EngineTimer::delta_time;
 
@@ -565,17 +586,17 @@ float3 Hachiko::ComponentParticleSystem::CalculateDirectionFromShape() const
     case ParticleSystem::Emitter::Type::CONE:
     {
         const float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
-        particle_direction.x = emitter_properties.rotation.x + effective_radius * Random::RandomSignedFloat();
-        particle_direction.z = emitter_properties.rotation.z + effective_radius * Random::RandomSignedFloat();
+        particle_direction.x = emitter_properties.rotation.x + effective_radius * RandomUtil::RandomSigned();
+        particle_direction.z = emitter_properties.rotation.z + effective_radius * RandomUtil::RandomSigned();
         break;
     }
     case ParticleSystem::Emitter::Type::SPHERE:
     {
         // TODO: This is not working perfectly. Emission depends on the size of the radius and it shouldn't
         const float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
-        particle_direction.x = emitter_properties.rotation.x + effective_radius * Random::RandomSignedFloat();
-        particle_direction.y = emitter_properties.rotation.y * (Random::RandomSignedFloat() > 0.0f ? 1.0f : -1.0f);
-        particle_direction.z = emitter_properties.rotation.z + effective_radius * Random::RandomSignedFloat();
+        particle_direction.x = emitter_properties.rotation.x + effective_radius * RandomUtil::RandomSigned();
+        particle_direction.y = emitter_properties.rotation.y * (RandomUtil::RandomSigned() > 0.0f ? 1.0f : -1.0f);
+        particle_direction.z = emitter_properties.rotation.z + effective_radius * RandomUtil::RandomSigned();
         break;
     }
     case ParticleSystem::Emitter::Type::BOX:
@@ -596,7 +617,12 @@ void Hachiko::ComponentParticleSystem::AddTexture()
     if (ImGui::Button("Add texture", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         ImGuiFileDialog::Instance()->OpenDialog(
-            title, "Select Texture", ".png,.tif,.jpg,.tga", "./assets/textures/", 1, nullptr,
+            title,
+            "Select Texture",
+            ".png,.tif,.jpg,.tga",
+            "./assets/textures/",
+            1,
+            nullptr,
             ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton |
             ImGuiFileDialogFlags_HideColumnType | ImGuiFileDialogFlags_HideColumnDate);
     }
@@ -634,4 +660,71 @@ void Hachiko::ComponentParticleSystem::RemoveTexture()
 bool Hachiko::ComponentParticleSystem::IsLoop() const
 {
     return loop;
+}
+
+void Hachiko::ComponentParticleSystem::Play()
+{
+    emitter_state = ParticleSystem::Emitter::State::PLAYING;
+}
+
+void Hachiko::ComponentParticleSystem::Pause()
+{
+    emitter_state = ParticleSystem::Emitter::State::PAUSED;
+}
+
+void Hachiko::ComponentParticleSystem::Restart()
+{
+    emitter_state = ParticleSystem::Emitter::State::PLAYING;
+}
+
+void Hachiko::ComponentParticleSystem::Stop()
+{
+    emitter_state = ParticleSystem::Emitter::State::STOPPED;
+}
+
+void Hachiko::ComponentParticleSystem::DisplayControls()
+{
+    const auto& pos = App->editor->GetSceneWindow()->GetViewportPosition();
+    const auto& viewport_size = App->editor->GetSceneWindow()->GetViewportSize();
+
+    ImGui::SetNextWindowPos(ImVec2(viewport_size.x + pos.x + ImGui::GetStyle().FramePadding.x, pos.y), 0, ImVec2(1.0f, 0.0f));
+    ImGui::SetNextWindowBgAlpha(1.0f);
+    ImGui::Begin("Particles", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoCollapse);
+    ImGui::Text("GameObject");
+    ImGui::SameLine();
+    ImGui::Text(GetGameObject()->GetName().c_str());
+
+    char particlesSpawned[10];
+    sprintf_s(particlesSpawned, 10, "%.1f", rate_over_time.values.x);
+    ImGui::Text("Particles");
+    ImGui::SameLine();
+    ImGui::Text(particlesSpawned);
+
+    ImGui::Separator();
+
+    if (emitter_state == ParticleSystem::Emitter::State::PAUSED || emitter_state == ParticleSystem::Emitter::State::STOPPED)
+    {
+        if (ImGui::Button("Play"))
+        {
+            Play();
+        }
+    }
+    if (emitter_state == ParticleSystem::Emitter::State::PLAYING)
+    {
+        if (ImGui::Button("Pause"))
+        {
+            Pause();
+        }
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Restart"))
+    {
+        Restart();
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Stop"))
+    {
+        Stop();
+    }
+    ImGui::End();
 }

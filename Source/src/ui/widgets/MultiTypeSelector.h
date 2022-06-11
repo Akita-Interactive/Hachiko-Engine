@@ -64,7 +64,7 @@ namespace Hachiko::Widgets
             }
             if (ImGui::CurveThumbnail(
                 ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetCurrentContext()->FontSize + 4),
-                reinterpret_cast<ImVec2*>(variable_type_property.curve),
+                variable_type_property.curve,
                 ParticleSystem::CURVE_TICKS - 1))
             {
                 Event evt(Event::Type::CURVE_EDITOR);

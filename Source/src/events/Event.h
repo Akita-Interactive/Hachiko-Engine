@@ -29,7 +29,6 @@ namespace Hachiko
         {
             UNDEFINED = 0,
             SELECTION_CHANGED,
-            TRANSFORM_CHANGED,
             FILE_ADDED,
             ASSETS_CHANGED,
             SCREEN_RESIZED,

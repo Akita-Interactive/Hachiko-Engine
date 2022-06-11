@@ -1,8 +1,8 @@
 #pragma once
 #include "Math/float2.h"
 #include "Math/float3.h"
-#include "Math/float4.h"
-#include "utils/Random.h"
+#include "utils/RandomUtil.h"
+#include "imgui/curve.h"
 
 namespace Hachiko
 {
@@ -26,6 +26,13 @@ namespace Hachiko
                 VOLUME = 0,
                 SHELL,
                 EDGE
+            };
+
+            enum class State
+            {
+                PLAYING = 0,
+                STOPPED,
+                PAUSED
             };
 
             struct Properties
@@ -71,23 +78,21 @@ namespace Hachiko
 
             Selection selected_option = Selection::CONSTANT; //constant, curve, random between two numbers.
             float2 values = float2::zero;
-            float2 curve[CURVE_TICKS];
+            ImVec2 curve[CURVE_TICKS];
             bool curve_enabled = true;
             bool constant_enabled = true;
             bool selected = false;
 
-            float GetValue() const
+            [[nodiscard]] float GetValue(float current_time = 0) const
             {
                 switch (selected_option)
                 {
-                case Selection::CONSTANT:
-                    return values.x;
                 case Selection::BETWEEN_VALUES:
-                    return Random::RandomBetweenFloats(values);
+                    return RandomUtil::RandomBetween(values);
                 case Selection::CURVE:
-                    // TODO: implement
-                    return values.x;
+                    return ImGui::CurveValueSmooth(current_time, CURVE_TICKS - 1, curve);
                 }
+                return values.x;
             }
         };
 

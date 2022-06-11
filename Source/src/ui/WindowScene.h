@@ -35,27 +35,30 @@ namespace Hachiko
         float2 ImguiToScreenPos(const float2& mouse_pos) const;
         float2 GetInterfaceClickPos() const;
 
+        [[nodiscard]] const float2& GetViewportSize() const;
+        [[nodiscard]] const float2& GetViewportPosition() const;
+
     private:
         void GuizmoOptionsController();
         void ToolbarMenu() const;
         void DrawScene();
         void Controller() const;
 
-        GameObject* SelectObject(ComponentCamera* camera, Scene* scene) const;        
+        GameObject* SelectObject(const ComponentCamera* camera, const Scene* scene) const;        
 
         ImVec2 imguizmo_size = {100.0f, 100.0f};
         bool using_guizmo = false;
         bool focused = false;
         bool hovering = false;
 
-        Timer* scene_timer = nullptr;
-
         ImGuizmo::OPERATION guizmo_operation = ImGuizmo::TRANSLATE;
         ImGuizmo::MODE guizmo_mode = ImGuizmo::WORLD;
 
         ImVec2 guizmo_rect_origin = {0.0f, 0.0f};
-        float2 texture_position = float2(0.0f);
-        float2 texture_size = {0.0f, 0.0f};
+        float2 texture_position = float2::zero;
+        float2 texture_size = float2::zero;
+        float2 viewport_position = float2::zero;
+        float2 viewport_size = float2::zero;
 
         bool changed_game_object = false;
     };

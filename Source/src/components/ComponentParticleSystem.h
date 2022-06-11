@@ -37,7 +37,14 @@ namespace Hachiko
 
         [[nodiscard]] bool IsLoop() const;
 
+        void Play();
+        void Pause();
+        void Restart();
+        void Stop();
+
     private:
+        ParticleSystem::Emitter::State emitter_state = ParticleSystem::Emitter::State::PLAYING;
+
         //sections
         bool parameters_section = true;
         bool emission_section = true;
@@ -92,5 +99,7 @@ namespace Hachiko
         void UpdateActiveParticles();
         void UpdateModules();
         void UpdateEmitterTimes();
+
+        void DisplayControls();
     };
 } // namespace Hachiko

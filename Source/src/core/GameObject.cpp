@@ -234,7 +234,10 @@ Hachiko::Component* Hachiko::GameObject::CreateComponent(Component::Type type)
         }
         break;
     case Component::Type::PARTICLE_SYSTEM:
-        new_component = new ComponentParticleSystem(this);
+        if (!GetComponent<ComponentParticleSystem>())
+        {
+            new_component = new ComponentParticleSystem(this);
+        }
         break;
     case Component::Type::BILLBOARD:
         if (!GetComponent<ComponentBillboard>())
