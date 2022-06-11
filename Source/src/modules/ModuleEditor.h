@@ -88,6 +88,7 @@ namespace Hachiko
         unsigned dock_down_id = 0;
 
         mutable float4 scene_background{0.1f, 0.1f, 0.1f, 0.1f};
+        Component* to_remove = nullptr;
 
     private:
         void GenerateDockingSpace();

@@ -18,7 +18,7 @@
 #include <ctime>
 
 bool Hachiko::ModuleSceneManager::Init()
-{ 
+{
     HE_LOG("INITIALIZING MODULE: SCENE MANAGER");
 
     preferences = App->preferences->GetResourcesPreference();
@@ -60,7 +60,7 @@ void Hachiko::ModuleSceneManager::AttemptScenePlay()
     if (scene_camera == nullptr)
     {
         HE_LOG("Current scene does not have a CameraComponent inside."
-               " Therefore, cannot enter Play Mode.");
+            " Therefore, cannot enter Play Mode.");
         return;
     }
 
@@ -121,20 +121,19 @@ UpdateStatus Hachiko::ModuleSceneManager::PostUpdate(float delta)
         LoadScene(scene_resource, keep_navmesh);
         return UpdateStatus::UPDATE_CONTINUE;
     }
-    
+
     if (scene_change_requested)
     {
         scene_change_requested = false;
         LoadScene(scene_to_load_id);
         return UpdateStatus::UPDATE_CONTINUE;
     }
-    
+
     if (!to_remove.empty())
     {
-        GameObject* selected_go = App->editor->GetSelectedGameObject();
-        for (GameObject* go : to_remove)
+        for (const GameObject* go : to_remove)
         {
-            if (selected_go == go)
+            if (App->editor->GetSelectedGameObject() == go)
             {
                 App->editor->SetSelectedGO(nullptr);
             }
@@ -142,6 +141,7 @@ UpdateStatus Hachiko::ModuleSceneManager::PostUpdate(float delta)
         }
         to_remove.clear();
     }
+
     return UpdateStatus::UPDATE_CONTINUE;
 }
 

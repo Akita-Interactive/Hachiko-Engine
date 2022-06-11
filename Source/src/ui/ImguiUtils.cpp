@@ -6,6 +6,7 @@
 
 #include "core/GameObject.h"
 #include "components/Component.h"
+#include "modules/ModuleEditor.h"
 
 bool Hachiko::ImGuiUtils::IconButton(const char* icon, const char* tooltip)
 {
@@ -79,9 +80,10 @@ bool Hachiko::ImGuiUtils::CollapsingHeader(GameObject* game_object, Component* c
 
     if (ImGui::BeginPopup(header_name))
     {
-        open = !game_object->AttemptRemoveComponent(component);
+        App->editor->to_remove = component;
         
         ImGui::EndPopup();
+        return false;
     }
 
     return open;

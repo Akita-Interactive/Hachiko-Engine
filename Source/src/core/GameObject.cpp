@@ -14,15 +14,13 @@
 #include "components/ComponentBillboard.h"
 #include "scripting/Script.h"
 
-#include "importers/PrefabImporter.h"
-
 // UI
 #include "components/ComponentCanvas.h"
 #include "components/ComponentCanvasRenderer.h"
 #include "components/ComponentTransform2D.h"
 #include "components/ComponentImage.h"
 #include "components/ComponentButton.h"
-#include "Components/ComponentProgressBar.h"
+#include "components/ComponentProgressBar.h"
 #include "components/ComponentText.h"
 
 #include "Application.h"
@@ -39,13 +37,17 @@ Hachiko::GameObject::GameObject(const char* name, UID uid) :
     AddComponent(new ComponentTransform(this, float3::zero, Quat::identity, float3::one));
 }
 
-Hachiko::GameObject::GameObject(GameObject* parent, const float4x4& transform, const char* name, UID uid) : name(name), uid(uid)
+Hachiko::GameObject::GameObject(GameObject* parent, const float4x4& transform, const char* name, UID uid) :
+    name(name),
+    uid(uid)
 {
     AddComponent(new ComponentTransform(this, transform));
     SetNewParent(parent);
 }
 
-Hachiko::GameObject::GameObject(GameObject* parent, const char* name, UID uid, const float3& translation, const Quat& rotation, const float3& scale) : name(name), uid(uid)
+Hachiko::GameObject::GameObject(GameObject* parent, const char* name, UID uid, const float3& translation, const Quat& rotation, const float3& scale) :
+    name(name),
+    uid(uid)
 {
     AddComponent(new ComponentTransform(this, translation, rotation, scale));
     SetNewParent(parent);
@@ -121,14 +123,14 @@ void Hachiko::GameObject::AddComponent(Component* component)
 {
     switch (component->GetType())
     {
-    case (Component::Type::TRANSFORM):
+        case Component::Type::TRANSFORM:
         {
             components.push_back(component);
             transform = static_cast<ComponentTransform*>(component);
             component->SetGameObject(this);
             break;
         }
-    default:
+        default:
         {
             components.push_back(component);
             component->SetGameObject(this);
@@ -142,89 +144,89 @@ Hachiko::Component* Hachiko::GameObject::CreateComponent(Component::Type type)
     Component* new_component = nullptr;
     switch (type)
     {
-    case (Component::Type::TRANSFORM):
-        return transform;
-        break;
-    case (Component::Type::CAMERA):
-        new_component = new ComponentCamera(this);
-        break;
-    case (Component::Type::ANIMATION):
-        new_component = new ComponentAnimation(this);
-        break;
-    case (Component::Type::MESH_RENDERER):
-        new_component = new ComponentMeshRenderer(this);
-        break;
-    case (Component::Type::DIRLIGHT):
-        new_component = new ComponentDirLight(this);
-        break;
-    case (Component::Type::POINTLIGHT):
-        new_component = new ComponentPointLight(this);
-        break;
-    case (Component::Type::SPOTLIGHT):
-        new_component = new ComponentSpotLight(this);
-        break;
-    case (Component::Type::CANVAS):
-        if (!GetComponent<ComponentCanvas>())
-        {
-            new_component = new ComponentCanvas(this);
-        }
-        break;
-    case (Component::Type::CANVAS_RENDERER):
-        if (!GetComponent<ComponentCanvasRenderer>())
-        {
-            new_component = new ComponentCanvasRenderer(this);
-        }
-        break;
-    case (Component::Type::TRANSFORM_2D):
-        if (!GetComponent<ComponentTransform2D>())
-        {
-            new_component = new ComponentTransform2D(this);
-        }
-        break;
-    case (Component::Type::IMAGE):
-        if (!GetComponent<ComponentImage>())
-        {
-            new_component = new ComponentImage(this);
-        }
-        break;
-    case (Component::Type::BUTTON):
-        if (!GetComponent<ComponentButton>())
-        {
-            new_component = new ComponentButton(this);
-        }
-        break;
-    case (Component::Type::PROGRESS_BAR):
-        if (!GetComponent<ComponentProgressBar>())
-        {
-            new_component = new ComponentProgressBar(this);
-        }
-        break;
-    case (Component::Type::TEXT):
-        if (!GetComponent<ComponentText>())
-        {
-            new_component = new ComponentText(this);
-        }
-        break;
-    case (Component::Type::OBSTACLE):
-        if (!GetComponent<ComponentObstacle>())
-            new_component = new ComponentObstacle(this);
-        break;
-    case (Component::Type::AGENT):
-        if (!GetComponent<ComponentAgent>())
-            new_component = new ComponentAgent(this);
-        break;
-    case (Component::Type::AUDIO_LISTENER):
-        if (!GetComponent<ComponentAudioListener>())
-            new_component = new ComponentAudioListener(this);
-        break;
-    case (Component::Type::AUDIO_SOURCE):
-        if (!GetComponent<ComponentAudioSource>())
-            new_component = new ComponentAudioSource(this);
-        break;
-    case (Component::Type::BILLBOARD):
-        if (!GetComponent<ComponentBillboard>())
-            new_component = new ComponentBillboard(this);
-        break;
+        case (Component::Type::TRANSFORM):
+            return transform;
+            break;
+        case (Component::Type::CAMERA):
+            new_component = new ComponentCamera(this);
+            break;
+        case (Component::Type::ANIMATION):
+            new_component = new ComponentAnimation(this);
+            break;
+        case (Component::Type::MESH_RENDERER):
+            new_component = new ComponentMeshRenderer(this);
+            break;
+        case (Component::Type::DIRLIGHT):
+            new_component = new ComponentDirLight(this);
+            break;
+        case (Component::Type::POINTLIGHT):
+            new_component = new ComponentPointLight(this);
+            break;
+        case (Component::Type::SPOTLIGHT):
+            new_component = new ComponentSpotLight(this);
+            break;
+        case (Component::Type::CANVAS):
+            if (!GetComponent<ComponentCanvas>())
+            {
+                new_component = new ComponentCanvas(this);
+            }
+            break;
+        case (Component::Type::CANVAS_RENDERER):
+            if (!GetComponent<ComponentCanvasRenderer>())
+            {
+                new_component = new ComponentCanvasRenderer(this);
+            }
+            break;
+        case (Component::Type::TRANSFORM_2D):
+            if (!GetComponent<ComponentTransform2D>())
+            {
+                new_component = new ComponentTransform2D(this);
+            }
+            break;
+        case (Component::Type::IMAGE):
+            if (!GetComponent<ComponentImage>())
+            {
+                new_component = new ComponentImage(this);
+            }
+            break;
+        case (Component::Type::BUTTON):
+            if (!GetComponent<ComponentButton>())
+            {
+                new_component = new ComponentButton(this);
+            }
+            break;
+        case (Component::Type::PROGRESS_BAR):
+            if (!GetComponent<ComponentProgressBar>())
+            {
+                new_component = new ComponentProgressBar(this);
+            }
+            break;
+        case (Component::Type::TEXT):
+            if (!GetComponent<ComponentText>())
+            {
+                new_component = new ComponentText(this);
+            }
+            break;
+        case (Component::Type::OBSTACLE):
+            if (!GetComponent<ComponentObstacle>())
+                new_component = new ComponentObstacle(this);
+            break;
+        case (Component::Type::AGENT):
+            if (!GetComponent<ComponentAgent>())
+                new_component = new ComponentAgent(this);
+            break;
+        case (Component::Type::AUDIO_LISTENER):
+            if (!GetComponent<ComponentAudioListener>())
+                new_component = new ComponentAudioListener(this);
+            break;
+        case (Component::Type::AUDIO_SOURCE):
+            if (!GetComponent<ComponentAudioSource>())
+                new_component = new ComponentAudioSource(this);
+            break;
+        case (Component::Type::BILLBOARD):
+            if (!GetComponent<ComponentBillboard>())
+                new_component = new ComponentBillboard(this);
+            break;
     }
 
     if (new_component != nullptr)
@@ -246,7 +248,7 @@ void Hachiko::GameObject::SetActive(bool set_active)
         Start();
     }
     active = set_active;
-    
+
     for (GameObject* child : children)
     {
         child->SetActive(set_active);
@@ -398,12 +400,11 @@ void Hachiko::GameObject::DrawBones() const
     }
 }
 
-bool Hachiko::GameObject::AttemptRemoveComponent(Component* component)
+bool Hachiko::GameObject::AttemptRemoveComponent(const Component* component)
 {
-    //TODO: Should I delete the component?
     if (component->CanBeRemoved())
     {
-        auto it = std::find(components.begin(), components.end(), component);
+        const auto it = std::find(components.begin(), components.end(), component);
         if (it != components.end())
         {
             delete *it;
@@ -415,6 +416,7 @@ bool Hachiko::GameObject::AttemptRemoveComponent(Component* component)
     return false;
 }
 
+// Be aware that this method does not free the memory of the component
 void Hachiko::GameObject::ForceRemoveComponent(Component* component)
 {
     components.erase(std::remove(components.begin(), components.end(), component));
@@ -426,7 +428,7 @@ void Hachiko::GameObject::Save(YAML::Node& node, bool as_prefab) const
     {
         node[GAME_OBJECT_ID] = uid;
     }
-        
+
     node[GAME_OBJECT_NAME] = name.c_str();
     node[GAME_OBJECT_ENABLED] = active;
 
@@ -464,7 +466,7 @@ void Hachiko::GameObject::CollectObjectsAndComponents(std::vector<const GameObje
 }
 
 void Hachiko::GameObject::Load(const YAML::Node& node, bool as_prefab, bool meshes_only)
-{   
+{
     const YAML::Node components_node = node[COMPONENT_NODE];
     for (unsigned i = 0; i < components_node.size(); ++i)
     {
@@ -477,7 +479,7 @@ void Hachiko::GameObject::Load(const YAML::Node& node, bool as_prefab, bool mesh
         {
             component_id = UUID::GenerateUID();
         }
-        
+
         bool active = components_node[i][COMPONENT_ENABLED].as<bool>();
         const auto type = static_cast<Component::Type>(components_node[i][COMPONENT_TYPE].as<int>());
 
@@ -490,7 +492,7 @@ void Hachiko::GameObject::Load(const YAML::Node& node, bool as_prefab, bool mesh
                 component = CreateComponent(type);
             }
         }
-        else if(type == Component::Type::SCRIPT)
+        else if (type == Component::Type::SCRIPT)
         {
             std::string script_name =
                 components_node[i][SCRIPT_NAME].as<std::string>();
@@ -533,7 +535,7 @@ void Hachiko::GameObject::Load(const YAML::Node& node, bool as_prefab, bool mesh
         {
             child_uid = UUID::GenerateUID();
         }
-        
+
         const auto child = new GameObject(this, child_name.c_str(), child_uid);
         child->scene_owner = scene_owner;
         child->Load(children_nodes[i], as_prefab, meshes_only);

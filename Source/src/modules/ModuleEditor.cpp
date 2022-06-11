@@ -199,13 +199,19 @@ UpdateStatus Hachiko::ModuleEditor::PostUpdate(const float delta)
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-    ImGuiIO& io = ImGui::GetIO();
+    const ImGuiIO& io = ImGui::GetIO();
 
     if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
     {
         ImGui::UpdatePlatformWindows();
         ImGui::RenderPlatformWindowsDefault();
         SDL_GL_MakeCurrent(App->window->GetWindow(), App->renderer->GetGLContext());
+    }
+
+    if(to_remove)
+    {
+        to_remove->GetGameObject()->AttemptRemoveComponent(to_remove);
+        to_remove = nullptr;
     }
     return UpdateStatus::UPDATE_CONTINUE;
 }
