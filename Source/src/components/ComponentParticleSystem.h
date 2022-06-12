@@ -43,7 +43,7 @@ namespace Hachiko
         void Stop();
 
     private:
-        ParticleSystem::Emitter::State emitter_state = ParticleSystem::Emitter::State::PLAYING;
+        ParticleSystem::Emitter::State emitter_state = ParticleSystem::Emitter::State::STOPPED;
 
         //sections
         bool parameters_section = true;
@@ -102,6 +102,8 @@ namespace Hachiko
         void UpdateActiveParticles();
         void UpdateModules();
         void UpdateEmitterTimes();
+        void ResetActiveParticles();
+        void Reset();
 
         void DisplayControls();
     };

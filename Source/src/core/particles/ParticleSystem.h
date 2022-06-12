@@ -87,12 +87,13 @@ namespace Hachiko
             {
                 switch (selected_option)
                 {
+                case Selection::CONSTANT:
+                    return values.x;
                 case Selection::BETWEEN_VALUES:
                     return RandomUtil::RandomBetween(values);
                 case Selection::CURVE:
                     return ImGui::CurveValueSmooth(current_time, CURVE_TICKS - 1, curve);
                 }
-                return values.x;
             }
         };
 

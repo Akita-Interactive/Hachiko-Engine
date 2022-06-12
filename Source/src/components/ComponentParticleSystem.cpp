@@ -31,6 +31,12 @@ Hachiko::ComponentParticleSystem::~ComponentParticleSystem()
 
 void Hachiko::ComponentParticleSystem::Start()
 {
+    if (!in_scene)
+    {
+        App->scene_manager->GetActiveScene()->AddParticleComponent(this);
+        in_scene = true;
+    }
+    
     for (auto& particle : particles)
     {
         particle.SetEmitter(this);
@@ -67,21 +73,32 @@ void Hachiko::ComponentParticleSystem::Start()
 
 void Hachiko::ComponentParticleSystem::Update()
 {
+#ifndef PLAY_BUILD
     if (!in_scene)
     {
-        App->scene_manager->GetActiveScene()->AddParticleComponent(this);
-        in_scene = true;
-        Start(); // TODO: For DEBUG as Start is not called
+        Start();
     }
+#endif // !PLAY_BUILD
 
-    UpdateEmitterTimes();
-    ActivateParticles();
-    UpdateActiveParticles();
-    UpdateModules();
+    if (emitter_state == ParticleSystem::Emitter::State::PLAYING)
+    {
+        UpdateEmitterTimes();
+        ActivateParticles();
+        UpdateActiveParticles();
+        UpdateModules();
+    }
+    else if (emitter_state == ParticleSystem::Emitter::State::STOPPED)
+    {
+    }
 }
 
 void Hachiko::ComponentParticleSystem::Draw(ComponentCamera* camera, Program* program)
 {
+    if (emitter_state == ParticleSystem::Emitter::State::STOPPED)
+    {
+        return;
+    }
+
     for (auto& particle : particles)
     {
         if (!particle.IsActive())
@@ -563,6 +580,20 @@ void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
     }
 }
 
+void Hachiko::ComponentParticleSystem::ResetActiveParticles()
+{
+    for (auto& particle : particles)
+    {
+        particle.Reset();
+    }
+}
+
+void Hachiko::ComponentParticleSystem::Reset()
+{
+    emitter_elapsed_time = 0.0f;
+    ResetActiveParticles();
+}
+
 void Hachiko::ComponentParticleSystem::ActivateParticles()
 {
     if (!able_to_emit)
@@ -620,12 +651,7 @@ void Hachiko::ComponentParticleSystem::AddTexture()
     if (ImGui::Button("Add texture", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         ImGuiFileDialog::Instance()->OpenDialog(
-            title,
-            "Select Texture",
-            ".png,.tif,.jpg,.tga",
-            "./assets/textures/",
-            1,
-            nullptr,
+            title, "Select Texture", ".png,.tif,.jpg,.tga", "./assets/textures/", 1, nullptr,
             ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton |
             ImGuiFileDialogFlags_HideColumnType | ImGuiFileDialogFlags_HideColumnDate);
     }
@@ -677,13 +703,13 @@ void Hachiko::ComponentParticleSystem::Pause()
 
 void Hachiko::ComponentParticleSystem::Restart()
 {
-    emitter_elapsed_time = 0.0f;
+    Reset();
     emitter_state = ParticleSystem::Emitter::State::PLAYING;
 }
 
 void Hachiko::ComponentParticleSystem::Stop()
 {
-    emitter_elapsed_time = 0.0f;
+    Reset();
     emitter_state = ParticleSystem::Emitter::State::STOPPED;
 }
 
@@ -701,9 +727,15 @@ void Hachiko::ComponentParticleSystem::DisplayControls()
 
     char particlesSpawned[10];
     sprintf_s(particlesSpawned, 10, "%.1f", rate_over_time.values.x);
-    ImGui::Text("Particles");
+    ImGui::Text("Particles rate");
     ImGui::SameLine();
     ImGui::Text(particlesSpawned);
+
+    char elapsed_time[10];
+    sprintf_s(elapsed_time, 10, "%.1f", emitter_elapsed_time);
+    ImGui::Text("Elapsed time");
+    ImGui::SameLine();
+    ImGui::Text(elapsed_time);
 
     ImGui::Separator();
 
