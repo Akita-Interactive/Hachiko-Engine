@@ -13,7 +13,7 @@ namespace Hachiko::Widgets
         bool enabled = true;
         const char* format = "%.2f";
         int flags = ImGuiSliderFlags_AlwaysClamp;
-        float2 ui_factor = float2(1.0f, 1.0f);
+        float tunning = 1.0f;
     };
 
     inline bool DragFloat(const std::string& label, float& value, const DragFloatConfig* config = nullptr)

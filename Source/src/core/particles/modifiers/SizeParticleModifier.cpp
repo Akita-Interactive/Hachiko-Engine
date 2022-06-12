@@ -10,7 +10,7 @@ Hachiko::SizeParticleModifier::SizeParticleModifier(const std::string& name):
     cfg.max = 100.0f;
     cfg.speed = 0.1f;
     cfg.format = "%.2f";
-    cfg.ui_factor = {100.0f, 0.01f};
+    cfg.tunning = 100.0f;
 }
 
 void Hachiko::SizeParticleModifier::Update(std::vector<Particle>& particles)

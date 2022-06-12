@@ -126,9 +126,9 @@ void Hachiko::ComponentParticleSystem::DrawGui()
 
             Widgets::DragFloatConfig params_cfg;
             params_cfg.speed = 0.1f;
-            params_cfg.ui_factor = float2(100.0f, 0.01f);
+            params_cfg.tunning = 100.0f;
             Widgets::MultiTypeSelector("Start speed", start_speed, &params_cfg);
-            params_cfg.ui_factor = float2(10.0f, 0.1f);
+            params_cfg.tunning = 10.0f;
             params_cfg.min = 0.0f;
             Widgets::MultiTypeSelector("Start size", start_size, &params_cfg);
             Widgets::MultiTypeSelector("Start rotation", start_rotation);

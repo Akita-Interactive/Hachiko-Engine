@@ -8,7 +8,7 @@ Hachiko::VelocityParticleModifier::VelocityParticleModifier(const std::string& n
     cfg.max = 100.0f;
     cfg.speed = 0.1f;
     cfg.format = "%.2f";
-    cfg.ui_factor = float2(1000.0f, 0.001f);
+    cfg.tunning = 1000.0f;
 }
 
 void Hachiko::VelocityParticleModifier::Update(std::vector<Particle>& particles)
