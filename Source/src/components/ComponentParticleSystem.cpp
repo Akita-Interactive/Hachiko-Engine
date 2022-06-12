@@ -105,15 +105,16 @@ void Hachiko::ComponentParticleSystem::DrawGui()
         {
             Widgets::DragFloatConfig duration_cfg;
             duration_cfg.min = 0.05f;
+            duration_cfg.speed = 0.05f;
             duration_cfg.enabled = !loop;
 
             DragFloat("Duration", duration, &duration_cfg);
             Widgets::Checkbox("Loop", &loop);
-            Widgets::MultiTypeSelector("Start delay", delay);
-            Widgets::MultiTypeSelector("Start lifetime", life);
-            Widgets::MultiTypeSelector("Start speed", speed);
-            Widgets::MultiTypeSelector("Start size", size);
-            Widgets::MultiTypeSelector("Start rotation", rotation);
+            Widgets::MultiTypeSelector("Start delay", start_delay);
+            Widgets::MultiTypeSelector("Start lifetime", start_life);
+            Widgets::MultiTypeSelector("Start speed", start_speed);
+            Widgets::MultiTypeSelector("Start size", start_size);
+            Widgets::MultiTypeSelector("Start rotation", start_rotation);
         }
 
         if (CollapsingHeader("Emission", &emission_section, Widgets::CollapsibleHeaderType::Checkbox))
@@ -381,11 +382,11 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
     YAML::Node config;
     config[PARTICLES_DURATION] = duration;
     config[PARTICLES_LOOP] = loop;
-    config[PARTICLES_LIFE] = life;
-    config[PARTICLES_SPEED] = speed;
-    config[PARTICLES_SIZE] = size;
-    config[PARTICLES_ROTATION] = rotation;
-    config[PARTICLES_DELAY] = delay;
+    config[PARTICLES_LIFE] = start_life;
+    config[PARTICLES_SPEED] = start_speed;
+    config[PARTICLES_SIZE] = start_size;
+    config[PARTICLES_ROTATION] = start_rotation;
+    config[PARTICLES_DELAY] = start_delay;
     config[PARTICLES_PROPERTIES] = particle_properties;
     node[PARTICLE_PARAMETERS] = config;
 
@@ -426,11 +427,11 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
     // particle config
     duration = node[PARTICLE_PARAMETERS][PARTICLES_DURATION].as<float>();
     loop = node[PARTICLE_PARAMETERS][PARTICLES_LOOP].as<bool>();
-    life = node[PARTICLE_PARAMETERS][PARTICLES_LIFE].as<ParticleSystem::VariableTypeProperty>();
-    speed = node[PARTICLE_PARAMETERS][PARTICLES_SPEED].as<ParticleSystem::VariableTypeProperty>();
-    size = node[PARTICLE_PARAMETERS][PARTICLES_SIZE].as<ParticleSystem::VariableTypeProperty>();
-    rotation = node[PARTICLE_PARAMETERS][PARTICLES_ROTATION].as<ParticleSystem::VariableTypeProperty>();
-    delay = node[PARTICLE_PARAMETERS][PARTICLES_DELAY].as<ParticleSystem::VariableTypeProperty>();
+    start_life = node[PARTICLE_PARAMETERS][PARTICLES_LIFE].as<ParticleSystem::VariableTypeProperty>();
+    start_speed = node[PARTICLE_PARAMETERS][PARTICLES_SPEED].as<ParticleSystem::VariableTypeProperty>();
+    start_size = node[PARTICLE_PARAMETERS][PARTICLES_SIZE].as<ParticleSystem::VariableTypeProperty>();
+    start_rotation = node[PARTICLE_PARAMETERS][PARTICLES_ROTATION].as<ParticleSystem::VariableTypeProperty>();
+    start_delay = node[PARTICLE_PARAMETERS][PARTICLES_DELAY].as<ParticleSystem::VariableTypeProperty>();
     particle_properties = node[PARTICLE_PARAMETERS][PARTICLES_PROPERTIES].as<ParticleSystem::ParticleProperties>();
 
     // emission
@@ -463,17 +464,17 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
 
 const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleSystem::GetParticlesLife() const
 {
-    return life;
+    return start_life;
 }
 
 const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleSystem::GetParticlesSpeed() const
 {
-    return speed;
+    return start_speed;
 }
 
 const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleSystem::GetParticlesSize() const
 {
-    return size;
+    return start_size;
 }
 
 const Hachiko::ParticleSystem::Emitter::Properties& Hachiko::ComponentParticleSystem::GetEmitterProperties() const
@@ -534,13 +535,15 @@ void Hachiko::ComponentParticleSystem::UpdateModules()
 
 void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
 {
+    //TODO check state
+
     time += EngineTimer::delta_time;
 
     if (!loop)
     {
-        if (duration > 0.0f)
+        if (emitter_elapsed_time < duration)
         {
-            duration -= EngineTimer::delta_time;
+            emitter_elapsed_time += EngineTimer::delta_time;
         }
         else
         {
@@ -674,11 +677,13 @@ void Hachiko::ComponentParticleSystem::Pause()
 
 void Hachiko::ComponentParticleSystem::Restart()
 {
+    emitter_elapsed_time = 0.0f;
     emitter_state = ParticleSystem::Emitter::State::PLAYING;
 }
 
 void Hachiko::ComponentParticleSystem::Stop()
 {
+    emitter_elapsed_time = 0.0f;
     emitter_state = ParticleSystem::Emitter::State::STOPPED;
 }
 

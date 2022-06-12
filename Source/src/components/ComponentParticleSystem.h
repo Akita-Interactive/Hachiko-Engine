@@ -55,15 +55,18 @@ namespace Hachiko
 
         //particle config
         ParticleSystem::ParticleProperties particle_properties;
-        
+
+
         bool loop = false;
-        bool able_to_emit = false;
         float duration = 5.0f;
-        ParticleSystem::VariableTypeProperty delay{float2::zero, false};
-        ParticleSystem::VariableTypeProperty life = {float2(1.0f)};
-        ParticleSystem::VariableTypeProperty speed = {float2(0.0f)};
-        ParticleSystem::VariableTypeProperty size = {float2::one};
-        ParticleSystem::VariableTypeProperty rotation = {float2::zero};
+        bool able_to_emit = false;
+        float emitter_elapsed_time = 0.0f;
+
+        ParticleSystem::VariableTypeProperty start_delay{float2::zero, false};
+        ParticleSystem::VariableTypeProperty start_life = {float2(1.0f)};
+        ParticleSystem::VariableTypeProperty start_speed = {float2(0.0f)};
+        ParticleSystem::VariableTypeProperty start_size = {float2::one};
+        ParticleSystem::VariableTypeProperty start_rotation = {float2::zero};
 
         //emission
         float time = 0.0f;

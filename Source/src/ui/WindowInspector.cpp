@@ -32,8 +32,7 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
         return;
     }
 
-    std::string add_script_modal_name = "Add Script to " +
-                                        game_object->GetName();
+    std::string add_script_modal_name = "Add Script to " + game_object->GetName();
 
     char game_object_name[50];
     strcpy_s(game_object_name, 50, game_object->GetName().c_str());
@@ -51,7 +50,7 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
         game_object->SetActive(activate);
         App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
     }
-
+    
     std::vector<Component*> game_object_components = game_object->GetComponents();
     for (auto it = game_object_components.begin(); it != game_object_components.end(); ++it)
     {

@@ -44,7 +44,7 @@ namespace Hachiko
         void SetCurrentColor(const float4& color);
 
         [[nodiscard]] float GetCurrentSize() const;
-        void SetCurrentSize(const float size);
+        void SetCurrentSize(float size);
 
         [[nodiscard]] const float2& GetAnimationIndex() const;
         void SetAnimationIndex(const float2& animation_idx);
