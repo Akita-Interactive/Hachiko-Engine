@@ -80,16 +80,10 @@ void Hachiko::ComponentParticleSystem::Update()
     }
 #endif // !PLAY_BUILD
 
-    if (emitter_state == ParticleSystem::Emitter::State::PLAYING)
-    {
-        UpdateEmitterTimes();
-        ActivateParticles();
-        UpdateActiveParticles();
-        UpdateModules();
-    }
-    else if (emitter_state == ParticleSystem::Emitter::State::STOPPED)
-    {
-    }
+    UpdateEmitterTimes();
+    ActivateParticles();
+    UpdateActiveParticles();
+    UpdateModules();
 }
 
 void Hachiko::ComponentParticleSystem::Draw(ComponentCamera* camera, Program* program)
@@ -129,8 +123,14 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             Widgets::Checkbox("Loop", &loop);
             Widgets::MultiTypeSelector("Start delay", start_delay);
             Widgets::MultiTypeSelector("Start lifetime", start_life);
-            Widgets::MultiTypeSelector("Start speed", start_speed);
-            Widgets::MultiTypeSelector("Start size", start_size);
+
+            Widgets::DragFloatConfig params_cfg;
+            params_cfg.speed = 0.1f;
+            params_cfg.ui_factor = float2(100.0f, 0.01f);
+            Widgets::MultiTypeSelector("Start speed", start_speed, &params_cfg);
+            params_cfg.ui_factor = float2(10.0f, 0.1f);
+            params_cfg.min = 0.0f;
+            Widgets::MultiTypeSelector("Start size", start_size, &params_cfg);
             Widgets::MultiTypeSelector("Start rotation", start_rotation);
         }
 
@@ -552,22 +552,15 @@ void Hachiko::ComponentParticleSystem::UpdateModules()
 
 void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
 {
-    //TODO check state
+    if ((!loop && emitter_elapsed_time >= duration) ||
+        emitter_state != ParticleSystem::Emitter::State::PLAYING)
+    {
+        able_to_emit = false;
+        return;
+    }
 
     time += EngineTimer::delta_time;
-
-    if (!loop)
-    {
-        if (emitter_elapsed_time < duration)
-        {
-            emitter_elapsed_time += EngineTimer::delta_time;
-        }
-        else
-        {
-            able_to_emit = false;
-            return;
-        }
-    }
+    emitter_elapsed_time += EngineTimer::delta_time;
 
     if (time * 1000.0f <= ONE_SEC_IN_MS / rate_over_time.GetValue()) // TODO: Avoid division
     {

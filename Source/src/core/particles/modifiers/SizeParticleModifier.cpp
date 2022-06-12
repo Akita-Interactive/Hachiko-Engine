@@ -6,12 +6,11 @@
 Hachiko::SizeParticleModifier::SizeParticleModifier(const std::string& name):
     ParticleModifier(name, false)
 {
-    cfg.min = -1.0f;
-    cfg.max = 1.0f;
-    cfg.speed = 0.001f;
-    cfg.format = "%.3f";
-    size.constant_enabled = true;
-    size.curve_enabled = true;
+    cfg.min = -100.0f;
+    cfg.max = 100.0f;
+    cfg.speed = 0.1f;
+    cfg.format = "%.2f";
+    cfg.ui_factor = {100.0f, 0.01f};
 }
 
 void Hachiko::SizeParticleModifier::Update(std::vector<Particle>& particles)
@@ -54,5 +53,10 @@ void Hachiko::SizeParticleModifier::UpdateSizeOverTime(Particle& particle) const
 {
     float particle_size = particle.GetCurrentSize();
     particle_size += size.GetValue();
+    if (particle_size < 0.0f)
+    {
+        particle_size = 0.0f;
+    }
+
     particle.SetCurrentSize(particle_size);
 }

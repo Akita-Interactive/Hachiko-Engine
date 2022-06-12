@@ -56,21 +56,19 @@ namespace Hachiko
         //particle config
         ParticleSystem::ParticleProperties particle_properties;
 
-
+        //emission
         bool loop = false;
         float duration = 5.0f;
         bool able_to_emit = false;
+        float time = 0.0f;
         float emitter_elapsed_time = 0.0f;
+        ParticleSystem::VariableTypeProperty rate_over_time {float2(10)};
 
         ParticleSystem::VariableTypeProperty start_delay{float2::zero, false};
         ParticleSystem::VariableTypeProperty start_life = {float2(1.0f)};
         ParticleSystem::VariableTypeProperty start_speed = {float2(0.0f)};
         ParticleSystem::VariableTypeProperty start_size = {float2::one};
         ParticleSystem::VariableTypeProperty start_rotation = {float2::zero};
-
-        //emission
-        float time = 0.0f;
-        ParticleSystem::VariableTypeProperty rate_over_time{float2(10)};
 
         //emitter (shape)
         ParticleSystem::Emitter::Type emitter_type = ParticleSystem::Emitter::Type::CONE;
