@@ -60,7 +60,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)\..\Game\</OutDir>
-    <IntDir>$(SolutionDir)bin\build\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir)bin\build\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <ExternalIncludePath>$(ProjectDir)vendors;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
