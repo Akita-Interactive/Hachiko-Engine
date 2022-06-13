@@ -8,11 +8,11 @@
 
 namespace Hachiko::Widgets
 {
-    inline bool MultiTypeSelector(const std::string& label, ParticleSystem::VariableTypeProperty& variable_type_property, DragFloatConfig* config = nullptr)
+    inline bool MultiTypeSelector(const std::string& label, ParticleSystem::VariableTypeProperty& variable_type_property, const DragFloatConfig* config = nullptr)
     {
         if (!config)
         {
-            DragFloatConfig cfg;
+            const DragFloatConfig cfg;
             config = &cfg;
         }
         ImGui::PushID(label.c_str());
@@ -42,20 +42,16 @@ namespace Hachiko::Widgets
         if (variable_type_property.selected_option != ParticleSystem::Selection::CURVE)
         {
             const float item_width = variable_type_property.selected_option == ParticleSystem::Selection::CONSTANT ? -FLT_MIN : -ImGui::GetContentRegionAvail().x * 0.5f;
-            variable_type_property.values.x = variable_type_property.values.x * config->tunning;
             ImGui::PushItemWidth(item_width);
             ImGui::DragFloat("##x", &variable_type_property.values.x, config->speed, config->min, config->max, config->format, config->flags);
             ImGui::PopItemWidth();
-            variable_type_property.values.x = variable_type_property.values.x / config->tunning;
 
             if (variable_type_property.selected_option == ParticleSystem::Selection::BETWEEN_VALUES)
             {
-                variable_type_property.values.y = variable_type_property.values.y * config->tunning;
                 ImGui::SameLine();
                 ImGui::PushItemWidth(-FLT_MIN);
                 ImGui::DragFloat("##y", &variable_type_property.values.y, config->speed, config->min, config->max, config->format, config->flags);
                 ImGui::PopItemWidth();
-                variable_type_property.values.y = variable_type_property.values.y / config->tunning;
             }
         }
         else

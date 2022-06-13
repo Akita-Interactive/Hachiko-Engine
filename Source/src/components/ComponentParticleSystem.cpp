@@ -8,7 +8,6 @@
 #include "modules/ModuleResources.h"
 
 #include "debugdraw.h"
-#include "modules/ModuleCamera.h"
 
 Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container) :
     Component(Type::PARTICLE_SYSTEM, container)
@@ -36,7 +35,7 @@ void Hachiko::ComponentParticleSystem::Start()
         App->scene_manager->GetActiveScene()->AddParticleComponent(this);
         in_scene = true;
     }
-    
+
     for (auto& particle : particles)
     {
         particle.SetEmitter(this);
@@ -65,10 +64,15 @@ void Hachiko::ComponentParticleSystem::Start()
         const auto data = evt.GetEventData<SelectionChangedEventPayload>();
         if (data.GetSelected() != GetGameObject())
         {
-            Stop();
+            Pause();
+        }
+        else
+        {
+            Play();
         }
     };
     App->event->Subscribe(Event::Type::SELECTION_CHANGED, selection_changed, GetID());
+    emitter_state = ParticleSystem::Emitter::State::PLAYING;
 }
 
 void Hachiko::ComponentParticleSystem::Update()
@@ -79,11 +83,13 @@ void Hachiko::ComponentParticleSystem::Update()
         Start();
     }
 #endif // !PLAY_BUILD
-
-    UpdateEmitterTimes();
-    ActivateParticles();
-    UpdateActiveParticles();
-    UpdateModules();
+    if (emitter_state == ParticleSystem::Emitter::State::PLAYING)
+    {
+        UpdateEmitterTimes();
+        ActivateParticles();
+        UpdateActiveParticles();
+        UpdateModifiers();
+    }
 }
 
 void Hachiko::ComponentParticleSystem::Draw(ComponentCamera* camera, Program* program)
@@ -125,12 +131,10 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             Widgets::MultiTypeSelector("Start lifetime", start_life);
 
             Widgets::DragFloatConfig params_cfg;
-            params_cfg.speed = 0.1f;
-            params_cfg.tunning = 100.0f;
-            Widgets::MultiTypeSelector("Start speed", start_speed, &params_cfg);
-            params_cfg.tunning = 10.0f;
+            params_cfg.speed = 0.05f;
+            MultiTypeSelector("Start speed", start_speed, &params_cfg);
             params_cfg.min = 0.0f;
-            Widgets::MultiTypeSelector("Start size", start_size, &params_cfg);
+            MultiTypeSelector("Start size", start_size, &params_cfg);
             Widgets::MultiTypeSelector("Start rotation", start_rotation);
         }
 
@@ -140,7 +144,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             Widgets::DragFloatConfig rate_cfg;
             rate_cfg.min = 0.0f;
 
-            Widgets::MultiTypeSelector("Rate over time", rate_over_time, &rate_cfg);
+            MultiTypeSelector("Rate over time", rate_over_time, &rate_cfg);
             ImGui::EndDisabled();
         }
 
@@ -309,7 +313,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             alpha_config.min = 0.00f;
             alpha_config.max = 1.00f;
             alpha_config.enabled = (particle_properties.render_mode == ParticleSystem::ParticleRenderMode::PARTICLE_TRANSPARENT);
-            Widgets::DragFloat("Alpha channel", particle_properties.alpha, &alpha_config);
+            DragFloat("Alpha channel", particle_properties.alpha, &alpha_config);
             ImGui::EndDisabled();
         }
 
@@ -542,8 +546,9 @@ void Hachiko::ComponentParticleSystem::UpdateActiveParticles()
     }
 }
 
-void Hachiko::ComponentParticleSystem::UpdateModules()
+void Hachiko::ComponentParticleSystem::UpdateModifiers()
 {
+
     for (const auto& particle_module : particle_modifiers)
     {
         particle_module->Update(particles);
@@ -552,8 +557,7 @@ void Hachiko::ComponentParticleSystem::UpdateModules()
 
 void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
 {
-    if ((!loop && emitter_elapsed_time >= duration) ||
-        emitter_state != ParticleSystem::Emitter::State::PLAYING)
+    if ((!loop && emitter_elapsed_time >= duration) || emitter_state != ParticleSystem::Emitter::State::PLAYING)
     {
         able_to_emit = false;
         return;
@@ -562,6 +566,7 @@ void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
     time += EngineTimer::delta_time;
     emitter_elapsed_time += EngineTimer::delta_time;
 
+    // constexpr float delta = 1- 
     if (time * 1000.0f <= ONE_SEC_IN_MS / rate_over_time.GetValue()) // TODO: Avoid division
     {
         able_to_emit = false;
@@ -644,7 +649,12 @@ void Hachiko::ComponentParticleSystem::AddTexture()
     if (ImGui::Button("Add texture", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         ImGuiFileDialog::Instance()->OpenDialog(
-            title, "Select Texture", ".png,.tif,.jpg,.tga", "./assets/textures/", 1, nullptr,
+            title,
+            "Select Texture",
+            ".png,.tif,.jpg,.tga",
+            "./assets/textures/",
+            1,
+            nullptr,
             ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton |
             ImGuiFileDialogFlags_HideColumnType | ImGuiFileDialogFlags_HideColumnDate);
     }
@@ -682,6 +692,11 @@ void Hachiko::ComponentParticleSystem::RemoveTexture()
 bool Hachiko::ComponentParticleSystem::IsLoop() const
 {
     return loop;
+}
+
+Hachiko::ParticleSystem::Emitter::State Hachiko::ComponentParticleSystem::GetEmitterState() const
+{
+    return emitter_state;
 }
 
 void Hachiko::ComponentParticleSystem::Play()

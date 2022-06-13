@@ -61,6 +61,7 @@ void Hachiko::PerformanceTimer::Resume()
 double Hachiko::PerformanceTimer::Read()
 {
     static const auto frequency = static_cast<double>(SDL_GetPerformanceFrequency());
+    static const auto ms_frequency_factor = 1000.0 / frequency;
 
     unsigned long long now;
     if (running)
@@ -72,7 +73,7 @@ double Hachiko::PerformanceTimer::Read()
         now = stop_time;
     }
 
-    current_time = (now - start_time) * 1000.0 / frequency;
+    current_time = (now - start_time) * ms_frequency_factor;
     return current_time;
 }
 

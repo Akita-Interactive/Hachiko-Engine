@@ -36,11 +36,12 @@ namespace Hachiko
         [[nodiscard]] const float2& GetFactor() const;
 
         [[nodiscard]] bool IsLoop() const;
+        [[nodiscard]] ParticleSystem::Emitter::State GetEmitterState() const;
 
         void Play();
         void Pause();
         void Restart();
-        void Stop();
+        void Stop() override;
 
     private:
         ParticleSystem::Emitter::State emitter_state = ParticleSystem::Emitter::State::STOPPED;
@@ -62,12 +63,12 @@ namespace Hachiko
         bool able_to_emit = false;
         float time = 0.0f;
         float emitter_elapsed_time = 0.0f;
-        ParticleSystem::VariableTypeProperty rate_over_time {float2(10)};
+        ParticleSystem::VariableTypeProperty rate_over_time{float2(10)};
 
-        ParticleSystem::VariableTypeProperty start_delay{float2::zero, false};
-        ParticleSystem::VariableTypeProperty start_life = {float2(1.0f)};
-        ParticleSystem::VariableTypeProperty start_speed = {float2(0.0f)};
-        ParticleSystem::VariableTypeProperty start_size = {float2::one};
+        ParticleSystem::VariableTypeProperty start_delay{float2::zero, 1.0f, false};
+        ParticleSystem::VariableTypeProperty start_life = {float2(5.0f)};
+        ParticleSystem::VariableTypeProperty start_speed = {float2(5.0f), 0.5f};
+        ParticleSystem::VariableTypeProperty start_size = {float2::one, 0.25f};
         ParticleSystem::VariableTypeProperty start_rotation = {float2::zero};
 
         //emitter (shape)
@@ -98,7 +99,7 @@ namespace Hachiko
 
         void ActivateParticles();
         void UpdateActiveParticles();
-        void UpdateModules();
+        void UpdateModifiers();
         void UpdateEmitterTimes();
         void ResetActiveParticles();
         void Reset();

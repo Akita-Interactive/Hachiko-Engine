@@ -393,6 +393,7 @@ namespace YAML
             node.push_back(rhs.curve_enabled);
             node.push_back(static_cast<int>(rhs.selected_option));
             node.push_back(rhs.values);
+            node.push_back(rhs.multiplier);
             for (const auto& curve : rhs.curve)
             {
                 node.push_back(curve);
@@ -403,7 +404,8 @@ namespace YAML
 
         static bool decode(const Node& node, Hachiko::ParticleSystem::VariableTypeProperty& rhs)
         {
-            if (!node.IsSequence() || node.size() != 4 + Hachiko::ParticleSystem::CURVE_TICKS)
+            constexpr int offset = 5; //fixed values
+            if (!node.IsSequence() || node.size() != offset + Hachiko::ParticleSystem::CURVE_TICKS)
             {
                 return false;
             }
@@ -412,10 +414,10 @@ namespace YAML
             rhs.curve_enabled = node[1].as<bool>();
             rhs.selected_option = static_cast<Hachiko::ParticleSystem::Selection>(node[2].as<int>());
             rhs.values = node[3].as<float2>();
+            rhs.multiplier = node[4].as<float>();
 
             for (int i = 0; i < Hachiko::ParticleSystem::CURVE_TICKS; ++i)
             {
-                constexpr int offset = 4; //current node offset
                 rhs.curve[i] = node[i + offset].as<ImVec2>();
             }
             return true;

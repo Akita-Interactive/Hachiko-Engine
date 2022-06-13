@@ -5,8 +5,8 @@ namespace Hachiko
 {
     struct CurveEditorEventPayload
     {
-        CurveEditorEventPayload(ParticleSystem::VariableTypeProperty* value, const std::string& label):
-            title(label),
+        CurveEditorEventPayload(ParticleSystem::VariableTypeProperty* value, std::string label):
+            title(std::move(label)),
             value(value)
         {
         }

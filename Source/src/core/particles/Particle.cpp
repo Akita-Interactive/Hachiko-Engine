@@ -98,52 +98,52 @@ void Hachiko::Particle::Draw(ComponentCamera* camera, const Program* program)
 
 void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_matrix) const
 {
-    auto transform = emitter->GetGameObject()->GetTransform();
-    float3 particle_size(current_size, current_size, 0.0f);
+    const auto transform = emitter->GetGameObject()->GetTransform();
+    const float3 particle_size(current_size, current_size, 0.0f);
 
     switch (emitter->GetParticlesProperties().orientation)
     {
     case ParticleSystem::ParticleOrientation::NORMAL:
-        {
-            Frustum* frustum = camera->GetFrustum();
-            float3x3 rotate_part = transform->GetGlobalMatrix().RotatePart();
-            float4x4 global_model_matrix = transform->GetGlobalMatrix();
-            out_matrix = global_model_matrix.LookAt(rotate_part.Col(2), -frustum->Front(), rotate_part.Col(1), float3::unitY);
-            out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart() * rotate_part, particle_size);
-            break;
-        }
+    {
+        const Frustum* frustum = camera->GetFrustum();
+        const float3x3 rotate_part = transform->GetGlobalMatrix().RotatePart();
+        float4x4 global_model_matrix = transform->GetGlobalMatrix();
+        out_matrix = global_model_matrix.LookAt(rotate_part.Col(2), -frustum->Front(), rotate_part.Col(1), float3::unitY);
+        out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart() * rotate_part, particle_size);
+        break;
+    }
     case ParticleSystem::ParticleOrientation::HORIZONTAL:
+    {
+        if (emitter->GetParticlesProperties().orientate_to_direction)
         {
-            if (emitter->GetParticlesProperties().orientate_to_direction)
-            {
-                float3 global_position = transform->GetGlobalPosition();
-                float3 direction = current_direction;
-                float3 projection = global_position + direction - direction.y * float3::unitY;
-                direction = (projection - global_position).Normalized();
-                float3 right = Cross(float3::unitY, direction);
+            const float3 global_position = transform->GetGlobalPosition();
+            float3 direction = current_direction;
+            const float3 projection = global_position + direction - direction.y * float3::unitY;
+            direction = (projection - global_position).Normalized();
+            const float3 right = Cross(float3::unitY, direction);
 
-                float3x3 new_rotation;
-                new_rotation.SetCol(1, right);
-                new_rotation.SetCol(2, float3::unitY);
-                new_rotation.SetCol(0, direction);
+            float3x3 new_rotation;
+            new_rotation.SetCol(1, right);
+            new_rotation.SetCol(2, float3::unitY);
+            new_rotation.SetCol(0, direction);
 
-                out_matrix = float4x4::FromTRS(current_position, new_rotation, particle_size);
-            }
-            else
-            {
-                out_matrix = float4x4::LookAt(float3::unitZ, float3::unitY, float3::unitY, float3::unitY);
-                out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart(), particle_size);
-            }
-            break;
+            out_matrix = float4x4::FromTRS(current_position, new_rotation, particle_size);
         }
-    case ParticleSystem::ParticleOrientation::VERTICAL:
+        else
         {
-            const float3 camera_position = camera->GetFrustum()->Pos();
-            const float3 camera_direction = (float3(camera_position.x, current_position.y, camera_position.z) - current_position).Normalized();
-            out_matrix = float4x4::LookAt(float3::unitZ, camera_direction, float3::unitY, float3::unitY);
+            out_matrix = float4x4::LookAt(float3::unitZ, float3::unitY, float3::unitY, float3::unitY);
             out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart(), particle_size);
-            break;
         }
+        break;
+    }
+    case ParticleSystem::ParticleOrientation::VERTICAL:
+    {
+        const float3 camera_position = camera->GetFrustum()->Pos();
+        const float3 camera_direction = (float3(camera_position.x, current_position.y, camera_position.z) - current_position).Normalized();
+        out_matrix = float4x4::LookAt(float3::unitZ, camera_direction, float3::unitY, float3::unitY);
+        out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart(), particle_size);
+        break;
+    }
     }
 }
 
@@ -193,7 +193,7 @@ int Hachiko::Particle::GetTextureTotalTiles() const
     return emitter->GetTextureTotalTiles();
 }
 
-float Hachiko::Particle::GetLife()
+float Hachiko::Particle::GetLife() const
 {
     return total_life;
 }
@@ -273,12 +273,12 @@ unsigned Hachiko::Particle::GetCurrentAnimationFrame() const
     return current_animation_frame;
 }
 
-void Hachiko::Particle::SetCurrentAnimationFrame(unsigned current_animation_frame)
+void Hachiko::Particle::SetCurrentAnimationFrame(unsigned frame)
 {
-    this->current_animation_frame = current_animation_frame;
+    this->current_animation_frame = frame;
 }
 
-void Hachiko::Particle::SetEmitter(ComponentParticleSystem* emitter)
+void Hachiko::Particle::SetEmitter(ComponentParticleSystem* particle_emitter)
 {
-    this->emitter = emitter;
+    this->emitter = particle_emitter;
 }

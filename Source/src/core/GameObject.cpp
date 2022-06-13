@@ -147,104 +147,104 @@ Hachiko::Component* Hachiko::GameObject::CreateComponent(Component::Type type)
     Component* new_component = nullptr;
     switch (type)
     {
-    case Component::Type::TRANSFORM:
-        return transform;
-    case Component::Type::CAMERA:
-        new_component = new ComponentCamera(this);
-        break;
-    case Component::Type::ANIMATION:
-        new_component = new ComponentAnimation(this);
-        break;
-    case Component::Type::MESH_RENDERER:
-        new_component = new ComponentMeshRenderer(this);
-        break;
-    case Component::Type::DIRLIGHT:
-        new_component = new ComponentDirLight(this);
-        break;
-    case Component::Type::POINTLIGHT:
-        new_component = new ComponentPointLight(this);
-        break;
-    case Component::Type::SPOTLIGHT:
-        new_component = new ComponentSpotLight(this);
-        break;
-    case Component::Type::CANVAS:
-        if (!GetComponent<ComponentCanvas>())
-        {
-            new_component = new ComponentCanvas(this);
-        }
-        break;
-    case Component::Type::CANVAS_RENDERER:
-        if (!GetComponent<ComponentCanvasRenderer>())
-        {
-            new_component = new ComponentCanvasRenderer(this);
-        }
-        break;
-    case Component::Type::TRANSFORM_2D:
-        if (!GetComponent<ComponentTransform2D>())
-        {
-            new_component = new ComponentTransform2D(this);
-        }
-        break;
-    case Component::Type::IMAGE:
-        if (!GetComponent<ComponentImage>())
-        {
-            new_component = new ComponentImage(this);
-        }
-        break;
-    case Component::Type::BUTTON:
-        if (!GetComponent<ComponentButton>())
-        {
-            new_component = new ComponentButton(this);
-        }
-        break;
-    case Component::Type::PROGRESS_BAR:
-        if (!GetComponent<ComponentProgressBar>())
-        {
-            new_component = new ComponentProgressBar(this);
-        }
-        break;
-    case (Component::Type::TEXT):
-        if (!GetComponent<ComponentText>())
-        {
-            new_component = new ComponentText(this);
-        }
-        break;
-    case Component::Type::OBSTACLE:
-        if (!GetComponent<ComponentObstacle>())
-        {
-            new_component = new ComponentObstacle(this);
-        }
-        break;
-    case Component::Type::AGENT:
-        if (!GetComponent<ComponentAgent>())
-        {
-            new_component = new ComponentAgent(this);
-        }
-        break;
-    case Component::Type::AUDIO_LISTENER:
-        if (!GetComponent<ComponentAudioListener>())
-        {
-            new_component = new ComponentAudioListener(this);
-        }
-        break;
-    case Component::Type::AUDIO_SOURCE:
-        if (!GetComponent<ComponentAudioSource>())
-        {
-            new_component = new ComponentAudioSource(this);
-        }
-        break;
-    case Component::Type::PARTICLE_SYSTEM:
-        if (!GetComponent<ComponentParticleSystem>())
-        {
-            new_component = new ComponentParticleSystem(this);
-        }
-        break;
-    case Component::Type::BILLBOARD:
-        if (!GetComponent<ComponentBillboard>())
-        {
-            new_component = new ComponentBillboard(this);
-        }
-        break;
+        case Component::Type::TRANSFORM:
+            return transform;
+        case Component::Type::CAMERA:
+            new_component = new ComponentCamera(this);
+            break;
+        case Component::Type::ANIMATION:
+            new_component = new ComponentAnimation(this);
+            break;
+        case Component::Type::MESH_RENDERER:
+            new_component = new ComponentMeshRenderer(this);
+            break;
+        case Component::Type::DIRLIGHT:
+            new_component = new ComponentDirLight(this);
+            break;
+        case Component::Type::POINTLIGHT:
+            new_component = new ComponentPointLight(this);
+            break;
+        case Component::Type::SPOTLIGHT:
+            new_component = new ComponentSpotLight(this);
+            break;
+        case Component::Type::CANVAS:
+            if (!GetComponent<ComponentCanvas>())
+            {
+                new_component = new ComponentCanvas(this);
+            }
+            break;
+        case Component::Type::CANVAS_RENDERER:
+            if (!GetComponent<ComponentCanvasRenderer>())
+            {
+                new_component = new ComponentCanvasRenderer(this);
+            }
+            break;
+        case Component::Type::TRANSFORM_2D:
+            if (!GetComponent<ComponentTransform2D>())
+            {
+                new_component = new ComponentTransform2D(this);
+            }
+            break;
+        case Component::Type::IMAGE:
+            if (!GetComponent<ComponentImage>())
+            {
+                new_component = new ComponentImage(this);
+            }
+            break;
+        case Component::Type::BUTTON:
+            if (!GetComponent<ComponentButton>())
+            {
+                new_component = new ComponentButton(this);
+            }
+            break;
+        case Component::Type::PROGRESS_BAR:
+            if (!GetComponent<ComponentProgressBar>())
+            {
+                new_component = new ComponentProgressBar(this);
+            }
+            break;
+        case (Component::Type::TEXT):
+            if (!GetComponent<ComponentText>())
+            {
+                new_component = new ComponentText(this);
+            }
+            break;
+        case Component::Type::OBSTACLE:
+            if (!GetComponent<ComponentObstacle>())
+            {
+                new_component = new ComponentObstacle(this);
+            }
+            break;
+        case Component::Type::AGENT:
+            if (!GetComponent<ComponentAgent>())
+            {
+                new_component = new ComponentAgent(this);
+            }
+            break;
+        case Component::Type::AUDIO_LISTENER:
+            if (!GetComponent<ComponentAudioListener>())
+            {
+                new_component = new ComponentAudioListener(this);
+            }
+            break;
+        case Component::Type::AUDIO_SOURCE:
+            if (!GetComponent<ComponentAudioSource>())
+            {
+                new_component = new ComponentAudioSource(this);
+            }
+            break;
+        case Component::Type::PARTICLE_SYSTEM:
+            if (!GetComponent<ComponentParticleSystem>())
+            {
+                new_component = new ComponentParticleSystem(this);
+            }
+            break;
+        case Component::Type::BILLBOARD:
+            if (!GetComponent<ComponentBillboard>())
+            {
+                new_component = new ComponentBillboard(this);
+            }
+            break;
     }
 
     if (new_component != nullptr)

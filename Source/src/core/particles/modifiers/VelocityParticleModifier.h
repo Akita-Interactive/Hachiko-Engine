@@ -15,9 +15,9 @@ namespace Hachiko
 
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
-    
+
     private:
-        ParticleSystem::VariableTypeProperty delta_speed {float2::zero};
+        ParticleSystem::VariableTypeProperty delta_speed{float2::zero, 0.001f};
         Widgets::DragFloatConfig cfg;
         void UpdateVelocityOverTime(Particle& particle);
     };

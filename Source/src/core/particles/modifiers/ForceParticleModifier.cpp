@@ -39,7 +39,7 @@ void Hachiko::ForceParticleModifier::Load(const YAML::Node& node)
 void Hachiko::ForceParticleModifier::UpdatePositionOverTime(Particle& particle) 
 {
     float3 position = particle.GetCurrentPosition();
-    position += particle.GetCurrentDirection() * particle.GetCurrentSpeed();
+    position += particle.GetCurrentDirection() * particle.GetCurrentSpeed() * EngineTimer::delta_time;
     particle.SetCurrentPosition(position);
 }
 

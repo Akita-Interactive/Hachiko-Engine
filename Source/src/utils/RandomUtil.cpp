@@ -3,12 +3,12 @@
 
 float Hachiko::RandomUtil::Random()
 {
-    return u_dist(gen);
+    return u_dist(generator);
 }
 
 float Hachiko::RandomUtil::RandomSigned()
 {
-    return s_dist(gen);
+    return s_dist(generator);
 }
 
 float Hachiko::RandomUtil::RandomBetween(const float a, const float b)
@@ -22,7 +22,7 @@ float Hachiko::RandomUtil::RandomBetween(const float a, const float b)
     }
 
     const std::uniform_real_distribution between_dist(min, max);
-    return between_dist(gen);
+    return between_dist(generator);
 }
 
 float Hachiko::RandomUtil::RandomBetween(const float2& values)

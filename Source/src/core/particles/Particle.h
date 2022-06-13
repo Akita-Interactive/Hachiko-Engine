@@ -56,16 +56,16 @@ namespace Hachiko
         void SetCurrentDirection(const float3& direction);
 
         [[nodiscard]] unsigned GetCurrentAnimationFrame() const;
-        void SetCurrentAnimationFrame(unsigned current_animation_frame);
+        void SetCurrentAnimationFrame(unsigned frame);
 
         [[nodiscard]] bool HasTexture() const;
         [[nodiscard]] int GetTextureTotalTiles() const;
-        [[nodiscard]] float GetLife();
+        [[nodiscard]] float GetLife() const;
         [[nodiscard]] float GetInitialLife();
         [[nodiscard]] float GetInitialSpeed() const;
         [[nodiscard]] float GetInitialSize() const;
         [[nodiscard]] const float2& GetTextureTiles() const;
 
-        void SetEmitter(ComponentParticleSystem* emitter);
+        void SetEmitter(ComponentParticleSystem* particle_emitter);
     };
 }

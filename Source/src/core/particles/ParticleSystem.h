@@ -62,8 +62,9 @@ namespace Hachiko
             {
             }
 
-            VariableTypeProperty(const float2& values, bool curve_enabled = true, bool constant_enabled = true):
+            VariableTypeProperty(const float2& values, float multiplier = 1.0f, bool curve_enabled = true, bool constant_enabled = true):
                 values(values),
+                multiplier(multiplier),
                 curve_enabled(curve_enabled),
                 constant_enabled(constant_enabled)
             {
@@ -78,6 +79,7 @@ namespace Hachiko
 
             Selection selected_option = Selection::CONSTANT; //constant, curve, random between two numbers.
             float2 values = float2::zero;
+            float multiplier = 1.0f;
             ImVec2 curve[CURVE_TICKS];
             bool curve_enabled = true;
             bool constant_enabled = true;
@@ -88,12 +90,13 @@ namespace Hachiko
                 switch (selected_option)
                 {
                 case Selection::CONSTANT:
-                    return values.x;
+                    return values.x * multiplier;
                 case Selection::BETWEEN_VALUES:
-                    return RandomUtil::RandomBetween(values);
+                    return RandomUtil::RandomBetween(values) * multiplier;
                 case Selection::CURVE:
                     return ImGui::CurveValueSmooth(current_time, CURVE_TICKS - 1, curve);
                 }
+                return values.x * multiplier;
             }
         };
 
