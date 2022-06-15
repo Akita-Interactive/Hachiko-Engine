@@ -13,6 +13,7 @@ namespace Hachiko
     class ComponentPointLight;
     class ComponentSpotLight;
     class ComponentBillboard;
+    class ComponentParticleSystem;
     class Skybox;
     class Quadtree;
     class ResourceMaterial;
@@ -107,7 +108,7 @@ namespace Hachiko
         {
             navmesh_id = new_navmesh_id;
         }
-        
+
         [[nodiscard]] GameObject* Find(UID id) const;
 
         void SetName(const char* new_name)
@@ -120,24 +121,14 @@ namespace Hachiko
 
         void GetNavmeshData(std::vector<float>& scene_vertices, std::vector<int>& scene_triangles, std::vector<float>& scene_normals, AABB& scene_bounds);
 
-        void AddParticleComponent(Component* new_particle)
+        void AddParticleComponent(ComponentParticleSystem* new_particle)
         {
             particles.emplace_back(new_particle);
         }
 
-        void RemoveParticleComponent(const UID& component_id)
-        {
-            auto predicate = [&](const Component* component) {
-                return component->GetID() == component_id;
-            };
-            const auto it = std::find_if(particles.begin(), particles.end(), predicate);
-            if (it != particles.end())
-            {
-                particles.erase(it);
-            }
-        }
+        void RemoveParticleComponent(const UID& component_id);
 
-        const std::vector<Component*>& GetSceneParticles()
+        const std::vector<ComponentParticleSystem*>& GetSceneParticles()
         {
             return particles;
         }
@@ -159,7 +150,7 @@ namespace Hachiko
 
         bool rebuild_batch = true;
         BatchManager* batch_manager = nullptr;
-        std::vector<Component*> particles{};
+        std::vector<ComponentParticleSystem*> particles{};
 
     public:
         class Memento

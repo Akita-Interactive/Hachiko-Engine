@@ -70,7 +70,7 @@ Hachiko::GameObject::~GameObject()
     }
     for (const Component* component : components)
     {
-        RELEASE(component)
+        RELEASE(component);
     }
 }
 

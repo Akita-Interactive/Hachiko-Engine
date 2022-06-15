@@ -5,6 +5,7 @@
 #include "components/ComponentCamera.h"
 #include "components/ComponentMeshRenderer.h"
 #include "components/ComponentImage.h"
+#include "components/ComponentParticleSystem.h"
 
 #include "modules/ModuleEditor.h"
 #include "modules/ModuleCamera.h"
@@ -142,7 +143,7 @@ Hachiko::GameObject* Hachiko::Scene::Raycast(const LineSegment& segment, bool tr
             LineSegment local_segment(segment);
             local_segment.Transform(game_object->GetTransform()->GetGlobalMatrix().Inverted());
 
-            float hit_distance;           
+            float hit_distance;
             if (triangle_level)
             {
                 const float* vertices = mesh_renderer->GetVertices();
@@ -154,7 +155,6 @@ Hachiko::GameObject* Hachiko::Scene::Raycast(const LineSegment& segment, bool tr
                     triangle.b = vec(&vertices[indices[i + 1] * 3]);
                     triangle.c = vec(&vertices[indices[i + 2] * 3]);
 
-                    
                     float3 hit_point;
                     if (local_segment.Intersects(triangle, &hit_distance, &hit_point))
                     {
@@ -178,7 +178,6 @@ Hachiko::GameObject* Hachiko::Scene::Raycast(const LineSegment& segment, bool tr
                     selected = game_object;
                 }
             }
-            
         }
     }
     return selected;
@@ -201,7 +200,6 @@ void Hachiko::Scene::Save(YAML::Node& node)
         std::string side_name = TextureCube::SideString(static_cast<TextureCube::Side>(i));
         node[SKYBOX_NODE][side_name] = cube.uids[i];
     }
-
 
     node[ROOT_ID] = GetRoot()->GetID();
     for (int i = 0; i < GetRoot()->children.size(); ++i)
@@ -237,7 +235,7 @@ void Hachiko::Scene::Load(const YAML::Node& node, bool meshes_only)
         loaded = true;
         return;
     }
-    
+
     const YAML::Node children_node = node[CHILD_NODE];
 
     for (unsigned i = 0; i < children_node.size(); ++i)
@@ -263,9 +261,8 @@ void Hachiko::Scene::GetNavmeshData(std::vector<float>& scene_vertices, std::vec
     scene_normals.clear();
     scene_bounds.SetNegativeInfinity();
 
-    std::function<void(GameObject*)> get_navmesh_data = [&](GameObject* go)
-    {
-        ComponentMeshRenderer* mesh_renderer = go->GetComponent<ComponentMeshRenderer>();        
+    std::function<void(GameObject*)> get_navmesh_data = [&](GameObject* go) {
+        ComponentMeshRenderer* mesh_renderer = go->GetComponent<ComponentMeshRenderer>();
         const float4x4& global_transform = go->GetTransform()->GetGlobalMatrix();
         // TODO: Add a distinction to filter out meshes that are not part of navigation (navigable flag or not static objects, also flag?)
         if (mesh_renderer && mesh_renderer->IsNavigable())
@@ -273,20 +270,23 @@ void Hachiko::Scene::GetNavmeshData(std::vector<float>& scene_vertices, std::vec
             // Use previous amount of mesh vertices to point to the correct indices
             // Divide size/3 because its a vector of floats not of float3
             int indices_offset = static_cast<int>(scene_vertices.size()) / 3;
-            
+
             const float* vertices = mesh_renderer->GetVertices();
             for (int i = 0; i < mesh_renderer->GetBufferSize(ResourceMesh::Buffers::VERTICES); i += 3)
             {
-                
                 float4 global_vertex = global_transform * float4(vertices[i], vertices[i + 1], vertices[i + 2], 1.0f);
                 // w is excluded, so we pass float 3 as desired
                 scene_vertices.insert(scene_vertices.end(), &global_vertex.x, &global_vertex.w);
             }
-            
+
             const unsigned* indices = mesh_renderer->GetIndices();
             int n_indices = mesh_renderer->GetBufferSize(ResourceMesh::Buffers::INDICES);
             auto inserted = scene_triangles.insert(scene_triangles.end(), indices, indices + n_indices);
-            std::for_each(inserted, scene_triangles.end(), [&](int& v) { v += indices_offset; });
+            std::for_each(inserted,
+                          scene_triangles.end(),
+                          [&](int& v) {
+                              v += indices_offset;
+                          });
 
             const float* normals = mesh_renderer->GetNormals();
             for (int i = 0; i < mesh_renderer->GetBufferSize(ResourceMesh::Buffers::NORMALS); i += 3)
@@ -306,6 +306,18 @@ void Hachiko::Scene::GetNavmeshData(std::vector<float>& scene_vertices, std::vec
     };
 
     get_navmesh_data(root);
+}
+
+void Hachiko::Scene::RemoveParticleComponent(const UID& component_id)
+{
+    auto predicate = [&](const ComponentParticleSystem* component) {
+        return component->GetID() == component_id;
+    };
+    const auto it = std::find_if(particles.begin(), particles.end(), predicate);
+    if (it != particles.end())
+    {
+        particles.erase(it);
+    }
 }
 
 Hachiko::GameObject* Hachiko::Scene::CreateDebugCamera()

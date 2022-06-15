@@ -29,12 +29,11 @@ Hachiko::ComponentBillboard::~ComponentBillboard()
 void Hachiko::ComponentBillboard::Draw(ComponentCamera* camera, Program* program)
 {
     glActiveTexture(GL_TEXTURE0);
-    int glTexture = 0;
     has_texture = 0;
     if (texture != nullptr)
     {
-        glTexture = texture->GetImageId();
-        Hachiko::ModuleTexture::Bind(glTexture, static_cast<int>(Hachiko::ModuleProgram::TextureSlots::DIFFUSE));
+        const int gl_texture = texture->GetImageId();
+        ModuleTexture::Bind(gl_texture, static_cast<int>(Hachiko::ModuleProgram::TextureSlots::DIFFUSE));
         has_texture = 1;
     }
 

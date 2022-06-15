@@ -22,12 +22,12 @@ namespace Hachiko
     public:
         RandomUtil() = delete;
         //(0.0; 1.0)
-        static float Random();
+        HACHIKO_API static float Random();
         //(-1.0; 1.0)
-        static float RandomSigned();
+        HACHIKO_API static float RandomSigned();
         // (a; b) if a > b returns a
-        static float RandomBetween(float a, float b);
+        HACHIKO_API static float RandomBetween(float a, float b);
         // (values.x; values.y) if x > y returns x
-        static float RandomBetween(const float2& values);
+        HACHIKO_API static float RandomBetween(const float2& values);
     };
 }
