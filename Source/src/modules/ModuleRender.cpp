@@ -195,6 +195,9 @@ UpdateStatus Hachiko::ModuleRender::Update(const float delta)
         App->navigation->DebugDraw();
     }
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     GLint polygonMode[2];
     glGetIntegerv(GL_POLYGON_MODE, polygonMode);
     if (polygonMode[0] == GL_LINE)
@@ -207,6 +210,7 @@ UpdateStatus Hachiko::ModuleRender::Update(const float delta)
     {
         App->ui->DrawUI(active_scene);
     }
+    glDisable(GL_BLEND);
 
     // If in play build, blit frame_buffer to the default frame buffer and render to the whole 
     // screen, if not, bind default frame buffer:
