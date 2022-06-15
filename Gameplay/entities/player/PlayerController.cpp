@@ -342,8 +342,8 @@ void Hachiko::Scripting::PlayerController::RangedAttack()
 	attack_origin_position.y += 0.5f;
 
 	// Spawn bullet (Passing the prefab can be improved)
-	UID* bullet_uid = new UID(14999767472668584259);
-	GameObject* bullet = GameObject::Instantiate(bullet_uid, game_object->scene_owner->GetRoot());
+	UID bullet_uid = 14999767472668584259;
+	GameObject* bullet = GameObject::Instantiate(&bullet_uid, game_object->scene_owner->GetRoot());
 
 	bullet->GetTransform()->SetGlobalPosition(attack_origin_position);
 	bullet->GetComponent<BulletController>()->SetForward(forward);
