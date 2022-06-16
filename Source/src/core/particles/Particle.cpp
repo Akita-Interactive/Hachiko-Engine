@@ -100,16 +100,15 @@ void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_ma
 {
     const auto transform = emitter->GetGameObject()->GetTransform();
     const float3 particle_size(current_size, current_size, 0.0f);
-
+    const float3 camera_position = camera->GetGameObject()->GetTransform()->GetGlobalPosition();
+    
     switch (emitter->GetParticlesProperties().orientation)
     {
     case ParticleSystem::ParticleOrientation::NORMAL:
     {
-        const Frustum* frustum = camera->GetFrustum();
-        const float3x3 rotate_part = transform->GetGlobalMatrix().RotatePart();
-        float4x4 global_model_matrix = transform->GetGlobalMatrix();
-        out_matrix = global_model_matrix.LookAt(rotate_part.Col(2), -frustum->Front(), rotate_part.Col(1), float3::unitY);
-        out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart() * rotate_part, particle_size);
+        const float3 direction = (camera_position - current_position).Normalized();
+        const auto orientation = ComponentTransform::SimulateLookAt(direction);
+        out_matrix = float4x4::FromTRS(current_position, orientation, particle_size);
         break;
     }
     case ParticleSystem::ParticleOrientation::HORIZONTAL:
@@ -138,10 +137,9 @@ void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_ma
     }
     case ParticleSystem::ParticleOrientation::VERTICAL:
     {
-        const float3 camera_position = camera->GetFrustum()->Pos();
-        const float3 camera_direction = (float3(camera_position.x, current_position.y, camera_position.z) - current_position).Normalized();
-        out_matrix = float4x4::LookAt(float3::unitZ, camera_direction, float3::unitY, float3::unitY);
-        out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart(), particle_size);
+        const float3 direction = (float3(camera_position.x, current_position.y, camera_position.z) - current_position).Normalized();
+        const auto orientation = ComponentTransform::SimulateLookAt(direction);
+        out_matrix = float4x4::FromTRS(current_position, orientation, particle_size);
         break;
     }
     }

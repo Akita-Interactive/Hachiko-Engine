@@ -310,7 +310,7 @@ void Hachiko::Scene::GetNavmeshData(std::vector<float>& scene_vertices, std::vec
 
 void Hachiko::Scene::RemoveParticleComponent(const UID& component_id)
 {
-    auto predicate = [&](const ComponentParticleSystem* component) {
+    auto predicate = [&](const Component* component) {
         return component->GetID() == component_id;
     };
     const auto it = std::find_if(particles.begin(), particles.end(), predicate);

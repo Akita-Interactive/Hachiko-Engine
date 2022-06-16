@@ -14,6 +14,7 @@
 #include "ModuleInput.h"
 
 #include "components/ComponentCamera.h"
+#include "components/ComponentParticleSystem.h"
 
 Hachiko::ModuleRender::ModuleRender() = default;
 

@@ -121,14 +121,14 @@ namespace Hachiko
 
         void GetNavmeshData(std::vector<float>& scene_vertices, std::vector<int>& scene_triangles, std::vector<float>& scene_normals, AABB& scene_bounds);
 
-        void AddParticleComponent(ComponentParticleSystem* new_particle)
+        void AddParticleComponent(Component* new_particle)
         {
             particles.emplace_back(new_particle);
         }
 
         void RemoveParticleComponent(const UID& component_id);
 
-        const std::vector<ComponentParticleSystem*>& GetSceneParticles()
+        const std::vector<Component*>& GetSceneParticles()
         {
             return particles;
         }
@@ -150,7 +150,7 @@ namespace Hachiko
 
         bool rebuild_batch = true;
         BatchManager* batch_manager = nullptr;
-        std::vector<ComponentParticleSystem*> particles{};
+        std::vector<Component*> particles{};
 
     public:
         class Memento
