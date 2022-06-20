@@ -180,7 +180,13 @@ std::vector<UID> Hachiko::ModuleResources::CreateAsset(Resource::Type type, cons
     case Resource::Type::MATERIAL:
         {
             MaterialImporter material_importer;
-            new_resources.emplace_back(material_importer.CreateEmptyMaterial(name));
+            new_resources.emplace_back(material_importer.CreateAsset(name));
+            break;
+        }
+    case Resource::Type::STATE_MACHINE:
+        {
+            StateMachineImporter state_machine_importer;
+            new_resources.emplace_back(state_machine_importer.CreateAsset(name));
             break;
         }
     }

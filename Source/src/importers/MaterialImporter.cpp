@@ -93,7 +93,7 @@ Hachiko::Resource* Hachiko::MaterialImporter::Load(UID id)
     return material;
 }
 
-Hachiko::UID Hachiko::MaterialImporter::CreateEmptyMaterial(const std::string& name)
+Hachiko::UID Hachiko::MaterialImporter::CreateAsset(const std::string& name)
 {
     // This uid wont be used
     ResourceMaterial* material = new ResourceMaterial(0);

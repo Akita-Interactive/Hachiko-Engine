@@ -134,3 +134,14 @@ void Hachiko::StateMachineImporter::GenerateAssetStateMachine(const ResourceStat
 
     FileSystem::Save(asset_path.c_str(), state_machine_node);
 }
+
+Hachiko::UID Hachiko::StateMachineImporter::CreateAsset(const std::string& name)
+{
+    UID uid = UUID::GenerateUID();
+    ResourceStateMachine state_machine = ResourceStateMachine(uid);
+    state_machine.SetName(name);
+
+    Save(uid, &state_machine);
+
+    return uid;
+}

@@ -23,7 +23,7 @@ namespace Hachiko
         void Save(UID id, const Resource* material) override;
         Resource* Load(UID id) override;
         // Create new material
-        UID CreateEmptyMaterial(const std::string& name);        
+        UID CreateAsset(const std::string& name);        
         UID CreateMaterialAssetFromAssimp(const std::string& model_path, aiMaterial* ai_material);
         void GenerateMaterialAssetFile(const ResourceMaterial* material);
     private:
