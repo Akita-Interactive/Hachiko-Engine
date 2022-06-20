@@ -137,11 +137,11 @@ void Hachiko::StateMachineImporter::GenerateAssetStateMachine(const ResourceStat
 
 Hachiko::UID Hachiko::StateMachineImporter::CreateAsset(const std::string& name)
 {
-    UID uid = UUID::GenerateUID();
-    ResourceStateMachine state_machine = ResourceStateMachine(uid);
+    ResourceStateMachine state_machine = ResourceStateMachine(0);
     state_machine.SetName(name);
 
-    Save(uid, &state_machine);
+    GenerateAssetStateMachine(&state_machine);
 
-    return uid;
+    const std::string state_machine_path = StringUtils::Concat(GetResourcesPreferences()->GetAssetsPath(Resource::AssetType::STATE_MACHINE), name, STATE_MACHINE_EXTENSION);
+    return App->resources->ImportAssetFromAnyPath(state_machine_path)[0];
 }
