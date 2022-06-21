@@ -545,4 +545,57 @@ namespace YAML
             return true;
         }
     };
+
+    template<>
+    struct convert<float>
+    {
+        static constexpr int max_digits = 4;
+
+        static Node encode(const float& rhs)
+        {
+            std::stringstream stream;
+            stream.precision(max_digits);
+            conversion::inner_encode(rhs, stream);
+            return Node(stream.str());
+        }
+
+        static bool decode(const Node& node, float& rhs)
+        {
+            if (node.Type() != NodeType::Scalar)
+            {
+                return false;
+            }
+            const std::string& input = node.Scalar();
+            std::stringstream stream(input);
+            stream.unsetf(std::ios::dec);
+            if (conversion::ConvertStreamTo(stream, rhs))
+            {
+                return true;
+            }
+            if (std::numeric_limits<float>::has_infinity)
+            {
+                if (conversion::IsInfinity(input))
+                {
+                    rhs = std::numeric_limits<float>::infinity();
+                    return true;
+                }
+                if (conversion::IsNegativeInfinity(input))
+                {
+                    rhs = - std::numeric_limits<float>::infinity();
+                    return true;
+                }
+            }
+
+            if (std::numeric_limits<float>::has_quiet_NaN)
+            {
+                if (conversion::IsNaN(input))
+                {
+                    rhs = std::numeric_limits<float>::quiet_NaN();
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    };
 } // namespace YAML
