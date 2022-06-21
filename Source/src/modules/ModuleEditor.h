@@ -12,6 +12,7 @@
 #include "ui/WindowConsole.h"
 #include "ui/WindowTimers.h"
 #include "ui/WindowProject.h"
+#include "ui/WindowStateMachine.h"
 
 #include "ModuleRender.h"
 
@@ -57,13 +58,7 @@ namespace Hachiko
             return selected_go;
         }
 
-        void SetSelectedGO(GameObject* const selected_game_object)
-        {
-            selected_go = selected_game_object;
-            Event evt(Event::Type::SELECTION_CHANGED);
-            evt.SetEventData<SelectionChangedEventPayload>(selected_go);
-            App->event->Publish(evt);
-        }
+        void SetSelectedGO(GameObject* const selected_game_object);
 
         [[nodiscard]] const WindowScene* GetSceneWindow() const
         {
@@ -121,6 +116,7 @@ namespace Hachiko
         WindowResource w_resource;
         WindowTimers w_timers;
         WindowProject w_project;
+        WindowStateMachine w_state_machine;
 
         EditorPreferences* editor_prefs = nullptr;
         Editor::Theme::Type theme = Editor::Theme::Type::DARK;

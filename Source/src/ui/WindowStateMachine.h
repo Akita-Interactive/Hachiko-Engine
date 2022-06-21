@@ -2,7 +2,14 @@
 #include "Window.h"
 #include "resources/ResourceStateMachine.h"
 
-namespace ed = ax::NodeEditor;
+namespace ax
+{
+    namespace NodeEditor
+    {
+        struct PinId;
+        struct EditorContext;
+    }
+}
 
 namespace Hachiko
 {
@@ -11,27 +18,23 @@ namespace Hachiko
     public:
 
         WindowStateMachine();
-        WindowStateMachine(std::string name);
 
         ~WindowStateMachine() override;
 
         void Update() override;
 
-        void SetStateMachine(ResourceStateMachine* resourceStateMachine);
-
-        void DrawNodes();
-        void DrawTransitions();
-        void CreateTransitions();
+        void DrawNodes(ResourceStateMachine* r_state_machine);
+        void DrawTransitions(ResourceStateMachine* r_state_machine);
+        void CreateTransitions(ResourceStateMachine* r_state_machine);
 
         void ShowContextMenus();
-        void ShowAddNodeMenu();
-        void ShowNodeMenu();
-        void ShowLinkMenu();
+        void ShowAddNodeMenu(ResourceStateMachine* r_state_machine);
+        void ShowNodeMenu(ResourceStateMachine* r_state_machine);
+        void ShowLinkMenu(ResourceStateMachine* r_state_machine);
 
         void ShowHelp(); 
 
-        void AddAnimationNode(unsigned int index);
-
+        void AddAnimationNode(ResourceStateMachine* r_state_machine, unsigned int index);
 
     private:
 
@@ -42,9 +45,8 @@ namespace Hachiko
         bool editIT = false;
 
         ImVec2 new_node_pos;
-        ed::PinId new_node_pin = 0;
+        ax::NodeEditor::PinId new_node_pin;
 
-        ResourceStateMachine* r_state_machien = nullptr;
-        ed::EditorContext* context = nullptr;
+        ax::NodeEditor::EditorContext* context = nullptr;
     };
 } // namespace Hachiko

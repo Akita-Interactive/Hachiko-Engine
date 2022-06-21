@@ -34,6 +34,11 @@ namespace Hachiko
             return current_animation;
         }
 
+        ResourceStateMachine* GetStateMachine()
+        {
+            return state_machine;
+        }
+
     private:
         void LoadStateMachine();
         void AnimationSelector(unsigned clip_idx);
@@ -49,7 +54,6 @@ namespace Hachiko
         ResourceAnimation* current_animation = nullptr;
 
         // SM CONTROL
-        WindowStateMachine* windowStateMachine = nullptr;
         ResourceStateMachine* state_machine = nullptr;
         std::string auxiliary_name;
         unsigned editing_clip_idx = 0;

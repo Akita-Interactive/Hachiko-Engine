@@ -24,6 +24,7 @@ Hachiko::ModuleEditor::ModuleEditor()
     windows.push_back(&w_resource);
     //windows.push_back(&w_project);
     windows.push_back(&w_timers);
+    windows.push_back(&w_state_machine);
 #endif
 }
 
@@ -381,6 +382,7 @@ void Hachiko::ModuleEditor::ViewMenu()
         ImGui::MenuItem(w_resource.name, nullptr, &w_resource.active);
         ImGui::MenuItem(w_project.name, nullptr, &w_project.active);
         ImGui::MenuItem(w_timers.name, nullptr, &w_timers.active);
+        ImGui::MenuItem(w_state_machine.name, nullptr, &w_state_machine.active);
         ImGui::EndMenu();
     }
 }
@@ -581,4 +583,12 @@ void Hachiko::ModuleEditor::History::CleanUp()
         mementos.erase(mementos.begin(), mementos.end());
         mementos.clear();
     }
+}
+
+void Hachiko::ModuleEditor::SetSelectedGO(GameObject* const selected_game_object)
+{
+    selected_go = selected_game_object;
+    Event evt(Event::Type::SELECTION_CHANGED);
+    evt.SetEventData<SelectionChangedEventPayload>(selected_go);
+    App->event->Publish(evt);
 }

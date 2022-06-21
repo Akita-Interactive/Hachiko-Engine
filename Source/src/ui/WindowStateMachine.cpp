@@ -4,81 +4,92 @@
 #include "imgui_node_editor.h"
 #include "modules/ModuleEditor.h"
 
+#include "components/ComponentAnimation.h"
+
 #define DEFAULT_BLEND 300
 
 
-Hachiko::WindowStateMachine::WindowStateMachine() : Window("State Machine editor - Press Left Alt + H for help", false)
-{}
-
-Hachiko::WindowStateMachine::WindowStateMachine(std::string name) : Window(std::string(name + std::string(" State Machine editor - Press Left Alt + H for help")).c_str(), false)
+Hachiko::WindowStateMachine::WindowStateMachine() : Window("State Machine editor", false)
 {
-    context = ed::CreateEditor();
+    context = ax::NodeEditor::CreateEditor();
 }
 
 Hachiko::WindowStateMachine::~WindowStateMachine()
 {
-    r_state_machien = nullptr;
-    ed::DestroyEditor(context);
+    ax::NodeEditor::DestroyEditor(context);
 }
 
 void Hachiko::WindowStateMachine::Update()
 {
-    
     ImGui::SetNextWindowSize(ImVec2(400.0f, 200.0f), ImGuiCond_FirstUseEver);
-    if (!ImGui::Begin((std::string(ICON_FA_BEZIER_CURVE " ") + r_state_machien->state_m_name.c_str() + " - Left Alt + H for help").c_str(), &active))
+
+    ResourceStateMachine* r_state_machine = nullptr;
+    GameObject* selected_gameobject = App->editor->GetSelectedGameObject();
+    if (selected_gameobject != nullptr)
+    {
+        ComponentAnimation* component_animation = selected_gameobject->GetComponent<ComponentAnimation>();
+        r_state_machine = (component_animation != nullptr) ? component_animation->GetStateMachine() : nullptr;
+    }
+    
+    std::string window_name
+        = StringUtils::Concat(ICON_FA_BEZIER_CURVE, " Animator", (r_state_machine != nullptr) ? " " + r_state_machine->state_m_name : "", " - Left Alt + H for help###WindowStateMachine");
+    if (!ImGui::Begin(window_name.c_str(), &active))
     {
         ImGui::End();
         return;
     }
 
-    ed::SetCurrentEditor(context);
-    ed::Begin("State Machine Editor", ImVec2(0.0, 0.0f)); // TODO: Revise why this causes memory leaks
+    ax::NodeEditor::SetCurrentEditor(context);
+    ax::NodeEditor::Begin("State Machine Editor", ImVec2(0.0, 0.0f)); // TODO: Revise why this causes memory leaks
     
-    DrawNodes();
-    DrawTransitions();
-    CreateTransitions();
-
-    ed::Suspend();
-    ShowContextMenus();
-    ShowNodeMenu();
-    ShowLinkMenu();
-    ShowAddNodeMenu();
-    ed::Resume();
-   
-    ShowHelp();
-
-    if (ImGui::IsKeyDown(SDL_SCANCODE_ESCAPE))
+    if (r_state_machine != nullptr)
     {
-        editTrigger = false;
-        editIT = false;
+        DrawNodes(r_state_machine);
+        DrawTransitions(r_state_machine);
+        CreateTransitions(r_state_machine);
+
+        ax::NodeEditor::Suspend();
+        ShowContextMenus();
+        ShowNodeMenu(r_state_machine);
+        ShowLinkMenu(r_state_machine);
+        ShowAddNodeMenu(r_state_machine);
+        ax::NodeEditor::Resume();
+   
+        ShowHelp();
+
+        if (ImGui::IsKeyDown(SDL_SCANCODE_ESCAPE))
+        {
+            editTrigger = false;
+            editIT = false;
+        }
     }
 
-    ed::End();
-    ed::SetCurrentEditor(nullptr);
+    ax::NodeEditor::End();
+    ax::NodeEditor::SetCurrentEditor(nullptr);
 
     ImGui::End();
 }
 
-void Hachiko::WindowStateMachine::DrawNodes()
+void Hachiko::WindowStateMachine::DrawNodes(ResourceStateMachine* r_state_machine)
 {
-    for (int i = 0; i < r_state_machien->nodes.size(); ++i)
+    for (int i = 0; i < r_state_machine->nodes.size(); ++i)
     {
-        ed::PushStyleColor(ed::StyleColor_PinRect, ImColor(60, 180, 255, 150));
-        ed::PushStyleColor(ed::StyleColor_PinRectBorder, ImColor(60, 180, 255, 150));
+        ax::NodeEditor::PushStyleColor(ax::NodeEditor::StyleColor_PinRect, ImColor(60, 180, 255, 150));
+        ax::NodeEditor::PushStyleColor(ax::NodeEditor::StyleColor_PinRectBorder, ImColor(60, 180, 255, 150));
 
-        ed::BeginNode(i * 3 + 1);
+        ax::NodeEditor::BeginNode(i * 3 + 1);
         ImGui::Indent(1.0);
-        ImGui::TextColored(ImVec4(255, 255, 0, 255), r_state_machien->GetNodeName(i).c_str());
+        ImGui::TextColored(ImVec4(255, 255, 0, 255), r_state_machine->GetNodeName(i).c_str());
 
         ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 0.5f * ImGui::GetStyle().Alpha);
 
-        ImVec2 size = ed::GetNodeSize(i * 3 + 1);
+        ImVec2 size = ax::NodeEditor::GetNodeSize(i * 3 + 1);
 
         ImGui::PopStyleVar();
 
         ImGui::Dummy(ImVec2(96.0, 8.0));
-        ImGui::BulletText("Clip: %s", r_state_machien->GetNodeClip(i).c_str());
-        if (i == r_state_machien->GetDefaultNode())
+        ImGui::BulletText("Clip: %s", r_state_machine->GetNodeClip(i).c_str());
+        if (i == r_state_machine->GetDefaultNode())
         {
             ImGui::BulletText("Default");
         }
@@ -88,49 +99,49 @@ void Hachiko::WindowStateMachine::DrawNodes()
         ImGui::Dummy(ImVec2(64.0, 8.0));
 
         // In Pin
-        ed::PushStyleVar(ed::StyleVar_PinArrowSize, 8.0f);
-        ed::PushStyleVar(ed::StyleVar_PinArrowWidth, 8.0f);
-        ed::PushStyleVar(ed::StyleVar_PinRadius, 10.0f);
-        ed::PushStyleVar(ed::StyleVar_TargetDirection, ImVec2(0.0f, 0.0f));
-        ed::BeginPin(i * 3 + 2, ed::PinKind::Input);
+        ax::NodeEditor::PushStyleVar(ax::NodeEditor::StyleVar_PinArrowSize, 8.0f);
+        ax::NodeEditor::PushStyleVar(ax::NodeEditor::StyleVar_PinArrowWidth, 8.0f);
+        ax::NodeEditor::PushStyleVar(ax::NodeEditor::StyleVar_PinRadius, 10.0f);
+        ax::NodeEditor::PushStyleVar(ax::NodeEditor::StyleVar_TargetDirection, ImVec2(0.0f, 0.0f));
+        ax::NodeEditor::BeginPin(i * 3 + 2, ax::NodeEditor::PinKind::Input);
         ImGui::Text("In");
-        ed::EndPin();
-        ed::PopStyleVar(4);
+        ax::NodeEditor::EndPin();
+        ax::NodeEditor::PopStyleVar(4);
 
         // Out Pin
         ImGui::SameLine(size.x - 40);
-        ed::PushStyleVar(ed::StyleVar_PinArrowSize, 0.0f);
-        ed::PushStyleVar(ed::StyleVar_PinArrowWidth, 0.0f);
-        ed::PushStyleVar(ed::StyleVar_TargetDirection, ImVec2(0.0f, 0.0f));
-        ed::BeginPin(i * 3 + 3, ed::PinKind::Output);
+        ax::NodeEditor::PushStyleVar(ax::NodeEditor::StyleVar_PinArrowSize, 0.0f);
+        ax::NodeEditor::PushStyleVar(ax::NodeEditor::StyleVar_PinArrowWidth, 0.0f);
+        ax::NodeEditor::PushStyleVar(ax::NodeEditor::StyleVar_TargetDirection, ImVec2(0.0f, 0.0f));
+        ax::NodeEditor::BeginPin(i * 3 + 3, ax::NodeEditor::PinKind::Output);
         ImGui::Text("Out");
 
-        ed::EndPin();
+        ax::NodeEditor::EndPin();
 
-        ed::EndNode();
+        ax::NodeEditor::EndNode();
 
-        ed::PopStyleVar(3);
-        ed::PopStyleColor(2);
+        ax::NodeEditor::PopStyleVar(3);
+        ax::NodeEditor::PopStyleColor(2);
     }
 }
 
-void Hachiko::WindowStateMachine::DrawTransitions()
+void Hachiko::WindowStateMachine::DrawTransitions(ResourceStateMachine* r_state_machine)
 {
-    ed::PushStyleVar(ed::StyleVar_LinkStrength, 4.0f);
-    for (const Hachiko::ResourceStateMachine::Transition& transition : r_state_machien->transitions)
+    ax::NodeEditor::PushStyleVar(ax::NodeEditor::StyleVar_LinkStrength, 4.0f);
+    for (const Hachiko::ResourceStateMachine::Transition& transition : r_state_machine->transitions)
     {
-        int sourceID = r_state_machien->FindNode(transition.source);
-        int targetID = r_state_machien->FindNode(transition.target);
+        int sourceID = r_state_machine->FindNode(transition.source);
+        int targetID = r_state_machine->FindNode(transition.target);
 
         int linkID = sourceID * 100 + targetID;
-        ed::Link(linkID, sourceID * 3 + 3, targetID * 3 + 2);
+        ax::NodeEditor::Link(linkID, sourceID * 3 + 3, targetID * 3 + 2);
     }
-    ed::PopStyleVar(1);
+    ax::NodeEditor::PopStyleVar(1);
 }
 
-void Hachiko::WindowStateMachine::CreateTransitions() 
+void Hachiko::WindowStateMachine::CreateTransitions(ResourceStateMachine* r_state_machine)
 {
-    if (ed::BeginCreate(ImColor(255, 255, 255), 2.0f))
+    if (ax::NodeEditor::BeginCreate(ImColor(255, 255, 255), 2.0f))
     {
         auto showLabel = [](const char* label, ImColor color) {
             ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetTextLineHeight());
@@ -149,8 +160,8 @@ void Hachiko::WindowStateMachine::CreateTransitions()
             ImGui::TextUnformatted(label);
         };
 
-        ed::PinId startPinId = 0, endPinId = 0;
-        if (ed::QueryNewLink(&startPinId, &endPinId))
+        ax::NodeEditor::PinId startPinId = 0, endPinId = 0;
+        if (ax::NodeEditor::QueryNewLink(&startPinId, &endPinId))
         {
             if (startPinId && endPinId)
             {
@@ -161,67 +172,67 @@ void Hachiko::WindowStateMachine::CreateTransitions()
 
                 if (endPinId == startPinId)
                 {
-                    ed::RejectNewItem(ImColor(255, 0, 0), 2.0f);
+                    ax::NodeEditor::RejectNewItem(ImColor(255, 0, 0), 2.0f);
                 }
                 else if (startIsInput == endIsInput)
                 {
                     showLabel("x Incompatible Pins. Must be In->Out", ImColor(45, 32, 32, 180));
-                    ed::RejectNewItem(ImColor(255, 0, 0), 2.0f);
+                    ax::NodeEditor::RejectNewItem(ImColor(255, 0, 0), 2.0f);
                 }
                 else if (startNode == endNode)
                 {
                     showLabel("x Cannot connect to self", ImColor(45, 32, 32, 180));
-                    ed::RejectNewItem(ImColor(255, 0, 0), 1.0f);
+                    ax::NodeEditor::RejectNewItem(ImColor(255, 0, 0), 1.0f);
                 }
                 else
                 {
                     showLabel("+ Create Link", ImColor(32, 45, 32, 180));
-                    if (ed::AcceptNewItem(ImColor(128, 255, 128), 4.0f))
+                    if (ax::NodeEditor::AcceptNewItem(ImColor(128, 255, 128), 4.0f))
                     {
                         if (startIsInput)
                         {
-                            r_state_machien->AddTransition(r_state_machien->GetNodeName(endNode).c_str(), r_state_machien->GetNodeName(startNode).c_str(), "", DEFAULT_BLEND);
+                            r_state_machine->AddTransition(r_state_machine->GetNodeName(endNode).c_str(), r_state_machine->GetNodeName(startNode).c_str(), "", DEFAULT_BLEND);
                         }
                         else
                         {
-                            r_state_machien->AddTransition(r_state_machien->GetNodeName(startNode).c_str(), r_state_machien->GetNodeName(endNode).c_str(), "", DEFAULT_BLEND);
+                            r_state_machine->AddTransition(r_state_machine->GetNodeName(startNode).c_str(), r_state_machine->GetNodeName(endNode).c_str(), "", DEFAULT_BLEND);
                         }
 
-                        r_state_machien->Save();
+                        r_state_machine->Save();
                     }
                 }
             }
         }
     }
-    ed::EndCreate();
+    ax::NodeEditor::EndCreate();
 }
 
 void Hachiko::WindowStateMachine::ShowContextMenus()
 {
     auto openPopupPosition = ImGui::GetMousePos();
 
-    ed::NodeId contextNodeId = 0;
-    ed::PinId contextPinId = 0;
-    ed::LinkId contextLinkId = 0;
+    ax::NodeEditor::NodeId contextNodeId = 0;
+    ax::NodeEditor::PinId contextPinId = 0;
+    ax::NodeEditor::LinkId contextLinkId = 0;
 
-    if (ed::ShowBackgroundContextMenu())
+    if (ax::NodeEditor::ShowBackgroundContextMenu())
     {
         new_node_pos = ImGui::GetMousePos();
         ImGui::OpenPopup("Add Node Menu");
     }
-    else if (ed::ShowNodeContextMenu(&contextNodeId))
+    else if (ax::NodeEditor::ShowNodeContextMenu(&contextNodeId))
     {
         nodeId = int(contextNodeId.Get() - 1) / 3;
         ImGui::OpenPopup("Node Menu");
     }
-    else if (ed::ShowLinkContextMenu(&contextLinkId))
+    else if (ax::NodeEditor::ShowLinkContextMenu(&contextLinkId))
     {
         linkId = int(contextLinkId.Get());
         ImGui::OpenPopup("Link Menu");
     }
 }
 
-void Hachiko::WindowStateMachine::ShowAddNodeMenu()
+void Hachiko::WindowStateMachine::ShowAddNodeMenu(ResourceStateMachine* r_state_machine)
 {
     if (ImGui::BeginPopup("Add Node Menu"))
     {
@@ -230,20 +241,20 @@ void Hachiko::WindowStateMachine::ShowAddNodeMenu()
 
         if (ImGui::BeginMenu("New animation"))
         {
-            for (unsigned int i = 0, count = r_state_machien->GetNumClips(); i < count; ++i)
+            for (unsigned int i = 0, count = r_state_machine->GetNumClips(); i < count; ++i)
             {
-                if (ImGui::MenuItem(r_state_machien->GetClipName(i).c_str()))
+                if (ImGui::MenuItem(r_state_machine->GetClipName(i).c_str()))
                 {
-                    unsigned int node_idx = r_state_machien->GetNumNodes();
-                    ed::SetNodePosition(node_idx * 3 + 1, ed::ScreenToCanvas(new_node_pos));
-                    AddAnimationNode(i);
+                    unsigned int node_idx = r_state_machine->GetNumNodes();
+                    ax::NodeEditor::SetNodePosition(node_idx * 3 + 1, ax::NodeEditor::ScreenToCanvas(new_node_pos));
+                    AddAnimationNode(r_state_machine, i);
 
                     unsigned int out_node = 0;
-                    if (new_node_pin != ed::PinId::Invalid)
+                    if (new_node_pin != ax::NodeEditor::PinId::Invalid)
                     {
                         unsigned int out_node = unsigned int(new_node_pin.Get() - 1) / 3;
-                        r_state_machien->AddTransition(r_state_machien->GetNodeName(out_node), r_state_machien->GetNodeName(node_idx), "", DEFAULT_BLEND);
-                        r_state_machien->Save();
+                        r_state_machine->AddTransition(r_state_machine->GetNodeName(out_node), r_state_machine->GetNodeName(node_idx), "", DEFAULT_BLEND);
+                        r_state_machine->Save();
                     }
                 }
             }
@@ -254,7 +265,7 @@ void Hachiko::WindowStateMachine::ShowAddNodeMenu()
     }
 }
 
-void Hachiko::WindowStateMachine::ShowNodeMenu() 
+void Hachiko::WindowStateMachine::ShowNodeMenu(ResourceStateMachine* r_state_machine)
 {
     if (ImGui::BeginPopup("Node Menu"))
     {
@@ -265,13 +276,13 @@ void Hachiko::WindowStateMachine::ShowNodeMenu()
         {
             if (ImGui::MenuItem("Change clip"))
             {
-                r_state_machien->EditNodeClip(r_state_machien->GetNodeName(nodeId).c_str(), "newClip");
+                r_state_machine->EditNodeClip(r_state_machine->GetNodeName(nodeId).c_str(), "newClip");
                 ImGui::CloseCurrentPopup();
             }
 
             if (ImGui::MenuItem("Change looping"))
             {
-                r_state_machien->EditClipLoop(r_state_machien->GetNodeName(nodeId).c_str(), !r_state_machien->clips[r_state_machien->FindClip(r_state_machien->nodes[nodeId].clip.c_str())].loop);
+                r_state_machine->EditClipLoop(r_state_machine->GetNodeName(nodeId).c_str(), !r_state_machine->clips[r_state_machine->FindClip(r_state_machine->nodes[nodeId].clip.c_str())].loop);
                 ImGui::CloseCurrentPopup();
             }
             
@@ -280,17 +291,17 @@ void Hachiko::WindowStateMachine::ShowNodeMenu()
 
         if (ImGui::MenuItem("Delete node"))
         {
-            ed::DeleteNode(ed::NodeId((nodeId + 1) * 3));
-            r_state_machien->RemoveNode(r_state_machien->GetNodeName(nodeId).c_str());
+            ax::NodeEditor::DeleteNode(ax::NodeEditor::NodeId((nodeId + 1) * 3));
+            r_state_machine->RemoveNode(r_state_machine->GetNodeName(nodeId).c_str());
             ImGui::CloseCurrentPopup();
         }
         
-        r_state_machien->Save();
+        r_state_machine->Save();
         ImGui::EndPopup();
     }
 }
 
-void Hachiko::WindowStateMachine::ShowLinkMenu() 
+void Hachiko::WindowStateMachine::ShowLinkMenu(ResourceStateMachine* r_state_machine)
 {
     if (ImGui::BeginPopup("Link Menu"))
     {
@@ -314,9 +325,9 @@ void Hachiko::WindowStateMachine::ShowLinkMenu()
 
         if (ImGui::MenuItem("Delete"))
         {
-            ed::DeleteLink(ed::LinkId((linkId + 1) + 2));
-            r_state_machien->RemoveTransitionWithTarget(r_state_machien->nodes[linkId / 100].name, r_state_machien->nodes[linkId % 100].name);
-            r_state_machien->Save();
+            ax::NodeEditor::DeleteLink(ax::NodeEditor::LinkId((linkId + 1) + 2));
+            r_state_machine->RemoveTransitionWithTarget(r_state_machine->nodes[linkId / 100].name, r_state_machine->nodes[linkId % 100].name);
+            r_state_machine->Save();
             ImGui::CloseCurrentPopup();
         }
 
@@ -328,9 +339,9 @@ void Hachiko::WindowStateMachine::ShowLinkMenu()
         ImGui::OpenPopup("editTrigger");
         if (ImGui::BeginPopup("editTrigger"))
         {
-            std::string sourceName = r_state_machien->nodes[linkId / 100].name;
-            std::string targetName = r_state_machien->nodes[linkId % 100].name;
-            const char* trigger = r_state_machien->transitions[r_state_machien->FindTransitionWithTarget(sourceName, targetName)].trigger.c_str();
+            std::string sourceName = r_state_machine->nodes[linkId / 100].name;
+            std::string targetName = r_state_machine->nodes[linkId % 100].name;
+            const char* trigger = r_state_machine->transitions[r_state_machine->FindTransitionWithTarget(sourceName, targetName)].trigger.c_str();
 
             static char newTrigger[128] = "";
             snprintf(newTrigger, 128, trigger ? trigger : "");
@@ -339,8 +350,8 @@ void Hachiko::WindowStateMachine::ShowLinkMenu()
             if (ImGui::InputText(" Edit trigger", newTrigger, IM_ARRAYSIZE(newTrigger), editTrigger_input_flags))
             {
                 editTrigger = false;
-                r_state_machien->EditTransitionTrigger(sourceName, targetName, newTrigger);
-                r_state_machien->Save();
+                r_state_machine->EditTransitionTrigger(sourceName, targetName, newTrigger);
+                r_state_machine->Save();
                 ImGui::CloseCurrentPopup();
             }
 
@@ -354,9 +365,9 @@ void Hachiko::WindowStateMachine::ShowLinkMenu()
         ImGui::OpenPopup("editIT");
         if (ImGui::BeginPopup("editIT"))
         {
-            std::string sourceName = r_state_machien->nodes[linkId / 100].name;
-            std::string targetName = r_state_machien->nodes[linkId % 100].name;
-            unsigned int it = r_state_machien->transitions[r_state_machien->FindTransitionWithTarget(sourceName, targetName)].blend;
+            std::string sourceName = r_state_machine->nodes[linkId / 100].name;
+            std::string targetName = r_state_machine->nodes[linkId % 100].name;
+            unsigned int it = r_state_machine->transitions[r_state_machine->FindTransitionWithTarget(sourceName, targetName)].blend;
 
             static char newIT[128] = "";
             snprintf(newIT, 128, std::to_string(it).c_str());
@@ -365,8 +376,8 @@ void Hachiko::WindowStateMachine::ShowLinkMenu()
             if (ImGui::InputText(" Edit interpolation time", newIT, IM_ARRAYSIZE(newIT), editIT_input_flags))
             {
                 editIT = false;
-                r_state_machien->EditTransitionInterpolationTime(r_state_machien->nodes[linkId / 100].name, r_state_machien->nodes[linkId % 100].name, std::stoi(newIT));
-                r_state_machien->Save();
+                r_state_machine->EditTransitionInterpolationTime(r_state_machine->nodes[linkId / 100].name, r_state_machine->nodes[linkId % 100].name, std::stoi(newIT));
+                r_state_machine->Save();
                 ImGui::CloseCurrentPopup();
             }
 
@@ -413,27 +424,22 @@ void Hachiko::WindowStateMachine::ShowHelp()
     }
 }
 
-void Hachiko::WindowStateMachine::AddAnimationNode(unsigned int index) 
+void Hachiko::WindowStateMachine::AddAnimationNode(ResourceStateMachine* r_state_machine, unsigned int index)
 {
-    std::string name = r_state_machien->GetClipName(index);
-    std::string clip = r_state_machien->GetClipName(index);
+    std::string name = r_state_machine->GetClipName(index);
+    std::string clip = r_state_machine->GetClipName(index);
 
-    unsigned int node_idx = r_state_machien->FindNode(name);
+    unsigned int node_idx = r_state_machine->FindNode(name);
 
     unsigned int counter = 0;
-    while (node_idx < r_state_machien->GetNumNodes())
+    while (node_idx < r_state_machine->GetNumNodes())
     {
         char tmp[128];
         snprintf(tmp, 127, "%s_%d", name.c_str(), ++counter);
         name = std::string(tmp);
-        node_idx = r_state_machien->FindNode(name);
+        node_idx = r_state_machine->FindNode(name);
     }
 
-    r_state_machien->AddNode(name, clip);
-    r_state_machien->Save();
-}
-
-void Hachiko::WindowStateMachine::SetStateMachine(ResourceStateMachine* resourceStateMachine) 
-{
-    r_state_machien = resourceStateMachine;
+    r_state_machine->AddNode(name, clip);
+    r_state_machine->Save();
 }

@@ -12,18 +12,14 @@
 #include "animation/AnimationController.h"
 #include "importers/AnimationImporter.h"
 
-#include "ui/WindowStateMachine.h"
-
 Hachiko::ComponentAnimation::ComponentAnimation(GameObject* container) : Component(Type::ANIMATION, container)
 {
     auxiliary_name = game_object->name;
     controller = new AnimationController();
-    windowStateMachine = new WindowStateMachine(game_object->name);
 }
 
 Hachiko::ComponentAnimation::~ComponentAnimation()
 {
-    delete windowStateMachine;
     App->resources->ReleaseResource(state_machine);
     delete controller;
 }
@@ -173,9 +169,6 @@ void Hachiko::ComponentAnimation::DrawGui()
 
         if (state_machine != nullptr)
         {
-            windowStateMachine->SetStateMachine(static_cast<ResourceStateMachine*> (state_machine));
-            windowStateMachine->Update();
-
             char name[128];
             strcpy_s(name, state_machine->state_m_name.c_str());
 
