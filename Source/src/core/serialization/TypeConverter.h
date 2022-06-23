@@ -550,12 +550,16 @@ namespace YAML
     struct convert<float>
     {
         static constexpr int max_digits = 4;
+        inline static float rounding_factor = static_cast<float>(std::pow(10, max_digits));
+        inline static float rounding_coefficient = 1 / rounding_factor;
 
         static Node encode(const float& rhs)
         {
             std::stringstream stream;
             stream.precision(max_digits);
-            conversion::inner_encode(rhs, stream);
+            stream.setf(std::ios::dec, std::ios::basefield);
+            const float value = std::round(rhs * rounding_factor) * rounding_coefficient;
+            conversion::inner_encode(value, stream);
             return Node(stream.str());
         }
 
