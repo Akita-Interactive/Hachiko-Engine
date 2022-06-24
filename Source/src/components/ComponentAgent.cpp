@@ -32,10 +32,22 @@ void Hachiko::ComponentAgent::Update()
         // No agent no update
         return;
     }
+
     // Move agent through NavMesh
-    const dtCrowdAgent* dt_agent = App->navigation->GetCrowd()->getAgent(agent_id);
-    ComponentTransform* transform = game_object->GetTransform();
-    transform->SetGlobalPosition(float3(dt_agent->npos));
+    if (!is_player)
+    {
+        const dtCrowdAgent* dt_agent = App->navigation->GetCrowd()->getAgent(agent_id);
+        float3 agent_position(dt_agent->npos[0], dt_agent->npos[1], dt_agent->npos[2]);
+        game_object->GetTransform()->SetGlobalPosition(agent_position);
+    }
+    else
+    {
+        dtCrowdAgent* dt_agent = App->navigation->GetEditableAgent(agent_id);
+        const float3& position = game_object->GetTransform()->GetGlobalPosition();
+        dt_agent->npos[0] = position.x;
+        dt_agent->npos[1] = position.y;
+        dt_agent->npos[2] = position.z;
+    }
 }
 
 void Hachiko::ComponentAgent::Start()
@@ -115,11 +127,13 @@ void Hachiko::ComponentAgent::SetRadius(float new_radius)
     radius = new_radius;
 
     dtCrowdAgent* agent = App->navigation->GetEditableAgent(agent_id);
+    
     if (!agent)
     {
         return;
     }
-    agent->params.maxSpeed = radius;
+    
+    agent->params.radius = radius;
 }
 
 void Hachiko::ComponentAgent::SetMaxSpeed(float new_max_speed)
@@ -127,10 +141,12 @@ void Hachiko::ComponentAgent::SetMaxSpeed(float new_max_speed)
     max_speed = new_max_speed;
 
     dtCrowdAgent* agent = App->navigation->GetEditableAgent(agent_id);
+    
     if (!agent)
     {
         return;
     }
+    
     agent->params.maxSpeed = max_speed;
 }
 
@@ -139,10 +155,12 @@ void Hachiko::ComponentAgent::SetMaxAcceleration(float new_max_acceleration)
     max_acceleration = new_max_acceleration;
 
     dtCrowdAgent* agent = App->navigation->GetEditableAgent(agent_id);
+    
     if (!agent)
     {
         return;
     }
+    
     agent->params.maxAcceleration = max_acceleration;
 }
 
@@ -151,10 +169,12 @@ void Hachiko::ComponentAgent::SetObstacleAvoidance(bool obstacle_avoidance)
     avoid_obstacles = obstacle_avoidance;
 
     dtCrowdAgent* agent = App->navigation->GetEditableAgent(agent_id);
+    
     if (!agent)
     {
         return;
     }
+    
     if (avoid_obstacles)
     {
         agent->params.updateFlags |= DT_CROWD_OBSTACLE_AVOIDANCE;
@@ -163,6 +183,11 @@ void Hachiko::ComponentAgent::SetObstacleAvoidance(bool obstacle_avoidance)
     {
         agent->params.updateFlags ^= DT_CROWD_OBSTACLE_AVOIDANCE;
     }
+}
+
+void Hachiko::ComponentAgent::SetAsPlayer(bool new_is_player) 
+{
+    is_player = new_is_player;
 }
 
 void Hachiko::ComponentAgent::AddToCrowd()
@@ -189,7 +214,9 @@ void Hachiko::ComponentAgent::AddToCrowd()
     ap.updateFlags |= DT_CROWD_OPTIMIZE_VIS;
     ap.updateFlags |= DT_CROWD_OPTIMIZE_TOPO;
     ap.updateFlags |= DT_CROWD_SEPARATION;
-    if (avoid_obstacles) {
+    
+    if (avoid_obstacles) 
+    {
         ap.updateFlags |= DT_CROWD_OBSTACLE_AVOIDANCE;
     }
 
@@ -251,58 +278,67 @@ void Hachiko::ComponentAgent::DrawGui()
     ImGui::PushID(this);
     if (ImGuiUtils::CollapsingHeader(game_object, this, "Agent Component"))
     {
-        if (agent_id != -1)
+        if (ImGui::Checkbox("Player agent", &is_player))
         {
-            if (ImGui::Button("Remove From Navmesh"))
+            SetAsPlayer(is_player);
+        }
+
+        if (!is_player)
+        {
+            if (agent_id != -1)
             {
-                RemoveFromCrowd();
+                if (ImGui::Button("Remove From Navmesh"))
+                {
+                    RemoveFromCrowd();
+                }
             }
-        }
-        else
-        {
-            if (ImGui::Button("Add To Namesh"))
+            else
             {
-                AddToCrowd();
+                if (ImGui::Button("Add To Namesh"))
+                {
+                    AddToCrowd();
+                }
+
+                if (ImGui::Button("Move To Nearest Navmesh Point"))
+                {
+                    MoveToNearestNavmeshPoint();
+                }
             }
 
-            if (ImGui::Button("Move To Nearest Navmesh Point"))
+            ImGui::DragFloat3("Target Position", target_position.ptr(), 1.0f, -inf, inf);
+            if (ImGui::Button("Feed position"))
             {
-                MoveToNearestNavmeshPoint();
-            }    
-        }
+                SetTargetPosition(target_position);
+            }
 
-        ImGui::DragFloat3("Target Position", target_position.ptr(), 1.0f, -inf, inf);
-        if (ImGui::Button("Feed position"))
-        {
-            SetTargetPosition(target_position);
-        }
-        if (ImGui::DragFloat("Radius", &radius, 0.1f, 100.0f))
-        {
-            SetRadius(radius);
-        }
+            if (ImGui::DragFloat("Radius", &radius, 0.1f, 100.0f))
+            {
+                SetRadius(radius);
+            }
 
-        if (ImGui::DragFloat("Max Speed", &max_speed, 1.0f, 0.0f))
-        {
-            SetMaxSpeed(max_speed);
-        }
-        if (ImGui::DragFloat("Max Acceleration", &max_acceleration, 1.0f, 0.0f))
-        {
-            SetMaxAcceleration(max_acceleration);
-        }
-        if (ImGui::Checkbox("Use Pathfinding", &use_pathfinder))
-        {
-            // Updates target wih new pathfinding value
-            SetTargetPosition(target_position);
-        }
-        if (ImGui::Checkbox("Avoid obstacles (Pathfinding)", &avoid_obstacles))
-        {
-            SetObstacleAvoidance(avoid_obstacles);
-        }
+            if (ImGui::DragFloat("Max Speed", &max_speed, 1.0f, 0.0f))
+            {
+                SetMaxSpeed(max_speed);
+            }
+            if (ImGui::DragFloat("Max Acceleration", &max_acceleration, 1.0f, 0.0f))
+            {
+                SetMaxAcceleration(max_acceleration);
+            }
+            if (ImGui::Checkbox("Use Pathfinding", &use_pathfinder))
+            {
+                // Updates target wih new pathfinding value
+                SetTargetPosition(target_position);
+            }
+            if (ImGui::Checkbox("Avoid obstacles (Pathfinding)", &avoid_obstacles))
+            {
+                SetObstacleAvoidance(avoid_obstacles);
+            }
 
-        ImGui::Checkbox("Debug info", &show_debug_info);
-        if (show_debug_info)
-        {
-            DebugAgentInfo(App->navigation->GetCrowd()->getAgent(agent_id));
+            ImGui::Checkbox("Debug info", &show_debug_info);
+            if (show_debug_info)
+            {
+                DebugAgentInfo(App->navigation->GetCrowd()->getAgent(agent_id));
+            }
         }
     }
     ImGui::PopID();
@@ -314,6 +350,7 @@ void Hachiko::ComponentAgent::Save(YAML::Node& node) const
     node[MAX_SPEED] = max_speed;
     node[MAX_ACCELERATION] = max_acceleration;
     node[AVOID_OBSTACLES] = avoid_obstacles;
+    node[AGENT_RADIUS] = radius;
 }
 
 void Hachiko::ComponentAgent::Load(const YAML::Node& node)
@@ -321,4 +358,7 @@ void Hachiko::ComponentAgent::Load(const YAML::Node& node)
     max_speed = node[MAX_SPEED].as<float>();
     max_acceleration = node[MAX_ACCELERATION].as<float>();
     avoid_obstacles = node[AVOID_OBSTACLES].as<bool>();
+    
+    float radius = node[AGENT_RADIUS].IsDefined() ? node[AGENT_RADIUS].as<float>() : 0.5f;
+    SetRadius(radius);
 }

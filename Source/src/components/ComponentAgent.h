@@ -19,6 +19,7 @@ namespace Hachiko
 		void SetMaxSpeed(float new_max_speed);
 		void SetMaxAcceleration(float new_max_acceleration);
 		void SetObstacleAvoidance(bool obstacle_avoidance);
+        void SetAsPlayer(bool is_player);
 
 		float GetMaxSpeed() const { return max_speed; }
         float GetRadius() const{ return radius; }
@@ -34,6 +35,7 @@ namespace Hachiko
 		void Load(const YAML::Node& node) override;
 
 		void DrawGui() override;
+
 	private:
         float3 closest_point_half_range = float3(10.f, 10.f, 10.f);
         float3 target_position = float3::zero;
@@ -48,6 +50,8 @@ namespace Hachiko
 		bool use_pathfinder = true;
 
 		bool show_debug_info = false;
+
+		bool is_player = false;
 	};
 }
 

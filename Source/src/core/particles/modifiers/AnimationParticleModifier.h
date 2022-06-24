@@ -21,7 +21,8 @@ namespace Hachiko
     private:
         Widgets::DragFloatConfig cfg;
         bool fit_to_lifetime = false;
-        float skip_frames = 0.0f;
+        float animation_speed = 0.0f;
+        float blend_factor = 0.0f;
         float time = 0.0f;
         void UpdateAnimation(Particle& particle);
     };

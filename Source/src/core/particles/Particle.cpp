@@ -27,19 +27,15 @@ void Hachiko::Particle::Reset()
     SetCurrentLife(GetInitialLife());
     SetCurrentSize(GetInitialSize());
     SetCurrentSpeed(GetInitialSpeed());
-
-    const float3 position = emitter->GetEmitterProperties().position +
-                            emitter->GetGameObject()->GetComponent<ComponentTransform>()->GetGlobalPosition();
-    SetCurrentPosition(position);
+    SetCurrentPosition(emitter->GetPositionFromShape());
+    SetCurrentRotation(GetInitialRotation());
 
     const float4x4 game_object_model = emitter->GetGameObject()->GetComponent<ComponentTransform>()->GetGlobalMatrix();
-    const float3 shape_direction = emitter->CalculateDirectionFromShape();
-    const float4x4 emitter_model = float4x4::FromTRS(emitter->GetEmitterProperties().position,
-                                                     Quat::FromEulerXYZ(shape_direction.x, shape_direction.y, shape_direction.z),
-                                                     emitter->GetEmitterProperties().scale);
+    const float3 shape_direction = GetInitialDirection();
+    const float4x4 emitter_model = float4x4::FromTRS(GetCurrentPosition(), Quat::FromEulerXYZ(shape_direction.x, shape_direction.y, shape_direction.z), emitter->GetEmitterProperties().scale);
     const float4x4 current_model = game_object_model * emitter_model;
-    const float3 direction = (current_model.RotatePart() * float3::unitY).Normalized();
-    SetCurrentDirection(direction);
+    const float3 direction = (current_model.RotatePart() * shape_direction).Normalized();
+    SetCurrentDirection(direction.Normalized());
 }
 
 void Hachiko::Particle::Draw(ComponentCamera* camera, const Program* program)
@@ -85,6 +81,7 @@ void Hachiko::Particle::Draw(ComponentCamera* camera, const Program* program)
     const int flip_y = emitter->GetFlipTexture().y ? 1 : 0;
     program->BindUniformInts("flip_x", 1, &flip_x);
     program->BindUniformInts("flip_y", 1, &flip_y);
+    program->BindUniformFloat("animation_blend", &animation_blend);
 
     glBindVertexArray(App->renderer->GetParticleVao());
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
@@ -98,50 +95,53 @@ void Hachiko::Particle::Draw(ComponentCamera* camera, const Program* program)
 
 void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_matrix) const
 {
-    const auto transform = emitter->GetGameObject()->GetTransform();
-    const float3 particle_size(current_size, current_size, 0.0f);
-    const float3 camera_position = camera->GetGameObject()->GetTransform()->GetGlobalPosition();
-    
+    auto transform = emitter->GetGameObject()->GetTransform();
+    float3 particle_size(current_size, current_size, 0.0f);
+    float3x3 particle_rotation_matrix = float3x3::identity.RotateZ(current_rotation);
+
     switch (emitter->GetParticlesProperties().orientation)
     {
-    case ParticleSystem::ParticleOrientation::NORMAL:
-    {
-        const float3 direction = (camera_position - current_position).Normalized();
-        const auto orientation = ComponentTransform::SimulateLookAt(direction);
-        out_matrix = float4x4::FromTRS(current_position, orientation, particle_size);
-        break;
-    }
-    case ParticleSystem::ParticleOrientation::HORIZONTAL:
-    {
-        if (emitter->GetParticlesProperties().orientate_to_direction)
-        {
-            const float3 global_position = transform->GetGlobalPosition();
-            float3 direction = current_direction;
-            const float3 projection = global_position + direction - direction.y * float3::unitY;
-            direction = (projection - global_position).Normalized();
-            const float3 right = Cross(float3::unitY, direction);
+        case ParticleSystem::ParticleOrientation::NORMAL:
+            {
+                Frustum* frustum = camera->GetFrustum();
+                float3x3 rotate_part = transform->GetGlobalMatrix().RotatePart();
+                float4x4 global_model_matrix = transform->GetGlobalMatrix();
+                out_matrix = global_model_matrix.LookAt(rotate_part.Col(2), -frustum->Front(), rotate_part.Col(1), float3::unitY);
+                out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart() * rotate_part * particle_rotation_matrix, particle_size);
+                break;
+            }
+        case ParticleSystem::ParticleOrientation::HORIZONTAL:
+            {
+                if (emitter->GetParticlesProperties().orientate_to_direction)
+                {
+                    float3 global_position = transform->GetGlobalPosition();
+                    float3 direction = current_direction;
+                    float3 projection = global_position + direction - direction.y * float3::unitY;
+                    direction = (projection - global_position).Normalized();
+                    float3 right = Cross(float3::unitY, direction);
 
-            float3x3 new_rotation;
-            new_rotation.SetCol(1, right);
-            new_rotation.SetCol(2, float3::unitY);
-            new_rotation.SetCol(0, direction);
+                    float3x3 new_rotation;
+                    new_rotation.SetCol(1, right);
+                    new_rotation.SetCol(2, float3::unitY);
+                    new_rotation.SetCol(0, direction);
 
-            out_matrix = float4x4::FromTRS(current_position, new_rotation, particle_size);
-        }
-        else
-        {
-            out_matrix = float4x4::LookAt(float3::unitZ, float3::unitY, float3::unitY, float3::unitY);
-            out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart(), particle_size);
-        }
-        break;
-    }
-    case ParticleSystem::ParticleOrientation::VERTICAL:
-    {
-        const float3 direction = (float3(camera_position.x, current_position.y, camera_position.z) - current_position).Normalized();
-        const auto orientation = ComponentTransform::SimulateLookAt(direction);
-        out_matrix = float4x4::FromTRS(current_position, orientation, particle_size);
-        break;
-    }
+                    out_matrix = float4x4::FromTRS(current_position, new_rotation, particle_size);
+                }
+                else
+                {
+                    out_matrix = float4x4::LookAt(float3::unitZ, float3::unitY, float3::unitY, float3::unitY);
+                    out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart() * particle_rotation_matrix, particle_size);
+                }
+                break;
+            }
+        case ParticleSystem::ParticleOrientation::VERTICAL:
+            {
+                const float3 camera_position = camera->GetFrustum()->Pos();
+                const float3 camera_direction = (float3(camera_position.x, current_position.y, camera_position.z) - current_position).Normalized();
+                out_matrix = float4x4::LookAt(float3::unitZ, camera_direction, float3::unitY, float3::unitY);
+                out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart() * particle_rotation_matrix, particle_size);
+                break;
+            }
     }
 }
 
@@ -158,6 +158,11 @@ void Hachiko::Particle::Activate()
 void Hachiko::Particle::Deactivate()
 {
     active = false;
+}
+
+float Hachiko::Particle::GetCurrentLifeNormilized() const
+{
+    return 1 - (current_life / total_life);
 }
 
 bool Hachiko::Particle::HasTexture() const
@@ -179,6 +184,54 @@ float Hachiko::Particle::GetInitialSpeed() const
 float Hachiko::Particle::GetInitialSize() const
 {
     return emitter->GetParticlesSize().GetValue();
+}
+
+float Hachiko::Particle::GetInitialRotation() const
+{
+    return emitter->GetParticlesRotation().GetValue();
+}
+
+float3 Hachiko::Particle::GetInitialDirection() const
+{
+    float3 particle_direction = float3::one;
+    const auto& emitter_properties = emitter->GetEmitterProperties();
+    const auto& emitter_position = emitter->GetGameObject()->GetTransform()->GetLocalPosition();
+
+    switch (emitter->GetEmitterType())
+    {
+        case ParticleSystem::Emitter::Type::CONE:
+            {
+                particle_direction.x = (current_position.x - emitter_position.x) * (emitter_properties.top - emitter_properties.radius);
+                particle_direction.z = (current_position.z - emitter_position.z) * (emitter_properties.top - emitter_properties.radius);
+                break;
+            }
+        case ParticleSystem::Emitter::Type::SPHERE:
+            {
+                const float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
+                particle_direction.x = emitter_properties.rotation.x + effective_radius * RandomUtil::RandomSigned();
+                particle_direction.y = emitter_properties.rotation.y + effective_radius * RandomUtil::RandomSigned();
+                particle_direction.z = emitter_properties.rotation.z + effective_radius * RandomUtil::RandomSigned();
+                break;
+            }
+        case ParticleSystem::Emitter::Type::BOX:
+            {
+                break;
+            }
+        case ParticleSystem::Emitter::Type::CIRCLE:
+            {
+                particle_direction.y = 0.0f;
+                particle_direction.x = (current_position.x - emitter_position.x);
+                particle_direction.z = (current_position.z - emitter_position.z);
+                break;
+            }
+        case ParticleSystem::Emitter::Type::RECTANGLE:
+            {
+                particle_direction = float3(0.0f, 1.0f, 0.0f);
+                break;
+            }
+    }
+
+    return particle_direction;
 }
 
 const float2& Hachiko::Particle::GetTextureTiles() const
@@ -214,6 +267,16 @@ float Hachiko::Particle::GetCurrentSpeed() const
 void Hachiko::Particle::SetCurrentSpeed(const float speed)
 {
     this->current_speed = speed;
+}
+
+float Hachiko::Particle::GetCurrentRotation() const
+{
+    return current_rotation;
+}
+
+void Hachiko::Particle::SetCurrentRotation(const float rotation)
+{
+    this->current_rotation = rotation;
 }
 
 const float4& Hachiko::Particle::GetCurrentColor() const
@@ -274,6 +337,16 @@ unsigned Hachiko::Particle::GetCurrentAnimationFrame() const
 void Hachiko::Particle::SetCurrentAnimationFrame(unsigned frame)
 {
     this->current_animation_frame = frame;
+}
+
+float Hachiko::Particle::GetAnimationBlend() const
+{
+    return animation_blend;
+}
+
+void Hachiko::Particle::SetAnimationBlend(float animation_blend)
+{
+    this->animation_blend = animation_blend;
 }
 
 void Hachiko::Particle::SetEmitter(ComponentParticleSystem* particle_emitter)

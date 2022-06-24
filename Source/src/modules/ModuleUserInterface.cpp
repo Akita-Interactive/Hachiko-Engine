@@ -40,6 +40,7 @@ bool Hachiko::ModuleUserInterface::Init()
 
 UpdateStatus Hachiko::ModuleUserInterface::Update(float delta)
 {
+
     // On playbuild mouse position is taken from the Window, not ImGUI
 #ifdef PLAY_BUILD   
     float2 mouse_pos = Input::GetMousePixelPosition();
@@ -146,7 +147,8 @@ void Hachiko::ModuleUserInterface::HandleMouseAction(const float2& coords)
     RecursiveCheckMousePos(App->scene_manager->GetActiveScene()->GetRoot(), mouse_pos, is_click);
 #else
     const WindowScene* w_scene = App->editor->GetSceneWindow();
-    const float2 click_pos = w_scene->ImguiToScreenPos(coords);
+    ImVec2 mouse_pos = ImGui::GetMousePos();
+    float2 click_pos = w_scene->ImguiToScreenPos(float2(mouse_pos.x, mouse_pos.y));
 
     constexpr bool is_click = true;
     RecursiveCheckMousePos(App->scene_manager->GetActiveScene()->GetRoot(), click_pos, is_click);

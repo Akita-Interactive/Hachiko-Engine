@@ -64,6 +64,33 @@ void Hachiko::ComponentImage::DrawGui()
         {
             ImGuiUtils::CompactColorPicker("Image Color", color.ptr());
         }
+        else
+        {
+            if (ImGui::Checkbox("Is tiled", &is_tiled))
+            {
+                if (!is_tiled)
+                {
+                    animation_index = {0.0f, 0.0f};
+                    factor = float2::one;
+                }
+            }
+            if (is_tiled)
+            {
+                if (ImGui::DragInt("Frames per second", &frames_per_second, 1, 1))
+                {
+                    time_per_frame = 1.0f / frames_per_second;
+                }
+
+                if (ImGui::DragInt("X tiles", &x_tiles, 1, 1))
+                {
+                    factor.x = 1.0f / x_tiles;
+                }
+                if (ImGui::DragInt("Y tiles", &y_tiles, 1, 1))
+                {
+                    factor.y = 1.0f / y_tiles;
+                }
+            }
+        }
 
         ImGui::Text("Hover Image");
 
@@ -130,6 +157,10 @@ void Hachiko::ComponentImage::Draw(ComponentTransform2D* transform, Program* pro
     program->BindUniformBool("diffuse_flag", img_to_draw && render_img);
     program->BindUniformFloat4("img_color", render_color->ptr());
     ModuleTexture::Bind(img_to_draw? img_to_draw->GetImageId(): 0, static_cast<int>(Hachiko::ModuleProgram::TextureSlots::DIFFUSE));
+
+    program->BindUniformFloat2("factor", factor.ptr());
+    program->BindUniformFloat2("animation_index", animation_index.ptr());
+
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
     // Unbind square & deactivate program:
@@ -142,6 +173,32 @@ void Hachiko::ComponentImage::Update()
     if (fill_window)
     {
         UpdateSize();
+    }
+    if (use_image)
+    {
+        if (is_tiled)
+        {
+            elapse += EngineTimer::delta_time;
+        
+            while (elapse >= time_per_frame) 
+            {
+                elapse -= time_per_frame;
+
+                if (animation_index.x < x_tiles - 1)
+                {
+                    animation_index.x += 1.0f;
+                    break;
+                }
+                else if (animation_index.y < y_tiles - 1)
+                {
+                    animation_index.x = 0.0f;
+                    animation_index.y += 1.0f;
+                    break;
+                }
+
+                animation_index = {0.0f, 0.0f};
+            }
+        }
     }
 }
 

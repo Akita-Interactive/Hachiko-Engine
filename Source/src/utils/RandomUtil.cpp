@@ -29,3 +29,8 @@ float Hachiko::RandomUtil::RandomBetween(const float2& values)
 {
     return RandomBetween(values.x, values.y);
 }
+
+int Hachiko::RandomUtil::RandomSign() 
+{
+    return std::rand() & 1 ? 1 : -1;
+}

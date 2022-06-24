@@ -159,9 +159,12 @@ bool Hachiko::ModuleSceneManager::CleanUp()
 
     EditorPreferences* editor_prefs = App->preferences->GetEditorPreference();
     editor_prefs->SetAutosave(scene_autosave);
+
+    #ifndef PLAY_BUILD
     // If it was a temporary scene it will set id to 0 which will generate a new temporary scene on load
     preferences->SetSceneUID(scene_resource->GetID());
     preferences->SetSceneName(scene_resource->name.c_str());
+    #endif
 
     SetSceneResource(nullptr);
 
@@ -308,6 +311,16 @@ void Hachiko::ModuleSceneManager::OptionsMenu()
 
 void Hachiko::ModuleSceneManager::LoadScene(ResourceScene* new_resource, bool keep_navmesh)
 {
+    // TODO: Refactor this whole load logic and event handling to be as clear 
+    // as possible.
+
+    // Stop the scene if it was playing to avoid scripts calling Start:
+    bool was_scene_playing = IsScenePlaying();
+    if (was_scene_playing)
+    {
+        StopScene();
+    }
+
     SetSceneResource(new_resource);
 
     Scene* new_scene = new Scene();
@@ -317,6 +330,7 @@ void Hachiko::ModuleSceneManager::LoadScene(ResourceScene* new_resource, bool ke
         {
             App->navigation->SetNavmesh(scene_resource->scene_data[NAVMESH_ID].as<UID>());
         }
+
         new_scene->Load(scene_resource->scene_data);
     }
     else
@@ -331,6 +345,12 @@ void Hachiko::ModuleSceneManager::LoadScene(ResourceScene* new_resource, bool ke
     }
 
     ChangeMainScene(new_scene);
+
+    // If the scene was playing previously, continue playing:
+    if (was_scene_playing)
+    {
+        AttemptScenePlay();
+    }
 }
 
 void Hachiko::ModuleSceneManager::ChangeMainScene(Scene* new_scene)

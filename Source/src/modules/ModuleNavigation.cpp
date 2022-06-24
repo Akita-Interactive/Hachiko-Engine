@@ -208,7 +208,7 @@ void Hachiko::ModuleNavigation::DrawOptionsGui()
     }
 }
 
-float3 Hachiko::ModuleNavigation::GetCorrectedPosition(math::float3& position, const math::float3& extents) const
+float3 Hachiko::ModuleNavigation::GetCorrectedPosition(const math::float3& position, const math::float3& extents) const
 {
     dtQueryFilter filter;
     dtPolyRef reference;

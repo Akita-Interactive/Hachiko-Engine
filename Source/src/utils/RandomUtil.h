@@ -25,6 +25,8 @@ namespace Hachiko
         HACHIKO_API static float Random();
         //(-1.0; 1.0)
         HACHIKO_API static float RandomSigned();
+        //returns -1 or 1
+        HACHIKO_API static int RandomSign();
         // (a; b) if a > b returns a
         HACHIKO_API static float RandomBetween(float a, float b);
         // (values.x; values.y) if x > y returns x

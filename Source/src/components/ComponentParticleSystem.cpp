@@ -35,7 +35,6 @@ void Hachiko::ComponentParticleSystem::Start()
         App->scene_manager->GetActiveScene()->AddParticleComponent(this);
         in_scene = true;
     }
-
     for (auto& particle : particles)
     {
         particle.SetEmitter(this);
@@ -427,6 +426,7 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
     }
     node[PARTICLES_TEXTURE][TILES] = tiles;
     node[PARTICLES_TEXTURE][FLIP] = flip_texture;
+    node[PARTICLES_TEXTURE][TOTAL_TILES] = total_tiles;
 
     YAML::Node modules;
     for (const auto& particle_module : particle_modifiers)
@@ -471,6 +471,9 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
         factor.y = 1.0f / tiles.y;
     }
 
+    total_tiles = node[PARTICLES_TEXTURE][TOTAL_TILES].IsDefined() ?
+        node[PARTICLES_TEXTURE][TOTAL_TILES].as<float>() : total_tiles;
+
     const UID texture_id = node[PARTICLES_TEXTURE][PARTICLES_TEXTURE_ID].IsDefined() ? node[PARTICLES_TEXTURE][PARTICLES_TEXTURE_ID].as<UID>() : 0;
     if (texture_id)
     {
@@ -496,6 +499,11 @@ const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleS
 const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleSystem::GetParticlesSize() const
 {
     return start_size;
+}
+
+const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleSystem::GetParticlesRotation() const
+{
+    return start_rotation;
 }
 
 const Hachiko::ParticleSystem::Emitter::Properties& Hachiko::ComponentParticleSystem::GetEmitterProperties() const
@@ -556,7 +564,8 @@ void Hachiko::ComponentParticleSystem::UpdateModifiers()
 
 void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
 {
-    if ((!loop && emitter_elapsed_time >= duration) || emitter_state != ParticleSystem::Emitter::State::PLAYING)
+    if ((!loop && emitter_elapsed_time >= duration) ||
+        emitter_state != ParticleSystem::Emitter::State::PLAYING)
     {
         able_to_emit = false;
         return;
@@ -564,6 +573,12 @@ void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
 
     time += EngineTimer::delta_time;
     emitter_elapsed_time += EngineTimer::delta_time;
+
+    if (emitter_elapsed_time < start_delay.GetValue())
+    {
+        able_to_emit = false;
+        return;
+    }
 
     if (time * 1000.0f <= ONE_SEC_IN_MS / rate_over_time.GetValue()) // TODO: Avoid division
     {
@@ -608,34 +623,45 @@ void Hachiko::ComponentParticleSystem::ActivateParticles()
     }
 }
 
-float3 Hachiko::ComponentParticleSystem::CalculateDirectionFromShape() const
+float3 Hachiko::ComponentParticleSystem::GetPositionFromShape() const
 {
-    float3 particle_direction = float3::one;
+    float3 global_emitter_position = GetEmitterProperties().position + game_object->GetComponent<ComponentTransform>()->GetGlobalPosition();
     switch (emitter_type)
     {
+        case ParticleSystem::Emitter::Type::CIRCLE:
         case ParticleSystem::Emitter::Type::CONE:
         {
-            const float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
-            particle_direction.x = emitter_properties.rotation.x + effective_radius * RandomUtil::RandomSigned();
-            particle_direction.z = emitter_properties.rotation.z + effective_radius * RandomUtil::RandomSigned();
+            float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
+            float x_position = RandomUtil::RandomSigned() * emitter_properties.radius;
+            float z_min = 0.0f;
+
+            if (std::abs(x_position) < effective_radius)
+            {
+                z_min = sqrt((effective_radius * effective_radius) - (x_position * x_position));
+            }
+
+            float z_max = sqrt(emitter_properties.radius * emitter_properties.radius - x_position * x_position);
+            float z_position = RandomUtil::RandomBetween(z_min, z_max) * RandomUtil::RandomSign();
+            global_emitter_position = float3(global_emitter_position.x + x_position, global_emitter_position.y, global_emitter_position.z + z_position);
+            break;
+        }
+        case ParticleSystem::Emitter::Type::RECTANGLE:
+        {
+            float half_x = emitter_properties.scale.x * 0.5;
+            float x_random_pos = RandomUtil::RandomBetween(-half_x, half_x);
+            float half_z = emitter_properties.scale.z * 0.5;
+            float z_random_pos = RandomUtil::RandomBetween(-half_z, half_z);
+
+            global_emitter_position = float3(global_emitter_position.x + x_random_pos,
+                global_emitter_position.y, global_emitter_position.z + z_random_pos);
             break;
         }
         case ParticleSystem::Emitter::Type::SPHERE:
         {
-            // TODO: This is not working perfectly. Emission depends on the size of the radius and it shouldn't
-            const float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
-            particle_direction.x = emitter_properties.rotation.x + effective_radius * RandomUtil::RandomSigned();
-            particle_direction.y = emitter_properties.rotation.y * (RandomUtil::RandomSigned() > 0.0f ? 1.0f : -1.0f);
-            particle_direction.z = emitter_properties.rotation.z + effective_radius * RandomUtil::RandomSigned();
             break;
         }
-        case ParticleSystem::Emitter::Type::BOX:
-        case ParticleSystem::Emitter::Type::CIRCLE:
-        case ParticleSystem::Emitter::Type::RECTANGLE:
-            break;
     }
-
-    return particle_direction;
+    return global_emitter_position;
 }
 
 void Hachiko::ComponentParticleSystem::AddTexture()
@@ -647,12 +673,7 @@ void Hachiko::ComponentParticleSystem::AddTexture()
     if (ImGui::Button("Add texture", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         ImGuiFileDialog::Instance()->OpenDialog(
-            title,
-            "Select Texture",
-            ".png,.tif,.jpg,.tga",
-            "./assets/textures/",
-            1,
-            nullptr,
+            title, "Select Texture", ".png,.tif,.jpg,.tga", "./assets/textures/", 1, nullptr,
             ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton |
             ImGuiFileDialogFlags_HideColumnType | ImGuiFileDialogFlags_HideColumnDate);
     }
@@ -695,6 +716,11 @@ bool Hachiko::ComponentParticleSystem::IsLoop() const
 Hachiko::ParticleSystem::Emitter::State Hachiko::ComponentParticleSystem::GetEmitterState() const
 {
     return emitter_state;
+}
+
+Hachiko::ParticleSystem::Emitter::Type Hachiko::ComponentParticleSystem::GetEmitterType() const
+{
+    return emitter_type;
 }
 
 void Hachiko::ComponentParticleSystem::Play()

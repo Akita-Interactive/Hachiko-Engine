@@ -7,6 +7,9 @@
 #include "modules/ModuleResources.h"
 #include "Gameplay.h"
 #include "modules/ModuleNavigation.h"
+#include "modules/ModuleDebugDraw.h"
+#include "debugdraw.h"
+
 #include "components/ComponentAgent.h"
 
 
@@ -159,6 +162,19 @@ void Hachiko::Debug::SetVsync(bool is_vsync)
 bool Hachiko::Debug::GetVsync()
 {
     return SDL_HINT_RENDER_VSYNC;
+}
+
+void Hachiko::Debug::DebugDraw(const OBB& box, float3 color)
+{
+    ddVec3 p[8];
+    // This order was pure trial and error, i dont know how to really do it
+    // Using center and points does not show the rotation
+    static const int order[8] = {0, 1, 5, 4, 2, 3, 7, 6};
+    for (int i = 0; i < 8; ++i)
+    {
+        p[i] = box.CornerPoint(order[i]);
+    }
+    dd::box(p, color);
 }
 
 HACHIKO_API void Hachiko::Debug::DrawNavmesh(bool is_navmesh)
@@ -315,7 +331,7 @@ float Hachiko::Navigation::GetHeightFromPosition(const math::float3& position)
     return App->navigation->GetYFromPosition(position);    
 }
 
-math::float3 Hachiko::Navigation::GetCorrectedPosition(math::float3& position, const math::float3& extents)
+math::float3 Hachiko::Navigation::GetCorrectedPosition(const math::float3& position, const math::float3& extents)
 {
     return App->navigation->GetCorrectedPosition(position, extents);
 }

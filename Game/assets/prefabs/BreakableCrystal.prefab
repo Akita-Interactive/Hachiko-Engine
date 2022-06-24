@@ -22,9 +22,12 @@ component:
     "'_player@GameObject*'": 0
     "'_explosion_crystal@GameObject*'": 4
     "'_static_crystal@GameObject*'": 2
+    "'_outer_explosion_indicator@GameObject*'": 0
+    "'_inner_explosion_indicator@GameObject*'": 0
     "'_crashing_index@unsigned'": 0
     "'_detecting_radius@float'": 2
     "'_explosion_radius@float'": 5
+    "'_timer_explosion@float'": 0
     "'_explosive_crystal@bool'": false
   - !<script>
     type: 15
@@ -84,7 +87,7 @@ child:
             enabled: true
             position: [0, 0, 0]
             rotation: [0.707106829, 0, 0, 0.707106709]
-            scale: [1, 0.999987185, 0.999987185]
+            scale: [1, 0.999986887, 0.999986887]
         child:
           - name: crystalSpikeTop_mesh
             enabled: true

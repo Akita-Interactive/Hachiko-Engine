@@ -14,8 +14,6 @@ Hachiko::ColorParticleModifier::~ColorParticleModifier()
 
 void Hachiko::ColorParticleModifier::Update(std::vector<Particle>& particles)
 {
-
-
     for (auto& particle : particles)
     {
         if (!particle.IsActive())
@@ -25,7 +23,7 @@ void Hachiko::ColorParticleModifier::Update(std::vector<Particle>& particles)
 
         if (!IsActive())
         {
-            particle.SetCurrentColor(float4::one);
+            particle.SetCurrentColor(float4(1.0f, 0.0f, 1.0f, 1.0f));
             continue;
         }
 
@@ -68,10 +66,8 @@ void Hachiko::ColorParticleModifier::Load(const YAML::Node& node)
 
 void Hachiko::ColorParticleModifier::UpdateColorOverTime(Particle& particle) const
 {
-    const float particle_life = particle.GetLife();
-    const float color_frame = 1 - (particle.GetCurrentLife() / particle_life);
     float4 color = float4::one;
-    gradient->getColorAt(color_frame, color.ptr());
+    gradient->getColorAt(particle.GetCurrentLifeNormilized(), color.ptr());
     particle.SetCurrentColor(color);
 }
 

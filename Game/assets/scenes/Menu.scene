@@ -13,13 +13,15 @@ child:
     name: Main Camera
     enabled: true
     component:
-      - id: 6309904449184756942
+      - !<transform>
+        id: 6309904449184756942
         type: 1
         enabled: true
         position: [0, 0, 0]
         rotation: [0, 0, 0, 1]
         scale: [1, 1, 1]
-      - id: 18001305682756485085
+      - !<camera>
+        id: 18001305682756485085
         type: 4
         enabled: true
         frustum:
@@ -34,62 +36,70 @@ child:
     name: Menu
     enabled: true
     component:
-      - id: 5816357805986473423
+      - !<transform>
+        id: 5816357805986473423
         type: 1
         enabled: true
         position: [0, 0, 0]
         rotation: [0, 0, 0, 1]
         scale: [1, 1, 1]
-      - id: 3983201684690593019
+      - !<transform_2d>
+        id: 3983201684690593019
         type: 10
         enabled: true
         position: [0, 0, 0]
-        size: [1197, 667]
+        size: [771, 1026]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
         anchor: [0.5, 0.5]
-      - id: 2305825201695497700
+      - !<canvas>
+        id: 2305825201695497700
         type: 8
         enabled: true
-      - id: 7939767023346969463
+      - !<script>
+        id: 7939767023346969463
         type: 15
         enabled: true
         class_name: MainMenuManager
         "'_state_changed@bool'": false
         "'_main_background@GameObject*'": 5872684667760369802
         "'_button_background@GameObject*'": 14792802250786109765
-        "'_button_play@ComponentButton*'": 0
-        "'_button_quit@ComponentButton*'": 0
-        "'_button_settings@ComponentButton*'": 0
-        "'_button_credits@ComponentButton*'": 0
+        "'_button_play@ComponentButton*'": 12216311029793036440
+        "'_button_quit@ComponentButton*'": 16104174435079696891
+        "'_button_settings@ComponentButton*'": 5517220911348165701
+        "'_button_credits@ComponentButton*'": 5507085151890769082
         "'_settings@GameObject*'": 5517220911348165701
         "'_credits@GameObject*'": 15157299374494226041
-        "'_button_back@ComponentButton*'": 0
+        "'_button_back@ComponentButton*'": 7162107976364272364
     child:
       - id: 5872684667760369802
         name: button_whitebackground
         enabled: true
         component:
-          - id: 15878754871275235467
+          - !<transform>
+            id: 15878754871275235467
             type: 1
             enabled: true
             position: [0, 0, 0]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
-          - id: 4765053955944909810
+          - !<transform_2d>
+            id: 4765053955944909810
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [1197, 667]
+            size: [771, 1026]
             scale: [1, 1.20000005]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
             anchor: [0.5, 0.5]
-          - id: 7897173408432867405
+          - !<canvas_renderer>
+            id: 7897173408432867405
             type: 9
             enabled: true
-          - id: 11903064509535993690
+          - !<image>
+            id: 11903064509535993690
             type: 11
             enabled: true
             image_id: 3892815591083320296
@@ -103,13 +113,15 @@ child:
         name: button_background
         enabled: true
         component:
-          - id: 8605018989710401051
+          - !<transform>
+            id: 8605018989710401051
             type: 1
             enabled: true
             position: [0, 0, 0]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
-          - id: 3798812555767685482
+          - !<transform_2d>
+            id: 3798812555767685482
             type: 10
             enabled: true
             position: [-1, 0, 0]
@@ -118,10 +130,12 @@ child:
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
             anchor: [0.5, 0.5]
-          - id: 12496544305057191090
+          - !<canvas_renderer>
+            id: 12496544305057191090
             type: 9
             enabled: true
-          - id: 5324912634986608193
+          - !<image>
+            id: 5324912634986608193
             type: 11
             enabled: true
             image_id: 2119038066994049673
@@ -135,13 +149,15 @@ child:
         name: button_play
         enabled: true
         component:
-          - id: 4720971103393569356
+          - !<transform>
+            id: 4720971103393569356
             type: 1
             enabled: true
             position: [0, 0, 0]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
-          - id: 11573762086171599171
+          - !<transform_2d>
+            id: 11573762086171599171
             type: 10
             enabled: true
             position: [-290, 5, 0]
@@ -150,13 +166,16 @@ child:
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
             anchor: [0.5, 0.5]
-          - id: 6340919664879631665
+          - !<canvas_renderer>
+            id: 6340919664879631665
             type: 9
             enabled: true
-          - id: 14922076439648240991
+          - !<button>
+            id: 14922076439648240991
             type: 12
             enabled: true
-          - id: 11436036971468394748
+          - !<image>
+            id: 11436036971468394748
             type: 11
             enabled: true
             image_id: 17690140760809255635
@@ -170,13 +189,15 @@ child:
         name: button_settings
         enabled: true
         component:
-          - id: 10987444225901095331
+          - !<transform>
+            id: 10987444225901095331
             type: 1
             enabled: true
             position: [0, 0, 0]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
-          - id: 12485261860033650679
+          - !<transform_2d>
+            id: 12485261860033650679
             type: 10
             enabled: true
             position: [-110, 5, 0]
@@ -185,13 +206,16 @@ child:
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
             anchor: [0.5, 0.5]
-          - id: 13961633755337133385
+          - !<canvas_renderer>
+            id: 13961633755337133385
             type: 9
             enabled: true
-          - id: 5627592797897612334
+          - !<button>
+            id: 5627592797897612334
             type: 12
             enabled: true
-          - id: 530510889224547790
+          - !<image>
+            id: 530510889224547790
             type: 11
             enabled: true
             image_id: 9931964557502554486
@@ -205,13 +229,15 @@ child:
         name: button_credits
         enabled: true
         component:
-          - id: 15396854544440341112
+          - !<transform>
+            id: 15396854544440341112
             type: 1
             enabled: true
             position: [0, 0, 0]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
-          - id: 4231912232200162890
+          - !<transform_2d>
+            id: 4231912232200162890
             type: 10
             enabled: true
             position: [100, 5, 0]
@@ -220,13 +246,16 @@ child:
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
             anchor: [0.5, 0.5]
-          - id: 16549682737339658831
+          - !<canvas_renderer>
+            id: 16549682737339658831
             type: 9
             enabled: true
-          - id: 11766846335578041050
+          - !<button>
+            id: 11766846335578041050
             type: 12
             enabled: true
-          - id: 13184592598170642105
+          - !<image>
+            id: 13184592598170642105
             type: 11
             enabled: true
             image_id: 15642433059796057761
@@ -240,13 +269,15 @@ child:
         name: button_quit
         enabled: true
         component:
-          - id: 5277941180498815655
+          - !<transform>
+            id: 5277941180498815655
             type: 1
             enabled: true
             position: [0, 0, 0]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
-          - id: 12612247618848250662
+          - !<transform_2d>
+            id: 12612247618848250662
             type: 10
             enabled: true
             position: [260, 5, 0]
@@ -255,13 +286,16 @@ child:
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
             anchor: [0.5, 0.5]
-          - id: 7984435262585265924
+          - !<canvas_renderer>
+            id: 7984435262585265924
             type: 9
             enabled: true
-          - id: 16903851833182070283
+          - !<button>
+            id: 16903851833182070283
             type: 12
             enabled: true
-          - id: 17769493676886326825
+          - !<image>
+            id: 17769493676886326825
             type: 11
             enabled: true
             image_id: 3462935206210766786
@@ -275,25 +309,29 @@ child:
         name: credits
         enabled: true
         component:
-          - id: 15228406684828012724
+          - !<transform>
+            id: 15228406684828012724
             type: 1
             enabled: true
             position: [0, 0, 0]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
-          - id: 3158429781987651114
+          - !<transform_2d>
+            id: 3158429781987651114
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [1197, 667]
+            size: [771, 1026]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
             anchor: [0.5, 0.5]
-          - id: 17824769307433963587
+          - !<canvas_renderer>
+            id: 17824769307433963587
             type: 9
             enabled: true
-          - id: 3288816736132035746
+          - !<image>
+            id: 3288816736132035746
             type: 11
             enabled: true
             image_id: 9470256371827250406
@@ -307,13 +345,15 @@ child:
         name: button_back
         enabled: true
         component:
-          - id: 15717323362502186912
+          - !<transform>
+            id: 15717323362502186912
             type: 1
             enabled: true
             position: [0, 0, 0]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
-          - id: 7637097761508394094
+          - !<transform_2d>
+            id: 7637097761508394094
             type: 10
             enabled: true
             position: [0, 0, 0]
@@ -322,13 +362,16 @@ child:
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
             anchor: [0.75, 0.850000024]
-          - id: 13379399604533935340
+          - !<canvas_renderer>
+            id: 13379399604533935340
             type: 9
             enabled: true
-          - id: 7268867612220351968
+          - !<button>
+            id: 7268867612220351968
             type: 12
             enabled: true
-          - id: 8781217700864061631
+          - !<image>
+            id: 8781217700864061631
             type: 11
             enabled: true
             image_id: 12801498884348566920
@@ -342,13 +385,15 @@ child:
         name: settings
         enabled: true
         component:
-          - id: 7997944686208799566
+          - !<transform>
+            id: 7997944686208799566
             type: 1
             enabled: true
             position: [0, 0, 0]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
-          - id: 12505313811313725007
+          - !<transform_2d>
+            id: 12505313811313725007
             type: 10
             enabled: true
             position: [0, 0, 0]
@@ -357,10 +402,12 @@ child:
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
             anchor: [0.5, 0.5]
-          - id: 9871573166627518170
+          - !<canvas_renderer>
+            id: 9871573166627518170
             type: 9
             enabled: true
-          - id: 4807624678484144569
+          - !<image>
+            id: 4807624678484144569
             type: 11
             enabled: true
             image_id: 927562492423652741

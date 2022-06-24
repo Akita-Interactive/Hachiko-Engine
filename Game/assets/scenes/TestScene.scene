@@ -18,8 +18,8 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [3.87724128e-08, 0.887010932, -0.461748689, 2.01834709e-08]
-        scale: [1.00001764, 1.00000393, 1.00001323]
+        rotation: [3.87723986e-08, 0.887010932, -0.46174866, 2.01834425e-08]
+        scale: [1.00002003, 1.00000453, 1.00001514]
       - !<camera>
         id: 1219616210356617501
         type: 4
@@ -29,8 +29,8 @@ child:
           far_distance: 1000
           fov: 65
           position: [0, 0, 0]
-          front: [-3.01980554e-13, -0.819151998, -0.57357657]
-          up: [8.74224781e-08, 0.573576272, -0.819152176]
+          front: [-3.37507691e-13, -0.819151938, -0.573576629]
+          up: [8.74224284e-08, 0.573576272, -0.819152117]
           pinned_camera: [0, 0, 0]
       - id: 13408884615593672014
         type: 19
@@ -42,7 +42,7 @@ child:
         class_name: PlayerCamera
         "'_relative_position_to_player@math::float3'": [0, 19, 13]
         "'_objective@GameObject*'": 7577865002841685786
-        "'_follow_delay@float'": 0
+        "'_follow_delay@float'": 0.600000024
   - id: 9705719939553527500
     name: DirLight
     enabled: true
@@ -84,269 +84,272 @@ child:
         rotation: [0, 0, 0, 1]
         scale: [1, 1, 1]
     child:
-      - id: 2658281164021259012
+      - id: 8284310390749543291
         name: BreakableCrystal
         enabled: true
         component:
           - !<transform>
-            id: 4411097451901759131
+            id: 11386505273520272083
             type: 1
             enabled: true
-            position: [-10, -0.200000003, -10]
+            position: [-9.38946342, 0, 0]
             rotation: [0, 0.0688859746, 0, 0.997624576]
             scale: [1.39999998, 1.39999998, 1.39999998]
           - !<obstacle>
-            id: 15264918329709545841
+            id: 18217502429259525612
             type: 18
             enabled: true
             obstacle_type: 0
             obstacle_size: [0.800000012, 1, 1]
+          - id: 13969429177493519406
+            type: 20
+            enabled: true
           - !<script>
-            id: 9958396530124333538
+            id: 8622310725910389719
             type: 15
             enabled: true
             class_name: CrystalExplosion
-            "'_player@GameObject*'": 0
-            "'_explosion_crystal@GameObject*'": 1947176213742487786
-            "'_static_crystal@GameObject*'": 10026808557026839534
+            "'_player@GameObject*'": 7577865002841685786
+            "'_explosion_crystal@GameObject*'": 308697077325262737
+            "'_static_crystal@GameObject*'": 147639783983525316
             "'_outer_explosion_indicator@GameObject*'": 0
             "'_inner_explosion_indicator@GameObject*'": 0
             "'_crashing_index@unsigned'": 0
-            "'_detecting_radius@float'": 1
-            "'_explosion_radius@float'": 10
+            "'_detecting_radius@float'": 2
+            "'_explosion_radius@float'": 5
             "'_timer_explosion@float'": 0
             "'_explosive_crystal@bool'": false
           - !<script>
-            id: 1454657150159053192
+            id: 5437640771873446361
             type: 15
             enabled: true
             class_name: Stats
-            "'_attack_power@int'": 1
+            "'_attack_power@int'": 2
             "'_attack_cd@float'": 2
             "'_attack_range@float'": 3.5
-            "'_move_speed@float'": 7
+            "'_move_speed@float'": 0
             "'_max_hp@int'": 1
         child:
-          - id: 10026808557026839534
+          - id: 147639783983525316
             name: crystalSpike_mesh
             enabled: true
             component:
               - !<transform>
-                id: 1378792293981833924
+                id: 15552991633757481331
                 type: 1
                 enabled: true
                 position: [0, 0, 0]
                 rotation: [0, 0, 0, 1]
                 scale: [1, 1, 1]
             child:
-              - id: 5066059203266859215
+              - id: 13681359856046357315
                 name: crystalSpike_mesh
                 enabled: true
                 component:
                   - !<transform>
-                    id: 326177427269479173
+                    id: 7355402636008453635
                     type: 1
                     enabled: true
                     position: [1.2035023, 0.56883049, -1.08868277]
                     rotation: [-0.640856445, 0.298836708, 0.298836529, 0.640855968]
                     scale: [1.00000012, 1.0000006, 1.00000083]
                   - !<mesh_renderer>
-                    id: 3046798676602440479
+                    id: 6854847498623374605
                     type: 2
                     enabled: true
                     mesh_id: 12493242938431995642
                     navigable: false
                     visible: true
                     material_id: 15711698613413314858
-          - id: 1947176213742487786
+          - id: 308697077325262737
             name: crystalSpikeAnimacion_meshExplision
             enabled: true
             component:
               - !<transform>
-                id: 3052702087731955502
+                id: 1568070685315986142
                 type: 1
                 enabled: true
                 position: [0.0394845456, 0, -0.20355995]
                 rotation: [0, 0, 0, 1]
                 scale: [0.406699985, 0.406699985, 0.406699985]
               - !<animation>
-                id: 12415861617714663263
+                id: 1757410485171119605
                 type: 14
                 enabled: true
                 state_machine: 4494346183400875454
             child:
-              - id: 13790508632444277309
+              - id: 10364845109812472938
                 name: Mesh
                 enabled: true
                 component:
                   - !<transform>
-                    id: 15052487034282166470
+                    id: 506124945693981324
                     type: 1
                     enabled: true
                     position: [0, 0, 0]
                     rotation: [0.707106829, 0, 0, 0.707106709]
-                    scale: [1, 0.999990404, 0.999990404]
+                    scale: [1, 0.999986947, 0.999986947]
                 child:
-                  - id: 9802724628000275634
+                  - id: 665945366317496660
                     name: crystalSpikeTop_mesh
                     enabled: true
                     component:
                       - !<transform>
-                        id: 4212377154487229027
+                        id: 2120338590140607455
                         type: 1
                         enabled: true
                         position: [-0.0761962608, 0.494708151, 0.10228952]
                         rotation: [-0.707106829, 0, 0, 0.707106769]
                         scale: [2.53999996, 2.53999901, 2.53999901]
                       - !<mesh_renderer>
-                        id: 6666775371416462744
+                        id: 341726899088789147
                         type: 2
                         enabled: true
                         mesh_id: 2367252208710808329
                         navigable: false
                         visible: true
-                        material_id: 5759363592208955763
-                  - id: 15857667610957911046
+                        material_id: 15711698613413314858
+                  - id: 202970809293397751
                     name: crystalSpikeBottom_mesh
                     enabled: true
                     component:
                       - !<transform>
-                        id: 11269432875924861515
+                        id: 8962879095189958942
                         type: 1
                         enabled: true
                         position: [0.0911449194, 0.299597561, 0.0456319116]
                         rotation: [-0.707106829, 0, 0, 0.707106769]
                         scale: [2.53999996, 2.53999901, 2.53999901]
                       - !<mesh_renderer>
-                        id: 2172508123110079521
+                        id: 6081802374070080072
                         type: 2
                         enabled: true
                         mesh_id: 11783699103939193595
                         navigable: false
                         visible: true
-                        material_id: 5759363592208955763
-                  - id: 17311271373732406605
+                        material_id: 15711698613413314858
+                  - id: 2122361857392146060
                     name: crystalSpikeMiddle_mesh
                     enabled: true
                     component:
                       - !<transform>
-                        id: 6476320250533942783
+                        id: 11032401127102431153
                         type: 1
                         enabled: true
                         position: [0.186976179, 0.484414041, 0.0622473769]
                         rotation: [-0.707106829, 0, 0, 0.707106769]
                         scale: [2.53999996, 2.53999901, 2.53999901]
                       - !<mesh_renderer>
-                        id: 5704242244621549637
+                        id: 13382054868510568319
                         type: 2
                         enabled: true
                         mesh_id: 10088262584487287873
                         navigable: false
                         visible: true
-                        material_id: 5759363592208955763
-                  - id: 12304510319044416618
+                        material_id: 15711698613413314858
+                  - id: 16109191972338777274
                     name: crystalSpikeBottom2_mesh
                     enabled: true
                     component:
                       - !<transform>
-                        id: 14188571862019888700
+                        id: 11575466999870049838
                         type: 1
                         enabled: true
                         position: [0.14534016, 0.256375641, 0.271769315]
                         rotation: [-0.707106829, 0, 0, 0.707106769]
                         scale: [2.53999996, 2.53999901, 2.53999901]
                       - !<mesh_renderer>
-                        id: 13335139142671160923
+                        id: 10844966647684982589
                         type: 2
                         enabled: true
                         mesh_id: 10784035645120420919
                         navigable: false
                         visible: true
-                        material_id: 5759363592208955763
-              - id: 415362914733179779
+                        material_id: 15711698613413314858
+              - id: 15531263440702262529
                 name: Father
                 enabled: true
                 component:
                   - !<transform>
-                    id: 649510568623527438
+                    id: 11180258172135649448
                     type: 1
                     enabled: true
                     position: [0.00118318188, -0.00236636377, 0]
                     rotation: [0, 0, 0, 1]
                     scale: [1, 1, 1]
                 child:
-                  - id: 8808992264816266691
+                  - id: 7619004261714579967
                     name: Bottom2
                     enabled: true
                     component:
                       - !<transform>
-                        id: 9514690646369897978
+                        id: 9378368315299358766
                         type: 1
                         enabled: true
-                        position: [0.674750447, 0.111368217, 0.740485668]
-                        rotation: [-0.460608244, -0.585989356, 0.632965207, -0.20931223]
-                        scale: [1.00000024, 1, 1.00000012]
-                  - id: 11160585515080312039
+                        position: [0.144156978, 0.258742034, 0.271769315]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                  - id: 14857061160596517856
                     name: Bottom
                     enabled: true
                     component:
                       - !<transform>
-                        id: 7878184607850954991
+                        id: 15217842607388792571
                         type: 1
                         enabled: true
-                        position: [0.970067561, 0.0390892252, -2.08480811]
-                        rotation: [0.196994364, -0.376801103, 0.901763141, 0.0777007863]
-                        scale: [1, 0.99999994, 1]
-                  - id: 16904796737324970190
+                        position: [0.0899617374, 0.301963925, 0.0456319116]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                  - id: 4630927698015298456
                     name: Top
                     enabled: true
                     component:
                       - !<transform>
-                        id: 6339109476621287747
+                        id: 2503637240568890661
                         type: 1
                         enabled: true
-                        position: [-1.68255424, 0.115553424, 0.215169698]
-                        rotation: [-0.595387399, 0.770939827, 0.158901066, -0.160984918]
-                        scale: [0.999999881, 0.999999523, 1.00000036]
-                  - id: 872265333633079402
+                        position: [-0.0773794428, 0.497074544, 0.10228952]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                  - id: 420359126156693406
                     name: Middle
                     enabled: true
                     component:
                       - !<transform>
-                        id: 6832292093043092201
+                        id: 8278670559661044423
                         type: 1
                         enabled: true
-                        position: [2.65240049, 0.146046892, 0.356894374]
-                        rotation: [0.741054058, 0.573180795, 0.260979235, 0.23279281]
-                        scale: [1.00000143, 0.999999762, 1.00000191]
-      - id: 16759935850463004525
-        name: ExplosiveCrystal1
+                        position: [0.185792997, 0.486780435, 0.0622473769]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+      - id: 2231727118736542908
+        name: ExplosiveCrystal
         enabled: true
         component:
           - !<transform>
-            id: 497504336447308892
+            id: 13301896521992285427
             type: 1
             enabled: true
             position: [13.1762943, 0, -17.561451]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
           - !<script>
-            id: 16709484342590505105
+            id: 11992439162829802663
             type: 15
             enabled: true
             class_name: CrystalExplosion
             "'_player@GameObject*'": 7577865002841685786
-            "'_explosion_crystal@GameObject*'": 8060937287313269934
-            "'_static_crystal@GameObject*'": 12090133513525043887
-            "'_outer_explosion_indicator@GameObject*'": 622836895657820797
-            "'_inner_explosion_indicator@GameObject*'": 3992605948988809593
+            "'_explosion_crystal@GameObject*'": 8672196143902357848
+            "'_static_crystal@GameObject*'": 4598006700238350617
+            "'_outer_explosion_indicator@GameObject*'": 427274444283020248
+            "'_inner_explosion_indicator@GameObject*'": 16847500768186729728
             "'_crashing_index@unsigned'": 0
             "'_detecting_radius@float'": 1
             "'_explosion_radius@float'": 10
             "'_timer_explosion@float'": 2
             "'_explosive_crystal@bool'": true
           - !<script>
-            id: 1993543452099406153
+            id: 9642557590243746538
             type: 15
             enabled: true
             class_name: Stats
@@ -356,557 +359,263 @@ child:
             "'_move_speed@float'": 7
             "'_max_hp@int'": 3
           - !<obstacle>
-            id: 170295214346074484
+            id: 16199817436956774243
             type: 18
             enabled: true
             obstacle_type: 0
             obstacle_size: [1, 1, 1]
+          - id: 9541048150045310774
+            type: 20
+            enabled: true
         child:
-          - id: 12090133513525043887
+          - id: 4598006700238350617
             name: crystalSpike_mesh
             enabled: true
             component:
               - !<transform>
-                id: 14402468615780137083
+                id: 16179103236286246253
                 type: 1
                 enabled: true
                 position: [0, 0, 0]
                 rotation: [0, 0, 0, 1]
                 scale: [1, 1, 1]
             child:
-              - id: 17075020940544696572
+              - id: 12057237342298648221
                 name: crystalSpike_mesh
                 enabled: true
                 component:
                   - !<transform>
-                    id: 1549535805725754025
+                    id: 18112850567983602374
                     type: 1
                     enabled: true
                     position: [1.2035023, 0.56883049, -1.08868277]
                     rotation: [-0.640856445, 0.298836708, 0.298836529, 0.640855968]
                     scale: [1.00000012, 1.0000006, 1.00000083]
                   - !<mesh_renderer>
-                    id: 4305243017646618371
+                    id: 8856581706252130949
                     type: 2
                     enabled: true
                     mesh_id: 12493242938431995642
                     navigable: false
                     visible: true
                     material_id: 15711698613413314858
-          - id: 8060937287313269934
+          - id: 8672196143902357848
             name: crystalSpikeAnimacion_meshExplision
             enabled: true
             component:
               - !<transform>
-                id: 8576430635680598247
+                id: 15845130115101327780
                 type: 1
                 enabled: true
                 position: [0, 0, 0]
                 rotation: [0.707106829, 0, 0, 0.707106769]
                 scale: [0.400000006, 0.400002122, 0.400002122]
               - !<animation>
-                id: 15391567300704614195
+                id: 9893174431481511813
                 type: 14
                 enabled: true
                 state_machine: 4494346183400875454
             child:
-              - id: 10086806486182993848
+              - id: 1522495065288885385
                 name: Mesh
                 enabled: true
                 component:
                   - !<transform>
-                    id: 4669072808102732619
+                    id: 14443954668341107272
                     type: 1
                     enabled: true
                     position: [0, 0, 0]
                     rotation: [0, 0, 0, 1]
                     scale: [1, 1, 1]
                 child:
-                  - id: 7250056730551111584
+                  - id: 14273474761262393899
                     name: crystalSpikeTop_mesh
                     enabled: true
                     component:
                       - !<transform>
-                        id: 16031838743196450731
+                        id: 14431801335644422384
                         type: 1
                         enabled: true
                         position: [-0.0761962608, 0.494708151, 0.10228952]
                         rotation: [-0.707106829, 0, 0, 0.707106769]
                         scale: [2.53999996, 2.53999901, 2.53999901]
                       - !<mesh_renderer>
-                        id: 13600115047451813015
+                        id: 5971945779844899463
                         type: 2
                         enabled: true
                         mesh_id: 2367252208710808329
                         navigable: false
                         visible: true
                         material_id: 5759363592208955763
-                  - id: 15393518415515114725
+                  - id: 716834151499880533
                     name: crystalSpikeBottom_mesh
                     enabled: true
                     component:
                       - !<transform>
-                        id: 1582534695786510693
+                        id: 3730488724855792402
                         type: 1
                         enabled: true
                         position: [0.0911449194, 0.299597561, 0.0456319116]
                         rotation: [-0.707106829, 0, 0, 0.707106769]
                         scale: [2.53999996, 2.53999901, 2.53999901]
                       - !<mesh_renderer>
-                        id: 15513404339205547330
+                        id: 2720711242661930591
                         type: 2
                         enabled: true
                         mesh_id: 11783699103939193595
                         navigable: false
                         visible: true
                         material_id: 5759363592208955763
-                  - id: 15132645945309407304
+                  - id: 7204000132049198092
                     name: crystalSpikeMiddle_mesh
                     enabled: true
                     component:
                       - !<transform>
-                        id: 5937558779620835847
+                        id: 14651050519511088331
                         type: 1
                         enabled: true
                         position: [0.186976179, 0.484414041, 0.0622473769]
                         rotation: [-0.707106829, 0, 0, 0.707106769]
                         scale: [2.53999996, 2.53999901, 2.53999901]
                       - !<mesh_renderer>
-                        id: 13908724449195189502
+                        id: 8317226826773838866
                         type: 2
                         enabled: true
                         mesh_id: 10088262584487287873
                         navigable: false
                         visible: true
                         material_id: 5759363592208955763
-                  - id: 8724868037566545363
+                  - id: 1423732111012719939
                     name: crystalSpikeBottom2_mesh
                     enabled: true
                     component:
                       - !<transform>
-                        id: 6288847691386350492
+                        id: 12696948120803341078
                         type: 1
                         enabled: true
                         position: [0.14534016, 0.256375641, 0.271769315]
                         rotation: [-0.707106829, 0, 0, 0.707106769]
                         scale: [2.53999996, 2.53999901, 2.53999901]
                       - !<mesh_renderer>
-                        id: 7610524900075486255
+                        id: 11996225869822273695
                         type: 2
                         enabled: true
                         mesh_id: 10784035645120420919
                         navigable: false
                         visible: true
                         material_id: 5759363592208955763
-              - id: 8434699089362182269
+              - id: 14880567874110856889
                 name: Father
                 enabled: true
                 component:
                   - !<transform>
-                    id: 4386397255740042091
+                    id: 4951454345764603093
                     type: 1
                     enabled: true
                     position: [0.00118318188, -0.00236636377, 0]
                     rotation: [0, 0, 0, 1]
                     scale: [1, 1, 1]
                 child:
-                  - id: 9737101296243857669
+                  - id: 18079145900541071168
                     name: Bottom2
                     enabled: true
                     component:
                       - !<transform>
-                        id: 15765724472205365075
+                        id: 3714981888577789029
                         type: 1
                         enabled: true
                         position: [0.674750447, 0.111368217, 0.740485668]
                         rotation: [-0.460608244, -0.585989356, 0.632965207, -0.20931223]
                         scale: [1, 1, 1]
-                  - id: 10825952891846630426
+                  - id: 13747609399859018968
                     name: Bottom
                     enabled: true
                     component:
                       - !<transform>
-                        id: 1002861375695706672
+                        id: 5362366976060142131
                         type: 1
                         enabled: true
                         position: [0.970067561, 0.0390892252, -2.08480811]
                         rotation: [0.196994364, -0.376801103, 0.901763141, 0.0777007863]
                         scale: [1, 1, 1]
-                  - id: 11735823181237537445
+                  - id: 11943457216685046196
                     name: Top
                     enabled: true
                     component:
                       - !<transform>
-                        id: 10033965458946452671
+                        id: 214816802822392868
                         type: 1
                         enabled: true
                         position: [-1.68255424, 0.115553424, 0.215169698]
                         rotation: [-0.595387399, 0.770939827, 0.158901051, -0.160984874]
                         scale: [1, 1, 1.00000024]
-                  - id: 1027933933989755851
+                  - id: 4894605393649602083
                     name: Middle
                     enabled: true
                     component:
                       - !<transform>
-                        id: 6298953298454316119
+                        id: 5619425672831435223
                         type: 1
                         enabled: true
                         position: [2.65240049, 0.146046892, 0.356894374]
                         rotation: [0.741054058, 0.573180795, 0.260979235, 0.23279281]
                         scale: [1, 1, 1]
-          - id: 3992605948988809593
+          - id: 16847500768186729728
             name: InnerExplosionArea
             enabled: true
             component:
               - !<transform>
-                id: 142268989076182556
+                id: 1695099484076716572
                 type: 1
                 enabled: true
                 position: [0, -0.200000003, 0]
                 rotation: [0, 0, 0, 1]
                 scale: [2.5, 0.100000001, 2.5]
             child:
-              - id: 8458744273171414628
+              - id: 14303157042598676243
                 name: Cylinder001
                 enabled: true
                 component:
                   - !<transform>
-                    id: 10731114792137718767
+                    id: 7040070576910065021
                     type: 1
                     enabled: true
                     position: [0, 0, 0]
                     rotation: [-0.70710665, 0, 0, 0.707106888]
-                    scale: [1, 0.999998927, 0.999997079]
+                    scale: [1, 0.999998689, 0.999996841]
                   - !<mesh_renderer>
-                    id: 11925511422280505706
+                    id: 14931501809155094228
                     type: 2
                     enabled: true
                     mesh_id: 10210867973034302559
                     navigable: false
                     visible: true
                     material_id: 3083166615423382374
-          - id: 622836895657820797
+          - id: 427274444283020248
             name: OutterExplosionArea
             enabled: true
             component:
               - !<transform>
-                id: 16661833786961986398
+                id: 16910127259882189565
                 type: 1
                 enabled: true
                 position: [0, -0.200000003, 0]
                 rotation: [0, 0, 0, 1]
                 scale: [5, 0.100000001, 5]
             child:
-              - id: 5926985192210154352
+              - id: 10949761310886166060
                 name: Cylinder001
                 enabled: true
                 component:
                   - !<transform>
-                    id: 6343094837737437377
+                    id: 8349988281698964340
                     type: 1
                     enabled: true
                     position: [0, 0, 0]
                     rotation: [-0.70710665, 0, 0, 0.707106888]
-                    scale: [1, 0.999998987, 0.999998987]
+                    scale: [1, 0.999998748, 0.999998748]
                   - !<mesh_renderer>
-                    id: 17953511066337108750
-                    type: 2
-                    enabled: true
-                    mesh_id: 10210867973034302559
-                    navigable: false
-                    visible: true
-                    material_id: 6462450398853139216
-      - id: 13231759622858434628
-        name: ExplosiveCrystal2
-        enabled: true
-        component:
-          - !<transform>
-            id: 3551616414898041949
-            type: 1
-            enabled: true
-            position: [7.79109764, -0.00348166958, -10.5038376]
-            rotation: [0, 0, 0, 1]
-            scale: [1, 1, 1]
-          - !<script>
-            id: 2243479194850764051
-            type: 15
-            enabled: true
-            class_name: CrystalExplosion
-            "'_player@GameObject*'": 7577865002841685786
-            "'_explosion_crystal@GameObject*'": 7579290419027016316
-            "'_static_crystal@GameObject*'": 6204789881105058095
-            "'_outer_explosion_indicator@GameObject*'": 13790700535092635094
-            "'_inner_explosion_indicator@GameObject*'": 738871540715769446
-            "'_crashing_index@unsigned'": 0
-            "'_detecting_radius@float'": 1
-            "'_explosion_radius@float'": 5
-            "'_timer_explosion@float'": 1
-            "'_explosive_crystal@bool'": true
-          - !<script>
-            id: 6792846375540665856
-            type: 15
-            enabled: true
-            class_name: Stats
-            "'_attack_power@int'": 1
-            "'_attack_cd@float'": 2
-            "'_attack_range@float'": 3.5
-            "'_move_speed@float'": 7
-            "'_max_hp@int'": 3
-          - !<obstacle>
-            id: 625701652364050948
-            type: 18
-            enabled: true
-            obstacle_type: 0
-            obstacle_size: [1, 1, 1]
-        child:
-          - id: 6204789881105058095
-            name: crystalSpike_mesh
-            enabled: true
-            component:
-              - !<transform>
-                id: 7371747502448994527
-                type: 1
-                enabled: true
-                position: [0, 0, 0]
-                rotation: [0, 0, 0, 1]
-                scale: [1, 1, 1]
-            child:
-              - id: 7130308566094317051
-                name: crystalSpike_mesh
-                enabled: true
-                component:
-                  - !<transform>
-                    id: 13347844205216449259
-                    type: 1
-                    enabled: true
-                    position: [1.2035023, 0.56883049, -1.08868277]
-                    rotation: [-0.640856445, 0.298836708, 0.298836529, 0.640855968]
-                    scale: [1.00000012, 1.0000006, 1.00000083]
-                  - !<mesh_renderer>
-                    id: 14281237052800383969
-                    type: 2
-                    enabled: true
-                    mesh_id: 12493242938431995642
-                    navigable: false
-                    visible: true
-                    material_id: 15711698613413314858
-          - id: 7579290419027016316
-            name: crystalSpikeAnimacion_meshExplision
-            enabled: true
-            component:
-              - !<transform>
-                id: 15931676401412246465
-                type: 1
-                enabled: true
-                position: [0, 0, 0]
-                rotation: [0.707106829, 0, 0, 0.707106769]
-                scale: [0.400000006, 0.400002122, 0.400002122]
-              - !<animation>
-                id: 13939244547947741703
-                type: 14
-                enabled: true
-                state_machine: 4494346183400875454
-            child:
-              - id: 665231349687818971
-                name: Mesh
-                enabled: true
-                component:
-                  - !<transform>
-                    id: 18400724805475817416
-                    type: 1
-                    enabled: true
-                    position: [0, 0, 0]
-                    rotation: [0, 0, 0, 1]
-                    scale: [1, 1, 1]
-                child:
-                  - id: 6461928205863537864
-                    name: crystalSpikeTop_mesh
-                    enabled: true
-                    component:
-                      - !<transform>
-                        id: 15930195799326079802
-                        type: 1
-                        enabled: true
-                        position: [-0.0761962608, 0.494708151, 0.10228952]
-                        rotation: [-0.707106829, 0, 0, 0.707106769]
-                        scale: [2.53999996, 2.53999901, 2.53999901]
-                      - !<mesh_renderer>
-                        id: 7481328693894971908
-                        type: 2
-                        enabled: true
-                        mesh_id: 2367252208710808329
-                        navigable: false
-                        visible: true
-                        material_id: 5759363592208955763
-                  - id: 8620129769686657905
-                    name: crystalSpikeBottom_mesh
-                    enabled: true
-                    component:
-                      - !<transform>
-                        id: 12197096240086924439
-                        type: 1
-                        enabled: true
-                        position: [0.0911449194, 0.299597561, 0.0456319116]
-                        rotation: [-0.707106829, 0, 0, 0.707106769]
-                        scale: [2.53999996, 2.53999901, 2.53999901]
-                      - !<mesh_renderer>
-                        id: 4755281217542298353
-                        type: 2
-                        enabled: true
-                        mesh_id: 11783699103939193595
-                        navigable: false
-                        visible: true
-                        material_id: 5759363592208955763
-                  - id: 2794082348126816319
-                    name: crystalSpikeMiddle_mesh
-                    enabled: true
-                    component:
-                      - !<transform>
-                        id: 16341129249721667723
-                        type: 1
-                        enabled: true
-                        position: [0.186976179, 0.484414041, 0.0622473769]
-                        rotation: [-0.707106829, 0, 0, 0.707106769]
-                        scale: [2.53999996, 2.53999901, 2.53999901]
-                      - !<mesh_renderer>
-                        id: 2832894655575417937
-                        type: 2
-                        enabled: true
-                        mesh_id: 10088262584487287873
-                        navigable: false
-                        visible: true
-                        material_id: 5759363592208955763
-                  - id: 6099073650401887849
-                    name: crystalSpikeBottom2_mesh
-                    enabled: true
-                    component:
-                      - !<transform>
-                        id: 15857567721845236644
-                        type: 1
-                        enabled: true
-                        position: [0.14534016, 0.256375641, 0.271769315]
-                        rotation: [-0.707106829, 0, 0, 0.707106769]
-                        scale: [2.53999996, 2.53999901, 2.53999901]
-                      - !<mesh_renderer>
-                        id: 14304148883482611568
-                        type: 2
-                        enabled: true
-                        mesh_id: 10784035645120420919
-                        navigable: false
-                        visible: true
-                        material_id: 5759363592208955763
-              - id: 10217236700528275199
-                name: Father
-                enabled: true
-                component:
-                  - !<transform>
-                    id: 9864500590985545088
-                    type: 1
-                    enabled: true
-                    position: [0.00118318188, -0.00236636377, 0]
-                    rotation: [0, 0, 0, 1]
-                    scale: [1, 1, 1]
-                child:
-                  - id: 5593892197210360152
-                    name: Bottom2
-                    enabled: true
-                    component:
-                      - !<transform>
-                        id: 9038827576208033208
-                        type: 1
-                        enabled: true
-                        position: [0.674750447, 0.111368217, 0.740485668]
-                        rotation: [-0.460608244, -0.585989356, 0.632965207, -0.20931223]
-                        scale: [1, 1, 1]
-                  - id: 5149711676288684880
-                    name: Bottom
-                    enabled: true
-                    component:
-                      - !<transform>
-                        id: 3479312734542502944
-                        type: 1
-                        enabled: true
-                        position: [0.970067561, 0.0390892252, -2.08480811]
-                        rotation: [0.196994364, -0.376801103, 0.901763141, 0.0777007863]
-                        scale: [1, 1, 1]
-                  - id: 13749649241308799859
-                    name: Top
-                    enabled: true
-                    component:
-                      - !<transform>
-                        id: 11825699855549291240
-                        type: 1
-                        enabled: true
-                        position: [-1.68255424, 0.115553424, 0.215169698]
-                        rotation: [-0.595387399, 0.770939827, 0.158901051, -0.160984874]
-                        scale: [1, 1, 1.00000024]
-                  - id: 16152446728637211055
-                    name: Middle
-                    enabled: true
-                    component:
-                      - !<transform>
-                        id: 1837293910606708935
-                        type: 1
-                        enabled: true
-                        position: [2.65240049, 0.146046892, 0.356894374]
-                        rotation: [0.741054058, 0.573180795, 0.260979235, 0.23279281]
-                        scale: [1, 1, 1]
-          - id: 738871540715769446
-            name: InnerExplosionArea2
-            enabled: true
-            component:
-              - !<transform>
-                id: 5925954744779923224
-                type: 1
-                enabled: true
-                position: [0, -0.200000003, 0]
-                rotation: [0, 0, 0, 1]
-                scale: [2.5, 0.100000001, 2.5]
-            child:
-              - id: 10250683302423933350
-                name: Cylinder001
-                enabled: true
-                component:
-                  - !<transform>
-                    id: 2268276155387733318
-                    type: 1
-                    enabled: true
-                    position: [0, 0, 0]
-                    rotation: [-0.70710665, 0, 0, 0.707106888]
-                    scale: [1, 0.999998868, 0.99999702]
-                  - !<mesh_renderer>
-                    id: 10374142716009583345
-                    type: 2
-                    enabled: true
-                    mesh_id: 10210867973034302559
-                    navigable: false
-                    visible: true
-                    material_id: 3083166615423382374
-          - id: 13790700535092635094
-            name: OutterExplosionArea2
-            enabled: true
-            component:
-              - !<transform>
-                id: 3514017058442998293
-                type: 1
-                enabled: true
-                position: [0, -0.200000003, 0]
-                rotation: [0, 0, 0, 1]
-                scale: [5, 0.100000001, 5]
-            child:
-              - id: 14767714778758035755
-                name: Cylinder001
-                enabled: true
-                component:
-                  - !<transform>
-                    id: 14355014584671646786
-                    type: 1
-                    enabled: true
-                    position: [0, 0, 0]
-                    rotation: [-0.70710665, 0, 0, 0.707106888]
-                    scale: [1, 0.999998927, 0.999998927]
-                  - !<mesh_renderer>
-                    id: 9973051944377425901
+                    id: 2977317956963680117
                     type: 2
                     enabled: true
                     mesh_id: 10210867973034302559
@@ -938,14 +647,12 @@ child:
         enabled: true
         class_name: PlayerController
         "'_attack_indicator@GameObject*'": 4866793570773219617
-        "'_bullet_emitter@GameObject*'": 0
+        "'_bullet_emitter@GameObject*'": 1137480282892310891
         "'_goal@GameObject*'": 18237002791232467726
         "'_dash_duration@float'": 0.100000001
         "'_dash_distance@float'": 6
         "'_dash_cooldown@float'": 0
-        "'_max_dash_charges@int'": 1
-        "'_attack_duration@float'": 0.300000012
-        "'_attack_duration_distance@float'": 0
+        "'_max_dash_charges@unsigned'": 2
         "'_rotation_duration@float'": 0.100000001
         "'_hp_cell_1@GameObject*'": 10536630925920798614
         "'_hp_cell_2@GameObject*'": 14186993655650306958
@@ -986,7 +693,7 @@ child:
             enabled: true
             position: [0, 0, 0]
             rotation: [-0.70710665, 0, 0, 0.707106888]
-            scale: [1, 0.999993086, 0.999993086]
+            scale: [1, 0.999992788, 0.999992788]
         child:
           - id: 7764132022733223854
             name: Legs_low_$AssimpFbx$_Scaling
@@ -1022,7 +729,7 @@ child:
                         enabled: true
                         position: [0, 0, -0.31464088]
                         rotation: [0.707106829, 0, 0, 0.707106709]
-                        scale: [0.5, 0.49999699, 0.49999699]
+                        scale: [0.5, 0.499996841, 0.499996841]
                       - !<mesh_renderer>
                         id: 3428151599920119695
                         type: 2
@@ -1064,7 +771,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0, 0, 0]
-                    rotation: [-0.136278063, 0, 0, 0.990670621]
+                    rotation: [-0.136278048, 0, 0, 0.990670741]
                     scale: [1, 0.999999881, 0.999999881]
                 child:
                   - id: 14159291792561565159
@@ -1148,7 +855,7 @@ child:
                                                 type: 1
                                                 enabled: true
                                                 position: [0, 0, 0]
-                                                rotation: [-0.0261878818, -0.010616974, 0.00216075871, 0.999598324]
+                                                rotation: [-0.0261879005, -0.010616974, 0.00216075871, 0.999598324]
                                                 scale: [1, 1, 0.999996722]
                                             child:
                                               - id: 4829556732801599224
@@ -1447,7 +1154,7 @@ child:
                                                                                                                             type: 1
                                                                                                                             enabled: true
                                                                                                                             position: [0, 0, 0]
-                                                                                                                            rotation: [0.105893873, 0, 0, 0.994377434]
+                                                                                                                            rotation: [0.10589388, 0, 0, 0.994377553]
                                                                                                                             scale: [1, 1, 1]
                                                                                                                         child:
                                                                                                                           - id: 10503405918547687079
@@ -1507,7 +1214,7 @@ child:
                                                                                                                                                 type: 1
                                                                                                                                                 enabled: true
                                                                                                                                                 position: [0, 0, 0]
-                                                                                                                                                rotation: [0.0314806364, -0.00527429627, 0.100132152, 0.994462013]
+                                                                                                                                                rotation: [0.0314806364, -0.0052742986, 0.100132152, 0.994462013]
                                                                                                                                                 scale: [0.999999106, 1, 1]
                                                                                                                                             child:
                                                                                                                                               - id: 6688317874553404643
@@ -1614,8 +1321,8 @@ child:
                                                                                                                                 type: 1
                                                                                                                                 enabled: true
                                                                                                                                 position: [0, 0, 0]
-                                                                                                                                rotation: [0.0681894645, -0.00102136866, 0.00135457586, 0.997670949]
-                                                                                                                                scale: [0.999993205, 1, 1]
+                                                                                                                                rotation: [0.0681894645, -0.00102136866, 0.00135457597, 0.997670949]
+                                                                                                                                scale: [0.999992907, 1, 1]
                                                                                                                             child:
                                                                                                                               - id: 11450712976190635208
                                                                                                                                 name: mixamorig:LeftHandIndex2
@@ -1662,7 +1369,7 @@ child:
                                                                                                                                                 type: 1
                                                                                                                                                 enabled: true
                                                                                                                                                 position: [0, 0, 0]
-                                                                                                                                                rotation: [0.00420454238, -1.19760025e-05, 0.000395394629, 0.999991179]
+                                                                                                                                                rotation: [0.00420454703, -1.19760207e-05, 0.000395395065, 0.999991179]
                                                                                                                                                 scale: [1, 1, 1]
                                                                                                                                             child:
                                                                                                                                               - id: 2841942637372761838
@@ -2271,7 +1978,7 @@ child:
                                                                                                                                 type: 1
                                                                                                                                 enabled: true
                                                                                                                                 position: [0, 0, 0]
-                                                                                                                                rotation: [0.00281681679, 0.000562985835, 0.00232939771, 0.999993265]
+                                                                                                                                rotation: [0.00281682145, 0.000562986708, 0.00232940121, 0.999993265]
                                                                                                                                 scale: [1, 1, 1]
                                                                                                                             child:
                                                                                                                               - id: 1351480841705291622
@@ -2307,7 +2014,7 @@ child:
                                                                                                                                             type: 1
                                                                                                                                             enabled: true
                                                                                                                                             position: [0, 0, 0]
-                                                                                                                                            rotation: [-0.0635811388, 0, 0, 0.997976661]
+                                                                                                                                            rotation: [-0.0635811016, 0, 0, 0.997976661]
                                                                                                                                             scale: [1, 0.999996305, 0.999996305]
                                                                                                                                         child:
                                                                                                                                           - id: 495197906851575578
@@ -2521,8 +2228,8 @@ child:
                     type: 1
                     enabled: true
                     position: [0, 0, 0]
-                    rotation: [0.00104823057, 0.00960209314, 0.994047523, -0.108519159]
-                    scale: [1.00002897, 1.00001979, 0.999997616]
+                    rotation: [0.00104823057, 0.00960209686, 0.994047523, -0.108519159]
+                    scale: [1.00003076, 1.00002098, 0.999997616]
                 child:
                   - id: 7371629505677526311
                     name: mixamorig:LeftUpLeg_$AssimpFbx$_Rotation
@@ -2533,8 +2240,8 @@ child:
                         type: 1
                         enabled: true
                         position: [0, 0, 0]
-                        rotation: [0.267314494, -0.103843965, 0.00772669539, 0.957966447]
-                        scale: [0.999999881, 0.999999821, 0.999999821]
+                        rotation: [0.267314464, -0.103843957, 0.00772669446, 0.957966447]
+                        scale: [0.999999881, 0.999999762, 0.999999762]
                     child:
                       - id: 11329927718427720129
                         name: mixamorig:LeftUpLeg
@@ -2677,7 +2384,7 @@ child:
                                                                         type: 1
                                                                         enabled: true
                                                                         position: [0, 0, 0]
-                                                                        rotation: [0.0220927838, 0.0108474279, -0.02535972, 0.999375403]
+                                                                        rotation: [0.0220927931, 0.0108474279, -0.02535972, 0.999375403]
                                                                         scale: [1, 1, 0.999998569]
                                                                     child:
                                                                       - id: 11882876627544157593
@@ -2868,8 +2575,8 @@ child:
                                                                     type: 1
                                                                     enabled: true
                                                                     position: [0, 0, 0]
-                                                                    rotation: [0.346824527, -0.00623862678, 0.00230693305, 0.937906444]
-                                                                    scale: [0.999993026, 1, 0.999999881]
+                                                                    rotation: [0.346824527, -0.00623862864, 0.00230693328, 0.937906444]
+                                                                    scale: [0.999992728, 1, 0.999999881]
                                                                 child:
                                                                   - id: 10436137367160897924
                                                                     name: mixamorig:RightToeBase_$AssimpFbx$_Rotation
@@ -2880,8 +2587,8 @@ child:
                                                                         type: 1
                                                                         enabled: true
                                                                         position: [0, 0, 0]
-                                                                        rotation: [0.0153889665, 0.000630982046, -0.00486919051, 0.999869525]
-                                                                        scale: [0.999993205, 1, 0.999993205]
+                                                                        rotation: [0.0153889703, 0.000630982453, -0.00486919284, 0.999869585]
+                                                                        scale: [0.999992907, 1, 0.999992907]
                                                                     child:
                                                                       - id: 16091046922086322096
                                                                         name: mixamorig:RightToeBase
@@ -2916,7 +2623,7 @@ child:
             enabled: true
             position: [0, 1.10207868, 0]
             rotation: [-0.704928994, 0.0554792136, 0.0554794557, 0.704925001]
-            scale: [255.000458, 254.999237, 6.55258656]
+            scale: [255.000458, 254.999237, 6.55259132]
           - !<mesh_renderer>
             id: 14014856922884467210
             type: 2
@@ -2946,7 +2653,7 @@ child:
         enabled: true
         position: [0, 0, 0]
         rotation: [0, 0.707106829, 0, 0.707106709]
-        scale: [0.999996245, 1, 0.999996245]
+        scale: [0.999995947, 1, 0.999995947]
     child:
       - id: 13136078212927589090
         name: Room
@@ -2958,7 +2665,7 @@ child:
             enabled: true
             position: [1.07919786e-05, -2.8608799, 49.7303085]
             rotation: [-0.707104921, 8.41128816e-13, 4.74915788e-13, 0.707108617]
-            scale: [38.9678917, 29.4148159, 0.999962926]
+            scale: [38.9678917, 29.4148064, 0.999962628]
           - !<mesh_renderer>
             id: 5598191833808325502
             type: 2
@@ -3002,7 +2709,7 @@ child:
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [1197, 667]
+            size: [1065, 643]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
@@ -3070,7 +2777,7 @@ child:
                     enabled: true
                     position: [0, 0, 0]
                     rotation: [-0.70710665, 0, 0, 0.707106888]
-                    scale: [1, 0.99999547, 0.99999547]
+                    scale: [1, 0.999995172, 0.999995172]
                   - !<mesh_renderer>
                     id: 14688935481581605658
                     type: 2
@@ -3100,8 +2807,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.08493869e-05, 0, 0]
-                    rotation: [-0.70710665, 9.41940482e-14, -9.41937839e-14, 0.707106888]
-                    scale: [1, 0.999947071, 0.999947071]
+                    rotation: [-0.70710665, 9.41940888e-14, -9.41937839e-14, 0.707106888]
+                    scale: [1, 0.999946773, 0.999946773]
                   - !<mesh_renderer>
                     id: 14866484190479746652
                     type: 2
@@ -3126,7 +2833,7 @@ child:
         type: 10
         enabled: true
         position: [0, 0, 0]
-        size: [1197, 667]
+        size: [1065, 643]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
@@ -3328,3 +3035,19 @@ child:
                 image_color: [1, 1, 1, 1]
                 hover_image_color: [1, 1, 1, 1]
                 fill_window: false
+  - id: 1137480282892310891
+    name: CombatManager
+    enabled: true
+    component:
+      - !<transform>
+        id: 3224117621896536115
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [1, 1, 1]
+      - !<script>
+        id: 15597373855611500250
+        type: 15
+        enabled: true
+        class_name: CombatManager

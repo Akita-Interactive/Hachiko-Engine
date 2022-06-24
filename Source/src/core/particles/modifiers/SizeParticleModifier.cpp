@@ -50,7 +50,7 @@ void Hachiko::SizeParticleModifier::Load(const YAML::Node& node)
 void Hachiko::SizeParticleModifier::UpdateSizeOverTime(Particle& particle) const
 {
     float particle_size = particle.GetCurrentSize();
-    particle_size += size.GetValue();
+    particle_size += size.GetValue(particle.GetCurrentLifeNormilized());
     if (particle_size < 0.0f)
     {
         particle_size = 0.0f;

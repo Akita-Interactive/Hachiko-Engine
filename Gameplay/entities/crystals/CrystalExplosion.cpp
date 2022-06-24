@@ -8,7 +8,6 @@
 
 // TODO: These two includes must go:
 #include <modules/ModuleSceneManager.h>
-#include <resources/ResourceAnimation.h>
 
 
 Hachiko::Scripting::CrystalExplosion::CrystalExplosion(GameObject* game_object)
@@ -55,11 +54,11 @@ void Hachiko::Scripting::CrystalExplosion::OnStart()
 
 void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 {
-	ResourceAnimation* resource_animation = _explosion_crystal->GetComponent<ComponentAnimation>()->GetCurrentAnimation();
+	ComponentAnimation* component_anim = _explosion_crystal->GetComponent<ComponentAnimation>();
 
-	if (!_stats->IsAlive() && resource_animation)
+	if (!_stats->IsAlive() && component_anim)
 	{
-		if (resource_animation->GetCurrentState() == ResourceAnimation::State::STOPPED) 
+		if (component_anim->IsAnimationStopped())
 		{
 			SceneManagement::Destroy(game_object);
 			return;
@@ -103,7 +102,7 @@ void Hachiko::Scripting::CrystalExplosion::StartExplosion()
 
 void Hachiko::Scripting::CrystalExplosion::CheckRadiusExplosion()
 {
-	if (_detecting_radius >= transform->GetGlobalPosition().Distance(_player->GetTransform()->GetGlobalPosition()))
+	if (_detecting_radius >= game_object->GetTransform()->GetGlobalPosition().Distance(_player->GetTransform()->GetGlobalPosition()))
 	{
 		RegisterHit(_stats->_max_hp);
 	}

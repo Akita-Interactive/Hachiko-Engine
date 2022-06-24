@@ -5,16 +5,9 @@ component:
   - !<transform>
     type: 1
     enabled: true
-    position: [0, 0, -15.1319904]
-    rotation: [0, 0.0688859746, 0, 0.997624576]
-    scale: [1.39999998, 1.39999998, 1.39999998]
-  - !<obstacle>
-    type: 18
-    enabled: true
-    obstacle_type: 0
-    obstacle_size: [0.800000012, 1, 1]
-  - type: 20
-    enabled: true
+    position: [13.1762943, 0, -17.561451]
+    rotation: [0, 0, 0, 1]
+    scale: [1, 1, 1]
   - !<script>
     type: 15
     enabled: true
@@ -22,19 +15,29 @@ component:
     "'_player@GameObject*'": 0
     "'_explosion_crystal@GameObject*'": 4
     "'_static_crystal@GameObject*'": 2
+    "'_outer_explosion_indicator@GameObject*'": 17
+    "'_inner_explosion_indicator@GameObject*'": 15
     "'_crashing_index@unsigned'": 0
-    "'_detecting_radius@float'": 2
-    "'_explosion_radius@float'": 5
+    "'_detecting_radius@float'": 1
+    "'_explosion_radius@float'": 10
+    "'_timer_explosion@float'": 2
     "'_explosive_crystal@bool'": true
   - !<script>
     type: 15
     enabled: true
     class_name: Stats
-    "'_attack_power@int'": 2
+    "'_attack_power@int'": 1
     "'_attack_cd@float'": 2
     "'_attack_range@float'": 3.5
-    "'_move_speed@float'": 0
-    "'_max_hp@int'": 1
+    "'_move_speed@float'": 7
+    "'_max_hp@int'": 3
+  - !<obstacle>
+    type: 18
+    enabled: true
+    obstacle_type: 0
+    obstacle_size: [1, 1, 1]
+  - type: 20
+    enabled: true
 child:
   - name: crystalSpike_mesh
     enabled: true
@@ -61,16 +64,16 @@ child:
             mesh_id: 12493242938431995642
             navigable: false
             visible: true
-            material_id: 5759363592208955763
+            material_id: 15711698613413314858
   - name: crystalSpikeAnimacion_meshExplision
     enabled: true
     component:
       - !<transform>
         type: 1
         enabled: true
-        position: [0.0394845456, 0, -0.20355995]
-        rotation: [0, 0, 0, 1]
-        scale: [0.406699985, 0.406699985, 0.406699985]
+        position: [0, 0, 0]
+        rotation: [0.707106829, 0, 0, 0.707106769]
+        scale: [0.400000006, 0.400002122, 0.400002122]
       - !<animation>
         type: 14
         enabled: true
@@ -83,8 +86,8 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [0.707106829, 0, 0, 0.707106709]
-            scale: [1, 0.999987125, 0.999987125]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
         child:
           - name: crystalSpikeTop_mesh
             enabled: true
@@ -166,8 +169,8 @@ child:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [0.144156978, 0.258742034, 0.271769315]
-                rotation: [0, 0, 0, 1]
+                position: [0.674750447, 0.111368217, 0.740485668]
+                rotation: [-0.460608244, -0.585989356, 0.632965207, -0.20931223]
                 scale: [1, 1, 1]
           - name: Bottom
             enabled: true
@@ -175,8 +178,8 @@ child:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [0.0899617374, 0.301963925, 0.0456319116]
-                rotation: [0, 0, 0, 1]
+                position: [0.970067561, 0.0390892252, -2.08480811]
+                rotation: [0.196994364, -0.376801103, 0.901763141, 0.0777007863]
                 scale: [1, 1, 1]
           - name: Top
             enabled: true
@@ -184,15 +187,67 @@ child:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [-0.0773794428, 0.497074544, 0.10228952]
-                rotation: [0, 0, 0, 1]
-                scale: [1, 1, 1]
+                position: [-1.68255424, 0.115553424, 0.215169698]
+                rotation: [-0.595387399, 0.770939827, 0.158901051, -0.160984874]
+                scale: [1, 1, 1.00000024]
           - name: Middle
             enabled: true
             component:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [0.185792997, 0.486780435, 0.0622473769]
-                rotation: [0, 0, 0, 1]
+                position: [2.65240049, 0.146046892, 0.356894374]
+                rotation: [0.741054058, 0.573180795, 0.260979235, 0.23279281]
                 scale: [1, 1, 1]
+  - name: InnerExplosionArea
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, -0.200000003, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [2.5, 0.100000001, 2.5]
+    child:
+      - name: Cylinder001
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0.70710665, 0, 0, 0.707106888]
+            scale: [1, 0.999998629, 0.999996781]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 10210867973034302559
+            navigable: false
+            visible: true
+            material_id: 3083166615423382374
+  - name: OutterExplosionArea
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, -0.200000003, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [5, 0.100000001, 5]
+    child:
+      - name: Cylinder001
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0.70710665, 0, 0, 0.707106888]
+            scale: [1, 0.999998689, 0.999998689]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 10210867973034302559
+            navigable: false
+            visible: true
+            material_id: 6462450398853139216

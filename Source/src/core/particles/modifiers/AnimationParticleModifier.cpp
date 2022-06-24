@@ -7,8 +7,7 @@ Hachiko::AnimationParticleModifier::AnimationParticleModifier(const std::string&
     : ParticleModifier(name, false) 
 {
     cfg.min = 0.0f;
-    cfg.max = 10.0f;
-    cfg.speed = 0.01f;
+    cfg.max = 1.0f;
     cfg.format = "%.2f";
 }
 
@@ -20,7 +19,7 @@ void Hachiko::AnimationParticleModifier::Update(std::vector<Particle>& particles
     }
 
     time += EngineTimer::delta_time;
-    if (time <= skip_frames)
+    if (!fit_to_lifetime && time <= animation_speed)
     {
         return;
     }
@@ -41,20 +40,31 @@ void Hachiko::AnimationParticleModifier::DrawGui()
 {
     Widgets::Checkbox("Fit to lifetime", &fit_to_lifetime);
     cfg.enabled = !fit_to_lifetime;
-    DragFloat("Skip frames", skip_frames, &cfg);
+    cfg.speed = 0.01f;
+    Widgets::DragFloat("Animation speed", animation_speed, &cfg);
+    cfg.enabled = true;
+    cfg.speed = 0.05f;
+    DragFloat("Blend factor", blend_factor, &cfg);
 }
 
 void Hachiko::AnimationParticleModifier::Save(YAML::Node& node) const 
 {
-    YAML::Node velocity_module = node[MODULE_ANIMATION];
-    ParticleModifier::Save(velocity_module);
-    velocity_module[SKIP_FRAMES] = skip_frames;
+    YAML::Node animation_modifier = node[MODULE_ANIMATION];
+    ParticleModifier::Save(animation_modifier);
+    animation_modifier[ANIMATION_SPEED] = animation_speed;
+    animation_modifier[BLEND_FACTOR] = blend_factor;
+    animation_modifier[FIT_TO_LIFETIME] = fit_to_lifetime;
 }
 
 void Hachiko::AnimationParticleModifier::Load(const YAML::Node& node) 
 {
     ParticleModifier::Load(node[MODULE_ANIMATION]);
-    skip_frames = node[MODULE_ANIMATION][SKIP_FRAMES].IsDefined() ? node[MODULE_ANIMATION][SKIP_FRAMES].as<float>() : skip_frames;
+    animation_speed = node[MODULE_ANIMATION][ANIMATION_SPEED].IsDefined() ?
+        node[MODULE_ANIMATION][ANIMATION_SPEED].as<float>() : animation_speed;
+    blend_factor = node[MODULE_ANIMATION][BLEND_FACTOR].IsDefined() ?
+        node[MODULE_ANIMATION][BLEND_FACTOR].as<float>() : blend_factor;
+    fit_to_lifetime = node[MODULE_ANIMATION][FIT_TO_LIFETIME].IsDefined() ?
+        node[MODULE_ANIMATION][FIT_TO_LIFETIME].as<bool>() : fit_to_lifetime;
 }
 
 void Hachiko::AnimationParticleModifier::UpdateAnimation(Particle& particle) 
@@ -64,12 +74,24 @@ void Hachiko::AnimationParticleModifier::UpdateAnimation(Particle& particle)
         return;
     }
 
+    particle.SetAnimationBlend(blend_factor);
     unsigned animation_frame = particle.GetCurrentAnimationFrame();
-    float2 animation_idx = particle.GetAnimationIndex();
-
-    if (animation_frame >= particle.GetTextureTotalTiles())
+    
+    if (fit_to_lifetime)
     {
-        particle.SetCurrentAnimationFrame(1);
+        unsigned fit_to_frame = static_cast<unsigned>(std::trunc((particle.GetCurrentLifeNormilized() * particle.GetTextureTotalTiles())));
+
+        if (animation_frame == fit_to_frame)
+        {
+            return;
+        }
+    }
+
+    float2 animation_idx = particle.GetAnimationIndex();
+    
+    if (animation_frame >= particle.GetTextureTotalTiles() - 1)
+    {
+        particle.SetCurrentAnimationFrame(0);
         particle.SetAnimationIndex(float2::zero);
         return;
     }
@@ -91,6 +113,6 @@ void Hachiko::AnimationParticleModifier::UpdateAnimation(Particle& particle)
         return;
     }
 
-    particle.SetCurrentAnimationFrame(1);
+    particle.SetCurrentAnimationFrame(0);
     particle.SetAnimationIndex(float2::zero);
 }

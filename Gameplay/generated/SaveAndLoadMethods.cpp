@@ -5,7 +5,7 @@
 #include "entities/crystals/CrystalExplosion.h"
 #include "entities/enemies/BugAnimationManager.h"
 #include "entities/enemies/EnemyController.h"
-#include "entities/player/BulletController.h"
+#include "entities/player/CombatManager.h"
 #include "entities/player/PlayerAnimationManager.h"
 #include "entities/player/PlayerCamera.h"
 #include "entities/player/PlayerController.h"
@@ -90,11 +90,31 @@ void Hachiko::Scripting::CrystalExplosion::OnSave(YAML::Node& node) const
 		node["'_static_crystal@GameObject*'"] = 0;
 	}
 
+	if (_outer_explosion_indicator != nullptr)
+	{
+		node["'_outer_explosion_indicator@GameObject*'"] = _outer_explosion_indicator->GetID();
+	}
+	else
+	{
+		node["'_outer_explosion_indicator@GameObject*'"] = 0;
+	}
+
+	if (_inner_explosion_indicator != nullptr)
+	{
+		node["'_inner_explosion_indicator@GameObject*'"] = _inner_explosion_indicator->GetID();
+	}
+	else
+	{
+		node["'_inner_explosion_indicator@GameObject*'"] = 0;
+	}
+
 	node["'_crashing_index@unsigned'"] = _crashing_index;
 
 	node["'_detecting_radius@float'"] = _detecting_radius;
 
 	node["'_explosion_radius@float'"] = _explosion_radius;
+
+	node["'_timer_explosion@float'"] = _timer_explosion;
 
 	node["'_explosive_crystal@bool'"] = _explosive_crystal;
 }
@@ -116,6 +136,16 @@ void Hachiko::Scripting::CrystalExplosion::OnLoad()
 		_static_crystal = SceneManagement::FindInCurrentScene(load_node["'_static_crystal@GameObject*'"].as<unsigned long long>());
 	}
 
+	if (load_node["'_outer_explosion_indicator@GameObject*'"].IsDefined())
+	{
+		_outer_explosion_indicator = SceneManagement::FindInCurrentScene(load_node["'_outer_explosion_indicator@GameObject*'"].as<unsigned long long>());
+	}
+
+	if (load_node["'_inner_explosion_indicator@GameObject*'"].IsDefined())
+	{
+		_inner_explosion_indicator = SceneManagement::FindInCurrentScene(load_node["'_inner_explosion_indicator@GameObject*'"].as<unsigned long long>());
+	}
+
 	if (load_node["'_crashing_index@unsigned'"].IsDefined())
 	{
 		_crashing_index = load_node["'_crashing_index@unsigned'"].as<unsigned>();
@@ -129,6 +159,11 @@ void Hachiko::Scripting::CrystalExplosion::OnLoad()
 	if (load_node["'_explosion_radius@float'"].IsDefined())
 	{
 		_explosion_radius = load_node["'_explosion_radius@float'"].as<float>();
+	}
+
+	if (load_node["'_timer_explosion@float'"].IsDefined())
+	{
+		_timer_explosion = load_node["'_timer_explosion@float'"].as<float>();
 	}
 
 	if (load_node["'_explosive_crystal@bool'"].IsDefined())
@@ -300,11 +335,11 @@ void Hachiko::Scripting::EnemyController::OnLoad()
 	}
 }
 
-void Hachiko::Scripting::BulletController::OnSave(YAML::Node& node) const
+void Hachiko::Scripting::CombatManager::OnSave(YAML::Node& node) const
 {
 }
 
-void Hachiko::Scripting::BulletController::OnLoad()
+void Hachiko::Scripting::CombatManager::OnLoad()
 {
 }
 
@@ -410,6 +445,7 @@ void Hachiko::Scripting::PlayerCamera::OnLoad()
 
 void Hachiko::Scripting::PlayerController::OnSave(YAML::Node& node) const
 {
+
 	if (_attack_indicator != nullptr)
 	{
 		node["'_attack_indicator@GameObject*'"] = _attack_indicator->GetID();
@@ -443,11 +479,7 @@ void Hachiko::Scripting::PlayerController::OnSave(YAML::Node& node) const
 
 	node["'_dash_cooldown@float'"] = _dash_cooldown;
 
-	node["'_max_dash_charges@int'"] = _max_dash_charges;
-
-	node["'_attack_duration@float'"] = _attack_duration;
-
-	node["'_attack_duration_distance@float'"] = _attack_duration_distance;
+	node["'_max_dash_charges@unsigned'"] = _max_dash_charges;
 
 	node["'_rotation_duration@float'"] = _rotation_duration;
 
@@ -508,6 +540,7 @@ void Hachiko::Scripting::PlayerController::OnSave(YAML::Node& node) const
 
 void Hachiko::Scripting::PlayerController::OnLoad()
 {
+
 	if (load_node["'_attack_indicator@GameObject*'"].IsDefined())
 	{
 		_attack_indicator = SceneManagement::FindInCurrentScene(load_node["'_attack_indicator@GameObject*'"].as<unsigned long long>());
@@ -538,19 +571,9 @@ void Hachiko::Scripting::PlayerController::OnLoad()
 		_dash_cooldown = load_node["'_dash_cooldown@float'"].as<float>();
 	}
 
-	if (load_node["'_max_dash_charges@int'"].IsDefined())
+	if (load_node["'_max_dash_charges@unsigned'"].IsDefined())
 	{
-		_max_dash_charges = load_node["'_max_dash_charges@int'"].as<int>();
-	}
-
-	if (load_node["'_attack_duration@float'"].IsDefined())
-	{
-		_attack_duration = load_node["'_attack_duration@float'"].as<float>();
-	}
-
-	if (load_node["'_attack_duration_distance@float'"].IsDefined())
-	{
-		_attack_duration_distance = load_node["'_attack_duration_distance@float'"].as<float>();
+		_max_dash_charges = load_node["'_max_dash_charges@unsigned'"].as<unsigned>();
 	}
 
 	if (load_node["'_rotation_duration@float'"].IsDefined())

@@ -13,14 +13,6 @@ namespace Hachiko
     {
     public:
 
-        enum class State
-        {
-            PLAYING, // While the animation is playing
-            PAUSED, // If the animation is paused
-            STOPPED, // When the animation is finished
-            UNSET
-        };
-
         struct Channel
         {
             Channel() = default;
@@ -66,23 +58,10 @@ namespace Hachiko
 
         [[nodiscard]] const Channel* GetChannel(const std::string& name) const;
 
-        State GetCurrentState() const
-        {
-            return current_state;
-        }
-
-        void SetCurrentState(State new_current_state)
-        {
-            current_state = new_current_state;
-        }
-
-
         std::unordered_map<std::string, Channel> channels;
 
     private:
         unsigned int duration = 0;
         std::string name;
-
-        State current_state = State::UNSET;
     };
 } // namespace Hachiko

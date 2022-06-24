@@ -317,7 +317,7 @@ RD /S /Q "$(TargetDir)"</Command>
     <ClInclude Include="entities\player\PlayerState.h" />
     <ClInclude Include="misc\AudioManager.h" />
     <ClInclude Include="ui\BackToMainMenu.h" />
-    <ClInclude Include="entities\player\BulletController.h" />
+    <ClInclude Include="entities\player\CombatManager.h" />
     <ClInclude Include="entities\enemies\BugAnimationManager.h" />
     <ClInclude Include="entities\crystals\CrystalExplosion.h" />
     <ClInclude Include="ui\DebugManager.h" />
@@ -725,7 +725,7 @@ RD /S /Q "$(TargetDir)"</Command>
     </ClCompile>
     <ClCompile Include="misc\AudioManager.cpp" />
     <ClCompile Include="ui\BackToMainMenu.cpp" />
-    <ClCompile Include="entities\player\BulletController.cpp" />
+    <ClCompile Include="entities\player\CombatManager.cpp" />
     <ClCompile Include="entities\enemies\BugAnimationManager.cpp" />
     <ClCompile Include="entities\crystals\CrystalExplosion.cpp" />
     <ClCompile Include="ui\DebugManager.cpp" />

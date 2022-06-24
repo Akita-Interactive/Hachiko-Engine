@@ -257,18 +257,21 @@
 #define MAX_SPEED "max_speed"
 #define MAX_ACCELERATION "max_acceleration"
 #define AVOID_OBSTACLES "avoid_obstacles"
+#define AGENT_RADIUS "radius"
 
 // Component Billboard
 #define BILLBOARD_TEXTURE_ID "texture_id"
-#define BILLBOARD_TYPE "billboard_type"
 #define BILLBOARD_LIFETIME "billboard_lifetime"
 #define BILLBOARD_PLAY_ON_AWAKE "play_on_awake"
-#define BILLBOARD_RENDER_MODE "render_mode"
 #define ANIMATION_CYCLES "animation_cycles"
+#define ANIMATION_SECTION "animation_section"
+#define COLOR_SECTION "color_section"
+#define START_DELAY "start_delay"
+#define START_SIZE "start_size"
+#define START_ROTATION "start_rotation"
+#define BILLBOARD_PROPERTIES "properties"
 
-#define HAS_COLOR_GRADIENT "has_color_gradient"
 #define COLOR_CYCLES "color_cycles"
-#define COLOR_LOOP "color_loop"
 #define COLOR_GRADIENT "color_gradient"
 #define ANIMATION_LOOP "animation_loop"
 
@@ -301,6 +304,7 @@
 #define PARTICLES_TEXTURE "texture"
 #define PARTICLES_TEXTURE_ID "texture_id"
 #define TILES "tiles"
+#define TOTAL_TILES "total_tiles"
 #define Y_TILES "y_tiles"
 #define FLIP "flip"
 #define FLIP_Y "flip_y"
@@ -313,8 +317,11 @@
 #define SIZE "size"
 #define MODULE_COLOR "color"
 #define MODULE_FORCE "force"
+#define ROTATION "rotation"
 #define MODULE_ANIMATION "animation"
-#define SKIP_FRAMES "skip_frames"
+#define ANIMATION_SPEED "animation_speed"
+#define BLEND_FACTOR "blend_factor"
+#define FIT_TO_LIFETIME "fit_to_lifetime"
 
 // ComponentMeshRenderer
 #define RENDERER_MESH_ID "mesh_id"
