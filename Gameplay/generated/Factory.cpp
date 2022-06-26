@@ -1,5 +1,6 @@
 #include "scriptingUtil/gameplaypch.h"
 #include "generated/Factory.h"
+#include "CrystalPlatform.h"
 #include "entities/Stats.h"
 #include "entities/crystals/CrystalExplosion.h"
 #include "entities/enemies/BugAnimationManager.h"
@@ -20,6 +21,11 @@
 
 Hachiko::Scripting::Script* InstantiateScript(Hachiko::GameObject* script_owner, const std::string& script_name)
 {
+	if (script_name == "CrystalPlatform")
+	{
+		return new Hachiko::Scripting::CrystalPlatform(script_owner);
+	}
+
 	if (script_name == "Stats")
 	{
 		return new Hachiko::Scripting::Stats(script_owner);

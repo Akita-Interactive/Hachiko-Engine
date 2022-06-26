@@ -92,6 +92,15 @@ namespace Hachiko
         {
             return material;
         }
+
+        void SetTintColor(float4 color)
+        {
+            tint_color = color;
+        }
+        [[nodiscard]] float4 GetTintColor() const 
+        {
+            return tint_color;
+        }
         
         void DrawGui() override;
 
@@ -103,9 +112,6 @@ namespace Hachiko
         {
             return palette;
         }
-        
-
-        
 
         // Scripting
         [[nodiscard]] bool OverrideMaterialActive() const
@@ -142,6 +148,7 @@ namespace Hachiko
 
         ResourceMesh* mesh = nullptr;
         ResourceMaterial* material = nullptr;
+        float4 tint_color = float4::one;
 
         // Scripting
         bool override_material = false;

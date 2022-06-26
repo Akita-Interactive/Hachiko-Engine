@@ -118,6 +118,7 @@ private:
 	void MovementController();
 	void DashController();
 	void DashChargesManager();
+	void DashTrailManager(float dash_progress);
 	void WalkingOrientationController();
 	void AttackController();
 
@@ -140,10 +141,14 @@ private:
 	SERIALIZE_FIELD(GameObject*, _attack_indicator);
 	SERIALIZE_FIELD(GameObject*, _bullet_emitter);
 	SERIALIZE_FIELD(GameObject*, _goal);
+
 	SERIALIZE_FIELD(float, _dash_duration);
 	SERIALIZE_FIELD(float, _dash_distance);
 	SERIALIZE_FIELD(float, _dash_cooldown);
 	SERIALIZE_FIELD(unsigned, _max_dash_charges);
+	SERIALIZE_FIELD(GameObject*, _dash_trail);
+	SERIALIZE_FIELD(float, _trail_enlarger);
+
 	const float _ranged_attack_cooldown = 0.2f;
 	const float _combo_grace_period = 0.4f;
 
@@ -157,6 +162,7 @@ private:
 
 	SERIALIZE_FIELD(GameObject*, _camera);
 	SERIALIZE_FIELD(GameObject*, _ui_damage);
+
 
 	ComponentTransform* _player_transform = nullptr;
 	ComponentAnimation* animation;
@@ -175,12 +181,18 @@ private:
 	float _current_dash_duration = 0.f;
 	float _dash_progress = 0.0f;
 	float _dash_charging_time = 0.0f;
-
 	float3 _dash_start = float3::zero;
 	float3 _dash_end = float3::zero;
 	float3 _dash_direction = float3::zero;
 
-	// Atack management	
+	float3 _trail_start_pos = float3::zero;
+	float3 _trail_start_scale = float3::zero;
+	float3 _trail_end_pos = float3::zero;
+	float3 _trail_end_scale = float3::zero;
+	bool _show_dashtrail = false;
+
+	//Attack management
+	float _attack_current_cd = 0.0f;
 	float _attack_current_duration = 0.0f;
 	float _current_attack_cooldown = 0.f;
 	float _attack_current_delay = 0.0f;
@@ -188,7 +200,6 @@ private:
 	int _current_bullet = -1;
 	unsigned _attack_idx = 0;
 	unsigned _current_weapon = 0;
-	
 	
 	// Movement management
 	float _stun_time = 0.0f;
@@ -205,8 +216,6 @@ private:
 	Quat _rotation_start = Quat::identity;
 	Quat _rotation_target = Quat::identity;
 
-	
-	
 	
 	GameObject* enemies;
 	GameObject* dynamic_envi;

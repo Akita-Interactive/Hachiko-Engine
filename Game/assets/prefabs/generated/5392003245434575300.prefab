@@ -2,19 +2,22 @@ prefab_name: bug_mesh
 name: RootNode
 enabled: true
 component:
-  - type: 1
+  - !<transform>
+    type: 1
     enabled: true
     position: [0, 0, 0]
     rotation: [0, 0, 0, 1]
     scale: [1, 1, 1]
-  - type: 14
+  - !<animation>
+    type: 14
     enabled: true
     state_machine: 0
 child:
   - name: Root
     enabled: true
     component:
-      - type: 1
+      - !<transform>
+        type: 1
         enabled: true
         position: [0, 0, 0]
         rotation: [0, 0, 0, 1]
@@ -23,7 +26,8 @@ child:
       - name: Root_Jnt_$AssimpFbx$_Translation
         enabled: true
         component:
-          - type: 1
+          - !<transform>
+            type: 1
             enabled: true
             position: [0, 0.00553302374, -0.00450292137]
             rotation: [0, 0, 0, 1]
@@ -32,7 +36,8 @@ child:
           - name: Root_Jnt_$AssimpFbx$_PreRotation
             enabled: true
             component:
-              - type: 1
+              - !<transform>
+                type: 1
                 enabled: true
                 position: [0, 0, 0]
                 rotation: [-0.467823893, -0.530227244, 0.467823893, 0.530227184]
@@ -41,7 +46,8 @@ child:
               - name: Root_Jnt_$AssimpFbx$_Rotation
                 enabled: true
                 component:
-                  - type: 1
+                  - !<transform>
+                    type: 1
                     enabled: true
                     position: [0, 0, 0]
                     rotation: [0, 0, 0, 1]
@@ -50,7 +56,8 @@ child:
                   - name: Root_Jnt
                     enabled: true
                     component:
-                      - type: 1
+                      - !<transform>
+                        type: 1
                         enabled: true
                         position: [0, 0, 0]
                         rotation: [0, 0, 0, 1]
@@ -59,7 +66,8 @@ child:
                       - name: Spine2_Jnt_$AssimpFbx$_Translation
                         enabled: true
                         component:
-                          - type: 1
+                          - !<transform>
+                            type: 1
                             enabled: true
                             position: [0.170079947, -4.44089183e-17, 3.77653345e-17]
                             rotation: [0, 0, 0, 1]
@@ -68,7 +76,8 @@ child:
                           - name: Spine2_Jnt_$AssimpFbx$_PreRotation
                             enabled: true
                             component:
-                              - type: 1
+                              - !<transform>
+                                type: 1
                                 enabled: true
                                 position: [0, 0, 0]
                                 rotation: [0, 0, -0.338868678, 0.940833688]
@@ -77,7 +86,8 @@ child:
                               - name: Spine2_Jnt_$AssimpFbx$_Rotation
                                 enabled: true
                                 component:
-                                  - type: 1
+                                  - !<transform>
+                                    type: 1
                                     enabled: true
                                     position: [0, 0, 0]
                                     rotation: [-0.0318660773, 0.0772754177, -0.30092293, 0.949978173]
@@ -86,7 +96,8 @@ child:
                                   - name: Spine2_Jnt
                                     enabled: true
                                     component:
-                                      - type: 1
+                                      - !<transform>
+                                        type: 1
                                         enabled: true
                                         position: [0, 0, 0]
                                         rotation: [0, 0, 0, 1]
@@ -95,7 +106,8 @@ child:
                                       - name: Spine3_Jnt_$AssimpFbx$_Translation
                                         enabled: true
                                         component:
-                                          - type: 1
+                                          - !<transform>
+                                            type: 1
                                             enabled: true
                                             position: [0.150394201, 8.88178367e-17, 2.57247695e-17]
                                             rotation: [0, 0, 0, 1]
@@ -104,7 +116,8 @@ child:
                                           - name: Spine3_Jnt_$AssimpFbx$_PreRotation
                                             enabled: true
                                             component:
-                                              - type: 1
+                                              - !<transform>
+                                                type: 1
                                                 enabled: true
                                                 position: [0, 0, 0]
                                                 rotation: [0, 0, -0.388819188, 0.921314061]
@@ -113,7 +126,8 @@ child:
                                               - name: Spine3_Jnt_$AssimpFbx$_Rotation
                                                 enabled: true
                                                 component:
-                                                  - type: 1
+                                                  - !<transform>
+                                                    type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
                                                     rotation: [-0.0707774535, 0.0415710509, -0.149858952, 0.985294223]
@@ -122,7 +136,8 @@ child:
                                                   - name: Spine3_Jnt
                                                     enabled: true
                                                     component:
-                                                      - type: 1
+                                                      - !<transform>
+                                                        type: 1
                                                         enabled: true
                                                         position: [0, 0, 0]
                                                         rotation: [0, 0, 0, 1]
@@ -131,7 +146,8 @@ child:
                                                       - name: Spine4_Jnt_$AssimpFbx$_Translation
                                                         enabled: true
                                                         component:
-                                                          - type: 1
+                                                          - !<transform>
+                                                            type: 1
                                                             enabled: true
                                                             position: [0.0826320723, 1.22124532e-17, 1.47850707e-18]
                                                             rotation: [0, 0, 0, 1]
@@ -140,7 +156,8 @@ child:
                                                           - name: Spine4_Jnt_$AssimpFbx$_PreRotation
                                                             enabled: true
                                                             component:
-                                                              - type: 1
+                                                              - !<transform>
+                                                                type: 1
                                                                 enabled: true
                                                                 position: [0, 0, 0]
                                                                 rotation: [-0.0156324822, 0.706933975, 0.015632486, 0.706933975]
@@ -149,7 +166,8 @@ child:
                                                               - name: Spine4_Jnt
                                                                 enabled: true
                                                                 component:
-                                                                  - type: 1
+                                                                  - !<transform>
+                                                                    type: 1
                                                                     enabled: true
                                                                     position: [0, 0, 0]
                                                                     rotation: [0, 0, 0, 1]
@@ -158,7 +176,8 @@ child:
                                                                   - name: Head_Jnt_$AssimpFbx$_Translation
                                                                     enabled: true
                                                                     component:
-                                                                      - type: 1
+                                                                      - !<transform>
+                                                                        type: 1
                                                                         enabled: true
                                                                         position: [2.37221884e-17, 0.0354642048, 0.0775008872]
                                                                         rotation: [0, 0, 0, 1]
@@ -167,7 +186,8 @@ child:
                                                                       - name: Head_Jnt_$AssimpFbx$_PreRotation
                                                                         enabled: true
                                                                         component:
-                                                                          - type: 1
+                                                                          - !<transform>
+                                                                            type: 1
                                                                             enabled: true
                                                                             position: [0, 0, 0]
                                                                             rotation: [0.404129148, -0.580241084, -0.404129148, 0.580240905]
@@ -176,7 +196,8 @@ child:
                                                                           - name: Head_Jnt_$AssimpFbx$_Rotation
                                                                             enabled: true
                                                                             component:
-                                                                              - type: 1
+                                                                              - !<transform>
+                                                                                type: 1
                                                                                 enabled: true
                                                                                 position: [0, 0, 0]
                                                                                 rotation: [0.0482984893, 0.124629118, -0.0155055914, 0.990905881]
@@ -185,7 +206,8 @@ child:
                                                                               - name: Head_Jnt
                                                                                 enabled: true
                                                                                 component:
-                                                                                  - type: 1
+                                                                                  - !<transform>
+                                                                                    type: 1
                                                                                     enabled: true
                                                                                     position: [0, 0, 0]
                                                                                     rotation: [0, 0, 0, 1]
@@ -194,7 +216,8 @@ child:
                                                                                   - name: Head2_Jnt_$AssimpFbx$_Translation
                                                                                     enabled: true
                                                                                     component:
-                                                                                      - type: 1
+                                                                                      - !<transform>
+                                                                                        type: 1
                                                                                         enabled: true
                                                                                         position: [0.0260461103, 0.0473779961, -3.53981488e-17]
                                                                                         rotation: [0, 0, 0, 1]
@@ -203,7 +226,8 @@ child:
                                                                                       - name: Head2_Jnt_$AssimpFbx$_PreRotation
                                                                                         enabled: true
                                                                                         component:
-                                                                                          - type: 1
+                                                                                          - !<transform>
+                                                                                            type: 1
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [-0.404129177, 0.580241144, 0.404129207, 0.580240965]
@@ -212,7 +236,8 @@ child:
                                                                                           - name: Head2_Jnt_$AssimpFbx$_Rotation
                                                                                             enabled: true
                                                                                             component:
-                                                                                              - type: 1
+                                                                                              - !<transform>
+                                                                                                type: 1
                                                                                                 enabled: true
                                                                                                 position: [0, 0, 0]
                                                                                                 rotation: [0.150686949, -0.726758003, -0.0318271741, 0.669405162]
@@ -221,7 +246,8 @@ child:
                                                                                               - name: Head2_Jnt
                                                                                                 enabled: true
                                                                                                 component:
-                                                                                                  - type: 1
+                                                                                                  - !<transform>
+                                                                                                    type: 1
                                                                                                     enabled: true
                                                                                                     position: [0, 0, 0]
                                                                                                     rotation: [0, 0, 0, 1]
@@ -229,7 +255,8 @@ child:
                                                                   - name: Arm1_jnt_L_$AssimpFbx$_Translation
                                                                     enabled: true
                                                                     component:
-                                                                      - type: 1
+                                                                      - !<transform>
+                                                                        type: 1
                                                                         enabled: true
                                                                         position: [0.100942969, -0.037316937, 0.00523825642]
                                                                         rotation: [0, 0, 0, 1]
@@ -238,7 +265,8 @@ child:
                                                                       - name: Arm1_jnt_L_$AssimpFbx$_PreRotation
                                                                         enabled: true
                                                                         component:
-                                                                          - type: 1
+                                                                          - !<transform>
+                                                                            type: 1
                                                                             enabled: true
                                                                             position: [0, 0, 0]
                                                                             rotation: [0.00389453303, 0.0313437171, 0.123242751, 0.991873801]
@@ -247,7 +275,8 @@ child:
                                                                           - name: Arm1_jnt_L_$AssimpFbx$_Rotation
                                                                             enabled: true
                                                                             component:
-                                                                              - type: 1
+                                                                              - !<transform>
+                                                                                type: 1
                                                                                 enabled: true
                                                                                 position: [0, 0, 0]
                                                                                 rotation: [0.0473504588, -0.0119513422, -0.771928608, 0.633830667]
@@ -256,7 +285,8 @@ child:
                                                                               - name: Arm1_jnt_L
                                                                                 enabled: true
                                                                                 component:
-                                                                                  - type: 1
+                                                                                  - !<transform>
+                                                                                    type: 1
                                                                                     enabled: true
                                                                                     position: [0, 0, 0]
                                                                                     rotation: [0, 0, 0, 1]
@@ -265,7 +295,8 @@ child:
                                                                                   - name: Arm2_jnt_L_$AssimpFbx$_Translation
                                                                                     enabled: true
                                                                                     component:
-                                                                                      - type: 1
+                                                                                      - !<transform>
+                                                                                        type: 1
                                                                                         enabled: true
                                                                                         position: [0.0963293314, -2.67168507e-05, 0.012595783]
                                                                                         rotation: [0, 0, 0, 1]
@@ -274,7 +305,8 @@ child:
                                                                                       - name: Arm2_jnt_L_$AssimpFbx$_PreRotation
                                                                                         enabled: true
                                                                                         component:
-                                                                                          - type: 1
+                                                                                          - !<transform>
+                                                                                            type: 1
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [-0.00253965775, -0.006651795, 0.117208518, 0.993081808]
@@ -283,7 +315,8 @@ child:
                                                                                           - name: Arm2_jnt_L_$AssimpFbx$_Rotation
                                                                                             enabled: true
                                                                                             component:
-                                                                                              - type: 1
+                                                                                              - !<transform>
+                                                                                                type: 1
                                                                                                 enabled: true
                                                                                                 position: [0, 0, 0]
                                                                                                 rotation: [0.0212511085, -0.0111230724, -0.489724606, 0.871547163]
@@ -292,7 +325,8 @@ child:
                                                                                               - name: Arm2_jnt_L
                                                                                                 enabled: true
                                                                                                 component:
-                                                                                                  - type: 1
+                                                                                                  - !<transform>
+                                                                                                    type: 1
                                                                                                     enabled: true
                                                                                                     position: [0, 0, 0]
                                                                                                     rotation: [0, 0, 0, 1]
@@ -301,7 +335,8 @@ child:
                                                                                                   - name: Arm3_jnt_L_$AssimpFbx$_Translation
                                                                                                     enabled: true
                                                                                                     component:
-                                                                                                      - type: 1
+                                                                                                      - !<transform>
+                                                                                                        type: 1
                                                                                                         enabled: true
                                                                                                         position: [0.132134482, -0.0176529512, 0.00953098852]
                                                                                                         rotation: [0, 0, 0, 1]
@@ -310,7 +345,8 @@ child:
                                                                                                       - name: Arm3_jnt_L_$AssimpFbx$_PreRotation
                                                                                                         enabled: true
                                                                                                         component:
-                                                                                                          - type: 1
+                                                                                                          - !<transform>
+                                                                                                            type: 1
                                                                                                             enabled: true
                                                                                                             position: [0, 0, 0]
                                                                                                             rotation: [-0.0034494407, 0.0951501429, -0.493272513, 0.864648342]
@@ -319,7 +355,8 @@ child:
                                                                                                           - name: Arm3_jnt_L_$AssimpFbx$_Rotation
                                                                                                             enabled: true
                                                                                                             component:
-                                                                                                              - type: 1
+                                                                                                              - !<transform>
+                                                                                                                type: 1
                                                                                                                 enabled: true
                                                                                                                 position: [0, 0, 0]
                                                                                                                 rotation: [0, 0, 0, 1]
@@ -328,7 +365,8 @@ child:
                                                                                                               - name: Arm3_jnt_L
                                                                                                                 enabled: true
                                                                                                                 component:
-                                                                                                                  - type: 1
+                                                                                                                  - !<transform>
+                                                                                                                    type: 1
                                                                                                                     enabled: true
                                                                                                                     position: [0, 0, 0]
                                                                                                                     rotation: [0, 0, 0, 1]
@@ -337,7 +375,8 @@ child:
                                                                                                                   - name: Arm4_jnt_L_$AssimpFbx$_Translation
                                                                                                                     enabled: true
                                                                                                                     component:
-                                                                                                                      - type: 1
+                                                                                                                      - !<transform>
+                                                                                                                        type: 1
                                                                                                                         enabled: true
                                                                                                                         position: [0.202243224, 0.0102271717, 0.0489794947]
                                                                                                                         rotation: [0, 0, 0, 1]
@@ -346,7 +385,8 @@ child:
                                                                                                                       - name: Arm4_jnt_L_$AssimpFbx$_PreRotation
                                                                                                                         enabled: true
                                                                                                                         component:
-                                                                                                                          - type: 1
+                                                                                                                          - !<transform>
+                                                                                                                            type: 1
                                                                                                                             enabled: true
                                                                                                                             position: [0, 0, 0]
                                                                                                                             rotation: [0.0327296183, -0.114972457, 0.271832317, 0.954891264]
@@ -355,7 +395,8 @@ child:
                                                                                                                           - name: Arm4_jnt_L
                                                                                                                             enabled: true
                                                                                                                             component:
-                                                                                                                              - type: 1
+                                                                                                                              - !<transform>
+                                                                                                                                type: 1
                                                                                                                                 enabled: true
                                                                                                                                 position: [0, 0, 0]
                                                                                                                                 rotation: [0, 0, 0, 1]
@@ -363,7 +404,8 @@ child:
                                                                   - name: Arm1_jnt_R_$AssimpFbx$_Translation
                                                                     enabled: true
                                                                     component:
-                                                                      - type: 1
+                                                                      - !<transform>
+                                                                        type: 1
                                                                         enabled: true
                                                                         position: [-0.100942999, -0.0373171568, 0.00523851253]
                                                                         rotation: [0, 0, 0, 1]
@@ -372,7 +414,8 @@ child:
                                                                       - name: Arm1_jnt_R_$AssimpFbx$_PreRotation
                                                                         enabled: true
                                                                         component:
-                                                                          - type: 1
+                                                                          - !<transform>
+                                                                            type: 1
                                                                             enabled: true
                                                                             position: [0, 0, 0]
                                                                             rotation: [0.99187392, -0.123242766, 0.0313437209, -0.00389450858]
@@ -381,7 +424,8 @@ child:
                                                                           - name: Arm1_jnt_R_$AssimpFbx$_Rotation
                                                                             enabled: true
                                                                             component:
-                                                                              - type: 1
+                                                                              - !<transform>
+                                                                                type: 1
                                                                                 enabled: true
                                                                                 position: [0, 0, 0]
                                                                                 rotation: [0.0673084259, 0.0696586296, -0.66105485, 0.744058967]
@@ -390,7 +434,8 @@ child:
                                                                               - name: Arm1_jnt_R
                                                                                 enabled: true
                                                                                 component:
-                                                                                  - type: 1
+                                                                                  - !<transform>
+                                                                                    type: 1
                                                                                     enabled: true
                                                                                     position: [0, 0, 0]
                                                                                     rotation: [0, 0, 0, 1]
@@ -399,7 +444,8 @@ child:
                                                                                   - name: Arm2_jnt_R_$AssimpFbx$_Translation
                                                                                     enabled: true
                                                                                     component:
-                                                                                      - type: 1
+                                                                                      - !<transform>
+                                                                                        type: 1
                                                                                         enabled: true
                                                                                         position: [-0.0963298455, 2.62800986e-05, -0.0125956647]
                                                                                         rotation: [0, 0, 0, 1]
@@ -408,7 +454,8 @@ child:
                                                                                       - name: Arm2_jnt_R_$AssimpFbx$_PreRotation
                                                                                         enabled: true
                                                                                         component:
-                                                                                          - type: 1
+                                                                                          - !<transform>
+                                                                                            type: 1
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [-0.00253965775, -0.006651795, 0.117208518, 0.993081808]
@@ -417,7 +464,8 @@ child:
                                                                                           - name: Arm2_jnt_R_$AssimpFbx$_Rotation
                                                                                             enabled: true
                                                                                             component:
-                                                                                              - type: 1
+                                                                                              - !<transform>
+                                                                                                type: 1
                                                                                                 enabled: true
                                                                                                 position: [0, 0, 0]
                                                                                                 rotation: [0.0683993027, 0.0526458733, -0.617169499, 0.782081723]
@@ -426,7 +474,8 @@ child:
                                                                                               - name: Arm2_jnt_R
                                                                                                 enabled: true
                                                                                                 component:
-                                                                                                  - type: 1
+                                                                                                  - !<transform>
+                                                                                                    type: 1
                                                                                                     enabled: true
                                                                                                     position: [0, 0, 0]
                                                                                                     rotation: [0, 0, 0, 1]
@@ -435,7 +484,8 @@ child:
                                                                                                   - name: Arm3_jnt_R_$AssimpFbx$_Translation
                                                                                                     enabled: true
                                                                                                     component:
-                                                                                                      - type: 1
+                                                                                                      - !<transform>
+                                                                                                        type: 1
                                                                                                         enabled: true
                                                                                                         position: [-0.132133707, 0.0176532771, -0.00953083392]
                                                                                                         rotation: [0, 0, 0, 1]
@@ -444,7 +494,8 @@ child:
                                                                                                       - name: Arm3_jnt_R_$AssimpFbx$_PreRotation
                                                                                                         enabled: true
                                                                                                         component:
-                                                                                                          - type: 1
+                                                                                                          - !<transform>
+                                                                                                            type: 1
                                                                                                             enabled: true
                                                                                                             position: [0, 0, 0]
                                                                                                             rotation: [-0.0034494407, 0.0951501429, -0.493272513, 0.864648342]
@@ -453,7 +504,8 @@ child:
                                                                                                           - name: Arm3_jnt_R_$AssimpFbx$_Rotation
                                                                                                             enabled: true
                                                                                                             component:
-                                                                                                              - type: 1
+                                                                                                              - !<transform>
+                                                                                                                type: 1
                                                                                                                 enabled: true
                                                                                                                 position: [0, 0, 0]
                                                                                                                 rotation: [0, 0, 0, 1]
@@ -462,7 +514,8 @@ child:
                                                                                                               - name: Arm3_jnt_R
                                                                                                                 enabled: true
                                                                                                                 component:
-                                                                                                                  - type: 1
+                                                                                                                  - !<transform>
+                                                                                                                    type: 1
                                                                                                                     enabled: true
                                                                                                                     position: [0, 0, 0]
                                                                                                                     rotation: [0, 0, 0, 1]
@@ -471,7 +524,8 @@ child:
                                                                                                                   - name: Arm4_jnt_R_$AssimpFbx$_Translation
                                                                                                                     enabled: true
                                                                                                                     component:
-                                                                                                                      - type: 1
+                                                                                                                      - !<transform>
+                                                                                                                        type: 1
                                                                                                                         enabled: true
                                                                                                                         position: [-0.202243, -0.0102269361, -0.0489796065]
                                                                                                                         rotation: [0, 0, 0, 1]
@@ -480,7 +534,8 @@ child:
                                                                                                                       - name: Arm4_jnt_R_$AssimpFbx$_PreRotation
                                                                                                                         enabled: true
                                                                                                                         component:
-                                                                                                                          - type: 1
+                                                                                                                          - !<transform>
+                                                                                                                            type: 1
                                                                                                                             enabled: true
                                                                                                                             position: [0, 0, 0]
                                                                                                                             rotation: [0.0327296183, -0.114972457, 0.271832317, 0.954891264]
@@ -489,7 +544,8 @@ child:
                                                                                                                           - name: Arm4_jnt_R
                                                                                                                             enabled: true
                                                                                                                             component:
-                                                                                                                              - type: 1
+                                                                                                                              - !<transform>
+                                                                                                                                type: 1
                                                                                                                                 enabled: true
                                                                                                                                 position: [0, 0, 0]
                                                                                                                                 rotation: [0, 0, 0, 1]
@@ -497,7 +553,8 @@ child:
                                                                                                                   - name: loc_hand_R
                                                                                                                     enabled: true
                                                                                                                     component:
-                                                                                                                      - type: 1
+                                                                                                                      - !<transform>
+                                                                                                                        type: 1
                                                                                                                         enabled: true
                                                                                                                         position: [0, 0, 0]
                                                                                                                         rotation: [-0.664650142, -0.275482774, 0.105927907, 0.686388254]
@@ -505,7 +562,8 @@ child:
                                                                                                   - name: loc_Forearm
                                                                                                     enabled: true
                                                                                                     component:
-                                                                                                      - type: 1
+                                                                                                      - !<transform>
+                                                                                                        type: 1
                                                                                                         enabled: true
                                                                                                         position: [0, 0, 0]
                                                                                                         rotation: [-0.702865362, 0.155333236, -0.182794303, 0.669655263]
@@ -513,7 +571,8 @@ child:
                                                                                   - name: loc_Arm
                                                                                     enabled: true
                                                                                     component:
-                                                                                      - type: 1
+                                                                                      - !<transform>
+                                                                                        type: 1
                                                                                         enabled: true
                                                                                         position: [0, 0, 0]
                                                                                         rotation: [-0.716693878, 0.0669581592, -0.108110167, 0.685695767]
@@ -521,7 +580,8 @@ child:
                                                                   - name: Wing1_Jnt_L_$AssimpFbx$_Translation
                                                                     enabled: true
                                                                     component:
-                                                                      - type: 1
+                                                                      - !<transform>
+                                                                        type: 1
                                                                         enabled: true
                                                                         position: [0.0776873007, 0.11159084, -0.14679949]
                                                                         rotation: [0, 0, 0, 1]
@@ -530,7 +590,8 @@ child:
                                                                       - name: Wing1_Jnt_L_$AssimpFbx$_PreRotation
                                                                         enabled: true
                                                                         component:
-                                                                          - type: 1
+                                                                          - !<transform>
+                                                                            type: 1
                                                                             enabled: true
                                                                             position: [0, 0, 0]
                                                                             rotation: [0.735010028, -0.6780563, 2.96387839e-08, -3.21283089e-08]
@@ -539,7 +600,8 @@ child:
                                                                           - name: Wing1_Jnt_L_$AssimpFbx$_Rotation
                                                                             enabled: true
                                                                             component:
-                                                                              - type: 1
+                                                                              - !<transform>
+                                                                                type: 1
                                                                                 enabled: true
                                                                                 position: [0, 0, 0]
                                                                                 rotation: [0.624801099, 0.381761611, 0.342109919, 0.588933408]
@@ -548,7 +610,8 @@ child:
                                                                               - name: Wing1_Jnt_L
                                                                                 enabled: true
                                                                                 component:
-                                                                                  - type: 1
+                                                                                  - !<transform>
+                                                                                    type: 1
                                                                                     enabled: true
                                                                                     position: [0, 0, 0]
                                                                                     rotation: [0, 0, 0, 1]
@@ -557,7 +620,8 @@ child:
                                                                                   - name: Wing2_Jnt_L_$AssimpFbx$_Translation
                                                                                     enabled: true
                                                                                     component:
-                                                                                      - type: 1
+                                                                                      - !<transform>
+                                                                                        type: 1
                                                                                         enabled: true
                                                                                         position: [-0.072829552, 0.0115699433, 0.0416167006]
                                                                                         rotation: [0, 0, 0, 1]
@@ -566,7 +630,8 @@ child:
                                                                                       - name: Wing2_Jnt_L_$AssimpFbx$_PreRotation
                                                                                         enabled: true
                                                                                         component:
-                                                                                          - type: 1
+                                                                                          - !<transform>
+                                                                                            type: 1
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0, 0, -0.0335022882, 0.999438643]
@@ -575,7 +640,8 @@ child:
                                                                                           - name: Wing2_Jnt_L_$AssimpFbx$_Rotation
                                                                                             enabled: true
                                                                                             component:
-                                                                                              - type: 1
+                                                                                              - !<transform>
+                                                                                                type: 1
                                                                                                 enabled: true
                                                                                                 position: [0, 0, 0]
                                                                                                 rotation: [0, 0, 0, 1]
@@ -584,7 +650,8 @@ child:
                                                                                               - name: Wing2_Jnt_L
                                                                                                 enabled: true
                                                                                                 component:
-                                                                                                  - type: 1
+                                                                                                  - !<transform>
+                                                                                                    type: 1
                                                                                                     enabled: true
                                                                                                     position: [0, 0, 0]
                                                                                                     rotation: [0, 0, 0, 1]
@@ -593,7 +660,8 @@ child:
                                                                                                   - name: Wing3_Jnt_L
                                                                                                     enabled: true
                                                                                                     component:
-                                                                                                      - type: 1
+                                                                                                      - !<transform>
+                                                                                                        type: 1
                                                                                                         enabled: true
                                                                                                         position: [-0.0881100148, -0.00596288592, 0.0550899953]
                                                                                                         rotation: [0, 0, 0, 1]
@@ -602,7 +670,8 @@ child:
                                                                                                       - name: Wing4_Jnt_L_$AssimpFbx$_Translation
                                                                                                         enabled: true
                                                                                                         component:
-                                                                                                          - type: 1
+                                                                                                          - !<transform>
+                                                                                                            type: 1
                                                                                                             enabled: true
                                                                                                             position: [-0.0817286745, -0.00756480359, 0.0485440008]
                                                                                                             rotation: [0, 0, 0, 1]
@@ -611,7 +680,8 @@ child:
                                                                                                           - name: Wing4_Jnt_L_$AssimpFbx$_PreRotation
                                                                                                             enabled: true
                                                                                                             component:
-                                                                                                              - type: 1
+                                                                                                              - !<transform>
+                                                                                                                type: 1
                                                                                                                 enabled: true
                                                                                                                 position: [0, 0, 0]
                                                                                                                 rotation: [-0.473502696, -0.525162101, -0.473502725, 0.525162041]
@@ -620,7 +690,8 @@ child:
                                                                                                               - name: Wing4_Jnt_L
                                                                                                                 enabled: true
                                                                                                                 component:
-                                                                                                                  - type: 1
+                                                                                                                  - !<transform>
+                                                                                                                    type: 1
                                                                                                                     enabled: true
                                                                                                                     position: [0, 0, 0]
                                                                                                                     rotation: [0, 0, 0, 1]
@@ -628,7 +699,8 @@ child:
                                                                                                       - name: Wing_Top_L
                                                                                                         enabled: true
                                                                                                         component:
-                                                                                                          - type: 1
+                                                                                                          - !<transform>
+                                                                                                            type: 1
                                                                                                             enabled: true
                                                                                                             position: [0, 0, 0]
                                                                                                             rotation: [0, 0, 0, 1]
@@ -636,7 +708,8 @@ child:
                                                                                                   - name: Wing_Middle_L
                                                                                                     enabled: true
                                                                                                     component:
-                                                                                                      - type: 1
+                                                                                                      - !<transform>
+                                                                                                        type: 1
                                                                                                         enabled: true
                                                                                                         position: [0, 0, 0]
                                                                                                         rotation: [0, 0, 0, 1]
@@ -644,7 +717,8 @@ child:
                                                                                   - name: Wing_Bottom_L
                                                                                     enabled: true
                                                                                     component:
-                                                                                      - type: 1
+                                                                                      - !<transform>
+                                                                                        type: 1
                                                                                         enabled: true
                                                                                         position: [0, 0, 0]
                                                                                         rotation: [0, 0, 0, 1]
@@ -652,7 +726,8 @@ child:
                                                                   - name: Wing1_Jnt_R_$AssimpFbx$_Translation
                                                                     enabled: true
                                                                     component:
-                                                                      - type: 1
+                                                                      - !<transform>
+                                                                        type: 1
                                                                         enabled: true
                                                                         position: [-0.0776873454, 0.111591011, -0.14679949]
                                                                         rotation: [0, 0, 0, 1]
@@ -661,7 +736,8 @@ child:
                                                                       - name: Wing1_Jnt_R_$AssimpFbx$_PreRotation
                                                                         enabled: true
                                                                         component:
-                                                                          - type: 1
+                                                                          - !<transform>
+                                                                            type: 1
                                                                             enabled: true
                                                                             position: [0, 0, 0]
                                                                             rotation: [0.490831077, 0.509003937, 0.490831077, 0.509003878]
@@ -670,7 +746,8 @@ child:
                                                                           - name: Wing1_Jnt_R_$AssimpFbx$_Rotation
                                                                             enabled: true
                                                                             component:
-                                                                              - type: 1
+                                                                              - !<transform>
+                                                                                type: 1
                                                                                 enabled: true
                                                                                 position: [0, 0, 0]
                                                                                 rotation: [0.0178000536, 0.477277964, -0.0110308006, 0.878502846]
@@ -679,7 +756,8 @@ child:
                                                                               - name: Wing1_Jnt_R
                                                                                 enabled: true
                                                                                 component:
-                                                                                  - type: 1
+                                                                                  - !<transform>
+                                                                                    type: 1
                                                                                     enabled: true
                                                                                     position: [0, 0, 0]
                                                                                     rotation: [0, 0, 0, 1]
@@ -688,7 +766,8 @@ child:
                                                                                   - name: Wing2_Jnt_R_$AssimpFbx$_Translation
                                                                                     enabled: true
                                                                                     component:
-                                                                                      - type: 1
+                                                                                      - !<transform>
+                                                                                        type: 1
                                                                                         enabled: true
                                                                                         position: [0.0728294551, -0.0115698911, -0.0416168794]
                                                                                         rotation: [0, 0, 0, 1]
@@ -697,7 +776,8 @@ child:
                                                                                       - name: Wing2_Jnt_R_$AssimpFbx$_PreRotation
                                                                                         enabled: true
                                                                                         component:
-                                                                                          - type: 1
+                                                                                          - !<transform>
+                                                                                            type: 1
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0, 0, -0.0335022882, 0.999438643]
@@ -706,7 +786,8 @@ child:
                                                                                           - name: Wing2_Jnt_R_$AssimpFbx$_Rotation
                                                                                             enabled: true
                                                                                             component:
-                                                                                              - type: 1
+                                                                                              - !<transform>
+                                                                                                type: 1
                                                                                                 enabled: true
                                                                                                 position: [0, 0, 0]
                                                                                                 rotation: [0, 0, 0, 1]
@@ -715,7 +796,8 @@ child:
                                                                                               - name: Wing2_Jnt_R
                                                                                                 enabled: true
                                                                                                 component:
-                                                                                                  - type: 1
+                                                                                                  - !<transform>
+                                                                                                    type: 1
                                                                                                     enabled: true
                                                                                                     position: [0, 0, 0]
                                                                                                     rotation: [0, 0, 0, 1]
@@ -724,7 +806,8 @@ child:
                                                                                                   - name: Wing3_Jnt_R
                                                                                                     enabled: true
                                                                                                     component:
-                                                                                                      - type: 1
+                                                                                                      - !<transform>
+                                                                                                        type: 1
                                                                                                         enabled: true
                                                                                                         position: [0.0881099403, 0.00596283143, -0.0550897717]
                                                                                                         rotation: [0, 0, 0, 1]
@@ -733,7 +816,8 @@ child:
                                                                                                       - name: Wing4_Jnt_R_$AssimpFbx$_Translation
                                                                                                         enabled: true
                                                                                                         component:
-                                                                                                          - type: 1
+                                                                                                          - !<transform>
+                                                                                                            type: 1
                                                                                                             enabled: true
                                                                                                             position: [0.0817286223, 0.00756475376, -0.0485441871]
                                                                                                             rotation: [0, 0, 0, 1]
@@ -742,7 +826,8 @@ child:
                                                                                                           - name: Wing4_Jnt_R_$AssimpFbx$_PreRotation
                                                                                                             enabled: true
                                                                                                             component:
-                                                                                                              - type: 1
+                                                                                                              - !<transform>
+                                                                                                                type: 1
                                                                                                                 enabled: true
                                                                                                                 position: [0, 0, 0]
                                                                                                                 rotation: [-0.473502696, -0.525162101, -0.473502725, 0.525162041]
@@ -751,7 +836,8 @@ child:
                                                                                                               - name: Wing4_Jnt_R
                                                                                                                 enabled: true
                                                                                                                 component:
-                                                                                                                  - type: 1
+                                                                                                                  - !<transform>
+                                                                                                                    type: 1
                                                                                                                     enabled: true
                                                                                                                     position: [0, 0, 0]
                                                                                                                     rotation: [0, 0, 0, 1]
@@ -759,7 +845,8 @@ child:
                                                                                                       - name: Wing_Top_R
                                                                                                         enabled: true
                                                                                                         component:
-                                                                                                          - type: 1
+                                                                                                          - !<transform>
+                                                                                                            type: 1
                                                                                                             enabled: true
                                                                                                             position: [0, 0, 0]
                                                                                                             rotation: [0, -0.70710665, 0, 0.707106888]
@@ -767,7 +854,8 @@ child:
                                                                                                   - name: Wing_Middle_R
                                                                                                     enabled: true
                                                                                                     component:
-                                                                                                      - type: 1
+                                                                                                      - !<transform>
+                                                                                                        type: 1
                                                                                                         enabled: true
                                                                                                         position: [0, 0, 0]
                                                                                                         rotation: [0, 0, 0, 1]
@@ -775,7 +863,8 @@ child:
                                                                                   - name: Wing_Bottom_R
                                                                                     enabled: true
                                                                                     component:
-                                                                                      - type: 1
+                                                                                      - !<transform>
+                                                                                        type: 1
                                                                                         enabled: true
                                                                                         position: [0, 0, 0]
                                                                                         rotation: [0, 0, 0, 1]
@@ -783,7 +872,8 @@ child:
   - name: Rig_EmieMele
     enabled: true
     component:
-      - type: 1
+      - !<transform>
+        type: 1
         enabled: true
         position: [0, 0, 0]
         rotation: [0, 0, 0, 1]
@@ -792,7 +882,8 @@ child:
       - name: bug_geo_$AssimpFbx$_RotationPivot
         enabled: true
         component:
-          - type: 1
+          - !<transform>
+            type: 1
             enabled: true
             position: [0, 0, 0.000637819991]
             rotation: [0, 0, 0, 1]
@@ -801,7 +892,8 @@ child:
           - name: bug_geo_$AssimpFbx$_RotationPivotInverse
             enabled: true
             component:
-              - type: 1
+              - !<transform>
+                type: 1
                 enabled: true
                 position: [0, 0, -0.000637819991]
                 rotation: [0, 0, 0, 1]
@@ -810,7 +902,8 @@ child:
               - name: bug_geo_$AssimpFbx$_ScalingPivot
                 enabled: true
                 component:
-                  - type: 1
+                  - !<transform>
+                    type: 1
                     enabled: true
                     position: [0, 0, 0.000637819991]
                     rotation: [0, 0, 0, 1]
@@ -819,7 +912,8 @@ child:
                   - name: bug_geo_$AssimpFbx$_ScalingPivotInverse
                     enabled: true
                     component:
-                      - type: 1
+                      - !<transform>
+                        type: 1
                         enabled: true
                         position: [0, 0, -0.000637819991]
                         rotation: [0, 0, 0, 1]
@@ -828,12 +922,14 @@ child:
                       - name: bug_geo
                         enabled: true
                         component:
-                          - type: 1
+                          - !<transform>
+                            type: 1
                             enabled: true
                             position: [0, 0, 0]
                             rotation: [0, 0, 0, 1]
                             scale: [1, 1, 1]
-                          - type: 2
+                          - !<mesh_renderer>
+                            type: 2
                             enabled: true
                             mesh_id: 8384284510830641750
                             navigable: false

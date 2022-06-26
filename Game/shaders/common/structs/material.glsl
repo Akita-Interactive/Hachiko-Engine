@@ -22,6 +22,7 @@ struct Material {
     uint is_metallic;
     uint smoothness_alpha;
     uint is_transparent;
+    vec4 tint_color;
     //uint padding0;
 };
 

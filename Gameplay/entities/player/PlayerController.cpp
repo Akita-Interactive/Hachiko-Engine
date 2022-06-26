@@ -25,6 +25,8 @@ Hachiko::Scripting::PlayerController::PlayerController(GameObject* game_object)
 	, _state(PlayerState::INVALID)
 	, _camera(nullptr)
 	, _ui_damage(nullptr)
+	, _dash_trail(nullptr)
+	, _trail_enlarger(10.0f)
 {
 	CombatManager::BulletStats common_bullet;
 	common_bullet.charge_time = 1.f;
@@ -79,6 +81,12 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 	{
 		_ui_damage->SetActive(false);
 	}
+
+	if (_dash_trail)
+	{
+		_dash_trail->SetActive(false);
+	}
+
 	enemies = game_object->scene_owner->GetRoot()->GetFirstChildWithName("Enemies");
 	dynamic_envi = game_object->scene_owner->GetRoot()->GetFirstChildWithName("Crystals");
 
@@ -106,6 +114,24 @@ void Hachiko::Scripting::PlayerController::OnStart()
 	animation = game_object->GetComponent<ComponentAnimation>();
 	animation->StartAnimating();
 	_initial_pos = game_object->GetTransform()->GetGlobalPosition();
+
+	if (_dash_trail) // Init dash trail start/end positions and scale
+	{
+		/*The relation for start_pos and start_scale must be always --> start_scale.x = -start_pos.z / 2
+		* make sure to set correctly the local transform in the engine
+		* E.g. if scale = (5, Y, Z) then position = (X, Y, -2.5)
+		*/
+		_trail_start_pos = _dash_trail->GetTransform()->GetLocalPosition();
+		_trail_start_scale = _dash_trail->GetTransform()->GetLocalScale();
+
+		//Position only applies on -Z axis
+		_trail_end_pos = _dash_trail->GetTransform()->GetLocalPosition();
+		_trail_end_pos = math::float3(_trail_end_pos.x, _trail_end_pos.y, _trail_end_pos.z * _trail_enlarger);
+
+		//Scale only applies on +X axis
+		_trail_end_scale = _dash_trail->GetTransform()->GetLocalScale();
+		_trail_end_scale = math::float3(_trail_end_scale.x * _trail_enlarger, _trail_end_scale.y, _trail_end_scale.z);
+	}
 }
 
 void Hachiko::Scripting::PlayerController::OnUpdate()
@@ -555,12 +581,14 @@ void Hachiko::Scripting::PlayerController::DashController()
 		return;
 	}
 
+
 	_dash_progress += Time::DeltaTime() / _dash_duration;
 	_dash_progress = _dash_progress > 1.0f ? 1.0f : _dash_progress;
 
 	// TODO: Instead of approaching to _dash_end linearly, dash must have some sort
 	// of an acceleration.
 	_player_position = math::float3::Lerp(_dash_start, _dash_end, _dash_progress);
+	DashTrailManager(_dash_progress);
 
 	// Attack status is stopped in attack controller
 	if (_dash_progress >= 1.0f && IsDashing())
@@ -587,6 +615,29 @@ void Hachiko::Scripting::PlayerController::DashChargesManager()
 		{
 			_dash_charges += 1;
 		}
+	}
+}
+
+void Hachiko::Scripting::PlayerController::DashTrailManager(float dash_progress)
+{
+	if (!_show_dashtrail)
+	{
+		_show_dashtrail = true;
+		_dash_trail->SetActive(_show_dashtrail);
+	}
+	
+	_dash_trail->GetTransform()->SetLocalPosition(math::float3::Lerp(_trail_start_pos, _trail_end_pos,
+		_dash_progress));
+	_dash_trail->GetTransform()->SetLocalScale(math::float3::Lerp(_trail_start_scale, _trail_end_scale,
+		_dash_progress));
+
+	if (_dash_progress >= 1.0f)
+	{
+		_dash_trail->GetTransform()->SetLocalPosition(_trail_start_pos);
+		_dash_trail->GetTransform()->SetLocalScale(_trail_start_scale);
+		_show_dashtrail = false;
+		_dash_trail->SetActive(_show_dashtrail);
+
 	}
 }
 

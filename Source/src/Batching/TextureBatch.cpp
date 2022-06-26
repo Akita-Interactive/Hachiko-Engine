@@ -283,6 +283,7 @@ void Hachiko::TextureBatch::GenerateMaterials(const std::vector<const ComponentM
         materials[i].is_metallic = material->is_metallic;
         materials[i].smoothness_alpha = material->smoothness_alpha;
         materials[i].is_transparent = material->is_transparent;
+        materials[i].tint_color = components[i]->GetTintColor();
 
         if (components[i]->OverrideMaterialActive())
         {

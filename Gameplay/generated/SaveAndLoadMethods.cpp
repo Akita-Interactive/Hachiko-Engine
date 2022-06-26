@@ -445,7 +445,6 @@ void Hachiko::Scripting::PlayerCamera::OnLoad()
 
 void Hachiko::Scripting::PlayerController::OnSave(YAML::Node& node) const
 {
-
 	if (_attack_indicator != nullptr)
 	{
 		node["'_attack_indicator@GameObject*'"] = _attack_indicator->GetID();
@@ -540,7 +539,6 @@ void Hachiko::Scripting::PlayerController::OnSave(YAML::Node& node) const
 
 void Hachiko::Scripting::PlayerController::OnLoad()
 {
-
 	if (load_node["'_attack_indicator@GameObject*'"].IsDefined())
 	{
 		_attack_indicator = SceneManagement::FindInCurrentScene(load_node["'_attack_indicator@GameObject*'"].as<unsigned long long>());

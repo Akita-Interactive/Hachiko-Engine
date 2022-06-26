@@ -518,6 +518,7 @@
     <ClInclude Include="entities\player\PlayerState.h" />
     <ClInclude Include="entities\enemies\BugState.h" />
     <ClInclude Include="misc\AudioManager.h" />
+    <ClInclude Include="CrystalPlatform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scriptingUtil\gameplaypch.cpp">
@@ -785,6 +786,7 @@
     <ClCompile Include="ui\DebugManager.cpp" />
     <ClCompile Include="misc\FancyLights.cpp" />
     <ClCompile Include="misc\AudioManager.cpp" />
+    <ClCompile Include="CrystalPlatform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\vendors\MathGeoLib\Math\float2.inl">

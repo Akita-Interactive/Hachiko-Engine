@@ -47,6 +47,7 @@ namespace Hachiko
             unsigned is_metallic = false;
             unsigned smoothness_alpha = 0;
             unsigned is_transparent = 0;
+            float4 tint_color = float4::one;
             //unsigned padding[3];
         };
 

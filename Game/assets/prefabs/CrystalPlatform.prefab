@@ -1,0 +1,58 @@
+prefab_name: CrystalPlatform
+name: CrystalPlatform
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [25.1952133, 0, 7.28997946]
+    rotation: [0, 0, 0, 1]
+    scale: [2.65999985, 2.65999985, 9.92845631]
+  - !<script>
+    type: 15
+    enabled: true
+    class_name: CrystalPlatform
+    "'_seconds_before_shaking@float'": 5
+    "'_seconds_shaking@float'": 4
+    "'_shake_intensity@float'": 0.200000003
+    "'_invisible_obstacle@GameObject*'": 3
+    "'_crystal@GameObject*'": 0
+    "'_crystal_platform@GameObject*'": 2
+child:
+  - name: Platform
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-0.276144028, 0, -0.0707332492]
+        rotation: [-0.70710665, 0, 0, 0.707106888]
+        scale: [1, 0.798933983, 0.999997497]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 4601319148081155683
+        navigable: true
+        visible: true
+        material_id: 6750369022920963075
+  - name: Obstacle
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-0.239928246, 0.108287707, -0.0613443851]
+        rotation: [-0.70710659, 0, 0, 0.707106948]
+        scale: [5.26315998e-05, 1.41008622e-05, 5.26315489e-05]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 1654487118907036717
+        navigable: false
+        visible: true
+        material_id: 6750369022920963075
+      - !<obstacle>
+        type: 18
+        enabled: true
+        obstacle_type: 1
+        obstacle_size: [1, 1, 6]

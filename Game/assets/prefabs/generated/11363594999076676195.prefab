@@ -2,30 +2,35 @@ prefab_name: Zombunny
 name: RootNode
 enabled: true
 component:
-  - type: 1
+  - !<transform>
+    type: 1
     enabled: true
     position: [0, 0, 0]
     rotation: [0, 0, 0, 1]
     scale: [1, 1, 1]
-  - type: 14
+  - !<animation>
+    type: 14
     enabled: true
     state_machine: 0
 child:
   - name: Zombunny
     enabled: true
     component:
-      - type: 1
+      - !<transform>
+        type: 1
         enabled: true
         position: [0, 0, 0]
         rotation: [0, 0, 0, 1]
         scale: [1, 1, 1]
-      - type: 2
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 9832801381674867867
         navigable: false
         visible: true
         material_id: 3254954440065982604
-      - type: 2
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 3966560579723772918
         navigable: false
@@ -34,7 +39,8 @@ child:
   - name: Ctrl_Grp
     enabled: true
     component:
-      - type: 1
+      - !<transform>
+        type: 1
         enabled: true
         position: [0, 0, 0]
         rotation: [0, 0, 0, 1]
@@ -43,7 +49,8 @@ child:
       - name: Root_$AssimpFbx$_PreRotation
         enabled: true
         component:
-          - type: 1
+          - !<transform>
+            type: 1
             enabled: true
             position: [0, 0, 0]
             rotation: [0, 0, 0.707106829, 0.707106829]
@@ -52,7 +59,8 @@ child:
           - name: Root
             enabled: true
             component:
-              - type: 1
+              - !<transform>
+                type: 1
                 enabled: true
                 position: [0, 0, 0]
                 rotation: [0, 0, 0, 1]
@@ -61,7 +69,8 @@ child:
               - name: Hips_$AssimpFbx$_Translation
                 enabled: true
                 component:
-                  - type: 1
+                  - !<transform>
+                    type: 1
                     enabled: true
                     position: [0.290998369, 0.00272642844, 0.000208236452]
                     rotation: [0, 0, 0, 1]
@@ -70,7 +79,8 @@ child:
                   - name: Hips_$AssimpFbx$_PreRotation
                     enabled: true
                     component:
-                      - type: 1
+                      - !<transform>
+                        type: 1
                         enabled: true
                         position: [0, 0, 0]
                         rotation: [0.5, -0.5, 0.5, -0.5]
@@ -79,7 +89,8 @@ child:
                       - name: Hips_$AssimpFbx$_Rotation
                         enabled: true
                         component:
-                          - type: 1
+                          - !<transform>
+                            type: 1
                             enabled: true
                             position: [0, 0, 0]
                             rotation: [-0.0175592136, -0.0410351604, -0.0106394989, 0.998946726]
@@ -88,7 +99,8 @@ child:
                           - name: Hips
                             enabled: true
                             component:
-                              - type: 1
+                              - !<transform>
+                                type: 1
                                 enabled: true
                                 position: [0, 0, 0]
                                 rotation: [0, 0, 0, 1]
@@ -97,7 +109,8 @@ child:
                               - name: Spine
                                 enabled: true
                                 component:
-                                  - type: 1
+                                  - !<transform>
+                                    type: 1
                                     enabled: true
                                     position: [0.000258133921, -5.96009959e-05, 0.194010273]
                                     rotation: [0.0907030627, -0.114794537, 0.0038652902, 0.989232242]
@@ -106,7 +119,8 @@ child:
                                   - name: Head
                                     enabled: true
                                     component:
-                                      - type: 1
+                                      - !<transform>
+                                        type: 1
                                         enabled: true
                                         position: [5.3290704e-17, 8.881784e-18, 0.230286196]
                                         rotation: [0.118906207, 0.0596477091, -0.0345506258, 0.990509927]
@@ -115,7 +129,8 @@ child:
                                       - name: HeadEnd
                                         enabled: true
                                         component:
-                                          - type: 1
+                                          - !<transform>
+                                            type: 1
                                             enabled: true
                                             position: [1.6008797e-16, 4.00219924e-17, 0.36048606]
                                             rotation: [0, 0, 0, 1]
@@ -123,7 +138,8 @@ child:
                                       - name: LeftEar_$AssimpFbx$_Translation
                                         enabled: true
                                         component:
-                                          - type: 1
+                                          - !<transform>
+                                            type: 1
                                             enabled: true
                                             position: [0.339664906, 0.0694511235, 0.409042209]
                                             rotation: [0, 0, 0, 1]
@@ -132,7 +148,8 @@ child:
                                           - name: LeftEar_$AssimpFbx$_PreRotation
                                             enabled: true
                                             component:
-                                              - type: 1
+                                              - !<transform>
+                                                type: 1
                                                 enabled: true
                                                 position: [0, 0, 0]
                                                 rotation: [-0.0778265148, 0.365419418, 0.0306763463, 0.927076399]
@@ -141,7 +158,8 @@ child:
                                               - name: LeftEar_$AssimpFbx$_Rotation
                                                 enabled: true
                                                 component:
-                                                  - type: 1
+                                                  - !<transform>
+                                                    type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
                                                     rotation: [-0.0498123765, 0.106872737, -0.00381073658, 0.993016839]
@@ -150,7 +168,8 @@ child:
                                                   - name: LeftEar
                                                     enabled: true
                                                     component:
-                                                      - type: 1
+                                                      - !<transform>
+                                                        type: 1
                                                         enabled: true
                                                         position: [0, 0, 0]
                                                         rotation: [0, 0, 0, 1]
@@ -159,7 +178,8 @@ child:
                                                       - name: LeftEarEnd
                                                         enabled: true
                                                         component:
-                                                          - type: 1
+                                                          - !<transform>
+                                                            type: 1
                                                             enabled: true
                                                             position: [4.63612433e-17, 3.01980666e-16, 0.21373941]
                                                             rotation: [0, 0, 0, 1]
@@ -167,7 +187,8 @@ child:
                                       - name: RightEar_$AssimpFbx$_Translation
                                         enabled: true
                                         component:
-                                          - type: 1
+                                          - !<transform>
+                                            type: 1
                                             enabled: true
                                             position: [-0.339664996, 0.0694510937, 0.409042537]
                                             rotation: [0, 0, 0, 1]
@@ -176,7 +197,8 @@ child:
                                           - name: RightEar_$AssimpFbx$_PreRotation
                                             enabled: true
                                             component:
-                                              - type: 1
+                                              - !<transform>
+                                                type: 1
                                                 enabled: true
                                                 position: [0, 0, 0]
                                                 rotation: [0.927076399, -0.0306763109, 0.365419388, 0.077826418]
@@ -185,7 +207,8 @@ child:
                                               - name: RightEar_$AssimpFbx$_Rotation
                                                 enabled: true
                                                 component:
-                                                  - type: 1
+                                                  - !<transform>
+                                                    type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
                                                     rotation: [-0.0504425392, -0.0685685948, -0.0222918447, 0.996120989]
@@ -194,7 +217,8 @@ child:
                                                   - name: RightEar
                                                     enabled: true
                                                     component:
-                                                      - type: 1
+                                                      - !<transform>
+                                                        type: 1
                                                         enabled: true
                                                         position: [0, 0, 0]
                                                         rotation: [0, 0, 0, 1]
@@ -203,7 +227,8 @@ child:
                                                       - name: RightEarEnd
                                                         enabled: true
                                                         component:
-                                                          - type: 1
+                                                          - !<transform>
+                                                            type: 1
                                                             enabled: true
                                                             position: [-8.28529267e-07, -9.09704241e-08, -0.213738307]
                                                             rotation: [0, 0, 0, 1]
@@ -211,7 +236,8 @@ child:
                                   - name: LeftUpperArm_$AssimpFbx$_Translation
                                     enabled: true
                                     component:
-                                      - type: 1
+                                      - !<transform>
+                                        type: 1
                                         enabled: true
                                         position: [0.172865421, 0.0691770837, 0.191902742]
                                         rotation: [0, 0, 0, 1]
@@ -220,7 +246,8 @@ child:
                                       - name: LeftUpperArm_$AssimpFbx$_PreRotation
                                         enabled: true
                                         component:
-                                          - type: 1
+                                          - !<transform>
+                                            type: 1
                                             enabled: true
                                             position: [0, 0, 0]
                                             rotation: [0, 0.70710665, 0, 0.707106888]
@@ -229,7 +256,8 @@ child:
                                           - name: LeftUpperArm_$AssimpFbx$_Rotation
                                             enabled: true
                                             component:
-                                              - type: 1
+                                              - !<transform>
+                                                type: 1
                                                 enabled: true
                                                 position: [0, 0, 0]
                                                 rotation: [0.517834008, 0.0699347109, 0.0137732523, 0.852506578]
@@ -238,7 +266,8 @@ child:
                                               - name: LeftUpperArm
                                                 enabled: true
                                                 component:
-                                                  - type: 1
+                                                  - !<transform>
+                                                    type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
                                                     rotation: [0, 0, 0, 1]
@@ -247,7 +276,8 @@ child:
                                                   - name: LeftLowerArm
                                                     enabled: true
                                                     component:
-                                                      - type: 1
+                                                      - !<transform>
+                                                        type: 1
                                                         enabled: true
                                                         position: [-1.52853167e-17, 1.57772178e-32, 0.251161069]
                                                         rotation: [0.0115760677, -0.0296238549, -0.00839632004, 0.999458849]
@@ -256,7 +286,8 @@ child:
                                                       - name: LeftWrist
                                                         enabled: true
                                                         component:
-                                                          - type: 1
+                                                          - !<transform>
+                                                            type: 1
                                                             enabled: true
                                                             position: [3.89922935e-16, -1.26217742e-31, 0.238028452]
                                                             rotation: [0, -0.0141496025, 0, 0.999899983]
@@ -265,7 +296,8 @@ child:
                                                           - name: LeftWristEnd
                                                             enabled: true
                                                             component:
-                                                              - type: 1
+                                                              - !<transform>
+                                                                type: 1
                                                                 enabled: true
                                                                 position: [-9.32651435e-17, 6.3108871e-32, 0.10998556]
                                                                 rotation: [0, 0, 0, 1]
@@ -273,7 +305,8 @@ child:
                                   - name: LeftUpperArmFK_$AssimpFbx$_Translation
                                     enabled: true
                                     component:
-                                      - type: 1
+                                      - !<transform>
+                                        type: 1
                                         enabled: true
                                         position: [0.172865421, 0.0691770837, 0.191902742]
                                         rotation: [0, 0, 0, 1]
@@ -282,7 +315,8 @@ child:
                                       - name: LeftUpperArmFK_$AssimpFbx$_PreRotation
                                         enabled: true
                                         component:
-                                          - type: 1
+                                          - !<transform>
+                                            type: 1
                                             enabled: true
                                             position: [0, 0, 0]
                                             rotation: [0, 0.70710665, 0, 0.707106888]
@@ -291,7 +325,8 @@ child:
                                           - name: LeftUpperArmFK_$AssimpFbx$_Rotation
                                             enabled: true
                                             component:
-                                              - type: 1
+                                              - !<transform>
+                                                type: 1
                                                 enabled: true
                                                 position: [0, 0, 0]
                                                 rotation: [0.517834008, 0.0699347109, 0.0137732523, 0.852506578]
@@ -300,7 +335,8 @@ child:
                                               - name: LeftUpperArmFK
                                                 enabled: true
                                                 component:
-                                                  - type: 1
+                                                  - !<transform>
+                                                    type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
                                                     rotation: [0, 0, 0, 1]
@@ -309,7 +345,8 @@ child:
                                                   - name: LeftLowerArmFK
                                                     enabled: true
                                                     component:
-                                                      - type: 1
+                                                      - !<transform>
+                                                        type: 1
                                                         enabled: true
                                                         position: [-1.52853167e-17, 1.57772178e-32, 0.251161069]
                                                         rotation: [0.0115760677, -0.0296238549, -0.00839632004, 0.999458849]
@@ -318,7 +355,8 @@ child:
                                                       - name: LeftWristFK
                                                         enabled: true
                                                         component:
-                                                          - type: 1
+                                                          - !<transform>
+                                                            type: 1
                                                             enabled: true
                                                             position: [3.89922935e-16, -1.26217742e-31, 0.238028452]
                                                             rotation: [0, -0.0141496025, 0, 0.999899983]
@@ -326,7 +364,8 @@ child:
                                   - name: LeftUpperArmIK_$AssimpFbx$_Translation
                                     enabled: true
                                     component:
-                                      - type: 1
+                                      - !<transform>
+                                        type: 1
                                         enabled: true
                                         position: [0.172865421, 0.0691770837, 0.191902742]
                                         rotation: [0, 0, 0, 1]
@@ -335,7 +374,8 @@ child:
                                       - name: LeftUpperArmIK_$AssimpFbx$_PreRotation
                                         enabled: true
                                         component:
-                                          - type: 1
+                                          - !<transform>
+                                            type: 1
                                             enabled: true
                                             position: [0, 0, 0]
                                             rotation: [0, 0.70710665, 0, 0.707106888]
@@ -344,7 +384,8 @@ child:
                                           - name: LeftUpperArmIK_$AssimpFbx$_Rotation
                                             enabled: true
                                             component:
-                                              - type: 1
+                                              - !<transform>
+                                                type: 1
                                                 enabled: true
                                                 position: [0, 0, 0]
                                                 rotation: [0.312826842, -0.0103377923, 0.949738622, 0.00539537612]
@@ -353,7 +394,8 @@ child:
                                               - name: LeftUpperArmIK
                                                 enabled: true
                                                 component:
-                                                  - type: 1
+                                                  - !<transform>
+                                                    type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
                                                     rotation: [0, 0, 0, 1]
@@ -362,7 +404,8 @@ child:
                                                   - name: LeftLowerArmIK
                                                     enabled: true
                                                     component:
-                                                      - type: 1
+                                                      - !<transform>
+                                                        type: 1
                                                         enabled: true
                                                         position: [-1.52853167e-17, 1.57772178e-32, 0.251161069]
                                                         rotation: [0, 0, 0, 1]
@@ -371,7 +414,8 @@ child:
                                                       - name: LeftWristIK
                                                         enabled: true
                                                         component:
-                                                          - type: 1
+                                                          - !<transform>
+                                                            type: 1
                                                             enabled: true
                                                             position: [3.89922935e-16, -1.26217742e-31, 0.238028452]
                                                             rotation: [0.160602406, 0.0105729727, 0.984830737, 0.0648349002]
@@ -379,7 +423,8 @@ child:
                                   - name: RightUpperArm_$AssimpFbx$_Translation
                                     enabled: true
                                     component:
-                                      - type: 1
+                                      - !<transform>
+                                        type: 1
                                         enabled: true
                                         position: [-0.172865003, 0.0691770986, 0.191902727]
                                         rotation: [0, 0, 0, 1]
@@ -388,7 +433,8 @@ child:
                                       - name: RightUpperArm_$AssimpFbx$_PreRotation
                                         enabled: true
                                         component:
-                                          - type: 1
+                                          - !<transform>
+                                            type: 1
                                             enabled: true
                                             position: [0, 0, 0]
                                             rotation: [0.707106829, -3.09086232e-08, 0.707106829, 3.09086268e-08]
@@ -397,7 +443,8 @@ child:
                                           - name: RightUpperArm_$AssimpFbx$_Rotation
                                             enabled: true
                                             component:
-                                              - type: 1
+                                              - !<transform>
+                                                type: 1
                                                 enabled: true
                                                 position: [0, 0, 0]
                                                 rotation: [0.556762099, 0.0841188058, -0.0572061278, 0.824419498]
@@ -406,7 +453,8 @@ child:
                                               - name: RightUpperArm
                                                 enabled: true
                                                 component:
-                                                  - type: 1
+                                                  - !<transform>
+                                                    type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
                                                     rotation: [0, 0, 0, 1]
@@ -415,7 +463,8 @@ child:
                                                   - name: RightLowerArm
                                                     enabled: true
                                                     component:
-                                                      - type: 1
+                                                      - !<transform>
+                                                        type: 1
                                                         enabled: true
                                                         position: [-2.13162816e-16, -3.5527136e-17, -0.251161009]
                                                         rotation: [-0.0197119303, 0.0335830748, 0.00686069811, 0.999217987]
@@ -424,7 +473,8 @@ child:
                                                       - name: RightWrist
                                                         enabled: true
                                                         component:
-                                                          - type: 1
+                                                          - !<transform>
+                                                            type: 1
                                                             enabled: true
                                                             position: [-1.42108544e-16, -6.21724896e-17, -0.238029003]
                                                             rotation: [0, 0, 0, 1]
@@ -433,7 +483,8 @@ child:
                                                           - name: RightWristEnd
                                                             enabled: true
                                                             component:
-                                                              - type: 1
+                                                              - !<transform>
+                                                                type: 1
                                                                 enabled: true
                                                                 position: [-7.1054272e-17, -2.6645352e-17, -0.109984994]
                                                                 rotation: [0, 0, 0, 1]
@@ -441,7 +492,8 @@ child:
                                   - name: RightUpperArmFK_$AssimpFbx$_Translation
                                     enabled: true
                                     component:
-                                      - type: 1
+                                      - !<transform>
+                                        type: 1
                                         enabled: true
                                         position: [-0.172865003, 0.0691770986, 0.191902727]
                                         rotation: [0, 0, 0, 1]
@@ -450,7 +502,8 @@ child:
                                       - name: RightUpperArmFK_$AssimpFbx$_PreRotation
                                         enabled: true
                                         component:
-                                          - type: 1
+                                          - !<transform>
+                                            type: 1
                                             enabled: true
                                             position: [0, 0, 0]
                                             rotation: [0.707106829, -3.09086232e-08, 0.707106829, 3.09086268e-08]
@@ -459,7 +512,8 @@ child:
                                           - name: RightUpperArmFK_$AssimpFbx$_Rotation
                                             enabled: true
                                             component:
-                                              - type: 1
+                                              - !<transform>
+                                                type: 1
                                                 enabled: true
                                                 position: [0, 0, 0]
                                                 rotation: [0.556762099, 0.0841188058, -0.0572061278, 0.824419498]
@@ -468,7 +522,8 @@ child:
                                               - name: RightUpperArmFK
                                                 enabled: true
                                                 component:
-                                                  - type: 1
+                                                  - !<transform>
+                                                    type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
                                                     rotation: [0, 0, 0, 1]
@@ -477,7 +532,8 @@ child:
                                                   - name: RightLowerArmFK
                                                     enabled: true
                                                     component:
-                                                      - type: 1
+                                                      - !<transform>
+                                                        type: 1
                                                         enabled: true
                                                         position: [-2.13162816e-16, -3.5527136e-17, -0.251161009]
                                                         rotation: [-0.0197119303, 0.0335830748, 0.00686069811, 0.999217987]
@@ -486,7 +542,8 @@ child:
                                                       - name: RightWristFK
                                                         enabled: true
                                                         component:
-                                                          - type: 1
+                                                          - !<transform>
+                                                            type: 1
                                                             enabled: true
                                                             position: [-1.42108544e-16, -6.21724896e-17, -0.238029003]
                                                             rotation: [0, 0, 0, 1]
@@ -494,7 +551,8 @@ child:
                                   - name: RightUpperArmIK_$AssimpFbx$_Translation
                                     enabled: true
                                     component:
-                                      - type: 1
+                                      - !<transform>
+                                        type: 1
                                         enabled: true
                                         position: [-0.172865003, 0.0691770986, 0.191902727]
                                         rotation: [0, 0, 0, 1]
@@ -503,7 +561,8 @@ child:
                                       - name: RightUpperArmIK_$AssimpFbx$_PreRotation
                                         enabled: true
                                         component:
-                                          - type: 1
+                                          - !<transform>
+                                            type: 1
                                             enabled: true
                                             position: [0, 0, 0]
                                             rotation: [0.707106829, -3.09086232e-08, 0.707106829, 3.09086268e-08]
@@ -512,7 +571,8 @@ child:
                                           - name: RightUpperArmIK_$AssimpFbx$_Rotation
                                             enabled: true
                                             component:
-                                              - type: 1
+                                              - !<transform>
+                                                type: 1
                                                 enabled: true
                                                 position: [0, 0, 0]
                                                 rotation: [0.190726891, 0.0220515914, 0.981219053, -0.0186062884]
@@ -521,7 +581,8 @@ child:
                                               - name: RightUpperArmIK
                                                 enabled: true
                                                 component:
-                                                  - type: 1
+                                                  - !<transform>
+                                                    type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
                                                     rotation: [0, 0, 0, 1]
@@ -530,7 +591,8 @@ child:
                                                   - name: RightLowerArmIK
                                                     enabled: true
                                                     component:
-                                                      - type: 1
+                                                      - !<transform>
+                                                        type: 1
                                                         enabled: true
                                                         position: [-2.13162816e-16, -3.5527136e-17, -0.251161009]
                                                         rotation: [0, 0.48546946, 0, 0.874253631]
@@ -539,7 +601,8 @@ child:
                                                       - name: RightWristIK
                                                         enabled: true
                                                         component:
-                                                          - type: 1
+                                                          - !<transform>
+                                                            type: 1
                                                             enabled: true
                                                             position: [-1.42108544e-16, -6.21724896e-17, -0.238029003]
                                                             rotation: [-0.157288045, -0.0154862227, 0.982679844, 0.096752353]
@@ -547,7 +610,8 @@ child:
                               - name: LeftLeg_$AssimpFbx$_Translation
                                 enabled: true
                                 component:
-                                  - type: 1
+                                  - !<transform>
+                                    type: 1
                                     enabled: true
                                     position: [0.154882804, -0.129643455, 0.000197515576]
                                     rotation: [0, 0, 0, 1]
@@ -556,7 +620,8 @@ child:
                                   - name: LeftLeg_$AssimpFbx$_PreRotation
                                     enabled: true
                                     component:
-                                      - type: 1
+                                      - !<transform>
+                                        type: 1
                                         enabled: true
                                         position: [0, 0, 0]
                                         rotation: [0.999951005, 4.32722386e-10, 0.00989953429, -4.3709246e-08]
@@ -565,7 +630,8 @@ child:
                                       - name: LeftLeg
                                         enabled: true
                                         component:
-                                          - type: 1
+                                          - !<transform>
+                                            type: 1
                                             enabled: true
                                             position: [0, 0, 0]
                                             rotation: [0, 0, 0, 1]
@@ -574,7 +640,8 @@ child:
                                           - name: LeftFoot_$AssimpFbx$_Translation
                                             enabled: true
                                             component:
-                                              - type: 1
+                                              - !<transform>
+                                                type: 1
                                                 enabled: true
                                                 position: [0.0486446656, 0.0775691867, 0.12021666]
                                                 rotation: [0, 0, 0, 1]
@@ -583,7 +650,8 @@ child:
                                               - name: LeftFoot_$AssimpFbx$_PreRotation
                                                 enabled: true
                                                 component:
-                                                  - type: 1
+                                                  - !<transform>
+                                                    type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
                                                     rotation: [-0.5085271, -0.00852380879, -0.00503442809, 0.860989094]
@@ -592,7 +660,8 @@ child:
                                                   - name: LeftFoot_$AssimpFbx$_Rotation
                                                     enabled: true
                                                     component:
-                                                      - type: 1
+                                                      - !<transform>
+                                                        type: 1
                                                         enabled: true
                                                         position: [0, 0, 0]
                                                         rotation: [0, 0, 0, 1]
@@ -601,7 +670,8 @@ child:
                                                       - name: LeftFoot
                                                         enabled: true
                                                         component:
-                                                          - type: 1
+                                                          - !<transform>
+                                                            type: 1
                                                             enabled: true
                                                             position: [0, 0, 0]
                                                             rotation: [0, 0, 0, 1]
@@ -610,7 +680,8 @@ child:
                                                           - name: LeftFootEnd
                                                             enabled: true
                                                             component:
-                                                              - type: 1
+                                                              - !<transform>
+                                                                type: 1
                                                                 enabled: true
                                                                 position: [-7.29076793e-17, 0, 0.0599848554]
                                                                 rotation: [0, 0, 0, 1]
@@ -618,7 +689,8 @@ child:
                               - name: RightLeg_$AssimpFbx$_Translation
                                 enabled: true
                                 component:
-                                  - type: 1
+                                  - !<transform>
+                                    type: 1
                                     enabled: true
                                     position: [-0.154882997, -0.129642993, 0.000197387373]
                                     rotation: [0, 0, 0, 1]
@@ -627,7 +699,8 @@ child:
                                   - name: RightLeg_$AssimpFbx$_PreRotation
                                     enabled: true
                                     component:
-                                      - type: 1
+                                      - !<transform>
+                                        type: 1
                                         enabled: true
                                         position: [0, 0, 0]
                                         rotation: [0, 0.00989953429, 0, 0.999951005]
@@ -636,7 +709,8 @@ child:
                                       - name: RightLeg
                                         enabled: true
                                         component:
-                                          - type: 1
+                                          - !<transform>
+                                            type: 1
                                             enabled: true
                                             position: [0, 0, 0]
                                             rotation: [0, 0, 0, 1]
@@ -645,7 +719,8 @@ child:
                                           - name: RightFoot_$AssimpFbx$_Translation
                                             enabled: true
                                             component:
-                                              - type: 1
+                                              - !<transform>
+                                                type: 1
                                                 enabled: true
                                                 position: [-0.0098275803, 0.0917390585, -0.240331069]
                                                 rotation: [0, 0, 0, 1]
@@ -654,7 +729,8 @@ child:
                                               - name: RightFoot_$AssimpFbx$_PreRotation
                                                 enabled: true
                                                 component:
-                                                  - type: 1
+                                                  - !<transform>
+                                                    type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
                                                     rotation: [-0.5085271, -0.00852380879, -0.00503442809, 0.860989094]
@@ -663,7 +739,8 @@ child:
                                                   - name: RightFoot_$AssimpFbx$_Rotation
                                                     enabled: true
                                                     component:
-                                                      - type: 1
+                                                      - !<transform>
+                                                        type: 1
                                                         enabled: true
                                                         position: [0, 0, 0]
                                                         rotation: [0, 0, 0, 1]
@@ -672,7 +749,8 @@ child:
                                                       - name: RightFoot
                                                         enabled: true
                                                         component:
-                                                          - type: 1
+                                                          - !<transform>
+                                                            type: 1
                                                             enabled: true
                                                             position: [0, 0, 0]
                                                             rotation: [0, 0, 0, 1]
@@ -681,7 +759,8 @@ child:
                                                           - name: RightFootEnd
                                                             enabled: true
                                                             component:
-                                                              - type: 1
+                                                              - !<transform>
+                                                                type: 1
                                                                 enabled: true
                                                                 position: [9.41469074e-16, -3.4134402e-07, -0.0599855408]
                                                                 rotation: [0, 0, 0, 1]

@@ -196,6 +196,7 @@ void Hachiko::ComponentMeshRenderer::DrawGui()
 
         if (ImGui::TreeNodeEx((void*)&material, flags, "Material"))
         {
+            ImGui::ColorEdit4("Tint color", &tint_color[0]);
             ChangeMaterial();
             if (material != nullptr)
             {

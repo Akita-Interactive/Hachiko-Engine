@@ -34,6 +34,11 @@ namespace Hachiko
 
         void AddObstacle(); // Adds the obstacle if tile cache exists
         void RemoveObstacle(); // Removes the obstacle if it exists in tile cache
+
+        bool IsInNavMesh() 
+        {
+            return obstacle != nullptr;
+        }
         
         void SetSize(const float3& new_size); // Changes the obstacle size
         // Reminder: Cylinder will ignore z value

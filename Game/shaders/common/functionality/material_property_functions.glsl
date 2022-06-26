@@ -43,6 +43,7 @@ void CalculateSpecularDiffuseSmoothness(
     int metallic_layer_index,
     int specular_layer_index,
     int diffuse_layer_index,
+    vec4 material_tint_color,
     inout float smoothness, 
     inout vec4 diffuse, 
     inout vec3 specular)
@@ -86,6 +87,9 @@ void CalculateSpecularDiffuseSmoothness(
     // This is later then used in gamma correction & alpha stage of forward rendering,
     // and disregarded by deferred rendering:
     diffuse.a = diffuse_temp.a;
+
+    diffuse *= material_tint_color;
+    specular *= material_tint_color.rgb;
 }
 
 vec3 CalculateEmissive(sampler2DArray emissive_texture, vec2 texture_coords, int layer_index, vec4 material_emissive_color, uint material_emissive_flag)
