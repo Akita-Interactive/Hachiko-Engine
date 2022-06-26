@@ -1963,7 +1963,7 @@ void ed::EditorContext::SetUserContext(bool globalSpace)
         //ImGui::SetCursorScreenPos(ImVec2(floorf(mousePos.x), floorf(mousePos.y)));
 
     auto drawList = ImGui::GetWindowDrawList();
-    drawList->ChannelsSetCurrent(c_UserChannel_Content);
+    //drawList->ChannelsSetCurrent(c_UserChannel_Content);
 
     // #debug
     // drawList->AddCircleFilled(ImGui::GetMousePos(), 4, IM_COL32(0, 255, 0, 255));

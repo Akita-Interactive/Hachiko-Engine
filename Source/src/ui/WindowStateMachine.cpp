@@ -44,7 +44,7 @@ void Hachiko::WindowStateMachine::Update()
     
     if (r_state_machine != nullptr)
     {
-        /* DrawNodes(r_state_machine);
+        DrawNodes(r_state_machine);
         DrawTransitions(r_state_machine);
         CreateTransitions(r_state_machine);
 
@@ -62,7 +62,6 @@ void Hachiko::WindowStateMachine::Update()
             editTrigger = false;
             editIT = false;
         }
-        */
     }
 
     ax::NodeEditor::End();
