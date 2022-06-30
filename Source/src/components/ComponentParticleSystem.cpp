@@ -140,7 +140,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
 
             MultiTypeSelector("Rate over time", rate_over_time, &rate_cfg);
             Widgets::Checkbox("Burst", &burst);
-            
+
             if (burst)
             {
                 rate_cfg.min = 0.0f;
@@ -587,6 +587,13 @@ void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
         return;
     }
 
+    if(active_particles == 0 && emitter_state == ParticleSystem::Emitter::State::STOPPED)
+    {
+        able_to_emit = false;
+        emitter_elapsed_time = 0;
+        return;
+    }
+
     time += EngineTimer::delta_time;
     emitter_elapsed_time += EngineTimer::delta_time;
 
@@ -607,7 +614,7 @@ void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
             burst_time = 0.0f;
         }
     }
-    
+
     if (time * 1000.0f <= ONE_SEC_IN_MS / rate_over_time.GetValue(time))
     {
         able_to_emit = false;
@@ -644,7 +651,7 @@ void Hachiko::ComponentParticleSystem::ActivateParticles()
     if (burst && burst_emit)
     {
         int count = static_cast<int>(std::trunc(rate_burst.values.x));
-        for (int i = 0; count != 0 || i == particles.size(); ++i)
+        for (size_t i = 0; count != 0 || i == particles.size(); ++i)
         {
             if (!particles[i].IsActive())
             {
@@ -683,7 +690,6 @@ float3 Hachiko::ComponentParticleSystem::GetLocalPositionFromShape() const
         case ParticleSystem::Emitter::Type::CONE:
         case ParticleSystem::Emitter::Type::CIRCLE:
         {
-            
             const float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
             const float x_position = emitter_properties.radius * cos(theta);
             float z_min = 0.0f;
@@ -756,7 +762,7 @@ void Hachiko::ComponentParticleSystem::AddTexture()
     }
 
     YAML::Node texture_node = YAML::LoadFile(texture_path);
-    res = static_cast<ResourceTexture*>(App->resources->GetResource(Resource::Type::TEXTURE, texture_node[RESOURCES][0][RESOURCE_ID].as<UID>()));
+    res = dynamic_cast<ResourceTexture*>(App->resources->GetResource(Resource::Type::TEXTURE, texture_node[RESOURCES][0][RESOURCE_ID].as<UID>()));
 
     if (res != nullptr)
     {
@@ -812,48 +818,51 @@ void Hachiko::ComponentParticleSystem::DisplayControls()
 
     ImGui::SetNextWindowPos(ImVec2(viewport_size.x + pos.x + ImGui::GetStyle().FramePadding.x, pos.y), 0, ImVec2(1.0f, 0.0f));
     ImGui::SetNextWindowBgAlpha(1.0f);
+
+    const std::string go_label = StringUtils::Concat("GameObject: ", GetGameObject()->GetName().c_str());
+    const float min_size_x = std::min(ImGui::CalcTextSize(go_label.c_str()).x + ImGui::GetFontSize() * 2, viewport_size.x / 4.0f);
+    ImGui::SetNextWindowSize(ImVec2(std::max(min_size_x, 200.0f), 0));
     ImGui::Begin("Particles", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoCollapse);
-    ImGui::Text("GameObject");
-    ImGui::SameLine();
-    ImGui::Text(GetGameObject()->GetName().c_str());
 
-    char particles_spawned[10];
-    sprintf_s(particles_spawned, 10, "%d", active_particles);
-    ImGui::Text("Active particles");
-    ImGui::SameLine();
-    ImGui::Text(particles_spawned);
-
-    char elapsed_time[10];
-    sprintf_s(elapsed_time, 10, "%.1f", emitter_elapsed_time);
-    ImGui::Text("Elapsed time");
-    ImGui::SameLine();
-    ImGui::Text(elapsed_time);
+    ImGui::TextWrapped(go_label.c_str());
+    ImGui::Text("Active particles: %d", active_particles);
+    ImGui::Text("Elapsed time: %.1f s", emitter_elapsed_time);
 
     ImGui::Separator();
 
+    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0, 0));
+    ImGui::BeginTable("##", 3, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoBordersInBody | ImGuiTableFlags_NoSavedSettings);
+    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch, 0.33f);
+    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch, 0.34f);
+    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch, 0.33f);
+    ImGui::TableNextRow();
+    ImGui::TableSetColumnIndex(0);
+
     if (emitter_state == ParticleSystem::Emitter::State::PLAYING)
     {
-        if (ImGui::Button("Pause"))
+        if (ImGui::Button("Pause", ImVec2(-1, 0)))
         {
             Pause();
         }
     }
     else
     {
-        if (ImGui::Button("Play"))
+        if (ImGui::Button("Play", ImVec2(-1, 0)))
         {
             Play();
         }
     }
-    ImGui::SameLine();
-    if (ImGui::Button("Restart"))
+    ImGui::TableNextColumn();
+    if (ImGui::Button("Restart", ImVec2(-1, 0)))
     {
         Restart();
     }
-    ImGui::SameLine();
-    if (ImGui::Button("Stop"))
+    ImGui::TableNextColumn();
+    if (ImGui::Button("Stop", ImVec2(-1, 0)))
     {
         Stop();
     }
+    ImGui::EndTable();
+    ImGui::PopStyleVar();
     ImGui::End();
 }
