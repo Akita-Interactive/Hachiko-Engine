@@ -1,0 +1,582 @@
+scene_name: vfx_test
+navmesh_id: 17061674138956787296
+skybox:
+  right_cube_id: 1702588198696288572
+  left_cube_id: 1739534624842796925
+  top_cube_id: 6957442237302133202
+  bottom_cube_id: 17416802361919324532
+  center_cube_id: 11268774594414416246
+  back_cube_id: 10885047276093589253
+root_id: 12140782261084320883
+child:
+  - id: 10975885172196684923
+    name: Main Camera
+    enabled: true
+    component:
+      - !<transform>
+        id: 1743340939787544045
+        type: 1
+        enabled: true
+        position: [9.066, 10.75, -15.62]
+        rotation: [0.1939, 0, 0, 0.981]
+        scale: [1, 1, 1]
+      - !<camera>
+        id: 14990744334046851246
+        type: 4
+        enabled: true
+        frustum:
+          near_distance: 0.1
+          far_distance: 1000
+          fov: 65
+          position: [9.066, 10.75, -15.62]
+          front: [0, -0.3804, 0.9248]
+          up: [0, 0.9248, 0.3804]
+          pinned_camera: [0, 0, 0]
+  - id: 11495232499526656231
+    name: Running_dust
+    enabled: true
+    component:
+      - !<transform>
+        id: 16436098305961348726
+        type: 1
+        enabled: true
+        position: [0.0339, -0.0074, 0.0378]
+        rotation: [0, 0, 0, 1]
+        scale: [1, 1, 1]
+      - !<particle_system>
+        id: 15647418979256280968
+        type: 22
+        enabled: true
+        sections:
+          parameters: true
+          emission: true
+          shape: true
+          lights: false
+          renderer: true
+        parameters:
+          duration: 5
+          loop: true
+          life: [true, true, 1, [0.5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          speed: [true, true, 1, [0, 0.5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 1, [5, 10], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rotation: [true, true, 0, [0, 45], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        emission:
+          rate: [true, true, 1, [1, 2], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        emitter_shape:
+          type: 0
+          properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [1, 1, 1], 1]
+        texture:
+          texture_id: 5002402104961664861
+          tiles: [3, 2]
+          flip: [true, true]
+          total_tiles: 6
+        modifiers:
+          velocity:
+            active: false
+            speed: [true, true, 0, [0, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size:
+            active: false
+            size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          color:
+            active: true
+            color_gradient: [[0.9653, 0.4352, 0, 0, 0], [1, 0.8868, 0.7457, 0, 1]]
+            color_cycles: 1
+          force:
+            active: false
+            rotation: [true, true, 1, [0, 20], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          animation:
+            active: true
+            animation_speed: 1
+            blend_factor: 1
+            fit_to_lifetime: true
+  - id: 18357760286198292703
+    name: Hp_recovery
+    enabled: true
+    component:
+      - !<transform>
+        id: 4622938439658810650
+        type: 1
+        enabled: true
+        position: [-5.467, 0, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [1, 1, 1]
+      - !<particle_system>
+        id: 10492289636121779202
+        type: 22
+        enabled: true
+        sections:
+          parameters: true
+          emission: true
+          shape: true
+          lights: false
+          renderer: true
+        parameters:
+          duration: 0.7
+          loop: true
+          life: [true, true, 1, [0.1, 0.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          speed: [true, true, 1, [50, 100], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 1, [1, 2], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        emission:
+          rate: [true, true, 0, [150, 200], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        emitter_shape:
+          type: 0
+          properties: [360, 0, [0, 0, 0], 2, 0, [0, 0, 0], [1, 1, 1], 2]
+        texture:
+          tiles: [1, 0]
+          flip: [false, false]
+          total_tiles: 1
+        modifiers:
+          velocity:
+            active: true
+            speed: [true, true, 0, [-100, 0], 0.001, [0, 0.0025], [0.25, 0.0474], [0.5, 0.5], [0.75, 0.9526], [1, 0.9975], [0, 0]]
+          size:
+            active: false
+            size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          color:
+            active: true
+            color_gradient: [[0.1965, 1, 0, 0, 0], [1, 1, 1, 0, 1]]
+            color_cycles: 1
+          force:
+            active: false
+            rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          animation:
+            active: false
+            animation_speed: 0
+            blend_factor: 0
+            fit_to_lifetime: false
+    child:
+      - id: 7856823841845876094
+        name: Hp_recovery
+        enabled: true
+        component:
+          - !<transform>
+            id: 12804873674605122295
+            type: 1
+            enabled: true
+            position: [-0.0002, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<particle_system>
+            id: 7967970942193387870
+            type: 22
+            enabled: true
+            sections:
+              parameters: true
+              emission: true
+              shape: true
+              lights: false
+              renderer: true
+            parameters:
+              duration: 0.7
+              loop: false
+              life: [true, true, 1, [0.5, 0.8], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              speed: [true, true, 1, [20, 30], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size: [true, true, 1, [3, 6], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              delay: [true, false, 0, [0.2, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            emission:
+              rate: [true, true, 0, [50, 200], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            emitter_shape:
+              type: 0
+              properties: [360, 0, [0, 0, 0], 2, 0, [0, 0, 0], [1, 1, 1], 2]
+            texture:
+              texture_id: 11935916872648976601
+              tiles: [2, 1]
+              flip: [false, false]
+              total_tiles: 2
+            modifiers:
+              velocity:
+                active: false
+                speed: [true, true, 2, [0, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size:
+                active: false
+                size: [true, true, 2, [0, 0], 0.01, [0, 0.0125], [0.1857, 0.475], [0.35, 0.1], [0.7036, 0.0125], [1, 0.0125], [0, 0]]
+              color:
+                active: true
+                color_gradient: [[0.1965, 1, 0, 0, 0], [1, 1, 1, 0, 1]]
+                color_cycles: 1
+              force:
+                active: false
+                rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              animation:
+                active: true
+                animation_speed: 1
+                blend_factor: 0
+                fit_to_lifetime: false
+  - id: 6148304755482009320
+    name: Blood_trail
+    enabled: true
+    component:
+      - !<transform>
+        id: 18222288973162483691
+        type: 1
+        enabled: true
+        position: [-11.36, 0, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [1, 1, 1]
+      - !<particle_system>
+        id: 12747796758821881233
+        type: 22
+        enabled: true
+        sections:
+          parameters: true
+          emission: true
+          shape: true
+          lights: false
+          renderer: true
+        parameters:
+          duration: 1
+          loop: true
+          life: [true, true, 0, [0.5, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          speed: [true, true, 0, [0, 5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 0, [20, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          properties: [1, 1, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        emission:
+          rate: [true, true, 0, [1, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        emitter_shape:
+          type: 0
+          properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [1, 1, 1], 0.5]
+        texture:
+          texture_id: 13173489329834477864
+          tiles: [4, 2]
+          flip: [false, false]
+          total_tiles: 8
+        modifiers:
+          velocity:
+            active: false
+            speed: [true, true, 0, [0, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size:
+            active: true
+            size: [true, true, 0, [1, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          color:
+            active: false
+            color_gradient: [[0, 0, 0, 0, 0], [1, 1, 1, 0, 0.9873], [0.5804, 0.5804, 0.5804, 0, 0.9958]]
+            color_cycles: 1
+          force:
+            active: false
+            rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          animation:
+            active: true
+            animation_speed: 1
+            blend_factor: 1
+            fit_to_lifetime: true
+  - id: 9158200920432129788
+    name: Crystal_AOE
+    enabled: true
+    component:
+      - !<transform>
+        id: 1370455039372309172
+        type: 1
+        enabled: true
+        position: [-15.37, 0.4626, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [1, 1, 1]
+      - !<billboard>
+        id: 2395446848562737248
+        type: 21
+        enabled: true
+        play_on_awake: false
+        texture_id: 9632615448987056588
+        tiles: [1, 1]
+        flip: [false, false]
+        billboard_lifetime: 3
+        properties: [1, 2, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        animation_speed: 0
+        total_tiles: 1
+        animation_loop: false
+        color_cycles: 1
+        color_gradient: [[1, 1, 1, 0, 0], [1, 0.0983, 0.0983, 0, 0.4978], [1, 0.0983, 0.0983, 0, 0.8745], [0, 0, 0, 0, 0.9567]]
+        animation_section: false
+        color_section: true
+        start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        blend_factor: 0
+    child:
+      - id: 2657870349482436477
+        name: Inner_AOE
+        enabled: true
+        component:
+          - !<transform>
+            id: 6506602635114313472
+            type: 1
+            enabled: true
+            position: [0.0003, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<billboard>
+            id: 2967322712169552627
+            type: 21
+            enabled: true
+            play_on_awake: false
+            texture_id: 5849917302163758228
+            tiles: [1, 1]
+            flip: [false, false]
+            billboard_lifetime: 3
+            properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            animation_speed: 0
+            total_tiles: 1
+            animation_loop: false
+            color_cycles: 1
+            color_gradient: [[1, 0, 0, 0, 0.769], [0, 0, 0, 0, 0.8768]]
+            animation_section: false
+            color_section: true
+            start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_size: [true, true, 0, [1, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            blend_factor: 0
+      - id: 14471101023061045914
+        name: explosion_spark
+        enabled: true
+        component:
+          - !<transform>
+            id: 9720013426628828424
+            type: 1
+            enabled: true
+            position: [-0.1016, 0.4236, 0.1299]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<billboard>
+            id: 13719418504950406971
+            type: 21
+            enabled: true
+            play_on_awake: false
+            texture_id: 11935916872648976601
+            tiles: [2, 1]
+            flip: [false, false]
+            billboard_lifetime: 1
+            properties: [1, 2, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            animation_speed: 0.7
+            total_tiles: 2
+            animation_loop: true
+            color_cycles: 1
+            color_gradient: [[0, 0, 0, 0, 0], [1, 0.5665, 0.5665, 0, 0.2771], [1, 0.9257, 0.9257, 0, 0.6623], [0, 0, 0, 0, 0.8052]]
+            animation_section: true
+            color_section: true
+            start_delay: [true, false, 0, [0.5, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            blend_factor: 1
+      - id: 14905406943379670395
+        name: explosion_spark
+        enabled: true
+        component:
+          - !<transform>
+            id: 11279276481034915215
+            type: 1
+            enabled: true
+            position: [-0.3039, 0.4236, 0.2516]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<particle_system>
+            id: 6941117190842714786
+            type: 22
+            enabled: true
+            sections:
+              parameters: true
+              emission: true
+              shape: true
+              lights: false
+              renderer: true
+            parameters:
+              duration: 1
+              loop: false
+              life: [true, true, 1, [0.5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              speed: [true, true, 1, [10, 20], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size: [true, true, 1, [1, 3], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            emission:
+              rate: [true, true, 0, [100, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            emitter_shape:
+              type: 2
+              properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [1, 1, 1], 1]
+            texture:
+              texture_id: 11935916872648976601
+              tiles: [2, 1]
+              flip: [false, false]
+              total_tiles: 2
+            modifiers:
+              velocity:
+                active: true
+                speed: [true, true, 0, [-100, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size:
+                active: false
+                size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              color:
+                active: true
+                color_gradient: [[0, 0, 0, 0, 0], [1, 1, 1, 0, 0.262], [1, 1, 1, 0, 0.6812], [0, 0, 0, 0, 0.9432]]
+                color_cycles: 1
+              force:
+                active: false
+                rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              animation:
+                active: true
+                animation_speed: 0.5
+                blend_factor: 0.5
+                fit_to_lifetime: false
+  - id: 4172156338029026994
+    name: Slash
+    enabled: true
+    component:
+      - !<transform>
+        id: 10097597606640904242
+        type: 1
+        enabled: true
+        position: [5, 0, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [1, 1, 1]
+      - !<billboard>
+        id: 1745755721330224206
+        type: 21
+        enabled: true
+        play_on_awake: false
+        texture_id: 6793129930949132801
+        tiles: [3, 2]
+        flip: [false, false]
+        billboard_lifetime: 1
+        properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        animation_speed: 1
+        total_tiles: 1
+        animation_loop: true
+        color_cycles: 1
+        color_gradient: [[0, 0, 0, 0, 0], [1, 1, 1, 0, 1]]
+        animation_section: true
+        color_section: false
+        start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        blend_factor: 1
+  - id: 17243950021196689924
+    name: Poison
+    enabled: true
+    component:
+      - !<transform>
+        id: 4892956645781349737
+        type: 1
+        enabled: true
+        position: [12.03, 0, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [1, 1, 1]
+      - !<billboard>
+        id: 12369314482879396903
+        type: 21
+        enabled: true
+        play_on_awake: false
+        texture_id: 16464389451674351993
+        tiles: [4, 4]
+        flip: [false, false]
+        billboard_lifetime: 2
+        properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        animation_speed: 1
+        total_tiles: 16
+        animation_loop: true
+        color_cycles: 1
+        color_gradient: [[0, 0, 0, 0, 0], [0.7572, 0.2976, 0.728, 0, 0.0953], [0.7916, 0.2356, 0.815, 0, 0.9183], [0, 0, 0, 0, 1]]
+        animation_section: true
+        color_section: true
+        start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        blend_factor: 1
+    child:
+      - id: 13697593759362191186
+        name: poison_splat
+        enabled: true
+        component:
+          - !<transform>
+            id: 830538409879109572
+            type: 1
+            enabled: true
+            position: [0.0008, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<particle_system>
+            id: 9277713328939784196
+            type: 22
+            enabled: true
+            sections:
+              parameters: true
+              emission: true
+              shape: true
+              lights: false
+              renderer: true
+            parameters:
+              duration: 1
+              loop: true
+              life: [true, true, 1, [0.5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              speed: [true, true, 1, [5, 20], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size: [true, true, 1, [1, 3], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            emission:
+              rate: [true, true, 0, [100, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            emitter_shape:
+              type: 2
+              properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [1, 1, 1], 1]
+            texture:
+              texture_id: 11849564071657691019
+              tiles: [4, 4]
+              flip: [false, false]
+              total_tiles: 16
+            modifiers:
+              velocity:
+                active: false
+                speed: [true, true, 0, [0, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size:
+                active: true
+                size: [true, true, 0, [0.1, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              color:
+                active: true
+                color_gradient: [[0, 0, 0, 0, 0], [0.92, 0.2717, 1, 0, 0.0934], [0.7289, 0.2312, 1, 0, 0.8891], [0, 0, 0, 0, 1]]
+                color_cycles: 1
+              force:
+                active: true
+                rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              animation:
+                active: true
+                animation_speed: 0.2
+                blend_factor: 1
+                fit_to_lifetime: false
+      - id: 804927637011133722
+        name: poison_aura
+        enabled: true
+        component:
+          - !<transform>
+            id: 5654087793335910219
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<billboard>
+            id: 1832548804380000006
+            type: 21
+            enabled: true
+            play_on_awake: false
+            texture_id: 1793476684199945969
+            tiles: [5, 6]
+            flip: [false, true]
+            billboard_lifetime: 2
+            properties: [1, 2, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            animation_speed: 0.2
+            total_tiles: 30
+            animation_loop: true
+            color_cycles: 1
+            color_gradient: [[0, 0, 0, 0, 0], [1, 0.0462, 0.9724, 0, 0.0973], [0.7813, 0.3121, 1, 0, 0.8677], [0.7816, 0.3118, 1, 0, 0.9163], [0, 0, 0, 0, 1]]
+            animation_section: true
+            color_section: true
+            start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            blend_factor: 0.5
