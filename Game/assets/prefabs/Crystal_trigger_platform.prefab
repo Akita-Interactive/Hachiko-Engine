@@ -1,0 +1,33 @@
+prefab_name: Crystal_trigger_platform
+name: Crystal_trigger_platform
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [23.75, -1.047, 6.264]
+    rotation: [-0.7071, 0, 0, 0.7071]
+    scale: [1, 1, 1]
+  - !<mesh_renderer>
+    type: 2
+    enabled: true
+    mesh_id: 9734251747031717595
+    navigable: false
+    visible: false
+    material_id: 6750369022920963075
+    tint_color: [1, 1, 1, 1]
+  - !<obstacle>
+    type: 18
+    enabled: true
+    obstacle_type: 0
+    obstacle_size: [1, 2, 1]
+  - !<script>
+    type: 15
+    enabled: true
+    class_name: Stats
+    "'_attack_power@int'": 1
+    "'_attack_cd@float'": 2
+    "'_attack_range@float'": 3.5
+    "'_move_speed@float'": 7
+    "'_max_hp@int'": 1
+    "'_current_hp@int'": 1

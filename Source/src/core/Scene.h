@@ -44,9 +44,9 @@ namespace Hachiko
 
         void RebuildBatching();
 
-        [[nodiscard]] GameObject* Raycast(const float3& origin, const float3& destination) const;
-        [[nodiscard]] GameObject* BoundingRaycast(const float3& origin, const float3& destination) const;
-        [[nodiscard]] GameObject* Raycast(const LineSegment& segment, bool triangle_level = true) const;
+        [[nodiscard]] GameObject* Raycast(const float3& origin, const float3& destination, float3* closest_hit = nullptr, GameObject* parent_filter = nullptr, bool active_only = false) const;
+        [[nodiscard]] GameObject* BoundingRaycast(const float3& origin, const float3& destination, GameObject* parent_filter = nullptr, bool active_only = false) const;
+        [[nodiscard]] GameObject* Raycast(const LineSegment& segment, bool triangle_level = true, float3* closest_hit = nullptr, GameObject* parent_filter = nullptr, bool active_only = false) const;
 
         [[nodiscard]] GameObject* GetRoot() const
         {
@@ -70,7 +70,7 @@ namespace Hachiko
         }
 
         // --- Batching --- //
-        void OnMeshesChanged()
+        void RebuildBatches()
         {
             rebuild_batch = true;
         }
@@ -151,6 +151,8 @@ namespace Hachiko
         bool rebuild_batch = true;
         BatchManager* batch_manager = nullptr;
         std::vector<Component*> particles{};
+
+        
 
     public:
         class Memento

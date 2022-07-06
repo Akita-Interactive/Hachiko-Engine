@@ -85,8 +85,6 @@
 #define SM_TRANSITION_TRIGGER "transition_trigger"
 #define SM_TRANSITION_BLEND "transition_blend"
 
-
-
 //////////////////////////
 //						//
 // Importer extensions  //
@@ -121,6 +119,7 @@
 #define DISPLAY_QUADTREE "display_quadtree"
 #define DISPLAY_SKYBOX "display_skybox"
 #define DISPLAY_NAVMESH "display_navmesh"
+#define UNDO_REDO_ACTIVE "undo_redo_active"
 #define FULLSCREEN_NODE "fullscreen"
 #define THEME "theme"
 #define VSYNC "vsync"
@@ -236,8 +235,11 @@
 #define IMAGE_HOVER_IMAGE_ID "hover_image_id"
 #define IMAGE_COLOR "image_color"
 #define IMAGE_HOVER_COLOR "hover_image_color"
-#define USE_IMAGE "use_image"
-#define USE_HOVER_IMAGE "use_hover_image"
+#define IMAGE_TILED "image_is_tiled"
+#define IMAGE_X_TILES "image_x_tiles"
+#define IMAGE_Y_TILES "image_y_tiles"
+#define IMAGE_TILES_PER_SEC "image_tiles_per_second"
+#define IMAGE_FILL_WINDOW "fill_window"
 
 // Component Text
 #define FONT_ID "font_id"
@@ -261,6 +263,7 @@
 #define MAX_ACCELERATION "max_acceleration"
 #define AVOID_OBSTACLES "avoid_obstacles"
 #define AGENT_RADIUS "radius"
+#define AGENT_IS_PLAYER "is_player"
 
 // Component Billboard
 #define BILLBOARD_TEXTURE_ID "texture_id"
@@ -269,6 +272,10 @@
 #define ANIMATION_CYCLES "animation_cycles"
 #define ANIMATION_SECTION "animation_section"
 #define COLOR_SECTION "color_section"
+#define SIZE_SECTION "size_section"
+#define SIZE_OVERTIME "size_over_time"
+#define ROTATION_SECTION "rotation_section"
+#define ROTATION_OVERTIME "rotation_over_time"
 #define START_DELAY "start_delay"
 #define START_SIZE "start_size"
 #define START_ROTATION "start_rotation"
@@ -299,6 +306,8 @@
 // emission
 #define PARTICLE_EMISSION "emission"
 #define RATE "rate"
+#define RATE_BURST "rate_burst"
+#define BURST "burst"
 // emitter
 #define EMITTER "emitter_shape"
 #define EMITTER_TYPE "type"
@@ -314,21 +323,34 @@
 // particle modifiers
 #define PARTICLE_MODIFIERS "modifiers"
 #define ACTIVE "active"
-#define MODULE_VELOCITY "velocity"
+#define MODIFIER_VELOCITY "velocity"
 #define SPEED "speed"
-#define MODULE_SIZE "size"
+#define MODIFIER_SIZE "size"
 #define SIZE "size"
-#define MODULE_COLOR "color"
-#define MODULE_FORCE "force"
+#define MODIFIER_COLOR "color"
+#define MODIFIER_FORCE "force"
+#define X_FORCE "x_force"
+#define Y_FORCE "y_force"
+#define Z_FORCE "z_force"
 #define ROTATION "rotation"
-#define MODULE_ANIMATION "animation"
+#define MODIFIER_ANIMATION "animation"
 #define ANIMATION_SPEED "animation_speed"
 #define BLEND_FACTOR "blend_factor"
 #define FIT_TO_LIFETIME "fit_to_lifetime"
+#define MODIFIER_NOISE "noise"
+#define NOISE_SEPARATE_AXES "separate_axes"
+#define NOISE_STRENGTH "strength"
+#define NOISE_X "x"
+#define NOISE_Y "y"
+#define NOISE_Z "z"
+#define NOISE_POSITION "position"
+#define NOISE_ROTATION "rotation"
+#define NOISE_SCALE "scale"
 
 // ComponentMeshRenderer
 #define RENDERER_MESH_ID "mesh_id"
 #define RENDERER_MATERIAL_ID "material_id"
+#define RENDERER_TINT_COLOR "tint_color"
 
 // Script
 #define SCRIPT_NAME "class_name"

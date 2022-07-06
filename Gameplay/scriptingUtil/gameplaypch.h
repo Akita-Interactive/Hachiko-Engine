@@ -9,6 +9,8 @@
 #include <MathGeoLib.h> // Order matters, this should be included before 
 // Gameplay.h
 
+#include <utils/RandomUtil.h>
+
 #include <components/Component.h>
 #include <components/ComponentText.h>
 #include <components/ComponentButton.h>
@@ -21,6 +23,10 @@
 #include <components/ComponentTransform2D.h>
 #include <components/ComponentPointLight.h>
 #include <components/ComponentObstacle.h>
+#include <utils/Bool2.h>
+#include <core/particles/Particle.h>
+#include <core/particles/ParticleSystem.h>
+#include <components/ComponentParticleSystem.h>
 
 #include <core/GameObject.h>
 #include <Gameplay.h>

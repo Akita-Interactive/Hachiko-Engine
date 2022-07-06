@@ -2,16 +2,16 @@ name: bugEnemy_2
 default_node: 0
 clips:
   - clip_name: idle
-    clips_id: 11409870686561403937
-    clips_loop: true
+    clips_id: 6536326424371413636
+    clips_loop: false
   - clip_name: attack
-    clips_id: 4259409298625253118
+    clips_id: 7969598165910296841
     clips_loop: true
   - clip_name: move
-    clips_id: 4578902010939283824
+    clips_id: 3638796766103889006
     clips_loop: true
   - clip_name: death
-    clips_id: 12998404091254124528
+    clips_id: 4971602105951751992
     clips_loop: false
 nodes:
   - node_name: idle
@@ -50,4 +50,16 @@ transitions:
   - transition_source: attack
     transition_target: death
     transition_trigger: isDead
+    transition_blend: 300
+  - transition_source: death
+    transition_target: idle
+    transition_trigger: idle
+    transition_blend: 300
+  - transition_source: move
+    transition_target: attack
+    transition_trigger: isAttacking
+    transition_blend: 300
+  - transition_source: attack
+    transition_target: move
+    transition_trigger: isMoving
     transition_blend: 300

@@ -165,8 +165,8 @@ void Hachiko::ComponentAnimation::DrawGui()
             if (ImGui::Button("Create State Machine"))
             {
                 App->resources->ReleaseResource(state_machine);
-                state_machine = new ResourceStateMachine(UUID::GenerateUID());
-                state_machine->state_m_name = auxiliary_name;
+                std::vector<UID> uids = App->resources->CreateAsset(Resource::Type::STATE_MACHINE, auxiliary_name);
+                state_machine = static_cast<ResourceStateMachine*>(App->resources->GetResource(Resource::Type::STATE_MACHINE, uids[0]));
                 ImGui::CloseCurrentPopup();
             }
             ImGui::EndPopup();

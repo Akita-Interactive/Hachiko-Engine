@@ -1,0 +1,46 @@
+prefab_name: Gauntlet
+name: Gauntlet
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [-0.7071, 0, 0, 0.7071]
+    scale: [1, 1, 1]
+  - !<mesh_renderer>
+    type: 2
+    enabled: true
+    mesh_id: 10210867973034302559
+    navigable: false
+    visible: true
+    material_id: 6750369022920963075
+    tint_color: [1, 1, 1, 1]
+  - !<script>
+    type: 15
+    enabled: true
+    class_name: GauntletManager
+    "'_combat_manager_go@GameObject*'": 0
+    "'_trigger_radius@float'": 5
+    "'_round_wait_time@float'": 5
+    "'_complete_wait_time@float'": 2
+    "'_door_controller_1@GameObject*'": 2
+    "'_door_controller_2@GameObject*'": 0
+    "'_pack_1@GameObject*'": 0
+    "'_pack_2@GameObject*'": 0
+    "'_pack_3@GameObject*'": 0
+child:
+  - name: DoorController
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0.7071, 0, 0, 0.7071]
+        scale: [1, 1, 1]
+      - !<script>
+        type: 15
+        enabled: true
+        class_name: DoorController
+        "'_door_prefab@GameObject*'": 0

@@ -25,6 +25,6 @@ void main()
     {
         float u = (tex_coord.x + animation_index.x) * factor.x;
         float v = (tex_coord.y + animation_index.y) * factor.y;
-        color = texture2D(diffuse,  vec2(u, v));
+        color *= texture2D(diffuse,  vec2(u, v));
     }
 }

@@ -49,7 +49,7 @@ namespace Hachiko
         bool play_on_awake = false;
         float duration = 5.0f;
         ParticleSystem::VariableTypeProperty start_delay {float2::zero, 1.0f, false, true};
-        ParticleSystem::VariableTypeProperty start_size {float2::zero, 1.0f};
+        ParticleSystem::VariableTypeProperty start_size {float2::one, 1.0f};
         ParticleSystem::VariableTypeProperty start_rotation {float2::zero, 1.0f};
 
         // Render

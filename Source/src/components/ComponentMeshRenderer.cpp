@@ -236,6 +236,7 @@ void Hachiko::ComponentMeshRenderer::Save(YAML::Node& node) const
     {
         node[RENDERER_MATERIAL_ID] = 0;
     }
+    node[RENDERER_TINT_COLOR] = tint_color;
 }
 
 void Hachiko::ComponentMeshRenderer::Load(const YAML::Node& node)
@@ -253,6 +254,7 @@ void Hachiko::ComponentMeshRenderer::Load(const YAML::Node& node)
     {
         LoadMaterial(material_id);
     }
+    tint_color = node[RENDERER_TINT_COLOR].IsDefined() ? node[RENDERER_TINT_COLOR].as<float4>() : float4::one;
 }
 
 Hachiko::GameObject* GetRoot(Hachiko::GameObject* posible_root) 
@@ -337,7 +339,7 @@ void Hachiko::ComponentMeshRenderer::ChangeMaterial()
                 material = res;
 
                 // TODO: Do this only when the material is actually changed.
-                App->scene_manager->GetActiveScene()->OnMeshesChanged();
+                App->scene_manager->RebuildBatches();
             }
         }
 

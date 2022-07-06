@@ -1,0 +1,17 @@
+prefab_name: floatingPilar008
+name: floatingPilar008
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [-8.47889614, 2.42999291, -31.3910141]
+    rotation: [-0.669506848, -0.210708097, -0.221262872, 0.677056432]
+    scale: [5.36775042e-05, 5.43389833e-05, 9.00000014e-05]
+  - !<mesh_renderer>
+    type: 2
+    enabled: true
+    mesh_id: 5154127655218156886
+    navigable: false
+    visible: true
+    material_id: 11135211878890792582

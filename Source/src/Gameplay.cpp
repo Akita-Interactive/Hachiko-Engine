@@ -103,21 +103,25 @@ void Hachiko::SceneManagement::SetSkyboxActive(bool v)
     App->renderer->SetDrawSkybox(v);
 }
 
-Hachiko::GameObject* Hachiko::SceneManagement::Raycast(const float3& origin, 
-    const float3& destination)
+Hachiko::GameObject* Hachiko::SceneManagement::Raycast(const float3& origin, const float3& destination, float3* closest_hit, GameObject* parent_filter, bool active_only)
 {
-    return App->scene_manager->Raycast(origin, destination);
+    return App->scene_manager->Raycast(origin, destination, closest_hit, parent_filter, active_only);
 }
 
-Hachiko::GameObject* Hachiko::SceneManagement::BoundingRaycast(const float3& origin, const float3& destination)
+Hachiko::GameObject* Hachiko::SceneManagement::BoundingRaycast(const float3& origin, const float3& destination, GameObject* parent_filter, bool active_only)
 {
-    return App->scene_manager->Raycast(origin, destination);
+    return App->scene_manager->Raycast(origin, destination, nullptr, parent_filter, active_only);
 }
 
 Hachiko::GameObject* Hachiko::SceneManagement::FindInCurrentScene(
     unsigned long long id)
 {
     return App->scene_manager->GetRoot()->Find(id);
+}
+
+HACHIKO_API Hachiko::GameObject* Hachiko::SceneManagement::FindInCurrentScene(const char* name)
+{
+    return App->scene_manager->GetRoot()->GetFirstChildWithName(name);
 }
 
 HACHIKO_API std::vector<Hachiko::GameObject*> Hachiko::SceneManagement::Instantiate(unsigned long long prefab_uid, GameObject* parent, unsigned n_instances)

@@ -104,6 +104,7 @@ void Hachiko::Scripting::PlayerController::OnEditor()
 	Editor::Show("Hp Cell 4", _hp_cell_4);
 	Editor::Show("Camera", _camera);
 	Editor::Show("Ui Damage", _ui_damage);
+	Editor::Show("Dash Type", _dash_type);
 }
 
 void Hachiko::Scripting::PlayerSoundManager::OnEditor()

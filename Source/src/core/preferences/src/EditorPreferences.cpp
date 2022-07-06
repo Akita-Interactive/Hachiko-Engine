@@ -68,6 +68,11 @@ void EditorPreferences::LoadConfigurationData(const YAML::Node& node)
         {
             draw_navmesh = it->second.as<bool>();
         }
+
+        if (it->first.as<std::string>()._Equal(UNDO_REDO_ACTIVE))
+        {
+            undo_redo_active = it->second.as<bool>();
+        }
     }
 }
 
@@ -83,4 +88,5 @@ void EditorPreferences::SaveConfigurationData(YAML::Node& node)
     node[group_name][DISPLAY_SKYBOX] = draw_skybox;
     node[group_name][DISPLAY_QUADTREE] = draw_quadtree;
     node[group_name][DISPLAY_NAVMESH] = draw_navmesh;
+    node[group_name][UNDO_REDO_ACTIVE] = undo_redo_active;
 }

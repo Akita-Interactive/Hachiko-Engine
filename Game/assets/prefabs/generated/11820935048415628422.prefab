@@ -29,8 +29,8 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [-0.00170805014, 0.151870355, -0.134265959]
-            rotation: [0.00998215657, 0, 0, 0.999950171]
+            position: [-0.0017, 0.1519, -0.1343]
+            rotation: [0.01, 0, 0, 1]
             scale: [1, 1, 1]
         child:
           - name: Hip
@@ -39,9 +39,9 @@ child:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [0.00170804537, 0, -0.000531659578]
-                rotation: [-0.00306412973, -0.132427439, -0.0656371266, 0.989012301]
-                scale: [1, 1, 0.999999821]
+                position: [0.0017, 0, -0.0005]
+                rotation: [-0.0031, -0.1324, -0.0656, 0.989]
+                scale: [1, 1, 1]
             child:
               - name: LeftLeg
                 enabled: true
@@ -49,9 +49,9 @@ child:
                   - !<transform>
                     type: 1
                     enabled: true
-                    position: [0.126474991, 0.0572384708, -0.0144411428]
-                    rotation: [-0.195418552, 0.07267306, 0.18335624, 0.960682452]
-                    scale: [0.999999821, 1, 1]
+                    position: [0.1265, 0.0572, -0.0144]
+                    rotation: [-0.1954, 0.0727, 0.1834, 0.9607]
+                    scale: [1, 1, 1]
                 child:
                   - name: LeftKnee
                     enabled: true
@@ -59,8 +59,8 @@ child:
                       - !<transform>
                         type: 1
                         enabled: true
-                        position: [0.104924783, -0.419131309, 0.0858221203]
-                        rotation: [0.502935469, 0.0438652374, -0.142314836, 0.851397812]
+                        position: [0.1049, -0.4191, 0.0858]
+                        rotation: [0.5029, 0.0439, -0.1423, 0.8514]
                         scale: [1, 1, 1]
                     child:
                       - name: LeftFoot
@@ -69,9 +69,9 @@ child:
                           - !<transform>
                             type: 1
                             enabled: true
-                            position: [0.0684163868, -0.542874873, -0.233516023]
-                            rotation: [0.0132871931, 0.0122312391, 0.100295842, 0.994793773]
-                            scale: [1, 0.999999821, 1]
+                            position: [0.0684, -0.5429, -0.2335]
+                            rotation: [0.0133, 0.0122, 0.1003, 0.9948]
+                            scale: [1, 1, 1]
                         child:
                           - name: LeftToe
                             enabled: true
@@ -79,7 +79,7 @@ child:
                               - !<transform>
                                 type: 1
                                 enabled: true
-                                position: [-3.5527136e-17, -0.0143482992, 0.377296299]
+                                position: [-0, -0.0143, 0.3773]
                                 rotation: [0, 0, 0, 1]
                                 scale: [1, 1, 1]
               - name: RightLeg_$AssimpFbx$_Translation
@@ -88,7 +88,7 @@ child:
                   - !<transform>
                     type: 1
                     enabled: true
-                    position: [-0.126474991, 0.0572379902, -0.0144411251]
+                    position: [-0.1265, 0.0572, -0.0144]
                     rotation: [0, 0, 0, 1]
                     scale: [1, 1, 1]
                 child:
@@ -99,7 +99,7 @@ child:
                         type: 1
                         enabled: true
                         position: [0, 0, 0]
-                        rotation: [1, 0, 0, 4.37113883e-08]
+                        rotation: [1, 0, 0, 0]
                         scale: [1, 1, 1]
                     child:
                       - name: RightLeg_$AssimpFbx$_Rotation
@@ -109,8 +109,8 @@ child:
                             type: 1
                             enabled: true
                             position: [0, 0, 0]
-                            rotation: [-0.126161173, 0.00631131604, 0.184270084, 0.97472471]
-                            scale: [0.99999994, 1, 1]
+                            rotation: [-0.1262, 0.0063, 0.1843, 0.9747]
+                            scale: [1, 1, 1]
                         child:
                           - name: RightLeg
                             enabled: true
@@ -128,9 +128,9 @@ child:
                                   - !<transform>
                                     type: 1
                                     enabled: true
-                                    position: [-0.104924999, 0.419130772, -0.0858220905]
-                                    rotation: [0.340437531, 0.0452462211, -0.087588124, 0.935084701]
-                                    scale: [0.99999994, 0.999999881, 0.999999881]
+                                    position: [-0.1049, 0.4191, -0.0858]
+                                    rotation: [0.3404, 0.0452, -0.0876, 0.9351]
+                                    scale: [1, 1, 1]
                                 child:
                                   - name: RightFoot
                                     enabled: true
@@ -138,9 +138,9 @@ child:
                                       - !<transform>
                                         type: 1
                                         enabled: true
-                                        position: [-0.0684159994, 0.54287523, 0.233516097]
-                                        rotation: [0.198305532, -0.0794617385, -0.154041231, 0.964692712]
-                                        scale: [1, 0.999999881, 1]
+                                        position: [-0.0684, 0.5429, 0.2335]
+                                        rotation: [0.1983, -0.0795, -0.154, 0.9647]
+                                        scale: [1, 1, 1]
                                     child:
                                       - name: RightToe
                                         enabled: true
@@ -148,7 +148,7 @@ child:
                                           - !<transform>
                                             type: 1
                                             enabled: true
-                                            position: [0, 0.0143480003, -0.377296388]
+                                            position: [0, 0.0143, -0.3773]
                                             rotation: [0, 0, 0, 1]
                                             scale: [1, 1, 1]
           - name: CenterSpine_start
@@ -157,8 +157,8 @@ child:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [-0.00485496037, 0.131358758, 0.0319358595]
-                rotation: [0.00998215657, 0, 0, 0.999950171]
+                position: [-0.0049, 0.1314, 0.0319]
+                rotation: [0.01, 0, 0, 1]
                 scale: [1, 1, 1]
             child:
               - name: CenterSpine_Chest
@@ -167,8 +167,8 @@ child:
                   - !<transform>
                     type: 1
                     enabled: true
-                    position: [-0.00177570921, 0.209533691, -0.0506989211]
-                    rotation: [0.309305131, -0.0891240016, 0.0291299392, 0.946329057]
+                    position: [-0.0018, 0.2095, -0.0507]
+                    rotation: [0.3093, -0.0891, 0.0291, 0.9463]
                     scale: [1, 1, 1]
                 child:
                   - name: CenterNeck
@@ -177,7 +177,7 @@ child:
                       - !<transform>
                         type: 1
                         enabled: true
-                        position: [0.00355141843, 0.24457027, 0.00318158534]
+                        position: [0.0036, 0.2446, 0.0032]
                         rotation: [0, 0, 0, 1]
                         scale: [1, 1, 1]
                     child:
@@ -187,8 +187,8 @@ child:
                           - !<transform>
                             type: 1
                             enabled: true
-                            position: [0.00161101914, 0.182912588, 0.0446635559]
-                            rotation: [-0.0871773362, 0.0548462495, 0.00480696978, 0.994670272]
+                            position: [0.0016, 0.1829, 0.0447]
+                            rotation: [-0.0872, 0.0548, 0.0048, 0.9947]
                             scale: [1, 1, 1]
                         child:
                           - name: CenterHead001
@@ -197,7 +197,7 @@ child:
                               - !<transform>
                                 type: 1
                                 enabled: true
-                                position: [0.00714651076, 0.359701574, -0.0283717047]
+                                position: [0.0071, 0.3597, -0.0284]
                                 rotation: [0, 0, 0, 1]
                                 scale: [1, 1, 1]
                           - name: Helmet
@@ -206,8 +206,8 @@ child:
                               - !<transform>
                                 type: 1
                                 enabled: true
-                                position: [0.00317628193, 0.0562660843, 0.149686232]
-                                rotation: [0.0704672486, -0.699095666, -0.124916509, 0.700496614]
+                                position: [0.0032, 0.0563, 0.1497]
+                                rotation: [0.0705, -0.6991, -0.1249, 0.7005]
                                 scale: [1, 1, 1]
                   - name: LeftShoulder
                     enabled: true
@@ -215,9 +215,9 @@ child:
                       - !<transform>
                         type: 1
                         enabled: true
-                        position: [0.154053956, 0.255940497, -0.0161152389]
-                        rotation: [-0.0120143825, -0.239947245, 0.0744389519, 0.967853248]
-                        scale: [1, 0.999999881, 1]
+                        position: [0.1541, 0.2559, -0.0161]
+                        rotation: [-0.012, -0.2399, 0.0744, 0.9679]
+                        scale: [1, 1, 1]
                     child:
                       - name: LeftElbow
                         enabled: true
@@ -225,9 +225,9 @@ child:
                           - !<transform>
                             type: 1
                             enabled: true
-                            position: [0.0875578672, -0.0258414354, -0.0560055487]
-                            rotation: [-0.0378640033, -0.403042108, 0.480819225, 0.77777648]
-                            scale: [1.00000012, 1, 0.99999994]
+                            position: [0.0876, -0.0258, -0.056]
+                            rotation: [-0.0379, -0.403, 0.4808, 0.7778]
+                            scale: [1, 1, 1]
                         child:
                           - name: LeftHand
                             enabled: true
@@ -235,9 +235,9 @@ child:
                               - !<transform>
                                 type: 1
                                 enabled: true
-                                position: [0.202341482, -0.348988682, -0.100166261]
-                                rotation: [-0.142674178, 0.336473197, 0.0781945735, 0.927531958]
-                                scale: [0.99999994, 0.99999994, 0.999999881]
+                                position: [0.2023, -0.349, -0.1002]
+                                rotation: [-0.1427, 0.3365, 0.0782, 0.9275]
+                                scale: [1, 1, 1]
                             child:
                               - name: LeftFingerStart
                                 enabled: true
@@ -245,7 +245,7 @@ child:
                                   - !<transform>
                                     type: 1
                                     enabled: true
-                                    position: [0.152489215, -0.343325764, 0.093799144]
+                                    position: [0.1525, -0.3433, 0.0938]
                                     rotation: [0, 0, 0, 1]
                                     scale: [1, 1, 1]
                                 child:
@@ -255,9 +255,9 @@ child:
                                       - !<transform>
                                         type: 1
                                         enabled: true
-                                        position: [0.0566918068, -0.0573153608, -0.0412758626]
-                                        rotation: [-0.00182943593, -8.88165791e-11, 0.183307171, 0.983053982]
-                                        scale: [1, 0.999999821, 0.99999994]
+                                        position: [0.0567, -0.0573, -0.0413]
+                                        rotation: [-0.0018, -0, 0.1833, 0.9831]
+                                        scale: [1, 1, 1]
                                     child:
                                       - name: Index_LeftFinger3
                                         enabled: true
@@ -265,9 +265,9 @@ child:
                                           - !<transform>
                                             type: 1
                                             enabled: true
-                                            position: [-0.0190601423, -0.0898300931, 0.00759982457]
-                                            rotation: [-0.00182943593, -8.88165791e-11, 0.183307171, 0.983053982]
-                                            scale: [1, 0.999999821, 0.99999994]
+                                            position: [-0.0191, -0.0898, 0.0076]
+                                            rotation: [-0.0018, -0, 0.1833, 0.9831]
+                                            scale: [1, 1, 1]
                                         child:
                                           - name: Index_LeftFinger_End
                                             enabled: true
@@ -275,7 +275,7 @@ child:
                                               - !<transform>
                                                 type: 1
                                                 enabled: true
-                                                position: [-0.0194437485, -0.0568945445, 0.00668885373]
+                                                position: [-0.0194, -0.0569, 0.0067]
                                                 rotation: [0, 0, 0, 1]
                                                 scale: [1, 1, 1]
                                   - name: Middle_LeftFinger1
@@ -284,9 +284,9 @@ child:
                                       - !<transform>
                                         type: 1
                                         enabled: true
-                                        position: [0.036734309, -0.0573153608, 0.067245312]
-                                        rotation: [-0.00182943593, -8.88165791e-11, 0.183307171, 0.983053982]
-                                        scale: [1, 0.999999821, 0.99999994]
+                                        position: [0.0367, -0.0573, 0.0672]
+                                        rotation: [-0.0018, -0, 0.1833, 0.9831]
+                                        scale: [1, 1, 1]
                                     child:
                                       - name: Middle_LeftFinger2
                                         enabled: true
@@ -294,9 +294,9 @@ child:
                                           - !<transform>
                                             type: 1
                                             enabled: true
-                                            position: [-0.0190601423, -0.0898300931, -0.00816307683]
-                                            rotation: [-0.00182943593, -8.88165791e-11, 0.183307171, 0.983053982]
-                                            scale: [1, 0.999999821, 0.99999994]
+                                            position: [-0.0191, -0.0898, -0.0082]
+                                            rotation: [-0.0018, -0, 0.1833, 0.9831]
+                                            scale: [1, 1, 1]
                                         child:
                                           - name: Middle_LeftFingerEnd
                                             enabled: true
@@ -304,7 +304,7 @@ child:
                                               - !<transform>
                                                 type: 1
                                                 enabled: true
-                                                position: [-0.0194437485, -0.0568945445, -0.00773774087]
+                                                position: [-0.0194, -0.0569, -0.0077]
                                                 rotation: [0, 0, 0, 1]
                                                 scale: [1, 1, 1]
                                   - name: Thumb_LeftFinger
@@ -313,8 +313,8 @@ child:
                                       - !<transform>
                                         type: 1
                                         enabled: true
-                                        position: [-0.0670459494, 0.0157899894, 0.067245312]
-                                        rotation: [-0.177472517, -0.135627776, 0.0797256082, 0.971469223]
+                                        position: [-0.067, 0.0158, 0.0672]
+                                        rotation: [-0.1775, -0.1356, 0.0797, 0.9715]
                                         scale: [1, 1, 1]
                                     child:
                                       - name: Thumb_LeftFinger2
@@ -323,8 +323,8 @@ child:
                                           - !<transform>
                                             type: 1
                                             enabled: true
-                                            position: [-0.0369566418, -0.0719941109, 0.0315798447]
-                                            rotation: [-0.177472517, -0.135627776, 0.0797256082, 0.971469223]
+                                            position: [-0.037, -0.072, 0.0316]
+                                            rotation: [-0.1775, -0.1356, 0.0797, 0.9715]
                                             scale: [1, 1, 1]
                                         child:
                                           - name: Thumb_LeftFingerEnd
@@ -333,7 +333,7 @@ child:
                                               - !<transform>
                                                 type: 1
                                                 enabled: true
-                                                position: [-0.0416687392, -0.0689487904, 0.0072097443]
+                                                position: [-0.0417, -0.0689, 0.0072]
                                                 rotation: [0, 0, 0, 1]
                                                 scale: [1, 1, 1]
                   - name: RightShoulder_$AssimpFbx$_Translation
@@ -342,7 +342,7 @@ child:
                       - !<transform>
                         type: 1
                         enabled: true
-                        position: [-0.137376279, 0.255940616, -0.0161152501]
+                        position: [-0.1374, 0.2559, -0.0161]
                         rotation: [0, 0, 0, 1]
                         scale: [1, 1, 1]
                     child:
@@ -353,7 +353,7 @@ child:
                             type: 1
                             enabled: true
                             position: [0, 0, 0]
-                            rotation: [1, 0, 0, 4.37113883e-08]
+                            rotation: [1, 0, 0, 0]
                             scale: [1, 1, 1]
                         child:
                           - name: RightShoulder_$AssimpFbx$_Rotation
@@ -363,8 +363,8 @@ child:
                                 type: 1
                                 enabled: true
                                 position: [0, 0, 0]
-                                rotation: [-0.00836553425, 0.0121230762, -0.260447562, 0.965375662]
-                                scale: [0.99999994, 1, 0.999999881]
+                                rotation: [-0.0084, 0.0121, -0.2604, 0.9654]
+                                scale: [1, 1, 1]
                             child:
                               - name: RightShoulder
                                 enabled: true
@@ -382,9 +382,9 @@ child:
                                       - !<transform>
                                         type: 1
                                         enabled: true
-                                        position: [-0.0875580013, 0.0258410964, 0.0560054705]
-                                        rotation: [-0.00382497604, 0.0241820384, 0.538224995, 0.842445552]
-                                        scale: [0.99999994, 1, 0.999999821]
+                                        position: [-0.0876, 0.0258, 0.056]
+                                        rotation: [-0.0038, 0.0242, 0.5382, 0.8424]
+                                        scale: [1, 1, 1]
                                     child:
                                       - name: RightHand
                                         enabled: true
@@ -392,9 +392,9 @@ child:
                                           - !<transform>
                                             type: 1
                                             enabled: true
-                                            position: [-0.202341989, 0.34898898, 0.100165993]
-                                            rotation: [0.0169761926, 0.0285955518, -0.0698677823, 0.997001827]
-                                            scale: [1, 0.99999994, 0.999999821]
+                                            position: [-0.2023, 0.349, 0.1002]
+                                            rotation: [0.017, 0.0286, -0.0699, 0.997]
+                                            scale: [1, 1, 1]
                                         child:
                                           - name: Parasite
                                             enabled: true
@@ -402,7 +402,7 @@ child:
                                               - !<transform>
                                                 type: 1
                                                 enabled: true
-                                                position: [-0.152489007, 0.222128794, -0.093798995]
+                                                position: [-0.1525, 0.2221, -0.0938]
                                                 rotation: [0, 0, 0, 1]
                                                 scale: [1, 1, 1]
                                             child:
@@ -412,7 +412,7 @@ child:
                                                   - !<transform>
                                                     type: 1
                                                     enabled: true
-                                                    position: [-0.215727687, -0.13459222, 0.0273324624]
+                                                    position: [-0.2157, -0.1346, 0.0273]
                                                     rotation: [0, 0, 0, 1]
                                                     scale: [1, 1, 1]
                                                 child:
@@ -423,7 +423,7 @@ child:
                                                         type: 1
                                                         enabled: true
                                                         position: [0, 0, 0]
-                                                        rotation: [0, 0, 0.927974105, 0.372644722]
+                                                        rotation: [0, 0, 0.928, 0.3726]
                                                         scale: [1, 1, 1]
                                                     child:
                                                       - name: Jaw_UP_Parasite_$AssimpFbx$_Rotation
@@ -433,8 +433,8 @@ child:
                                                             type: 1
                                                             enabled: true
                                                             position: [0, 0, 0]
-                                                            rotation: [0.0021345634, -0.0549911, 0.154885203, 0.986398518]
-                                                            scale: [0.999999821, 0.99999994, 1]
+                                                            rotation: [0.0021, -0.055, 0.1549, 0.9864]
+                                                            scale: [1, 1, 1]
                                                         child:
                                                           - name: Jaw_UP_Parasite
                                                             enabled: true
@@ -452,7 +452,7 @@ child:
                                                                   - !<transform>
                                                                     type: 1
                                                                     enabled: true
-                                                                    position: [0.639069021, -1.07136519e-16, -0.275379449]
+                                                                    position: [0.6391, -0, -0.2754]
                                                                     rotation: [0, 0, 0, 1]
                                                                     scale: [1, 1, 1]
                                                                 child:
@@ -463,8 +463,8 @@ child:
                                                                         type: 1
                                                                         enabled: true
                                                                         position: [0, 0, 0]
-                                                                        rotation: [-0.372644722, 0.927974105, -1.62888192e-08, -4.05630338e-08]
-                                                                        scale: [1.00000012, 1, 1]
+                                                                        rotation: [-0.3726, 0.928, -0, -0]
+                                                                        scale: [1, 1, 1]
                                                                     child:
                                                                       - name: RightFinger
                                                                         enabled: true
@@ -481,7 +481,7 @@ child:
                                                                   - !<transform>
                                                                     type: 1
                                                                     enabled: true
-                                                                    position: [0.374726772, 0.117202148, -0.159265622]
+                                                                    position: [0.3747, 0.1172, -0.1593]
                                                                     rotation: [0, 0, 0, 1]
                                                                     scale: [1, 1, 1]
                                                                 child:
@@ -492,8 +492,8 @@ child:
                                                                         type: 1
                                                                         enabled: true
                                                                         position: [0, 0, 0]
-                                                                        rotation: [-0.372644722, 0.927974105, -1.62888192e-08, -4.05630338e-08]
-                                                                        scale: [1.00000012, 1, 1]
+                                                                        rotation: [-0.3726, 0.928, -0, -0]
+                                                                        scale: [1, 1, 1]
                                                                     child:
                                                                       - name: Eye_parasite_$AssimpFbx$_Rotation
                                                                         enabled: true
@@ -502,8 +502,8 @@ child:
                                                                             type: 1
                                                                             enabled: true
                                                                             position: [0, 0, 0]
-                                                                            rotation: [-0.32461068, 0.870549858, -0.369318157, -0.0193623211]
-                                                                            scale: [0.999999881, 1, 0.99999994]
+                                                                            rotation: [-0.3246, 0.8705, -0.3693, -0.0194]
+                                                                            scale: [1, 1, 1]
                                                                         child:
                                                                           - name: Eye_parasite
                                                                             enabled: true
@@ -520,7 +520,7 @@ child:
                                                   - !<transform>
                                                     type: 1
                                                     enabled: true
-                                                    position: [0.0694948658, 0.0482985862, -0.0583245158]
+                                                    position: [0.0695, 0.0483, -0.0583]
                                                     rotation: [0, 0, 0, 1]
                                                     scale: [1, 1, 1]
                                                 child:
@@ -531,7 +531,7 @@ child:
                                                         type: 1
                                                         enabled: true
                                                         position: [0, 0, 0]
-                                                        rotation: [0, 0, 0.875613809, 0.483011872]
+                                                        rotation: [0, 0, 0.8756, 0.483]
                                                         scale: [1, 1, 1]
                                                     child:
                                                       - name: Jaw_Down_Parasite_$AssimpFbx$_Rotation
@@ -541,8 +541,8 @@ child:
                                                             type: 1
                                                             enabled: true
                                                             position: [0, 0, 0]
-                                                            rotation: [-0.00419027079, 0.00246561645, -0.10525959, 0.994432926]
-                                                            scale: [0.99999994, 1, 1]
+                                                            rotation: [-0.0042, 0.0025, -0.1053, 0.9944]
+                                                            scale: [1, 1, 1]
                                                         child:
                                                           - name: Jaw_Down_Parasite
                                                             enabled: true
@@ -560,7 +560,7 @@ child:
                                                                   - !<transform>
                                                                     type: 1
                                                                     enabled: true
-                                                                    position: [0.689837813, -1.87072573e-16, -0.289711356]
+                                                                    position: [0.6898, -0, -0.2897]
                                                                     rotation: [0, 0, 0, 1]
                                                                     scale: [1, 1, 1]
                                                                 child:
@@ -571,7 +571,7 @@ child:
                                                                         type: 1
                                                                         enabled: true
                                                                         position: [0, 0, 0]
-                                                                        rotation: [-0.483011842, 0.875613809, -2.11131166e-08, -3.8274294e-08]
+                                                                        rotation: [-0.483, 0.8756, -0, -0]
                                                                         scale: [1, 1, 1]
                                                                     child:
                                                                       - name: Zero
@@ -589,7 +589,7 @@ child:
                       - !<transform>
                         type: 1
                         enabled: true
-                        position: [-0.0330965035, 0.120591477, -0.197151139]
+                        position: [-0.0331, 0.1206, -0.1972]
                         rotation: [0, 0, 0, 1]
                         scale: [1, 1, 1]
                     child:
@@ -600,8 +600,8 @@ child:
                             type: 1
                             enabled: true
                             position: [0, 0, 0]
-                            rotation: [0.205894664, 0.676466823, 0.205894664, 0.676466882]
-                            scale: [0.99999994, 0.99999994, 1]
+                            rotation: [0.2059, 0.6765, 0.2059, 0.6765]
+                            scale: [1, 1, 1]
                         child:
                           - name: Jetpag
                             enabled: true
@@ -619,7 +619,7 @@ child:
                                   - !<transform>
                                     type: 1
                                     enabled: true
-                                    position: [0.136507675, 1.23066039e-16, 0.138481587]
+                                    position: [0.1365, 0, 0.1385]
                                     rotation: [0, 0, 0, 1]
                                     scale: [1, 1, 1]
                                 child:
@@ -630,7 +630,7 @@ child:
                                         type: 1
                                         enabled: true
                                         position: [0, 0, 0]
-                                        rotation: [0, 0, -0.182420015, 0.983220696]
+                                        rotation: [0, 0, -0.1824, 0.9832]
                                         scale: [1, 1, 1]
                                     child:
                                       - name: LeftWing_$AssimpFbx$_Rotation
@@ -659,7 +659,7 @@ child:
                                                   - !<transform>
                                                     type: 1
                                                     enabled: true
-                                                    position: [0.465061218, 1.71543005e-16, 0.167557448]
+                                                    position: [0.4651, 0, 0.1676]
                                                     rotation: [0, 0, 0, 1]
                                                     scale: [1, 1, 1]
                                                 child:
@@ -670,8 +670,8 @@ child:
                                                         type: 1
                                                         enabled: true
                                                         position: [0, 0, 0]
-                                                        rotation: [-0.0790388063, -0.702675521, -0.0790388063, 0.702675581]
-                                                        scale: [0.99999994, 1, 1]
+                                                        rotation: [-0.079, -0.7027, -0.079, 0.7027]
+                                                        scale: [1, 1, 1]
                                                     child:
                                                       - name: LeftWingZero
                                                         enabled: true
@@ -688,7 +688,7 @@ child:
                                   - !<transform>
                                     type: 1
                                     enabled: true
-                                    position: [0.136505425, -2.68907797e-06, -0.1384812]
+                                    position: [0.1365, -0, -0.1385]
                                     rotation: [0, 0, 0, 1]
                                     scale: [1, 1, 1]
                                 child:
@@ -699,7 +699,7 @@ child:
                                         type: 1
                                         enabled: true
                                         position: [0, 0, 0]
-                                        rotation: [0, 0, 0.983220696, 0.18242]
+                                        rotation: [0, 0, 0.9832, 0.1824]
                                         scale: [1, 1, 1]
                                     child:
                                       - name: RightWing_$AssimpFbx$_Rotation
@@ -728,7 +728,7 @@ child:
                                                   - !<transform>
                                                     type: 1
                                                     enabled: true
-                                                    position: [-0.465062201, -4.44309035e-06, -0.167557999]
+                                                    position: [-0.4651, -0, -0.1676]
                                                     rotation: [0, 0, 0, 1]
                                                     scale: [1, 1, 1]
                                                 child:
@@ -739,8 +739,8 @@ child:
                                                         type: 1
                                                         enabled: true
                                                         position: [0, 0, 0]
-                                                        rotation: [-0.0790388063, -0.702675521, -0.0790388063, 0.702675581]
-                                                        scale: [0.99999994, 1, 1]
+                                                        rotation: [-0.079, -0.7027, -0.079, 0.7027]
+                                                        scale: [1, 1, 1]
                                                     child:
                                                       - name: RightWingZero
                                                         enabled: true
@@ -757,7 +757,7 @@ child:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [0.301524192, -0.583828092, -0.229437172]
+                position: [0.3015, -0.5838, -0.2294]
                 rotation: [0, 0, 0, 1]
                 scale: [1, 1, 1]
           - name: Right_ikHandle2
@@ -766,7 +766,7 @@ child:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [-0.436027467, -0.592709303, -0.39540419]
+                position: [-0.436, -0.5927, -0.3954]
                 rotation: [0, 0, 0, 1]
                 scale: [1, 1, 1]
   - name: GEO
@@ -786,8 +786,8 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0.70710665, 0, 0, 0.707106888]
-            scale: [200.019302, 200.019272, 200.019272]
+            rotation: [-0.7071, 0, 0, 0.7071]
+            scale: [200, 200, 200]
           - !<mesh_renderer>
             type: 2
             enabled: true
@@ -795,3 +795,4 @@ child:
             navigable: false
             visible: true
             material_id: 8839885697372629645
+            tint_color: [1, 1, 1, 1]

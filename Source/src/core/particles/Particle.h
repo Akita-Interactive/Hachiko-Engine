@@ -36,7 +36,7 @@ namespace Hachiko
         void Activate();
         void Deactivate();
         
-        [[nodiscard]] float GetCurrentLifeNormilized() const;
+        [[nodiscard]] float GetCurrentLifeNormalized() const;
 
         [[nodiscard]] float GetCurrentLife() const;
         void SetCurrentLife(float life);
@@ -66,7 +66,7 @@ namespace Hachiko
         void SetCurrentAnimationFrame(unsigned frame);
 
         [[nodiscard]] float GetAnimationBlend() const;
-        void SetAnimationBlend(float animation_blend);
+        void SetAnimationBlend(float blend);
 
         [[nodiscard]] bool HasTexture() const;
         [[nodiscard]] int GetTextureTotalTiles() const;

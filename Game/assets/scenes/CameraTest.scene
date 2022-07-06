@@ -1,0 +1,257 @@
+scene_name: CameraTest
+navmesh_id: 12909483272333323460
+skybox:
+  right_cube_id: 0
+  left_cube_id: 0
+  top_cube_id: 0
+  bottom_cube_id: 0
+  center_cube_id: 0
+  back_cube_id: 0
+root_id: 9182050610880223868
+child:
+  - id: 1055489386756321936
+    name: BakerHouse
+    enabled: true
+    component:
+      - !<transform>
+        id: 751750478711048629
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0.7752, 0, 0, 0.6317]
+        scale: [1, 1, 1]
+    child:
+      - id: 15544913473548298170
+        name: Chimney
+        enabled: true
+        component:
+          - !<transform>
+            id: 12542103125410466808
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0.7071, 0, 0, 0.7071]
+            scale: [100, 100, 100]
+          - !<mesh_renderer>
+            id: 12364271612535068181
+            type: 2
+            enabled: true
+            mesh_id: 7544551443759936381
+            navigable: false
+            visible: true
+            material_id: 7765775954106249835
+      - id: 16738082121615900831
+        name: Baker_house
+        enabled: true
+        component:
+          - !<transform>
+            id: 2436179244814941443
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0.7071, 0, 0, 0.7071]
+            scale: [100, 100, 100]
+          - !<mesh_renderer>
+            id: 17887169278521849379
+            type: 2
+            enabled: true
+            mesh_id: 3581704332068092856
+            navigable: false
+            visible: true
+            material_id: 7765775954106249835
+  - id: 13350498086885454940
+    name: parasiteConsumable
+    enabled: true
+    component:
+      - !<transform>
+        id: 7136538383632107248
+        type: 1
+        enabled: true
+        position: [30.41, 0, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [5.41, 5.41, 5.41]
+    child:
+      - id: 9220185200726337874
+        name: PM3D_Sphere124
+        enabled: true
+        component:
+          - !<transform>
+            id: 7995038291637432264
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<mesh_renderer>
+            id: 2756947570470438984
+            type: 2
+            enabled: true
+            mesh_id: 8953689370358422284
+            navigable: false
+            visible: true
+            material_id: 3003390711770185065
+  - id: 12120146660273666500
+    name: cube
+    enabled: true
+    component:
+      - !<transform>
+        id: 15004739654416105115
+        type: 1
+        enabled: true
+        position: [0, -9.672, 8.454]
+        rotation: [0, 0, 0, 1]
+        scale: [17, 5.689, 14.19]
+    child:
+      - id: 8631871374187053909
+        name: Box001
+        enabled: true
+        component:
+          - !<transform>
+            id: 17107580077693933336
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0.7071, 0, 0, 0.7071]
+            scale: [1, 1, 1]
+          - !<mesh_renderer>
+            id: 10868537992710722192
+            type: 2
+            enabled: true
+            mesh_id: 1654487118907036717
+            navigable: false
+            visible: true
+            material_id: 6750369022920963075
+  - id: 16779925319465180152
+    name: TravelingCamera
+    enabled: true
+    component:
+      - !<transform>
+        id: 518598590117120254
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [1, 1, 1]
+      - !<script>
+        id: 11555905852396441997
+        type: 15
+        enabled: true
+        class_name: DynamicCamera
+        "'_speed@float'": 5
+        "'_camera_go@GameObject*'": 268960208217008997
+    child:
+      - id: 13476396489563837884
+        name: TravelingCamera
+        enabled: true
+        component:
+          - !<transform>
+            id: 9879775521114771569
+            type: 1
+            enabled: true
+            position: [-9.586, 17.96, -34.31]
+            rotation: [0.2303, 0.1818, -0.0439, 0.955]
+            scale: [1, 1, 1]
+          - !<camera>
+            id: 10811947637702218249
+            type: 4
+            enabled: true
+            frustum:
+              near_distance: 0.1
+              far_distance: 1000
+              fov: 65
+              position: [-9.586, 17.96, -34.31]
+              front: [0.3271, -0.4558, 0.8278]
+              up: [0.1675, 0.8901, 0.424]
+              pinned_camera: [0, 0, 0]
+      - id: 4264423907877998756
+        name: Shot1
+        enabled: true
+        component:
+          - !<transform>
+            id: 16974824428425792147
+            type: 1
+            enabled: true
+            position: [-14.47, 18.4, -36.67]
+            rotation: [0.2623, 0.1995, -0.0555, 0.9425]
+            scale: [1, 1, 1]
+          - !<camera>
+            id: 259644826317594066
+            type: 4
+            enabled: true
+            frustum:
+              near_distance: 0.1
+              far_distance: 1000
+              fov: 65
+              position: [-14.47, 18.4, -36.67]
+              front: [0.3469, -0.5166, 0.7828]
+              up: [0.2093, 0.8562, 0.4723]
+              pinned_camera: [0, 0, 0]
+      - id: 7949312015517518787
+        name: Shot2
+        enabled: true
+        component:
+          - !<transform>
+            id: 5915195892753825913
+            type: 1
+            enabled: true
+            position: [12.05, -1.914, 34.95]
+            rotation: [0.0064, 0.9826, 0.0343, -0.1822]
+            scale: [1, 1, 1]
+          - !<camera>
+            id: 14311879847708606012
+            type: 4
+            enabled: true
+            frustum:
+              near_distance: 0.1
+              far_distance: 1000
+              fov: 65
+              position: [12.05, -1.914, 34.95]
+              front: [-0.3576, 0.0697, -0.9313]
+              up: [0.025, 0.9976, 0.0651]
+              pinned_camera: [0, 0, 0]
+      - id: 16672946159436967335
+        name: Shot3
+        enabled: true
+        component:
+          - !<transform>
+            id: 1244887640921362443
+            type: 1
+            enabled: true
+            position: [3.093, 40.8, 9.044]
+            rotation: [0.0181, 0.7886, -0.6142, 0.0233]
+            scale: [1, 1, 1]
+          - !<camera>
+            id: 17366225264641734016
+            type: 4
+            enabled: true
+            frustum:
+              near_distance: 0.1
+              far_distance: 1000
+              fov: 65
+              position: [3.093, 40.8, 9.044]
+              front: [0.0144, -0.9696, -0.2444]
+              up: [0.0572, 0.2448, -0.9679]
+              pinned_camera: [0, 0, 0]
+  - id: 268960208217008997
+    name: Main Cam
+    enabled: true
+    component:
+      - !<transform>
+        id: 1031955147775149251
+        type: 1
+        enabled: true
+        position: [-31.86, 0, -27.31]
+        rotation: [0, 0.3781, 0, 0.9258]
+        scale: [1, 1, 1]
+      - !<camera>
+        id: 8813547896911725590
+        type: 4
+        enabled: true
+        frustum:
+          near_distance: 0.1
+          far_distance: 1000
+          fov: 65
+          position: [-31.86, 0, -27.31]
+          front: [0.7001, 0, 0.7141]
+          up: [0, 1, 0]
+          pinned_camera: [0, 0, 0]

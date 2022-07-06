@@ -409,9 +409,10 @@ namespace Hachiko::SceneManagement
 {
 HACHIKO_API void SwitchScene(unsigned long long scene_uid);
 HACHIKO_API void SetSkyboxActive(bool v);
-HACHIKO_API GameObject* Raycast(const float3& origin, const float3& destination);
-HACHIKO_API GameObject* BoundingRaycast(const float3& origin, const float3& destination);
+HACHIKO_API GameObject* Raycast(const float3& origin, const float3& destination, float3* closest_hit = nullptr, GameObject* parent_filter = nullptr, bool active_only = false);
+HACHIKO_API GameObject* BoundingRaycast(const float3& origin, const float3& destination, GameObject* parent_filter = nullptr, bool active_only = false);
 HACHIKO_API GameObject* FindInCurrentScene(unsigned long long id);
+HACHIKO_API GameObject* FindInCurrentScene(const char* name);
 HACHIKO_API std::vector<GameObject*> Instantiate(unsigned long long prefab_uid, GameObject* parent, unsigned n_instances);
 HACHIKO_API void Destroy(GameObject* game_object);
 } // namespace Hachiko::SceneManagement

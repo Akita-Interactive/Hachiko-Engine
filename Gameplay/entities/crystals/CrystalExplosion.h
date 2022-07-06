@@ -39,13 +39,12 @@ namespace Hachiko
 
 		private:
 			ComponentTransform* transform;
-			ComponentTransform* explosive_area;
 			SERIALIZE_FIELD(GameObject*, _player);
 
 			SERIALIZE_FIELD(GameObject*, _explosion_crystal);
 			SERIALIZE_FIELD(GameObject*, _static_crystal);
-			SERIALIZE_FIELD(GameObject*, _outer_explosion_indicator);
-			SERIALIZE_FIELD(GameObject*, _inner_explosion_indicator);
+			SERIALIZE_FIELD(GameObject*, _explosion_indicator_helper);
+			SERIALIZE_FIELD(GameObject*, _explosion_effect);
 
 			SERIALIZE_FIELD(unsigned, _crashing_index);
 			SERIALIZE_FIELD(float, _detecting_radius);

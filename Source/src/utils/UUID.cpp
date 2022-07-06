@@ -1,4 +1,5 @@
 #include "core/hepch.h"
+#include "utils/RandomUtilDefinitions.h"
 #include "UUID.h"
 
 namespace Hachiko

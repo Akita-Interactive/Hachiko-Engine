@@ -157,6 +157,10 @@ void Hachiko::ModuleCamera::ToggleCamera()
         camera_idx = 0;
     }
     SetRenderingCamera(camera_buffer[camera_idx]);
+    if (!rendering_camera->GetGameObject()->IsActive())
+    {
+        ToggleCamera();
+    }
 }
 
 void Hachiko::ModuleCamera::SetRenderingCamera(ComponentCamera* camera)

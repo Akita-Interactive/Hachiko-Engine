@@ -4,7 +4,10 @@
 #include "modules/ModuleSceneManager.h"
 #include "importers/MaterialImporter.h"
 
-Hachiko::ResourceMaterial::ResourceMaterial(UID uid) : Resource(uid, Type::MATERIAL) {}
+Hachiko::ResourceMaterial::ResourceMaterial(UID uid) : Resource(uid, Type::MATERIAL)
+{
+    App->scene_manager->GetActiveScene();
+}
 
 Hachiko::ResourceMaterial::~ResourceMaterial() {}
 
@@ -26,7 +29,7 @@ void Hachiko::ResourceMaterial::DrawGui()
     {
         // If the transparency property of a material is changed, notify
         // scene to arrange batching again:
-        App->scene_manager->GetActiveScene()->OnMeshesChanged();
+        App->scene_manager->RebuildBatches();
     }
 
     if (ImGui::TreeNodeEx((void*)&diffuse, texture_flags, "Diffuse"))
@@ -304,5 +307,5 @@ void Hachiko::ResourceMaterial::UpdateMaterial()
     MaterialImporter material_importer;
     material_importer.Save(GetID(), this);
 
-    App->scene_manager->GetActiveScene()->OnMeshesChanged();
+    App->scene_manager->GetActiveScene()->RebuildBatches();
 }

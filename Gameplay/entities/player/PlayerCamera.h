@@ -24,30 +24,45 @@ public:
 
 	/// <summary>
 	/// Changes Camera relative position to the one defined. 
-	/// If time is defined it will revert to its previous position once said time has passed
+	/// If speed is NOT defined or 0 it will change instantly
+	/// If duration is defined it will revert to its previous position once said time has passed
 	/// </summary>
-	/// <param name="new_rel_pos"></param>
-	/// <param name="time"></param>
-	void ChangeRelativePosition(math::float3 new_relative_position, float time = -1.0f);
+	/// <param name="new_relative_position"></param>
+	/// <param name="speed"></param>
+	/// <param name="duration"></param>
+	void ChangeRelativePosition(math::float3 new_relative_position, float speed = 0.0f, float duration = -1.0f);
 
 	/// <summary>
 	/// Reverts Camera relative position to its previous position
+	/// If speed is NOT defined or 0 it will use "_follow_delay" as value 
 	/// </summary>
-	void RevertRelativePosition();
+	/// <param name="speed"></param>
+	void RevertRelativePosition(float speed = 0.0f);
 
 
 	/// <summary>
 	/// Switches between the defined relative position and its previous one
+	/// If speed is NOT defined or 0 it will change instantly
 	/// </summary>
-	/// <param name="new_rel_pos"></param>
-	void SwitchRelativePosition(math::float3 new_relative_position);
+	/// <param name="new_relative_position"></param>
+	/// <param name="speed"></param>
+	void SwitchRelativePosition(math::float3 new_relative_position, float speed = 0.0f);
+
+	/// <summary>
+	/// Rotates the camera, if no speed is defined it will instantly rotate
+	/// </summary>
+	/// <param name="new_rotation"></param>
+	/// <param name="speed"></param>
+	void RotateCameraTo(math::float3 new_rotation, float speed = 0.0f);
+
+	float3 GetRelativePosition() { return _relative_position_to_player; };
 
 private:
 	void CheckForObjective();
 	void SetLookAhead();
 	void MoveCamera();
 	void RecalculateRelativePos();
-
+	void RecalculateRotation();
 	float2 MoveCameraWithMouse();
 	void ScrollWheelZoom(float3* cam_pos);
 	float3 Shake();
@@ -60,9 +75,17 @@ private:
 	math::float3 _look_ahead = math::float3::zero;
 	PlayerController* _player_ctrl = nullptr;
 	GameObject* _current_objective = nullptr;
-	math::float3 _relative_pososition_aux = math::float3::zero;
+	math::float3 _relative_position_aux = math::float3::zero;
+	math::float3 _updated_relative_position;
+	math::Quat _updated_rotation;
 	bool _is_temporary_moved = false;
+	bool _is_in_position = true;
+	bool _is_in_rotation = true;
 	float _position_timer = 0.0f;
+	float _reposition_time = 0.0f;
+	float _rotation_time = 0.0f;
+	float _reposition_progress = 0.0f;
+	float _rotation_progress = 0.0f;
 	float shake_elapsed = 0.0f;
 	float shake_time = 0.0f;
 	float shake_intensity = 0.0f;

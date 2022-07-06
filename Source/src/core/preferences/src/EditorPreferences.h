@@ -131,6 +131,16 @@ namespace Hachiko
             return draw_quadtree;
         }
 
+        void SetUndoRedoActive(bool value)
+        {
+            undo_redo_active = value;
+        }
+
+        [[nodiscard]] bool GetUndoRedoActive() const
+        {
+            return undo_redo_active;
+        }
+
     private:
         bool display_debug_draw = false;
 
@@ -147,5 +157,6 @@ namespace Hachiko
         bool draw_quadtree = false;
         float fps_threshold = 1000.0f / max_fps;
         Editor::Theme::Type theme = Editor::Theme::Type::DARK;
+        bool undo_redo_active = true;
     };
 }

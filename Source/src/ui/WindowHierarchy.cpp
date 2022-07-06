@@ -24,6 +24,25 @@ void Hachiko::WindowHierarchy::Update()
     ImGui::End();
 }
 
+void Hachiko::WindowHierarchy::GOSelected(GameObject* game_object) 
+{
+    if (game_object == nullptr)
+    {
+        index = 0;
+        selected_object_ancestors.clear();
+    }
+    else
+    {
+        GameObject* aux_game_object = game_object;
+        do
+        {
+            selected_object_ancestors.push_back(aux_game_object);
+            aux_game_object = aux_game_object->parent;
+        } while (aux_game_object != App->scene_manager->GetRoot());
+        index = selected_object_ancestors.size() - 1;
+    }
+}
+
 void Hachiko::WindowHierarchy::DrawHierarchyTree(const GameObject* game_object)
 {
     for (int i = 0; i < game_object->children.size(); ++i)
@@ -35,6 +54,12 @@ void Hachiko::WindowHierarchy::DrawHierarchyTree(const GameObject* game_object)
     if (!App->input->IsMouseButtonPressed(SDL_BUTTON_LEFT))
     {
         dragged_object = nullptr;
+    }
+    
+    if (selected_object_ancestors.size() > 0)
+    {
+        index = 0;
+        selected_object_ancestors.clear();
     }
 }
 
@@ -75,6 +100,12 @@ bool Hachiko::WindowHierarchy::DrawGameObject(GameObject* game_object, bool stop
     if (is_selected)
     {
         flags |= ImGuiTreeNodeFlags_Selected;
+    }
+
+    if (index != 0 && game_object == selected_object_ancestors[index])
+    {
+        index -= 1;
+        ImGui::SetNextItemOpen(true);
     }
 
     ImVec4 node_color = ImGui::GetStyle().Colors[ImGuiCol_Text];

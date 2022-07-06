@@ -45,9 +45,9 @@ void Hachiko::WindowConfiguration::Update()
 
     if (ImGui::CollapsingHeader("Engine"))
     {
+        ImGui::Checkbox("Undo/Redo", &App->editor->undo_redo_active);
         App->window->OptionsMenu();
         App->renderer->PerformanceMenu();
-
     }
 
     if (ImGui::CollapsingHeader("Batching"))

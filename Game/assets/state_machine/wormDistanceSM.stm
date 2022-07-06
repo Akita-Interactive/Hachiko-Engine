@@ -1,0 +1,67 @@
+name: wormDistanceSM
+default_node: 0
+clips:
+  - clip_name: Appear
+    clips_id: 11790258715251408842
+    clips_loop: false
+  - clip_name: Iddle
+    clips_id: 1074444353004095425
+    clips_loop: true
+  - clip_name: RangeAttack
+    clips_id: 7582254748141028466
+    clips_loop: true
+  - clip_name: Hit
+    clips_id: 9554448594809014923
+    clips_loop: false
+  - clip_name: Hide
+    clips_id: 7487789786109346330
+    clips_loop: false
+  - clip_name: Dead
+    clips_id: 1447971684747023526
+    clips_loop: false
+nodes:
+  - node_name: Appear
+    node_clip_name: Appear
+  - node_name: Iddle
+    node_clip_name: Iddle
+  - node_name: RangeAttack
+    node_clip_name: RangeAttack
+  - node_name: Hit
+    node_clip_name: Hit
+  - node_name: Hide
+    node_clip_name: Hide
+  - node_name: Dead
+    node_clip_name: Dead
+transitions:
+  - transition_source: Iddle
+    transition_target: Appear
+    transition_trigger: isAppear
+    transition_blend: 300
+  - transition_source: Iddle
+    transition_target: RangeAttack
+    transition_trigger: isAttack
+    transition_blend: 300
+  - transition_source: Iddle
+    transition_target: Dead
+    transition_trigger: isDead
+    transition_blend: 300
+  - transition_source: Iddle
+    transition_target: Hide
+    transition_trigger: isHide
+    transition_blend: 300
+  - transition_source: Iddle
+    transition_target: Hit
+    transition_trigger: isHit
+    transition_blend: 300
+  - transition_source: Appear
+    transition_target: Iddle
+    transition_trigger: isIddle
+    transition_blend: 300
+  - transition_source: RangeAttack
+    transition_target: Hide
+    transition_trigger: isHide
+    transition_blend: 300
+  - transition_source: Hide
+    transition_target: Appear
+    transition_trigger: isAppear
+    transition_blend: 300

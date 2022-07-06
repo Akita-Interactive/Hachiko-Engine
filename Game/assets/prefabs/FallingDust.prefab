@@ -1,0 +1,72 @@
+prefab_name: FallingDust
+name: FallingDust
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 2, 0]
+    rotation: [0, 0, 0, 1]
+    scale: [10, 10, 10]
+  - !<particle_system>
+    type: 22
+    enabled: true
+    sections:
+      parameters: true
+      emission: true
+      shape: true
+      lights: false
+      renderer: true
+    parameters:
+      duration: 0.5
+      loop: false
+      life: [true, true, 1, [0.5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+      speed: [true, true, 1, [1, 2], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+      size: [true, true, 1, [3, 6], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+      rotation: [true, true, 1, [0, 360], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+      delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+      properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+    emission:
+      rate: [true, true, 1, [100, 200], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+      rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+      burst: false
+    emitter_shape:
+      type: 0
+      properties: [360, 0, [0, 0, 0], 0.75, 0, [0, 0, 0], [1, 1, 1], 1]
+    texture:
+      texture_id: 11026875507602932596
+      tiles: [3, 2]
+      flip: [false, false]
+      total_tiles: 6
+    modifiers:
+      velocity:
+        active: false
+        speed: [true, true, 0, [0, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+      size:
+        active: false
+        size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+      color:
+        active: true
+        color_gradient: [[0, 0, 0, 0, 0], [0.7333, 0.4, 0.0235, 0, 0.1453], [1, 1, 1, 0, 0.6513], [0, 0, 0, 0, 0.9952]]
+        color_cycles: 1
+      force:
+        active: false
+        rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        x_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        y_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        z_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+      animation:
+        active: true
+        animation_speed: 0
+        blend_factor: 0
+        fit_to_lifetime: true
+      noise:
+        active: false
+        separate_axes: false
+        strength:
+          x: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          y: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          z: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        position: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]

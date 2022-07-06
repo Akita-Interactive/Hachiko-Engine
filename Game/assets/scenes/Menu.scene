@@ -25,7 +25,7 @@ child:
         type: 4
         enabled: true
         frustum:
-          near_distance: 0.100000001
+          near_distance: 0.1
           far_distance: 1000
           fov: 65
           position: [0, 0, 0]
@@ -48,7 +48,7 @@ child:
         type: 10
         enabled: true
         position: [0, 0, 0]
-        size: [771, 1026]
+        size: [1904, 1083]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
@@ -64,7 +64,7 @@ child:
         class_name: MainMenuManager
         "'_state_changed@bool'": false
         "'_main_background@GameObject*'": 5872684667760369802
-        "'_button_background@GameObject*'": 14792802250786109765
+        "'_button_background@GameObject*'": 0
         "'_button_play@ComponentButton*'": 12216311029793036440
         "'_button_quit@ComponentButton*'": 16104174435079696891
         "'_button_settings@ComponentButton*'": 5517220911348165701
@@ -89,8 +89,8 @@ child:
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [771, 1026]
-            scale: [1, 1.20000005]
+            size: [1904, 1083]
+            scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
             anchor: [0.5, 0.5]
@@ -102,49 +102,15 @@ child:
             id: 11903064509535993690
             type: 11
             enabled: true
-            image_id: 3892815591083320296
+            image_id: 797053075814051175
             hover_image_id: 0
-            use_image: true
-            use_hover_image: false
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
             fill_window: true
-      - id: 14792802250786109765
-        name: button_background
-        enabled: true
-        component:
-          - !<transform>
-            id: 8605018989710401051
-            type: 1
-            enabled: true
-            position: [0, 0, 0]
-            rotation: [0, 0, 0, 1]
-            scale: [1, 1, 1]
-          - !<transform_2d>
-            id: 3798812555767685482
-            type: 10
-            enabled: true
-            position: [-1, 0, 0]
-            size: [800, 168]
-            scale: [1, 1]
-            rotation: [0, 0, 0, 1]
-            pivot: [0.5, 0.5]
-            anchor: [0.5, 0.5]
-          - !<canvas_renderer>
-            id: 12496544305057191090
-            type: 9
-            enabled: true
-          - !<image>
-            id: 5324912634986608193
-            type: 11
-            enabled: true
-            image_id: 2119038066994049673
-            hover_image_id: 0
-            use_image: true
-            use_hover_image: false
-            image_color: [1, 1, 1, 1]
-            hover_image_color: [1, 1, 1, 1]
-            fill_window: false
       - id: 12216311029793036440
         name: button_play
         enabled: true
@@ -160,12 +126,12 @@ child:
             id: 11573762086171599171
             type: 10
             enabled: true
-            position: [-290, 5, 0]
-            size: [110, 50]
+            position: [400, 90, 0]
+            size: [249, 79]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
-            anchor: [0.5, 0.5]
+            anchor: [0, 0]
           - !<canvas_renderer>
             id: 6340919664879631665
             type: 9
@@ -178,12 +144,14 @@ child:
             id: 11436036971468394748
             type: 11
             enabled: true
-            image_id: 17690140760809255635
-            hover_image_id: 4831253430678197813
-            use_image: true
-            use_hover_image: true
+            image_id: 11919729748734287842
+            hover_image_id: 6522213574127010677
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
             fill_window: false
       - id: 5517220911348165701
         name: button_settings
@@ -200,12 +168,12 @@ child:
             id: 12485261860033650679
             type: 10
             enabled: true
-            position: [-110, 5, 0]
-            size: [193, 51]
+            position: [775, 90, 0]
+            size: [449, 79]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
-            anchor: [0.5, 0.5]
+            anchor: [0, 0]
           - !<canvas_renderer>
             id: 13961633755337133385
             type: 9
@@ -218,12 +186,14 @@ child:
             id: 530510889224547790
             type: 11
             enabled: true
-            image_id: 9931964557502554486
-            hover_image_id: 7072296968830034774
-            use_image: true
-            use_hover_image: true
+            image_id: 7524279948013613040
+            hover_image_id: 5111959007001328776
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
             fill_window: false
       - id: 5507085151890769082
         name: button_credits
@@ -240,12 +210,12 @@ child:
             id: 4231912232200162890
             type: 10
             enabled: true
-            position: [100, 5, 0]
-            size: [163, 51]
+            position: [-770, 90, 0]
+            size: [426, 82]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
-            anchor: [0.5, 0.5]
+            anchor: [1, 0]
           - !<canvas_renderer>
             id: 16549682737339658831
             type: 9
@@ -258,12 +228,14 @@ child:
             id: 13184592598170642105
             type: 11
             enabled: true
-            image_id: 15642433059796057761
-            hover_image_id: 4682609256175005790
-            use_image: true
-            use_hover_image: true
+            image_id: 2646447994811262748
+            hover_image_id: 8092465931412803397
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
             fill_window: false
       - id: 16104174435079696891
         name: button_quit
@@ -280,12 +252,12 @@ child:
             id: 12612247618848250662
             type: 10
             enabled: true
-            position: [260, 5, 0]
-            size: [92, 51]
+            position: [-400, 90, 0]
+            size: [259, 84]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
-            anchor: [0.5, 0.5]
+            anchor: [1, 0]
           - !<canvas_renderer>
             id: 7984435262585265924
             type: 9
@@ -298,16 +270,18 @@ child:
             id: 17769493676886326825
             type: 11
             enabled: true
-            image_id: 3462935206210766786
-            hover_image_id: 2150939344710026210
-            use_image: true
-            use_hover_image: true
+            image_id: 3751464411723826872
+            hover_image_id: 5850061941833811652
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
             fill_window: false
       - id: 15157299374494226041
         name: credits
-        enabled: true
+        enabled: false
         component:
           - !<transform>
             id: 15228406684828012724
@@ -321,7 +295,7 @@ child:
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [771, 1026]
+            size: [1517, 1056]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
@@ -336,11 +310,13 @@ child:
             enabled: true
             image_id: 9470256371827250406
             hover_image_id: 0
-            use_image: true
-            use_hover_image: false
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
-            fill_window: true
+            image_is_tiled: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
+            fill_window: false
       - id: 7162107976364272364
         name: button_back
         enabled: true
@@ -361,7 +337,7 @@ child:
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
-            anchor: [0.75, 0.850000024]
+            anchor: [0.75, 0.85]
           - !<canvas_renderer>
             id: 13379399604533935340
             type: 9
@@ -376,10 +352,12 @@ child:
             enabled: true
             image_id: 12801498884348566920
             hover_image_id: 14223851074699602382
-            use_image: true
-            use_hover_image: true
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
             fill_window: false
       - id: 831669987700788447
         name: settings
@@ -397,7 +375,7 @@ child:
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [1191, 174]
+            size: [1904, 1083]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
@@ -410,10 +388,12 @@ child:
             id: 4807624678484144569
             type: 11
             enabled: true
-            image_id: 927562492423652741
+            image_id: 18244565694302770990
             hover_image_id: 0
-            use_image: true
-            use_hover_image: false
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
-            fill_window: false
+            image_is_tiled: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
+            fill_window: true

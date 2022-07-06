@@ -45,11 +45,14 @@ constexpr const char* filters_string[min_filters_count]
 
 Hachiko::ResourceTexture::ResourceTexture()
 	: Resource(Resource::Type::TEXTURE)
-{}
+{
+    App->scene_manager->RebuildBatches();
+}
 
 Hachiko::ResourceTexture::ResourceTexture(UID id) 
     : Resource(id, Resource::Type::TEXTURE)
 {
+    App->scene_manager->RebuildBatches();
 }
 
 Hachiko::ResourceTexture::~ResourceTexture() 
@@ -145,7 +148,7 @@ void Hachiko::ResourceTexture::DrawGui()
     if (wrap != previous_wrap || previous_min != min_filter || previous_mag != mag_filter)
     {
         // Notify Batch Manager that there is a change so it can rebuild the batches:
-        App->scene_manager->GetActiveScene()->OnMeshesChanged();
+        App->scene_manager->RebuildBatches();
         // Save the texture if there is a change:
         TextureImporter texture_importer;
         texture_importer.SaveTextureAsset(this);

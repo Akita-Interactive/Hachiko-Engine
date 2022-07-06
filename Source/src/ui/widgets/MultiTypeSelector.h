@@ -44,6 +44,7 @@ namespace Hachiko::Widgets
             const float item_width = variable_type_property.selected_option == ParticleSystem::Selection::CONSTANT ? -FLT_MIN : -ImGui::GetContentRegionAvail().x * 0.5f;
             ImGui::PushItemWidth(item_width);
             ImGui::DragFloat("##x", &variable_type_property.values.x, config->speed, config->min, config->max, config->format, config->flags);
+            CREATE_HISTORY_ENTRY_AFTER_EDIT()
             ImGui::PopItemWidth();
 
             if (variable_type_property.selected_option == ParticleSystem::Selection::BETWEEN_VALUES)
@@ -51,6 +52,7 @@ namespace Hachiko::Widgets
                 ImGui::SameLine();
                 ImGui::PushItemWidth(-FLT_MIN);
                 ImGui::DragFloat("##y", &variable_type_property.values.y, config->speed, config->min, config->max, config->format, config->flags);
+                CREATE_HISTORY_ENTRY_AFTER_EDIT()
                 ImGui::PopItemWidth();
             }
         }

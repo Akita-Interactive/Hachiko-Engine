@@ -1,22 +1,13 @@
 #pragma once
 
+#if defined(HACHIKO_API)
+// Do Nothing
+#elif defined(_MSC_VER)
+#define HACHIKO_API __declspec(dllexport)
+#endif
+
 namespace Hachiko
 {
-    //seed with big state space
-    static std::mt19937_64 CreateMersenneTwisterEngine64()
-    {
-        std::random_device source;
-        constexpr std::size_t n = std::mt19937_64::state_size * sizeof(std::mt19937_64::result_type);
-        std::random_device::result_type randomData[(n - 1) / sizeof(source()) + 1];
-        std::generate(std::begin(randomData), std::end(randomData), std::ref(source));
-        std::seed_seq seed(std::begin(randomData), std::end(randomData));
-        return std::mt19937_64(seed);
-    }
-
-    static std::mt19937_64 generator = CreateMersenneTwisterEngine64();
-    static std::uniform_real_distribution u_dist(0.0f, 1.0f);
-    static std::uniform_real_distribution s_dist(-1.0f, 1.0f);
-
     class RandomUtil
     {
     public:
@@ -26,10 +17,29 @@ namespace Hachiko
         //(-1.0; 1.0)
         HACHIKO_API static float RandomSigned();
         //returns -1 or 1
-        HACHIKO_API static int RandomSign();
+        HACHIKO_API static int RandomInt();
         // (a; b) if a > b returns a
         HACHIKO_API static float RandomBetween(float a, float b);
         // (values.x; values.y) if x > y returns x
         HACHIKO_API static float RandomBetween(const float2& values);
+    };
+
+    class HACHIKO_API PerlinNoise1D
+    {
+    public:
+        PerlinNoise1D();
+        PerlinNoise1D(unsigned int seed);
+
+        float Random(float previous);
+        float RandomRange(float previous, float min, float max);
+        
+    private:
+        float Fade(float t);
+        float Gradient(float value);
+        void Initialize();
+        
+    private:
+        unsigned int _seed;
+        std::vector<int> _permutations;
     };
 }

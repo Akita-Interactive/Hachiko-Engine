@@ -121,3 +121,4 @@
 #include "core/particles/modifiers/SizeParticleModifier.h"
 #include "core/particles/modifiers/VelocityParticleModifier.h"
 #include "core/particles/modifiers/AnimationParticleModifier.h"
+#include "core/particles/modifiers/NoiseParticleModifier.h"

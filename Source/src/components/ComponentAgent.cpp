@@ -351,6 +351,7 @@ void Hachiko::ComponentAgent::Save(YAML::Node& node) const
     node[MAX_ACCELERATION] = max_acceleration;
     node[AVOID_OBSTACLES] = avoid_obstacles;
     node[AGENT_RADIUS] = radius;
+    node[AGENT_IS_PLAYER] = is_player;
 }
 
 void Hachiko::ComponentAgent::Load(const YAML::Node& node)
@@ -358,6 +359,7 @@ void Hachiko::ComponentAgent::Load(const YAML::Node& node)
     max_speed = node[MAX_SPEED].as<float>();
     max_acceleration = node[MAX_ACCELERATION].as<float>();
     avoid_obstacles = node[AVOID_OBSTACLES].as<bool>();
+    is_player = node[AGENT_IS_PLAYER] .IsDefined() ? node[AGENT_IS_PLAYER].as<bool>() : false;
     
     float radius = node[AGENT_RADIUS].IsDefined() ? node[AGENT_RADIUS].as<float>() : 0.5f;
     SetRadius(radius);

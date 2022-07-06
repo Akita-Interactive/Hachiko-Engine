@@ -49,7 +49,7 @@ void Hachiko::AnimationParticleModifier::DrawGui()
 
 void Hachiko::AnimationParticleModifier::Save(YAML::Node& node) const 
 {
-    YAML::Node animation_modifier = node[MODULE_ANIMATION];
+    YAML::Node animation_modifier = node[MODIFIER_ANIMATION];
     ParticleModifier::Save(animation_modifier);
     animation_modifier[ANIMATION_SPEED] = animation_speed;
     animation_modifier[BLEND_FACTOR] = blend_factor;
@@ -58,13 +58,13 @@ void Hachiko::AnimationParticleModifier::Save(YAML::Node& node) const
 
 void Hachiko::AnimationParticleModifier::Load(const YAML::Node& node) 
 {
-    ParticleModifier::Load(node[MODULE_ANIMATION]);
-    animation_speed = node[MODULE_ANIMATION][ANIMATION_SPEED].IsDefined() ?
-        node[MODULE_ANIMATION][ANIMATION_SPEED].as<float>() : animation_speed;
-    blend_factor = node[MODULE_ANIMATION][BLEND_FACTOR].IsDefined() ?
-        node[MODULE_ANIMATION][BLEND_FACTOR].as<float>() : blend_factor;
-    fit_to_lifetime = node[MODULE_ANIMATION][FIT_TO_LIFETIME].IsDefined() ?
-        node[MODULE_ANIMATION][FIT_TO_LIFETIME].as<bool>() : fit_to_lifetime;
+    ParticleModifier::Load(node[MODIFIER_ANIMATION]);
+    animation_speed = node[MODIFIER_ANIMATION][ANIMATION_SPEED].IsDefined() ?
+        node[MODIFIER_ANIMATION][ANIMATION_SPEED].as<float>() : animation_speed;
+    blend_factor = node[MODIFIER_ANIMATION][BLEND_FACTOR].IsDefined() ?
+        node[MODIFIER_ANIMATION][BLEND_FACTOR].as<float>() : blend_factor;
+    fit_to_lifetime = node[MODIFIER_ANIMATION][FIT_TO_LIFETIME].IsDefined() ?
+        node[MODIFIER_ANIMATION][FIT_TO_LIFETIME].as<bool>() : fit_to_lifetime;
 }
 
 void Hachiko::AnimationParticleModifier::UpdateAnimation(Particle& particle) 
@@ -79,7 +79,7 @@ void Hachiko::AnimationParticleModifier::UpdateAnimation(Particle& particle)
     
     if (fit_to_lifetime)
     {
-        unsigned fit_to_frame = static_cast<unsigned>(std::trunc((particle.GetCurrentLifeNormilized() * particle.GetTextureTotalTiles())));
+        unsigned fit_to_frame = static_cast<unsigned>(std::trunc((particle.GetCurrentLifeNormalized() * particle.GetTextureTotalTiles())));
 
         if (animation_frame == fit_to_frame)
         {

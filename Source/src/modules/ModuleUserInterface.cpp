@@ -73,7 +73,6 @@ void Hachiko::ModuleUserInterface::DrawUI(const Scene* scene)
     Program* txt_program = App->program->GetUserInterfaceTextProgram();
 
     glDepthFunc(GL_ALWAYS);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     unsigned width, height;
     App->camera->GetRenderingCamera()->GetResolution(width, height);

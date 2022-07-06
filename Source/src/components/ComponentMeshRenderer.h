@@ -38,6 +38,11 @@ namespace Hachiko
             return visible;
         }
 
+        void SetVisible(bool v)
+        {
+            visible = v;
+        }
+
         [[nodiscard]] bool IsNavigable() const
         {
             return navigable;
@@ -97,6 +102,7 @@ namespace Hachiko
         {
             tint_color = color;
         }
+
         [[nodiscard]] float4 GetTintColor() const 
         {
             return tint_color;

@@ -25,25 +25,43 @@ void Hachiko::ComponentImage::DrawGui()
 
     ImGui::PushID(this);
 
-    ImGui::Checkbox("Fill Window", &fill_window);
 
     if (ImGui::CollapsingHeader("Image", ImGuiTreeNodeFlags_DefaultOpen))
     {   
+        ImGui::Checkbox("Fill Window", &fill_window);
 
         ImGui::Text("Normal Image");
-        ImGui::Checkbox("Use Image", &use_image);
 
         const std::string title = "Select Image";
         if (ImGui::Button(title.c_str()))
         {
+            const char* filters = "Image files{.png,.tif,.jpg,.tga}";
             ImGuiFileDialog::Instance()->OpenDialog(title,
                                                     title,
-                                                    ".png",
+                                                    filters,
                                                     ASSETS_FOLDER_TEXTURE,
                                                     1,
                                                     nullptr,
                                                     ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton | ImGuiFileDialogFlags_HideColumnType
                                                         | ImGuiFileDialogFlags_HideColumnDate);
+        }
+        ImGui::SameLine();
+        if (image != nullptr)
+        {
+            if (ImGui::Button("X##image"))
+            {
+                App->resources->ReleaseResource(image);
+                image = nullptr;
+            }
+            else
+            {
+                ImGui::SameLine();
+                ImGui::Text(StringUtils::Concat("Selected: ", image->path).c_str());
+            }
+        }
+        else
+        {
+            ImGui::Text("None");
         }
 
         if (ImGuiFileDialog::Instance()->Display(title.c_str()))
@@ -60,11 +78,9 @@ void Hachiko::ComponentImage::DrawGui()
             ImGuiFileDialog::Instance()->Close();
         }
 
-        if (!use_image || !image)
-        {
-            ImGuiUtils::CompactColorPicker("Image Color", color.ptr());
-        }
-        else
+        ImGui::ColorEdit4("Image Color", &color[0]);
+
+        if (image != nullptr)
         {
             if (ImGui::Checkbox("Is tiled", &is_tiled))
             {
@@ -72,6 +88,10 @@ void Hachiko::ComponentImage::DrawGui()
                 {
                     animation_index = {0.0f, 0.0f};
                     factor = float2::one;
+                }
+                else
+                {
+                    factor = float2(1.0f / x_tiles, 1.0f / y_tiles);
                 }
             }
             if (is_tiled)
@@ -97,14 +117,33 @@ void Hachiko::ComponentImage::DrawGui()
         const std::string hover_title = "Select Hover Image";
         if (ImGui::Button(hover_title.c_str()))
         {
+            const char* filters = "Image files{.png,.tif,.jpg,.tga}";
             ImGuiFileDialog::Instance()->OpenDialog(hover_title,
                                                     hover_title,
-                                                    ".png",
+                                                    filters,
                                                     ASSETS_FOLDER_TEXTURE,
                                                     1,
                                                     nullptr,
                                                     ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton | ImGuiFileDialogFlags_HideColumnType
                                                         | ImGuiFileDialogFlags_HideColumnDate);
+        }
+        ImGui::SameLine();
+        if (hover_image != nullptr)
+        {
+            if (ImGui::Button("X##hover_image"))
+            {
+                App->resources->ReleaseResource(hover_image);
+                hover_image = nullptr;
+            }
+            else
+            {
+                ImGui::SameLine();
+                ImGui::Text(StringUtils::Concat("Selected: ", hover_image->path).c_str());
+            }
+        }
+        else
+        {
+            ImGui::Text("None");
         }
 
         if (ImGuiFileDialog::Instance()->Display(hover_title.c_str()))
@@ -121,13 +160,7 @@ void Hachiko::ComponentImage::DrawGui()
             ImGuiFileDialog::Instance()->Close();
         }
 
-        if (!use_hover_image || !hover_image)
-        {
-            ImGuiUtils::CompactColorPicker("Hover Color", hover_color.ptr());
-        }
-
-        ImGui::Text("Image Loaded %d", image != nullptr);
-        ImGui::Text("Hover Image Loaded %d", hover_image != nullptr);
+        ImGui::ColorEdit4("Hover Color", &hover_color[0]);
 	}
     ImGui::PopID();
 }
@@ -143,7 +176,6 @@ void Hachiko::ComponentImage::Draw(ComponentTransform2D* transform, Program* pro
     program->BindUniformFloat4x4("model", transform->GetGlobalScaledTransform().ptr());
     const ResourceTexture* img_to_draw = image;
     const float4* render_color = &color;
-    bool render_img = use_image;    
 
     ComponentButton* button = game_object->GetComponent<ComponentButton>();
 
@@ -151,10 +183,9 @@ void Hachiko::ComponentImage::Draw(ComponentTransform2D* transform, Program* pro
     {
         img_to_draw = hover_image;
         render_color = &hover_color;
-        render_img = use_hover_image;
     }
 
-    program->BindUniformBool("diffuse_flag", img_to_draw && render_img);
+    program->BindUniformBool("diffuse_flag", img_to_draw != nullptr);
     program->BindUniformFloat4("img_color", render_color->ptr());
     ModuleTexture::Bind(img_to_draw? img_to_draw->GetImageId(): 0, static_cast<int>(Hachiko::ModuleProgram::TextureSlots::DIFFUSE));
 
@@ -174,30 +205,27 @@ void Hachiko::ComponentImage::Update()
     {
         UpdateSize();
     }
-    if (use_image)
+    if (image != nullptr && is_tiled)
     {
-        if (is_tiled)
-        {
-            elapse += EngineTimer::delta_time;
+        elapse += EngineTimer::delta_time;
         
-            while (elapse >= time_per_frame) 
+        while (elapse >= time_per_frame) 
+        {
+            elapse -= time_per_frame;
+
+            if (animation_index.x < x_tiles - 1)
             {
-                elapse -= time_per_frame;
-
-                if (animation_index.x < x_tiles - 1)
-                {
-                    animation_index.x += 1.0f;
-                    break;
-                }
-                else if (animation_index.y < y_tiles - 1)
-                {
-                    animation_index.x = 0.0f;
-                    animation_index.y += 1.0f;
-                    break;
-                }
-
-                animation_index = {0.0f, 0.0f};
+                animation_index.x += 1.0f;
+                break;
             }
+            else if (animation_index.y < y_tiles - 1)
+            {
+                animation_index.x = 0.0f;
+                animation_index.y += 1.0f;
+                break;
+            }
+
+            animation_index = {0.0f, 0.0f};
         }
     }
 }
@@ -207,27 +235,30 @@ void Hachiko::ComponentImage::Save(YAML::Node& node) const
     node.SetTag("image");
     node[IMAGE_IMAGE_ID] = image ? image->GetID() : 0;
     node[IMAGE_HOVER_IMAGE_ID] = hover_image ? hover_image->GetID() : 0;
-    node[USE_IMAGE] = use_image;
-    node[USE_HOVER_IMAGE] = use_hover_image;
     node[IMAGE_COLOR] = color;
     node[IMAGE_HOVER_COLOR] = hover_color;
-    node["fill_window"] = fill_window;
+    node[IMAGE_TILED] = is_tiled;
+    node[IMAGE_X_TILES] = x_tiles;
+    node[IMAGE_Y_TILES] = y_tiles;
+    node[IMAGE_TILES_PER_SEC] = frames_per_second;
+    node[IMAGE_FILL_WINDOW] = fill_window;
 }
 
 void Hachiko::ComponentImage::Load(const YAML::Node& node)
 {
     constexpr bool is_hover_image = true;
-    if (node[USE_IMAGE].IsDefined())
-    {
-        use_image = node[USE_IMAGE].as<bool>();    
-    }
     LoadImageResource(node[IMAGE_IMAGE_ID].as<UID>(), !is_hover_image);
     LoadImageResource(node[IMAGE_HOVER_IMAGE_ID].as<UID>(), is_hover_image);
-    use_image = node[USE_IMAGE].as<bool>();
-    use_hover_image = node[USE_HOVER_IMAGE].as<bool>();
     color = node[IMAGE_COLOR].as<float4>();
     hover_color = node[IMAGE_HOVER_COLOR].as<float4>();
-    fill_window = node["fill_window"].IsDefined() ? node["fill_window"].as<bool>() : false;
+    fill_window = node[IMAGE_FILL_WINDOW].IsDefined() ? node[IMAGE_FILL_WINDOW].as<bool>() : false;
+    is_tiled = node[IMAGE_TILED].IsDefined() ? node[IMAGE_TILED].as<bool>() : false;
+    x_tiles = node[IMAGE_X_TILES].IsDefined() ? node[IMAGE_X_TILES].as<int>() : 1;
+    y_tiles = node[IMAGE_Y_TILES].IsDefined() ? node[IMAGE_Y_TILES].as<int>() : 1;
+
+    frames_per_second = node[IMAGE_TILES_PER_SEC].IsDefined() ? node[IMAGE_TILES_PER_SEC].as<int>() : 1;
+    factor = float2(1.0f / x_tiles, 1.0f / y_tiles);
+    time_per_frame = 1.0f / frames_per_second;
 }
 
 void Hachiko::ComponentImage::UpdateSize()

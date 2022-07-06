@@ -26,9 +26,9 @@ void Hachiko::Scripting::MainMenuManager::OnAwake()
 		"button_whitebackground");
 	any_null |= (_main_background == nullptr);
 	
-	_button_background = game_object->GetFirstChildWithName(
-		"button_background");
-	any_null |= (_button_background == nullptr);
+	//_button_background = game_object->GetFirstChildWithName(
+	//	"button_background");
+	//any_null |= (_button_background == nullptr);
 
 	_button_play = game_object->GetFirstChildWithName(
 		"button_play")->GetComponent<ComponentButton>();
@@ -101,7 +101,7 @@ void Hachiko::Scripting::MainMenuManager::OnUpdateMain()
 		_main_background->SetActive(true);
 
 		// Main:
-		_button_background->SetActive(true);
+		//_button_background->SetActive(true);
 		_button_play->GetGameObject()->SetActive(true);
 		_button_settings->GetGameObject()->SetActive(true);
 		_button_quit->GetGameObject()->SetActive(true);
@@ -161,7 +161,7 @@ void Hachiko::Scripting::MainMenuManager::OnUpdateSettings()
 
 		// Other
 		_credits->SetActive(false);
-		_button_background->SetActive(false);
+		//_button_background->SetActive(false);
 		_button_play->GetGameObject()->SetActive(false);
 		_button_settings->GetGameObject()->SetActive(false);
 		_button_quit->GetGameObject()->SetActive(false);
@@ -190,7 +190,7 @@ void Hachiko::Scripting::MainMenuManager::OnUpdateCredits()
 
 		// Other
 		_settings->SetActive(false);
-		_button_background->SetActive(false);
+		//_button_background->SetActive(false);
 		_button_play->GetGameObject()->SetActive(false);
 		_button_settings->GetGameObject()->SetActive(false);
 		_button_quit->GetGameObject()->SetActive(false);

@@ -14,6 +14,8 @@ Hachiko::ModuleScriptingSystem::ModuleScriptingSystem()
     , _loaded_dll(NULL) 
     , _current_dll_timestamp("") 
     , _current_dll_name(L"")
+    , _available_script_count(0)
+    , _script_names({})
     , _dll_change_check_timer(0.0f)
     , _dll_change_check_frequency_in_secs(0.0f)
     , _script_factory(nullptr)
@@ -163,6 +165,8 @@ bool Hachiko::ModuleScriptingSystem::HotReload(const float delta)
         reinterpret_cast<Scripting::ScriptFactory>(
             GetProcAddress(new_dll, "InstantiateScript"));
 
+    LoadScriptNamesAndCount();
+
     // Get all the scripts inside the current scene:
     std::vector<Component*>& scripts = App->scene_manager->GetRoot()->
         GetComponentsInDescendants(Component::Type::SCRIPT);
@@ -252,6 +256,16 @@ void Hachiko::ModuleScriptingSystem::StopExecutingScripts()
     _scripts_paused = true;
 }
 
+const std::vector<std::string>& Hachiko::ModuleScriptingSystem::GetLoadedScriptNames() const
+{
+    return _script_names;
+}
+
+size_t Hachiko::ModuleScriptingSystem::GetLoadedScriptCount() const
+{
+    return _available_script_count;
+}
+
 void Hachiko::ModuleScriptingSystem::SubscribeToEvents() 
 {
     std::function on_mode_changed = [&](Event& evt) 
@@ -336,6 +350,8 @@ bool Hachiko::ModuleScriptingSystem::LoadFirstTime()
 
     _script_factory = reinterpret_cast<Scripting::ScriptFactory>(
             GetProcAddress(_loaded_dll, "InstantiateScript"));
+
+    LoadScriptNamesAndCount();
 
     // Unpause script updates:
     _scripts_paused = false;
@@ -466,7 +482,10 @@ void Hachiko::ModuleScriptingSystem::AwakeAllScriptsOnCurrentScene() const
 
     for (Component* script : scripts)
     {
-        static_cast<Scripting::Script*>(script)->Start();
+        if (script->GetGameObject()->IsActive())
+        {
+            static_cast<Scripting::Script*>(script)->Start();
+        }
     }
 
     scripts.clear();
@@ -483,6 +502,28 @@ void Hachiko::ModuleScriptingSystem::ExecuteOnLoadForAllScripts() const
     }
 
     scripts.clear();
+}
+
+void Hachiko::ModuleScriptingSystem::LoadScriptNamesAndCount() 
+{
+    // Get the count of script classes that are available to be created:
+    _available_script_count = *reinterpret_cast<size_t*>(
+        GetProcAddress(_loaded_dll, "SCRIPT_COUNT"));
+
+    // Reorganize the script names vector:
+    _script_names.clear();
+    _script_names.resize(_available_script_count);
+
+    // Get the names of script classes that are available to be created:
+    const char** script_names_dll = reinterpret_cast<const char**>(
+        GetProcAddress(_loaded_dll, "SCRIPT_NAMES"));
+
+    for (size_t i = 0; i < _available_script_count; ++i)
+    {
+        _script_names[i] = script_names_dll[i];
+    }
+
+
 }
 
 bool Hachiko::ModuleScriptingSystem::IsDllVersionChanged()

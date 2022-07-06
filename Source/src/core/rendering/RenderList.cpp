@@ -50,17 +50,26 @@ void Hachiko::RenderList::CollectMesh(const float3& camera_pos, ComponentMeshRen
 
     // Decide in which list this target should be placed in based on its
     // material's transparency:
-    auto targets = mesh_renderer->GetResourceMaterial()->is_transparent 
-        ? &transparent_targets 
-        : &opaque_targets;
+    if (mesh_renderer->GetResourceMaterial()->is_transparent)
+    {
+        // Get sorted by distance to camera in ascending order:
+        const auto it = std::lower_bound(transparent_targets.begin(), transparent_targets.end(), target, 
+            [](const RenderTarget& it_target, const RenderTarget& new_target) 
+            { 
+                return it_target.distance > new_target.distance; 
+            });
 
-    // Get sorted by distance to camera in ascending order:
-    const auto it = std::lower_bound(
-        (*targets).begin(), (*targets).end(), target, 
-        [](const RenderTarget& it_target, const RenderTarget& new_target) 
-        { 
-            return it_target.distance < new_target.distance; 
-        });
+        transparent_targets.insert(it, target);
+    }
+    else
+    {
+        // Get sorted by distance to camera in ascending order:
+        const auto it = std::lower_bound(opaque_targets.begin(), opaque_targets.end(), target, 
+            [](const RenderTarget& it_target, const RenderTarget& new_target) 
+            { 
+                return it_target.distance < new_target.distance; 
+            });
 
-    (*targets).insert(it, target);
+        opaque_targets.insert(it, target);
+    }
 }

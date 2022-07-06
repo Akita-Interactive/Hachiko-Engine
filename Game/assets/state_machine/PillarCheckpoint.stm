@@ -1,0 +1,23 @@
+name: PillarCheckpoint
+default_node: 0
+clips:
+  - clip_name: Spinning
+    clips_id: 11443860071690024665
+    clips_loop: false
+  - clip_name: Idle
+    clips_id: 5909879402345636303
+    clips_loop: true
+nodes:
+  - node_name: Idle
+    node_clip_name: Idle
+  - node_name: Spinning
+    node_clip_name: Spinning
+transitions:
+  - transition_source: Idle
+    transition_target: Spinning
+    transition_trigger: isActive
+    transition_blend: 300
+  - transition_source: Spinning
+    transition_target: Idle
+    transition_trigger: finishedSpinning
+    transition_blend: 300

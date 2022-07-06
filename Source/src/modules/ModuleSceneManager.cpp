@@ -103,6 +103,14 @@ bool Hachiko::ModuleSceneManager::IsScenePlaying()
     return GameTimer::running && !GameTimer::paused;
 }
 
+void Hachiko::ModuleSceneManager::RebuildBatches()
+{
+    if (main_scene)
+    {
+        main_scene->RebuildBatches();
+    }
+}
+
 UpdateStatus Hachiko::ModuleSceneManager::Update(const float delta)
 {
     main_scene->Update();
@@ -266,14 +274,14 @@ void Hachiko::ModuleSceneManager::SaveScene(const char* save_name)
     UID saved_scene_uid = scene_importer.CreateSceneAsset(main_scene);
 }
 
-Hachiko::GameObject* Hachiko::ModuleSceneManager::Raycast(const float3& origin, const float3& destination)
+Hachiko::GameObject* Hachiko::ModuleSceneManager::Raycast(const float3& origin, const float3& destination, float3* closest_hit, GameObject* parent_filter, bool active_only)
 {
-    return main_scene->Raycast(origin, destination);
+    return main_scene->Raycast(origin, destination, closest_hit, parent_filter, active_only);
 }
 
-Hachiko::GameObject* Hachiko::ModuleSceneManager::BoundingRaycast(const float3& origin, const float3& destination)
+Hachiko::GameObject* Hachiko::ModuleSceneManager::BoundingRaycast(const float3& origin, const float3& destination, GameObject* parent_filter, bool active_only)
 {
-    return main_scene->Raycast(origin, destination);
+    return main_scene->Raycast(origin, destination, nullptr, parent_filter, active_only);
 }
 
 void Hachiko::ModuleSceneManager::ChangeSceneById(UID new_scene_id, bool stop_scene)

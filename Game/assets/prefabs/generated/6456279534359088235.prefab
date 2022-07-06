@@ -16,8 +16,8 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [-0.707106829, 0, 0, 0.707106709]
-        scale: [100, 99.9999847, 99.9999847]
+        rotation: [-0.7071, 0, 0, 0.7071]
+        scale: [100, 100, 100]
       - !<mesh_renderer>
         type: 2
         enabled: true
@@ -25,6 +25,7 @@ child:
         navigable: false
         visible: true
         material_id: 7765775954106249835
+        tint_color: [1, 1, 1, 1]
   - name: Baker_house
     enabled: true
     component:
@@ -32,8 +33,8 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [-0.707106829, 0, 0, 0.707106709]
-        scale: [100, 99.9999847, 99.9999847]
+        rotation: [-0.7071, 0, 0, 0.7071]
+        scale: [100, 100, 100]
       - !<mesh_renderer>
         type: 2
         enabled: true
@@ -41,3 +42,4 @@ child:
         navigable: false
         visible: true
         material_id: 7765775954106249835
+        tint_color: [1, 1, 1, 1]
