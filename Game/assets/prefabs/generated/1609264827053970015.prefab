@@ -15,9 +15,9 @@ child:
       - !<transform>
         type: 1
         enabled: true
-        position: [0.499999881, -0.216506496, 0.377782851]
-        rotation: [0.612372518, 0.353553593, -0.612372339, -0.353553444]
-        scale: [0.999999881, 0.999999881, 1]
+        position: [0.5, -0.2165, 0.3778]
+        rotation: [0.6124, 0.3536, -0.6124, -0.3536]
+        scale: [1, 1, 1]
       - !<mesh_renderer>
         type: 2
         enabled: true
@@ -25,3 +25,4 @@ child:
         navigable: false
         visible: true
         material_id: 6750369022920963075
+        tint_color: [1, 1, 1, 1]

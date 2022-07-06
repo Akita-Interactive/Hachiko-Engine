@@ -1,0 +1,28 @@
+prefab_name: parasiteConsumable
+name: parasiteConsumable
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [0, 0, 0, 1]
+    scale: [0.1887, 0.1887, 0.1887]
+child:
+  - name: PM3D_Sphere124
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 2.55, -6.851]
+        rotation: [0, 0, 0, 1]
+        scale: [1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 8953689370358422284
+        navigable: false
+        visible: true
+        material_id: 3003390711770185065
+        tint_color: [1, 1, 1, 1]
