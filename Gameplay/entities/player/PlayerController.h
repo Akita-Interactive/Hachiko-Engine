@@ -173,6 +173,8 @@ private:
 	SERIALIZE_FIELD(float, _trail_enlarger);
 	SERIALIZE_FIELD(GameObject*, _falling_dust);
 	SERIALIZE_FIELD(GameObject*, _walking_dust);
+	SERIALIZE_FIELD(GameObject*, _heal_effect);
+	
 
 	const float _ranged_attack_cooldown = 0.2f;
 	const float _combo_grace_period = 0.4f;
@@ -200,6 +202,8 @@ private:
 	ComponentAnimation* animation;
 	ComponentParticleSystem* _falling_dust_particles;
 	ComponentParticleSystem* _walking_dust_particles;
+	ComponentParticleSystem* _heal_effect_layer_1;
+	ComponentParticleSystem* _heal_effect_layer_2;
 
 	std::vector<Weapon> weapons{};
 

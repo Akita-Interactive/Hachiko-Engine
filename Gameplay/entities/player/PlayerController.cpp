@@ -95,6 +95,8 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 
 	_falling_dust_particles = _falling_dust->GetComponent<ComponentParticleSystem>();
 	_walking_dust_particles = _walking_dust->GetComponent<ComponentParticleSystem>();
+	_heal_effect_layer_1 = _heal_effect->GetComponent <ComponentParticleSystem>();
+	_heal_effect_layer_2 = _heal_effect->GetComponentInDescendants<ComponentParticleSystem>();
 
 	_combat_stats = game_object->GetComponent<Stats>();
 	// Player doesnt use all combat stats since some depend on weapon
@@ -879,6 +881,11 @@ void Hachiko::Scripting::PlayerController::PickupParasite(const float3& current_
 						_geo->ChangeEmissiveColor(float4(0.0f, 255.0f, 0.0f, 255.0f), 0.3f, true);
 					}
 					_combat_stats->Heal(1);
+					// play health particle effect
+					_heal_effect_layer_1->Restart();
+					_heal_effect_layer_2->Restart();
+					_heal_effect_layer_1->Play();
+					_heal_effect_layer_2->Play();
 					UpdateHealthBar();
 					// Generate a random number for the weapon
 					std::random_device rd;
