@@ -23,6 +23,10 @@
 #include <components/ComponentTransform2D.h>
 #include <components/ComponentPointLight.h>
 #include <components/ComponentObstacle.h>
+#include <utils/Bool2.h>
+#include <core/particles/Particle.h>
+#include <core/particles/ParticleSystem.h>
+#include <components/ComponentParticleSystem.h>
 
 #include <core/GameObject.h>
 #include <Gameplay.h>

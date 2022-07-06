@@ -52,6 +52,9 @@ void Hachiko::Particle::Reset()
 
     const float3 direction = (current_model.RotatePart() * shape_direction).Normalized();
     SetCurrentDirection(direction);
+
+    current_animation_frame = 0;
+    animation_index = {0.0f, 0.0f};
 }
 
 void Hachiko::Particle::Draw(ComponentCamera* camera, const Program* program)

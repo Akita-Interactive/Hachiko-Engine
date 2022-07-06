@@ -88,6 +88,7 @@ public:
 	void CheckGoal(const float3& current_position);
 	void RegisterHit(float damage_received, bool is_heavy = false, math::float3 direction = float3::zero);
 	void UpdateHealthBar();
+	void UpdateAmmoUI();
 	void ToggleGodMode();
 
 	bool IsAlive() { return _combat_stats->_current_hp > 0; }
@@ -170,6 +171,8 @@ private:
 	SERIALIZE_FIELD(unsigned, _max_dash_charges);
 	SERIALIZE_FIELD(GameObject*, _dash_trail);
 	SERIALIZE_FIELD(float, _trail_enlarger);
+	SERIALIZE_FIELD(GameObject*, _falling_dust);
+	SERIALIZE_FIELD(GameObject*, _walking_dust);
 
 	const float _ranged_attack_cooldown = 0.2f;
 	const float _combo_grace_period = 0.4f;
@@ -182,12 +185,21 @@ private:
 	SERIALIZE_FIELD(GameObject*, _hp_cell_4);
 	std::vector<GameObject*> hp_cells;
 
+	SERIALIZE_FIELD(GameObject*, _ammo_cell_1);
+	SERIALIZE_FIELD(GameObject*, _ammo_cell_2);
+	SERIALIZE_FIELD(GameObject*, _ammo_cell_3);
+	SERIALIZE_FIELD(GameObject*, _ammo_cell_4);
+	std::vector<GameObject*> ammo_cells;
+	int _ammo_count;
+
 	SERIALIZE_FIELD(GameObject*, _camera);
 	SERIALIZE_FIELD(GameObject*, _ui_damage);
 
 
 	ComponentTransform* _player_transform = nullptr;
 	ComponentAnimation* animation;
+	ComponentParticleSystem* _falling_dust_particles;
+	ComponentParticleSystem* _walking_dust_particles;
 
 	std::vector<Weapon> weapons{};
 

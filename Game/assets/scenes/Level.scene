@@ -19,7 +19,7 @@ child:
         enabled: true
         position: [-113.7, 0, -14.85]
         rotation: [0, 0.887, -0.4617, 0]
-        scale: [0.9983, 1, 0.9983]
+        scale: [0.998, 1, 0.998]
       - !<camera>
         id: 1219616210356617501
         type: 4
@@ -112,6 +112,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 7175973830034604660
                 type: 20
                 enabled: true
@@ -121,7 +122,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -129,6 +132,7 @@ child:
                 "'_parasite@GameObject*'": 5441337923601830721
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -799,7 +803,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 11059915743246433847
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -856,7 +860,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 13048949182289885016
                                                                                             name: Wing1_Jnt_L
@@ -1310,6 +1314,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 10849076995603293050
                 type: 20
                 enabled: true
@@ -1319,7 +1324,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -1327,6 +1334,7 @@ child:
                 "'_parasite@GameObject*'": 584414534123318825
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -1997,7 +2005,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 13153618360769440741
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -2054,7 +2062,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 10833196100953101061
                                                                                             name: Wing1_Jnt_L
@@ -2508,6 +2516,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 11315985336320508720
                 type: 20
                 enabled: true
@@ -2517,7 +2526,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -2525,6 +2536,7 @@ child:
                 "'_parasite@GameObject*'": 9005147834802807464
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -3195,7 +3207,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 2593566041551349481
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -3252,7 +3264,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 9594053241751294825
                                                                                             name: Wing1_Jnt_L
@@ -3706,6 +3718,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 8411897412414165789
                 type: 20
                 enabled: true
@@ -3715,7 +3728,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 8
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -3723,6 +3738,7 @@ child:
                 "'_parasite@GameObject*'": 7625352364341318757
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": true
@@ -4314,6 +4330,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 4933922320860633641
                 type: 20
                 enabled: true
@@ -4323,7 +4340,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -4331,6 +4350,7 @@ child:
                 "'_parasite@GameObject*'": 338980912921823065
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -5001,7 +5021,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 3025733128465545805
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -5058,7 +5078,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 1751259635406403921
                                                                                             name: Wing1_Jnt_L
@@ -5512,6 +5532,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 11190739134947408478
                 type: 20
                 enabled: true
@@ -5521,7 +5542,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -5529,6 +5552,7 @@ child:
                 "'_parasite@GameObject*'": 9607030364012789715
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -6199,7 +6223,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 10137708373232102991
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -6256,7 +6280,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 13863484324332076032
                                                                                             name: Wing1_Jnt_L
@@ -6710,6 +6734,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 6818601220679016815
                 type: 20
                 enabled: true
@@ -6719,7 +6744,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -6727,6 +6754,7 @@ child:
                 "'_parasite@GameObject*'": 12218604048651740343
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -7397,7 +7425,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 16746754921844830702
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -7454,7 +7482,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 10462064861831487793
                                                                                             name: Wing1_Jnt_L
@@ -7908,6 +7936,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 6166562751473323128
                 type: 20
                 enabled: true
@@ -7917,7 +7946,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 8
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -7925,6 +7956,7 @@ child:
                 "'_parasite@GameObject*'": 8222677239398730879
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": true
@@ -8516,6 +8548,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 7392475890301603863
                 type: 20
                 enabled: true
@@ -8525,7 +8558,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -8533,6 +8568,7 @@ child:
                 "'_parasite@GameObject*'": 15192109273533061041
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -9203,7 +9239,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 3433044888334937402
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -9260,7 +9296,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 291967351107164114
                                                                                             name: Wing1_Jnt_L
@@ -9714,6 +9750,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 11661690627182358617
                 type: 20
                 enabled: true
@@ -9723,7 +9760,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -9731,6 +9770,7 @@ child:
                 "'_parasite@GameObject*'": 1223479578252781706
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -10401,7 +10441,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 7844742864831724042
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -10458,7 +10498,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 620472276235331119
                                                                                             name: Wing1_Jnt_L
@@ -10912,6 +10952,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 15208408733818746371
                 type: 20
                 enabled: true
@@ -10921,7 +10962,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -10929,6 +10972,7 @@ child:
                 "'_parasite@GameObject*'": 5851580862017205636
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -11599,7 +11643,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 13636417952007401772
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -11656,7 +11700,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 2368758751685907234
                                                                                             name: Wing1_Jnt_L
@@ -12122,6 +12166,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 484522878455405761
                 type: 20
                 enabled: true
@@ -12131,7 +12176,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -12139,6 +12186,7 @@ child:
                 "'_parasite@GameObject*'": 5976523006498893229
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -12809,7 +12857,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 13838303039310550951
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -12866,7 +12914,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 9848936294370276282
                                                                                             name: Wing1_Jnt_L
@@ -13320,6 +13368,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 4073189805139416453
                 type: 20
                 enabled: true
@@ -13329,7 +13378,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -13337,6 +13388,7 @@ child:
                 "'_parasite@GameObject*'": 17564381733349186319
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -14007,7 +14059,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 5814367805529848953
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -14064,7 +14116,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 17732477652821528360
                                                                                             name: Wing1_Jnt_L
@@ -14518,6 +14570,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 9412106404508333103
                 type: 20
                 enabled: true
@@ -14527,7 +14580,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -14535,6 +14590,7 @@ child:
                 "'_parasite@GameObject*'": 9573664238246317624
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -15205,7 +15261,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 6078383452283997553
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -15262,7 +15318,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 9683360296122723285
                                                                                             name: Wing1_Jnt_L
@@ -15728,6 +15784,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 13335297551963334527
                 type: 20
                 enabled: true
@@ -15737,7 +15794,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -15745,6 +15804,7 @@ child:
                 "'_parasite@GameObject*'": 138051237694457419
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -16415,7 +16475,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 13925347244211096397
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -16472,7 +16532,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 2244260934087807061
                                                                                             name: Wing1_Jnt_L
@@ -16926,6 +16986,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 17014922951776359851
                 type: 20
                 enabled: true
@@ -16935,7 +16996,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -16943,6 +17006,7 @@ child:
                 "'_parasite@GameObject*'": 6135652403885339230
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -17613,7 +17677,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 8363692798162349932
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -17670,7 +17734,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 12728749356327185799
                                                                                             name: Wing1_Jnt_L
@@ -18124,6 +18188,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 11828546522065238094
                 type: 20
                 enabled: true
@@ -18133,7 +18198,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -18141,6 +18208,7 @@ child:
                 "'_parasite@GameObject*'": 8029229814511639878
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -18811,7 +18879,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 17252529328895130779
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -18868,7 +18936,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 2679050939046847688
                                                                                             name: Wing1_Jnt_L
@@ -19322,6 +19390,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 1025617234449900379
                 type: 20
                 enabled: true
@@ -19331,7 +19400,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -19339,6 +19410,7 @@ child:
                 "'_parasite@GameObject*'": 1142168668747385530
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -20009,7 +20081,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 18201395331888254110
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -20066,7 +20138,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 5372786926902894291
                                                                                             name: Wing1_Jnt_L
@@ -20520,6 +20592,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 4648214418732474242
                 type: 20
                 enabled: true
@@ -20529,7 +20602,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 8
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -20537,6 +20612,7 @@ child:
                 "'_parasite@GameObject*'": 17510119327598505489
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": true
@@ -21128,6 +21204,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 16145024246886843638
                 type: 20
                 enabled: true
@@ -21137,7 +21214,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 1
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -21145,6 +21224,7 @@ child:
                 "'_parasite@GameObject*'": 5460868845253035400
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": false
@@ -21815,7 +21895,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9984]
+                                                                                                                                    scale: [1, 1, 0.9981]
                                                                                                               - id: 6078437763231021873
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: true
@@ -21872,7 +21952,7 @@ child:
                                                                                             enabled: true
                                                                                             position: [0, 0, 0]
                                                                                             rotation: [0.4893, 0.5564, 0.5127, 0.4337]
-                                                                                            scale: [0.9983, 1, 0.9983]
+                                                                                            scale: [0.998, 1, 0.998]
                                                                                         child:
                                                                                           - id: 9312928610395291502
                                                                                             name: Wing1_Jnt_L
@@ -22326,6 +22406,7 @@ child:
                 max_acceleration: 10
                 avoid_obstacles: false
                 radius: 0.5
+                is_player: false
               - id: 7046705983172530988
                 type: 20
                 enabled: true
@@ -22335,7 +22416,9 @@ child:
                 enabled: true
                 class_name: EnemyController
                 "'_aggro_range@int'": 10
-                "'_attack_range@int'": 8
+                "'_attack_range@float'": 3
+                "'_attack_delay@float'": 0.3
+                "'_idle_cooldown@float'": 2
                 "'_spawn_pos@float3'": [0, 0, 0]
                 "'_spawn_is_initial@bool'": true
                 "'_player@GameObject*'": 6175393298541025425
@@ -22343,6 +22426,7 @@ child:
                 "'_parasite@GameObject*'": 11059581396709108265
                 "'_audio_manager_game_object@GameObject*'": 3361489421654677551
                 "'_already_in_combat@bool'": false
+                "'_is_from_gautlet@bool'": false
                 "'_attack_animation_duration@float'": 1
                 "'_attack_animation_timer@float'": 0
                 "'_is_ranged_attack@bool'": true
@@ -22978,8 +23062,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 4493056160700645690
                     type: 2
@@ -23222,8 +23306,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 7130238327858284002
                     type: 2
@@ -23582,8 +23666,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 397177486826851952
                     type: 2
@@ -23826,8 +23910,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 5304468091229763026
                     type: 2
@@ -24070,8 +24154,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 1984538337661603959
                     type: 2
@@ -24314,8 +24398,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 3216572211474993458
                     type: 2
@@ -24558,8 +24642,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 6076470587068013438
                     type: 2
@@ -24802,8 +24886,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 18368454266697753068
                     type: 2
@@ -25046,8 +25130,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 6940727042457036156
                     type: 2
@@ -25290,8 +25374,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 12617756071555772175
                     type: 2
@@ -25534,8 +25618,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 8017734590929460462
                     type: 2
@@ -25778,8 +25862,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 1347528949493879973
                     type: 2
@@ -26022,8 +26106,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 9133649525186316214
                     type: 2
@@ -26266,8 +26350,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 8202724900417418911
                     type: 2
@@ -26510,8 +26594,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 1878838239033519085
                     type: 2
@@ -26754,8 +26838,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 3049322542020306322
                     type: 2
@@ -26998,8 +27082,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 471456102144395258
                     type: 2
@@ -27358,8 +27442,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 2385884457767834748
                     type: 2
@@ -27602,8 +27686,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 6550343003185470
                     type: 2
@@ -27846,8 +27930,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 16267526749509802989
                     type: 2
@@ -28090,8 +28174,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 4271237580156672441
                     type: 2
@@ -28334,8 +28418,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 17669432954230767938
                     type: 2
@@ -28578,8 +28662,8 @@ child:
                     type: 1
                     enabled: true
                     position: [1.203, 0.5688, -1.089]
-                    rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
-                    scale: [1, 1, 1]
+                    rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
+                    scale: [1, 0.9999, 0.9999]
                   - !<mesh_renderer>
                     id: 1982968633921567766
                     type: 2
@@ -28776,7 +28860,7 @@ child:
             enabled: true
             position: [20.65, -8.067, -54.55]
             rotation: [0.0883, 0.8638, 0.32, 0.3789]
-            scale: [0.9983, 1, 0.9983]
+            scale: [0.998, 1, 0.998]
           - id: 1888517691222937520
             type: 6
             enabled: true
@@ -30039,19 +30123,26 @@ child:
         "'_attack_indicator@GameObject*'": 9678655118756274763
         "'_bullet_emitter@GameObject*'": 8459539939456400839
         "'_goal@GameObject*'": 18237002791232467726
-        "'_geo@GameObject*'": 0
+        "'_geo@GameObject*'": 12952630504745587764
         "'_dash_duration@float'": 0.15
         "'_dash_distance@float'": 6
         "'_dash_cooldown@float'": 0.5
+        "'_invulnerability_time@float'": 1
         "'_dash_scaler@unsigned'": 3
         "'_max_dash_charges@unsigned'": 2
         "'_dash_trail@GameObject*'": 7908122259089712926
         "'_trail_enlarger@float'": 15
+        "'_falling_dust@GameObject*'": 16590530549955250912
+        "'_walking_dust@GameObject*'": 12886453335919893344
         "'_rotation_duration@float'": 0.075
         "'_hp_cell_1@GameObject*'": 6268214285810469831
         "'_hp_cell_2@GameObject*'": 10684563795170704043
         "'_hp_cell_3@GameObject*'": 2564269834156095711
         "'_hp_cell_4@GameObject*'": 10039247689487289333
+        "'_ammo_cell_1@GameObject*'": 2466923034198852007
+        "'_ammo_cell_2@GameObject*'": 17999363857470542788
+        "'_ammo_cell_3@GameObject*'": 11408460224566390787
+        "'_ammo_cell_4@GameObject*'": 8853396876223854317
         "'_camera@GameObject*'": 2223877946256215970
         "'_ui_damage@GameObject*'": 0
       - !<script>
@@ -30701,7 +30792,7 @@ child:
                                                             enabled: true
                                                             position: [0, 0, 0]
                                                             rotation: [0, 0, 0.8756, 0.483]
-                                                            scale: [0.9983, 0.9983, 1]
+                                                            scale: [0.998, 0.998, 1]
                                                         child:
                                                           - id: 17505569471713798065
                                                             name: Jaw_Down_Parasite_$AssimpFbx$_Rotation
@@ -30749,7 +30840,7 @@ child:
                                                                             enabled: true
                                                                             position: [0, 0, 0]
                                                                             rotation: [-0.483, 0.8756, 0, 0]
-                                                                            scale: [0.9983, 1, 0.9983]
+                                                                            scale: [0.998, 1, 0.998]
                                                                         child:
                                                                           - id: 9553992572085396444
                                                                             name: Zero
@@ -30903,7 +30994,7 @@ child:
                                             enabled: true
                                             position: [0, 0, 0]
                                             rotation: [0, 0, 0.9832, 0.1824]
-                                            scale: [0.9983, 0.9983, 1]
+                                            scale: [0.998, 0.998, 1]
                                         child:
                                           - id: 15215975071050913065
                                             name: RightWing_$AssimpFbx$_Rotation
@@ -31081,6 +31172,154 @@ child:
                 visible: true
                 material_id: 13674522304467685866
                 tint_color: [1, 1, 1, 1]
+      - id: 16590530549955250912
+        name: FallingDust
+        enabled: true
+        component:
+          - !<transform>
+            id: 8963053851214818048
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [10, 10, 10]
+          - !<particle_system>
+            id: 4374133205835975725
+            type: 22
+            enabled: true
+            sections:
+              parameters: true
+              emission: true
+              shape: true
+              lights: false
+              renderer: true
+            parameters:
+              duration: 0.5
+              loop: false
+              life: [true, true, 1, [0.5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              speed: [true, true, 1, [1, 2], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size: [true, true, 1, [3, 6], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              rotation: [true, true, 1, [0, 360], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            emission:
+              rate: [true, true, 1, [100, 200], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              burst: false
+            emitter_shape:
+              type: 0
+              properties: [360, 0, [0, 0, 0], 0.75, 0, [0, 0, 0], [1, 1, 1], 1]
+            texture:
+              texture_id: 11026875507602932596
+              tiles: [3, 2]
+              flip: [false, false]
+              total_tiles: 6
+            modifiers:
+              velocity:
+                active: false
+                speed: [true, true, 0, [0, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size:
+                active: false
+                size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              color:
+                active: true
+                color_gradient: [[0, 0, 0, 0, 0], [0.7333, 0.4, 0.0235, 0, 0.1453], [1, 1, 1, 0, 0.6513], [0, 0, 0, 0, 0.9952]]
+                color_cycles: 1
+              force:
+                active: false
+                rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                x_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                y_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                z_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              animation:
+                active: true
+                animation_speed: 0
+                blend_factor: 0
+                fit_to_lifetime: true
+              noise:
+                active: false
+                separate_axes: false
+                strength:
+                  x: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                  y: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                  z: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                position: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+      - id: 12886453335919893344
+        name: WalkingDust
+        enabled: true
+        component:
+          - !<transform>
+            id: 11253291648133350430
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [10, 10, 10]
+          - !<particle_system>
+            id: 8272873278700492353
+            type: 22
+            enabled: true
+            sections:
+              parameters: true
+              emission: true
+              shape: true
+              lights: false
+              renderer: true
+            parameters:
+              duration: 5
+              loop: true
+              life: [true, true, 1, [0.2, 0.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              speed: [true, true, 1, [1, 2], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size: [true, true, 1, [2, 5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              rotation: [true, true, 1, [0, 360], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            emission:
+              rate: [true, true, 1, [10, 20], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              burst: false
+            emitter_shape:
+              type: 0
+              properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [1, 1, 1], 1]
+            texture:
+              texture_id: 11026875507602932596
+              tiles: [3, 2]
+              flip: [false, false]
+              total_tiles: 6
+            modifiers:
+              velocity:
+                active: false
+                speed: [true, true, 0, [0, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size:
+                active: false
+                size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              color:
+                active: true
+                color_gradient: [[0, 0, 0, 0, 0], [0.7333, 0.4, 0.0235, 0, 0.138], [1, 1, 1, 0, 0.6562], [0, 0, 0, 0, 0.9806]]
+                color_cycles: 1
+              force:
+                active: false
+                rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                x_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                y_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                z_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              animation:
+                active: true
+                animation_speed: 0
+                blend_factor: 0
+                fit_to_lifetime: true
+              noise:
+                active: false
+                separate_axes: false
+                strength:
+                  x: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                  y: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                  z: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                position: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
   - id: 3361489421654677551
     name: AudioManager
     enabled: true
@@ -31118,7 +31357,7 @@ child:
         type: 10
         enabled: true
         position: [0, 0, 0]
-        size: [1060, 1241]
+        size: [1133, 630]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
@@ -31144,7 +31383,7 @@ child:
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [1060, 1241]
+            size: [1133, 630]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
@@ -31191,6 +31430,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
           - id: 6268214285810469831
             name: Cell_1
             enabled: true
@@ -31228,6 +31468,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
           - id: 10684563795170704043
             name: Cell_2
             enabled: true
@@ -31265,6 +31506,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
           - id: 2564269834156095711
             name: Cell_3
             enabled: true
@@ -31302,6 +31544,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
           - id: 10039247689487289333
             name: Cell_4
             enabled: true
@@ -31339,6 +31582,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
           - id: 2466923034198852007
             name: Stamina_1
             enabled: true
@@ -31376,6 +31620,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
           - id: 17999363857470542788
             name: Stamina_2
             enabled: true
@@ -31413,6 +31658,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
           - id: 11408460224566390787
             name: Stamina_3
             enabled: true
@@ -31450,6 +31696,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
           - id: 8853396876223854317
             name: Stamina_4
             enabled: true
@@ -31487,6 +31734,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
   - id: 11392694371135083901
     name: Debug
     enabled: true
@@ -31503,7 +31751,7 @@ child:
         type: 10
         enabled: true
         position: [0, 0, 0]
-        size: [1060, 1241]
+        size: [1133, 630]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
@@ -31529,7 +31777,7 @@ child:
             type: 10
             enabled: true
             position: [0, -150, 0]
-            size: [1060, 1241]
+            size: [1133, 630]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
@@ -31643,6 +31891,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
           - id: 4179824030550221832
             name: DebugTittle
             enabled: true
@@ -31680,6 +31929,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
           - id: 3396610401462492838
             name: Exit
             enabled: true
@@ -31717,6 +31967,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 4935757553465777882
                 type: 12
@@ -31758,6 +32009,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 7319925146969854808
                 type: 12
@@ -31799,6 +32051,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 13290263951685989151
                 type: 12
@@ -31840,6 +32093,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 12452034904785054160
                 type: 12
@@ -31881,6 +32135,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 393366949656419177
                 type: 12
@@ -31922,6 +32177,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 2062902174905370122
                 type: 12
@@ -31963,6 +32219,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 4964360497277602912
                 type: 12
@@ -32004,6 +32261,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 2678676858608301339
                 type: 12
@@ -32045,6 +32303,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 4914531325495690341
                 type: 12
@@ -32086,6 +32345,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 16774405906247817571
                 type: 12
@@ -32127,6 +32387,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 12914394400610723321
                 type: 12
@@ -32168,6 +32429,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 3672031471475709379
                 type: 12
@@ -32209,6 +32471,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 2923657016003194749
                 type: 12
@@ -32250,6 +32513,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 4674269312309790326
                 type: 12
@@ -32291,6 +32555,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 8043928812462529233
                 type: 12
@@ -32332,6 +32597,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 15064926313046080433
                 type: 12
@@ -32352,7 +32618,7 @@ child:
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [1060, 1241]
+            size: [1133, 630]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
@@ -32531,6 +32797,7 @@ child:
                 image_x_tiles: 1
                 image_y_tiles: 1
                 image_tiles_per_second: 1
+                fill_window: false
               - !<button>
                 id: 5284072271835962285
                 type: 12
@@ -32718,7 +32985,7 @@ child:
             enabled: true
             position: [-112.3, 0.0393, -1.232]
             rotation: [0.4371, 0.0167, 0.8992, -0.0081]
-            scale: [0.9983, 0.9983, 1]
+            scale: [0.998, 0.998, 1]
           - !<mesh_renderer>
             id: 3972933553034082244
             type: 2
@@ -32898,7 +33165,7 @@ child:
             enabled: true
             position: [67.75, -16.33, 44.02]
             rotation: [0.2706, 0.6533, 0.6533, -0.2706]
-            scale: [0.8779, 0.8762, 0.8762]
+            scale: [0.8782, 0.8762, 0.8762]
           - !<mesh_renderer>
             id: 2336336999621713657
             type: 2
@@ -33117,7 +33384,7 @@ child:
             type: 1
             enabled: true
             position: [-87.74, 5.205, 63.35]
-            rotation: [-0.5729, -0.4145, -0.4145, 0.5728]
+            rotation: [-0.5729, -0.4145, -0.4145, 0.5729]
             scale: [0.5133, 0.5133, 0.5133]
           - !<mesh_renderer>
             id: 17393974610318221269
@@ -33238,7 +33505,7 @@ child:
             enabled: true
             position: [-86.6, 3.716, 13]
             rotation: [-0.2896, -0.5481, 0.6668, -0.4135]
-            scale: [0.7792, 0.6188, 0.7792]
+            scale: [0.7789, 0.6185, 0.7789]
           - !<mesh_renderer>
             id: 15732200696756918201
             type: 2
@@ -33278,7 +33545,7 @@ child:
             enabled: true
             position: [-57.39, 1.064, 24.77]
             rotation: [0.3955, 0.5861, 0.6901, -0.154]
-            scale: [0.9966, 0.9983, 0.9983]
+            scale: [0.996, 0.998, 0.998]
           - !<mesh_renderer>
             id: 5365184222204529692
             type: 2
@@ -33378,7 +33645,7 @@ child:
             enabled: true
             position: [-24.24, 6.228, 22.9]
             rotation: [-0.3058, 0.6376, 0.6376, 0.3058]
-            scale: [0.8197, 0.8197, 0.8197]
+            scale: [0.82, 0.82, 0.82]
           - !<mesh_renderer>
             id: 8121319996110865535
             type: 2
@@ -33658,7 +33925,7 @@ child:
             enabled: true
             position: [-64.81, 2.442, 66.41]
             rotation: [0.6329, 0.6279, -0.3154, -0.3252]
-            scale: [0.818, 0.818, 0.8197]
+            scale: [0.818, 0.818, 0.82]
           - !<mesh_renderer>
             id: 15688103010630119665
             type: 2
@@ -33678,7 +33945,7 @@ child:
             enabled: true
             position: [-60.41, -6.743, 68.26]
             rotation: [-0.0339, -0.6817, 0.73, 0.0363]
-            scale: [0.3976, 0.3959, 0.3959]
+            scale: [0.3979, 0.3959, 0.3959]
           - !<mesh_renderer>
             id: 12066112982012142427
             type: 2
@@ -33777,7 +34044,7 @@ child:
             type: 1
             enabled: true
             position: [-61.87, -27.15, 48.41]
-            rotation: [0.6586, 0.2081, -0.2169, 0.6898]
+            rotation: [0.6586, 0.2081, -0.2169, 0.6899]
             scale: [0.0154, 0.0154, 0.0154]
           - !<mesh_renderer>
             id: 368442526516644635
@@ -33837,7 +34104,7 @@ child:
             type: 1
             enabled: true
             position: [-79.74, -19.99, 60.13]
-            rotation: [0.5175, -0.4587, 0.4429, 0.5706]
+            rotation: [0.5175, -0.4587, 0.4429, 0.5707]
             scale: [0.0106, 0.0106, 0.012]
           - !<mesh_renderer>
             id: 4789185001704565059
@@ -33858,7 +34125,7 @@ child:
             enabled: true
             position: [-81.84, -8.087, 42.36]
             rotation: [0.286, 0.6734, -0.6157, 0.2928]
-            scale: [0.4781, 0.4764, 0.3994]
+            scale: [0.4784, 0.4764, 0.3994]
           - !<mesh_renderer>
             id: 13616583233962977814
             type: 2
@@ -33977,7 +34244,7 @@ child:
             type: 1
             enabled: true
             position: [-83.09, -20.44, 50.19]
-            rotation: [0.5175, -0.4587, 0.4429, 0.5706]
+            rotation: [0.5175, -0.4587, 0.4429, 0.5707]
             scale: [0.0106, 0.0106, 0.012]
           - !<mesh_renderer>
             id: 3951233250880621391
@@ -34018,7 +34285,7 @@ child:
             enabled: true
             position: [-79.48, -2.174, 29.96]
             rotation: [0.0977, 0.8076, -0.5663, -0.1322]
-            scale: [0.8943, 0.896, 0.8943]
+            scale: [0.894, 0.896, 0.894]
           - !<mesh_renderer>
             id: 10997336943704327320
             type: 2
@@ -34218,7 +34485,7 @@ child:
             enabled: true
             position: [-59.08, -5.727, 11.55]
             rotation: [-0.1441, -0.6092, 0.7769, 0.0668]
-            scale: [0.417, 0.4187, 0.4187]
+            scale: [0.4167, 0.4187, 0.4187]
           - !<mesh_renderer>
             id: 16746211884666851774
             type: 2
@@ -34277,7 +34544,7 @@ child:
             type: 1
             enabled: true
             position: [-57.73, -30.08, 7.619]
-            rotation: [0.4635, 0.3167, -0.496, 0.6624]
+            rotation: [0.4635, 0.3167, -0.496, 0.6625]
             scale: [0.0154, 0.0154, 0.0154]
           - !<mesh_renderer>
             id: 9524028123474286830
@@ -34338,7 +34605,7 @@ child:
             enabled: true
             position: [-20.56, -11.56, 20.11]
             rotation: [0.1154, 0.7761, -0.6098, -0.1121]
-            scale: [0.4781, 0.4764, 0.3994]
+            scale: [0.4784, 0.4764, 0.3994]
           - !<mesh_renderer>
             id: 13096528800018946290
             type: 2
@@ -34418,7 +34685,7 @@ child:
             enabled: true
             position: [-8.601, -10.12, 8.04]
             rotation: [0.453, 0.5978, -0.5773, 0.3226]
-            scale: [0.4747, 0.4764, 0.3994]
+            scale: [0.4744, 0.4764, 0.3994]
           - !<mesh_renderer>
             id: 8185470928288426016
             type: 2
@@ -34698,7 +34965,7 @@ child:
             enabled: true
             position: [-7.304, 0.8706, -41.9]
             rotation: [-0.0213, -0.6062, 0.794, -0.04]
-            scale: [0.85, 0.7081, 0.8517]
+            scale: [0.8497, 0.7081, 0.8517]
           - !<mesh_renderer>
             id: 4120410621659112800
             type: 2
@@ -34718,7 +34985,7 @@ child:
             enabled: true
             position: [-6.45, 0.0224, -40.05]
             rotation: [0.4369, 0.6892, 0.4914, -0.3045]
-            scale: [0.5906, 0.4153, 0.7299]
+            scale: [0.5909, 0.4153, 0.7302]
           - !<mesh_renderer>
             id: 7273244118231580226
             type: 2
@@ -34838,7 +35105,7 @@ child:
             enabled: true
             position: [-14.58, 2.889, -98.37]
             rotation: [0.0221, 0.7068, 0.7068, -0.0221]
-            scale: [0.767, 0.7653, 0.7653]
+            scale: [0.7676, 0.7656, 0.7656]
           - !<mesh_renderer>
             id: 717102779718539769
             type: 2
@@ -35098,7 +35365,7 @@ child:
             enabled: true
             position: [-26.28, 0.5074, -81.44]
             rotation: [0.6053, 0.3303, 0.6605, 0.2972]
-            scale: [0.8133, 0.8133, 0.8133]
+            scale: [0.8136, 0.8136, 0.8136]
           - !<mesh_renderer>
             id: 8653669680880629077
             type: 2
@@ -35117,7 +35384,7 @@ child:
             type: 1
             enabled: true
             position: [-24.91, 0, -66.6]
-            rotation: [-0.3772, 0.4204, -0.5981, 0.5685]
+            rotation: [-0.3772, 0.4204, -0.5981, 0.5686]
             scale: [0.6215, 0.6215, 0.6215]
           - !<mesh_renderer>
             id: 7841239372598474061
@@ -35178,7 +35445,7 @@ child:
             enabled: true
             position: [-9.482, 2.737, -72.81]
             rotation: [0.3606, -0.4676, 0.658, -0.4672]
-            scale: [0.6015, 0.6015, 0.6032]
+            scale: [0.6012, 0.6012, 0.6032]
           - !<mesh_renderer>
             id: 1086240229805702109
             type: 2
@@ -35478,7 +35745,7 @@ child:
             enabled: true
             position: [-0.3052, 3.582, -103.3]
             rotation: [0.9394, 0.2759, -0.0624, -0.1938]
-            scale: [1, 0.7407, 1]
+            scale: [1, 0.741, 1]
           - !<mesh_renderer>
             id: 11191579668951477123
             type: 2
@@ -35498,7 +35765,7 @@ child:
             enabled: true
             position: [-4.106, 4.743, -104]
             rotation: [0.7136, -0.659, -0.2289, 0.0635]
-            scale: [0.7364, 0.5442, 0.7347]
+            scale: [0.7364, 0.5442, 0.7344]
           - !<mesh_renderer>
             id: 12686702623345155500
             type: 2
@@ -35598,7 +35865,7 @@ child:
             enabled: true
             position: [-3.335, -11.13, -69.31]
             rotation: [-0.0398, 0.9516, 0.0541, 0.2998]
-            scale: [0.4922, 0.4939, 0.363]
+            scale: [0.4919, 0.4939, 0.363]
           - !<mesh_renderer>
             id: 4661417805678961667
             type: 2
@@ -35738,7 +36005,7 @@ child:
             enabled: true
             position: [-1.956, 1.586, -85.42]
             rotation: [-0.1478, -0.629, 0.6517, -0.3974]
-            scale: [0.6383, 0.6383, 0.6383]
+            scale: [0.6386, 0.6386, 0.6386]
           - !<mesh_renderer>
             id: 1457290539333223921
             type: 2
@@ -35778,7 +36045,7 @@ child:
             enabled: true
             position: [5.251, -8.563, -69.86]
             rotation: [-0.0368, 0.7061, 0.7061, 0.0368]
-            scale: [0.4974, 0.6945, 0.6958]
+            scale: [0.4971, 0.6942, 0.6955]
           - !<mesh_renderer>
             id: 7808073199313241566
             type: 2
@@ -36078,7 +36345,7 @@ child:
             enabled: true
             position: [19.02, -9.502, -91.33]
             rotation: [-0.0433, 0.751, -0.573, -0.3251]
-            scale: [0.8926, 0.8943, 0.8943]
+            scale: [0.892, 0.894, 0.894]
           - !<mesh_renderer>
             id: 535315472714861520
             type: 2
@@ -36117,8 +36384,8 @@ child:
             type: 1
             enabled: true
             position: [40.14, -12.17, -23.47]
-            rotation: [0.4821, 0.5174, 0.5173, -0.4821]
-            scale: [0.7808, 0.7808, 0.7808]
+            rotation: [0.482, 0.5174, 0.5172, -0.482]
+            scale: [0.7809, 0.7809, 0.7809]
           - !<mesh_renderer>
             id: 4594133774044868049
             type: 2
@@ -36177,7 +36444,7 @@ child:
             type: 1
             enabled: true
             position: [48.95, -33.65, -27.51]
-            rotation: [0.6639, -0.2158, 0.3163, 0.6423]
+            rotation: [0.6639, -0.2158, 0.3163, 0.6424]
             scale: [0.0151, 0.0151, 0.012]
           - !<mesh_renderer>
             id: 17291027624856946592
@@ -36238,7 +36505,7 @@ child:
             enabled: true
             position: [13.74, -7.557, -49.77]
             rotation: [0.6148, 0.4229, 0.6127, -0.2605]
-            scale: [0.5345, 0.5345, 0.5345]
+            scale: [0.5348, 0.5348, 0.5348]
           - !<mesh_renderer>
             id: 14111165987058640929
             type: 2
@@ -36558,7 +36825,7 @@ child:
             enabled: true
             position: [60.44, -20.23, -40.47]
             rotation: [0.0453, 0.7259, -0.6855, -0.0349]
-            scale: [0.3564, 0.3547, 0.3547]
+            scale: [0.3567, 0.3547, 0.3547]
           - !<mesh_renderer>
             id: 1238152801127681820
             type: 2
@@ -36578,7 +36845,7 @@ child:
             enabled: true
             position: [56.53, -16.23, -38.19]
             rotation: [0.3533, 0.6125, 0.6125, -0.3533]
-            scale: [0.9983, 1, 1]
+            scale: [0.998, 1, 1]
           - !<mesh_renderer>
             id: 17962959678558056487
             type: 2
@@ -36657,7 +36924,7 @@ child:
             type: 1
             enabled: true
             position: [61.49, -18.02, -19.48]
-            rotation: [0.494, 0.5058, 0.5059, -0.494]
+            rotation: [0.4941, 0.5059, 0.5059, -0.4941]
             scale: [0.0254, 0.0254, 0.0254]
           - !<mesh_renderer>
             id: 17735742015786375
@@ -36757,7 +37024,7 @@ child:
             type: 1
             enabled: true
             position: [27.96, -19.78, 63.81]
-            rotation: [-0.5329, 0.4648, 0.4648, 0.5328]
+            rotation: [-0.5329, 0.4648, 0.4648, 0.5329]
             scale: [0.0155, 0.0155, 0.0166]
           - !<mesh_renderer>
             id: 5429036952479653400
@@ -36897,7 +37164,7 @@ child:
             type: 1
             enabled: true
             position: [27.92, -34.58, 52.18]
-            rotation: [0.5211, 0.478, -0.478, 0.521]
+            rotation: [0.5211, 0.478, -0.478, 0.5211]
             scale: [0.0076, 0.0076, 0.0076]
           - !<mesh_renderer>
             id: 17284596697739031250
@@ -37118,7 +37385,7 @@ child:
             enabled: true
             position: [48.34, -18.3, 35.34]
             rotation: [0.7965, 0.4425, -0.4079, 0.0592]
-            scale: [0.592, 0.3934, 0.5937]
+            scale: [0.592, 0.3937, 0.594]
           - !<mesh_renderer>
             id: 17269716912804253646
             type: 2
@@ -37398,7 +37665,7 @@ child:
             enabled: true
             position: [-32.22, -18.78, 34.67]
             rotation: [-0.3018, 0.6395, 0.6395, 0.3018]
-            scale: [0.4446, 0.4429, 0.4429]
+            scale: [0.4449, 0.4429, 0.4429]
           - !<mesh_renderer>
             id: 7237623044334994682
             type: 2
@@ -37578,7 +37845,7 @@ child:
             enabled: true
             position: [-10.71, -32.92, 46.46]
             rotation: [0.4677, 0.5304, -0.5078, 0.4921]
-            scale: [0.6619, 0.6619, 0.5078]
+            scale: [0.6622, 0.6622, 0.5078]
           - !<mesh_renderer>
             id: 12851760842490951107
             type: 2
@@ -37617,8 +37884,8 @@ child:
             type: 1
             enabled: true
             position: [-13.53, -29.17, 41.97]
-            rotation: [0.166, -0.6873, 0.6873, 0.166]
-            scale: [0.4423, 0.4423, 0.4423]
+            rotation: [-0.166, 0.6873, -0.6873, -0.166]
+            scale: [0.442, 0.442, 0.442]
           - !<mesh_renderer>
             id: 3166162084897362251
             type: 2
@@ -37638,7 +37905,7 @@ child:
             enabled: true
             position: [-27.62, -22.01, 58.88]
             rotation: [0.671, -0.3444, -0.5145, -0.4079]
-            scale: [0.9282, 0.9265, 0.9265]
+            scale: [0.9282, 0.9262, 0.9262]
           - !<mesh_renderer>
             id: 8966097940600555319
             type: 2
@@ -37657,7 +37924,7 @@ child:
             type: 1
             enabled: true
             position: [-38.32, -20.36, 49.42]
-            rotation: [-0.5743, -0.4125, -0.4125, 0.5744]
+            rotation: [-0.5743, -0.4125, -0.4125, 0.5743]
             scale: [0.0198, 0.0198, 0.0198]
           - !<mesh_renderer>
             id: 12598859807731884516
@@ -37718,7 +37985,7 @@ child:
             enabled: true
             position: [-41.96, -32.58, 64.05]
             rotation: [-0.2991, 0.6407, 0.6407, 0.2991]
-            scale: [0.5173, 0.519, 0.519]
+            scale: [0.517, 0.519, 0.519]
         child:
           - id: 3921985621316310363
             name: rockSpike_192
@@ -37830,7 +38097,7 @@ child:
             enabled: true
             position: [-50.81, -33.44, 68.01]
             rotation: [0.1938, 0.68, 0.68, -0.1938]
-            scale: [0.9101, 0.9101, 0.9101]
+            scale: [0.9098, 0.9098, 0.9098]
         child:
           - id: 10971676062459075079
             name: rockSpike_197
@@ -37861,7 +38128,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 13437375240444109388
@@ -37922,7 +38189,7 @@ child:
             enabled: true
             position: [-63.93, -33.14, 68.84]
             rotation: [0.1938, 0.68, 0.68, -0.1938]
-            scale: [0.9966, 0.9983, 0.9983]
+            scale: [0.996, 0.998, 0.998]
         child:
           - id: 3297353598089176977
             name: rockSpike_201
@@ -38014,7 +38281,7 @@ child:
             enabled: true
             position: [-41.86, -32.96, 19.56]
             rotation: [0.0501, 0.7053, 0.7053, -0.0501]
-            scale: [0.9966, 0.9983, 0.9983]
+            scale: [0.996, 0.998, 0.998]
         child:
           - id: 2610279426578959211
             name: rockSpike_205
@@ -38218,7 +38485,7 @@ child:
             enabled: true
             position: [-41.45, -33.44, 26.53]
             rotation: [-0.7039, -0.0675, -0.0675, 0.7039]
-            scale: [0.9118, 0.9135, 0.9135]
+            scale: [0.9118, 0.9138, 0.9138]
         child:
           - id: 14663086228283647786
             name: rockSpike_214
@@ -38249,7 +38516,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 15219072188484833402
@@ -38310,7 +38577,7 @@ child:
             enabled: true
             position: [37.25, -32.58, 84.89]
             rotation: [0.1938, 0.68, 0.68, -0.1938]
-            scale: [0.5173, 0.519, 0.519]
+            scale: [0.517, 0.519, 0.519]
         child:
           - id: 2837964067654955963
             name: rockSpike_218
@@ -38422,7 +38689,7 @@ child:
             enabled: true
             position: [29.66, -33.44, 91.23]
             rotation: [0.1938, 0.68, 0.68, -0.1938]
-            scale: [0.9101, 0.9101, 0.9101]
+            scale: [0.9098, 0.9098, 0.9098]
         child:
           - id: 6496677578205592004
             name: rockSpike_223
@@ -38453,7 +38720,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 9218432154873219284
@@ -38514,7 +38781,7 @@ child:
             enabled: true
             position: [28.5, -33.14, 81.87]
             rotation: [0.1938, 0.68, 0.68, -0.1938]
-            scale: [0.9966, 0.9983, 0.9983]
+            scale: [0.996, 0.998, 0.998]
         child:
           - id: 18056494470414981190
             name: rockSpike_227
@@ -38606,7 +38873,7 @@ child:
             enabled: true
             position: [45.97, -32.96, 88.16]
             rotation: [0.1938, 0.68, 0.68, -0.1938]
-            scale: [0.9966, 0.9983, 0.9983]
+            scale: [0.996, 0.998, 0.998]
         child:
           - id: 10955949372425518866
             name: rockSpike_231
@@ -38841,7 +39108,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 4141482442884171047
@@ -38902,7 +39169,7 @@ child:
             enabled: true
             position: [44.38, -33.44, 62.89]
             rotation: [0.3235, 0.6288, 0.6288, -0.3235]
-            scale: [0.9135, 0.9135, 0.9135]
+            scale: [0.9138, 0.9138, 0.9138]
         child:
           - id: 4141635396160741220
             name: rockSpike_244
@@ -38933,7 +39200,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 5205320455372791198
@@ -38994,7 +39261,7 @@ child:
             enabled: true
             position: [52.98, -33.14, 49.71]
             rotation: [-0.1602, 0.6887, 0.6887, 0.1602]
-            scale: [0.9983, 0.9983, 0.9983]
+            scale: [0.998, 0.998, 0.998]
         child:
           - id: 11907276854205849838
             name: rockSpike_253
@@ -39117,7 +39384,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 10356089543646148219
@@ -39209,7 +39476,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.088, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 15375281547414028854
@@ -39494,7 +39761,7 @@ child:
             enabled: true
             position: [35.65, -33.44, 27.82]
             rotation: [0.1938, 0.68, 0.68, -0.1938]
-            scale: [0.9101, 0.9101, 0.9101]
+            scale: [0.9098, 0.9098, 0.9098]
         child:
           - id: 8233083128073651692
             name: rockSpike_275
@@ -39525,7 +39792,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.088, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 3767687221985465659
@@ -39586,7 +39853,7 @@ child:
             enabled: true
             position: [46.7, -32.96, 20.31]
             rotation: [0.1938, 0.68, 0.68, -0.1938]
-            scale: [0.9966, 0.9983, 0.9983]
+            scale: [0.996, 0.998, 0.998]
         child:
           - id: 5335513837970550519
             name: rockSpike_279
@@ -39698,7 +39965,7 @@ child:
             enabled: true
             position: [45.56, -33.44, 11.73]
             rotation: [-0.442, 0.5519, 0.5519, 0.442]
-            scale: [0.9101, 0.9101, 0.9101]
+            scale: [0.9098, 0.9098, 0.9098]
         child:
           - id: 17458990905881925710
             name: rockSpike_284
@@ -39729,7 +39996,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 700852238672756686
@@ -39821,7 +40088,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 10496154612268249782
@@ -40025,7 +40292,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 15468865511664272203
@@ -40229,7 +40496,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.088, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 11925946710140824124
@@ -40402,7 +40669,7 @@ child:
             enabled: true
             position: [72.15, -32.58, -8.192]
             rotation: [-0.1097, 0.6985, 0.6985, 0.1097]
-            scale: [0.5173, 0.5173, 0.5173]
+            scale: [0.517, 0.517, 0.517]
         child:
           - id: 2149818568590864394
             name: rockSpike_315
@@ -40514,7 +40781,7 @@ child:
             enabled: true
             position: [62.85, -33.44, -10.11]
             rotation: [-0.1097, 0.6985, 0.6985, 0.1097]
-            scale: [0.9084, 0.9101, 0.9101]
+            scale: [0.9078, 0.9098, 0.9098]
         child:
           - id: 1240824718446398124
             name: rockSpike_320
@@ -40545,7 +40812,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.088, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 13272780550469439788
@@ -40606,7 +40873,7 @@ child:
             enabled: true
             position: [66.9, -33.14, -17.48]
             rotation: [-0.1097, 0.6985, 0.6985, 0.1097]
-            scale: [0.9966, 0.9983, 0.9983]
+            scale: [0.996, 0.998, 0.998]
         child:
           - id: 567122488851216670
             name: rockSpike_324
@@ -40698,7 +40965,7 @@ child:
             enabled: true
             position: [78.88, -32.96, 1.095]
             rotation: [-0.1097, 0.6985, 0.6985, 0.1097]
-            scale: [0.9966, 0.9983, 0.9983]
+            scale: [0.996, 0.998, 0.998]
         child:
           - id: 8316934614690257377
             name: rockSpike_328
@@ -40841,7 +41108,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 2286998997791283239
@@ -41106,7 +41373,7 @@ child:
             enabled: true
             position: [23.02, -33.44, 3.911]
             rotation: [-0.2619, 0.6569, 0.6568, 0.2618]
-            scale: [0.9132, 0.9117, 0.9117]
+            scale: [0.9135, 0.9117, 0.9117]
         child:
           - id: 4799143029849036077
             name: rockSpike_346
@@ -41137,7 +41404,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 8182991800955657278
@@ -41198,7 +41465,7 @@ child:
             enabled: true
             position: [65.45, -32.58, -43.47]
             rotation: [-0.033, 0.7063, 0.7063, 0.033]
-            scale: [0.5173, 0.5173, 0.5173]
+            scale: [0.517, 0.517, 0.517]
         child:
           - id: 14875593427255467793
             name: rockSpike_350
@@ -41310,7 +41577,7 @@ child:
             enabled: true
             position: [62.03, -33.44, -50.41]
             rotation: [-0.4046, 0.5798, 0.5799, 0.4047]
-            scale: [0.9104, 0.9103, 0.9103]
+            scale: [0.9101, 0.91, 0.91]
         child:
           - id: 18209402806587089948
             name: rockSpike_355
@@ -41341,7 +41608,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.088, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 5263253722062453031
@@ -41493,8 +41760,8 @@ child:
             type: 1
             enabled: true
             position: [41.03, -32.96, -75.11]
-            rotation: [-0.5645, -0.4258, -0.4258, 0.5646]
-            scale: [1, 0.9991, 0.9991]
+            rotation: [-0.5645, -0.4258, -0.4258, 0.5645]
+            scale: [1, 0.999, 0.999]
         child:
           - id: 12516749513623436467
             name: rockSpike_363
@@ -41606,7 +41873,7 @@ child:
             enabled: true
             position: [50.61, -33.14, -75.17]
             rotation: [-0.7037, 0.0691, 0.0691, 0.7037]
-            scale: [1, 0.9983, 0.9983]
+            scale: [1, 0.998, 0.998]
         child:
           - id: 740462579435650101
             name: rockSpike_368
@@ -41729,7 +41996,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 3014042451584865604
@@ -41790,7 +42057,7 @@ child:
             enabled: true
             position: [-7.951, -32.58, -42.54]
             rotation: [-0.1535, 0.6902, 0.6902, 0.1535]
-            scale: [0.5173, 0.5173, 0.5173]
+            scale: [0.517, 0.517, 0.517]
         child:
           - id: 5916326395151364473
             name: rockSpike_376
@@ -41933,7 +42200,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.088, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 12429765924316758326
@@ -42290,7 +42557,7 @@ child:
             enabled: true
             position: [0.7034, -33.44, -44.31]
             rotation: [-0.707, 0.011, 0.011, 0.707]
-            scale: [0.9118, 0.9101, 0.9101]
+            scale: [0.9118, 0.9098, 0.9098]
         child:
           - id: 3967150864399488415
             name: rockSpike_398
@@ -42321,7 +42588,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 6462546313473300701
@@ -42494,7 +42761,7 @@ child:
             enabled: true
             position: [-62.4, -33.44, -42.94]
             rotation: [0.2592, 0.6579, 0.6579, -0.2592]
-            scale: [0.9135, 0.9118, 0.9118]
+            scale: [0.9138, 0.9118, 0.9118]
         child:
           - id: 17790905538812610994
             name: rockSpike_407
@@ -42525,7 +42792,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 17824906816230163122
@@ -42678,7 +42945,7 @@ child:
             enabled: true
             position: [-56.78, -32.96, -32.21]
             rotation: [-0.2993, 0.6406, 0.6406, 0.2993]
-            scale: [0.9966, 0.9983, 0.9983]
+            scale: [0.996, 0.998, 0.998]
         child:
           - id: 7042716007048703320
             name: rockSpike_415
@@ -42913,7 +43180,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 4015793410616345428
@@ -42974,7 +43241,7 @@ child:
             enabled: true
             position: [-37.34, -33.44, -27.06]
             rotation: [0.2592, 0.6579, 0.6579, -0.2592]
-            scale: [0.9135, 0.9118, 0.9118]
+            scale: [0.9138, 0.9118, 0.9118]
         child:
           - id: 14285873516995071665
             name: rockSpike_428
@@ -43005,7 +43272,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 10991695487630997267
@@ -43158,7 +43425,7 @@ child:
             enabled: true
             position: [-32.98, -32.96, -34.05]
             rotation: [-0.4862, 0.5134, 0.5134, 0.4862]
-            scale: [0.9983, 0.9983, 0.9983]
+            scale: [0.998, 0.998, 0.998]
         child:
           - id: 1798746790011992747
             name: rockSpike_436
@@ -43269,8 +43536,8 @@ child:
             type: 1
             enabled: true
             position: [-36.4, -33.44, -17.96]
-            rotation: [-0.6568, -0.262, -0.262, 0.6567]
-            scale: [0.9118, 0.9119, 0.9119]
+            rotation: [-0.6568, -0.262, -0.262, 0.6568]
+            scale: [0.9118, 0.9118, 0.9118]
         child:
           - id: 14997397478784684319
             name: rockSpike_441
@@ -43301,7 +43568,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 2396982275193729213
@@ -43461,7 +43728,7 @@ child:
             type: 1
             enabled: true
             position: [-46.86, -10.37, -20.94]
-            rotation: [-0.5038, 0.4962, 0.4962, 0.5037]
+            rotation: [-0.5038, 0.4962, 0.4962, 0.5038]
             scale: [0.3051, 0.3051, 0.3051]
           - !<mesh_renderer>
             id: 1453594236957893580
@@ -43482,7 +43749,7 @@ child:
             enabled: true
             position: [-57.35, -10.88, -27.22]
             rotation: [0.7041, 0.6658, -0.0654, -0.2382]
-            scale: [0.5211, 0.3291, 0.5228]
+            scale: [0.5211, 0.3291, 0.5231]
           - !<mesh_renderer>
             id: 17789464045560765904
             type: 2
@@ -43501,7 +43768,7 @@ child:
             type: 1
             enabled: true
             position: [-52.97, -11.01, -28.52]
-            rotation: [-0.3637, 0.6083, -0.2877, 0.6442]
+            rotation: [-0.3637, 0.6083, -0.2877, 0.6441]
             scale: [0.6265, 0.4212, 0.5124]
           - !<mesh_renderer>
             id: 5452749296433107528
@@ -43622,7 +43889,7 @@ child:
             enabled: true
             position: [25.4, -32.58, -68.08]
             rotation: [-0.1724, 0.6858, 0.6858, 0.1724]
-            scale: [0.5207, 0.519, 0.519]
+            scale: [0.521, 0.519, 0.519]
         child:
           - id: 10462475006639042087
             name: rockSpike_450
@@ -43734,7 +44001,7 @@ child:
             enabled: true
             position: [23.29, -33.44, -85.79]
             rotation: [0.1938, 0.68, 0.68, -0.1938]
-            scale: [0.9101, 0.9101, 0.9101]
+            scale: [0.9098, 0.9098, 0.9098]
         child:
           - id: 3643884776691038930
             name: rockSpike_455
@@ -43765,7 +44032,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.088, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 13220897751900864035
@@ -43826,7 +44093,7 @@ child:
             enabled: true
             position: [22.47, -33.14, -95.3]
             rotation: [0.1938, 0.68, 0.68, -0.1938]
-            scale: [0.9966, 0.9983, 0.9983]
+            scale: [0.996, 0.998, 0.998]
         child:
           - id: 7485748480949353409
             name: rockSpike_459
@@ -44153,7 +44420,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.088, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 13958636029913079918
@@ -44326,7 +44593,7 @@ child:
             enabled: true
             position: [6.651, -33.44, -40.24]
             rotation: [-0.038, 0.7061, 0.7061, 0.038]
-            scale: [0.9135, 0.9118, 0.9118]
+            scale: [0.9138, 0.9118, 0.9118]
         child:
           - id: 400616591714782702
             name: rockSpike_481
@@ -44357,7 +44624,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 17734683116528048665
@@ -44745,7 +45012,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 13928430289435768992
@@ -45257,7 +45524,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-1.13, 10.43, -0.7335]
-                rotation: [-0.3706, -0.3444, -0.5872, 0.6318]
+                rotation: [-0.3706, -0.3444, -0.5872, 0.6319]
                 scale: [0.6327, 0.6327, 0.6327]
               - !<mesh_renderer>
                 id: 9997569782352187697
@@ -45278,7 +45545,7 @@ child:
                 enabled: true
                 position: [4.602, 11.58, -0.3266]
                 rotation: [-0.144, 0.4318, 0.8847, -0.1002]
-                scale: [0.631, 0.3772, 0.6327]
+                scale: [0.6307, 0.3772, 0.6327]
               - !<mesh_renderer>
                 id: 2814234168956379142
                 type: 2
@@ -45518,7 +45785,7 @@ child:
                 enabled: true
                 position: [2.015, -16.73, -4.708]
                 rotation: [0.8099, 0.5102, -0.0399, 0.2864]
-                scale: [0.8443, 1.117, 1.117]
+                scale: [0.844, 1.117, 1.117]
               - !<mesh_renderer>
                 id: 14363177750239753438
                 type: 2
@@ -45538,7 +45805,7 @@ child:
                 enabled: true
                 position: [0.0459, -18.26, -9.309]
                 rotation: [0.2248, 0.4829, -0.6537, 0.5375]
-                scale: [0.9984, 1, 1]
+                scale: [0.9981, 1, 1]
               - !<mesh_renderer>
                 id: 15183241365375383729
                 type: 2
@@ -45558,7 +45825,7 @@ child:
                 enabled: true
                 position: [8.458, -17.32, -7.847]
                 rotation: [0.0865, -0.5121, 0.8469, -0.1144]
-                scale: [0.5962, 0.5945, 0.5945]
+                scale: [0.5965, 0.5945, 0.5945]
               - !<mesh_renderer>
                 id: 12413918826911062931
                 type: 2
@@ -45578,7 +45845,7 @@ child:
             enabled: true
             position: [-47.2, -40.03, 53.35]
             rotation: [-0.2651, 0.6555, 0.6555, 0.2651]
-            scale: [0.547, 0.5487, 0.5487]
+            scale: [0.5467, 0.5487, 0.5487]
           - !<mesh_renderer>
             id: 2930959907548046312
             type: 2
@@ -45598,7 +45865,7 @@ child:
             enabled: true
             position: [-47.2, -40.03, 27.45]
             rotation: [-0.2651, 0.6555, 0.6555, 0.2651]
-            scale: [0.547, 0.5487, 0.5487]
+            scale: [0.5467, 0.5487, 0.5487]
           - !<mesh_renderer>
             id: 11497973093832876521
             type: 2
@@ -45618,7 +45885,7 @@ child:
             enabled: true
             position: [-68.96, -40.03, 54.95]
             rotation: [-0.2651, 0.6555, 0.6555, 0.2651]
-            scale: [0.547, 0.5487, 0.5487]
+            scale: [0.5467, 0.5487, 0.5487]
           - !<mesh_renderer>
             id: 10922175829240318535
             type: 2
@@ -45838,7 +46105,7 @@ child:
             enabled: true
             position: [-73.12, -32.58, 66.36]
             rotation: [-0.2991, 0.6407, 0.6407, 0.2991]
-            scale: [0.5173, 0.519, 0.519]
+            scale: [0.517, 0.519, 0.519]
         child:
           - id: 16267586372456104617
             name: rockSpike_508
@@ -46041,7 +46308,7 @@ child:
             type: 1
             enabled: true
             position: [-6.365, -1.524, -41.59]
-            rotation: [0.4408, 0.1316, 0.6045, 0.6503]
+            rotation: [0.4408, 0.1316, 0.6045, 0.6504]
             scale: [0.0398, 0.0398, 0.0398]
           - !<mesh_renderer>
             id: 7729579932388925811
@@ -46245,7 +46512,7 @@ child:
             type: 1
             enabled: true
             position: [-6.006, -11.89, -38.75]
-            rotation: [-0.4426, -0.0876, 0.5164, 0.7279]
+            rotation: [-0.4426, -0.0876, 0.5164, 0.7278]
             scale: [0.0254, 0.0254, 0.0578]
           - !<mesh_renderer>
             id: 4205503622387766459
@@ -46514,7 +46781,7 @@ child:
                 enabled: true
                 position: [0.26, -2.461, 0.1283]
                 rotation: [-0.1485, -0.0456, 0.9873, -0.0322]
-                scale: [0.4716, 0.3508, 0.4733]
+                scale: [0.4713, 0.3508, 0.4733]
               - !<mesh_renderer>
                 id: 2459112317417352449
                 type: 2
@@ -46585,7 +46852,7 @@ child:
                 type: 1
                 enabled: true
                 position: [1.944, 3.169, 3.678]
-                rotation: [-0.2373, 0.1876, 0.1514, 0.941]
+                rotation: [-0.2373, 0.1876, 0.1514, 0.9411]
                 scale: [1.551, 1.551, 1.551]
             child:
               - id: 5617595529663758885
@@ -46617,7 +46884,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0.3927, 0.1163, 0.9291]
-                    rotation: [-0.0539, 0.1978, 0.2576, 0.9442]
+                    rotation: [-0.0539, 0.1978, 0.2576, 0.9443]
                     scale: [0.0254, 0.0254, 0.0254]
                   - !<mesh_renderer>
                     id: 18199459839921147146
@@ -46930,7 +47197,7 @@ child:
                     enabled: true
                     position: [0.26, -2.461, 0.1283]
                     rotation: [-0.1485, -0.0456, 0.9873, -0.0322]
-                    scale: [0.4716, 0.3508, 0.4733]
+                    scale: [0.4713, 0.3508, 0.4733]
                   - !<mesh_renderer>
                     id: 4100859265788842092
                     type: 2
@@ -47122,7 +47389,7 @@ child:
                 enabled: true
                 position: [0.26, -2.461, 0.1283]
                 rotation: [-0.1485, -0.0456, 0.9873, -0.0322]
-                scale: [0.4716, 0.3508, 0.4733]
+                scale: [0.4713, 0.3508, 0.4733]
               - !<mesh_renderer>
                 id: 11724882264610594355
                 type: 2
@@ -47446,7 +47713,7 @@ child:
                     enabled: true
                     position: [0.26, -2.461, 0.1283]
                     rotation: [-0.1485, -0.0456, 0.9873, -0.0322]
-                    scale: [0.4716, 0.3508, 0.4733]
+                    scale: [0.4713, 0.3508, 0.4733]
                   - !<mesh_renderer>
                     id: 9858253331892665986
                     type: 2
@@ -47730,7 +47997,7 @@ child:
                     enabled: true
                     position: [0.26, -2.461, 0.1283]
                     rotation: [-0.1485, -0.0456, 0.9873, -0.0322]
-                    scale: [0.4716, 0.3508, 0.4733]
+                    scale: [0.4713, 0.3508, 0.4733]
                   - !<mesh_renderer>
                     id: 1059370547536564558
                     type: 2
@@ -47850,7 +48117,7 @@ child:
             enabled: true
             position: [27.98, -16.41, 27.2]
             rotation: [0.7011, -0.6579, -0.1881, -0.2005]
-            scale: [1, 1, 0.9983]
+            scale: [1, 1, 0.998]
         child:
           - id: 8912121030483855647
             name: crystalChunkExplosive_052
@@ -47893,7 +48160,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0.3927, 0.1163, 0.9291]
-                    rotation: [-0.0539, 0.1978, 0.2576, 0.9442]
+                    rotation: [-0.0539, 0.1978, 0.2576, 0.9443]
                     scale: [0.0254, 0.0254, 0.0254]
                   - !<mesh_renderer>
                     id: 6659380045576118423
@@ -48290,7 +48557,7 @@ child:
                 enabled: true
                 position: [0.26, -2.461, 0.1283]
                 rotation: [-0.1485, -0.0456, 0.9873, -0.0322]
-                scale: [0.4716, 0.3508, 0.4733]
+                scale: [0.4713, 0.3508, 0.4733]
               - !<mesh_renderer>
                 id: 3767487855538291858
                 type: 2
@@ -48754,7 +49021,7 @@ child:
                 enabled: true
                 position: [0.26, -2.461, 0.1283]
                 rotation: [-0.1485, -0.0456, 0.9873, -0.0322]
-                scale: [0.4716, 0.3508, 0.4733]
+                scale: [0.4713, 0.3508, 0.4733]
               - !<mesh_renderer>
                 id: 8356161687682566284
                 type: 2
@@ -48946,7 +49213,7 @@ child:
             enabled: true
             position: [11.73, -18.58, 57.91]
             rotation: [0.2357, -0.6741, 0.6899, 0.1184]
-            scale: [0.9983, 0.9983, 0.9983]
+            scale: [0.998, 0.998, 0.998]
         child:
           - id: 12529030590370886291
             name: rockSpike_660
@@ -49078,7 +49345,7 @@ child:
                 enabled: true
                 position: [0.26, -2.461, 0.1283]
                 rotation: [-0.1485, -0.0456, 0.9873, -0.0322]
-                scale: [0.4716, 0.3508, 0.4733]
+                scale: [0.4713, 0.3508, 0.4733]
               - !<mesh_renderer>
                 id: 15923734965992913185
                 type: 2
@@ -49138,7 +49405,7 @@ child:
             enabled: true
             position: [12.86, -29.27, 59.43]
             rotation: [-0.071, 0.7035, 0.7035, 0.071]
-            scale: [0.9966, 0.9983, 0.9983]
+            scale: [0.996, 0.998, 0.998]
         child:
           - id: 8758302839993905808
             name: rockBorder_062
@@ -49270,7 +49537,7 @@ child:
             enabled: true
             position: [-43.13, 5.996, 100.5]
             rotation: [-0.1584, 0.7851, 0.5884, -0.1108]
-            scale: [0.9983, 1, 1]
+            scale: [0.998, 1, 1]
           - !<mesh_renderer>
             id: 372300796632825916
             type: 2
@@ -49290,7 +49557,7 @@ child:
             enabled: true
             position: [-41.25, 4.851, 91.87]
             rotation: [0.1179, 0.8811, 0.4539, -0.0608]
-            scale: [0.9983, 1, 0.9983]
+            scale: [0.998, 1, 0.998]
           - !<mesh_renderer>
             id: 1044994927055167314
             type: 2
@@ -49549,7 +49816,7 @@ child:
             type: 1
             enabled: true
             position: [-60.2, 4.564, 90.84]
-            rotation: [-0.2467, 0.6634, 0.2285, 0.6685]
+            rotation: [-0.2467, 0.6634, 0.2285, 0.6684]
             scale: [0.0149, 0.024, 0.0378]
           - !<mesh_renderer>
             id: 15067202731104501372
@@ -49694,7 +49961,7 @@ child:
             enabled: true
             position: [-62.52, -7.463, -21.53]
             rotation: [-0.6318, 0.7725, 0.0557, 0.0292]
-            scale: [0.9983, 0.9983, 0.9966]
+            scale: [0.998, 0.998, 0.996]
         child:
           - id: 10252827837037277089
             name: crystalShort_137
@@ -49942,7 +50209,7 @@ child:
             enabled: true
             position: [-55.56, -9.171, -19.15]
             rotation: [-0.6583, -0.2581, -0.2581, 0.6583]
-            scale: [1, 0.9983, 0.9983]
+            scale: [1, 0.998, 0.998]
           - !<mesh_renderer>
             id: 17900320628740473952
             type: 2
@@ -49961,8 +50228,8 @@ child:
             type: 1
             enabled: true
             position: [-64.94, -5.4, -22.26]
-            rotation: [-0.4994, 0.5006, 0.0551, 0.7049]
-            scale: [1, 1, 1]
+            rotation: [-0.4994, 0.5006, 0.0551, 0.705]
+            scale: [1, 1, 0.9999]
           - !<mesh_renderer>
             id: 3820046991711316914
             type: 2
@@ -49981,8 +50248,8 @@ child:
             type: 1
             enabled: true
             position: [-66.89, -9.31, -20.8]
-            rotation: [-0.5902, 0.3894, 0.3894, 0.5903]
-            scale: [1, 0.9999, 0.9999]
+            rotation: [-0.5902, 0.3894, 0.3894, 0.5902]
+            scale: [1, 1, 1]
           - !<mesh_renderer>
             id: 3510488963146781
             type: 2
@@ -50162,7 +50429,7 @@ child:
             enabled: true
             position: [-48.62, -10.21, -26.59]
             rotation: [0.2502, 0.5659, 0.7591, -0.202]
-            scale: [0.9966, 0.9966, 0.9983]
+            scale: [0.996, 0.996, 0.998]
           - !<mesh_renderer>
             id: 823156618826633858
             type: 2
@@ -50182,7 +50449,7 @@ child:
             enabled: true
             position: [-48.32, -10.6, -30.06]
             rotation: [0.4486, 0.4949, 0.6655, -0.333]
-            scale: [0.9983, 0.9983, 1]
+            scale: [0.998, 0.998, 1]
           - !<mesh_renderer>
             id: 10006873178958286844
             type: 2
@@ -50222,7 +50489,7 @@ child:
             enabled: true
             position: [-60.27, -11.91, -21.93]
             rotation: [-0.1081, 0.3856, 0.6089, 0.6847]
-            scale: [0.9983, 1, 1]
+            scale: [0.998, 1, 1]
           - !<mesh_renderer>
             id: 6425666917711177129
             type: 2
@@ -50281,7 +50548,7 @@ child:
             type: 1
             enabled: true
             position: [-39.94, -9.15, -35.18]
-            rotation: [-0.4316, -0.0368, -0.6487, 0.6257]
+            rotation: [-0.4316, -0.0368, -0.6487, 0.6258]
             scale: [1.155, 1.091, 2.475]
           - !<mesh_renderer>
             id: 3321535662839985376
@@ -50302,7 +50569,7 @@ child:
             enabled: true
             position: [-43.04, -12.74, -23.32]
             rotation: [0.6875, 0.157, 0.6084, -0.364]
-            scale: [0.721, 0.7193, 0.776]
+            scale: [0.721, 0.719, 0.776]
           - !<mesh_renderer>
             id: 18290251391265437035
             type: 2
@@ -50397,7 +50664,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0.3927, 0.1163, 1.19]
-                    rotation: [-0.0539, 0.1978, 0.2576, 0.9442]
+                    rotation: [-0.0539, 0.1978, 0.2576, 0.9443]
                     scale: [0.0254, 0.0254, 0.0254]
                   - !<mesh_renderer>
                     id: 11055007319469442792
@@ -50498,7 +50765,7 @@ child:
             enabled: true
             position: [58.46, -11.37, -68.28]
             rotation: [0.2518, 0.6608, 0.6608, -0.2518]
-            scale: [0.4651, 0.4651, 0.4651]
+            scale: [0.4654, 0.4654, 0.4654]
           - !<mesh_renderer>
             id: 519215014650139
             type: 2
@@ -50581,7 +50848,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0.3927, 0.1163, 0.9291]
-                    rotation: [-0.0539, 0.1978, 0.2576, 0.9442]
+                    rotation: [-0.0539, 0.1978, 0.2576, 0.9443]
                     scale: [0.0254, 0.0254, 0.0254]
                   - !<mesh_renderer>
                     id: 486887859847971740
@@ -51226,7 +51493,7 @@ child:
                 enabled: true
                 position: [0.9911, 4.87, -0.9439]
                 rotation: [0.1595, 0.2063, 0.924, -0.2798]
-                scale: [0.5298, 0.5298, 0.5281]
+                scale: [0.5301, 0.5301, 0.5281]
               - !<mesh_renderer>
                 id: 6806122473070732871
                 type: 2
@@ -51337,7 +51604,7 @@ child:
             type: 1
             enabled: true
             position: [55.4, -17.45, 0.7353]
-            rotation: [-0.6695, -0.2107, -0.2213, 0.677]
+            rotation: [-0.6695, -0.2107, -0.2213, 0.6771]
             scale: [0.0001, 0.0001, 0.0001]
           - !<mesh_renderer>
             id: 14276660959854788374
@@ -51787,7 +52054,7 @@ child:
             type: 1
             enabled: true
             position: [-11.96, 3.236, -79.57]
-            rotation: [-0.5597, -0.083, -0.5808, 0.5853]
+            rotation: [-0.5597, -0.083, -0.5808, 0.5852]
             scale: [0.3921, 0.3921, 0.3921]
           - !<mesh_renderer>
             id: 16841060394525820180
@@ -51891,7 +52158,7 @@ child:
             type: 1
             enabled: true
             position: [42.37, -12.75, -21.88]
-            rotation: [-0.5666, 0.1819, 0.1664, 0.7862]
+            rotation: [-0.5666, 0.1819, 0.1664, 0.7863]
             scale: [0.0798, 0.083, 0.2304]
           - !<mesh_renderer>
             id: 15388462422716987964
@@ -52032,7 +52299,7 @@ child:
             enabled: true
             position: [5.923, -16.7, 64.41]
             rotation: [0.3177, 0.6642, 0.558, -0.3827]
-            scale: [0.9983, 0.9983, 0.9983]
+            scale: [0.998, 0.998, 0.998]
           - !<mesh_renderer>
             id: 4939174028816375033
             type: 2
@@ -52483,7 +52750,7 @@ child:
             type: 1
             enabled: true
             position: [30.37, -17.86, 64.31]
-            rotation: [-0.5089, 0.3365, 0.1367, 0.7804]
+            rotation: [-0.5089, 0.3365, 0.1367, 0.7805]
             scale: [0.782, 0.782, 0.782]
           - !<mesh_renderer>
             id: 12851022842956048769
@@ -52504,7 +52771,7 @@ child:
             enabled: true
             position: [29.84, -19.49, 53.66]
             rotation: [-0.5106, 0.2628, 0.6941, 0.4342]
-            scale: [0.7164, 0.7164, 0.7147]
+            scale: [0.7167, 0.7167, 0.7147]
           - !<mesh_renderer>
             id: 8106887930966572290
             type: 2
@@ -52604,7 +52871,7 @@ child:
             enabled: true
             position: [37.81, -16.09, 57.07]
             rotation: [-0.6066, 0.7026, 0.1883, 0.321]
-            scale: [0.7487, 0.7487, 0.7487]
+            scale: [0.749, 0.749, 0.749]
           - !<mesh_renderer>
             id: 6657649929360443066
             type: 2
@@ -52723,8 +52990,8 @@ child:
             type: 1
             enabled: true
             position: [30.85, -18.43, 51.97]
-            rotation: [-0.7288, 0.4066, 0.183, 0.5197]
-            scale: [0.7111, 0.7111, 0.7102]
+            rotation: [-0.7288, 0.4066, 0.183, 0.5196]
+            scale: [0.7111, 0.7111, 0.7101]
           - !<mesh_renderer>
             id: 4936541283761173479
             type: 2
@@ -52784,7 +53051,7 @@ child:
             enabled: true
             position: [34.51, -21.71, 69.99]
             rotation: [-0.6243, 0.3257, 0.6423, 0.3028]
-            scale: [0.674, 0.6757, 0.674]
+            scale: [0.674, 0.676, 0.674]
           - !<mesh_renderer>
             id: 5056617649133675214
             type: 2
@@ -52903,7 +53170,7 @@ child:
             type: 1
             enabled: true
             position: [-62.56, 6.609, 24.75]
-            rotation: [-0.6695, -0.2107, -0.2213, 0.677]
+            rotation: [-0.6695, -0.2107, -0.2213, 0.6771]
             scale: [0.0001, 0.0001, 0.0001]
           - !<mesh_renderer>
             id: 15299426175003807591
@@ -52923,7 +53190,7 @@ child:
             type: 1
             enabled: true
             position: [-8.479, 2.43, -31.39]
-            rotation: [-0.6695, -0.2107, -0.2213, 0.677]
+            rotation: [-0.6695, -0.2107, -0.2213, 0.6771]
             scale: [0.0001, 0.0001, 0.0001]
           - !<mesh_renderer>
             id: 5861012044599548426
@@ -53024,7 +53291,7 @@ child:
             enabled: true
             position: [4.294, -7.067, -59.89]
             rotation: [-0.5063, 0.7177, 0.1451, 0.4556]
-            scale: [0.6538, 0.6538, 0.6555]
+            scale: [0.6538, 0.6538, 0.6558]
           - !<mesh_renderer>
             id: 11136205809310175498
             type: 2
@@ -53164,7 +53431,7 @@ child:
             enabled: true
             position: [6.692, -4.559, -52.95]
             rotation: [-0.3683, 0.7991, 0.3562, 0.3144]
-            scale: [0.9983, 1, 0.9983]
+            scale: [0.998, 1, 0.998]
           - !<mesh_renderer>
             id: 11131545727886178023
             type: 2
@@ -53184,7 +53451,7 @@ child:
             enabled: true
             position: [21.83, -8.328, -48.45]
             rotation: [0.6016, -0.4933, -0.5267, -0.3426]
-            scale: [0.7112, 0.7129, 0.7112]
+            scale: [0.7112, 0.7132, 0.7112]
           - !<mesh_renderer>
             id: 8272423519591099604
             type: 2
@@ -53224,7 +53491,7 @@ child:
             enabled: true
             position: [20.47, -6.54, -51.89]
             rotation: [0.8528, -0.4363, 0.1078, -0.2659]
-            scale: [0.896, 0.8943, 0.8943]
+            scale: [0.896, 0.894, 0.894]
           - !<mesh_renderer>
             id: 5943511307091622873
             type: 2
@@ -53244,7 +53511,7 @@ child:
             enabled: true
             position: [20.96, -8.553, -47.79]
             rotation: [0.8893, -0.1658, -0.2803, -0.321]
-            scale: [0.721, 0.7193, 0.7193]
+            scale: [0.721, 0.719, 0.719]
           - !<mesh_renderer>
             id: 5560837592478444318
             type: 2
@@ -53304,7 +53571,7 @@ child:
             enabled: true
             position: [57.48, -18.21, 45.59]
             rotation: [0.6694, -0.5733, -0.225, -0.4154]
-            scale: [1, 1, 0.9983]
+            scale: [1, 1, 0.998]
           - !<mesh_renderer>
             id: 408409790114846158
             type: 2
@@ -53679,7 +53946,7 @@ child:
             type: 1
             enabled: true
             position: [45.11, -14.34, -53.43]
-            rotation: [-0.4417, -0.3464, -0.5223, 0.642]
+            rotation: [-0.4417, -0.3464, -0.5223, 0.6419]
             scale: [0.646, 0.646, 0.646]
           - !<mesh_renderer>
             id: 17653310726696985448
@@ -53720,7 +53987,7 @@ child:
             enabled: true
             position: [45.8, -12.81, -57.64]
             rotation: [0.9255, -0.1826, 0.0558, -0.3272]
-            scale: [0.5297, 0.5314, 0.5314]
+            scale: [0.5297, 0.5317, 0.5317]
           - !<mesh_renderer>
             id: 9546710625102308716
             type: 2
@@ -53919,7 +54186,7 @@ child:
             type: 1
             enabled: true
             position: [-16.22, 2.385, -95.15]
-            rotation: [0.67, -0.2657, 0.3881, 0.5743]
+            rotation: [0.67, -0.2657, 0.3881, 0.5744]
             scale: [0.0149, 0.024, 0.0378]
           - !<mesh_renderer>
             id: 2829580908770834459
@@ -54159,7 +54426,7 @@ child:
             type: 1
             enabled: true
             position: [-25.43, -18.12, 35.14]
-            rotation: [-0.6749, 0.2109, 0.2109, 0.675]
+            rotation: [-0.6749, 0.2109, 0.2109, 0.6749]
             scale: [0.0108, 0.0108, 0.0108]
           - !<mesh_renderer>
             id: 18221760076269921825
@@ -54523,7 +54790,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0.3927, 0.1163, 0.9291]
-                    rotation: [-0.0539, 0.1978, 0.2576, 0.9442]
+                    rotation: [-0.0539, 0.1978, 0.2576, 0.9443]
                     scale: [0.0254, 0.0254, 0.0254]
                   - !<mesh_renderer>
                     id: 16956992815543470294
@@ -54607,7 +54874,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0.3927, 0.1163, 0.9291]
-                    rotation: [-0.0539, 0.1978, 0.2576, 0.9442]
+                    rotation: [-0.0539, 0.1978, 0.2576, 0.9443]
                     scale: [0.0254, 0.0254, 0.0254]
                   - !<mesh_renderer>
                     id: 13506670374043042931
@@ -54648,7 +54915,7 @@ child:
             enabled: true
             position: [29.79, -18.18, 15.97]
             rotation: [-0.1421, 0.8003, 0.4041, 0.4195]
-            scale: [0.9983, 1, 0.9983]
+            scale: [0.998, 1, 0.998]
         child:
           - id: 11485184133284406692
             name: crystalChunkExplosive_064
@@ -54963,7 +55230,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0.3927, 0.1163, 0.9291]
-                    rotation: [-0.0539, 0.1978, 0.2576, 0.9442]
+                    rotation: [-0.0539, 0.1978, 0.2576, 0.9443]
                     scale: [0.0254, 0.0254, 0.0254]
                   - !<mesh_renderer>
                     id: 1662567548382067937
@@ -55151,7 +55418,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0.3927, 0.1163, 0.9291]
-                    rotation: [-0.0539, 0.1978, 0.2576, 0.9442]
+                    rotation: [-0.0539, 0.1978, 0.2576, 0.9443]
                     scale: [0.0254, 0.0254, 0.0254]
                   - !<mesh_renderer>
                     id: 11910500451547828674
@@ -55371,7 +55638,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0.3927, 0.1163, 0.9291]
-                    rotation: [-0.0539, 0.1978, 0.2576, 0.9442]
+                    rotation: [-0.0539, 0.1978, 0.2576, 0.9443]
                     scale: [0.0254, 0.0254, 0.0254]
                   - !<mesh_renderer>
                     id: 414570968622698108
@@ -55539,7 +55806,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0.3927, 0.1163, 0.9291]
-                    rotation: [-0.0539, 0.1978, 0.2576, 0.9442]
+                    rotation: [-0.0539, 0.1978, 0.2576, 0.9443]
                     scale: [0.0254, 0.0254, 0.0254]
                   - !<mesh_renderer>
                     id: 4753513748720753426
@@ -55703,7 +55970,7 @@ child:
             type: 1
             enabled: true
             position: [-45.92, -9.054, 107.8]
-            rotation: [0.6059, -0.3645, 0.3645, 0.606]
+            rotation: [0.6059, -0.3645, 0.3645, 0.6059]
             scale: [0.0085, 0.0085, 0.0085]
           - !<mesh_renderer>
             id: 5904582098725693777
@@ -55724,7 +55991,7 @@ child:
             enabled: true
             position: [-44.01, -2.55, 101.3]
             rotation: [-0.2917, -0.6441, 0.6441, -0.2917]
-            scale: [0.353, 0.3547, 0.3547]
+            scale: [0.3527, 0.3547, 0.3547]
           - !<mesh_renderer>
             id: 7654115634682237971
             type: 2
@@ -55764,7 +56031,7 @@ child:
             enabled: true
             position: [-43.6, -4.842, 105.1]
             rotation: [-0.2863, 0.6466, -0.6466, -0.2863]
-            scale: [0.4182, 0.4165, 0.4165]
+            scale: [0.4185, 0.4165, 0.4165]
           - !<mesh_renderer>
             id: 14801945330146146716
             type: 2
@@ -55844,7 +56111,7 @@ child:
             enabled: true
             position: [-38.23, -2.239, 89.8]
             rotation: [-0.1372, -0.6937, 0.6937, -0.1372]
-            scale: [0.4011, 0.3994, 0.3994]
+            scale: [0.4014, 0.3994, 0.3994]
           - !<mesh_renderer>
             id: 876531152204183777
             type: 2
@@ -55864,7 +56131,7 @@ child:
             enabled: true
             position: [-39.55, -2.239, 87.44]
             rotation: [0.17, -0.6864, 0.6864, 0.17]
-            scale: [0.3336, 0.3319, 0.3319]
+            scale: [0.3339, 0.3319, 0.3319]
           - !<mesh_renderer>
             id: 4631920193657399098
             type: 2
@@ -55923,7 +56190,7 @@ child:
             type: 1
             enabled: true
             position: [-69.3, -16.98, 94.59]
-            rotation: [0.5205, -0.4786, 0.4786, 0.5206]
+            rotation: [0.5205, -0.4786, 0.4786, 0.5205]
             scale: [0.0117, 0.0117, 0.0117]
           - !<mesh_renderer>
             id: 8737816331771908814
@@ -56247,7 +56514,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 17929504016571216906
@@ -56499,7 +56766,7 @@ child:
             type: 1
             enabled: true
             position: [-70.55, -3.872, 26.86]
-            rotation: [0.6837, -0.146, 0.1661, 0.6955]
+            rotation: [0.6837, -0.146, 0.1661, 0.6954]
             scale: [0.3994, 0.3994, 0.3994]
           - !<mesh_renderer>
             id: 12014141028730680789
@@ -56619,7 +56886,7 @@ child:
             type: 1
             enabled: true
             position: [-35.55, -0.5173, -2.019]
-            rotation: [0.6572, 0.1664, -0.2625, 0.6866]
+            rotation: [0.6572, 0.1664, -0.2625, 0.6867]
             scale: [0.3673, 0.3673, 0.3673]
           - !<mesh_renderer>
             id: 15421182992246276120
@@ -56720,7 +56987,7 @@ child:
             enabled: true
             position: [-40.54, 12.75, 2.378]
             rotation: [-0.3636, 0.6065, 0.6065, 0.3636]
-            scale: [0.4366, 0.4349, 0.4349]
+            scale: [0.4369, 0.4349, 0.4349]
         child:
           - id: 1086105631756412789
             name: rockSpike_767
@@ -57075,7 +57342,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 14443271217678812158
@@ -57135,7 +57402,7 @@ child:
             type: 1
             enabled: true
             position: [-26.7, 5.24, -57.08]
-            rotation: [-0.4195, 0.436, 0.4382, 0.6647]
+            rotation: [-0.4195, 0.436, 0.4382, 0.6648]
             scale: [0.7525, 0.7525, 0.7525]
         child:
           - id: 11091859041771992946
@@ -57679,7 +57946,7 @@ child:
             type: 1
             enabled: true
             position: [2.237, -43.54, 66.48]
-            rotation: [0.7002, 0.2911, -0.2322, 0.6092]
+            rotation: [0.7002, 0.2911, -0.2322, 0.6091]
             scale: [0.0154, 0.0154, 0.0154]
           - !<mesh_renderer>
             id: 16174649896226368643
@@ -57740,7 +58007,7 @@ child:
             enabled: true
             position: [-20.06, -23.23, 67.81]
             rotation: [-0.0184, 0.7222, -0.6835, 0.1042]
-            scale: [0.5236, 0.5253, 0.5253]
+            scale: [0.5233, 0.5253, 0.5253]
           - !<mesh_renderer>
             id: 8505155531715241476
             type: 2
@@ -57960,7 +58227,7 @@ child:
             enabled: true
             position: [-49.78, -32.58, 75.38]
             rotation: [-0.1354, 0.694, 0.694, 0.1354]
-            scale: [0.5173, 0.519, 0.519]
+            scale: [0.517, 0.519, 0.519]
         child:
           - id: 3420851347005420690
             name: rockSpike_824
@@ -58171,7 +58438,7 @@ child:
             type: 1
             enabled: true
             position: [55.83, -32.71, -15.96]
-            rotation: [0.4493, 0.5284, -0.4377, 0.5721]
+            rotation: [0.4493, 0.5284, -0.4377, 0.5722]
             scale: [0.0081, 0.008, 0.0091]
           - !<mesh_renderer>
             id: 14578676958695699855
@@ -58192,7 +58459,7 @@ child:
             enabled: true
             position: [39.91, -11.79, -25.58]
             rotation: [-0.0066, 0.0935, 0.9955, 0.0113]
-            scale: [0.9983, 0.9983, 1]
+            scale: [0.998, 0.998, 1]
           - !<mesh_renderer>
             id: 10757590135810758846
             type: 2
@@ -58476,7 +58743,7 @@ child:
             enabled: true
             position: [-52.26, 7.812, 100.1]
             rotation: [-0.3891, 0.8183, 0.3568, 0.2272]
-            scale: [0.9983, 1, 0.9983]
+            scale: [0.998, 1, 0.998]
           - !<mesh_renderer>
             id: 17119343971604685101
             type: 2
@@ -58496,7 +58763,7 @@ child:
             enabled: true
             position: [-44.49, 5.067, 96.86]
             rotation: [-0.0905, 0.8658, 0.3477, 0.3482]
-            scale: [0.9983, 1, 0.9983]
+            scale: [0.998, 1, 0.998]
           - !<mesh_renderer>
             id: 17997709467790764916
             type: 2
@@ -58516,7 +58783,7 @@ child:
             enabled: true
             position: [-51.26, 8.393, 94.93]
             rotation: [-0.7788, -0.058, -0.1121, 0.6144]
-            scale: [1, 0.9984, 0.9984]
+            scale: [1, 0.9981, 0.9981]
           - !<mesh_renderer>
             id: 13486304153571749463
             type: 2
@@ -58576,7 +58843,7 @@ child:
             enabled: true
             position: [-48.35, 5.01, 94.07]
             rotation: [-0.323, 0.7875, 0.5246, 0.0159]
-            scale: [0.9983, 1, 0.9983]
+            scale: [0.998, 1, 0.998]
           - !<mesh_renderer>
             id: 9953915149907526726
             type: 2
@@ -58596,7 +58863,7 @@ child:
             enabled: true
             position: [-48.07, 5.116, 95.68]
             rotation: [0.8405, 0.3093, 0.3088, -0.3201]
-            scale: [0.5921, 0.5904, 0.5904]
+            scale: [0.5921, 0.5901, 0.5901]
           - !<mesh_renderer>
             id: 6795774033866482699
             type: 2
@@ -58616,7 +58883,7 @@ child:
             enabled: true
             position: [-53.3, 9.689, 101.5]
             rotation: [0.8499, 0.1924, 0.0691, -0.4856]
-            scale: [0.8588, 0.8571, 0.8571]
+            scale: [0.8588, 0.8568, 0.8568]
           - !<mesh_renderer>
             id: 16666591452876159918
             type: 2
@@ -58636,7 +58903,7 @@ child:
             enabled: true
             position: [-43, 4.962, 90.4]
             rotation: [0.7565, -0.3132, -0.5449, -0.1806]
-            scale: [0.9983, 0.9983, 0.9983]
+            scale: [0.998, 0.998, 0.998]
           - !<mesh_renderer>
             id: 8058274953627678481
             type: 2
@@ -58656,7 +58923,7 @@ child:
             enabled: true
             position: [-40.41, 6.553, 94.19]
             rotation: [-0.155, 0.6868, 0.6194, -0.3472]
-            scale: [0.9983, 0.9983, 0.9983]
+            scale: [0.998, 0.998, 0.998]
           - !<mesh_renderer>
             id: 3701391411582932740
             type: 2
@@ -58676,7 +58943,7 @@ child:
             enabled: true
             position: [-41.96, 6.254, 85.47]
             rotation: [0.0727, 0.8368, 0.4449, -0.3106]
-            scale: [0.9983, 1, 0.9983]
+            scale: [0.998, 1, 0.998]
           - !<mesh_renderer>
             id: 4275684084568045411
             type: 2
@@ -58695,8 +58962,8 @@ child:
             type: 1
             enabled: true
             position: [-45.36, 7.33, 92.39]
-            rotation: [-0.6021, 0.2537, 0.4728, 0.5912]
-            scale: [1, 1, 1]
+            rotation: [-0.6021, 0.2537, 0.4728, 0.5913]
+            scale: [1, 0.9999, 1]
           - !<mesh_renderer>
             id: 6829641797184331311
             type: 2
@@ -58736,7 +59003,7 @@ child:
             enabled: true
             position: [-42.95, 9.949, 95.77]
             rotation: [0.8319, 0.0637, -0.4443, -0.3262]
-            scale: [1, 0.9983, 0.9983]
+            scale: [1, 0.998, 0.998]
           - !<mesh_renderer>
             id: 17034706805572773561
             type: 2
@@ -58835,7 +59102,7 @@ child:
             type: 1
             enabled: true
             position: [25.32, -17.99, 75.01]
-            rotation: [-0.6695, -0.2107, -0.2213, 0.677]
+            rotation: [-0.6695, -0.2107, -0.2213, 0.6771]
             scale: [0.0001, 0.0001, 0.0001]
           - !<mesh_renderer>
             id: 7388595858410118080
@@ -59329,8 +59596,8 @@ child:
             type: 1
             enabled: true
             position: [11.41, -39.02, 42.49]
-            rotation: [0.4446, -0.5499, 0.5499, 0.4446]
-            scale: [0.9238, 0.9238, 0.9238]
+            rotation: [-0.4446, 0.5499, -0.5499, -0.4446]
+            scale: [0.9241, 0.9241, 0.9241]
         child:
           - id: 3283560225045502713
             name: rockSpike_852
@@ -59462,7 +59729,7 @@ child:
                 enabled: true
                 position: [0.26, -2.461, 0.1283]
                 rotation: [-0.1485, -0.0456, 0.9873, -0.0322]
-                scale: [0.4716, 0.3508, 0.4733]
+                scale: [0.4713, 0.3508, 0.4733]
               - !<mesh_renderer>
                 id: 1512492736270018722
                 type: 2
@@ -60049,7 +60316,7 @@ child:
             type: 1
             enabled: true
             position: [66.62, -21.96, -18.49]
-            rotation: [0.5908, -0.3885, 0.3885, 0.5909]
+            rotation: [0.5908, -0.3885, 0.3885, 0.5908]
             scale: [0.2734, 0.2734, 0.2096]
           - !<mesh_renderer>
             id: 12504489648933031816
@@ -60109,7 +60376,7 @@ child:
             type: 1
             enabled: true
             position: [39.74, -34.82, 58.52]
-            rotation: [0.5855, -0.0827, 0.1522, 0.792]
+            rotation: [0.5855, -0.0827, 0.1522, 0.7919]
             scale: [0.006, 0.006, 0.006]
           - !<mesh_renderer>
             id: 11098084682086877068
@@ -60190,7 +60457,7 @@ child:
             enabled: true
             position: [33.95, -23.53, 52.05]
             rotation: [-0.0686, 0.1463, 0.9868, 0.0056]
-            scale: [0.3836, 0.279, 0.3853]
+            scale: [0.3833, 0.279, 0.3853]
           - !<mesh_renderer>
             id: 9652480953030375664
             type: 2
@@ -60353,7 +60620,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.089, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 10551300725604036921
@@ -60741,7 +61008,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-2.088, 1.398, -0.975]
-                rotation: [-0.0768, -0.0315, 0.4852, 0.8704]
+                rotation: [-0.0768, -0.0315, 0.4852, 0.8705]
                 scale: [0.2253, 0.2253, 0.3098]
               - !<mesh_renderer>
                 id: 240823252520272730
@@ -60841,7 +61108,7 @@ child:
             type: 1
             enabled: true
             position: [-35.08, -20.7, 97.37]
-            rotation: [0.5554, -0.4362, 0.4597, 0.5384]
+            rotation: [0.5554, -0.4362, 0.4597, 0.5385]
             scale: [0.0106, 0.0106, 0.012]
           - !<mesh_renderer>
             id: 12764044029060845701
@@ -60902,7 +61169,7 @@ child:
             enabled: true
             position: [14.98, -9.16, -50.76]
             rotation: [0.7935, -0.0464, -0.4783, -0.3733]
-            scale: [0.7112, 0.7095, 0.7095]
+            scale: [0.7112, 0.7092, 0.7092]
           - !<mesh_renderer>
             id: 3329408012412732651
             type: 2
@@ -60982,7 +61249,7 @@ child:
             enabled: true
             position: [21.07, -7.127, -50.37]
             rotation: [0.875, -0.321, 0.3107, -0.1867]
-            scale: [0.6618, 0.6635, 0.6635]
+            scale: [0.6618, 0.6638, 0.6638]
           - !<mesh_renderer>
             id: 516544275678183850
             type: 2
@@ -61022,7 +61289,7 @@ child:
             enabled: true
             position: [16.97, -4.652, -51.1]
             rotation: [0.8951, -0.2309, 0.0894, -0.3709]
-            scale: [0.721, 0.7227, 0.7227]
+            scale: [0.721, 0.723, 0.723]
           - !<mesh_renderer>
             id: 7079647561457537192
             type: 2
@@ -61042,7 +61309,7 @@ child:
             enabled: true
             position: [18.52, -6.56, -50.74]
             rotation: [0.8835, 0.3514, 0.0662, -0.3024]
-            scale: [0.6618, 0.6601, 0.6601]
+            scale: [0.6618, 0.6598, 0.6598]
           - !<mesh_renderer>
             id: 9384640002430644799
             type: 2
@@ -61062,7 +61329,7 @@ child:
             enabled: true
             position: [17.51, -5.338, -49.1]
             rotation: [0.7889, -0.5349, -0.2436, -0.1796]
-            scale: [0.721, 0.7227, 0.7227]
+            scale: [0.721, 0.723, 0.723]
           - !<mesh_renderer>
             id: 3831176083558830960
             type: 2
@@ -61142,7 +61409,7 @@ child:
             enabled: true
             position: [19.57, -7.822, -51.85]
             rotation: [0.8364, -0.4053, 0.1986, -0.3112]
-            scale: [0.6932, 0.6949, 0.6949]
+            scale: [0.6932, 0.6952, 0.6952]
           - !<mesh_renderer>
             id: 12743954753589340437
             type: 2
@@ -61162,7 +61429,7 @@ child:
             enabled: true
             position: [19.25, -9.053, -51.8]
             rotation: [0.8855, 0.053, 0.2923, -0.3574]
-            scale: [0.5578, 0.5595, 0.5595]
+            scale: [0.5578, 0.5598, 0.5598]
           - !<mesh_renderer>
             id: 6145774267197383088
             type: 2
@@ -61342,7 +61609,7 @@ child:
             enabled: true
             position: [-65.6, -7.167, -28.49]
             rotation: [0.7958, -0.3576, 0.0466, -0.4864]
-            scale: [1, 0.9983, 0.9983]
+            scale: [1, 0.998, 0.998]
           - !<mesh_renderer>
             id: 11713137122003881897
             type: 2
@@ -61482,7 +61749,7 @@ child:
             enabled: true
             position: [-4.889, 5.346, -96.88]
             rotation: [0.1407, 0.0367, -0.7146, 0.6843]
-            scale: [0.8975, 0.8975, 0.896]
+            scale: [0.8978, 0.8978, 0.896]
           - !<mesh_renderer>
             id: 5714381655156133221
             type: 2
@@ -61502,7 +61769,7 @@ child:
             enabled: true
             position: [-4.101, 4.088, -100.8]
             rotation: [0.2283, 0.2671, 0.8701, -0.3457]
-            scale: [0.7227, 0.7227, 0.721]
+            scale: [0.723, 0.723, 0.721]
           - !<mesh_renderer>
             id: 17535265031363000491
             type: 2
@@ -61522,7 +61789,7 @@ child:
             enabled: true
             position: [-5.359, 2.075, -99.52]
             rotation: [-0.1018, 0.5999, 0.6947, 0.3837]
-            scale: [0.6635, 0.6635, 0.6618]
+            scale: [0.6638, 0.6638, 0.6618]
           - !<mesh_renderer>
             id: 12870012159747245533
             type: 2

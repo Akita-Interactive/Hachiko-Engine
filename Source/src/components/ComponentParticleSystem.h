@@ -5,13 +5,13 @@ namespace Hachiko
     class Particle;
     class ParticleModifier;
 
-    class HACHIKO_API ComponentParticleSystem : public Component
+    class ComponentParticleSystem : public Component
     {
     public:
         ComponentParticleSystem(GameObject* container);
         ~ComponentParticleSystem() override;
 
-        void Start() override;
+        HACHIKO_API void Start() override;
         void Update() override;
         void Draw(ComponentCamera* camera, Program* program) override;
         void DrawGui() override;
@@ -41,10 +41,10 @@ namespace Hachiko
         [[nodiscard]] ParticleSystem::Emitter::State GetEmitterState() const;
         [[nodiscard]] ParticleSystem::Emitter::Type GetEmitterType() const;
 
-        void Play();
-        void Pause();
-        void Restart();
-        void Stop() override;
+        HACHIKO_API void Play();
+        HACHIKO_API void Pause();
+        HACHIKO_API void Restart();
+        HACHIKO_API void Stop() override;
 
     private:
         ParticleSystem::Emitter::State emitter_state = ParticleSystem::Emitter::State::STOPPED;
