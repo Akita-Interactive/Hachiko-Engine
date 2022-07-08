@@ -1,26 +1,27 @@
 #include "scriptingUtil/gameplaypch.h"
+#include "constants/Scenes.h"
 
 #include "entities/Stats.h"
 #include "entities/crystals/CrystalExplosion.h"
 #include "entities/enemies/EnemyController.h"
 #include "entities/player/PlayerController.h"
 #include "constants/Sounds.h"
+#include "constants/Scenes.h"
 
 // TODO: These two includes must go:
 #include <modules/ModuleSceneManager.h>
-#include <resources/ResourceAnimation.h>
 
 
 Hachiko::Scripting::CrystalExplosion::CrystalExplosion(GameObject* game_object)
 	: Script(game_object, "CrystalExplosion")
 	, _stats()
-	, _player(nullptr)
 	, _explosion_radius(10.0f)
 	, _detecting_radius(1.0f)
 	, _explosive_crystal(false)
-	, _outer_explosion_indicator(nullptr)
-	, _inner_explosion_indicator(nullptr)
+	, _explosion_indicator_helper(nullptr)
 	, _timer_explosion(0.0f)
+	, _explosion_effect(nullptr)
+	, _regen_time(5.f)
 {
 }
 
@@ -30,47 +31,50 @@ void Hachiko::Scripting::CrystalExplosion::OnAwake()
 	{
 		_explosion_crystal->SetActive(false);
 	}
-	enemies = game_object->scene_owner->GetRoot()->GetFirstChildWithName("Enemies");
+	enemies = Scenes::GetEnemiesContainer();
 	_stats = game_object->GetComponent<Stats>();
-	explosion_duration = _timer_explosion;
-
 	_audio_source = game_object->GetComponent<ComponentAudioSource>();
+	transform = game_object->GetTransform();
 }
 
 void Hachiko::Scripting::CrystalExplosion::OnStart()
 {
-	transform = game_object->GetTransform();
-	if (_inner_explosion_indicator)
-	{
-		explosive_area = _inner_explosion_indicator->GetTransform();
-		explosive_area->SetLocalScale(float3(0.1f, 0.1f, 0.1f));
-		_inner_explosion_indicator->SetActive(false);
-	}
-	if (_outer_explosion_indicator)
-	{
-		_outer_explosion_indicator->GetTransform()->SetLocalScale(float3(_explosion_radius, 0.1f, _explosion_radius));
-		_outer_explosion_indicator->SetActive(false);
-	}
+	ResetCrystal();
 }
 
 void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 {
-	ResourceAnimation* resource_animation = _explosion_crystal->GetComponent<ComponentAnimation>()->GetCurrentAnimation();
-
-	if (!_stats->IsAlive() && resource_animation)
+	if (!_stats)
 	{
-		if (resource_animation->GetCurrentState() == ResourceAnimation::State::STOPPED) 
+		return;
+	}
+	
+	if (!_stats->IsAlive())
+	{
+		ComponentAnimation* explosion_anim = _explosion_crystal->GetComponent<ComponentAnimation>();
+		if (explosion_anim && explosion_anim->IsAnimationStopped() && visible)
 		{
-			SceneManagement::Destroy(game_object);
+			SetVisible(false);
 			return;
+		}
+
+
+		if (!visible && _current_regen_time == 0.f)
+		{
+			RegenCrystal();
+		}
+		_current_regen_time += Time::DeltaTime();
+
+		if (_current_regen_time >= _regen_time)
+		{
+			ResetCrystal();
 		}
 	}
 
 	if (is_exploding)
 	{
-		explosive_area->SetLocalScale(math::float3::Lerp(float3(0.1f, 0.1f, 0.1f), float3(_explosion_radius, 0.1f, _explosion_radius),
-			(explosion_duration - _timer_explosion) / explosion_duration));
-		if (_timer_explosion <= 0)
+
+		if (_current_explosion_timer >= _timer_explosion)
 		{
 			ExplodeCrystal();
 			DestroyCrystal();
@@ -78,14 +82,9 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 		}
 		else
 		{
-			_timer_explosion -= Time::DeltaTime();
+			_current_explosion_timer += Time::DeltaTime();
 			return;
 		}
-	}
-
-	if (!_stats || !_stats->IsAlive())
-	{
-		return;
 	}
 
 	if (_explosive_crystal)
@@ -97,13 +96,17 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 void Hachiko::Scripting::CrystalExplosion::StartExplosion()
 {
 	is_exploding = true;
-	_inner_explosion_indicator->SetActive(true);
-	_outer_explosion_indicator->SetActive(true);
+
+	for (GameObject* child : _explosion_effect->children)
+	{
+		child->GetComponent<ComponentBillboard>()->Restart();
+		child->SetActive(true);
+	}
 }
 
 void Hachiko::Scripting::CrystalExplosion::CheckRadiusExplosion()
 {
-	if (_detecting_radius >= transform->GetGlobalPosition().Distance(_player->GetTransform()->GetGlobalPosition()))
+	if (_detecting_radius >= game_object->GetTransform()->GetGlobalPosition().Distance(Scenes::GetPlayer()->GetTransform()->GetGlobalPosition()))
 	{
 		RegisterHit(_stats->_max_hp);
 	}
@@ -111,14 +114,19 @@ void Hachiko::Scripting::CrystalExplosion::CheckRadiusExplosion()
 
 void Hachiko::Scripting::CrystalExplosion::ExplodeCrystal()
 {
+	is_exploding = false;
+	
 	std::vector<GameObject*> check_hit = {};
 
 	if (enemies != nullptr)
 	{
-		check_hit = enemies->children;
+		for (GameObject* enemy_pack : enemies->children)
+		{
+			check_hit.insert(check_hit.end(), enemy_pack->children.begin(), enemy_pack->children.end());
+		}
 	}
 
-	check_hit.push_back(_player);
+	check_hit.push_back(Scenes::GetPlayer());
 
 	std::vector<GameObject*> elements_hit = {};
 
@@ -141,7 +149,7 @@ void Hachiko::Scripting::CrystalExplosion::ExplodeCrystal()
 
 		if (enemy_controller != nullptr)
 		{
-			enemy_controller->RegisterHit(_stats->_attack_power, relative_dir.Normalized(), 0.7f);
+			enemy_controller->RegisterHit(_stats->_attack_power, relative_dir.Normalized(), 0.7f, false, false);
 		}
 
 		if (player_controller != nullptr)
@@ -149,9 +157,12 @@ void Hachiko::Scripting::CrystalExplosion::ExplodeCrystal()
 			player_controller->RegisterHit(_stats->_attack_power, true, relative_dir.Normalized());
 		}
 	}
-	is_exploding = false;
-	_outer_explosion_indicator->SetActive(false);
-	_inner_explosion_indicator->SetActive(false);
+	
+
+	for (GameObject* child : _explosion_effect->children)
+	{
+		child->SetActive(false);
+	}
 }
 
 void Hachiko::Scripting::CrystalExplosion::RegisterHit(int damage)
@@ -174,6 +185,51 @@ void Hachiko::Scripting::CrystalExplosion::RegisterHit(int damage)
 	}
 }
 
+void Hachiko::Scripting::CrystalExplosion::SetVisible(bool v)
+{
+	visible = v;
+	game_object->SetVisible(v, true);
+}
+
+void Hachiko::Scripting::CrystalExplosion::ResetCrystal()
+{
+	is_exploding = false;
+	is_destroyed = false;
+	_stats->SetHealth(1);
+	_static_crystal->SetActive(true);
+	_explosion_crystal->SetActive(false);
+	SetVisible(true);
+	_current_explosion_timer = 0.f;
+	_current_regen_time = 0.f;
+
+	if (_explosion_indicator_helper)
+	{
+		_explosion_indicator_helper->SetActive(false);
+	}
+
+	if (_explosion_effect)
+	{
+		for (GameObject* child : _explosion_effect->children)
+		{
+			child->SetActive(false);
+		}
+	}
+
+	ComponentObstacle* obstacle = game_object->GetComponent<ComponentObstacle>();
+	if (obstacle)
+	{
+		obstacle->Enable();
+		obstacle->AddObstacle();
+	}
+
+	ComponentAnimation* exploding_animation = _explosion_crystal->GetComponent<ComponentAnimation>();
+	if (exploding_animation)
+	{
+		exploding_animation->StopAnimating();
+		exploding_animation->ResetState();
+	}
+}
+
 void Hachiko::Scripting::CrystalExplosion::DestroyCrystal()
 {
 	_audio_source->PostEvent(Sounds::CRYSTAL);
@@ -183,11 +239,25 @@ void Hachiko::Scripting::CrystalExplosion::DestroyCrystal()
 	if (obstacle)
 	{
 		obstacle->RemoveObstacle();
+		obstacle->Disable();
 	}
 	ComponentAnimation* exploding_animation = _explosion_crystal->GetComponent<ComponentAnimation>();
 	if (exploding_animation)
 	{
 		is_destroyed = true;
 		exploding_animation->StartAnimating();
+	}
+}
+
+void Hachiko::Scripting::CrystalExplosion::RegenCrystal()
+{
+	_current_regen_time = 0.f;
+	_static_crystal->SetActive(true);
+	_static_crystal->SetVisible(true, false);
+	ComponentAnimation* regen_animation = _static_crystal->GetComponent<ComponentAnimation>();
+	if (regen_animation)
+	{
+		regen_animation->ResetState();
+		regen_animation->StartAnimating();
 	}
 }

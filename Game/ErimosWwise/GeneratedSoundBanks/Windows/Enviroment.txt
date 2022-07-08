@@ -1,20 +1,29 @@
 Event	ID	Name			Wwise Object Path	Notes
 	707649828	Stop_Pebble			\Default Work Unit\Stop_Pebble	
+	738066393	Stop_Laser			\Default Work Unit\Stop_Laser	
 	1020223172	Play_Wind			\Default Work Unit\Play_Wind	
 	1157125118	Play_Pebble			\Default Work Unit\Play_Pebble	
+	1196441153	Play_DoorOpens			\Default Work Unit\Play_DoorOpens	
 	2035174344	Play_Crystal			\Default Work Unit\Play_Crystal	
+	2270376495	Play_Laser			\Default Work Unit\Play_Laser	
 	3173136834	Stop_Wind			\Default Work Unit\Stop_Wind	
+	4092857357	Play_Laser_Hit			\Default Work Unit\Play_Laser_Hit	
 
 Effect plug-ins	ID	Name	Type				Notes
 	48620415	Have_U_Ever_Been_Outside	Wwise RoomVerb			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	11692854	Pebbles 3	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Pebbles\Pebbles 3		551392
-	23504808	Pebbles 2	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Pebbles\Pebbles 2		797616
-	101284139	cristal broken 1	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Crystal\cristal broken 1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Crystals\cristal broken 1		374996
-	202657829	cristal broken 2	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Crystal\cristal broken 2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Crystals\cristal broken 2		374996
-	244703648	Wind	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Desert_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Wind		22579344
-	376669262	Pebbles 1	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Pebbles\Pebbles 1		1146744
-	706795758	cristal broken 3	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Crystal\cristal broken 3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Crystals\cristal broken 3		330896
-	857441310	Pebbles 4	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Pebbles\Pebbles 4		661644
+	11692854	Pebbles 3	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 3		551392
+	23504808	Pebbles 2	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 2		797616
+	101284139	cristal broken 1	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Crystal\cristal broken 1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\cristal broken 1		374996
+	202657829	cristal broken 2	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Crystal\cristal broken 2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\cristal broken 2		374996
+	244703648	Wind	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Desert_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Wind		22579344
+	291347773	DoorOpenSlime	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\DoorOpenSlime_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\DoorOpenSlime		81664
+	376669262	Pebbles 1	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 1		1146744
+	706795758	cristal broken 3	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Crystal\cristal broken 3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\cristal broken 3		330896
+	781381782	LaserStart	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Laser\Noise - Swirly Spinner_86AE19BA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LaserStart		378516
+	786404871	LaserLoop	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Laser\Sub - Sub Bees_AA994B59.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LaserLoop		851804
+	857441310	Pebbles 4	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 4		661644
+	985470147	LaserLoop2	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Laser\Sub - Subtle Meanie_CAC3EAAE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LaserLoop2		840876
+	1053424550	Laser_Hit	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Laser\Swish - Call And Response_EB955B5F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\Laser_Hit		268756
 

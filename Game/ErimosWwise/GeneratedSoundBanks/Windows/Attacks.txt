@@ -1,20 +1,32 @@
 Event	ID	Name			Wwise Object Path	Notes
+	998505444	Play_LoadingAmmo			\Default Work Unit\Play_LoadingAmmo	
+	1388583332	Play_ShootNoAmmo			\Default Work Unit\Play_ShootNoAmmo	
 	1824944578	Play_EnemyAttack			\Default Work Unit\Play_EnemyAttack	
 	2211787386	Play_Dash			\Default Work Unit\Play_Dash	
 	2402038236	Play_EnemyDie			\Default Work Unit\Play_EnemyDie	
 	2988676654	Play_MeleeAttack			\Default Work Unit\Play_MeleeAttack	
 	3174629258	Play_GameOver			\Default Work Unit\Play_GameOver	
+	3438014598	Play_ReceiveDamage			\Default Work Unit\Play_ReceiveDamage	
 	3766948527	Play_RangedAttack			\Default Work Unit\Play_RangedAttack	
+	3772493585	Play_ParasitePickUp			\Default Work Unit\Play_ParasitePickUp	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	116007299	MonsterAttack	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\slime-squish_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\MonsterAttack		79676
-	132983356	Meele_05	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Melee\Meele_05_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\MeleeAttack\Meele_05		110392
-	171904615	Dash	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Dash_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dash		211744
-	277816369	RangedAttack	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\weapons-plasma-shot_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\RangedAttack		28380
-	418495884	GameOver	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\game-die_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameOver		166728
-	701692506	Meele_04	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Melee\Meele_04_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\MeleeAttack\Meele_04		110392
-	719773623	MonsterDying	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\monster-dying_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\MonsterDying		273484
-	723959887	Meele_02	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Melee\Meele_02_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\MeleeAttack\Meele_02		110396
-	911303618	Meele_01	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Melee\Meele_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\MeleeAttack\Meele_01		132444
-	929993214	Meele_03	C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Melee\Meele_03_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\MeleeAttack\Meele_03		110392
+	116007299	MonsterAttack	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\slime-squish_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\MonsterAttack		79676
+	132796318	Damage 7	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Damage\Damage 7_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\ReceiveDamage\Damage 7		96244
+	154933663	Impact - Lightweight	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Ranged attack\Impact - Lightweight_C96353A1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Ranged\Impact - Lightweight		256412
+	184664915	Parasite pick up 2	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Parasite pick up\Parasite pick up 2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\ParasitePickUp\Parasite pick up 2		191244
+	392689559	Damage 6	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Damage\Damage 6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\ReceiveDamage\Damage 6		37996
+	415761682	EmptyShoot	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Ranged attack\No ammo_F3617047.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\EmptyShoot		51676
+	418495884	GameOver	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\game-die_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameOver		166728
+	562576200	LoadingAmmo	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Ranged attack\Impact - Lightweight_71F41519.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\LoadingAmmo		132028
+	609605835	Parasite pick up 3	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Parasite pick up\Parasite pick up 3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\ParasitePickUp\Parasite pick up 3		191244
+	620616950	Damage 5	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Damage\Damage 5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\ReceiveDamage\Damage 5		39648
+	658527925	Parasite pick up 4	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Parasite pick up\Parasite pick up 4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\ParasitePickUp\Parasite pick up 4		191244
+	719773623	MonsterDying	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\monster-dying_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\MonsterDying		273484
+	825601952	Damage 8	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Damage\Damage 8_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\ReceiveDamage\Damage 8		67856
+	916160990	Punch - Whack A Bot	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Melee attack\Punch - Whack A Bot_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\MeleeAttack\Punch - Whack A Bot		336704
+	944417870	Punch - Pop	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Melee attack\Punch - Pop_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\MeleeAttack\Punch - Pop		171584
+	977051301	Dash	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Dash\Impact - Cease Fire_9FEA8B16.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Dash		209732
+	1016931998	Impact - Robot Punch	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Ranged attack\Impact - Robot Punch_E2E3A2D3.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Ranged\Impact - Robot Punch		222548
+	1072732608	Damage 9	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Damage\Damage 9_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\ReceiveDamage\Damage 9		40568
 

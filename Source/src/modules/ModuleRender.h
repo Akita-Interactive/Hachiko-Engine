@@ -5,6 +5,7 @@
 #include "batching/BatchManager.h"
 #include "core/rendering/RenderList.h"
 #include "core/rendering/GBuffer.h"
+#include "core/rendering/ShadowManager.h"
 
 #include <vector>
 
@@ -26,6 +27,13 @@ namespace Hachiko
         unsigned char* glew;
         unsigned char* opengl;
         unsigned char* glsl;
+    };
+
+    typedef int DrawConfig;
+    enum DrawConfigFlags
+    {
+        DRAW_CONFIG_TRANSPARENT = 1 << 1,
+        DRAW_CONFIG_OPAQUE = 1 << 2
     };
 
     class ModuleRender : public Module
@@ -109,6 +117,22 @@ namespace Hachiko
         {
             return particle_vao;
         }
+
+        void ApplyGaussianFilter(unsigned source_fbo, unsigned source_texture, 
+            unsigned temp_fbo, unsigned temp_texture, float blur_scale_amount, 
+            unsigned width, unsigned height, const Program* program) const;
+            
+        static void EnableBlending(GLenum blend_func_sfactor = GL_SRC_ALPHA, GLenum blend_func_dfactor = GL_ONE_MINUS_SRC_ALPHA, GLenum blend_equation = GL_FUNC_ADD) 
+        {
+            glEnable(GL_BLEND);
+            glBlendFunc(blend_func_sfactor, blend_func_dfactor);
+            glBlendEquation(blend_equation);
+        }
+
+        static void DisableBlending()
+        {
+            glDisable(GL_BLEND);
+        }
     
     private:
         void GenerateFrameBuffer();
@@ -118,6 +142,8 @@ namespace Hachiko
         void DrawDeferred(Scene* scene, ComponentCamera* camera, BatchManager* batch_manager);
         void DrawForward(Scene* scene, BatchManager* batch_manager);
         void DrawPreForwardPass(Scene* scene, ComponentCamera* camera) const;
+        bool DrawToShadowMap(Scene* scene, ComponentCamera* camera, BatchManager* batch_manager, DrawConfig draw_config);
+        
         void SetRenderMode(bool is_deferred);
 
         void CreateContext();
@@ -139,6 +165,10 @@ namespace Hachiko
         unsigned fb_height = 0;
         unsigned fb_width = 0;
 
+        // Shadow Map related:
+        ShadowManager shadow_manager;
+        bool shadow_pass_enabled = true;
+
         bool draw_deferred = true;
 
         // Deferred rendering:
@@ -156,7 +186,6 @@ namespace Hachiko
 
         GpuData gpu{};
         GlVersion gl{};
-
 
         static const unsigned n_bins = 50;
         std::vector<float> fps_log;

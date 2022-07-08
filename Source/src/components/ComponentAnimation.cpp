@@ -85,7 +85,7 @@ std::string Hachiko::ComponentAnimation::GetActiveNode() const
 
 void Hachiko::ComponentAnimation::Update()
 {
-    controller->Update(EngineTimer::delta_time * 1000);
+    controller->Update(EngineTimer::delta_time * 1000, reverse);
 
     if (game_object != nullptr)
     {
@@ -98,7 +98,7 @@ void Hachiko::ComponentAnimation::UpdatedGameObject(GameObject* go)
     float3 position;
     Quat rotation;
 
-    if (controller->GetTransform(controller->current, go->name.c_str(), position, rotation))
+    if (controller->GetTransform(controller->GetCurrentInstance(), go->name.c_str(), position, rotation))
     {
         go->GetTransform()->SetLocalPosition(position);
         go->GetTransform()->SetLocalRotation(rotation);
@@ -129,7 +129,7 @@ void Hachiko::ComponentAnimation::PlayNode(unsigned int node_idx, unsigned int b
 
         if (clip_idx < state_machine->GetNumClips())
         {
-            current_animation = state_machine->GetClipRes(clip_idx);
+            ResourceAnimation* current_animation = state_machine->GetClipRes(clip_idx);
 
             if (current_animation != 0)
             {
@@ -145,6 +145,8 @@ void Hachiko::ComponentAnimation::DrawGui()
 
     if (ImGuiUtils::CollapsingHeader(game_object, this, "Animation"))
     {
+        ImGui::Checkbox("Reverse", &reverse);
+
         /* LOAD STATE MACHINE */
 
         LoadStateMachine();
@@ -163,8 +165,8 @@ void Hachiko::ComponentAnimation::DrawGui()
             if (ImGui::Button("Create State Machine"))
             {
                 App->resources->ReleaseResource(state_machine);
-                state_machine = new ResourceStateMachine(UUID::GenerateUID());
-                state_machine->state_m_name = auxiliary_name;
+                std::vector<UID> uids = App->resources->CreateAsset(Resource::Type::STATE_MACHINE, auxiliary_name);
+                state_machine = static_cast<ResourceStateMachine*>(App->resources->GetResource(Resource::Type::STATE_MACHINE, uids[0]));
                 ImGui::CloseCurrentPopup();
             }
             ImGui::EndPopup();

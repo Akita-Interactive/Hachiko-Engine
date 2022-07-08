@@ -15,13 +15,14 @@ namespace Hachiko
         ~ModuleWindow() override;
 
         bool Init() override;
+        bool Start() override;
         [[nodiscard]] bool CleanUp() override;
 
         void WindowResized();
         void SetFullScreen(bool fullscreen) const;
         void SetResizable(bool resizable) const;
         void SetSize(int w, int h) const;
-        static void SetVsync(bool vsync);
+        void SetVsync(bool vsync_enabled);
 
         [[nodiscard]] int GetWidth() const
         {

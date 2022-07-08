@@ -35,20 +35,20 @@ void Hachiko::VelocityParticleModifier::DrawGui()
 
 void Hachiko::VelocityParticleModifier::Save(YAML::Node& node) const
 {
-    YAML::Node velocity_module = node[MODULE_VELOCITY];
+    YAML::Node velocity_module = node[MODIFIER_VELOCITY];
     ParticleModifier::Save(velocity_module);
     velocity_module[SPEED] = delta_speed;
 }
 
 void Hachiko::VelocityParticleModifier::Load(const YAML::Node& node)
 {
-    ParticleModifier::Load(node[MODULE_VELOCITY]);
-    delta_speed = node[MODULE_VELOCITY][SPEED].IsDefined() ? node[MODULE_VELOCITY][SPEED].as<ParticleSystem::VariableTypeProperty>() : delta_speed;
+    ParticleModifier::Load(node[MODIFIER_VELOCITY]);
+    delta_speed = node[MODIFIER_VELOCITY][SPEED].IsDefined() ? node[MODIFIER_VELOCITY][SPEED].as<ParticleSystem::VariableTypeProperty>() : delta_speed;
 }
 
 void Hachiko::VelocityParticleModifier::UpdateVelocityOverTime(Particle& particle)
 {
     float particle_speed = particle.GetCurrentSpeed();
-    particle_speed += delta_speed.GetValue();
+    particle_speed += delta_speed.GetValue(particle.GetCurrentLifeNormalized());
     particle.SetCurrentSpeed(particle_speed);
 }

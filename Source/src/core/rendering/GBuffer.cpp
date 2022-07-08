@@ -181,6 +181,25 @@ void Hachiko::GBuffer::BindTextures() const
     glBindTexture(GL_TEXTURE_2D, _emissive_texture);
 }
 
+void Hachiko::GBuffer::UnbindTextures() const 
+{
+    // Bind diffuse texture:
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    // Bind specular & smoothness texture:
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    // Bind normal texture:
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    // Bind position texture:
+    glActiveTexture(GL_TEXTURE3);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    // Bind emissive texture:
+    glActiveTexture(GL_TEXTURE4);
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 void Hachiko::GBuffer::BindForReading() const 
 {
     glBindFramebuffer(GL_READ_FRAMEBUFFER, _g_buffer);

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="626769978" Language="SFX" Hash="2978759642">
+		<SoundBank Id="626769978" Language="SFX" Hash="1880952237">
 			<ObjectPath>\SoundBanks\Default Work Unit\BackgroundMusic</ObjectPath>
 			<ShortName>BackgroundMusic</ShortName>
 			<Path>BackgroundMusic.bnk</Path>
@@ -44,12 +44,35 @@
 				<Event Id="445689598" Name="Stop_Navigation" ObjectPath="\Events\Default Work Unit\Stop_Navigation"/>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="1147299202">
+		<SoundBank Id="1355168291" Language="SFX" Hash="1505528289">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="2385628198" Language="SFX" Hash="1974466695">
+		<SoundBank Id="1551306167" Language="SFX" Hash="245703994">
+			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
+			<ShortName>UI</ShortName>
+			<Path>UI.bnk</Path>
+			<IncludedEvents>
+				<Event Id="1615720664" Name="Play_UIClick" ObjectPath="\Events\Default Work Unit\Play_UIClick">
+					<IncludedMemoryFiles>
+						<File Id="702924850" Language="SFX">
+							<ShortName>UI\ui-confirmation.wav</ShortName>
+							<Path>SFX\UI\ui-confirmation_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2502251926" Name="Play_UIHover" ObjectPath="\Events\Default Work Unit\Play_UIHover">
+					<IncludedMemoryFiles>
+						<File Id="1007111854" Language="SFX">
+							<ShortName>UI\ui-hover.wav</ShortName>
+							<Path>SFX\UI\ui-hover_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+		<SoundBank Id="2385628198" Language="SFX" Hash="193242147">
 			<ObjectPath>\SoundBanks\Default Work Unit\Footsteps</ObjectPath>
 			<ShortName>Footsteps</ShortName>
 			<Path>Footsteps.bnk</Path>
@@ -379,16 +402,16 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3768541028" Language="SFX" Hash="3080236728">
+		<SoundBank Id="3768541028" Language="SFX" Hash="3355570962">
 			<ObjectPath>\SoundBanks\Default Work Unit\Attacks</ObjectPath>
 			<ShortName>Attacks</ShortName>
 			<Path>Attacks.bnk</Path>
 			<IncludedEvents>
 				<Event Id="2211787386" Name="Play_Dash" ObjectPath="\Events\Default Work Unit\Play_Dash">
 					<IncludedMemoryFiles>
-						<File Id="171904615" Language="SFX">
-							<ShortName>Dash.wav</ShortName>
-							<Path>SFX\Dash_10C4C929.wem</Path>
+						<File Id="977051301" Language="SFX">
+							<ShortName>Player\Dash\Impact - Cease Fire.wav</ShortName>
+							<Path>SFX\Player\Dash\Impact - Cease Fire_9FEA8B16.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -416,41 +439,89 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="998505444" Name="Play_LoadingAmmo" ObjectPath="\Events\Default Work Unit\Play_LoadingAmmo">
+					<IncludedMemoryFiles>
+						<File Id="562576200" Language="SFX">
+							<ShortName>Player\Ranged attack\Impact - Lightweight.wav</ShortName>
+							<Path>SFX\Player\Ranged attack\Impact - Lightweight_71F41519.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2988676654" Name="Play_MeleeAttack" ObjectPath="\Events\Default Work Unit\Play_MeleeAttack">
 					<IncludedMemoryFiles>
-						<File Id="132983356" Language="SFX">
-							<ShortName>Melee\Meele_05.wav</ShortName>
-							<Path>SFX\Melee\Meele_05_10C4C929.wem</Path>
+						<File Id="916160990" Language="SFX">
+							<ShortName>Player\Melee attack\Punch - Whack A Bot.wav</ShortName>
+							<Path>SFX\Player\Melee attack\Punch - Whack A Bot_10C4C929.wem</Path>
 						</File>
-						<File Id="701692506" Language="SFX">
-							<ShortName>Melee\Meele_04.wav</ShortName>
-							<Path>SFX\Melee\Meele_04_10C4C929.wem</Path>
+						<File Id="944417870" Language="SFX">
+							<ShortName>Player\Melee attack\Punch - Pop.wav</ShortName>
+							<Path>SFX\Player\Melee attack\Punch - Pop_10C4C929.wem</Path>
 						</File>
-						<File Id="723959887" Language="SFX">
-							<ShortName>Melee\Meele_02.wav</ShortName>
-							<Path>SFX\Melee\Meele_02_10C4C929.wem</Path>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3772493585" Name="Play_ParasitePickUp" ObjectPath="\Events\Default Work Unit\Play_ParasitePickUp">
+					<IncludedMemoryFiles>
+						<File Id="184664915" Language="SFX">
+							<ShortName>Player\Parasite pick up\Parasite pick up 2.wav</ShortName>
+							<Path>SFX\Player\Parasite pick up\Parasite pick up 2_10C4C929.wem</Path>
 						</File>
-						<File Id="911303618" Language="SFX">
-							<ShortName>Melee\Meele_01.wav</ShortName>
-							<Path>SFX\Melee\Meele_01_10C4C929.wem</Path>
+						<File Id="609605835" Language="SFX">
+							<ShortName>Player\Parasite pick up\Parasite pick up 3.wav</ShortName>
+							<Path>SFX\Player\Parasite pick up\Parasite pick up 3_10C4C929.wem</Path>
 						</File>
-						<File Id="929993214" Language="SFX">
-							<ShortName>Melee\Meele_03.wav</ShortName>
-							<Path>SFX\Melee\Meele_03_10C4C929.wem</Path>
+						<File Id="658527925" Language="SFX">
+							<ShortName>Player\Parasite pick up\Parasite pick up 4.wav</ShortName>
+							<Path>SFX\Player\Parasite pick up\Parasite pick up 4_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="3766948527" Name="Play_RangedAttack" ObjectPath="\Events\Default Work Unit\Play_RangedAttack">
 					<IncludedMemoryFiles>
-						<File Id="277816369" Language="SFX">
-							<ShortName>weapons-plasma-shot.wav</ShortName>
-							<Path>SFX\weapons-plasma-shot_10C4C929.wem</Path>
+						<File Id="154933663" Language="SFX">
+							<ShortName>Player\Ranged attack\Impact - Lightweight.wav</ShortName>
+							<Path>SFX\Player\Ranged attack\Impact - Lightweight_C96353A1.wem</Path>
+						</File>
+						<File Id="1016931998" Language="SFX">
+							<ShortName>Player\Ranged attack\Impact - Robot Punch.wav</ShortName>
+							<Path>SFX\Player\Ranged attack\Impact - Robot Punch_E2E3A2D3.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3438014598" Name="Play_ReceiveDamage" ObjectPath="\Events\Default Work Unit\Play_ReceiveDamage">
+					<IncludedMemoryFiles>
+						<File Id="132796318" Language="SFX">
+							<ShortName>Player\Damage\Damage 7.wav</ShortName>
+							<Path>SFX\Player\Damage\Damage 7_10C4C929.wem</Path>
+						</File>
+						<File Id="392689559" Language="SFX">
+							<ShortName>Player\Damage\Damage 6.wav</ShortName>
+							<Path>SFX\Player\Damage\Damage 6_10C4C929.wem</Path>
+						</File>
+						<File Id="620616950" Language="SFX">
+							<ShortName>Player\Damage\Damage 5.wav</ShortName>
+							<Path>SFX\Player\Damage\Damage 5_10C4C929.wem</Path>
+						</File>
+						<File Id="825601952" Language="SFX">
+							<ShortName>Player\Damage\Damage 8.wav</ShortName>
+							<Path>SFX\Player\Damage\Damage 8_10C4C929.wem</Path>
+						</File>
+						<File Id="1072732608" Language="SFX">
+							<ShortName>Player\Damage\Damage 9.wav</ShortName>
+							<Path>SFX\Player\Damage\Damage 9_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1388583332" Name="Play_ShootNoAmmo" ObjectPath="\Events\Default Work Unit\Play_ShootNoAmmo">
+					<IncludedMemoryFiles>
+						<File Id="415761682" Language="SFX">
+							<ShortName>Player\Ranged attack\No ammo.wav</ShortName>
+							<Path>SFX\Player\Ranged attack\No ammo_F3617047.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="3909959462" Language="SFX" Hash="542685332">
+		<SoundBank Id="3909959462" Language="SFX" Hash="3965893716">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enviroment</ObjectPath>
 			<ShortName>Enviroment</ShortName>
 			<Path>Enviroment.bnk</Path>
@@ -468,6 +539,38 @@
 						<File Id="706795758" Language="SFX">
 							<ShortName>Crystal\cristal broken 3.wav</ShortName>
 							<Path>SFX\Crystal\cristal broken 3_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1196441153" Name="Play_DoorOpens" ObjectPath="\Events\Default Work Unit\Play_DoorOpens">
+					<IncludedMemoryFiles>
+						<File Id="291347773" Language="SFX">
+							<ShortName>DoorOpenSlime.wav</ShortName>
+							<Path>SFX\DoorOpenSlime_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2270376495" Name="Play_Laser" ObjectPath="\Events\Default Work Unit\Play_Laser">
+					<IncludedMemoryFiles>
+						<File Id="781381782" Language="SFX">
+							<ShortName>Laser\Noise - Swirly Spinner.wav</ShortName>
+							<Path>SFX\Laser\Noise - Swirly Spinner_86AE19BA.wem</Path>
+						</File>
+						<File Id="786404871" Language="SFX">
+							<ShortName>Laser\Sub - Sub Bees.wav</ShortName>
+							<Path>SFX\Laser\Sub - Sub Bees_AA994B59.wem</Path>
+						</File>
+						<File Id="985470147" Language="SFX">
+							<ShortName>Laser\Sub - Subtle Meanie.wav</ShortName>
+							<Path>SFX\Laser\Sub - Subtle Meanie_CAC3EAAE.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4092857357" Name="Play_Laser_Hit" ObjectPath="\Events\Default Work Unit\Play_Laser_Hit">
+					<IncludedMemoryFiles>
+						<File Id="1053424550" Language="SFX">
+							<ShortName>Laser\Swish - Call And Response.wav</ShortName>
+							<Path>SFX\Laser\Swish - Call And Response_EB955B5F.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -499,6 +602,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="738066393" Name="Stop_Laser" ObjectPath="\Events\Default Work Unit\Stop_Laser"/>
 				<Event Id="707649828" Name="Stop_Pebble" ObjectPath="\Events\Default Work Unit\Stop_Pebble"/>
 				<Event Id="3173136834" Name="Stop_Wind" ObjectPath="\Events\Default Work Unit\Stop_Wind"/>
 			</IncludedEvents>

@@ -30,6 +30,9 @@ public:
     bool ShouldExecuteScripts() const;
     void StopExecutingScripts();
 
+    [[nodiscard]] const std::vector<std::string>& GetLoadedScriptNames() const;
+    [[nodiscard]] size_t GetLoadedScriptCount() const;
+
 private:
     void SubscribeToEvents();
     bool LoadFirstTime();
@@ -40,6 +43,7 @@ private:
     void DeleteAllScriptsOnCurrentScene() const; 
     void AwakeAllScriptsOnCurrentScene() const; 
     void ExecuteOnLoadForAllScripts() const; 
+    void LoadScriptNamesAndCount();
     bool IsDllVersionChanged();
 
 private:
@@ -48,6 +52,9 @@ private:
     unsigned int _times_reloaded;
     std::string _current_dll_timestamp;
     std::wstring _current_dll_name;
+
+    size_t _available_script_count;
+    std::vector<std::string> _script_names;
     
     // TODO: Implement a timer class that basically has these two values
     // and has a method Tick, that takes delta and decreases the timer and

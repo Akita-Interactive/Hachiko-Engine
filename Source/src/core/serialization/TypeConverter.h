@@ -473,6 +473,7 @@ namespace YAML
             node.push_back(static_cast<int>(rhs.orientation));
             node.push_back(static_cast<int>(rhs.render_mode));
             node.push_back(rhs.orientate_to_direction);
+            node.push_back(rhs.stretch);
 
             node.SetStyle(EmitterStyle::Flow);
             return node;
@@ -480,7 +481,7 @@ namespace YAML
 
         static bool decode(const Node& node, Hachiko::ParticleSystem::ParticleProperties& rhs)
         {
-            if (!node.IsSequence() || node.size() != 4)
+            if (!node.IsSequence() || node.size() != 5)
             {
                 return false;
             }
@@ -489,7 +490,7 @@ namespace YAML
             rhs.orientation = static_cast<Hachiko::ParticleSystem::ParticleOrientation>(node[1].as<int>());
             rhs.render_mode = static_cast<Hachiko::ParticleSystem::ParticleRenderMode>(node[2].as<int>());
             rhs.orientate_to_direction = node[3].as<bool>();
-
+            rhs.stretch = node[4].as<Hachiko::ParticleSystem::VariableTypeProperty>();
             return true;
         }
     };
@@ -543,6 +544,63 @@ namespace YAML
             rhs.y = node[1].as<bool>();
             rhs.z = node[2].as<bool>();
             return true;
+        }
+    };
+
+    template<>
+    struct convert<float>
+    {
+        static constexpr int max_digits = 4;
+        inline static float rounding_factor = static_cast<float>(std::pow(10, max_digits));
+        inline static float rounding_coefficient = 1 / rounding_factor;
+
+        static Node encode(const float& rhs)
+        {
+            std::stringstream stream;
+            stream.precision(max_digits);
+            stream.setf(std::ios::dec, std::ios::basefield);
+            const float value = std::round(rhs * rounding_factor) * rounding_coefficient;
+            conversion::inner_encode(value, stream);
+            return Node(stream.str());
+        }
+
+        static bool decode(const Node& node, float& rhs)
+        {
+            if (node.Type() != NodeType::Scalar)
+            {
+                return false;
+            }
+            const std::string& input = node.Scalar();
+            std::stringstream stream(input);
+            stream.unsetf(std::ios::dec);
+            if (conversion::ConvertStreamTo(stream, rhs))
+            {
+                return true;
+            }
+            if (std::numeric_limits<float>::has_infinity)
+            {
+                if (conversion::IsInfinity(input))
+                {
+                    rhs = std::numeric_limits<float>::infinity();
+                    return true;
+                }
+                if (conversion::IsNegativeInfinity(input))
+                {
+                    rhs = - std::numeric_limits<float>::infinity();
+                    return true;
+                }
+            }
+
+            if (std::numeric_limits<float>::has_quiet_NaN)
+            {
+                if (conversion::IsNaN(input))
+                {
+                    rhs = std::numeric_limits<float>::quiet_NaN();
+                    return true;
+                }
+            }
+
+            return false;
         }
     };
 } // namespace YAML

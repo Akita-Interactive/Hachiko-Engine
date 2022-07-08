@@ -33,3 +33,8 @@ void Hachiko::Scripting::Stats::Heal(int health)
 	_current_hp += health;
 	_current_hp = math::Clamp(_current_hp, 0, _max_hp);
 }
+
+void Hachiko::Scripting::Stats::SetHealth(int health)
+{
+	_current_hp = math::Clamp(health, 0, _max_hp);
+}

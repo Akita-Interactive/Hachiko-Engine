@@ -19,7 +19,7 @@ namespace Hachiko
         void Load(const YAML::Node& node) override;
 
     private:
-        ParticleSystem::VariableTypeProperty size{float2::zero, 0.01f, true, false};
+        ParticleSystem::VariableTypeProperty size{float2::zero, 0.01f};
         Widgets::DragFloatConfig cfg;
         void UpdateSizeOverTime(Particle& particle) const;
     };

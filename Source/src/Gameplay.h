@@ -384,6 +384,7 @@ enum class HACHIKO_API KeyCode
 enum class HACHIKO_API MouseButton
 {
     // These are taken from SDL source code.
+    UNKNOWN = 0,
     LEFT = 1,
     MIDDLE = 2,
     RIGHT = 3
@@ -408,9 +409,10 @@ namespace Hachiko::SceneManagement
 {
 HACHIKO_API void SwitchScene(unsigned long long scene_uid);
 HACHIKO_API void SetSkyboxActive(bool v);
-HACHIKO_API GameObject* Raycast(const float3& origin, const float3& destination);
-HACHIKO_API GameObject* BoundingRaycast(const float3& origin, const float3& destination);
+HACHIKO_API GameObject* Raycast(const float3& origin, const float3& destination, float3* closest_hit = nullptr, GameObject* parent_filter = nullptr, bool active_only = false);
+HACHIKO_API GameObject* BoundingRaycast(const float3& origin, const float3& destination, GameObject* parent_filter = nullptr, bool active_only = false);
 HACHIKO_API GameObject* FindInCurrentScene(unsigned long long id);
+HACHIKO_API GameObject* FindInCurrentScene(const char* name);
 HACHIKO_API std::vector<GameObject*> Instantiate(unsigned long long prefab_uid, GameObject* parent, unsigned n_instances);
 HACHIKO_API void Destroy(GameObject* game_object);
 } // namespace Hachiko::SceneManagement
@@ -423,6 +425,7 @@ HACHIKO_API unsigned int GetMs();
 HACHIKO_API void SetPolygonMode(bool is_fill);
 HACHIKO_API void SetVsync(bool is_vsync);
 HACHIKO_API bool GetVsync();
+HACHIKO_API void DebugDraw(const OBB& box, float3 color = float3(1.0, 1.0, 1.0));
 HACHIKO_API void DrawNavmesh(bool is_navmesh);
 } // namespace Hachiko::Debug
 
@@ -477,6 +480,11 @@ HACHIKO_API_COMPONENT_VOID Show(const char* field_name, const char* field_type,
 namespace Hachiko::Navigation
 {
     HACHIKO_API float GetHeightFromPosition(const math::float3& position);
-    HACHIKO_API math::float3 GetCorrectedPosition(math::float3& position, const math::float3& extents);
+    HACHIKO_API math::float3 GetCorrectedPosition(const math::float3& position, const math::float3& extents);
     HACHIKO_API void CorrectPosition(math::float3& position, const math::float3& extents);
 } // namespace Hachiko::Navigation
+
+namespace Hachiko::FileUtility
+{
+    HACHIKO_API const std::string& GetWorkingDirectory();
+} // namespace Hachiko::FileSystem

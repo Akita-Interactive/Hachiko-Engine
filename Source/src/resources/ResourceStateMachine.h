@@ -160,6 +160,10 @@ namespace Hachiko
         {
             return state_m_name;
         }
+        void SetName(const std::string name)
+        {
+            state_m_name = name;
+        }
 
         void Save();
 

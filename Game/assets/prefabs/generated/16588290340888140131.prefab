@@ -2,7 +2,8 @@ prefab_name: Blockout_complet_reatatch
 name: RootNode
 enabled: true
 component:
-  - type: 1
+  - !<transform>
+    type: 1
     enabled: true
     position: [0, 0, 0]
     rotation: [0, 0, 0, 1]
@@ -11,206 +12,258 @@ child:
   - name: Torso_01
     enabled: true
     component:
-      - type: 1
+      - !<transform>
+        type: 1
         enabled: true
-        position: [0, 0.647756636, -0.0772219971]
-        rotation: [3.09086232e-08, 0.707106829, 0.707106829, -3.09086197e-08]
-        scale: [0.016898416, 0.0168984141, 0.0168984141]
-      - type: 2
+        position: [0, 0.6478, -0.0772]
+        rotation: [0, 0.7071, 0.7071, -0]
+        scale: [0.0169, 0.0169, 0.0169]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 15417489233916492426
         navigable: false
         visible: true
         material_id: 14344857796862453353
+        tint_color: [1, 1, 1, 1]
   - name: Arm_01
     enabled: true
     component:
-      - type: 1
+      - !<transform>
+        type: 1
         enabled: true
-        position: [-0.102162249, 0.440588713, -0.117372878]
-        rotation: [-0.572700977, 0.0554051735, -0.366084307, 0.731386423]
-        scale: [0.0304086246, 0.0304086246, 0.0304086246]
-      - type: 2
+        position: [-0.1022, 0.4406, -0.1174]
+        rotation: [-0.5727, 0.0554, -0.3661, 0.7314]
+        scale: [0.0304, 0.0304, 0.0304]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 6825625381101298616
         navigable: false
         visible: true
         material_id: 14344857796862453353
-      - type: 2
+        tint_color: [1, 1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 7931117650464535034
         navigable: false
         visible: true
         material_id: 7184434814575062647
-      - type: 2
+        tint_color: [1, 1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 12966638051790020970
         navigable: false
         visible: true
         material_id: 7240910165889597809
+        tint_color: [1, 1, 1, 1]
   - name: Leg_01
     enabled: true
     component:
-      - type: 1
+      - !<transform>
+        type: 1
         enabled: true
-        position: [-0.148603737, -0.29355067, -0.0482582934]
-        rotation: [-0.707106709, 0, 0, 0.707106829]
-        scale: [0.0253999997, 0.0253999978, 0.0253999978]
-      - type: 2
+        position: [-0.1486, -0.2936, -0.0483]
+        rotation: [-0.7071, 0, 0, 0.7071]
+        scale: [0.0254, 0.0254, 0.0254]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 2620627679532038903
         navigable: false
         visible: true
         material_id: 14344857796862453353
+        tint_color: [1, 1, 1, 1]
   - name: TorsoArmour_01
     enabled: true
     component:
-      - type: 1
+      - !<transform>
+        type: 1
         enabled: true
-        position: [-0.00357382488, 0.465125591, -0.0798330978]
-        rotation: [0.642787814, 0, 0, 0.766044319]
-        scale: [0.0253999997, 0.0254000034, 0.0254000034]
-      - type: 2
+        position: [-0.0036, 0.4651, -0.0798]
+        rotation: [0.6428, 0, 0, 0.766]
+        scale: [0.0254, 0.0254, 0.0254]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 14215175710258194067
         navigable: false
         visible: true
         material_id: 7184434814575062647
-      - type: 2
+        tint_color: [1, 1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 492702412559852976
         navigable: false
         visible: true
         material_id: 7240910165889597809
+        tint_color: [1, 1, 1, 1]
   - name: HipArmour_01
     enabled: true
     component:
-      - type: 1
+      - !<transform>
+        type: 1
         enabled: true
-        position: [-2.28536878e-09, 0.21267128, -0.0762471482]
-        rotation: [-0.707106709, 0, 0, 0.707106829]
-        scale: [0.0253999997, 0.0253999978, 0.0253999978]
-      - type: 2
+        position: [-0, 0.2127, -0.0762]
+        rotation: [-0.7071, 0, 0, 0.7071]
+        scale: [0.0254, 0.0254, 0.0254]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 1715900030195424151
         navigable: false
         visible: true
         material_id: 7184434814575062647
+        tint_color: [1, 1, 1, 1]
   - name: MechanicLeg_01
     enabled: true
     component:
-      - type: 1
+      - !<transform>
+        type: 1
         enabled: true
-        position: [-0.119662777, -0.0179719888, -0.0130566554]
-        rotation: [0.0416008942, -0.0131164892, -0.130402073, 0.990501285]
-        scale: [0.0253999997, 0.0253999997, 0.0253999997]
-      - type: 2
+        position: [-0.1197, -0.018, -0.0131]
+        rotation: [0.0416, -0.0131, -0.1304, 0.9905]
+        scale: [0.0254, 0.0254, 0.0254]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 2154420379989870412
         navigable: false
         visible: true
         material_id: 7240910165889597809
-      - type: 2
+        tint_color: [1, 1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 11990669548665173842
         navigable: false
         visible: true
         material_id: 7184434814575062647
+        tint_color: [1, 1, 1, 1]
   - name: MaskPiece_01
     enabled: true
     component:
-      - type: 1
+      - !<transform>
+        type: 1
         enabled: true
-        position: [-0.0770082325, 0.667488158, -0.00711565465]
-        rotation: [-0.707106709, 0, 0, 0.707106829]
-        scale: [0.0253999997, 0.0253999978, 0.0253999978]
-      - type: 2
+        position: [-0.077, 0.6675, -0.0071]
+        rotation: [-0.7071, 0, 0, 0.7071]
+        scale: [0.0254, 0.0254, 0.0254]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 9690104152344260425
         navigable: false
         visible: true
         material_id: 7240910165889597809
-      - type: 2
+        tint_color: [1, 1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 1248698053874246545
         navigable: false
         visible: true
         material_id: 7184434814575062647
+        tint_color: [1, 1, 1, 1]
   - name: MechanicArm_01
     enabled: true
     component:
-      - type: 1
+      - !<transform>
+        type: 1
         enabled: true
-        position: [-0.335916042, -0.0544057339, 1.07213855e-05]
-        rotation: [0.25358817, 0.596063137, 0.604468167, -0.463702589]
-        scale: [0.0253999941, 0.0253999941, 0.025399996]
-      - type: 2
+        position: [-0.3359, -0.0544, 0]
+        rotation: [0.2536, 0.5961, 0.6045, -0.4637]
+        scale: [0.0254, 0.0254, 0.0254]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 9802222454163498197
         navigable: false
         visible: true
         material_id: 7240910165889597809
-      - type: 2
+        tint_color: [1, 1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 8005919720121740191
         navigable: false
         visible: true
         material_id: 7184434814575062647
+        tint_color: [1, 1, 1, 1]
   - name: Reproportion_01
     enabled: true
     component:
-      - type: 1
+      - !<transform>
+        type: 1
         enabled: true
-        position: [0.393518627, 0.00644586375, -0.0880567729]
-        rotation: [-0.0913622752, 0.722277522, 0.0895021185, 0.679674506]
-        scale: [0.0253999997, 0.025399996, 0.0254000016]
-      - type: 2
+        position: [0.3935, 0.0064, -0.0881]
+        rotation: [-0.0914, 0.7223, 0.0895, 0.6797]
+        scale: [0.0254, 0.0254, 0.0254]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 3190431119747523934
         navigable: false
         visible: true
         material_id: 17391238928593233710
-      - type: 2
+        tint_color: [1, 1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 17272673726904041534
         navigable: false
         visible: true
         material_id: 8508343560657574651
-      - type: 2
+        tint_color: [1, 1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 14750993830365075161
         navigable: false
         visible: true
         material_id: 7240910165889597809
-      - type: 2
+        tint_color: [1, 1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 16019881623299926241
         navigable: false
         visible: true
         material_id: 14344857796862453353
+        tint_color: [1, 1, 1, 1]
   - name: Jetpack_01
     enabled: true
     component:
-      - type: 1
+      - !<transform>
+        type: 1
         enabled: true
-        position: [0, 0.414363265, -0.192427292]
-        rotation: [-0.57357645, 0, 0, 0.819152057]
-        scale: [0.0389276855, 0.038927678, 0.038927678]
-      - type: 2
+        position: [0, 0.4144, -0.1924]
+        rotation: [-0.5736, 0, 0, 0.8192]
+        scale: [0.0389, 0.0389, 0.0389]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 17414516408912328845
         navigable: false
         visible: true
         material_id: 14344857796862453353
-      - type: 2
+        tint_color: [1, 1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 8447702738076971672
         navigable: false
         visible: true
         material_id: 7184434814575062647
-      - type: 2
+        tint_color: [1, 1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
         enabled: true
         mesh_id: 14816985851976778809
         navigable: false
         visible: true
         material_id: 7240910165889597809
+        tint_color: [1, 1, 1, 1]

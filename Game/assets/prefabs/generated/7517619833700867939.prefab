@@ -29,9 +29,9 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [-0.0761962608, 0.494708151, 0.10228952]
-            rotation: [-0.707106829, 0, 0, 0.707106709]
-            scale: [2.53999996, 2.53999949, 2.53999949]
+            position: [-0.0762, 0.4947, 0.1023]
+            rotation: [-0.7071, 0, 0, 0.7071]
+            scale: [2.54, 2.54, 2.54]
           - !<mesh_renderer>
             type: 2
             enabled: true
@@ -39,15 +39,16 @@ child:
             navigable: false
             visible: true
             material_id: 5759363592208955763
+            tint_color: [1, 1, 1, 1]
       - name: crystalSpikeBottom_mesh
         enabled: true
         component:
           - !<transform>
             type: 1
             enabled: true
-            position: [0.0911449194, 0.299597561, 0.0456319116]
-            rotation: [-0.707106829, 0, 0, 0.707106709]
-            scale: [2.53999996, 2.53999949, 2.53999949]
+            position: [0.0911, 0.2996, 0.0456]
+            rotation: [-0.7071, 0, 0, 0.7071]
+            scale: [2.54, 2.54, 2.54]
           - !<mesh_renderer>
             type: 2
             enabled: true
@@ -55,15 +56,16 @@ child:
             navigable: false
             visible: true
             material_id: 5759363592208955763
+            tint_color: [1, 1, 1, 1]
       - name: crystalSpikeMiddle_mesh
         enabled: true
         component:
           - !<transform>
             type: 1
             enabled: true
-            position: [0.186976179, 0.484414041, 0.0622473769]
-            rotation: [-0.707106829, 0, 0, 0.707106709]
-            scale: [2.53999996, 2.53999949, 2.53999949]
+            position: [0.187, 0.4844, 0.0622]
+            rotation: [-0.7071, 0, 0, 0.7071]
+            scale: [2.54, 2.54, 2.54]
           - !<mesh_renderer>
             type: 2
             enabled: true
@@ -71,15 +73,16 @@ child:
             navigable: false
             visible: true
             material_id: 5759363592208955763
+            tint_color: [1, 1, 1, 1]
       - name: crystalSpikeBottom2_mesh
         enabled: true
         component:
           - !<transform>
             type: 1
             enabled: true
-            position: [0.14534016, 0.256375641, 0.271769315]
-            rotation: [-0.707106829, 0, 0, 0.707106709]
-            scale: [2.53999996, 2.53999949, 2.53999949]
+            position: [0.1453, 0.2564, 0.2718]
+            rotation: [-0.7071, 0, 0, 0.7071]
+            scale: [2.54, 2.54, 2.54]
           - !<mesh_renderer>
             type: 2
             enabled: true
@@ -87,13 +90,14 @@ child:
             navigable: false
             visible: true
             material_id: 5759363592208955763
+            tint_color: [1, 1, 1, 1]
   - name: Father
     enabled: true
     component:
       - !<transform>
         type: 1
         enabled: true
-        position: [0.00118318188, -0.00236636377, 0]
+        position: [0.0012, -0.0024, 0]
         rotation: [0, 0, 0, 1]
         scale: [1, 1, 1]
     child:
@@ -103,7 +107,7 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [0.144156978, 0.258742034, 0.271769315]
+            position: [0.1442, 0.2587, 0.2718]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
       - name: Bottom
@@ -112,7 +116,7 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [0.0899617374, 0.301963925, 0.0456319116]
+            position: [0.09, 0.302, 0.0456]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
       - name: Top
@@ -121,7 +125,7 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [-0.0773794428, 0.497074544, 0.10228952]
+            position: [-0.0774, 0.4971, 0.1023]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
       - name: Middle
@@ -130,6 +134,6 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [0.185792997, 0.486780435, 0.0622473769]
+            position: [0.1858, 0.4868, 0.0622]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]

@@ -33,7 +33,7 @@ void Hachiko::WindowResource::Update()
         ImGui::InputText("Name", &auxiliary_name[0], 64);
         if (ImGui::Button("Create material"))
         {
-            App->resources->CreateAsset(Resource::Type::MATERIAL, auxiliary_name + MATERIAL_EXTENSION);
+            App->resources->CreateAsset(Resource::Type::MATERIAL, auxiliary_name);
             ImGui::CloseCurrentPopup();
         }
         ImGui::EndPopup();

@@ -1,0 +1,58 @@
+prefab_name: Door
+name: Door
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [5.116, -0.3948, -0.0001]
+    rotation: [-0.5, 0.5, 0.5, 0.5]
+    scale: [15.26, 1.047, 5.609]
+  - !<mesh_renderer>
+    type: 2
+    enabled: true
+    mesh_id: 1654487118907036717
+    navigable: false
+    visible: false
+    material_id: 6750369022920963075
+    tint_color: [1, 1, 1, 1]
+  - !<obstacle>
+    type: 18
+    enabled: true
+    obstacle_type: 2
+    obstacle_size: [12, 5, 1]
+child:
+  - name: ClosedDoor
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0.65]
+        rotation: [0.4982, 0.5041, 0.4994, 0.4982]
+        scale: [0.4012, 0.0749, 0.0275]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 15685009350389098136
+        navigable: false
+        visible: true
+        material_id: 6339253229162858782
+        tint_color: [1, 1, 1, 1]
+  - name: OpenDoor
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0.65]
+        rotation: [0.4982, 0.5041, 0.4994, 0.4982]
+        scale: [0.4012, 0.0749, 0.0275]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 5883127849286108160
+        navigable: false
+        visible: true
+        material_id: 12778734868932773470
+        tint_color: [1, 1, 1, 1]

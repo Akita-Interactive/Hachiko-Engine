@@ -1,0 +1,28 @@
+prefab_name: parasiteWall
+name: RootNode
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [0, 0, 0, 1]
+    scale: [1, 1, 1]
+child:
+  - name: parasiteWall_lp
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [21.71, 0, -0.2487]
+        rotation: [0, -0.7071, 0, 0.7071]
+        scale: [0.3937, 0.3937, 0.3937]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 15685009350389098136
+        navigable: false
+        visible: true
+        material_id: 6339253229162858782
+        tint_color: [1, 1, 1, 1]

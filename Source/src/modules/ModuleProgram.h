@@ -64,6 +64,11 @@ namespace Hachiko
         {
             return forward_program;
         }
+
+        [[nodiscard]] Program* GetGaussianFilteringProgram() const
+        {
+            return gaussian_filtering_program;
+        }
         
         [[nodiscard]] Program* GetDeferredGeometryProgram() const
         {
@@ -73,6 +78,11 @@ namespace Hachiko
         [[nodiscard]] Program* GetDeferredLightingProgram() const
         {
             return deferred_lighting_program;
+        }
+
+        [[nodiscard]] Program* GetShadowMappingProgram() const
+        {
+            return shadow_mapping_program;
         }
 
         [[nodiscard]] Program* GetSkyboxProgram() const
@@ -133,6 +143,7 @@ namespace Hachiko
         void CreateGLSLIncludes() const;
 
         Program* CreateForwardProgram();
+        Program* CreateGaussianFilteringProgram();
         Program* CreateSkyboxProgram();
         Program* CreateDiffuseIBLProgram();
         Program* CreatePrefilteredIBLProgram();
@@ -143,10 +154,13 @@ namespace Hachiko
         Program* CreateParticleProgram();
         Program* CreateDeferredGeometryPassProgram();
         Program* CreateDeferredLightingPassProgram();
+        Program* CreateShadowMappingProgram();
 
         Program* forward_program = nullptr;
+        Program* gaussian_filtering_program = nullptr;
         Program* deferred_geometry_program = nullptr;
         Program* deferred_lighting_program = nullptr;
+        Program* shadow_mapping_program = nullptr;
         Program* skybox_program = nullptr;
         Program* diffuse_ibl_program = nullptr;
         Program* prefiltered_ibl_program = nullptr;

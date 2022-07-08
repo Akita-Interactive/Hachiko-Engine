@@ -36,21 +36,21 @@ void Hachiko::SizeParticleModifier::DrawGui()
 
 void Hachiko::SizeParticleModifier::Save(YAML::Node& node) const
 {
-    YAML::Node size_module = node[MODULE_SIZE];
+    YAML::Node size_module = node[MODIFIER_SIZE];
     ParticleModifier::Save(size_module);
     size_module[SIZE] = size;
 }
 
 void Hachiko::SizeParticleModifier::Load(const YAML::Node& node)
 {
-    ParticleModifier::Load(node[MODULE_SIZE]);
-    size = node[MODULE_SIZE][SIZE].IsDefined() ? node[MODULE_SIZE][SIZE].as<ParticleSystem::VariableTypeProperty>() : size;
+    ParticleModifier::Load(node[MODIFIER_SIZE]);
+    size = node[MODIFIER_SIZE][SIZE].IsDefined() ? node[MODIFIER_SIZE][SIZE].as<ParticleSystem::VariableTypeProperty>() : size;
 }
 
 void Hachiko::SizeParticleModifier::UpdateSizeOverTime(Particle& particle) const
 {
     float particle_size = particle.GetCurrentSize();
-    particle_size += size.GetValue();
+    particle_size += size.GetValue(particle.GetCurrentLifeNormalized());
     if (particle_size < 0.0f)
     {
         particle_size = 0.0f;

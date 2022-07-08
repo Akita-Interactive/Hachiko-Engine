@@ -1,6 +1,7 @@
 #pragma once
 
 #include "scriptingUtil/framework.h"
+#include "generated/GeneratedProperties.h"
 
 namespace Hachiko
 {

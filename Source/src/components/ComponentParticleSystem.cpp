@@ -16,7 +16,8 @@ Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container)
     particle_modifiers.push_back(std::make_shared<SizeParticleModifier>("Size over lifetime"));
     particle_modifiers.push_back(std::make_shared<ColorParticleModifier>("Color over lifetime"));
     particle_modifiers.push_back(std::make_shared<ForceParticleModifier>("Force over lifetime"));
-    particle_modifiers.push_back(std::make_shared<AnimationParticleModifier>("Animation over lifetime"));
+    particle_modifiers.push_back(std::make_shared<AnimationParticleModifier>("Animation"));
+    particle_modifiers.push_back(std::make_shared<NoiseParticleModifier>("Noise"));
 }
 
 Hachiko::ComponentParticleSystem::~ComponentParticleSystem()
@@ -35,7 +36,6 @@ void Hachiko::ComponentParticleSystem::Start()
         App->scene_manager->GetActiveScene()->AddParticleComponent(this);
         in_scene = true;
     }
-
     for (auto& particle : particles)
     {
         particle.SetEmitter(this);
@@ -83,10 +83,10 @@ void Hachiko::ComponentParticleSystem::Update()
         Start();
     }
 #endif //PLAY_BUILD
-    if (emitter_state == ParticleSystem::Emitter::State::PLAYING)
+    if (emitter_state != ParticleSystem::Emitter::State::PAUSED)
     {
-        UpdateEmitterTimes();
         ActivateParticles();
+        UpdateEmitterTimes();
         UpdateActiveParticles();
         UpdateModifiers();
     }
@@ -94,11 +94,6 @@ void Hachiko::ComponentParticleSystem::Update()
 
 void Hachiko::ComponentParticleSystem::Draw(ComponentCamera* camera, Program* program)
 {
-    if (emitter_state == ParticleSystem::Emitter::State::STOPPED)
-    {
-        return;
-    }
-
     for (auto& particle : particles)
     {
         if (!particle.IsActive())
@@ -123,7 +118,6 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             Widgets::DragFloatConfig duration_cfg;
             duration_cfg.min = 0.05f;
             duration_cfg.speed = 0.05f;
-            duration_cfg.enabled = !loop;
 
             DragFloat("Duration", duration, &duration_cfg);
             Widgets::Checkbox("Loop", &loop);
@@ -145,6 +139,15 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             rate_cfg.min = 0.0f;
 
             MultiTypeSelector("Rate over time", rate_over_time, &rate_cfg);
+            Widgets::Checkbox("Burst", &burst);
+
+            if (burst)
+            {
+                rate_cfg.min = 0.0f;
+                rate_cfg.enabled = burst;
+                MultiTypeSelector("Burst rate", rate_burst, &rate_cfg);
+            }
+
             ImGui::EndDisabled();
         }
 
@@ -169,6 +172,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             Widgets::DragFloatConfig top;
             Widgets::DragFloatConfig radius;
             radius.min = 0.001f;
+            radius.max = emitter_properties.top;
             radius.speed = 0.05f;
 
             Widgets::DragFloatConfig thickness;
@@ -186,7 +190,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             {
                 case ParticleSystem::Emitter::Type::CONE:
                     top.speed = 0.01f;
-                    top.min = 0.001f;
+                    top.min = emitter_properties.radius;
                     DragFloat("Top", emitter_properties.top, &top);
                     DragFloat("Radius", emitter_properties.radius, &radius);
                     DragFloat("Radius thickness", emitter_properties.radius_thickness, &thickness);
@@ -278,13 +282,6 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             ImGui::EndDisabled();
         }
 
-        // if (CollapsingHeader("Lights", &lights_section, Widgets::CollapsibleHeaderType::Checkbox))
-        // {
-        //     ImGui::BeginDisabled(!renderer_section);
-        //
-        //     ImGui::EndDisabled();
-        // }
-
         if (CollapsingHeader("Renderer", &renderer_section, Widgets::CollapsibleHeaderType::Checkbox))
         {
             ImGui::BeginDisabled(!renderer_section);
@@ -298,6 +295,16 @@ void Hachiko::ComponentParticleSystem::DrawGui()
             if (particle_properties.orientation == ParticleSystem::ParticleOrientation::HORIZONTAL)
             {
                 ImGui::Checkbox("Orientate to direction", &particle_properties.orientate_to_direction);
+            }
+
+            if (particle_properties.orientation == ParticleSystem::ParticleOrientation::STRETCH)
+            {
+                Widgets::DragFloatConfig stretch_config;
+                stretch_config.format = "%.2f";
+                stretch_config.speed = 0.01f;
+                stretch_config.min = 0.0f;
+                stretch_config.max = 1.0f;
+                Widgets::MultiTypeSelector("Stretch", particle_properties.stretch, &stretch_config);
             }
 
             int render_mode = static_cast<int>(particle_properties.render_mode);
@@ -413,6 +420,8 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
 
     // emission
     node[PARTICLE_EMISSION][RATE] = rate_over_time;
+    node[PARTICLE_EMISSION][RATE_BURST] = rate_burst;
+    node[PARTICLE_EMISSION][BURST] = burst;
 
     // emitter
     YAML::Node emitter;
@@ -427,6 +436,7 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
     }
     node[PARTICLES_TEXTURE][TILES] = tiles;
     node[PARTICLES_TEXTURE][FLIP] = flip_texture;
+    node[PARTICLES_TEXTURE][TOTAL_TILES] = total_tiles;
 
     YAML::Node modules;
     for (const auto& particle_module : particle_modifiers)
@@ -457,6 +467,8 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
 
     // emission
     rate_over_time = node[PARTICLE_EMISSION][RATE].as<ParticleSystem::VariableTypeProperty>();
+    rate_burst = node[PARTICLE_EMISSION][RATE_BURST].IsDefined() ? node[PARTICLE_EMISSION][RATE_BURST].as<ParticleSystem::VariableTypeProperty>() : rate_burst;
+    burst = node[PARTICLE_EMISSION][BURST].IsDefined() ? node[PARTICLE_EMISSION][BURST].as<bool>() : burst;
 
     // emitter
     emitter_type = static_cast<ParticleSystem::Emitter::Type>(node[EMITTER][EMITTER_TYPE].as<int>());
@@ -470,6 +482,8 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
         factor.x = 1.0f / tiles.x;
         factor.y = 1.0f / tiles.y;
     }
+
+    total_tiles = node[PARTICLES_TEXTURE][TOTAL_TILES].IsDefined() ? node[PARTICLES_TEXTURE][TOTAL_TILES].as<float>() : total_tiles;
 
     const UID texture_id = node[PARTICLES_TEXTURE][PARTICLES_TEXTURE_ID].IsDefined() ? node[PARTICLES_TEXTURE][PARTICLES_TEXTURE_ID].as<UID>() : 0;
     if (texture_id)
@@ -496,6 +510,16 @@ const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleS
 const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleSystem::GetParticlesSize() const
 {
     return start_size;
+}
+
+const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleSystem::GetParticlesRotation() const
+{
+    return start_rotation;
+}
+
+const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleSystem::GetParticlesStretch() const
+{
+    return particle_properties.stretch;
 }
 
 const Hachiko::ParticleSystem::Emitter::Properties& Hachiko::ComponentParticleSystem::GetEmitterProperties() const
@@ -535,13 +559,14 @@ const float2& Hachiko::ComponentParticleSystem::GetFactor() const
 
 void Hachiko::ComponentParticleSystem::UpdateActiveParticles()
 {
+    active_particles = 0;
     for (auto& particle : particles)
     {
         if (!particle.IsActive())
         {
             continue;
         }
-
+        ++active_particles;
         particle.Update();
     }
 }
@@ -556,8 +581,16 @@ void Hachiko::ComponentParticleSystem::UpdateModifiers()
 
 void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
 {
-    if ((!loop && emitter_elapsed_time >= duration) || emitter_state != ParticleSystem::Emitter::State::PLAYING)
+    if (active_particles == 0 && emitter_state == ParticleSystem::Emitter::State::STOPPED)
     {
+        able_to_emit = false;
+        emitter_elapsed_time = 0.0f;
+        return;
+    }
+
+    if (!loop && emitter_elapsed_time >= duration)
+    {
+        Stop();
         able_to_emit = false;
         return;
     }
@@ -565,7 +598,25 @@ void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
     time += EngineTimer::delta_time;
     emitter_elapsed_time += EngineTimer::delta_time;
 
-    if (time * 1000.0f <= ONE_SEC_IN_MS / rate_over_time.GetValue()) // TODO: Avoid division
+    if (emitter_elapsed_time < start_delay.GetValue() ||
+        emitter_state != ParticleSystem::Emitter::State::PLAYING)
+    {
+        able_to_emit = false;
+        return;
+    }
+
+    if (burst)
+    {
+        burst_time += EngineTimer::delta_time;
+
+        if (burst_time >= start_life.values.x)
+        {
+            burst_emit = true;
+            burst_time = 0.0f;
+        }
+    }
+
+    if (time * 1000.0f <= ONE_SEC_IN_MS / rate_over_time.GetValue(time))
     {
         able_to_emit = false;
     }
@@ -587,11 +638,35 @@ void Hachiko::ComponentParticleSystem::ResetActiveParticles()
 void Hachiko::ComponentParticleSystem::Reset()
 {
     emitter_elapsed_time = 0.0f;
+    time = 0.0f;
+    burst_time = 0.0f;
+    burst_emit = true;
     ResetActiveParticles();
 }
 
 void Hachiko::ComponentParticleSystem::ActivateParticles()
 {
+    if (emitter_state == ParticleSystem::Emitter::State::STOPPED)
+    {
+        return;
+    }
+
+    if (burst && burst_emit)
+    {
+        int count = static_cast<int>(std::trunc(rate_burst.values.x));
+        for (size_t i = 0; count != 0 || i == particles.size(); ++i)
+        {
+            if (!particles[i].IsActive())
+            {
+                particles[i].Reset(); // For particles to set current emitter configuration
+                particles[i].Activate();
+                --count;
+            }
+        }
+
+        burst_emit = false;
+    }
+
     if (!able_to_emit)
     {
         return;
@@ -608,39 +683,55 @@ void Hachiko::ComponentParticleSystem::ActivateParticles()
     }
 }
 
-float3 Hachiko::ComponentParticleSystem::CalculateDirectionFromShape() const
+float3 Hachiko::ComponentParticleSystem::GetLocalPositionFromShape() const
 {
-    float3 particle_direction = float3::one;
+    const float theta = RandomUtil::RandomBetween(0, emitter_properties.arc) * TO_RAD;
+    float3 local_emitter_position = float3::zero;
+
     switch (emitter_type)
     {
         case ParticleSystem::Emitter::Type::CONE:
+        case ParticleSystem::Emitter::Type::CIRCLE:
         {
             const float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
-            particle_direction.x = emitter_properties.rotation.x + effective_radius * RandomUtil::RandomSigned();
-            particle_direction.z = emitter_properties.rotation.z + effective_radius * RandomUtil::RandomSigned();
+            const float x_position = emitter_properties.radius * cos(theta);
+            float z_min = 0.0f;
+
+            if (std::abs(x_position) < effective_radius)
+            {
+                z_min = sqrt((effective_radius * effective_radius) - (x_position * x_position));
+            }
+
+            const float z_max = sqrt(emitter_properties.radius * emitter_properties.radius - x_position * x_position);
+            const float z_position = RandomUtil::RandomBetween(z_min, z_max) * sin(theta);
+            local_emitter_position = float3(local_emitter_position.x + x_position, local_emitter_position.y, local_emitter_position.z + z_position);
+            break;
+        }
+        case ParticleSystem::Emitter::Type::RECTANGLE:
+        {
+            const float half_x = emitter_properties.scale.x * 0.5f;
+            const float x_random_pos = RandomUtil::RandomBetween(-half_x, half_x);
+            const float half_z = emitter_properties.scale.z * 0.5f;
+            const float z_random_pos = RandomUtil::RandomBetween(-half_z, half_z);
+
+            local_emitter_position = float3(local_emitter_position.x + x_random_pos, local_emitter_position.y, local_emitter_position.z + z_random_pos);
             break;
         }
         case ParticleSystem::Emitter::Type::SPHERE:
         {
-            // TODO: This is not working perfectly. Emission depends on the size of the radius and it shouldn't
             const float effective_radius = emitter_properties.radius * (1 - emitter_properties.radius_thickness);
-            particle_direction.x = emitter_properties.rotation.x + effective_radius * RandomUtil::RandomSigned();
-            particle_direction.y = emitter_properties.rotation.y * (RandomUtil::RandomSigned() > 0.0f ? 1.0f : -1.0f);
-            particle_direction.z = emitter_properties.rotation.z + effective_radius * RandomUtil::RandomSigned();
+            local_emitter_position.x = emitter_properties.rotation.x + effective_radius * cos(theta);
+            local_emitter_position.y = emitter_properties.rotation.y + effective_radius * cos(RandomUtil::Random() * pi);
+            local_emitter_position.z = emitter_properties.rotation.z + effective_radius * sin(theta);
             break;
         }
-        case ParticleSystem::Emitter::Type::BOX:
-        case ParticleSystem::Emitter::Type::CIRCLE:
-        case ParticleSystem::Emitter::Type::RECTANGLE:
-            break;
     }
-
-    return particle_direction;
+    return local_emitter_position;
 }
 
 void Hachiko::ComponentParticleSystem::AddTexture()
 {
-    const char* title = "Select billboard texture";
+    const char* title = "Select texture";
     std::string texture_path;
     ResourceTexture* res = nullptr;
 
@@ -674,7 +765,7 @@ void Hachiko::ComponentParticleSystem::AddTexture()
     }
 
     YAML::Node texture_node = YAML::LoadFile(texture_path);
-    res = static_cast<ResourceTexture*>(App->resources->GetResource(Resource::Type::TEXTURE, texture_node[RESOURCES][0][RESOURCE_ID].as<UID>()));
+    res = dynamic_cast<ResourceTexture*>(App->resources->GetResource(Resource::Type::TEXTURE, texture_node[RESOURCES][0][RESOURCE_ID].as<UID>()));
 
     if (res != nullptr)
     {
@@ -697,6 +788,11 @@ Hachiko::ParticleSystem::Emitter::State Hachiko::ComponentParticleSystem::GetEmi
     return emitter_state;
 }
 
+Hachiko::ParticleSystem::Emitter::Type Hachiko::ComponentParticleSystem::GetEmitterType() const
+{
+    return emitter_type;
+}
+
 void Hachiko::ComponentParticleSystem::Play()
 {
     emitter_state = ParticleSystem::Emitter::State::PLAYING;
@@ -715,7 +811,6 @@ void Hachiko::ComponentParticleSystem::Restart()
 
 void Hachiko::ComponentParticleSystem::Stop()
 {
-    Reset();
     emitter_state = ParticleSystem::Emitter::State::STOPPED;
 }
 
@@ -726,48 +821,51 @@ void Hachiko::ComponentParticleSystem::DisplayControls()
 
     ImGui::SetNextWindowPos(ImVec2(viewport_size.x + pos.x + ImGui::GetStyle().FramePadding.x, pos.y), 0, ImVec2(1.0f, 0.0f));
     ImGui::SetNextWindowBgAlpha(1.0f);
+
+    const std::string go_label = StringUtils::Concat("GameObject: ", GetGameObject()->GetName().c_str());
+    const float min_size_x = std::min(ImGui::CalcTextSize(go_label.c_str()).x + ImGui::GetFontSize() * 2, viewport_size.x / 4.0f);
+    ImGui::SetNextWindowSize(ImVec2(std::max(min_size_x, 200.0f), 0));
     ImGui::Begin("Particles", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoCollapse);
-    ImGui::Text("GameObject");
-    ImGui::SameLine();
-    ImGui::Text(GetGameObject()->GetName().c_str());
 
-    char particles_spawned[10];
-    sprintf_s(particles_spawned, 10, "%.1f", rate_over_time.values.x);
-    ImGui::Text("Particles rate");
-    ImGui::SameLine();
-    ImGui::Text(particles_spawned);
-
-    char elapsed_time[10];
-    sprintf_s(elapsed_time, 10, "%.1f", emitter_elapsed_time);
-    ImGui::Text("Elapsed time");
-    ImGui::SameLine();
-    ImGui::Text(elapsed_time);
+    ImGui::TextWrapped(go_label.c_str());
+    ImGui::Text("Active particles: %d", active_particles);
+    ImGui::Text("Elapsed time: %.1f s", emitter_elapsed_time);
 
     ImGui::Separator();
 
-    if (emitter_state == ParticleSystem::Emitter::State::PAUSED || emitter_state == ParticleSystem::Emitter::State::STOPPED)
-    {
-        if (ImGui::Button("Play"))
-        {
-            Play();
-        }
-    }
+    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0, 0));
+    ImGui::BeginTable("##", 3, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoBordersInBody | ImGuiTableFlags_NoSavedSettings);
+    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch, 0.33f);
+    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch, 0.34f);
+    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch, 0.33f);
+    ImGui::TableNextRow();
+    ImGui::TableSetColumnIndex(0);
+
     if (emitter_state == ParticleSystem::Emitter::State::PLAYING)
     {
-        if (ImGui::Button("Pause"))
+        if (ImGui::Button("Pause", ImVec2(-1, 0)))
         {
             Pause();
         }
     }
-    ImGui::SameLine();
-    if (ImGui::Button("Restart"))
+    else
+    {
+        if (ImGui::Button("Play", ImVec2(-1, 0)))
+        {
+            Play();
+        }
+    }
+    ImGui::TableNextColumn();
+    if (ImGui::Button("Restart", ImVec2(-1, 0)))
     {
         Restart();
     }
-    ImGui::SameLine();
-    if (ImGui::Button("Stop"))
+    ImGui::TableNextColumn();
+    if (ImGui::Button("Stop", ImVec2(-1, 0)))
     {
         Stop();
     }
+    ImGui::EndTable();
+    ImGui::PopStyleVar();
     ImGui::End();
 }

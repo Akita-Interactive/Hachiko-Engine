@@ -25,6 +25,8 @@ namespace Hachiko
         void AttemptScenePlay();
         void AttemptSceneStop();
         bool IsScenePlaying();
+
+        void RebuildBatches();
         
         UpdateStatus Update(float delta) override;
         UpdateStatus PostUpdate(float delta) override;
@@ -57,8 +59,8 @@ namespace Hachiko
         
         void SaveScene(const char* file_path = nullptr);
 
-        GameObject* Raycast(const float3& origin, const float3& destination);
-        GameObject* BoundingRaycast(const float3& origin, const float3& destination);
+        GameObject* Raycast(const float3& origin, const float3& destination, float3* closest_hit = nullptr, GameObject* parent_filter = nullptr, bool active_only = false);
+        GameObject* BoundingRaycast(const float3& origin, const float3& destination, GameObject* parent_filter = nullptr, bool active_only = false);
 
         void OptionsMenu();
 

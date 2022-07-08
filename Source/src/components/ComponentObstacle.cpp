@@ -138,7 +138,7 @@ void Hachiko::ComponentObstacle::AddObstacle()
     case ObstacleType::DT_OBSTACLE_ORIENTED_BOX:
         // Method expects half the desired size of the box to be passed
         // Expects y rotation in radians and says box cant be rotated in y
-        tile_cache->addBoxObstacle(transform->GetGlobalPosition().ptr(), (size / 2.f).ptr(), transform->GetGlobalRotation().ToEulerXYX().y, obstacle);
+        tile_cache->addBoxObstacle(transform->GetGlobalPosition().ptr(), (size / 2.f).ptr(), transform->GetGlobalRotation().ToEulerXYZ().z, obstacle);
         break;
     }
 

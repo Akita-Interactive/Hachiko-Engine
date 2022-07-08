@@ -66,13 +66,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)\..\Game\</OutDir>
-    <IntDir>$(SolutionDir)bin\build\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir)bin\build\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <ExternalIncludePath>$(ProjectDir)vendors;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Play|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)\..\Game\</OutDir>
-    <IntDir>$(SolutionDir)bin\build\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir)bin\build\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <ExternalIncludePath>$(ProjectDir)vendors;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -157,7 +157,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\rendering\ShadowManager.cpp" />
+    <ClCompile Include="src\core\particles\modifiers\NoiseParticleModifier.cpp" />
     <ClCompile Include="src\core\rendering\GBuffer.cpp" />
+    <ClCompile Include="src\core\rendering\ShadowMappingProperties.cpp" />
     <ClCompile Include="src\utils\Bool2.cpp" />
     <ClCompile Include="src\utils\RandomUtil.cpp" />
     <ClCompile Include="src\core\particles\Particle.cpp" />
@@ -284,6 +287,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="vendors\OpenSimplex\OpenSimplex2S.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="vendors\PhysicsFS\physfs.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -690,8 +698,13 @@
     <ClCompile Include="vendors\recast\include\Recast\SampleInterfaces.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\utils\RandomUtilDefinitions.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="src\core\rendering\ShadowManager.h" />
+    <ClInclude Include="src\core\particles\modifiers\NoiseParticleModifier.h" />
     <ClInclude Include="src\core\rendering\GBuffer.h" />
+    <ClInclude Include="src\core\rendering\ShadowMappingProperties.h" />
+    <ClInclude Include="src\core\rendering\Uniforms.h" />
     <ClInclude Include="src\ui\widgets\Checkbox.h" />
     <ClInclude Include="src\ui\widgets\DragFloat2.h" />
     <ClInclude Include="src\utils\Bool2.h" />
@@ -1106,6 +1119,7 @@
     <ClInclude Include="vendors\imGuizmo\ImGuizmo.h" />
     <ClInclude Include="vendors\imGuizmo\ImSequencer.h" />
     <ClInclude Include="vendors\imGuizmo\ImZoomSlider.h" />
+    <ClInclude Include="vendors\OpenSimplex\OpenSimplex2S.h" />
     <ClInclude Include="vendors\PhysicsFS\physfs.h" />
     <ClInclude Include="vendors\PhysicsFS\physfs_casefolding.h" />
     <ClInclude Include="vendors\PhysicsFS\physfs_internal.h" />

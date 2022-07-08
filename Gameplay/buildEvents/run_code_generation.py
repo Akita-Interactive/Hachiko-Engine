@@ -20,6 +20,8 @@ serialization_cpp_path = generated_path + 'SerializationMethods.cpp'
 editor_cpp_path = generated_path + 'GeneratedEditor.cpp'
 # Path to SaveAndLoadMethods.cpp:
 save_load_cpp_path = generated_path + 'SaveAndLoadMethods.cpp'
+# Path to GeneratedProperties.h:
+generated_properties_path = generated_path + "GeneratedProperties.h"
 
 # Get all files in the current directory recursively:
 file_paths = []
@@ -66,6 +68,8 @@ generated_body_script_factory = scripting_namespace + 'Script* InstantiateScript
 generated_body_editor = ''
 # Body containing all OnLoad and OnSave methods for scripts inside the save_load_cpp_path:
 generated_body_save_load = ''
+# Body containing properties of the scripts:
+generated_body_script_properties = '#pragma once\n\n#include "scriptingUtil/framework.h"\n\n'
 
 # Formatted string that generates SerializeTo method:
 serialize_method_format = ('{new_line}void {script_namespace}{script_class_name}::SerializeTo(std::unordered_map<std::string, SerializedField>& serialized_fields)'
@@ -301,9 +305,23 @@ for file_name in file_paths:
 
 first_script = True
 
+generated_body_script_properties += 'extern "C" const GAMEPLAY_API size_t __cdecl SCRIPT_COUNT = ' + str(len(script_classes_and_paths)) + ';\n\n'
+generated_body_script_properties += 'extern "C" const GAMEPLAY_API char* __cdecl SCRIPT_NAMES[SCRIPT_COUNT] =\n{\n'
+
+current_index = 0
+
 for script_class_path in script_classes_and_paths:
 
     script_class = script_classes_and_paths[script_class_path]
+
+
+    # Generate Script names array:
+    generated_body_script_properties += '\t"' + script_class + '"'
+    if current_index < len(script_classes_and_paths) - 1:
+        generated_body_script_properties += ','
+    generated_body_script_properties += '\n'
+
+    ## Add script 
 
     header_file = open(script_class_path)
     header_file_as_string = header_file.read()
@@ -546,7 +564,12 @@ for script_class_path in script_classes_and_paths:
     generated_body_editor += '\n' + current_on_editor_method
     generated_body_save_load += '\n' + current_on_save_method
     generated_body_save_load += '\n' + current_on_load_method
+
+    current_index += 1
             
+
+generated_body_script_properties += "};\n"
+open(generated_properties_path, 'w').write(generated_body_script_properties)
 
 generated_body_script_factory += '\n\treturn nullptr;\n}'
 generated_body_script_factory = generated_includes_script_factory + '\n\n' + generated_body_script_factory

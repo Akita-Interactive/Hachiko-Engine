@@ -24,11 +24,15 @@
 				<SoundBank Name="Attacks" ID="{DB2C905B-568D-4B66-AC0A-61B413B8C327}">
 					<ObjectInclusionList>
 						<ObjectRef Name="Play_EnemyDie" ID="{1A2143DE-8308-40D0-B869-5E18110D70AF}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_ParasitePickUp" ID="{4760CDA1-AB7E-4214-8F3A-DA9ACB675859}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_LoadingAmmo" ID="{C4E09ED1-0447-4268-A2B0-E11B7585FA34}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_GameOver" ID="{67AE84D6-FEB9-4443-A8F1-0F56D8966BBE}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_ShootNoAmmo" ID="{7BB2ABDB-C806-47F0-9B66-71A5BF844916}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_RangedAttack" ID="{1AB4989D-79DB-4814-8BB0-2FA70A13AC2C}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_EnemyAttack" ID="{416579A2-32FC-48B0-8308-5AEB9768B0CE}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Dash" ID="{A12C6C82-D071-492B-81CF-704393DEA18F}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_MeleeAttack" ID="{40AC6350-5EEA-49F4-A273-59760B0CCEE2}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_ReceiveDamage" ID="{009EFC75-6F1D-4AE0-84A0-23C30571893A}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
@@ -37,9 +41,21 @@
 					<ObjectInclusionList>
 						<ObjectRef Name="Play_Wind" ID="{82BFA4D8-2D61-4677-9935-C9ECF62165FD}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Stop_Wind" ID="{8852E513-771E-46D6-A0F7-A2A033D473B4}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_DoorOpens" ID="{09669178-5F77-470B-BFFB-70F04C2CB080}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Laser_Hit" ID="{A0BD3D63-D265-4CA9-B88D-C6E42632F4E3}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Pebble" ID="{7E7451A2-4336-4CCF-BE28-99A6CF205E0D}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Laser" ID="{944F2DC9-1865-4DE5-A41F-7D847F3A9945}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Crystal" ID="{422E26F2-F986-4E14-B6FC-38411475A3E4}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stop_Laser" ID="{3C13283E-EB38-4E39-A6B6-331AC2181D30}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Stop_Pebble" ID="{3C2F1626-380B-4EF3-9CB2-4CA76FA289C8}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="UI" ID="{4630C971-6A19-4FE4-A67F-513C1B1EE192}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Play_UIClick" ID="{742A12E8-BB18-44A5-B986-135865CD918E}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_UIHover" ID="{ED1A53D6-1E8B-4FCA-B65E-843FF12134F1}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

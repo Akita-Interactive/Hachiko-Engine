@@ -23,7 +23,10 @@ void Hachiko::BatchManager::CollectMeshes(const GameObject* game_object)
 
     for (GameObject* child : game_object->children)
     {
-        CollectMeshes(child);
+        if (child)
+        {
+            CollectMeshes(child);
+        }
     }    
 }
 
@@ -39,30 +42,34 @@ void Hachiko::BatchManager::CollectMesh(const GameObject* game_object)
             const ResourceMesh* resource = mesh_renderer->GetResourceMesh();
             bool batch_found = false;
 
-            // Switch between correct batches vector based on transparency property of the material:
-            std::vector<GeometryBatch*>* geometry_batches = 
-                mesh_renderer->GetResourceMaterial()->is_transparent 
-                    ? &geometry_batches_transparent 
-                    : &geometry_batches_opaque;      
 
-            // Find matching batch to include the mesh
-            for (GeometryBatch* geometry_batch : (*geometry_batches))
+            if (mesh_renderer->GetResourceMaterial())
             {
-                if (geometry_batch->batch->layout.Equal(resource->layout))
+                // Switch between correct batches vector based on transparency property of the material:
+                std::vector<GeometryBatch*>* geometry_batches = 
+                    mesh_renderer->GetResourceMaterial()->is_transparent 
+                        ? &geometry_batches_transparent 
+                        : &geometry_batches_opaque;      
+                // Find matching batch to include the mesh
+                for (GeometryBatch* geometry_batch : (*geometry_batches))
                 {
-                    geometry_batch->AddMesh(mesh_renderer);
-                    batch_found = true;
-                    break;
+                    if (geometry_batch->batch->layout.Equal(resource->layout))
+                    {
+                        geometry_batch->AddMesh(mesh_renderer);
+                        batch_found = true;
+                        break;
+                    }
+                }
+                if (!batch_found)
+                {
+                    // Create new batch if there are no matching ones
+                    GeometryBatch* new_batch = new GeometryBatch(resource->layout);
+                    new_batch->AddMesh(mesh_renderer);
+                    geometry_batches->push_back(new_batch);
                 }
             }
 
-            if (!batch_found)
-            {
-                // Create new batch if there are no matching ones
-                GeometryBatch* new_batch = new GeometryBatch(resource->layout);
-                new_batch->AddMesh(mesh_renderer);
-                geometry_batches->push_back(new_batch);
-            }
+
         }
     }
 }

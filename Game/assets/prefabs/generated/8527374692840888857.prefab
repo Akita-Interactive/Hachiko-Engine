@@ -29,7 +29,7 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [0, 0.168378413, 0.0598026738]
+            position: [0, 0.1684, 0.0598]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
         child:
@@ -40,8 +40,8 @@ child:
                 type: 1
                 enabled: true
                 position: [0, 0, 0]
-                rotation: [0, -0.70710665, 0, 0.707106888]
-                scale: [0.999999881, 1, 0.999999881]
+                rotation: [0, -0.7071, 0, 0.7071]
+                scale: [1, 1, 1]
             child:
               - name: Body_Jnt_$AssimpFbx$_Rotation
                 enabled: true
@@ -50,7 +50,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0, 0, 0]
-                    rotation: [0, 0, 0.304882348, 0.952390134]
+                    rotation: [0, 0, 0.3049, 0.9524]
                     scale: [1, 1, 1]
                 child:
                   - name: Body_Jnt
@@ -69,7 +69,7 @@ child:
                           - !<transform>
                             type: 1
                             enabled: true
-                            position: [0.276285022, 0, 0]
+                            position: [0.2763, 0, 0]
                             rotation: [0, 0, 0, 1]
                             scale: [1, 1, 1]
                         child:
@@ -80,8 +80,8 @@ child:
                                 type: 1
                                 enabled: true
                                 position: [0, 0, 0]
-                                rotation: [0, 0.70710665, 0, 0.707106888]
-                                scale: [0.999999881, 1, 0.999999881]
+                                rotation: [0, 0.7071, 0, 0.7071]
+                                scale: [1, 1, 1]
                             child:
                               - name: Neck_Jnt_$AssimpFbx$_Rotation
                                 enabled: true
@@ -90,8 +90,8 @@ child:
                                     type: 1
                                     enabled: true
                                     position: [0, 0, 0]
-                                    rotation: [0.357753694, 0.000583192043, -0.000146852239, 0.933815777]
-                                    scale: [1, 0.999999881, 1]
+                                    rotation: [0.3578, 0.0006, -0.0001, 0.9338]
+                                    scale: [1, 1, 1]
                                 child:
                                   - name: Neck_Jnt
                                     enabled: true
@@ -109,7 +109,7 @@ child:
                                           - !<transform>
                                             type: 1
                                             enabled: true
-                                            position: [-7.88860888e-33, 3.5527136e-17, 0.219875604]
+                                            position: [-0, 0, 0.2199]
                                             rotation: [0, 0, 0, 1]
                                             scale: [1, 1, 1]
                                         child:
@@ -120,8 +120,8 @@ child:
                                                 type: 1
                                                 enabled: true
                                                 position: [0, 0, 0]
-                                                rotation: [0.445624322, 0.549016356, 0.445624322, 0.549016416]
-                                                scale: [0.99999994, 0.99999994, 0.99999994]
+                                                rotation: [0.4456, 0.549, 0.4456, 0.549]
+                                                scale: [1, 1, 1]
                                             child:
                                               - name: Head_Jnt_$AssimpFbx$_Rotation
                                                 enabled: true
@@ -130,7 +130,7 @@ child:
                                                     type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
-                                                    rotation: [0, 0, 0.00140267494, 0.999999106]
+                                                    rotation: [0, 0, 0.0014, 1]
                                                     scale: [1, 1, 1]
                                                 child:
                                                   - name: Head_Jnt
@@ -149,7 +149,7 @@ child:
                                                           - !<transform>
                                                             type: 1
                                                             enabled: true
-                                                            position: [0.122637726, 4.440892e-18, -2.72310455e-17]
+                                                            position: [0.1226, 0, -0]
                                                             rotation: [0, 0, 0, 1]
                                                             scale: [1, 1, 1]
                                                         child:
@@ -160,7 +160,7 @@ child:
                                                                 type: 1
                                                                 enabled: true
                                                                 position: [0, 0, 0]
-                                                                rotation: [-0.445624322, -0.549016356, -0.445624322, 0.549016356]
+                                                                rotation: [-0.4456, -0.549, -0.4456, 0.549]
                                                                 scale: [1, 1, 1]
                                                             child:
                                                               - name: Eye_Jnt_$AssimpFbx$_Rotation
@@ -170,8 +170,8 @@ child:
                                                                     type: 1
                                                                     enabled: true
                                                                     position: [0, 0, 0]
-                                                                    rotation: [-0.00885468442, -0.632933915, -0.00682938052, 0.774125099]
-                                                                    scale: [1, 0.999999821, 1]
+                                                                    rotation: [-0.0089, -0.6329, -0.0068, 0.7741]
+                                                                    scale: [1, 1, 1]
                                                                 child:
                                                                   - name: Eye_Jnt
                                                                     enabled: true
@@ -188,7 +188,7 @@ child:
                                                           - !<transform>
                                                             type: 1
                                                             enabled: true
-                                                            position: [-0.0914677605, 0.0338537917, 0.0747504011]
+                                                            position: [-0.0915, 0.0339, 0.0748]
                                                             rotation: [0, 0, 0, 1]
                                                             scale: [1, 1, 1]
                                                         child:
@@ -199,8 +199,8 @@ child:
                                                                 type: 1
                                                                 enabled: true
                                                                 position: [0, 0, 0]
-                                                                rotation: [0.989858687, -0.110914156, -0.0842867047, 0.0278138109]
-                                                                scale: [1, 1, 0.999999881]
+                                                                rotation: [0.9899, -0.1109, -0.0843, 0.0278]
+                                                                scale: [1, 1, 1]
                                                             child:
                                                               - name: Clamp_Start_Jnt_L_$AssimpFbx$_Rotation
                                                                 enabled: true
@@ -209,7 +209,7 @@ child:
                                                                     type: 1
                                                                     enabled: true
                                                                     position: [0, 0, 0]
-                                                                    rotation: [-0.000343089312, -0.00462671695, -2.25409099e-06, 0.999989331]
+                                                                    rotation: [-0.0003, -0.0046, -0, 1]
                                                                     scale: [1, 1, 1]
                                                                 child:
                                                                   - name: Clamp_Start_Jnt_L
@@ -228,8 +228,8 @@ child:
                                                                           - !<transform>
                                                                             type: 1
                                                                             enabled: true
-                                                                            position: [-0.155859396, -0.0440905318, -0.0201200917]
-                                                                            rotation: [0.00157493737, -8.93149354e-06, -0.0056811017, 0.999982715]
+                                                                            position: [-0.1559, -0.0441, -0.0201]
+                                                                            rotation: [0.0016, -0, -0.0057, 1]
                                                                             scale: [1, 1, 1]
                                                                         child:
                                                                           - name: Clamp_end_Jnt_L
@@ -238,8 +238,8 @@ child:
                                                                               - !<transform>
                                                                                 type: 1
                                                                                 enabled: true
-                                                                                position: [0.0166936889, -0.0687169209, -0.0423900709]
-                                                                                rotation: [0.00157493737, -8.93166271e-06, -0.0056811017, 0.999982715]
+                                                                                position: [0.0167, -0.0687, -0.0424]
+                                                                                rotation: [0.0016, -0, -0.0057, 1]
                                                                                 scale: [1, 1, 1]
                                                                             child:
                                                                               - name: zero_Jnt_L
@@ -248,7 +248,7 @@ child:
                                                                                   - !<transform>
                                                                                     type: 1
                                                                                     enabled: true
-                                                                                    position: [0.0664831698, -0.0209813546, -0.00781517755]
+                                                                                    position: [0.0665, -0.021, -0.0078]
                                                                                     rotation: [0, 0, 0, 1]
                                                                                     scale: [1, 1, 1]
                                                       - name: Clamp_Start_Jnt_R_$AssimpFbx$_Translation
@@ -257,7 +257,7 @@ child:
                                                           - !<transform>
                                                             type: 1
                                                             enabled: true
-                                                            position: [-0.0914676711, 0.033853557, -0.0747503862]
+                                                            position: [-0.0915, 0.0339, -0.0748]
                                                             rotation: [0, 0, 0, 1]
                                                             scale: [1, 1, 1]
                                                         child:
@@ -268,8 +268,8 @@ child:
                                                                 type: 1
                                                                 enabled: true
                                                                 position: [0, 0, 0]
-                                                                rotation: [0.110914111, 0.989858687, 0.0278138146, 0.0842867047]
-                                                                scale: [1, 1, 0.999999881]
+                                                                rotation: [0.1109, 0.9899, 0.0278, 0.0843]
+                                                                scale: [1, 1, 1]
                                                             child:
                                                               - name: Clamp_Start_Jnt_R_$AssimpFbx$_Rotation
                                                                 enabled: true
@@ -278,7 +278,7 @@ child:
                                                                     type: 1
                                                                     enabled: true
                                                                     position: [0, 0, 0]
-                                                                    rotation: [-0.000343490654, -0.00462593092, -2.25196095e-06, 0.999989331]
+                                                                    rotation: [-0.0003, -0.0046, -0, 1]
                                                                     scale: [1, 1, 1]
                                                                 child:
                                                                   - name: Clamp_Start_Jnt_R
@@ -297,8 +297,8 @@ child:
                                                                           - !<transform>
                                                                             type: 1
                                                                             enabled: true
-                                                                            position: [0.155859396, 0.0440904312, 0.0201200023]
-                                                                            rotation: [0.00157493737, -8.93137349e-06, -0.0056811017, 0.999982715]
+                                                                            position: [0.1559, 0.0441, 0.0201]
+                                                                            rotation: [0.0016, -0, -0.0057, 1]
                                                                             scale: [1, 1, 1]
                                                                         child:
                                                                           - name: Clamp_end_Jnt_R
@@ -307,8 +307,8 @@ child:
                                                                               - !<transform>
                                                                                 type: 1
                                                                                 enabled: true
-                                                                                position: [-0.0166935921, 0.068717353, 0.0423897579]
-                                                                                rotation: [0.00157493737, -8.93137349e-06, -0.0056811017, 0.999982715]
+                                                                                position: [-0.0167, 0.0687, 0.0424]
+                                                                                rotation: [0.0016, -0, -0.0057, 1]
                                                                                 scale: [1, 1, 1]
                                                                             child:
                                                                               - name: zero_Jnt_R
@@ -317,7 +317,7 @@ child:
                                                                                   - !<transform>
                                                                                     type: 1
                                                                                     enabled: true
-                                                                                    position: [-0.0664828718, 0.0209816508, 0.00781573076]
+                                                                                    position: [-0.0665, 0.021, 0.0078]
                                                                                     rotation: [0, 0, 0, 1]
                                                                                     scale: [1, 1, 1]
           - name: Tail_first_Jnt_$AssimpFbx$_Translation
@@ -326,7 +326,7 @@ child:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [0, 0, -0.224702761]
+                position: [0, 0, -0.2247]
                 rotation: [0, 0, 0, 1]
                 scale: [1, 1, 1]
             child:
@@ -337,8 +337,8 @@ child:
                     type: 1
                     enabled: true
                     position: [0, 0, 0]
-                    rotation: [0, 0.70710665, 0, 0.707106888]
-                    scale: [0.999999881, 1, 0.999999881]
+                    rotation: [0, 0.7071, 0, 0.7071]
+                    scale: [1, 1, 1]
                 child:
                   - name: Tail_first_Jnt_$AssimpFbx$_Rotation
                     enabled: true
@@ -347,7 +347,7 @@ child:
                         type: 1
                         enabled: true
                         position: [0, 0, 0]
-                        rotation: [0.00354233594, -0.280656338, -0.0117350649, 0.959730148]
+                        rotation: [0.0035, -0.2807, -0.0117, 0.9597]
                         scale: [1, 1, 1]
                     child:
                       - name: Tail_first_Jnt
@@ -366,9 +366,9 @@ child:
                               - !<transform>
                                 type: 1
                                 enabled: true
-                                position: [0.239311978, 3.5527136e-17, 0]
-                                rotation: [0.00121133786, -0.24795334, -0.00312876934, 0.968766272]
-                                scale: [1, 0.999999821, 0.999999881]
+                                position: [0.2393, 0, 0]
+                                rotation: [0.0012, -0.248, -0.0031, 0.9688]
+                                scale: [1, 1, 1]
                             child:
                               - name: Tail_end_Jnt_$AssimpFbx$_Translation
                                 enabled: true
@@ -376,7 +376,7 @@ child:
                                   - !<transform>
                                     type: 1
                                     enabled: true
-                                    position: [0.240222886, -1.7763568e-17, 0]
+                                    position: [0.2402, -0, 0]
                                     rotation: [0, 0, 0, 1]
                                     scale: [1, 1, 1]
                                 child:
@@ -387,8 +387,8 @@ child:
                                         type: 1
                                         enabled: true
                                         position: [0, 0, 0]
-                                        rotation: [0, -0.70710665, 0, 0.707106888]
-                                        scale: [0.999999881, 1, 0.999999881]
+                                        rotation: [0, -0.7071, 0, 0.7071]
+                                        scale: [1, 1, 1]
                                     child:
                                       - name: Tail_end_Jnt_$AssimpFbx$_Rotation
                                         enabled: true
@@ -397,8 +397,8 @@ child:
                                             type: 1
                                             enabled: true
                                             position: [0, 0, 0]
-                                            rotation: [-0.00746968435, -0.354177147, -0.00244328659, 0.935145319]
-                                            scale: [1, 0.999999821, 1]
+                                            rotation: [-0.0075, -0.3542, -0.0024, 0.9351]
+                                            scale: [1, 1, 1]
                                         child:
                                           - name: Tail_end_Jnt
                                             enabled: true
@@ -435,3 +435,4 @@ child:
             navigable: false
             visible: true
             material_id: 16901641101249946828
+            tint_color: [1, 1, 1, 1]

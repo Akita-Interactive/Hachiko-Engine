@@ -7,6 +7,10 @@
 #include "modules/ModuleResources.h"
 #include "Gameplay.h"
 #include "modules/ModuleNavigation.h"
+#include "modules/ModuleDebugDraw.h"
+#include "utils/FileSystem.h"
+#include "debugdraw.h"
+
 #include "components/ComponentAgent.h"
 
 
@@ -100,21 +104,25 @@ void Hachiko::SceneManagement::SetSkyboxActive(bool v)
     App->renderer->SetDrawSkybox(v);
 }
 
-Hachiko::GameObject* Hachiko::SceneManagement::Raycast(const float3& origin, 
-    const float3& destination)
+Hachiko::GameObject* Hachiko::SceneManagement::Raycast(const float3& origin, const float3& destination, float3* closest_hit, GameObject* parent_filter, bool active_only)
 {
-    return App->scene_manager->Raycast(origin, destination);
+    return App->scene_manager->Raycast(origin, destination, closest_hit, parent_filter, active_only);
 }
 
-Hachiko::GameObject* Hachiko::SceneManagement::BoundingRaycast(const float3& origin, const float3& destination)
+Hachiko::GameObject* Hachiko::SceneManagement::BoundingRaycast(const float3& origin, const float3& destination, GameObject* parent_filter, bool active_only)
 {
-    return App->scene_manager->Raycast(origin, destination);
+    return App->scene_manager->Raycast(origin, destination, nullptr, parent_filter, active_only);
 }
 
 Hachiko::GameObject* Hachiko::SceneManagement::FindInCurrentScene(
     unsigned long long id)
 {
     return App->scene_manager->GetRoot()->Find(id);
+}
+
+HACHIKO_API Hachiko::GameObject* Hachiko::SceneManagement::FindInCurrentScene(const char* name)
+{
+    return App->scene_manager->GetRoot()->GetFirstChildWithName(name);
 }
 
 HACHIKO_API std::vector<Hachiko::GameObject*> Hachiko::SceneManagement::Instantiate(unsigned long long prefab_uid, GameObject* parent, unsigned n_instances)
@@ -161,6 +169,19 @@ bool Hachiko::Debug::GetVsync()
     return SDL_HINT_RENDER_VSYNC;
 }
 
+void Hachiko::Debug::DebugDraw(const OBB& box, float3 color)
+{
+    ddVec3 p[8];
+    // This order was pure trial and error, i dont know how to really do it
+    // Using center and points does not show the rotation
+    static const int order[8] = {0, 1, 5, 4, 2, 3, 7, 6};
+    for (int i = 0; i < 8; ++i)
+    {
+        p[i] = box.CornerPoint(order[i]);
+    }
+    dd::box(p, color);
+}
+
 HACHIKO_API void Hachiko::Debug::DrawNavmesh(bool is_navmesh)
 {
     return App->renderer->SetDrawNavmesh(is_navmesh);
@@ -176,17 +197,19 @@ void Hachiko::Editor::ShowGameObjectDragDropArea(const char* field_name,
 {
     changed = false;
 
-    if ((*game_object) != nullptr)
+    if ((*game_object) != nullptr && game_object != nullptr)
     {
         ImGui::Text((*game_object)->GetName().c_str());
         
         ImGui::SameLine();
         
+        ImGui::PushID(StringUtils::Concat(field_type, "@", field_name, ":CloseButton").c_str());
         if (ImGui::Button("X"))
         {
             *game_object = nullptr;
             changed = true;
         }
+        ImGui::PopID();
         
         ImGui::SameLine();
     }
@@ -315,7 +338,7 @@ float Hachiko::Navigation::GetHeightFromPosition(const math::float3& position)
     return App->navigation->GetYFromPosition(position);    
 }
 
-math::float3 Hachiko::Navigation::GetCorrectedPosition(math::float3& position, const math::float3& extents)
+math::float3 Hachiko::Navigation::GetCorrectedPosition(const math::float3& position, const math::float3& extents)
 {
     return App->navigation->GetCorrectedPosition(position, extents);
 }
@@ -323,6 +346,15 @@ math::float3 Hachiko::Navigation::GetCorrectedPosition(math::float3& position, c
 void Hachiko::Navigation::CorrectPosition(math::float3& position, const math::float3& extents)
 {
     return App->navigation->CorrectPosition(position, extents);
+}
+
+/*---------------------------------------------------------------------------*/
+
+/*PROPERTIES-----------------------------------------------------------------*/
+
+HACHIKO_API const std::string& Hachiko::FileUtility::GetWorkingDirectory()
+{
+    return App->file_system.GetWorkingDirectory();
 }
 
 /*---------------------------------------------------------------------------*/

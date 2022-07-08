@@ -1,7 +1,7 @@
 #pragma once
 namespace Hachiko
 {
-    class bool2
+    class HACHIKO_API bool2
     {
     public:
         bool x;

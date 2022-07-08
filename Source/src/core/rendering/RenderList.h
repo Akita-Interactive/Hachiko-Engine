@@ -24,7 +24,7 @@ namespace Hachiko
     {
     public:
         void PreUpdate();
-        void Update(ComponentCamera* camera, Quadtree* quadtree);
+        void Update(const Frustum& camera_frustum, Quadtree* quadtree);
 
         std::vector<RenderTarget>& GetOpaqueTargets()
         {
@@ -47,7 +47,7 @@ namespace Hachiko
         }
 
     private:
-        void CollectMeshes(ComponentCamera* camera, const float3& camera_pos, Quadtree* quadtree);
+        void CollectMeshes(const Frustum& camera_frustum, Quadtree* quadtree);
         void CollectMesh(const float3& camera_pos, ComponentMeshRenderer* mesh);
 
         std::vector<RenderTarget> opaque_targets;

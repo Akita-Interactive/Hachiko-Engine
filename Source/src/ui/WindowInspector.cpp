@@ -219,39 +219,37 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
     }
 
     // Open Add Script Modal.
-
     if (add_script)
     {
         ImGui::OpenPopup(add_script_modal_name.c_str());
     }
 
-    ImGui::SetNextWindowSize(ImVec2(300, 100));
-    const ImVec2 center = ImGui::GetMainViewport()->GetCenter();
-    ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
-    if (ImGui::BeginPopupModal(add_script_modal_name.c_str(), nullptr, ImGuiWindowFlags_NoCollapse))
+    ImGui::SetNextWindowSize(ImVec2(ImGui::GetContentRegionAvail().x, default_popup_size_y));
+    ImGui::SetNextWindowPos(ImVec2(current_pos.x, current_pos.y - adjust_y), 0, ImVec2(0, pivot_y));
+    if (ImGui::BeginPopup(add_script_modal_name.c_str()))
     {
-        char script_name_buffer[MAX_PATH] = "Script Name\0";
+        std::string selected_name = "";
+        add_script = false;
 
-        ImGui::SetItemDefaultFocus();
-        if (ImGui::InputText("Script Name", script_name_buffer, MAX_PATH, ImGuiInputTextFlags_EnterReturnsTrue))
+        for (const std::string& name : App->scripting_system->GetLoadedScriptNames())
         {
-            const std::string script_name = script_name_buffer;
-            Scripting::Script* script = App->scripting_system->InstantiateScript(script_name, game_object);
+            if (ImGui::MenuItem(name.c_str()))
+            {
+                selected_name = name;   
+                ImGui::CloseCurrentPopup();
+            }
+        }
+
+        if (selected_name != "")
+        {
+            Scripting::Script* script = App->scripting_system->InstantiateScript(
+                selected_name, game_object);
 
             if (script != nullptr)
             {
                 game_object->AddComponent(script);
                 App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
             }
-
-            ImGui::CloseCurrentPopup();
-            add_script = false;
-        }
-
-        if (ImGui::Button("Close", ImVec2(120, 0)))
-        {
-            ImGui::CloseCurrentPopup();
-            add_script = false;
         }
 
         ImGui::EndPopup();

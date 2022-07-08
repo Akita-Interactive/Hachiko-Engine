@@ -23,6 +23,7 @@ bool Hachiko::ModuleProgram::Init()
     CreateGLSLIncludes();
 
     CreateForwardProgram();
+    CreateGaussianFilteringProgram();
     CreateSkyboxProgram();
     CreateDiffuseIBLProgram();
     CreatePrefilteredIBLProgram();
@@ -32,11 +33,16 @@ bool Hachiko::ModuleProgram::Init()
     CreateUserInterfaceTextProgram();
     CreateDeferredGeometryPassProgram();
     CreateDeferredLightingPassProgram();
+    CreateShadowMappingProgram();
     CreateParticleProgram();
 
-    if (!forward_program || !deferred_geometry_program || !deferred_lighting_program || !skybox_program || 
-        !diffuse_ibl_program || !prefiltered_ibl_program || !environment_brdf_program ||
-        !stencil_program || !ui_image_program || !ui_text_program || !particle_program)
+    if (!forward_program || !deferred_geometry_program || 
+        !deferred_lighting_program || !skybox_program || 
+        !diffuse_ibl_program || !prefiltered_ibl_program || 
+        !environment_brdf_program || !stencil_program || 
+        !ui_image_program || !ui_text_program || 
+        !particle_program || !shadow_mapping_program ||
+        !gaussian_filtering_program)
     {
         return false;
     }
@@ -161,6 +167,12 @@ Hachiko::Program* Hachiko::ModuleProgram::CreateForwardProgram()
     return forward_program;
 }
 
+Hachiko::Program* Hachiko::ModuleProgram::CreateGaussianFilteringProgram()
+{
+    gaussian_filtering_program = CreateProgram(SHADERS_FOLDER "vertex_gaussian_filter.glsl", SHADERS_FOLDER "fragment_gaussian_filter.glsl");
+    return gaussian_filtering_program;
+}
+
 Hachiko::Program* Hachiko::ModuleProgram::CreateSkyboxProgram()
 {
     skybox_program = CreateProgram(SHADERS_FOLDER "vertex_skybox.glsl", SHADERS_FOLDER "fragment_skybox.glsl");
@@ -219,6 +231,13 @@ Hachiko::Program* Hachiko::ModuleProgram::CreateDeferredLightingPassProgram()
 {
     deferred_lighting_program = CreateProgram(SHADERS_FOLDER "vertex_deferred_lighting.glsl", SHADERS_FOLDER "fragment_deferred_lighting.glsl");
     return deferred_lighting_program;
+}
+
+Hachiko::Program* Hachiko::ModuleProgram::CreateShadowMappingProgram()
+{
+    shadow_mapping_program = CreateProgram(SHADERS_FOLDER "vertex_shadow_mapping.glsl", SHADERS_FOLDER "fragment_shadow_mapping.glsl");
+
+    return shadow_mapping_program;
 }
 
 void Hachiko::ModuleProgram::CreateUBO(UBOPoints binding_point, unsigned size)
@@ -298,6 +317,12 @@ bool Hachiko::ModuleProgram::CleanUp()
     
     particle_program->CleanUp();
     delete particle_program;
+
+    shadow_mapping_program->CleanUp();
+    delete shadow_mapping_program;
+
+    gaussian_filtering_program->CleanUp();
+    delete gaussian_filtering_program;
     
     return true;
 }

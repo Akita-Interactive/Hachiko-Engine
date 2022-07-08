@@ -85,8 +85,6 @@
 #define SM_TRANSITION_TRIGGER "transition_trigger"
 #define SM_TRANSITION_BLEND "transition_blend"
 
-
-
 //////////////////////////
 //						//
 // Importer extensions  //
@@ -118,6 +116,10 @@
 #define EDITOR_NODE "editor"
 #define DISPLAY_CAMERA_SETTINGS "display_camera_settings"
 #define DISPLAY_DEBUG_DRAW "display_debug_draw"
+#define DISPLAY_QUADTREE "display_quadtree"
+#define DISPLAY_SKYBOX "display_skybox"
+#define DISPLAY_NAVMESH "display_navmesh"
+#define UNDO_REDO_ACTIVE "undo_redo_active"
 #define FULLSCREEN_NODE "fullscreen"
 #define THEME "theme"
 #define VSYNC "vsync"
@@ -126,6 +128,8 @@
 #define THEME_DARK "dark"
 #define SCENE_BACKGROUND_COLOR "scene_background_color"
 #define SCENE_AUTOSAVE "scene_autosave"
+#define SHADOW_MAP_GAUSSIAN_BLURRING_ENABLED "shadow_map_gaussian_blurring"
+#define SHADOW_PASS_ENABLED "shadow_pass_enabled"
 
 // Resources
 #define RESOURCES_NODE "resources"
@@ -233,8 +237,11 @@
 #define IMAGE_HOVER_IMAGE_ID "hover_image_id"
 #define IMAGE_COLOR "image_color"
 #define IMAGE_HOVER_COLOR "hover_image_color"
-#define USE_IMAGE "use_image"
-#define USE_HOVER_IMAGE "use_hover_image"
+#define IMAGE_TILED "image_is_tiled"
+#define IMAGE_X_TILES "image_x_tiles"
+#define IMAGE_Y_TILES "image_y_tiles"
+#define IMAGE_TILES_PER_SEC "image_tiles_per_second"
+#define IMAGE_FILL_WINDOW "fill_window"
 
 // Component Text
 #define FONT_ID "font_id"
@@ -257,18 +264,26 @@
 #define MAX_SPEED "max_speed"
 #define MAX_ACCELERATION "max_acceleration"
 #define AVOID_OBSTACLES "avoid_obstacles"
+#define AGENT_RADIUS "radius"
+#define AGENT_IS_PLAYER "is_player"
 
 // Component Billboard
 #define BILLBOARD_TEXTURE_ID "texture_id"
-#define BILLBOARD_TYPE "billboard_type"
 #define BILLBOARD_LIFETIME "billboard_lifetime"
 #define BILLBOARD_PLAY_ON_AWAKE "play_on_awake"
-#define BILLBOARD_RENDER_MODE "render_mode"
 #define ANIMATION_CYCLES "animation_cycles"
+#define ANIMATION_SECTION "animation_section"
+#define COLOR_SECTION "color_section"
+#define SIZE_SECTION "size_section"
+#define SIZE_OVERTIME "size_over_time"
+#define ROTATION_SECTION "rotation_section"
+#define ROTATION_OVERTIME "rotation_over_time"
+#define START_DELAY "start_delay"
+#define START_SIZE "start_size"
+#define START_ROTATION "start_rotation"
+#define BILLBOARD_PROPERTIES "properties"
 
-#define HAS_COLOR_GRADIENT "has_color_gradient"
 #define COLOR_CYCLES "color_cycles"
-#define COLOR_LOOP "color_loop"
 #define COLOR_GRADIENT "color_gradient"
 #define ANIMATION_LOOP "animation_loop"
 
@@ -293,6 +308,8 @@
 // emission
 #define PARTICLE_EMISSION "emission"
 #define RATE "rate"
+#define RATE_BURST "rate_burst"
+#define BURST "burst"
 // emitter
 #define EMITTER "emitter_shape"
 #define EMITTER_TYPE "type"
@@ -301,24 +318,41 @@
 #define PARTICLES_TEXTURE "texture"
 #define PARTICLES_TEXTURE_ID "texture_id"
 #define TILES "tiles"
+#define TOTAL_TILES "total_tiles"
 #define Y_TILES "y_tiles"
 #define FLIP "flip"
 #define FLIP_Y "flip_y"
 // particle modifiers
 #define PARTICLE_MODIFIERS "modifiers"
 #define ACTIVE "active"
-#define MODULE_VELOCITY "velocity"
+#define MODIFIER_VELOCITY "velocity"
 #define SPEED "speed"
-#define MODULE_SIZE "size"
+#define MODIFIER_SIZE "size"
 #define SIZE "size"
-#define MODULE_COLOR "color"
-#define MODULE_FORCE "force"
-#define MODULE_ANIMATION "animation"
-#define SKIP_FRAMES "skip_frames"
+#define MODIFIER_COLOR "color"
+#define MODIFIER_FORCE "force"
+#define X_FORCE "x_force"
+#define Y_FORCE "y_force"
+#define Z_FORCE "z_force"
+#define ROTATION "rotation"
+#define MODIFIER_ANIMATION "animation"
+#define ANIMATION_SPEED "animation_speed"
+#define BLEND_FACTOR "blend_factor"
+#define FIT_TO_LIFETIME "fit_to_lifetime"
+#define MODIFIER_NOISE "noise"
+#define NOISE_SEPARATE_AXES "separate_axes"
+#define NOISE_STRENGTH "strength"
+#define NOISE_X "x"
+#define NOISE_Y "y"
+#define NOISE_Z "z"
+#define NOISE_POSITION "position"
+#define NOISE_ROTATION "rotation"
+#define NOISE_SCALE "scale"
 
 // ComponentMeshRenderer
 #define RENDERER_MESH_ID "mesh_id"
 #define RENDERER_MATERIAL_ID "material_id"
+#define RENDERER_TINT_COLOR "tint_color"
 
 // Script
 #define SCRIPT_NAME "class_name"

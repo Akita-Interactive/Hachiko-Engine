@@ -2,12 +2,16 @@
 
 #include "ComponentDirLight.h"
 #include "ComponentTransform.h"
+#include "ComponentCamera.h"
 #include "modules/ModuleEvent.h"
+
+#include "core/rendering/Uniforms.h"
 
 #include <debugdraw.h>
 
-Hachiko::ComponentDirLight::ComponentDirLight(GameObject* conatiner) :
-    Component(Type::DIRLIGHT, conatiner)
+Hachiko::ComponentDirLight::ComponentDirLight(GameObject* conatiner) 
+    : Component(Type::DIRLIGHT, conatiner)
+    , shadow_properties(ShadowMappingProperties())
 {
     if (game_object->scene_owner)
     {
@@ -48,6 +52,8 @@ void Hachiko::ComponentDirLight::Save(YAML::Node& node) const
     node[LIGHT_COLOR] = color;
     node[LIGHT_INTENSITY] = intensity;
     node[LIGHT_DRAW_DIRECTION] = draw_direction;
+
+    shadow_properties.Save(node);
 }
 
 void Hachiko::ComponentDirLight::Load(const YAML::Node& node)
@@ -55,14 +61,16 @@ void Hachiko::ComponentDirLight::Load(const YAML::Node& node)
     color = node[LIGHT_COLOR].as<float4>();
     intensity = node[LIGHT_INTENSITY].as<float>();
     draw_direction = node[LIGHT_DRAW_DIRECTION].as<bool>();
+
+    shadow_properties.Load(node);
 }
 
 void Hachiko::ComponentDirLight::DrawGui()
 {
     ImGui::PushID(this);
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Dir Light"))
+    if (ImGuiUtils::CollapsingHeader(game_object, this, "Directional Light"))
     {
-        if (ImGui::Checkbox("D.Active", &active))
+        if (ImGui::Checkbox("Active", &active))
         {
             App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
@@ -72,11 +80,26 @@ void Hachiko::ComponentDirLight::DrawGui()
         }
 
         ImGui::PushItemWidth(100.0f);
-        ImGui::InputFloat("D.Intensity", &intensity);
+        ImGui::InputFloat("Intensity", &intensity);
         CREATE_HISTORY_ENTRY_AFTER_EDIT()
         ImGui::PopItemWidth();
-        ImGuiUtils::CompactColorPicker("Dir Color", &color[0]);
+        ImGuiUtils::CompactColorPicker("Color", &color[0]);
         CREATE_HISTORY_ENTRY_AFTER_EDIT()
+
+        ImGui::NewLine();
+
+        ImGui::Text("Shadow Properties");
+        ImGui::Separator();
+        ImGui::NewLine();
+
+        // Draw shadow properties editor content, return true if any value has
+        // been manipulated through the editor:
+        bool shadow_properties_changed = shadow_properties.DrawEditorContent();
+
+        if (shadow_properties_changed)
+        {
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+        }
     }
     ImGui::PopID();
 }

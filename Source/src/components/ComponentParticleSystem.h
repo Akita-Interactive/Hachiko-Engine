@@ -5,13 +5,13 @@ namespace Hachiko
     class Particle;
     class ParticleModifier;
 
-    class HACHIKO_API ComponentParticleSystem : public Component
+    class ComponentParticleSystem : public Component
     {
     public:
         ComponentParticleSystem(GameObject* container);
         ~ComponentParticleSystem() override;
 
-        void Start() override;
+        HACHIKO_API void Start() override;
         void Update() override;
         void Draw(ComponentCamera* camera, Program* program) override;
         void DrawGui() override;
@@ -23,11 +23,13 @@ namespace Hachiko
         [[nodiscard]] const ParticleSystem::VariableTypeProperty& GetParticlesLife() const;
         [[nodiscard]] const ParticleSystem::VariableTypeProperty& GetParticlesSpeed() const;
         [[nodiscard]] const ParticleSystem::VariableTypeProperty& GetParticlesSize() const;
+        [[nodiscard]] const ParticleSystem::VariableTypeProperty& GetParticlesRotation() const;
+        [[nodiscard]] const ParticleSystem::VariableTypeProperty& GetParticlesStretch() const;
 
         [[nodiscard]] const ParticleSystem::Emitter::Properties& GetEmitterProperties() const;
         [[nodiscard]] const ParticleSystem::ParticleProperties& GetParticlesProperties() const;
 
-        [[nodiscard]] float3 CalculateDirectionFromShape() const;
+        [[nodiscard]] float3 GetLocalPositionFromShape() const;
 
         [[nodiscard]] const ResourceTexture* GetTexture() const;
         [[nodiscard]] int GetTextureTotalTiles() const;
@@ -37,11 +39,12 @@ namespace Hachiko
 
         [[nodiscard]] bool IsLoop() const;
         [[nodiscard]] ParticleSystem::Emitter::State GetEmitterState() const;
+        [[nodiscard]] ParticleSystem::Emitter::Type GetEmitterType() const;
 
-        void Play();
-        void Pause();
-        void Restart();
-        void Stop() override;
+        HACHIKO_API void Play();
+        HACHIKO_API void Pause();
+        HACHIKO_API void Restart();
+        HACHIKO_API void Stop() override;
 
     private:
         ParticleSystem::Emitter::State emitter_state = ParticleSystem::Emitter::State::STOPPED;
@@ -52,20 +55,25 @@ namespace Hachiko
         bool shape_section = true;
         bool lights_section = false;
         bool renderer_section = true;
-        bool texture_section = true;
+        bool texture_section = false;
 
         //particle config
         ParticleSystem::ParticleProperties particle_properties;
 
         //emission
         bool loop = false;
-        float duration = 5.0f;
+        bool burst = false;
         bool able_to_emit = false;
+        bool burst_emit = true;
+        int active_particles = 0;
         float time = 0.0f;
+        float burst_time = 0.0f;
+        float duration = 5.0f;
         float emitter_elapsed_time = 0.0f;
-        ParticleSystem::VariableTypeProperty rate_over_time{float2(10)};
+        ParticleSystem::VariableTypeProperty rate_over_time {float2(10)};
+        ParticleSystem::VariableTypeProperty rate_burst {float2(10)};
 
-        ParticleSystem::VariableTypeProperty start_delay{float2::zero, 1.0f, false};
+        ParticleSystem::VariableTypeProperty start_delay {float2::zero, 1.0f, false};
         ParticleSystem::VariableTypeProperty start_life = {float2(5.0f)};
         ParticleSystem::VariableTypeProperty start_speed = {float2(5.0f), 0.5f};
         ParticleSystem::VariableTypeProperty start_size = {float2::one, 0.25f};
@@ -82,10 +90,10 @@ namespace Hachiko
         bool in_scene = false;
 
         //particles
-        std::vector<Particle> particles{1000};
+        std::vector<Particle> particles {1000};
 
         //modules
-        std::vector<std::shared_ptr<ParticleModifier>> particle_modifiers{};
+        std::vector<std::shared_ptr<ParticleModifier>> particle_modifiers {};
 
         //texture
         bool2 flip_texture = bool2::False;

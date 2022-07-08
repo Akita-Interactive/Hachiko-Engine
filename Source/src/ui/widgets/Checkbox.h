@@ -1,5 +1,6 @@
 #pragma once
 
+#include "modules/ModuleEvent.h"
 #include <imgui.h>
 #include <string>
 
@@ -22,6 +23,7 @@ namespace Hachiko::Widgets
         ImGui::TableNextColumn();
 
         const bool value_changed = ImGui::Checkbox("##", value);
+        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
         ImGui::EndTable();
         ImGui::PopStyleVar();

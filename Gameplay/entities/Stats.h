@@ -19,6 +19,7 @@ namespace Hachiko
 
             void ReceiveDamage(int _damage);
             void Heal(int _health);
+            void SetHealth(int health);
 
             void ChangeWeapon(int attk_pwr, float attk_cd, float attk_range)
             {
@@ -34,8 +35,8 @@ namespace Hachiko
             SERIALIZE_FIELD(float, _attack_range);
             SERIALIZE_FIELD(float, _move_speed);
             SERIALIZE_FIELD(int, _max_hp);
-            bool is_alive;
-            int _current_hp;
+
+            SERIALIZE_FIELD(int, _current_hp);
         };
     } // namespace Scripting
 } // namespace Hachiko*/

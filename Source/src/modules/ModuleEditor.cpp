@@ -116,19 +116,23 @@ bool Hachiko::ModuleEditor::Init()
 
     editor_prefs = App->preferences->GetEditorPreference();
     theme = editor_prefs->GetTheme();
+    undo_redo_active = editor_prefs->GetUndoRedoActive();
     UpdateTheme();
 
 #ifndef PLAY_BUILD
-    std::function create_history_entry = [&](Event& evt) {
-        CreateSnapshot();
-    };
-    App->event->Subscribe(Event::Type::CREATE_EDITOR_HISTORY_ENTRY, create_history_entry);
+    if (undo_redo_active)
+    {
+        std::function create_history_entry = [&](Event& evt) {
+            CreateSnapshot();
+        };
+        App->event->Subscribe(Event::Type::CREATE_EDITOR_HISTORY_ENTRY, create_history_entry);
 
-    std::function enable_history = [&](Event& evt) {
-        const auto state = evt.GetEventData<GameStateEventPayload>().GetState();
-        history_enabled = state == GameStateEventPayload::State::STOPPED;
-    };
-    App->event->Subscribe(Event::Type::GAME_STATE, enable_history);
+        std::function enable_history = [&](Event& evt) {
+            const auto state = evt.GetEventData<GameStateEventPayload>().GetState();
+            history_enabled = state == GameStateEventPayload::State::STOPPED;
+        };
+        App->event->Subscribe(Event::Type::GAME_STATE, enable_history);
+    }
 #endif
     return true;
 }
@@ -517,6 +521,7 @@ bool Hachiko::ModuleEditor::CleanUp()
     ImGui::DestroyContext();
 
     editor_prefs->SetTheme(theme);
+    editor_prefs->SetUndoRedoActive(undo_redo_active);
     return true;
 }
 

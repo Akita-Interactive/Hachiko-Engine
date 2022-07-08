@@ -19,7 +19,7 @@ namespace Hachiko
             display_debug_draw = displayDebugDraw;
         }
 
-        [[nodiscard]] bool IsDisplayDebugDraw() const
+        [[nodiscard]] bool GetDisplayDebugDraw() const
         {
             return display_debug_draw;
         }
@@ -101,6 +101,66 @@ namespace Hachiko
             return scene_autosave;
         }
 
+        void SetDrawSkybox(bool value)
+        {
+            draw_skybox = value;
+        }
+
+        [[nodiscard]] bool GetDrawSkybox()
+        {
+            return draw_skybox;
+        }
+
+        void SetDrawNavmesh(bool value)
+        {
+            draw_navmesh = value;
+        }
+
+        [[nodiscard]] bool GetDrawNavmesh()
+        {
+            return draw_navmesh;
+        }
+
+        void SetDrawQuadtree(bool value)
+        {
+            draw_quadtree = value;
+        }
+
+        [[nodiscard]] bool GetDrawQuadtree()
+        {
+            return draw_quadtree;
+        }
+
+        void SetUndoRedoActive(bool value)
+        {
+            undo_redo_active = value;
+        }
+
+        [[nodiscard]] bool GetUndoRedoActive() const
+        {
+            return undo_redo_active;
+        }
+
+        void SetShadowMappingGaussianBlurringEnabled(bool enabled) 
+        {
+            shadow_mapping_gaussian_blurring_enabled = enabled;
+        }
+
+        [[nodiscard]] bool GetShadowMapGaussianBlurringEnabled() const 
+        {
+            return shadow_mapping_gaussian_blurring_enabled;
+        }
+
+        [[nodiscard]] bool GetShadowPassEnabled() const 
+        {
+            return shadow_pass_enabled;
+        }
+
+        void SetShadowPassEnabled(bool enabled) 
+        {
+            shadow_pass_enabled = enabled;
+        }
+
     private:
         bool display_debug_draw = false;
 
@@ -112,7 +172,13 @@ namespace Hachiko
         bool scene_autosave = false;
         bool vsync = true;
         bool resizable = true;
+        bool draw_skybox = true;
+        bool draw_navmesh = false;
+        bool draw_quadtree = false;
+        bool shadow_mapping_gaussian_blurring_enabled = true;
+        bool shadow_pass_enabled = true;
         float fps_threshold = 1000.0f / max_fps;
         Editor::Theme::Type theme = Editor::Theme::Type::DARK;
+        bool undo_redo_active = true;
     };
 }

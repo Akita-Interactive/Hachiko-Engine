@@ -1,0 +1,18 @@
+prefab_name: trigger_1
+name: trigger_1
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [65.72, 1.445, 23.25]
+    rotation: [-0.7071, 0, 0, 0.7071]
+    scale: [1, 1, 1]
+  - !<mesh_renderer>
+    type: 2
+    enabled: true
+    mesh_id: 1654487118907036717
+    navigable: false
+    visible: true
+    material_id: 6750369022920963075
+    tint_color: [1, 1, 1, 1]

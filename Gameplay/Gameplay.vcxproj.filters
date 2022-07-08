@@ -509,15 +509,25 @@
     <ClInclude Include="entities\player\PlayerSoundManager.h" />
     <ClInclude Include="entities\enemies\EnemyController.h" />
     <ClInclude Include="entities\Stats.h" />
-    <ClInclude Include="entities\player\BulletController.h" />
+    <ClInclude Include="entities\player\CombatManager.h" />
     <ClInclude Include="misc\FancyLights.h" />
     <ClInclude Include="entities\crystals\CrystalExplosion.h" />
     <ClInclude Include="entities\enemies\BugAnimationManager.h" />
     <ClInclude Include="entities\player\RoomTeleporter.h" />
     <ClInclude Include="ui\DebugManager.h" />
-    <ClInclude Include="entities\player\PlayerState.h" />
-    <ClInclude Include="entities\enemies\BugState.h" />
     <ClInclude Include="misc\AudioManager.h" />
+    <ClInclude Include="misc\PillarCheckpoint.h" />
+    <ClInclude Include="CrystalPlatform.h" />
+    <ClInclude Include="misc\Spawner.h" />
+    <ClInclude Include="misc\DoorController.h" />
+    <ClInclude Include="misc\GauntletManager.h" />
+    <ClInclude Include="misc\LevelManager.h" />
+    <ClInclude Include="misc\LaserController.h" />
+    <ClInclude Include="misc\BlinkingLight.h" />
+    <ClInclude Include="generated\GeneratedProperties.h" />
+    <ClInclude Include="entities\player\CombatVisualEffectsPool.h" />
+    <ClInclude Include="TriggerAnim.h" />
+    <ClInclude Include="misc\CameraPosChange.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scriptingUtil\gameplaypch.cpp">
@@ -778,13 +788,24 @@
     <ClCompile Include="entities\player\PlayerSoundManager.cpp" />
     <ClCompile Include="entities\enemies\EnemyController.cpp" />
     <ClCompile Include="entities\Stats.cpp" />
-    <ClCompile Include="entities\player\BulletController.cpp" />
+    <ClCompile Include="entities\player\CombatManager.cpp" />
     <ClCompile Include="entities\crystals\CrystalExplosion.cpp" />
     <ClCompile Include="entities\enemies\BugAnimationManager.cpp" />
     <ClCompile Include="entities\player\RoomTeleporter.cpp" />
     <ClCompile Include="ui\DebugManager.cpp" />
     <ClCompile Include="misc\FancyLights.cpp" />
     <ClCompile Include="misc\AudioManager.cpp" />
+    <ClCompile Include="misc\PillarCheckpoint.cpp" />
+    <ClCompile Include="CrystalPlatform.cpp" />
+    <ClCompile Include="misc\Spawner.cpp" />
+    <ClCompile Include="misc\DoorController.cpp" />
+    <ClCompile Include="misc\GauntletManager.cpp" />
+    <ClCompile Include="misc\LevelManager.cpp" />
+    <ClCompile Include="misc\LaserController.cpp" />
+    <ClCompile Include="misc\BlinkingLight.cpp" />
+    <ClCompile Include="entities\player\CombatVisualEffectsPool.cpp" />
+    <ClCompile Include="TriggerAnim.cpp" />
+    <ClCompile Include="misc\CameraPosChange.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\vendors\MathGeoLib\Math\float2.inl">
@@ -808,5 +829,6 @@
     <None Include="..\Source\vendors\MathGeoLib\Geometry\TriangleMesh_IntersectRay_SSE.inl">
       <Filter>Vendors\MathGeoLib\Geometry</Filter>
     </None>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

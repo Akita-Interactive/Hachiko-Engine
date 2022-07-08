@@ -13,6 +13,7 @@ public:
     void Resize(int width, int height) const;
     void BlitDepth(unsigned int target_buffer_id, int widht, int height) const;
     void BindTextures() const;
+    void UnbindTextures() const;
     void BindForReading() const;
     void BindForDrawing() const;
     [[nodiscard]] bool IsGenerated() const;

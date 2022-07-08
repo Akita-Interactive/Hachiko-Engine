@@ -1,0 +1,23 @@
+name: crystalPlataformAnim
+default_node: 0
+clips:
+  - clip_name: Open
+    clips_id: 13067243502821612408
+    clips_loop: false
+  - clip_name: Close
+    clips_id: 11542878562393345253
+    clips_loop: false
+nodes:
+  - node_name: Open
+    node_clip_name: Open
+  - node_name: Close
+    node_clip_name: Close
+transitions:
+  - transition_source: Open
+    transition_target: Close
+    transition_trigger: isClose
+    transition_blend: 300
+  - transition_source: Close
+    transition_target: Open
+    transition_trigger: isOpen
+    transition_blend: 300

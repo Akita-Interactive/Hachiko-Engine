@@ -660,6 +660,14 @@
     <ClCompile Include="src\utils\Bool2.cpp">
       <Filter>Core\Util</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\rendering\ShadowMappingProperties.cpp" />
+    <ClCompile Include="src\core\rendering\ShadowManager.cpp" />
+    <ClCompile Include="src\core\particles\modifiers\NoiseParticleModifier.cpp">
+      <Filter>Core\Particles\Modifiers</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\OpenSimplex\OpenSimplex2S.cpp">
+      <Filter>Vendors\OpenSimplex</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vendors\imgui\imgui_impl_opengl3.h">
@@ -2474,9 +2482,6 @@
     <ClInclude Include="src\ui\widgets\DragFloat.h">
       <Filter>UI\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="src\utils\Random.h">
-      <Filter>Core\Util</Filter>
-    </ClInclude>
     <ClInclude Include="src\core\particles\modifiers\AnimationParticleModifier.h">
       <Filter>Core\Particles\Modifiers</Filter>
     </ClInclude>
@@ -2494,6 +2499,18 @@
     </ClInclude>
     <ClInclude Include="src\core\HachikoApiDefine.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\rendering\ShadowMappingProperties.h" />
+    <ClInclude Include="src\core\rendering\Uniforms.h" />
+    <ClInclude Include="src\core\rendering\ShadowManager.h" />
+    <ClInclude Include="src\core\particles\modifiers\NoiseParticleModifier.h">
+      <Filter>Core\Particles\Modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\OpenSimplex\OpenSimplex2S.h">
+      <Filter>Vendors\OpenSimplex</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\RandomUtilDefinitions.h">
+      <Filter>Core\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2655,6 +2672,9 @@
     </Filter>
     <Filter Include="Core\Particles\Modifiers">
       <UniqueIdentifier>{7ca3566d-4da4-49fd-b4d5-fded29595756}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendors\OpenSimplex">
+      <UniqueIdentifier>{faa6fa67-959f-47f4-8516-823ffa2383f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

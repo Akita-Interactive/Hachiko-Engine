@@ -54,12 +54,19 @@ namespace Hachiko
 
         float4 color = float4::one;
         float4 hover_color = float4::one;
-        bool use_image = false;
-        bool use_hover_image = false;
         bool fill_window = false;
 
         // TODO: Make properly after bs
         unsigned size_x = 0;
         unsigned size_y = 0;
+
+        bool is_tiled = false;
+        float elapse = 0.0f;
+        int frames_per_second = 1;
+        float time_per_frame = 1;
+        int x_tiles = 1;
+        int y_tiles = 1;
+        float2 factor = float2::one;
+        float2 animation_index = float2::zero;
     };
 } // namespace Hachiko

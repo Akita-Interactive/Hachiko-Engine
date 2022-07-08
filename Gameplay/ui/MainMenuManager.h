@@ -17,7 +17,8 @@ public:
 	{
 		MAIN = 0,
 		SETTINGS = 1,
-		CREDITS = 2
+		CREDITS = 2,
+		PLAY = 3
 	};
 
 public:
@@ -55,6 +56,8 @@ private:
 
 	// Credits & Settings Common Content:
 	SERIALIZE_FIELD(ComponentButton*, _button_back);
+
+	ComponentAudioSource* _audio_source;
 
 };
 } // namespace Scripting

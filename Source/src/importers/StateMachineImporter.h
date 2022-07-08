@@ -21,5 +21,6 @@ namespace Hachiko
         Resource* Load(UID id) override;
 
         void GenerateAssetStateMachine(const ResourceStateMachine* state_machine);
+        UID CreateAsset(const std::string& name);
     };
 } // namespace Hachiko

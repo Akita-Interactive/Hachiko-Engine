@@ -111,7 +111,8 @@ namespace Hachiko
             NORMAL,
             VERTICAL,
             HORIZONTAL,
-            STRETCH
+            STRETCH,
+            WORLD
         };
 
         struct ParticleProperties
@@ -120,6 +121,7 @@ namespace Hachiko
             bool orientate_to_direction = false;
             ParticleRenderMode render_mode = ParticleRenderMode::PARTICLE_ADDITIVE;
             ParticleOrientation orientation = ParticleOrientation::NORMAL;
+            VariableTypeProperty stretch = {float2::one, 0.1f, false, false};
         };
     }
 }

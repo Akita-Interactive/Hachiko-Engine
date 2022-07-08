@@ -188,44 +188,42 @@ void Hachiko::WindowScene::DrawScene()
     if (ImGui::IsWindowFocused())
     {
         float4x4 new_camera_view = view.InverseTransposed();
-        App->camera->GetRenderingCamera()->GetFrustum()->SetFrame(new_camera_view.Col(3).xyz(), -new_camera_view.Col(2).xyz(), new_camera_view.Col(1).xyz());
+        App->camera->GetRenderingCamera()->SetFrame(new_camera_view.Col(3).xyz(), -new_camera_view.Col(2).xyz(), new_camera_view.Col(1).xyz());
     }
 
     GameObject* selected_object = App->editor->GetSelectedGameObject();
+    
     if (!selected_object)
     {
         return;
     }
 
-    if (selected_object)
+    // Using GL format which means transposing them
+    view = camera->GetViewMatrix(transposed);
+    float4x4 projection = camera->GetProjectionMatrix(transposed);
+    float4x4 model = selected_object->GetTransform()->GetGlobalMatrix().Transposed();
+    float4x4 delta;
+
+    ImGuizmo::SetRect(guizmo_rect_origin.x, guizmo_rect_origin.y, texture_size.x, texture_size.y);
+    ImGuizmo::SetDrawlist();
+
+    // Scale will always be on local regarding on ImGuizmo MODE, check is done here to keep user's selected MODE
+    const bool is_scaling = guizmo_operation == ImGuizmo::SCALE;
+    Manipulate(view.ptr(), projection.ptr(), guizmo_operation, is_scaling ? ImGuizmo::LOCAL : guizmo_mode, model.ptr(), delta.ptr());
+
+    using_guizmo = ImGuizmo::IsUsing();
+    if (using_guizmo && !delta.IsIdentity())
     {
-        // Using GL format which means transposing them
-        view = camera->GetViewMatrix(transposed);
-        float4x4 projection = camera->GetProjectionMatrix(transposed);
-        float4x4 model = selected_object->GetTransform()->GetGlobalMatrix().Transposed();
-        float4x4 delta;
+        // Transpose back again to store in our format
+        model.Transpose();
+        selected_object->GetTransform()->SetGlobalTransform(model);
+        changed_game_object = true;
+    }
 
-        ImGuizmo::SetRect(guizmo_rect_origin.x, guizmo_rect_origin.y, texture_size.x, texture_size.y);
-        ImGuizmo::SetDrawlist();
-
-        // Scale will always be on local regarding on ImGuizmo MODE, check is done here to keep user's selected MODE
-        const bool is_scaling = guizmo_operation == ImGuizmo::SCALE;
-        Manipulate(view.ptr(), projection.ptr(), guizmo_operation, is_scaling ? ImGuizmo::LOCAL : guizmo_mode, model.ptr(), delta.ptr());
-
-        using_guizmo = ImGuizmo::IsUsing();
-        if (using_guizmo && !delta.IsIdentity())
-        {
-            // Transpose back again to store in our format
-            model.Transpose();
-            selected_object->GetTransform()->SetGlobalTransform(model);
-            changed_game_object = true;
-        }
-
-        if (!using_guizmo && changed_game_object)
-        {
-            changed_game_object = false;
-            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
-        }
+    if (!using_guizmo && changed_game_object)
+    {
+        changed_game_object = false;
+        App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
     }
 }
 

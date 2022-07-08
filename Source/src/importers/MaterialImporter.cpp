@@ -34,7 +34,7 @@ void Hachiko::MaterialImporter::Save(UID id, const Resource* res)
 
     GenerateMaterialAssetFile(material);
     const std::string material_asset_path = StringUtils::Concat(GetResourcesPreferences()->GetAssetsPath(Resource::AssetType::MATERIAL), 
-        material->GetName(), MATERIAL_EXTENSION);
+        material->GetName().c_str(), MATERIAL_EXTENSION);
     App->resources->ImportAssetFromAnyPath(material_asset_path);
 }
 
@@ -101,7 +101,7 @@ Hachiko::UID Hachiko::MaterialImporter::CreateEmptyMaterial(const std::string& n
     GenerateMaterialAssetFile(material);
 
     const std::string material_path = StringUtils::Concat(GetResourcesPreferences()->GetAssetsPath(Resource::AssetType::MATERIAL), 
-        material->GetName(), MATERIAL_EXTENSION);
+        material->GetName().c_str(), MATERIAL_EXTENSION);
 
     UID material_uid = App->resources->ImportAssetFromAnyPath(material_path)[0];
 
@@ -161,7 +161,7 @@ Hachiko::UID Hachiko::MaterialImporter::CreateMaterialAssetFromAssimp(const std:
 void Hachiko::MaterialImporter::GenerateMaterialAssetFile(const ResourceMaterial* material)
 {
     const std::string material_asset_path = StringUtils::Concat(GetResourcesPreferences()->GetAssetsPath(Resource::AssetType::MATERIAL), 
-        material->GetName(), MATERIAL_EXTENSION);
+        material->GetName().c_str(), MATERIAL_EXTENSION);
     
     YAML::Node material_node;
     material_node[MATERIAL_NAME] = material->GetName();

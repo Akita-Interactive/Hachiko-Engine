@@ -1,0 +1,28 @@
+prefab_name: DashTrail
+name: DashTrail
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 15, -2.5]
+    rotation: [-0, 0.7071, -0, 0.7071]
+    scale: [5, 1, 10]
+child:
+  - name: Plane001
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [-0.7071, 0, 0, 0.7071]
+        scale: [1.012, 1.019, 1.003]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 4601319148081155683
+        navigable: false
+        visible: true
+        material_id: 13674522304467685866
+        tint_color: [1, 1, 1, 1]

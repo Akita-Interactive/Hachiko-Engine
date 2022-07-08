@@ -1,6 +1,8 @@
 #include "core/hepch.h"
 
 #include "core/ErrorHandler.h"
+#include "core/rendering/Uniforms.h"
+#include "core/preferences/src/EditorPreferences.h"
 
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
@@ -14,7 +16,11 @@
 #include "ModuleInput.h"
 
 #include "components/ComponentCamera.h"
+#include "components/ComponentTransform.h"
+#include "components/ComponentDirLight.h"
 #include "components/ComponentParticleSystem.h"
+
+#include <debugdraw.h>
 
 Hachiko::ModuleRender::ModuleRender() = default;
 
@@ -34,6 +40,8 @@ bool Hachiko::ModuleRender::Init()
     GenerateDeferredQuad();
     GenerateFrameBuffer();
 
+    shadow_manager.GenerateShadowMap();
+
 #ifdef _DEBUG
     glEnable(GL_DEBUG_OUTPUT); // Enable output callback
     glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
@@ -45,6 +53,13 @@ bool Hachiko::ModuleRender::Init()
     ms_log = std::vector<float>(n_bins);
 
     GenerateParticlesBuffers();
+
+    draw_skybox = App->preferences->GetEditorPreference()->GetDrawSkybox();
+    draw_navmesh = App->preferences->GetEditorPreference()->GetDrawNavmesh();
+    shadow_pass_enabled = App->preferences->GetEditorPreference()->GetShadowPassEnabled();
+
+    shadow_manager.SetGaussianBlurringEnabled(
+        App->preferences->GetEditorPreference()->GetShadowMapGaussianBlurringEnabled());
 
     return true;
 }
@@ -197,8 +212,7 @@ UpdateStatus Hachiko::ModuleRender::Update(const float delta)
         App->navigation->DebugDraw();
     }
 
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    EnableBlending();
 
     GLint polygonMode[2];
     glGetIntegerv(GL_POLYGON_MODE, polygonMode);
@@ -212,7 +226,8 @@ UpdateStatus Hachiko::ModuleRender::Update(const float delta)
     {
         App->ui->DrawUI(active_scene);
     }
-    glDisable(GL_BLEND);
+
+    DisableBlending();
 
     // If in play build, blit frame_buffer to the default frame buffer and render to the whole 
     // screen, if not, bind default frame buffer:
@@ -234,7 +249,7 @@ void Hachiko::ModuleRender::Draw(Scene* scene, ComponentCamera* camera,
 
     BatchManager* batch_manager = scene->GetBatchManager();
     
-    render_list.Update(culling, scene->GetQuadtree());
+    //render_list.Update(culling->GetFrustum(), scene->GetQuadtree());
     
     if (draw_deferred)
     {
@@ -262,13 +277,21 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene, ComponentCamera* camera,
     {
         render_forward_pass = !render_forward_pass;
     }
-
+    
+    if (shadow_pass_enabled)
+    {
+        // Generate shadow map from the scene:
+        DrawToShadowMap(scene, camera, batch_manager, DRAW_CONFIG_OPAQUE | DRAW_CONFIG_TRANSPARENT);
+    }
+    
+    render_list.Update(scene->GetCullingCamera()->GetFrustum(), scene->GetQuadtree());
+    
     // ----------------------------- GEOMETRY PASS ----------------------------
 
+    glViewport(0, 0, fb_width, fb_height);
     g_buffer.BindForDrawing();
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 
     // Disable blending for deferred rendering as the meshes with transparent
     // materials are gonna be rendered with forward rendering after the
@@ -282,7 +305,6 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene, ComponentCamera* camera,
     for (const RenderTarget& target : render_list.GetOpaqueTargets())
     {
         batch_manager->AddDrawComponent(target.mesh_renderer);
-        // target.mesh_renderer->Draw(camera, program);
     }
 
     // Draw collected meshes with geometry pass rogram:
@@ -300,29 +322,38 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene, ComponentCamera* camera,
     program = App->program->GetDeferredLightingProgram();
     program->Activate();
 
+    // Bind shadow specific necessary uniforms for lighting pass:
+    shadow_manager.BindLightingPassUniforms(program);
+
     // Bind ImageBasedLighting uniforms
     scene->GetSkybox()->BindImageBasedLightingUniforms(program);
 
     // Bind all g-buffer textures:
     g_buffer.BindTextures();
+    if (shadow_pass_enabled)
+    {
+        // Bind Shadow map texture to texture slot 5:
+        shadow_manager.BindShadowMapTexture(5);
+    }
 
     // Bind deferred rendering mode. This can be configured from the editor,
     // and shader sets the fragment color according to this mode:
-    program->BindUniformInts("mode", 1, &deferred_mode);
+    int render_shadows = static_cast<int>(shadow_pass_enabled);
+    program->BindUniformInts(Uniforms::ShadowMap::RENDER_MODE, 1, &render_shadows);
+    program->BindUniformInts(Uniforms::DeferredRendering::MODE, 1, &deferred_mode);
 
     // Render the final texture from deferred rendering on a quad that is,
     // 1x1 on NDC:
     RenderDeferredQuad();
+    glBindVertexArray(0);
 
+    g_buffer.UnbindTextures();
     Program::Deactivate();
+
 
     // Blit g_buffer depth buffer to frame_buffer to be used for forward
     // rendering pass:
     g_buffer.BlitDepth(frame_buffer, fb_width, fb_height);
-
-    // Enable blending for the next passes:
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // ------------------------------ PRE FORWARD -----------------------------
     
@@ -357,7 +388,13 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene, ComponentCamera* camera,
     // Forward rendering pass for transparent game objects:
     program = App->program->GetForwardProgram();
     program->Activate();
+
+    EnableBlending();
+
     batch_manager->DrawTransparentBatches(program);
+
+    DisableBlending();
+    
     Program::Deactivate();
 }
 
@@ -400,6 +437,8 @@ void Hachiko::ModuleRender::DrawPreForwardPass(Scene* scene, ComponentCamera* ca
         scene->GetSkybox()->Draw(camera);
     }
 
+    EnableBlending();
+
     // Draw debug draw stuff:
     ModuleDebugDraw::Draw(camera->GetViewMatrix(), camera->GetProjectionMatrix(), fb_height, fb_width);
     
@@ -414,6 +453,8 @@ void Hachiko::ModuleRender::DrawPreForwardPass(Scene* scene, ComponentCamera* ca
         }
         Program::Deactivate();
     }
+
+    DisableBlending();
 
     //GameObject* selected_go = App->editor->GetSelectedGameObject();
     /*if (outline_selection && selected_go)
@@ -432,6 +473,113 @@ void Hachiko::ModuleRender::DrawPreForwardPass(Scene* scene, ComponentCamera* ca
         glEnable(GL_DEPTH_TEST);
     }*/
 }
+
+bool Hachiko::ModuleRender::DrawToShadowMap(Scene* scene, ComponentCamera* camera,
+    BatchManager* batch_manager,
+    DrawConfig draw_config)
+{
+    if (scene->dir_lights.size() < 0)
+    {
+        return false;
+    }
+
+    // Update directional light frustum if there are any changes:
+    shadow_manager.CalculateLightFrustum();
+    
+    // Cull the scene with directional light frustum:
+    render_list.Update(shadow_manager.GetDirectionalLightFrustum(), scene->GetQuadtree());
+
+    // Draw collected meshes with shadow mapping program:
+    Program* program = App->program->GetShadowMappingProgram();
+    program->Activate();
+    
+    // Bind shadow map generation specific necessary uniforms:
+    shadow_manager.BindShadowMapGenerationPassUniforms(program);
+    // Bind shadow map fbo for drawing and adjust viewport size etc.:
+    shadow_manager.BindBufferForDrawing();
+
+    if ((draw_config & DRAW_CONFIG_OPAQUE) != 0)
+    {
+        // Collect and draw opaque meshes to shadow map:
+
+        batch_manager->ClearOpaqueBatchesDrawList();
+        
+        for (const RenderTarget& target : render_list.GetOpaqueTargets())
+        {
+            batch_manager->AddDrawComponent(target.mesh_renderer);
+        }
+
+        batch_manager->DrawOpaqueBatches(program);
+    }
+
+    if ((draw_config & DRAW_CONFIG_TRANSPARENT) != 0)
+    {
+        // Collect and draw transparent meshes to shadow map:
+
+        batch_manager->ClearTransparentBatchesDrawList();
+        
+        for (const RenderTarget& target : render_list.GetTransparentTargets())
+        {
+            batch_manager->AddDrawComponent(target.mesh_renderer);
+        }
+
+        batch_manager->DrawTransparentBatches(program);
+    }
+
+    // Unbind shadow map fbo:
+    shadow_manager.UnbindBuffer();
+
+    Program::Deactivate();
+
+    // Smoothen the shadow map by applying gaussian filtering:
+    shadow_manager.ApplyGaussianBlur(App->program->GetGaussianFilteringProgram());
+   
+    return true;
+}
+
+void Hachiko::ModuleRender::ApplyGaussianFilter(unsigned source_fbo, unsigned source_texture, 
+    unsigned temp_fbo, unsigned temp_texture, float blur_scale_amount, 
+    unsigned width, unsigned height, const Program* program) const
+{
+    // Calculate blur scales:
+    float blur_scale_x = blur_scale_amount * 1.0f / static_cast<float>(width);
+    float blur_scale_y = blur_scale_amount * 1.0f / static_cast<float>(height);
+    float3 blur_scale_width(blur_scale_x, 0.0f, 0.0f);
+    float3 blur_scale_height(0.0f, blur_scale_y, 0.0f);
+
+    // X Axis Blur Pass:
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, temp_fbo);
+    glViewport(0, 0, width, height);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    program->Activate();
+
+    program->BindUniformFloat3(Uniforms::Filtering::GAUSSIAN_BLUR_SCALE, blur_scale_width.ptr());
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, source_texture);
+
+    RenderDeferredQuad();
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    Program::Deactivate();
+
+    // Y Axis Blur Pass:
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, source_fbo);
+    glViewport(0, 0, width, height);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    program->Activate();
+    program->BindUniformFloat3(Uniforms::Filtering::GAUSSIAN_BLUR_SCALE, blur_scale_height.ptr());
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, temp_texture);
+
+    RenderDeferredQuad();
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    Program::Deactivate();
+}   
 
 void Hachiko::ModuleRender::SetRenderMode(bool is_deferred) 
 {
@@ -502,6 +650,18 @@ void Hachiko::ModuleRender::OptionsMenu()
         DeferredOptions();
     }
 
+    ImGui::NewLine();
+    ImGui::Text("Shadowmap Blurring Mode");
+    ImGui::Separator();
+    ImGui::TextWrapped("Enable for soft shadows, disable for hard shadows.");
+    bool shadow_map_gaussian_blur_enabled = shadow_manager.IsGaussianBlurringEnabled();
+
+    if (ImGui::Checkbox("Apply Gaussian Blur", &shadow_map_gaussian_blur_enabled))
+    {
+        shadow_manager.SetGaussianBlurringEnabled(shadow_map_gaussian_blur_enabled);
+        App->preferences->GetEditorPreference()->SetShadowMappingGaussianBlurringEnabled(shadow_map_gaussian_blur_enabled);
+    }
+
     if (!draw_skybox)
     {
         ImGuiUtils::CompactColorPicker("Background Color", App->editor->scene_background.ptr());
@@ -554,6 +714,11 @@ void Hachiko::ModuleRender::DeferredOptions()
 
     ImGui::Checkbox("Forward Rendering Pass", &render_forward_pass);
 
+    if (ImGui::Checkbox("Render Shadows", &shadow_pass_enabled))
+    {
+        App->preferences->GetEditorPreference()->SetShadowPassEnabled(shadow_pass_enabled);
+    }
+
     ImGui::NewLine();
 
     ImGui::PopID();
@@ -561,7 +726,6 @@ void Hachiko::ModuleRender::DeferredOptions()
 
 void Hachiko::ModuleRender::PerformanceMenu()
 {
-
     const float vram_free_mb = gpu.vram_free / 1024.0f;
     const float vram_usage_mb = gpu.vram_budget_mb - vram_free_mb;
     ImGui::Text("VRAM Budget: %.1f Mb", gpu.vram_budget_mb);
@@ -764,5 +928,7 @@ bool Hachiko::ModuleRender::CleanUp()
 
     SDL_GL_DeleteContext(context);
 
+    App->preferences->GetEditorPreference()->SetDrawSkybox(draw_skybox);
+    App->preferences->GetEditorPreference()->SetDrawNavmesh(draw_navmesh);
     return true;
 }

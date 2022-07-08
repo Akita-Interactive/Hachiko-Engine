@@ -45,6 +45,7 @@ void main()
         material.metallic_map.layerIndex,
         material.specular_map.layerIndex,
         material.diffuse_map.layerIndex,
+        material.tint_color,
         smoothness, 
         diffuse, 
         specular);

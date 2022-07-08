@@ -29,9 +29,9 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [0.0390297659, 1.24786723, -0.122365341]
-            rotation: [-0.699713588, 0.000990346773, -0.00413561799, 0.714410782]
-            scale: [2.5400002, 2.53999972, 2.53999996]
+            position: [0.039, 1.248, -0.1224]
+            rotation: [-0.6997, 0.001, -0.0041, 0.7144]
+            scale: [2.54, 2.54, 2.54]
           - !<mesh_renderer>
             type: 2
             enabled: true
@@ -39,15 +39,16 @@ child:
             navigable: false
             visible: true
             material_id: 9460093468938292877
+            tint_color: [1, 1, 1, 1]
       - name: TopRight
         enabled: true
         component:
           - !<transform>
             type: 1
             enabled: true
-            position: [0.0765447319, 0.925721884, -0.0172951315]
-            rotation: [-0.703085363, -0.00609573862, 0.00520839356, 0.711060345]
-            scale: [2.53999925, 2.53999996, 2.53999996]
+            position: [0.0765, 0.9257, -0.0173]
+            rotation: [-0.7031, -0.0061, 0.0052, 0.7111]
+            scale: [2.54, 2.54, 2.54]
           - !<mesh_renderer>
             type: 2
             enabled: true
@@ -55,15 +56,16 @@ child:
             navigable: false
             visible: true
             material_id: 9460093468938292877
+            tint_color: [1, 1, 1, 1]
       - name: Middle
         enabled: true
         component:
           - !<transform>
             type: 1
             enabled: true
-            position: [0.00915046968, 0.824442148, 0.00801388454]
-            rotation: [-0.698970914, -0.0073337513, -0.00171151618, 0.715110421]
-            scale: [2.53999996, 2.53999996, 2.5400002]
+            position: [0.0092, 0.8244, 0.008]
+            rotation: [-0.699, -0.0073, -0.0017, 0.7151]
+            scale: [2.54, 2.54, 2.54]
           - !<mesh_renderer>
             type: 2
             enabled: true
@@ -71,15 +73,16 @@ child:
             navigable: false
             visible: true
             material_id: 9460093468938292877
+            tint_color: [1, 1, 1, 1]
       - name: TopLeft
         enabled: true
         component:
           - !<transform>
             type: 1
             enabled: true
-            position: [0.00468555419, 0.851930737, -0.163572505]
-            rotation: [-0.703144133, -0.00227717473, 0.00235992973, 0.711039782]
-            scale: [2.53999996, 2.53999996, 2.53999996]
+            position: [0.0047, 0.8519, -0.1636]
+            rotation: [-0.7031, -0.0023, 0.0024, 0.711]
+            scale: [2.54, 2.54, 2.54]
           - !<mesh_renderer>
             type: 2
             enabled: true
@@ -87,15 +90,16 @@ child:
             navigable: false
             visible: true
             material_id: 9460093468938292877
+            tint_color: [1, 1, 1, 1]
       - name: Down
         enabled: true
         component:
           - !<transform>
             type: 1
             enabled: true
-            position: [0.0345472023, 0.302218705, -0.093022503]
-            rotation: [-0.701309443, -0.00464925077, 0.000145189711, 0.712841809]
-            scale: [2.53999996, 2.53999996, 2.53999996]
+            position: [0.0345, 0.3022, -0.093]
+            rotation: [-0.7013, -0.0046, 0.0001, 0.7128]
+            scale: [2.54, 2.54, 2.54]
           - !<mesh_renderer>
             type: 2
             enabled: true
@@ -103,13 +107,14 @@ child:
             navigable: false
             visible: true
             material_id: 9460093468938292877
+            tint_color: [1, 1, 1, 1]
   - name: MainBone
     enabled: true
     component:
       - !<transform>
         type: 1
         enabled: true
-        position: [0.0345472023, 0.0264687333, -0.115474738]
+        position: [0.0345, 0.0265, -0.1155]
         rotation: [0, 0, 0, 1]
         scale: [1, 1, 1]
     child:
@@ -119,7 +124,7 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [-4.440892e-18, 0.275749952, 0.0224522315]
+            position: [-0, 0.2757, 0.0225]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
       - name: JoinMiddle
@@ -128,7 +133,7 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [-0.0253967326, 0.797973394, 0.123488627]
+            position: [-0.0254, 0.798, 0.1235]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
       - name: JointTopLeft
@@ -137,7 +142,7 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [-0.0298616476, 0.825462043, -0.0480977632]
+            position: [-0.0299, 0.8255, -0.0481]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
       - name: JointTopRight
@@ -146,7 +151,7 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [0.0419975258, 0.897041023, 0.0973160565]
+            position: [0.042, 0.897, 0.0973]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
       - name: JointTop
@@ -155,6 +160,6 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [0.00448256498, 1.2190311, -0.0065773176]
+            position: [0.0045, 1.219, -0.0066]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]

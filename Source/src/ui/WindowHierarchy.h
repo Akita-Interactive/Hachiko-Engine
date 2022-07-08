@@ -13,6 +13,8 @@ namespace Hachiko
 
         void Update() override;
 
+        void GOSelected(GameObject* game_object);
+
     private:
         void DrawHierarchyTree(const GameObject* game_object);
         bool RecursiveDraw(GameObject* game_object);
@@ -21,5 +23,9 @@ namespace Hachiko
 
 
         GameObject* dragged_object = nullptr;
+
+        // Auxiliar variables for opening the hierarchy to see the selected object
+        int index = 0;
+        std::vector<GameObject*> selected_object_ancestors;
     };
 }
