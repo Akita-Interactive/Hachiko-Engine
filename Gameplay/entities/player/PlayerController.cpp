@@ -196,8 +196,6 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 	_player_position = _player_transform->GetGlobalPosition();
 	_movement_direction = float3::zero;
 
-	
-	
 	if (_invulnerability_time_remaining > 0.0f)
 	{
 		_invulnerability_time_remaining -= Time::DeltaTime();
@@ -260,7 +258,10 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 		}
 	}
 
-	CheckState();
+	if (game_object != nullptr)
+	{
+		CheckState();
+	}
 }
 
 Hachiko::Scripting::PlayerState Hachiko::Scripting::PlayerController::GetState() const
@@ -1414,6 +1415,11 @@ void Hachiko::Scripting::PlayerController::ToggleGodMode()
 
 void Hachiko::Scripting::PlayerController::CheckGoal(const float3& current_position)
 {
+	if (_goal == nullptr)
+	{
+		return;
+	}
+
 	const float3 goal_position = _goal->GetTransform()->GetGlobalPosition();
 
 	if (Distance(current_position, goal_position) < 10.0f)

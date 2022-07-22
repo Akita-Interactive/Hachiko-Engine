@@ -257,16 +257,20 @@ Hachiko::Component* Hachiko::GameObject::CreateComponent(Component::Type type)
 
 void Hachiko::GameObject::SetActive(bool set_active)
 {
-    for (GameObject* child : children)
+    // Check why sometimes player controller is deleted before setting active false
+    if (this) 
     {
-        child->SetActive(set_active);
-    }
+        for (GameObject* child : children)
+        {
+            child->SetActive(set_active);
+        }
 
-    if (!active && set_active)
-    {
-        Start();
+        if (!active && set_active)
+        {
+            Start();
+        }
+        active = set_active;
     }
-    active = set_active;
 }
 
 void Hachiko::GameObject::Start()

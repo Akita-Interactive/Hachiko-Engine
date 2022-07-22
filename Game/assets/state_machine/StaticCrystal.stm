@@ -1,0 +1,26 @@
+name: StaticCrystal
+default_node: 0
+clips:
+  - clip_name: none
+    clips_id: 0
+    clips_loop: false
+  - clip_name: idle
+    clips_id: 9368612152322621541
+    clips_loop: false
+  - clip_name: explotion
+    clips_id: 6943893725696552330
+    clips_loop: false
+nodes:
+  - node_name: idle
+    node_clip_name: idle
+  - node_name: explotion
+    node_clip_name: explotion
+transitions:
+  - transition_source: idle
+    transition_target: explotion
+    transition_trigger: isExploding
+    transition_blend: 300
+  - transition_source: explotion
+    transition_target: idle
+    transition_trigger: isRegenerating
+    transition_blend: 200

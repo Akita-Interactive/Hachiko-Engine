@@ -43,8 +43,6 @@ namespace Hachiko
 		private:
 			ComponentTransform* transform;
 
-			SERIALIZE_FIELD(GameObject*, _explosion_crystal);
-			SERIALIZE_FIELD(GameObject*, _static_crystal);
 			SERIALIZE_FIELD(GameObject*, _explosion_indicator_helper);
 			SERIALIZE_FIELD(GameObject*, _explosion_effect);
 
@@ -63,9 +61,10 @@ namespace Hachiko
 			float _current_explosion_timer = 0.f;
 
 			math::float3 _player_pos;
-			
-
 			GameObject* enemies;
+
+			ComponentAnimation* cp_animation;
+			ComponentObstacle* obstacle;
 		};
 	}
 }
