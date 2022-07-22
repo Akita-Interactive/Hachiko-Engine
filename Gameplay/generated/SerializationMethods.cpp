@@ -192,6 +192,24 @@ void Hachiko::Scripting::CrystalExplosion::DeserializeFrom(std::unordered_map<st
 			_regen_time = std::any_cast<float>(_regen_time_sf.copy);
 		}
 	}
+
+	if(serialized_fields.find("_shake_intensity") != serialized_fields.end())
+	{
+		const SerializedField& _shake_intensity_sf = serialized_fields["_shake_intensity"];
+		if (_shake_intensity_sf.type_name == "float")
+		{
+			_shake_intensity = std::any_cast<float>(_shake_intensity_sf.copy);
+		}
+	}
+
+	if(serialized_fields.find("_seconds_shaking") != serialized_fields.end())
+	{
+		const SerializedField& _seconds_shaking_sf = serialized_fields["_seconds_shaking"];
+		if (_seconds_shaking_sf.type_name == "float")
+		{
+			_seconds_shaking = std::any_cast<float>(_seconds_shaking_sf.copy);
+		}
+	}
 }
 
 void Hachiko::Scripting::CrystalExplosion::SerializeTo(std::unordered_map<std::string, SerializedField>& serialized_fields)
@@ -213,6 +231,10 @@ void Hachiko::Scripting::CrystalExplosion::SerializeTo(std::unordered_map<std::s
 	serialized_fields["_explosive_crystal"] = SerializedField(std::string("_explosive_crystal"), std::make_any<bool>(_explosive_crystal), std::string("bool"));
 
 	serialized_fields["_regen_time"] = SerializedField(std::string("_regen_time"), std::make_any<float>(_regen_time), std::string("float"));
+
+	serialized_fields["_shake_intensity"] = SerializedField(std::string("_shake_intensity"), std::make_any<float>(_shake_intensity), std::string("float"));
+
+	serialized_fields["_seconds_shaking"] = SerializedField(std::string("_seconds_shaking"), std::make_any<float>(_seconds_shaking), std::string("float"));
 }
 
 void Hachiko::Scripting::BugAnimationManager::DeserializeFrom(std::unordered_map<std::string, SerializedField>& serialized_fields)

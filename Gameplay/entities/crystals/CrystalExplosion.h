@@ -27,6 +27,9 @@ namespace Hachiko
 			void StartExplosion();
 			void CheckRadiusExplosion();
 			void ExplodeCrystal();
+			void ShakeCrystal();
+
+			float3 GetShakeOffset();
 
 			void RegisterHit(int damage);
 			bool isAlive() { return _stats->IsAlive(); };
@@ -52,6 +55,9 @@ namespace Hachiko
 			SERIALIZE_FIELD(float, _timer_explosion);
 			SERIALIZE_FIELD(bool, _explosive_crystal);
 			SERIALIZE_FIELD(float, _regen_time);
+			SERIALIZE_FIELD(float, _shake_intensity);
+			SERIALIZE_FIELD(float, _seconds_shaking);
+
 
 			ComponentAudioSource* _audio_source;
 			bool is_destroyed = false;
@@ -65,6 +71,11 @@ namespace Hachiko
 
 			ComponentAnimation* cp_animation;
 			ComponentObstacle* obstacle;
+
+			float4x4 _initial_transform = float4x4::identity;
+
+			float regen_elapsed = 0.f;
+			float shake_magnitude = 1.0f;
 		};
 	}
 }

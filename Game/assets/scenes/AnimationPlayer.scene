@@ -19,7 +19,7 @@ child:
         enabled: true
         position: [3.464, 19.48, 23.03]
         rotation: [0, 0.887, -0.4617, 0]
-        scale: [0.9971, 1, 0.9971]
+        scale: [0.9957, 1, 0.9957]
       - !<camera>
         id: 1219616210356617501
         type: 4
@@ -86,7 +86,7 @@ child:
             id: 1313257527649232898
             type: 1
             enabled: true
-            position: [0, 0, 0]
+            position: [38.41, 0, 0]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
         child:
@@ -812,7 +812,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9887]
+                                                                                                                                    scale: [1, 1, 0.9873]
                                                                                                               - id: 12596003370000302713
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: false
@@ -1307,7 +1307,7 @@ child:
             id: 6565315195339886546
             type: 1
             enabled: true
-            position: [0, 0, 0]
+            position: [36.97, 0, 0]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
         child:
@@ -2033,7 +2033,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                                    scale: [1, 1, 0.9887]
+                                                                                                                                    scale: [1, 1, 0.9873]
                                                                                                               - id: 16017741298732437500
                                                                                                                 name: loc_Forearm
                                                                                                                 enabled: false
@@ -2649,6 +2649,8 @@ child:
             "'_timer_explosion@float'": 0
             "'_explosive_crystal@bool'": false
             "'_regen_time@float'": 5
+            "'_shake_intensity@float'": 0.2
+            "'_seconds_shaking@float'": 5
           - !<obstacle>
             id: 12715873875857677661
             type: 18
@@ -3101,6 +3103,526 @@ child:
                     scale: [8.5, 8.5, 1]
                   - !<billboard>
                     id: 18017767975338324037
+                    type: 21
+                    enabled: true
+                    play_on_awake: true
+                    texture_id: 1822181409804484943
+                    tiles: [1, 1]
+                    flip: [false, false]
+                    billboard_lifetime: 1
+                    properties: [1, 2, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    animation_speed: 0
+                    total_tiles: 1
+                    animation_loop: false
+                    color_cycles: 1
+                    color_gradient: [[0, 0, 0, 0, 0], [1, 1, 1, 0, 1]]
+                    animation_section: false
+                    color_section: false
+                    size_section: false
+                    size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                    rotation_section: true
+                    rotation_over_time: [true, false, 0, [5, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                    start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                    start_size: [true, true, 0, [1, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                    start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                    blend_factor: 0
+      - id: 3936808751422200507
+        name: ExplodingCrystal
+        enabled: true
+        component:
+          - !<transform>
+            id: 13406743402902342520
+            type: 1
+            enabled: true
+            position: [6.28, -0.0446, -14.76]
+            rotation: [0, 0, 0, 1]
+            scale: [1.27, 1.27, 1.27]
+          - !<animation>
+            id: 14432818467850012583
+            type: 14
+            enabled: true
+            state_machine: 14686609166423751852
+          - !<script>
+            id: 14999941355095360660
+            type: 15
+            enabled: true
+            class_name: Stats
+            "'_attack_power@int'": 2
+            "'_attack_cd@float'": 2
+            "'_attack_range@float'": 3.5
+            "'_move_speed@float'": 0
+            "'_max_hp@int'": 1
+            "'_current_hp@int'": 3
+          - id: 3443717294222882023
+            type: 20
+            enabled: true
+          - !<script>
+            id: 13798340396567051455
+            type: 15
+            enabled: true
+            class_name: CrystalExplosion
+            "'_explosion_indicator_helper@GameObject*'": 2441368761103128895
+            "'_explosion_effect@GameObject*'": 8388628675967030114
+            "'_crashing_index@unsigned'": 0
+            "'_detecting_radius@float'": 2
+            "'_explosion_radius@float'": 9
+            "'_timer_explosion@float'": 1
+            "'_explosive_crystal@bool'": true
+            "'_regen_time@float'": 5
+            "'_shake_intensity@float'": 0.2
+            "'_seconds_shaking@float'": 5
+          - !<obstacle>
+            id: 16286072970276804841
+            type: 18
+            enabled: true
+            obstacle_type: 0
+            obstacle_size: [1, 1, 1]
+        child:
+          - id: 4345097105157138414
+            name: Geo
+            enabled: true
+            component:
+              - !<transform>
+                id: 733286243780072317
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0, 1]
+                scale: [1, 1, 1]
+            child:
+              - id: 350697021915262130
+                name: crystalSpike_mesh_Part_1_$AssimpFbx$_RotationPivot
+                enabled: true
+                component:
+                  - !<transform>
+                    id: 5326161527217691068
+                    type: 1
+                    enabled: true
+                    position: [-0.0762, 0.4947, 0.1023]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                child:
+                  - id: 8821505731488301832
+                    name: crystalSpike_mesh_Part_1_$AssimpFbx$_RotationPivotInverse
+                    enabled: true
+                    component:
+                      - !<transform>
+                        id: 4403029907395956038
+                        type: 1
+                        enabled: true
+                        position: [0.0762, -0.4947, -0.1023]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                    child:
+                      - id: 252503427560660954
+                        name: crystalSpike_mesh_Part_1_$AssimpFbx$_ScalingPivot
+                        enabled: true
+                        component:
+                          - !<transform>
+                            id: 8677832216956712157
+                            type: 1
+                            enabled: true
+                            position: [-0.0762, 0.4947, 0.1023]
+                            rotation: [0, 0, 0, 1]
+                            scale: [1, 1, 1]
+                        child:
+                          - id: 15315519514303988411
+                            name: crystalSpike_mesh_Part_1_$AssimpFbx$_ScalingPivotInverse
+                            enabled: true
+                            component:
+                              - !<transform>
+                                id: 8253089410623610225
+                                type: 1
+                                enabled: true
+                                position: [0.0762, -0.4947, -0.1023]
+                                rotation: [0, 0, 0, 1]
+                                scale: [1, 1, 1]
+                            child:
+                              - id: 420200668228718991
+                                name: crystalSpike_mesh_Part_1
+                                enabled: true
+                                component:
+                                  - !<transform>
+                                    id: 9156487843734523585
+                                    type: 1
+                                    enabled: true
+                                    position: [0, 0, 0]
+                                    rotation: [0, 0, 0, 1]
+                                    scale: [1, 1, 1]
+                                  - !<mesh_renderer>
+                                    id: 6255699582912488509
+                                    type: 2
+                                    enabled: true
+                                    mesh_id: 10175395471774891078
+                                    navigable: false
+                                    visible: true
+                                    material_id: 5759363592208955763
+                                    tint_color: [1, 1, 1, 1]
+              - id: 15568323053600678667
+                name: crystalSpike_mesh_Part_2_$AssimpFbx$_RotationPivot
+                enabled: true
+                component:
+                  - !<transform>
+                    id: 17321615560444243014
+                    type: 1
+                    enabled: true
+                    position: [0.0911, 0.2996, 0.0456]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                child:
+                  - id: 11684562635393832677
+                    name: crystalSpike_mesh_Part_2_$AssimpFbx$_RotationPivotInverse
+                    enabled: true
+                    component:
+                      - !<transform>
+                        id: 1634223132335786846
+                        type: 1
+                        enabled: true
+                        position: [-0.0911, -0.2996, -0.0456]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                    child:
+                      - id: 7832903493462920868
+                        name: crystalSpike_mesh_Part_2_$AssimpFbx$_ScalingPivot
+                        enabled: true
+                        component:
+                          - !<transform>
+                            id: 13731127274507651653
+                            type: 1
+                            enabled: true
+                            position: [0.0911, 0.2996, 0.0456]
+                            rotation: [0, 0, 0, 1]
+                            scale: [1, 1, 1]
+                        child:
+                          - id: 13006545061618642280
+                            name: crystalSpike_mesh_Part_2_$AssimpFbx$_ScalingPivotInverse
+                            enabled: true
+                            component:
+                              - !<transform>
+                                id: 9839807558921126069
+                                type: 1
+                                enabled: true
+                                position: [-0.0911, -0.2996, -0.0456]
+                                rotation: [0, 0, 0, 1]
+                                scale: [1, 1, 1]
+                            child:
+                              - id: 13614705719135914988
+                                name: crystalSpike_mesh_Part_2
+                                enabled: true
+                                component:
+                                  - !<transform>
+                                    id: 476454902941623203
+                                    type: 1
+                                    enabled: true
+                                    position: [0, 0, 0]
+                                    rotation: [0, 0, 0, 1]
+                                    scale: [1, 1, 1]
+                                  - !<mesh_renderer>
+                                    id: 10958808094928572511
+                                    type: 2
+                                    enabled: true
+                                    mesh_id: 6229385771345559983
+                                    navigable: false
+                                    visible: true
+                                    material_id: 5759363592208955763
+                                    tint_color: [1, 1, 1, 1]
+              - id: 10002060846370767338
+                name: crystalSpike_mesh_Part_3_$AssimpFbx$_RotationPivot
+                enabled: true
+                component:
+                  - !<transform>
+                    id: 14785967326487307890
+                    type: 1
+                    enabled: true
+                    position: [0.187, 0.4844, 0.0622]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                child:
+                  - id: 8952290005024094455
+                    name: crystalSpike_mesh_Part_3_$AssimpFbx$_RotationPivotInverse
+                    enabled: true
+                    component:
+                      - !<transform>
+                        id: 11072458715528432165
+                        type: 1
+                        enabled: true
+                        position: [-0.187, -0.4844, -0.0622]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                    child:
+                      - id: 10197978330409876411
+                        name: crystalSpike_mesh_Part_3_$AssimpFbx$_ScalingPivot
+                        enabled: true
+                        component:
+                          - !<transform>
+                            id: 9816025538332844040
+                            type: 1
+                            enabled: true
+                            position: [0.187, 0.4844, 0.0622]
+                            rotation: [0, 0, 0, 1]
+                            scale: [1, 1, 1]
+                        child:
+                          - id: 13804319557056562828
+                            name: crystalSpike_mesh_Part_3_$AssimpFbx$_ScalingPivotInverse
+                            enabled: true
+                            component:
+                              - !<transform>
+                                id: 2943991746501987602
+                                type: 1
+                                enabled: true
+                                position: [-0.187, -0.4844, -0.0622]
+                                rotation: [0, 0, 0, 1]
+                                scale: [1, 1, 1]
+                            child:
+                              - id: 2683518262463237829
+                                name: crystalSpike_mesh_Part_3
+                                enabled: true
+                                component:
+                                  - !<transform>
+                                    id: 15817416298282261324
+                                    type: 1
+                                    enabled: true
+                                    position: [0, 0, 0]
+                                    rotation: [0, 0, 0, 1]
+                                    scale: [1, 1, 1]
+                                  - !<mesh_renderer>
+                                    id: 11774198922833818660
+                                    type: 2
+                                    enabled: true
+                                    mesh_id: 903393536084662082
+                                    navigable: false
+                                    visible: true
+                                    material_id: 5759363592208955763
+                                    tint_color: [1, 1, 1, 1]
+              - id: 9514725385922437735
+                name: crystalSpike_mesh_Part_4_$AssimpFbx$_RotationPivot
+                enabled: true
+                component:
+                  - !<transform>
+                    id: 2729703580949967751
+                    type: 1
+                    enabled: true
+                    position: [0.1453, 0.2564, 0.2718]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                child:
+                  - id: 1056208379905086377
+                    name: crystalSpike_mesh_Part_4_$AssimpFbx$_RotationPivotInverse
+                    enabled: true
+                    component:
+                      - !<transform>
+                        id: 702857354835896930
+                        type: 1
+                        enabled: true
+                        position: [-0.1453, -0.2564, -0.2718]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                    child:
+                      - id: 4336500693637084636
+                        name: crystalSpike_mesh_Part_4_$AssimpFbx$_ScalingPivot
+                        enabled: true
+                        component:
+                          - !<transform>
+                            id: 1409032394849468145
+                            type: 1
+                            enabled: true
+                            position: [0.1453, 0.2564, 0.2718]
+                            rotation: [0, 0, 0, 1]
+                            scale: [1, 1, 1]
+                        child:
+                          - id: 2681282744354347533
+                            name: crystalSpike_mesh_Part_4_$AssimpFbx$_ScalingPivotInverse
+                            enabled: true
+                            component:
+                              - !<transform>
+                                id: 5845905265715844352
+                                type: 1
+                                enabled: true
+                                position: [-0.1453, -0.2564, -0.2718]
+                                rotation: [0, 0, 0, 1]
+                                scale: [1, 1, 1]
+                            child:
+                              - id: 8398055300720228737
+                                name: crystalSpike_mesh_Part_4
+                                enabled: true
+                                component:
+                                  - !<transform>
+                                    id: 9621413714621281563
+                                    type: 1
+                                    enabled: true
+                                    position: [0, 0, 0]
+                                    rotation: [0, 0, 0, 1]
+                                    scale: [1, 1, 1]
+                                  - !<mesh_renderer>
+                                    id: 14269316313996709047
+                                    type: 2
+                                    enabled: true
+                                    mesh_id: 17479070581851126897
+                                    navigable: false
+                                    visible: true
+                                    material_id: 5759363592208955763
+                                    tint_color: [1, 1, 1, 1]
+          - id: 16568414219800911375
+            name: Bones
+            enabled: true
+            component:
+              - !<transform>
+                id: 11135396611172556389
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0, 1]
+                scale: [1, 1, 1]
+            child:
+              - id: 16812284756393346550
+                name: Root
+                enabled: true
+                component:
+                  - !<transform>
+                    id: 7505572451418631607
+                    type: 1
+                    enabled: true
+                    position: [-0.0003, 0, -0.0006]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                child:
+                  - id: 14990017962866538081
+                    name: Up
+                    enabled: true
+                    component:
+                      - !<transform>
+                        id: 13889248246383509323
+                        type: 1
+                        enabled: true
+                        position: [-0.0759, 0.4947, 0.1029]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                  - id: 6758399059658952372
+                    name: Down
+                    enabled: true
+                    component:
+                      - !<transform>
+                        id: 6255320960296622288
+                        type: 1
+                        enabled: true
+                        position: [0.0915, 0.2996, 0.0463]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                  - id: 4707195525965039066
+                    name: Middle
+                    enabled: true
+                    component:
+                      - !<transform>
+                        id: 16301317582168288734
+                        type: 1
+                        enabled: true
+                        position: [0.1873, 0.4844, 0.0629]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                  - id: 11227025474195681599
+                    name: Down_two
+                    enabled: true
+                    component:
+                      - !<transform>
+                        id: 9553635936724525147
+                        type: 1
+                        enabled: true
+                        position: [0.1457, 0.2564, 0.2724]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+          - id: 2441368761103128895
+            name: ExplosionIndicatorHelper
+            enabled: true
+            component:
+              - !<transform>
+                id: 17121442865944581897
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0, 1]
+                scale: [4.999, 0.1, 4.999]
+            child:
+              - id: 17855091381796397440
+                name: Cylinder001
+                enabled: true
+                component:
+                  - !<transform>
+                    id: 15459912217296230145
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [-0.7071, 0, 0, 0.7071]
+                    scale: [1, 1, 1]
+                  - !<mesh_renderer>
+                    id: 13191364292375327387
+                    type: 2
+                    enabled: true
+                    mesh_id: 10210867973034302559
+                    navigable: false
+                    visible: true
+                    material_id: 6462450398853139216
+                    tint_color: [1, 1, 1, 1]
+          - id: 8388628675967030114
+            name: ExplosionEffect
+            enabled: true
+            component:
+              - !<transform>
+                id: 3710788440970756155
+                type: 1
+                enabled: true
+                position: [0, 0.1516, 0]
+                rotation: [0, 0.0689, 0, 0.9976]
+                scale: [1.4, 1.4, 1.4]
+            child:
+              - id: 16872792100067786218
+                name: InnerEffect
+                enabled: true
+                component:
+                  - !<transform>
+                    id: 6834332348356377350
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                  - !<billboard>
+                    id: 8818210625147263074
+                    type: 21
+                    enabled: true
+                    play_on_awake: true
+                    texture_id: 15537058005441777461
+                    tiles: [1, 1]
+                    flip: [false, false]
+                    billboard_lifetime: 1
+                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    animation_speed: 0
+                    total_tiles: 1
+                    animation_loop: false
+                    color_cycles: 0
+                    color_gradient: [[0.763, 0, 0, 0, 0]]
+                    animation_section: false
+                    color_section: true
+                    size_section: true
+                    size_over_time: [true, false, 0, [120, 10], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                    rotation_section: false
+                    rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                    start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                    start_size: [true, true, 0, [1, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                    start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                    blend_factor: 0
+              - id: 13279102479190910004
+                name: OuterEffect
+                enabled: true
+                component:
+                  - !<transform>
+                    id: 5058134345920209086
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [8.5, 8.5, 1]
+                  - !<billboard>
+                    id: 9327621909644246110
                     type: 21
                     enabled: true
                     play_on_awake: true
@@ -6684,7 +7206,7 @@ child:
         enabled: true
         position: [0, 0, 0]
         rotation: [0, 0.886, 0, -0.4636]
-        scale: [0.4423, 0.45, 0.4423]
+        scale: [0.4409, 0.45, 0.4409]
       - !<animation>
         id: 7343108548585521740
         type: 14
@@ -7887,7 +8409,7 @@ child:
                                         enabled: true
                                         position: [0, 0, 0]
                                         rotation: [0.2065, -0.119, 0.8415, 0.4848]
-                                        scale: [0.9886, 0.9886, 1]
+                                        scale: [0.9872, 0.9872, 1]
                                     child:
                                       - id: 18129411375799078765
                                         name: CenterShoulder_$AssimpFbx$_Rotation
@@ -8209,7 +8731,7 @@ child:
                                                                                                                 enabled: true
                                                                                                                 position: [0, 0, 0]
                                                                                                                 rotation: [0, 0.9999, 0, 0.0118]
-                                                                                                                scale: [0.9886, 1, 0.9886]
+                                                                                                                scale: [0.9872, 1, 0.9872]
                                                                                                             child:
                                                                                                               - id: 1089914771736909484
                                                                                                                 name: Claw_Jnt
@@ -8245,7 +8767,7 @@ child:
                                                                                                                             enabled: true
                                                                                                                             position: [0, 0, 0]
                                                                                                                             rotation: [0, 0.9999, 0, -0.0118]
-                                                                                                                            scale: [0.9886, 1, 0.9886]
+                                                                                                                            scale: [0.9872, 1, 0.9872]
                                                                                                                         child:
                                                                                                                           - id: 8815377145542631277
                                                                                                                             name: Claw_Mid_Jnt
@@ -8281,7 +8803,7 @@ child:
                                                                                                                                         enabled: true
                                                                                                                                         position: [0, 0, 0]
                                                                                                                                         rotation: [0, -0.7329, 0, 0.6803]
-                                                                                                                                        scale: [0.9887, 1, 0.9887]
+                                                                                                                                        scale: [0.9873, 1, 0.9873]
                                                                                                                                     child:
                                                                                                                                       - id: 8723297757171525534
                                                                                                                                         name: Thumb_Start_$AssimpFbx$_Rotation
@@ -8555,7 +9077,7 @@ child:
                                                                                                                                         enabled: true
                                                                                                                                         position: [0, 0, 0]
                                                                                                                                         rotation: [0, 0.9979, 0, 0.0641]
-                                                                                                                                        scale: [0.9772, 1, 0.9772]
+                                                                                                                                        scale: [0.9744, 1, 0.9744]
                                                                                                                                     child:
                                                                                                                                       - id: 5455604767055070504
                                                                                                                                         name: Index_start_$AssimpFbx$_Rotation
@@ -8603,7 +9125,7 @@ child:
                                                                                                                                                         enabled: true
                                                                                                                                                         position: [0, 0, 0]
                                                                                                                                                         rotation: [0, 0.9979, 0, -0.0641]
-                                                                                                                                                        scale: [0.9772, 1, 0.9772]
+                                                                                                                                                        scale: [0.9744, 1, 0.9744]
                                                                                                                                                     child:
                                                                                                                                                       - id: 18053073848535088841
                                                                                                                                                         name: Index_finish_$AssimpFbx$_Rotation
@@ -8828,7 +9350,7 @@ child:
                                         enabled: true
                                         position: [0, 0, 0]
                                         rotation: [-0.3566, -0.5758, -0.3468, 0.6489]
-                                        scale: [0.9943, 1, 0.9943]
+                                        scale: [0.9936, 1, 0.9936]
                                     child:
                                       - id: 5874830426117213357
                                         name: JetPack_$AssimpFbx$_Rotation

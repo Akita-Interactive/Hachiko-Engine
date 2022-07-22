@@ -22,6 +22,8 @@ Hachiko::Scripting::CrystalExplosion::CrystalExplosion(GameObject* game_object)
 	, _timer_explosion(0.0f)
 	, _explosion_effect(nullptr)
 	, _regen_time(5.f)
+	, _shake_intensity(0.1f)
+	, _seconds_shaking(0.8f)
 {
 }
 
@@ -33,6 +35,8 @@ void Hachiko::Scripting::CrystalExplosion::OnAwake()
 	transform = game_object->GetTransform();
 	cp_animation = game_object->GetComponent<ComponentAnimation>();
 	obstacle = game_object->GetComponent<ComponentObstacle>();
+
+	_initial_transform = game_object->GetTransform()->GetGlobalMatrix();
 }
 
 void Hachiko::Scripting::CrystalExplosion::OnStart()
@@ -46,15 +50,23 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 	{
 		return;
 	}
-	
+
 	if (!_stats->IsAlive())
 	{
-		_current_regen_time += Time::DeltaTime();
 
-		if (cp_animation->IsAnimationStopped() &&  _current_regen_time >= _regen_time)
+		if (cp_animation->IsAnimationStopped())
 		{
-			ResetCrystal();
+			_current_regen_time += Time::DeltaTime();
+
+			if (_current_regen_time >= _regen_time)
+			{
+				ResetCrystal();
+			}
+
+			ShakeCrystal();
+
 		}
+
 	}
 
 	if (is_exploding)
@@ -85,8 +97,8 @@ void Hachiko::Scripting::CrystalExplosion::StartExplosion()
 
 	for (GameObject* child : _explosion_effect->children)
 	{
-		child->GetComponent<ComponentBillboard>()->Restart();
 		child->SetActive(true);
+		child->GetComponent<ComponentBillboard>()->Restart();
 	}
 }
 
@@ -101,7 +113,7 @@ void Hachiko::Scripting::CrystalExplosion::CheckRadiusExplosion()
 void Hachiko::Scripting::CrystalExplosion::ExplodeCrystal()
 {
 	is_exploding = false;
-	
+
 	std::vector<GameObject*> check_hit = {};
 
 	if (enemies != nullptr)
@@ -143,11 +155,36 @@ void Hachiko::Scripting::CrystalExplosion::ExplodeCrystal()
 			player_controller->RegisterHit(_stats->_attack_power, true, relative_dir.Normalized());
 		}
 	}
-	
+}
 
-	for (GameObject* child : _explosion_effect->children)
+void Hachiko::Scripting::CrystalExplosion::ShakeCrystal()
+{
+	ComponentTransform* transform = game_object->GetTransform();
+	math::float3 current_position = transform->GetGlobalPosition();
+
+	float3 shake_offset = float3::zero;
+
+	shake_offset = GetShakeOffset();
+
+	transform->SetGlobalPosition(_initial_transform.Col3(3) + shake_offset);
+}
+
+float3 Hachiko::Scripting::CrystalExplosion::GetShakeOffset()
+{
+	if (_current_regen_time < _seconds_shaking)
 	{
-		child->SetActive(false);
+		float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		float x = (r - 0.5f) * shake_magnitude * _shake_intensity;
+		r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		float z = (r - 0.5f) * shake_magnitude * _shake_intensity;
+
+		_current_regen_time += Time::DeltaTime();
+		shake_magnitude = (1 - (_current_regen_time / _seconds_shaking)) * (1 - (_current_regen_time / _seconds_shaking));
+		return float3(x, 0, z);
+	}
+	else
+	{
+		return float3::zero;
 	}
 }
 
@@ -189,14 +226,6 @@ void Hachiko::Scripting::CrystalExplosion::ResetCrystal()
 	if (_explosion_indicator_helper)
 	{
 		_explosion_indicator_helper->SetActive(false);
-	}
-
-	if (_explosion_effect)
-	{
-		for (GameObject* child : _explosion_effect->children)
-		{
-			child->SetActive(false);
-		}
 	}
 
 	if (obstacle)

@@ -118,6 +118,10 @@ void Hachiko::Scripting::CrystalExplosion::OnSave(YAML::Node& node) const
 	node["'_explosive_crystal@bool'"] = _explosive_crystal;
 
 	node["'_regen_time@float'"] = _regen_time;
+
+	node["'_shake_intensity@float'"] = _shake_intensity;
+
+	node["'_seconds_shaking@float'"] = _seconds_shaking;
 }
 
 void Hachiko::Scripting::CrystalExplosion::OnLoad()
@@ -160,6 +164,16 @@ void Hachiko::Scripting::CrystalExplosion::OnLoad()
 	if (load_node["'_regen_time@float'"].IsDefined())
 	{
 		_regen_time = load_node["'_regen_time@float'"].as<float>();
+	}
+
+	if (load_node["'_shake_intensity@float'"].IsDefined())
+	{
+		_shake_intensity = load_node["'_shake_intensity@float'"].as<float>();
+	}
+
+	if (load_node["'_seconds_shaking@float'"].IsDefined())
+	{
+		_seconds_shaking = load_node["'_seconds_shaking@float'"].as<float>();
 	}
 }
 

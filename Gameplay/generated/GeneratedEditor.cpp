@@ -52,6 +52,8 @@ void Hachiko::Scripting::CrystalExplosion::OnEditor()
 	Editor::Show("Timer Explosion", _timer_explosion);
 	Editor::Show("Explosive Crystal", _explosive_crystal);
 	Editor::Show("Regen Time", _regen_time);
+	Editor::Show("Shake Intensity", _shake_intensity);
+	Editor::Show("Seconds Shaking", _seconds_shaking);
 }
 
 void Hachiko::Scripting::BugAnimationManager::OnEditor()
