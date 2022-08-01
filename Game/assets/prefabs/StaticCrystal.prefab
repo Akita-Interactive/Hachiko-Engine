@@ -5,9 +5,9 @@ component:
   - !<transform>
     type: 1
     enabled: true
-    position: [-6.696, -0.0446, -14.76]
-    rotation: [0, 0, 0, 1]
-    scale: [1.27, 1.27, 1.27]
+    position: [-77.57, 3.43, -68.04]
+    rotation: [0, 0.0689, 0, 0.9976]
+    scale: [2.5, 2.5, 2.5]
   - !<animation>
     type: 14
     enabled: true
@@ -109,7 +109,7 @@ child:
                             mesh_id: 10175395471774891078
                             navigable: false
                             visible: true
-                            material_id: 5759363592208955763
+                            material_id: 15711698613413314858
                             tint_color: [1, 1, 1, 1]
       - name: crystalSpike_mesh_Part_2_$AssimpFbx$_RotationPivot
         enabled: true
@@ -166,7 +166,7 @@ child:
                             mesh_id: 6229385771345559983
                             navigable: false
                             visible: true
-                            material_id: 5759363592208955763
+                            material_id: 15711698613413314858
                             tint_color: [1, 1, 1, 1]
       - name: crystalSpike_mesh_Part_3_$AssimpFbx$_RotationPivot
         enabled: true
@@ -223,7 +223,7 @@ child:
                             mesh_id: 903393536084662082
                             navigable: false
                             visible: true
-                            material_id: 5759363592208955763
+                            material_id: 15711698613413314858
                             tint_color: [1, 1, 1, 1]
       - name: crystalSpike_mesh_Part_4_$AssimpFbx$_RotationPivot
         enabled: true
@@ -280,7 +280,7 @@ child:
                             mesh_id: 17479070581851126897
                             navigable: false
                             visible: true
-                            material_id: 5759363592208955763
+                            material_id: 15711698613413314858
                             tint_color: [1, 1, 1, 1]
   - name: Bones
     enabled: true
@@ -339,7 +339,7 @@ child:
                 rotation: [0, 0, 0, 1]
                 scale: [1, 1, 1]
   - name: ExplosionIndicatorHelper
-    enabled: false
+    enabled: true
     component:
       - !<transform>
         type: 1
@@ -349,7 +349,7 @@ child:
         scale: [4.999, 0.1, 4.999]
     child:
       - name: Cylinder001
-        enabled: false
+        enabled: true
         component:
           - !<transform>
             type: 1
