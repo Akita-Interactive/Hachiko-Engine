@@ -799,8 +799,9 @@ void Hachiko::Scripting::PlayerController::MovementController()
 		{
 			_stun_time -= Time::DeltaTime();
 			float stun_completion = (_stun_duration - _stun_time) * (1.0 / _stun_duration);
+			float acceleration = 1.0f - math::Pow((1.0f - stun_completion) / 1.0f, (int)_dash_scaler);
 			_player_position = math::float3::Lerp(_knock_start, _knock_end,
-				stun_completion);
+				acceleration);
 			
 		}
 		else

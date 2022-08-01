@@ -4,11 +4,13 @@
 Hachiko::Scripting::Stats::Stats(GameObject* game_object)
 	: Script(game_object, "Stats")
 	, _attack_power(1)
+	, _attack_knockback(0.0f)
 	, _attack_cd(2.0f)
 	, _attack_range(3.5f)
 	, _move_speed(7.0f)
 	, _max_hp(3)
 	, _current_hp(_max_hp)
+	, _attack_type(0)
 {
 }
 

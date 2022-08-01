@@ -28,15 +28,28 @@ namespace Hachiko
                 _attack_range = attk_range;
             }
 
+            enum AttackType
+            {
+                CONE = 0,
+                RECTANGLE = 1,
+                CIRCLE = 2
+            };
+
             bool IsAlive();
         public:
             SERIALIZE_FIELD(int, _attack_power);
+            SERIALIZE_FIELD(float, _attack_knockback);
             SERIALIZE_FIELD(float, _attack_cd);
             SERIALIZE_FIELD(float, _attack_range);
+			SERIALIZE_FIELD(float, _attack_width);
             SERIALIZE_FIELD(float, _move_speed);
             SERIALIZE_FIELD(int, _max_hp);
+            SERIALIZE_FIELD(int, _attack_type);
 
             SERIALIZE_FIELD(int, _current_hp);
+
         };
+    
+		
     } // namespace Scripting
 } // namespace Hachiko*/

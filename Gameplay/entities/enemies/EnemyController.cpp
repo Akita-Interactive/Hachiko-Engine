@@ -76,6 +76,7 @@ void Hachiko::Scripting::EnemyController::OnAwake()
 		_combat_stats = game_object->GetComponent<Stats>();
 		_combat_stats->_attack_power = 1;
 		_combat_stats->_current_hp = _combat_stats->_max_hp;
+		_combat_stats->_attack_knockback = 1.0f;
 		_stun_time = 0.0f;
 		_is_stunned = false;
 		_attack_delay = 0.3f;
@@ -544,8 +545,9 @@ void Hachiko::Scripting::EnemyController::Attack()
 	switch (_enemy_type)
 	{
 	case EnemyType::BEETLE:
+		// TODO: replace this with Stats class
 		attack_stats.damage = _combat_stats->_attack_power;
-		attack_stats.knockback_distance = 0.0f;
+		attack_stats.knockback_distance = _combat_stats->_attack_knockback;
 		attack_stats.width = 4.f;
 		attack_stats.range = _attack_range * 1.1f; // a bit bigger than its attack activation range
 		attack_stats.type = CombatManager::AttackType::RECTANGLE;
