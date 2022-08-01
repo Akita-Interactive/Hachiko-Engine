@@ -51,22 +51,16 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 		return;
 	}
 
-	if (!_stats->IsAlive())
+	if (!_stats->IsAlive() && cp_animation->IsAnimationStopped())
 	{
+		_current_regen_time += Time::DeltaTime();
 
-		if (cp_animation->IsAnimationStopped())
+		if (_current_regen_time >= _regen_time)
 		{
-			_current_regen_time += Time::DeltaTime();
-
-			if (_current_regen_time >= _regen_time)
-			{
-				ResetCrystal();
-			}
-
-			ShakeCrystal();
-
+			ResetCrystal();
 		}
 
+		ShakeCrystal();
 	}
 
 	if (is_exploding)
@@ -159,13 +153,7 @@ void Hachiko::Scripting::CrystalExplosion::ExplodeCrystal()
 
 void Hachiko::Scripting::CrystalExplosion::ShakeCrystal()
 {
-	ComponentTransform* transform = game_object->GetTransform();
-	math::float3 current_position = transform->GetGlobalPosition();
-
-	float3 shake_offset = float3::zero;
-
-	shake_offset = GetShakeOffset();
-
+	float3 shake_offset = GetShakeOffset();
 	transform->SetGlobalPosition(_initial_transform.Col3(3) + shake_offset);
 }
 
