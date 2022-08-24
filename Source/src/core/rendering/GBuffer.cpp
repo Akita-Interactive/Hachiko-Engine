@@ -144,11 +144,13 @@ void Hachiko::GBuffer::Resize(int width, int height) const
 
     // Emissive color stored in g buffer:
     glBindTexture(GL_TEXTURE_2D, _emissive_texture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, width, height, 0, GL_RGB, GL_FLOAT, NULL);
+    glTexImage2D(GL_TEXTURE_2D, 0, GetEmissiveTextureInternalFormat(), width, height, 0, GetEmissiveTextureFormat(), GetEmissiveTextureType(), NULL);
 
     // Depth color stored in g buffer:
     glBindTexture(GL_TEXTURE_2D, _depth_texture);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void Hachiko::GBuffer::BlitDepth(unsigned int target_buffer_id, int width, int height) const 
@@ -208,4 +210,33 @@ void Hachiko::GBuffer::BindForReading() const
 void Hachiko::GBuffer::BindForDrawing() const 
 {
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, _g_buffer);
+}
+
+unsigned int Hachiko::GBuffer::GetEmissiveTextureType()
+{
+    return GL_FLOAT;
+}
+
+unsigned int Hachiko::GBuffer::GetEmissiveTextureFormat()
+{
+    return GL_RGB;
+}
+
+unsigned int Hachiko::GBuffer::GetEmissiveTextureInternalFormat()
+{
+    return GL_RGB8;
+}
+
+void Hachiko::GBuffer::BindFogTextures() const
+{
+    // Bind position texture:
+    glActiveTexture(GL_TEXTURE3);
+    glBindTexture(GL_TEXTURE_2D, _position_texture);
+}
+
+void Hachiko::GBuffer::UnbindFogTextures() const
+{
+    // Unbind position texture:
+    glActiveTexture(GL_TEXTURE3);
+    glBindTexture(GL_TEXTURE_2D, 0);
 }

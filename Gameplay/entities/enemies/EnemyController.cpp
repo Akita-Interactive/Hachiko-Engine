@@ -184,6 +184,12 @@ void Hachiko::Scripting::EnemyController::OnUpdate()
 {
 	CheckState();
 
+	if (_state == BugState::INVALID && !_has_spawned)
+	{
+		Spawn();
+		return;
+	}
+
 	if (_current_spawning_time > 0.0f || _state == BugState::SPAWNING)
 	{
 		SpawnController();
@@ -256,6 +262,7 @@ void Hachiko::Scripting::EnemyController::SpawnController()
 			_big_dust_particles->Restart();
 			//Push the player back
 			_combat_manager->EnemyMeleeAttack(transform->GetGlobalMatrix(), push_attack);
+			_attack_cooldown = _combat_stats->_attack_cd;
 			return;
 		}
 
@@ -415,48 +422,35 @@ void Hachiko::Scripting::EnemyController::AttackController()
 		}
 		break;
 	case EnemyType::WORM:
+
 		if (_attack_cooldown > 0.0f)
 		{
 			return;
 		}
 
-		if (!_attack_landing)
+		if (_previous_state == BugState::IDLE && _state != BugState::ATTACKING && !_attack_landing)
 		{
-			_attack_zone->GetTransform()->SetGlobalPosition(_player_pos);
-			WormSpit();
-			_attack_animation_timer = 0.0f;
+			_state = BugState::ATTACKING;
+			return;
 		}
-		else
-		{
-			_attack_animation_timer += Time::DeltaTime();
-			if (_attack_animation_timer >= 1.0f)
-			{
-				CombatManager::AttackStats attack_stats;
-				attack_stats.damage = _combat_stats->_attack_power;
-				attack_stats.knockback_distance = 0.0f;
-				attack_stats.width = 0.f;
-				attack_stats.range = 2.5; // a bit bigger than its attack activation range
-				attack_stats.type = CombatManager::AttackType::CIRCLE;
-				_combat_manager->EnemyMeleeAttack(_attack_zone->GetTransform()->GetGlobalMatrix(), attack_stats);
-				_attack_landing = false;
-				_attack_cooldown = _combat_stats->_attack_cd;
-				_state = BugState::IDLE;
-			}
-		}
+
+		WormSpit();
+
 		return;
 	}
 }
 
 void Hachiko::Scripting::EnemyController::IdleController()
 {
-	if (_state == BugState::ATTACKING && animation->IsAnimationStopped())
-	{
-		_state = BugState::IDLE;
-	}
-
 	if (_enemy_type == EnemyType::WORM)
 	{
 		_enemy_body->GetTransform()->LookAtTarget(_player_pos);
+		return;
+	}
+
+	if (_state == BugState::ATTACKING && animation->IsAnimationStopped())
+	{
+		_state = BugState::IDLE;
 	}
 
 	if (_state == BugState::IDLE)
@@ -628,7 +622,7 @@ void Hachiko::Scripting::EnemyController::Spawn()
 		_state = BugState::INVALID;
 		_small_dust_particles->Restart();
 		_current_spawning_time = _spawning_time;
-		_player_camera->Shake(_spawning_time, 0.2f);
+		_player_camera->Shake(_spawning_time, 0.8f);
 		break;
 	}
 }
@@ -710,7 +704,7 @@ void Hachiko::Scripting::EnemyController::ResetEnemy()
 	_is_stunned = false;
 	_has_spawned = false;
 	_attack_delay = 0.3f;
-	_state = BugState::IDLE;
+	_state = BugState::INVALID;
 	_previous_state = BugState::INVALID;
 	_parasite_dissolving_time_progress = 0.f;
 	_enemy_dissolving_time_progress = 0.f;
@@ -730,6 +724,26 @@ void Hachiko::Scripting::EnemyController::ResetEnemy()
 	if (_blood_trail_particles != nullptr)
 	{
 		_blood_trail_particles->Disable();
+	}
+
+	if (_inner_indicator_billboard != nullptr)
+	{
+		_inner_indicator_billboard->Stop();
+	}
+
+	if (_outer_indicator_billboard != nullptr)
+	{
+		_outer_indicator_billboard->Stop();
+	}
+
+	if (_big_dust_particles != nullptr)
+	{
+		_big_dust_particles->Stop();
+	}
+
+	if (_small_dust_particles != nullptr)
+	{
+		_small_dust_particles->Stop();
 	}
 }
 
@@ -844,9 +858,34 @@ void Hachiko::Scripting::EnemyController::PatrolMovement()
 
 void Hachiko::Scripting::EnemyController::WormSpit()
 {
-	_state = BugState::ATTACKING;
-	_attack_landing = true;
-	_attack_current_delay = 1.0f;
-	_inner_indicator_billboard->Play();
-	_outer_indicator_billboard->Play();
+	if (_state == BugState::ATTACKING && animation->IsAnimationStopped())
+	{
+		// We create the attack zone once the firing animation is done
+		_state = BugState::IDLE;
+		_attack_zone->GetTransform()->SetGlobalPosition(_player_pos);
+		_attack_landing = true;
+		_attack_current_delay = 1.0f;
+		_inner_indicator_billboard->Play();
+		_outer_indicator_billboard->Play();
+		_attack_animation_timer = 0.0f;
+
+		return;
+	}
+
+	if (_attack_landing)
+	{
+		_attack_animation_timer += Time::DeltaTime();
+		if (_attack_animation_timer >= 1.0f)
+		{
+			CombatManager::AttackStats attack_stats;
+			attack_stats.damage = _combat_stats->_attack_power;
+			attack_stats.knockback_distance = 0.0f;
+			attack_stats.width = 0.f;
+			attack_stats.range = 2.5; // a bit bigger than its attack activation range
+			attack_stats.type = CombatManager::AttackType::CIRCLE;
+			_combat_manager->EnemyMeleeAttack(_attack_zone->GetTransform()->GetGlobalMatrix(), attack_stats);
+			_attack_landing = false;
+			_attack_cooldown = _combat_stats->_attack_cd;
+		}
+	}
 }

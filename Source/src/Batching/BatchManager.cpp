@@ -111,20 +111,20 @@ void Hachiko::BatchManager::DrawOpaqueBatches(const Program* program)
 {
     for (GeometryBatch* geometry_batch : geometry_batches_opaque)
     {
-        DrawSingleBatch(geometry_batch, program, use_first_segment_opaque);
+        DrawSingleBatch(geometry_batch, program, opaque_buffers_segment);
     }
 
-    use_first_segment_opaque = !use_first_segment_opaque;
+    opaque_buffers_segment = (opaque_buffers_segment + 1) % BatchingProperties::MAX_SEGMENTS;
 }
 
 void Hachiko::BatchManager::DrawTransparentBatches(const Program* program) 
 {
     for (GeometryBatch* geometry_batch : geometry_batches_transparent)
     {
-        DrawSingleBatch(geometry_batch, program, use_first_segment_transparent);
+        DrawSingleBatch(geometry_batch, program, transparent_buffers_segment);
     }
 
-    use_first_segment_transparent = !use_first_segment_transparent;
+    transparent_buffers_segment = (transparent_buffers_segment + 1) % BatchingProperties::MAX_SEGMENTS;
 }
 
 void Hachiko::BatchManager::ClearOpaqueBatchesDrawList()
@@ -189,19 +189,21 @@ void Hachiko::BatchManager::ShowDebugMenuForBatches(
     }
 }
 
-void Hachiko::BatchManager::DrawSingleBatch(GeometryBatch* geometry_batch, const Program* program, bool use_first_segment) const 
+void Hachiko::BatchManager::DrawSingleBatch(GeometryBatch* geometry_batch, const Program* program, int segment) const 
 {
-    // Binds meshes and transforms
-    geometry_batch->UpdateWithTextureBatch(program, use_first_segment);
-    geometry_batch->BindBuffers(use_first_segment);
+    // Update and bind batch
+    if (geometry_batch->dirty_draw_components)
+    {
+        geometry_batch->UpdateCommands();
+        geometry_batch->UpdateBatch(segment);
+        geometry_batch->dirty_draw_components = false;
+    }
 
-    // Bind texture batch
-    // bind materials array
-    auto& commands = geometry_batch->GetCommands();
+    geometry_batch->BindBatch(segment, program);
 
-    program->BindUniformBool("has_bones", geometry_batch->batch->layout.bones);
-    int persistent_offset = (use_first_segment) ? 0 : geometry_batch->component_count;
-    program->BindUniformInts("persistent_offset", 1, &persistent_offset);
+    glMultiDrawElementsIndirect(GL_TRIANGLES, GL_UNSIGNED_INT, (GLvoid*)0, geometry_batch->GetCommandAmount(), 0);
+    glBindVertexArray(0);
 
-    glMultiDrawElementsIndirect(GL_TRIANGLES, GL_UNSIGNED_INT, (GLvoid*)0, commands.size(), 0);
+    // Fence sync if manual sync waiting is enabled:
+    geometry_batch->FenceSync(segment);
 }

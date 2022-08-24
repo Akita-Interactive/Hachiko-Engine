@@ -462,6 +462,20 @@ bool Hachiko::Scripting::CombatManager::IsPackDead(unsigned pack_idx) const
 	return IsPackDead(_enemy_packs_container->children[pack_idx]);
 }
 
+unsigned Hachiko::Scripting::CombatManager::GetPackAliveCount(GameObject* pack) const
+{
+	unsigned count = 0;
+	for (GameObject* enemy : pack->children)
+	{
+		EnemyController* enemy_controller = enemy->GetComponent<EnemyController>();
+		if (enemy_controller && enemy_controller->IsAlive())
+		{
+			++count;
+		}
+	}
+	return count;
+}
+
 void Hachiko::Scripting::CombatManager::ResetEnemyPack(GameObject* pack, bool is_gauntlet)
 {
 	// Make sure that pack exist in serialization

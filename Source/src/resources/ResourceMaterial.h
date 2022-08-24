@@ -108,7 +108,6 @@ namespace Hachiko
         float smoothness = 0.5f;
         float metalness_value = 0.5f;
         unsigned is_metallic = 1;
-        unsigned smoothness_alpha = 1;
         unsigned is_transparent = 0;
 
     private:
@@ -119,6 +118,5 @@ namespace Hachiko
 
         std::vector<std::string> transparency = {"Opaque", "Transparent"};
         std::vector<std::string> material_types = {"Specular", "Metallic"};
-        std::vector<std::string> alpha_channels = {"Diffuse", ""}; // The empty channel will have the selected name on materialTypes
     };
 }

@@ -59,6 +59,14 @@ bool Hachiko::ImGuiUtils::CompactColorPicker(const char* name, float* color)
     return ret;
 }
 
+bool Hachiko::ImGuiUtils::CompactOpaqueColorPicker(const char* name, float* color)
+{
+    constexpr ImGuiColorEditFlags flags = ImGuiColorEditFlags_DisplayRGB | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_NoLabel;
+    ImGui::PushItemWidth(150.0f);
+    const bool ret = ImGui::ColorPicker3(name, color, flags);
+    ImGui::PopItemWidth();
+    return ret;
+}
 bool Hachiko::ImGuiUtils::CollapsingHeader(GameObject* game_object, Component* component, const char* header_name)
 {
     ImGui::PushID(component);

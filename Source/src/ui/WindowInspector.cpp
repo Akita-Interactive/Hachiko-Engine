@@ -215,6 +215,13 @@ void Hachiko::WindowInspector::DrawGameObject(GameObject* game_object) const
             App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
+        if (ImGui::MenuItem("Video"))
+        {
+            game_object->CreateComponent(Component::Type::VIDEO);
+            ImGui::CloseCurrentPopup();
+            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+        }
+
         ImGui::EndPopup();
     }
 

@@ -45,6 +45,8 @@ namespace Hachiko
         const dtCrowdAgent* GetAgent(int agent_id) const;
         dtCrowdAgent* GetEditableAgent(int agent_id) const;
 
+        bool Raycast(const float3& start_pos, const float3& end_pos, float3& hit_position);
+
     private:
         void SetDebugData();
         void RenderAgents(duDebugDraw& dd);

@@ -64,12 +64,32 @@ void Hachiko::ComponentAnimation::SendTrigger(const std::string& trigger)
     
     std::string active = GetActiveNode();
 
+    unsigned int transition_in_any = state_machine->GetNumTransitions();
+
     for (unsigned int i = 0; i < state_machine->GetNumTransitions(); ++i)
     {
-        if (state_machine->GetTransitionSource(i) == active && state_machine->GetTransitionTrigger(i) == trigger)
+        // We go to the next transition if it does not have the correct trigger
+        if (state_machine->GetTransitionTrigger(i) != trigger)
+        {
+            continue;
+        }
+        // First we check if the current node has a direct transition
+        if (state_machine->GetTransitionSource(i) == active)
         {
             PlayNode(state_machine->GetTransitionTarget(i), state_machine->GetTransitionBlend(i));
+            return;
         }
+        // If not we check if nodes starting with "ANY" have a transition with said trigger
+        if (state_machine->GetTransitionSource(i).rfind(state_machine->any_state_node_name, 0) != std::string::npos)
+        {
+            transition_in_any = i;
+        }
+    }
+
+    // If we've found a transition in "ANY", complete it after all other transitions have been checked
+    if (transition_in_any < state_machine->GetNumTransitions())
+    {
+        PlayNode(state_machine->GetTransitionTarget(transition_in_any), state_machine->GetTransitionBlend(transition_in_any));
     }
 }
 
@@ -167,6 +187,8 @@ void Hachiko::ComponentAnimation::DrawGui()
                 App->resources->ReleaseResource(state_machine);
                 std::vector<UID> uids = App->resources->CreateAsset(Resource::Type::STATE_MACHINE, auxiliary_name);
                 state_machine = static_cast<ResourceStateMachine*>(App->resources->GetResource(Resource::Type::STATE_MACHINE, uids[0]));
+                // Once a new state machine is added a "none" clip is added to it
+                state_machine->AddClip(state_machine->none_clip_name, 0, false);
                 ImGui::CloseCurrentPopup();
             }
             ImGui::EndPopup();
@@ -203,6 +225,13 @@ void Hachiko::ComponentAnimation::DrawGui()
                 ResourceAnimation* res = state_machine->GetClipRes(clip_idx);
 
                 strcpy_s(name, state_machine->GetClipName(clip_idx).c_str());
+
+                // Don't show clip "none"
+                if (strcmp(name, state_machine->none_clip_name) == 0)
+                {
+                    ++clip_idx;
+                    continue;
+                }
 
                 ImGui::PushID(clip_idx);
                 if (ImGui::InputText("Clip name", name, 128))

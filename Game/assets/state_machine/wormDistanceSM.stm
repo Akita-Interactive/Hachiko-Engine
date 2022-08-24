@@ -1,6 +1,9 @@
 name: wormDistanceSM
 default_node: 0
 clips:
+  - clip_name: none
+    clips_id: 0
+    clips_loop: false
   - clip_name: Appear
     clips_id: 11790258715251408842
     clips_loop: false
@@ -9,7 +12,7 @@ clips:
     clips_loop: true
   - clip_name: RangeAttack
     clips_id: 7582254748141028466
-    clips_loop: true
+    clips_loop: false
   - clip_name: Hit
     clips_id: 9554448594809014923
     clips_loop: false
@@ -32,60 +35,30 @@ nodes:
     node_clip_name: Hide
   - node_name: Dead
     node_clip_name: Dead
+  - node_name: ANY
+    node_clip_name: none
 transitions:
-  - transition_source: Iddle
-    transition_target: Appear
-    transition_trigger: isAppear
-    transition_blend: 0
-  - transition_source: Iddle
+  - transition_source: ANY
     transition_target: RangeAttack
     transition_trigger: isAttacking
     transition_blend: 300
-  - transition_source: Iddle
+  - transition_source: ANY
     transition_target: Dead
     transition_trigger: isDead
     transition_blend: 300
-  - transition_source: Iddle
+  - transition_source: ANY
     transition_target: Hide
     transition_trigger: isHide
     transition_blend: 300
-  - transition_source: Iddle
+  - transition_source: ANY
     transition_target: Hit
     transition_trigger: isHit
     transition_blend: 300
-  - transition_source: Appear
+  - transition_source: ANY
     transition_target: Iddle
     transition_trigger: idle
     transition_blend: 300
-  - transition_source: RangeAttack
-    transition_target: Hide
-    transition_trigger: isHide
-    transition_blend: 300
-  - transition_source: Hide
+  - transition_source: ANY
     transition_target: Appear
     transition_trigger: isAppear
-    transition_blend: 1
-  - transition_source: Hit
-    transition_target: Dead
-    transition_trigger: isDead
-    transition_blend: 300
-  - transition_source: Hit
-    transition_target: Hide
-    transition_trigger: isHide
-    transition_blend: 300
-  - transition_source: RangeAttack
-    transition_target: Iddle
-    transition_trigger: idle
-    transition_blend: 300
-  - transition_source: Hit
-    transition_target: Iddle
-    transition_trigger: idle
-    transition_blend: 300
-  - transition_source: RangeAttack
-    transition_target: Hit
-    transition_trigger: isHit
-    transition_blend: 300
-  - transition_source: Hide
-    transition_target: Appear
-    transition_trigger: ""
     transition_blend: 300

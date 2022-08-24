@@ -3,6 +3,10 @@
 
 #include "Math/float3.h"
 
+#include "Application.h"
+#include "modules/ModuleRender.h"
+#include "core/rendering/BloomManager.h"
+
 using namespace Hachiko;
 
 EditorPreferences::EditorPreferences()
@@ -13,6 +17,7 @@ EditorPreferences::EditorPreferences()
 
 void EditorPreferences::LoadConfigurationData(const YAML::Node& node)
 {
+    // TODO: This is inefficient a.f, convert this to be non loop:
     for (auto it = node.begin(); it != node.end(); ++it)
     {
         if (it->first.as<std::string>()._Equal(DISPLAY_CAMERA_SETTINGS))
@@ -84,6 +89,8 @@ void EditorPreferences::LoadConfigurationData(const YAML::Node& node)
             shadow_pass_enabled = it->second.as<bool>();
         }
     }
+
+    App->renderer->GetBloomManager().LoadConfig(node);
 }
 
 void EditorPreferences::SaveConfigurationData(YAML::Node& node)
@@ -101,4 +108,6 @@ void EditorPreferences::SaveConfigurationData(YAML::Node& node)
     node[group_name][UNDO_REDO_ACTIVE] = undo_redo_active;
     node[group_name][SHADOW_MAP_GAUSSIAN_BLURRING_ENABLED] = shadow_mapping_gaussian_blurring_enabled;
     node[group_name][SHADOW_PASS_ENABLED] = shadow_pass_enabled;
+
+    App->renderer->GetBloomManager().SaveConfig(node[group_name]);
 }

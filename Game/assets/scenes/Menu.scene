@@ -51,7 +51,7 @@ child:
         type: 10
         enabled: true
         position: [0, 0, 0]
-        size: [1931, 1001]
+        size: [1231, 876]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
@@ -72,6 +72,7 @@ child:
         "'_button_quit@ComponentButton*'": 16104174435079696891
         "'_button_settings@ComponentButton*'": 5517220911348165701
         "'_button_credits@ComponentButton*'": 5507085151890769082
+        "'_game_title@GameObject*'": 3619082081880393002
         "'_settings@GameObject*'": 5517220911348165701
         "'_credits@GameObject*'": 15157299374494226041
         "'_button_back@ComponentButton*'": 7162107976364272364
@@ -95,7 +96,7 @@ child:
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [1931, 1001]
+            size: [1231, 876]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
@@ -132,12 +133,12 @@ child:
             id: 11573762086171599171
             type: 10
             enabled: true
-            position: [400, 90, 0]
+            position: [-443.2, 75, 0]
             size: [249, 79]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
-            anchor: [0, 0]
+            anchor: [0.5, 0]
           - !<canvas_renderer>
             id: 6340919664879631665
             type: 9
@@ -174,12 +175,12 @@ child:
             id: 12485261860033650679
             type: 10
             enabled: true
-            position: [775, 90, 0]
+            position: [-158.3, 75, 0]
             size: [449, 79]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
-            anchor: [0, 0]
+            anchor: [0.5, 0]
           - !<canvas_renderer>
             id: 13961633755337133385
             type: 9
@@ -216,12 +217,12 @@ child:
             id: 4231912232200162890
             type: 10
             enabled: true
-            position: [-770, 90, 0]
+            position: [202.1, 75, 0]
             size: [426, 82]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
-            anchor: [1, 0]
+            anchor: [0.5, 0]
           - !<canvas_renderer>
             id: 16549682737339658831
             type: 9
@@ -258,12 +259,12 @@ child:
             id: 12612247618848250662
             type: 10
             enabled: true
-            position: [-400, 90, 0]
+            position: [451.9, 75, 0]
             size: [259, 84]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
-            anchor: [1, 0]
+            anchor: [0.5, 0]
           - !<canvas_renderer>
             id: 7984435262585265924
             type: 9
@@ -367,7 +368,7 @@ child:
             fill_window: false
       - id: 831669987700788447
         name: settings
-        enabled: true
+        enabled: false
         component:
           - !<transform>
             id: 7997944686208799566
@@ -381,7 +382,7 @@ child:
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [1931, 1001]
+            size: [1068, 704]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
@@ -403,3 +404,41 @@ child:
             image_y_tiles: 1
             image_tiles_per_second: 1
             fill_window: true
+      - id: 3619082081880393002
+        name: title
+        enabled: true
+        component:
+          - !<transform>
+            id: 13253625731246732947
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<transform_2d>
+            id: 2030388677375672639
+            type: 10
+            enabled: true
+            position: [0, 230.5, 0]
+            size: [1047, 120.7]
+            scale: [1, 1]
+            rotation: [0, 0, 0, 1]
+            pivot: [0.5, 0.5]
+            anchor: [0.5, 0]
+          - !<canvas_renderer>
+            id: 17108095599516651498
+            type: 9
+            enabled: true
+          - !<image>
+            id: 2939800161397744075
+            type: 11
+            enabled: true
+            image_id: 14716769391895676594
+            hover_image_id: 0
+            image_color: [1, 1, 1, 1]
+            hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
+            fill_window: false

@@ -43,6 +43,7 @@ namespace Hachiko
             AUDIO_SOURCE = 20,
             BILLBOARD = 21,
             PARTICLE_SYSTEM = 22,
+            VIDEO = 23,
             UNKNOWN
         };
 

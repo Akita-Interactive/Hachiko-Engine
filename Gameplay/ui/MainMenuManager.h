@@ -47,6 +47,7 @@ private:
 	SERIALIZE_FIELD(ComponentButton*, _button_quit);
 	SERIALIZE_FIELD(ComponentButton*, _button_settings);
 	SERIALIZE_FIELD(ComponentButton*, _button_credits);
+	SERIALIZE_FIELD(GameObject*, _game_title);
 
 	// Settings State Content:
 	SERIALIZE_FIELD(GameObject*, _settings);

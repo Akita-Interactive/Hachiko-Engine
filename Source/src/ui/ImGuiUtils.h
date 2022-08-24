@@ -19,6 +19,8 @@ namespace Hachiko
 
         bool CompactColorPicker(const char* name, float* color);
 
+        bool CompactOpaqueColorPicker(const char* name, float* color);
+
         bool CollapsingHeader(GameObject* game_object, Component* component, const char* header_name);
 
         bool ToolbarButton(ImFont* const font, const char* font_icon, bool active, const char* tooltip_desc, const bool enabled = true);

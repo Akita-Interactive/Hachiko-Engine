@@ -1,6 +1,9 @@
 name: SM3
 default_node: 0
 clips:
+  - clip_name: none
+    clips_id: 0
+    clips_loop: false
   - clip_name: idle
     clips_id: 18303446198230088858
     clips_loop: true
@@ -88,11 +91,9 @@ nodes:
     node_clip_name: death
   - node_name: fall
     node_clip_name: fall
+  - node_name: ANY
+    node_clip_name: none
 transitions:
-  - transition_source: idle
-    transition_target: run
-    transition_trigger: isRun
-    transition_blend: 300
   - transition_source: idle
     transition_target: dash
     transition_trigger: isDash
@@ -106,186 +107,134 @@ transitions:
     transition_trigger: isPickUp
     transition_blend: 300
   - transition_source: run
-    transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: pickUp
-    transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: dash
-    transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: shot
-    transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: run
     transition_target: pickUp
     transition_trigger: isPickUp
     transition_blend: 300
-  - transition_source: pickUp
+  - transition_source: idle
+    transition_target: meleeOne
+    transition_trigger: isMeleeOne
+    transition_blend: 300
+  - transition_source: meleeOne
+    transition_target: meleeTwo
+    transition_trigger: isMeleeTwo
+    transition_blend: 300
+  - transition_source: meleeTwo
+    transition_target: meleeThree
+    transition_trigger: isMeleeThree
+    transition_blend: 300
+  - transition_source: idle
+    transition_target: meleeTwo
+    transition_trigger: isMeleeTwo
+    transition_blend: 300
+  - transition_source: idle
+    transition_target: meleeThree
+    transition_trigger: isMeleeThree
+    transition_blend: 300
+  - transition_source: run
+    transition_target: meleeOne
+    transition_trigger: isMeleeOne
+    transition_blend: 300
+  - transition_source: run
+    transition_target: meleeTwo
+    transition_trigger: isMeleeTwo
+    transition_blend: 300
+  - transition_source: run
+    transition_target: meleeThree
+    transition_trigger: isMeleeThree
+    transition_blend: 300
+  - transition_source: idle
+    transition_target: clawOne
+    transition_trigger: isClawOne
+    transition_blend: 300
+  - transition_source: run
+    transition_target: clawOne
+    transition_trigger: isClawOne
+    transition_blend: 300
+  - transition_source: clawOne
+    transition_target: clawTwo
+    transition_trigger: isClawTwo
+    transition_blend: 300
+  - transition_source: idle
+    transition_target: clawTwo
+    transition_trigger: isClawTwo
+    transition_blend: 300
+  - transition_source: clawTwo
+    transition_target: clawThree
+    transition_trigger: isClawThree
+    transition_blend: 300
+  - transition_source: idle
+    transition_target: clawThree
+    transition_trigger: isClawThree
+    transition_blend: 300
+  - transition_source: run
+    transition_target: clawTwo
+    transition_trigger: isClawTwo
+    transition_blend: 300
+  - transition_source: run
+    transition_target: clawThree
+    transition_trigger: isClawThree
+    transition_blend: 300
+  - transition_source: idle
+    transition_target: swordOne
+    transition_trigger: isSwordOne
+    transition_blend: 300
+  - transition_source: idle
+    transition_target: swordTwo
+    transition_trigger: isSwordTwo
+    transition_blend: 300
+  - transition_source: idle
+    transition_target: swordThree
+    transition_trigger: isSwordThree
+    transition_blend: 300
+  - transition_source: swordOne
+    transition_target: swordTwo
+    transition_trigger: isSwordTwo
+    transition_blend: 300
+  - transition_source: swordTwo
+    transition_target: swordThree
+    transition_trigger: isSwordThree
+    transition_blend: 300
+  - transition_source: run
+    transition_target: swordOne
+    transition_trigger: isSwordOne
+    transition_blend: 300
+  - transition_source: run
+    transition_target: swordTwo
+    transition_trigger: isSwordTwo
+    transition_blend: 300
+  - transition_source: run
+    transition_target: swordThree
+    transition_trigger: isSwordThree
+    transition_blend: 300
+  - transition_source: run
+    transition_target: shot
+    transition_trigger: isShot
+    transition_blend: 300
+  - transition_source: run
+    transition_target: dash
+    transition_trigger: isDash
+    transition_blend: 300
+  - transition_source: idle
+    transition_target: fall
+    transition_trigger: isFalling
+    transition_blend: 300
+  - transition_source: run
+    transition_target: fall
+    transition_trigger: isFalling
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: idle
+    transition_trigger: isIdle
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: death
+    transition_trigger: isDead
+    transition_blend: 300
+  - transition_source: ANY
     transition_target: run
     transition_trigger: isRun
     transition_blend: 300
-  - transition_source: idle
-    transition_target: meleeOne
-    transition_trigger: isMeleeOne
-    transition_blend: 300
-  - transition_source: meleeOne
-    transition_target: meleeTwo
-    transition_trigger: isMeleeTwo
-    transition_blend: 300
-  - transition_source: meleeTwo
-    transition_target: meleeThree
-    transition_trigger: isMeleeThree
-    transition_blend: 300
-  - transition_source: meleeOne
-    transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: meleeTwo
-    transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: meleeThree
-    transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: idle
-    transition_target: meleeTwo
-    transition_trigger: isMeleeTwo
-    transition_blend: 300
-  - transition_source: idle
-    transition_target: meleeThree
-    transition_trigger: isMeleeThree
-    transition_blend: 300
-  - transition_source: run
-    transition_target: meleeOne
-    transition_trigger: isMeleeOne
-    transition_blend: 300
-  - transition_source: run
-    transition_target: meleeTwo
-    transition_trigger: isMeleeTwo
-    transition_blend: 300
-  - transition_source: run
-    transition_target: meleeThree
-    transition_trigger: isMeleeThree
-    transition_blend: 300
-  - transition_source: idle
-    transition_target: clawOne
-    transition_trigger: isClawOne
-    transition_blend: 300
-  - transition_source: clawOne
-    transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: run
-    transition_target: clawOne
-    transition_trigger: isClawOne
-    transition_blend: 300
-  - transition_source: clawOne
-    transition_target: clawTwo
-    transition_trigger: isClawTwo
-    transition_blend: 300
-  - transition_source: idle
-    transition_target: clawTwo
-    transition_trigger: isClawTwo
-    transition_blend: 300
-  - transition_source: clawTwo
-    transition_target: clawThree
-    transition_trigger: isClawThree
-    transition_blend: 300
-  - transition_source: idle
-    transition_target: clawThree
-    transition_trigger: isClawThree
-    transition_blend: 300
-  - transition_source: clawThree
-    transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: clawTwo
-    transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: run
-    transition_target: clawTwo
-    transition_trigger: isClawTwo
-    transition_blend: 300
-  - transition_source: run
-    transition_target: clawThree
-    transition_trigger: isClawThree
-    transition_blend: 300
-  - transition_source: idle
-    transition_target: swordOne
-    transition_trigger: isSwordOne
-    transition_blend: 300
-  - transition_source: idle
-    transition_target: swordTwo
-    transition_trigger: isSwordTwo
-    transition_blend: 300
-  - transition_source: idle
-    transition_target: swordThree
-    transition_trigger: isSwordThree
-    transition_blend: 300
-  - transition_source: swordOne
-    transition_target: swordTwo
-    transition_trigger: isSwordTwo
-    transition_blend: 300
-  - transition_source: swordTwo
-    transition_target: swordThree
-    transition_trigger: isSwordThree
-    transition_blend: 300
-  - transition_source: swordThree
-    transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: swordOne
-    transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: swordTwo
-    transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: swordThree
-    transition_target: idle
-    transition_trigger: ""
-    transition_blend: 300
-  - transition_source: run
-    transition_target: swordOne
-    transition_trigger: isSwordOne
-    transition_blend: 300
-  - transition_source: run
-    transition_target: swordTwo
-    transition_trigger: isSwordTwo
-    transition_blend: 300
-  - transition_source: run
-    transition_target: swordThree
-    transition_trigger: isSwordThree
-    transition_blend: 300
   - transition_source: death
     transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: idle
-    transition_target: death
-    transition_trigger: isDead
-    transition_blend: 300
-  - transition_source: idle
-    transition_target: fall
-    transition_trigger: isFalling
-    transition_blend: 300
-  - transition_source: fall
-    transition_target: idle
-    transition_trigger: isIdle
-    transition_blend: 300
-  - transition_source: run
-    transition_target: death
-    transition_trigger: isDead
-    transition_blend: 300
-  - transition_source: run
-    transition_target: fall
-    transition_trigger: isFalling
-    transition_blend: 300
+    transition_trigger: isRespawn
+    transition_blend: 0

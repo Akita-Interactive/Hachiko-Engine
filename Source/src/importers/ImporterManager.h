@@ -13,6 +13,7 @@
 #include "NavmeshImporter.h"
 #include "SkyboxImporter.h"
 #include "StateMachineImporter.h"
+#include "VideoImporter.h"
 
 namespace Hachiko
 {
@@ -47,6 +48,7 @@ namespace Hachiko
         SceneImporter scene;
         SkyboxImporter skybox;
         StateMachineImporter state_machine;
+        VideoImporter video;
 
         // It doesnt have its own resource type (we use prefabs)
         ModelImporter model;

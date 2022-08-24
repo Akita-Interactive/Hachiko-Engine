@@ -5,18 +5,18 @@ component:
   - !<transform>
     type: 1
     enabled: true
-    position: [-6.848, -20.24, 30.72]
+    position: [-6.848, -20.24, 38.09]
     rotation: [0, 0, 0, 1]
     scale: [50.81, 50.81, 50.81]
   - !<script>
     type: 15
     enabled: true
     class_name: CrystalPlatform
-    "'_seconds_before_shaking@float'": 5
-    "'_seconds_shaking@float'": 4
-    "'_shake_intensity@float'": 0.1
+    "'_seconds_before_shaking@float'": 0.2
+    "'_seconds_shaking@float'": 1.2
+    "'_seconds_to_regen@float'": 2
+    "'_shake_intensity@float'": 0.6
     "'_invisible_obstacle@GameObject*'": 117
-    "'_crystal@GameObject*'": 0
     "'_crystal_platform@GameObject*'": 2
 child:
   - name: crystalPlataform_mesh_anim
@@ -1267,19 +1267,49 @@ child:
       - !<transform>
         type: 1
         enabled: true
-        position: [0.0038, 0.0338, 0.0179]
-        rotation: [.nan, .nan, .nan, .nan]
-        scale: [.nan, .nan, .nan]
-      - !<mesh_renderer>
-        type: 2
-        enabled: true
-        mesh_id: 1654487118907036717
-        navigable: false
-        visible: true
-        material_id: 6750369022920963075
-        tint_color: [1, 1, 1, 1]
+        position: [0.0038, 0.0338, 0.0332]
+        rotation: [0, 0.7071, 0, 0.7071]
+        scale: [1, 1, 1]
       - !<obstacle>
         type: 18
         enabled: true
-        obstacle_type: 1
-        obstacle_size: [1, 1, 6]
+        obstacle_type: 0
+        obstacle_size: [1.9, 1, 1]
+  - name: rocklight
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [0.0197, 0.0197, 0.0197]
+      - type: 6
+        enabled: true
+        light_type: 6
+        color: [0, 0.0488, 1, 1]
+        intensity: 30
+        radius: 5
+        draw_sphere: true
+      - !<script>
+        type: 15
+        enabled: true
+        class_name: BlinkingLight
+        "'_use_perlin_noise@bool'": true
+        "'_min_radius@float'": 10
+        "'_max_radius@float'": 250
+        "'_radius_amplitude@float'": 1
+        "'_min_duration@float'": 0.01
+        "'_max_duration@float'": 0.5
+        "'_duration_amplitude@float'": 1
+        "'_min_intensity@float'": 50
+        "'_max_intensity@float'": 200
+        "'_intensity_amplitude@float'": 1
+        "'_starting_intensity@float'": 0
+        "'_starting_radius@float'": 0
+        "'_current_intensity@float'": 0
+        "'_current_duration@float'": 0
+        "'_current_radius@float'": 0
+        "'_next_duration@float'": 0
+        "'_next_intensity@float'": 0
+        "'_next_radius@float'": 0

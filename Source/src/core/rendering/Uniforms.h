@@ -22,11 +22,20 @@ namespace Hachiko::Uniforms
     namespace Filtering
     {
         constexpr const char* GAUSSIAN_BLUR_SCALE = "blur_scale";
+        constexpr const char* GAUSSIAN_BLUR_PIXELS = "blur_pixels";
+        constexpr const char* GAUSSIAN_BLUR_SIGMA = "blur_sigma";
     } // namespace Filtering
 
     namespace ImageBasedLighting
     {
 
     } // namespace ImageBasedLighting
+
+    namespace Fog
+    {
+        constexpr const char* COLOR = "fog_color";
+        constexpr const char* GLOBAL_DENSITY = "fog_global_density";
+        constexpr const char* HEIGHT_FALLOFF = "fog_height_falloff";
+    }
 
 } // namespace Hachiko::Uniforms

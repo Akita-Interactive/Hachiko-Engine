@@ -313,7 +313,7 @@ RD /S /Q "$(TargetDir)"</Command>
     <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\stlemitter.h" />
     <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\traits.h" />
     <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\yaml.h" />
-    <ClInclude Include="CrystalPlatform.h" />
+    <ClInclude Include="misc\CrystalPlatform.h" />
     <ClInclude Include="generated\GeneratedProperties.h" />
     <ClInclude Include="misc\AudioManager.h" />
     <ClInclude Include="misc\BlinkingLight.h" />
@@ -733,7 +733,7 @@ RD /S /Q "$(TargetDir)"</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="CrystalPlatform.cpp" />
+    <ClCompile Include="misc\CrystalPlatform.cpp" />
     <ClCompile Include="misc\AudioManager.cpp" />
     <ClCompile Include="misc\BlinkingLight.cpp" />
     <ClCompile Include="misc\CameraPosChange.cpp" />

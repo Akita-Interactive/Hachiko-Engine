@@ -17,27 +17,27 @@ void Hachiko::Scripting::DoorController::OnAwake()
 
 void Hachiko::Scripting::DoorController::OnUpdate()
 {
-	if (Input::IsKeyDown(Input::KeyCode::KEY_1))
-	{
-		_state = _state == State::CLOSED ? State::OPEN : State::CLOSED;
-		UpdateDoorState();
-	}
+	UpdateDoorState();
 }
 
 void Hachiko::Scripting::DoorController::Open()
 {
 	_state = State::OPEN;
-	UpdateDoorState();
 }
 
 void Hachiko::Scripting::DoorController::Close()
 {
 	_state = State::CLOSED;
-	UpdateDoorState();
 }
 
 void Hachiko::Scripting::DoorController::UpdateDoorState()
 {
+	if (_prev_state == _state)
+	{
+		return;
+	}
+	_prev_state = _state;
+
 	switch (_state)
 	{
 	case State::CLOSED:

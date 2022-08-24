@@ -390,6 +390,47 @@ enum class HACHIKO_API MouseButton
     RIGHT = 3
 };
 
+enum class HACHIKO_API GameControllerButton
+{
+    // These are taken from SDL source code.
+    CONTROLLER_BUTTON_INVALID = -1,
+    CONTROLLER_BUTTON_A = 0,
+    CONTROLLER_BUTTON_B = 1,
+    CONTROLLER_BUTTON_X = 2,
+    CONTROLLER_BUTTON_Y = 3,
+    CONTROLLER_BUTTON_BACK = 4,
+    CONTROLLER_BUTTON_GUIDE = 5,
+    CONTROLLER_BUTTON_START = 6,
+    CONTROLLER_BUTTON_LEFTSTICK = 7,
+    CONTROLLER_BUTTON_RIGHTSTICK = 8,
+    CONTROLLER_BUTTON_LEFTSHOULDER = 9,
+    CONTROLLER_BUTTON_RIGHTSHOULDER = 10,
+    CONTROLLER_BUTTON_DPAD_UP = 11,
+    CONTROLLER_BUTTON_DPAD_DOWN = 12,
+    CONTROLLER_BUTTON_DPAD_LEFT = 13,
+    CONTROLLER_BUTTON_DPAD_RIGHT = 14,
+    CONTROLLER_BUTTON_MISC1 = 15,    /* Xbox Series X share button, PS5 microphone button, Nintendo Switch Pro capture button, Amazon Luna microphone button */
+    CONTROLLER_BUTTON_PADDLE1 = 16,  /* Xbox Elite paddle P1 */
+    CONTROLLER_BUTTON_PADDLE2 = 17,  /* Xbox Elite paddle P3 */
+    CONTROLLER_BUTTON_PADDLE3 = 18,  /* Xbox Elite paddle P2 */
+    CONTROLLER_BUTTON_PADDLE4 = 19,  /* Xbox Elite paddle P4 */
+    CONTROLLER_BUTTON_TOUCHPAD = 20, /* PS4/PS5 touchpad button */
+    CONTROLLER_BUTTON_MAX = 21
+};
+
+enum class HACHIKO_API GameControllerAxis
+{
+    // These are taken from SDL source code.
+    CONTROLLER_AXIS_INVALID = -1,
+    CONTROLLER_AXIS_LEFTX = 0,
+    CONTROLLER_AXIS_LEFTY = 1,
+    CONTROLLER_AXIS_RIGHTX = 2,
+    CONTROLLER_AXIS_RIGHTY = 3,
+    CONTROLLER_AXIS_TRIGGERLEFT = 4,
+    CONTROLLER_AXIS_TRIGGERRIGHT = 5,
+    CONTROLLER_AXIS_MAX
+};
+
 HACHIKO_API bool IsKeyPressed(KeyCode key);
 HACHIKO_API bool IsKeyUp(KeyCode key);
 HACHIKO_API bool IsKeyDown(KeyCode key);
@@ -403,6 +444,13 @@ HACHIKO_API const float2& GetMouseNormalizedMotion();
 HACHIKO_API const float2& GetMousePixelsMotion();
 HACHIKO_API const float2& GetMousePixelPosition();
 HACHIKO_API const float2& GetMouseNormalizedPosition();
+HACHIKO_API bool IsGamepadModeOn();
+HACHIKO_API bool IsGameControllerButtonUp(GameControllerButton id);
+HACHIKO_API bool IsGameControllerButtonDown(GameControllerButton id);
+HACHIKO_API bool IsGameControllerButtonDown(GameControllerButton id);
+HACHIKO_API float GetAxisNormalized(GameControllerAxis id);
+HACHIKO_API void GoBrr(float strength, float duration);
+
 } // namespace Hachiko::Input
 
 namespace Hachiko::SceneManagement
@@ -482,6 +530,7 @@ namespace Hachiko::Navigation
     HACHIKO_API float GetHeightFromPosition(const math::float3& position);
     HACHIKO_API math::float3 GetCorrectedPosition(const math::float3& position, const math::float3& extents);
     HACHIKO_API void CorrectPosition(math::float3& position, const math::float3& extents);
+    HACHIKO_API bool Raycast(const float3& start_pos, const float3& end_pos, float3& hit_position);
 } // namespace Hachiko::Navigation
 
 namespace Hachiko::FileUtility

@@ -309,11 +309,12 @@ void Hachiko::ModuleSceneManager::OptionsMenu()
         main_scene->SetName(scene_name);
     }
     ImGui::Checkbox("Autosave Scene", &scene_autosave);
-    App->navigation->DrawOptionsGui();
-
-    // Skybox
     ImGui::Separator();
-    main_scene->GetSkybox()->DrawImGui();
+    main_scene->AmbientLightOptionsMenu();
+    ImGui::Separator();
+    main_scene->FogOptionsMenu();
+    ImGui::Separator();
+    main_scene->SkyboxOptionsMenu();
 }
 
 void Hachiko::ModuleSceneManager::LoadScene(ResourceScene* new_resource, bool keep_navmesh)

@@ -196,6 +196,8 @@ void Hachiko::ShadowManager::ApplyGaussianBlur(const Program* program) const
         _shadow_map_fbo_temp,
         _shadow_map_texture_temp, 
         light->GetShadowProperties().GetGaussianFilterBlurAmount(),
+        light->GetShadowProperties().GetGaussianBlurSigma(),
+        light->GetShadowProperties().GetGaussianBlurSize(),
         _shadow_map_width,
         _shadow_map_height,
         program);

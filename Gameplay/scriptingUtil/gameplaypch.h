@@ -14,6 +14,7 @@
 #include <components/Component.h>
 #include <components/ComponentText.h>
 #include <components/ComponentButton.h>
+#include <components/ComponentProgressBar.h>
 #include <components/ComponentAnimation.h>
 #include <components/ComponentAudioSource.h>
 #include <components/ComponentCamera.h>

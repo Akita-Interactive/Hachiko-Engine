@@ -2,6 +2,7 @@
 
 #include "resources/ResourceMesh.h"
 #include "DrawCommand.h"
+#include "BatchingProperties.h"
 
 #include <vector>
 
@@ -32,16 +33,18 @@ namespace Hachiko
 
         void BuildBatch();
         void BatchMeshes();
-        void BatchData();
-
-        void UpdateWithTextureBatch(const Program* program, bool use_first_segment);
 
         void ClearDrawList();
 
-        void BindBuffers(bool use_first_segment);
+        void GenerateVAO();
+        void UpdateVAO();
         void GenerateBuffers();
-        void UpdateBuffers();
-        void GenerateCommands();        
+
+        void UpdateCommands();
+        void UpdateBatch(int segment);
+        void FenceSync(int segment);
+        void WaitSync(int segment);
+        void BindBatch(int segment, const Program* program);
 
         void ImGuiWindow();
 
@@ -50,6 +53,11 @@ namespace Hachiko
             return commands;
         }
         
+        const int GetCommandAmount() const
+        {
+            return commands.size();
+        }
+
         std::vector<const ComponentMeshRenderer*> components; // contains all ComponentMeshes in the batch
         // Commands will be used as templates for the final command list
         std::unordered_map<const ResourceMesh*, DrawCommand*> resources; // contains unique ResourceMeshes and their position in the buffer
@@ -71,9 +79,12 @@ namespace Hachiko
         unsigned palettes_buffer;
         unsigned palettes_per_instances_buffer;
 
+        GLsync buffer_syncs[BatchingProperties::MAX_SEGMENTS] = {};
         float4x4* transform_buffer_data = nullptr;
         float4x4* palettes_buffer_data = nullptr;
         PalettePerInstance* palettes_per_instances_buffer_data = nullptr;
+
+        bool dirty_draw_components = true;
     };
 
 } // namespace Hachiko

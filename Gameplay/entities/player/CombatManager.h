@@ -80,6 +80,7 @@ namespace Hachiko
             
             bool IsPackDead(GameObject* pack) const;
             bool IsPackDead(unsigned pack_idx) const;
+            unsigned GetPackAliveCount(GameObject* pack) const;
             void ResetEnemyPack(GameObject* pack, bool is_gauntlet = false);
             void ActivateEnemyPack(GameObject* pack);
             void DeactivateEnemyPack(GameObject* pack);

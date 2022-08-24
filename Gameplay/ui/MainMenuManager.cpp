@@ -114,6 +114,7 @@ void Hachiko::Scripting::MainMenuManager::OnUpdateMain()
 		_button_settings->GetGameObject()->SetActive(true);
 		_button_quit->GetGameObject()->SetActive(true);
 		_button_credits->GetGameObject()->SetActive(true);
+		_game_title->SetActive(true);
 
 		// Other:
 		_settings->SetActive(false);
@@ -179,6 +180,7 @@ void Hachiko::Scripting::MainMenuManager::OnUpdateSettings()
 		_button_settings->GetGameObject()->SetActive(false);
 		_button_quit->GetGameObject()->SetActive(false);
 		_button_credits->GetGameObject()->SetActive(false);
+		_game_title->SetActive(false);
 
 		_state_changed = false;
 	}
@@ -209,6 +211,7 @@ void Hachiko::Scripting::MainMenuManager::OnUpdateCredits()
 		_button_settings->GetGameObject()->SetActive(false);
 		_button_quit->GetGameObject()->SetActive(false);
 		_button_credits->GetGameObject()->SetActive(false);
+		_game_title->SetActive(false);
 
 		_state_changed = false;
 	}

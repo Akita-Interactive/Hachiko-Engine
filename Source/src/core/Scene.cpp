@@ -11,6 +11,7 @@
 #include "modules/ModuleCamera.h"
 #include "modules/ModuleEvent.h"
 #include "modules/ModuleNavigation.h"
+#include "modules/ModuleProgram.h"
 
 #include "resources/ResourceMaterial.h"
 #include "resources/ResourceAnimation.h"
@@ -136,7 +137,22 @@ Hachiko::GameObject* Hachiko::Scene::Raycast(const LineSegment& segment, bool tr
 
     for (GameObject* game_object : game_objects)
     {
-        if (parent_filter && parent_filter != game_object->parent) continue;
+        constexpr unsigned max_levels_search = 5;
+        if (parent_filter)
+        {
+            unsigned level = 0;
+            
+            GameObject* find_parent = game_object->parent;
+
+            while (find_parent && find_parent != parent_filter && level < max_levels_search)
+            {
+                find_parent = find_parent->parent;
+                ++level;
+            }
+
+            if (find_parent != parent_filter) continue;
+        }
+
         if (active_only && !game_object->IsActive()) continue;
         
         auto* mesh_renderer = game_object->GetComponent<ComponentMeshRenderer>();
@@ -207,14 +223,18 @@ void Hachiko::Scene::Save(YAML::Node& node)
     }
     node[NAVMESH_ID] = navmesh_id;
 
+    ambient_light.SaveAmbientParams(node);
+    fog.SaveFogParams(node);
+
     // Skybox
+    node[IBL] = skybox->IsIBLActive();
     const TextureCube& cube = skybox->GetCube();
     for (unsigned i = 0; i < static_cast<unsigned>(TextureCube::Side::COUNT); ++i)
     {
         std::string side_name = TextureCube::SideString(static_cast<TextureCube::Side>(i));
         node[SKYBOX_NODE][side_name] = cube.uids[i];
     }
-
+    
     node[ROOT_ID] = GetRoot()->GetID();
     for (int i = 0; i < GetRoot()->children.size(); ++i)
     {
@@ -227,6 +247,9 @@ void Hachiko::Scene::Load(const YAML::Node& node, bool meshes_only)
     SetName(node[SCENE_NAME].as<std::string>().c_str());
     navmesh_id = node[NAVMESH_ID].as<UID>();
     root->SetID(node[ROOT_ID].as<UID>());
+
+    ambient_light.LoadAmbientParams(node);
+    fog.LoadFogParams(node);
 
     RELEASE(skybox);
 
@@ -241,6 +264,11 @@ void Hachiko::Scene::Load(const YAML::Node& node, bool meshes_only)
         }
         // Pass skybox with used uids to be loaded
         skybox = new Skybox(cube);
+
+        if (node[IBL].IsDefined() && node[IBL].as<bool>())
+        {
+           skybox->ActivateIBL(true);
+        }
     }
 
     if (!node[CHILD_NODE].IsDefined())
@@ -264,6 +292,72 @@ void Hachiko::Scene::Load(const YAML::Node& node, bool meshes_only)
     }
 
     loaded = true;
+}
+
+void Hachiko::Scene::AmbientLightConfig::LoadAmbientParams(const YAML::Node& node)
+{
+    if (!node[AMBIENT_LIGHT].IsDefined())
+    {
+        return;
+    }
+    YAML::Node ambient_node = node[AMBIENT_LIGHT];
+    intensity = ambient_node[AMBIENT_LIGHT_INTENSITY].as<float>();
+    color = ambient_node[AMBIENT_LIGHT_COLOR].as<float4>();
+}
+
+void Hachiko::Scene::AmbientLightConfig::SaveAmbientParams(YAML::Node& node)
+{
+    YAML::Node ambient_node = node[AMBIENT_LIGHT];
+    ambient_node[AMBIENT_LIGHT_INTENSITY] = intensity;
+    ambient_node[AMBIENT_LIGHT_COLOR] = color;
+}
+
+void Hachiko::Scene::FogConfig::LoadFogParams(const YAML::Node& node)
+{
+    if (!node[FOG].IsDefined())
+    {
+        return;
+    }
+    
+    YAML::Node fog_node = node[FOG];
+    enabled = fog_node[FOG].as<bool>();
+    color = fog_node[FOG_COLOR].as<float3>();
+    global_density = fog_node[FOG_GLOBAL_DENSITY].as<float>();
+    height_falloff = fog_node[FOG_HEIGHT_FALLOFF].as<float>();
+}
+
+void Hachiko::Scene::FogConfig::SaveFogParams(YAML::Node& node)
+{
+    YAML::Node fog_node = node[FOG];
+    fog_node[FOG] = enabled;
+    fog_node[FOG_COLOR] = color;
+    fog_node[FOG_GLOBAL_DENSITY] = global_density;
+    fog_node[FOG_HEIGHT_FALLOFF] = height_falloff;
+}
+
+void Hachiko::Scene::AmbientLightOptionsMenu()
+{
+    ImGui::PushItemWidth(100.0f);
+    ImGui::Text("Ambient");
+    ImGui::DragFloat("Ambient Intensity", &ambient_light.intensity, 0.001, 0.f, 5.f);
+    ImGuiUtils::CompactColorPicker("Ambient Color", ambient_light.color.ptr());
+    ImGui::PopItemWidth();
+}
+
+void Hachiko::Scene::FogOptionsMenu()
+{
+    ImGui::PushItemWidth(100.0f);
+    ImGui::Text("Fog");
+    ImGui::Checkbox("Use Fog", &fog.enabled);
+    ImGuiUtils::CompactOpaqueColorPicker("Fog Color", fog.color.ptr());
+    ImGui::DragFloat("Global Density", &fog.global_density, 0.001, 0.f, 1.f);
+    ImGui::DragFloat("Height Falloff", &fog.height_falloff, 0.001, 0.f, 1.f);
+    ImGui::PopItemWidth();
+}
+
+void Hachiko::Scene::SkyboxOptionsMenu()
+{
+    skybox->DrawImGui();
 }
 
 void Hachiko::Scene::GetNavmeshData(std::vector<float>& scene_vertices, std::vector<int>& scene_triangles, std::vector<float>& scene_normals, AABB& scene_bounds)

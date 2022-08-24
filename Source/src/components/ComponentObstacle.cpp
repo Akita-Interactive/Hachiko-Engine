@@ -15,11 +15,6 @@ Hachiko::ComponentObstacle::~ComponentObstacle()
     RemoveObstacle();
 }
 
-void Hachiko::ComponentObstacle::Start()
-{
-    AddObstacle();
-}
-
 void Hachiko::ComponentObstacle::Stop()
 {
     RemoveObstacle();
@@ -141,7 +136,7 @@ void Hachiko::ComponentObstacle::AddObstacle()
         tile_cache->addBoxObstacle(transform->GetGlobalPosition().ptr(), (size / 2.f).ptr(), transform->GetGlobalRotation().ToEulerXYZ().z, obstacle);
         break;
     }
-
+    
     if (!obstacle)
     {
         HE_LOG("Failed to add obstacle with existing navmesh and tile cache");
@@ -162,7 +157,7 @@ void Hachiko::ComponentObstacle::RemoveObstacle()
         HE_LOG("Failed to remove obstacle from unexisting tile cache");
         return;
     }
-
+    
     tile_cache->removeObstacle(*obstacle);
     RELEASE(obstacle);
 }

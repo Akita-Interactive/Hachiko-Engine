@@ -668,6 +668,15 @@
     <ClCompile Include="vendors\OpenSimplex\OpenSimplex2S.cpp">
       <Filter>Vendors\OpenSimplex</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\rendering\StandaloneGLTexture.cpp" />
+    <ClCompile Include="src\core\rendering\BlurPixelSize.cpp" />
+    <ClCompile Include="src\core\rendering\BloomManager.cpp" />
+    <ClCompile Include="src\components\ComponentVideo.cpp">
+      <Filter>Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resources\ResourceVideo.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vendors\imgui\imgui_impl_opengl3.h">
@@ -2512,6 +2521,16 @@
     <ClInclude Include="src\utils\RandomUtilDefinitions.h">
       <Filter>Core\Util</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\ComponentVideo.h">
+      <Filter>Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resources\ResourceVideo.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Batching\BatchingProperties.h" />
+    <ClInclude Include="src\core\rendering\StandaloneGLTexture.h" />
+    <ClInclude Include="src\core\rendering\BlurPixelSize.h" />
+    <ClInclude Include="src\core\rendering\BloomManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -3117,6 +3136,7 @@
     <None Include="vendors\imgui-node-editor-0.9\NodeEditor\Source\imgui_node_editor_internal.inl">
       <Filter>Vendors\NodeEditor</Filter>
     </None>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Hachiko.rc" />

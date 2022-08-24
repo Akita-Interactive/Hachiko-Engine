@@ -105,6 +105,7 @@
 #define SKYBOX_EXTENSION ".hdr"
 #define FONT_EXTENSION ".ttf"
 #define STATE_MACHINE_EXTENSION ".stm"
+#define MP4_VIDEO_EXTENSION ".mp4"
  
 //////////////////////////
 //						//
@@ -176,8 +177,17 @@
 #define UNNAMED_SCENE "UnnamedScene"
 #define ROOT_ID "root_id"
 #define NAVMESH_ID "navmesh_id"
+#define IBL "ibl"
 #define SKYBOX_NODE "skybox"
 #define CUBE_ID "_cube_id"
+#define AMBIENT_LIGHT "ambient_light"
+#define AMBIENT_LIGHT_INTENSITY "intensity"
+#define AMBIENT_LIGHT_COLOR "color"
+#define FOG "fog"
+#define FOG_ENABLED "enabled"
+#define FOG_COLOR "color"
+#define FOG_GLOBAL_DENSITY "global_density"
+#define FOG_HEIGHT_FALLOFF "height_falloff"
 
 // Game Object
 #define GAME_OBJECT_NAME "name"
@@ -353,6 +363,13 @@
 #define RENDERER_MESH_ID "mesh_id"
 #define RENDERER_MATERIAL_ID "material_id"
 #define RENDERER_TINT_COLOR "tint_color"
+
+// ComponentVideo
+#define VIDEO_ID "video_id"
+#define VIDEO_PROJECTED "projected"
+#define VIDEO_LOOP "loop"
+#define VIDEO_FLIP "flip"
+#define VIDEO_FPS "fps"
 
 // Script
 #define SCRIPT_NAME "class_name"

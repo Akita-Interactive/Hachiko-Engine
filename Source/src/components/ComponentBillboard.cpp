@@ -78,7 +78,7 @@ void Hachiko::ComponentBillboard::Draw(ComponentCamera* camera, Program* program
     program->BindUniformInts("flip_y", 1, &flip_y);
     program->BindUniformFloat("animation_blend", &blend_factor);
 
-    glBindVertexArray(App->renderer->GetParticleVao());
+    glBindVertexArray(App->renderer->GetFullScreenQuadVAO());
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
     // Clear

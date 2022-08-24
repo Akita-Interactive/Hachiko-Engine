@@ -38,6 +38,12 @@ void Hachiko::ResourceStateMachine::AddClip(const std::string& name, UID animati
 int Hachiko::ResourceStateMachine::FindClip(const std::string& name) const
 {
     int index = 0;
+    // Return if it has no clips
+    if (name == none_clip_name)
+    {
+        return clips.size();
+    }
+
     while (index < clips.size())
     {
         if (clips[index].name == name)

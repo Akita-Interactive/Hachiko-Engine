@@ -98,6 +98,7 @@ std::vector<UID> ModuleResources::ImportAssetFromAnyPath(const std::filesystem::
         FileSystem::Copy(path.string().c_str(), destination.string().c_str(), true);
     }
 
+    Hachiko::WindowResource::Reload(); // Update UI
     // Handle asset when it is in correct path
     return ImportAsset(destination.string(), force);
 }

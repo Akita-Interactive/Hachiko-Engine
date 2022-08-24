@@ -38,6 +38,7 @@ Hachiko::Scripting::PlayerController::PlayerController(GameObject* game_object)
 	, _sword_upper(nullptr)
 	, _claw_weapon(nullptr)
 	, _trail_enlarger(10.0f)
+	, _death_screen(nullptr)
 {
 	CombatManager::BulletStats common_bullet;
 	common_bullet.charge_time = .5f;
@@ -50,6 +51,7 @@ Hachiko::Scripting::PlayerController::PlayerController(GameObject* game_object)
 	melee.name = "Melee";
 	melee.bullet = common_bullet;
 	melee.color = float4(255.0f, 0.0f, 0.0f, 255.0f);
+	melee.unlimited = true;
 	melee.attacks.push_back(GetAttackType(AttackType::COMMON_1));
 	melee.attacks.push_back(GetAttackType(AttackType::COMMON_2));
 	melee.attacks.push_back(GetAttackType(AttackType::COMMON_3));
@@ -58,6 +60,8 @@ Hachiko::Scripting::PlayerController::PlayerController(GameObject* game_object)
 	claw.name = "Claw";
 	claw.bullet = common_bullet;
 	claw.color = float4(0.0f, 0.0f, 255.0f, 255.0f);
+	claw.unlimited = false;
+	claw.charges = 5;
 	claw.attacks.push_back(GetAttackType(AttackType::QUICK_1));
 	claw.attacks.push_back(GetAttackType(AttackType::QUICK_2));
 	claw.attacks.push_back(GetAttackType(AttackType::QUICK_3));
@@ -65,7 +69,9 @@ Hachiko::Scripting::PlayerController::PlayerController(GameObject* game_object)
 	Weapon sword;
 	sword.name = "Sword";
 	sword.bullet = common_bullet;
-	sword.color = float4(0.0f, 255.0f, 0.0f, 255.0f);;
+	sword.color = float4(0.0f, 255.0f, 0.0f, 255.0f);
+	sword.unlimited = false;
+	sword.charges = 5;
 	sword.attacks.push_back(GetAttackType(AttackType::HEAVY_1));
 	sword.attacks.push_back(GetAttackType(AttackType::HEAVY_2));
 	sword.attacks.push_back(GetAttackType(AttackType::HEAVY_3));
@@ -74,7 +80,6 @@ Hachiko::Scripting::PlayerController::PlayerController(GameObject* game_object)
 	weapons.push_back(claw);
 	weapons.push_back(sword);
 
-	_current_weapon = 0;
 	_current_cam_setting = 0;
 }
 
@@ -124,17 +129,13 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 	_combat_stats->_current_hp = _combat_stats->_max_hp;
 
 
-	if (!_ammo_cell_1 || !_ammo_cell_2 || !_ammo_cell_3 || !_ammo_cell_4)
-	{
-		HE_LOG("Error loading Ammo Cells UI");
-		return;
-	}
-
 	ammo_cells.push_back(_ammo_cell_1);
 	ammo_cells.push_back(_ammo_cell_2);
 	ammo_cells.push_back(_ammo_cell_3);
 	ammo_cells.push_back(_ammo_cell_4);
 	_ammo_count = MAX_AMMO;
+
+	_weapon_charge_bar = _weapon_charge_bar_go->GetComponent<ComponentProgressBar>();
 
 	// First position and rotation set if no camera is found
 	_cam_positions.push_back(float3(0.0f, 19.0f, 13.0f));
@@ -158,6 +159,8 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 	hp_cells.push_back(_hp_cell_2);
 	hp_cells.push_back(_hp_cell_3);
 	hp_cells.push_back(_hp_cell_4);
+
+	ChangeWeapon(0);
 }
 
 void Hachiko::Scripting::PlayerController::OnStart()
@@ -193,19 +196,8 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 	_player_position = _player_transform->GetGlobalPosition();
 	_movement_direction = float3::zero;
 
-	if (!IsAlive())
-	{
-		_state = PlayerState::DIE;
-	}
-
-	if (animation->IsAnimationStopped() && IsDying())
-	{
-		_state = PlayerState::IDLE;
-		_level_manager->Respawn(this);
-
-		_player_transform->SetGlobalPosition(_player_position);
-	}
-
+	
+	
 	if (_invulnerability_time_remaining > 0.0f)
 	{
 		_invulnerability_time_remaining -= Time::DeltaTime();
@@ -221,22 +213,52 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 		ToggleGodMode();
 		_god_mode_trigger = false;
 	}
-	// Handle player the input
-	HandleInputAndStatus();
 
-	// Run attack simulation
-	AttackController();
+	if (IsAlive()) 
+	{
+		// Handle player the input
+		HandleInputAndStatus();
 
-	// Run movement simulation
-	MovementController();
+		// Run attack simulation
+		AttackController();
 
-	CheckGoal(_player_position);
+		// Run movement simulation
+		MovementController();
 
-	// Rotate player to the necessary direction:
-	WalkingOrientationController();
+		CheckGoal(_player_position);
 
-	// Apply the position after everything is simulated
-	_player_transform->SetGlobalPosition(_player_position);
+		// Rotate player to the necessary direction:
+		WalkingOrientationController();
+
+		// Apply the position after everything is simulated
+		_player_transform->SetGlobalPosition(_player_position);
+	}
+	else
+	{
+		if (_state == PlayerState::READY_TO_RESPAWN)
+		{
+			if (Input::IsKeyPressed(Input::KeyCode::KEY_R) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_Y))
+			{
+				_death_screen->SetActive(false);
+
+				ResetPlayer(_level_manager->Respawn());
+
+				// Apply the position after the current position is set to the respawn position
+				_player_transform->SetGlobalPosition(_player_position);
+			}
+		}
+		else 
+		{
+			_state = PlayerState::DIE;
+			// By checking previous state we know that the current animation is the correct one
+			if (_previous_state == PlayerState::DIE && animation->IsAnimationStopped())
+			{
+				_state = PlayerState::READY_TO_RESPAWN;
+
+				_death_screen->SetActive(true);
+			}
+		}
+	}
 
 	CheckState();
 }
@@ -251,6 +273,20 @@ math::float3 Hachiko::Scripting::PlayerController::GetRaycastPosition(
 {
 	const math::Plane plane(math::float3(0.0f, current_position.y, 0.0f),
 		math::float3(0.0f, 1.0f, 0.0f));
+
+	if(Input::IsGamepadModeOn())
+	{
+		const math::float2 gamepad_normalized_position =
+			math::float2(Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_RIGHTX), Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_RIGHTY));
+
+		const math::float2 gamepad_position_view =
+			ComponentCamera::ScreenPositionToView(gamepad_normalized_position);
+
+		const math::LineSegment ray = Debug::GetRenderingCamera()->Raycast(
+			gamepad_position_view.x, gamepad_position_view.y);
+
+		return plane.ClosestPoint(ray);
+	}
 
 	const math::float2 mouse_position_view =
 		ComponentCamera::ScreenPositionToView(Input::GetMouseNormalizedPosition());
@@ -270,7 +306,7 @@ void Hachiko::Scripting::PlayerController::SpawnGameObject() const
 {
 	static int times_hit_g = 0;
 
-	if (!Input::IsKeyDown(Input::KeyCode::KEY_G))
+	if (!Input::IsKeyDown(Input::KeyCode::KEY_G) || !(Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_BACK) && Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_START)))
 	{
 		return;
 	}
@@ -289,36 +325,42 @@ void Hachiko::Scripting::PlayerController::SpawnGameObject() const
 void Hachiko::Scripting::PlayerController::HandleInputAndStatus()
 {
 	// Movement Direction
-	if (Input::IsKeyPressed(Input::KeyCode::KEY_W))
+	if (Input::IsKeyPressed(Input::KeyCode::KEY_W) || Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_LEFTY) < 0)
 	{
 		_movement_direction -= math::float3::unitZ;
 	}
-	else if (Input::IsKeyPressed(Input::KeyCode::KEY_S))
+	else if (Input::IsKeyPressed(Input::KeyCode::KEY_S) || Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_LEFTY) > 0)
 	{
 		_movement_direction += math::float3::unitZ;
 	}
 
-	if (Input::IsKeyPressed(Input::KeyCode::KEY_D))
+	if (Input::IsKeyPressed(Input::KeyCode::KEY_D) || Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_LEFTX) > 0)
 	{
 		_movement_direction += math::float3::unitX;
 	}
-	else if (Input::IsKeyPressed(Input::KeyCode::KEY_A))
+	else if (Input::IsKeyPressed(Input::KeyCode::KEY_A) || Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_LEFTX) < 0)
 	{
 		_movement_direction -= math::float3::unitX;
 	}
 
 	if (!IsActionLocked())
 	{
-		if (!IsAttackOnCooldown() && _ammo_count > 0 && Input::IsMouseButtonDown(Input::MouseButton::RIGHT))
+		if (!IsAttackOnCooldown() && dash_buffer && _dash_charges > 0)
 		{
-			RangedAttack();
+			dash_buffer = false;
+			ResetClickBuffer();
+			Dash();
 		}
-		else if (!IsAttackOnCooldown() && (Input::IsMouseButtonDown(Input::MouseButton::LEFT) || GetBufferedClick() == Input::MouseButton::LEFT))
+		else if (!IsAttackOnCooldown() && (HasBufferedClick() || Input::IsMouseButtonDown(Input::MouseButton::LEFT) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_RIGHTSHOULDER)))
 		{
 			MeleeAttack();
 		}
+		else if (!IsAttackOnCooldown() && _ammo_count > 0 && (Input::IsMouseButtonDown(Input::MouseButton::RIGHT) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_LEFTSHOULDER)))
+		{
+			RangedAttack();
+		}
 		// Keep dash here since it uses the input movement direction
-		else if (Input::IsKeyDown(Input::KeyCode::KEY_SPACE) && _dash_charges > 0)
+		else if ((Input::IsKeyDown(Input::KeyCode::KEY_SPACE) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_A)) && _dash_charges > 0)
 		{
 			Dash();
 		}
@@ -331,7 +373,7 @@ void Hachiko::Scripting::PlayerController::HandleInputAndStatus()
 			_state = PlayerState::IDLE;
 		}
 
-		if (Input::IsKeyDown(Input::KeyCode::KEY_F))
+		if (Input::IsKeyDown(Input::KeyCode::KEY_F) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_X))
 		{
 			PickupParasite(_player_position);
 		}
@@ -342,21 +384,21 @@ void Hachiko::Scripting::PlayerController::HandleInputAndStatus()
 	}
 
 	// Range attack charge cancel
-	if (_state == PlayerState::RANGED_ATTACKING && Input::IsMouseButtonUp(Input::MouseButton::RIGHT))
+	if (_state == PlayerState::RANGED_ATTACKING && (Input::IsMouseButtonUp(Input::MouseButton::RIGHT) || Input::IsGameControllerButtonUp(Input::GameControllerButton::CONTROLLER_BUTTON_LEFTSHOULDER)))
 	{
 		CancelAttack();
 	}
 
-	if (_god_mode && Input::IsKeyPressed(Input::KeyCode::KEY_Q))
+	if (_god_mode && (Input::IsKeyPressed(Input::KeyCode::KEY_Q) || Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_TRIGGERLEFT) > 0))
 	{
 		_player_position += math::float3::unitY * 0.5f;
 	}
-	else if (_god_mode && Input::IsKeyPressed(Input::KeyCode::KEY_E))
+	else if (_god_mode && (Input::IsKeyPressed(Input::KeyCode::KEY_E) || Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_TRIGGERRIGHT) > 0))
 	{
 		_player_position -= math::float3::unitY * 0.5f;
 	}
 
-	if (Input::IsKeyDown(Input::KeyCode::KEY_G))
+	if (Input::IsKeyDown(Input::KeyCode::KEY_G) || (Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_BACK) && Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_START)))
 	{
 		_god_mode = !_god_mode;
 
@@ -378,36 +420,43 @@ void Hachiko::Scripting::PlayerController::HandleInputAndStatus()
 
 void Hachiko::Scripting::PlayerController::HandleInputBuffering()
 {
-	if (Input::IsMouseButtonDown(Input::MouseButton::LEFT))
+	if (Input::IsMouseButtonDown(Input::MouseButton::LEFT) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_RIGHTSHOULDER))
 	{
 		// Melee combo input buffer
-		click_buffer.push(Input::MouseButton::LEFT);
+		click_buffer.push(GetRaycastPosition(_player_position));
+	}
+	if (Input::IsKeyDown(Input::KeyCode::KEY_SPACE) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_A))
+	{
+		// Dash to cut a combo
+		dash_buffer = true;
 	}
 }
 
-Hachiko::Input::MouseButton Hachiko::Scripting::PlayerController::GetBufferedClick()
+bool Hachiko::Scripting::PlayerController::HasBufferedClick()
 {
-	Input::MouseButton next_click = Input::MouseButton::UNKNOWN;
+	return !click_buffer.empty();
+}
 
+float3 Hachiko::Scripting::PlayerController::GetBufferedClick()
+{
 	if (click_buffer.empty())
 	{
-		return next_click;
+		return float3::zero;
 	}
+
+	float3 direction = click_buffer.front();
+	click_buffer.pop();
 
 	if (_attack_idx == GetCurrentWeapon().attacks.size() - 1)
 	{
 		ResetClickBuffer();
-		return next_click;
 	}
-
-	next_click = click_buffer.front();
-	click_buffer.pop();
-	return next_click;
+	return direction;
 }
 
 void Hachiko::Scripting::PlayerController::ResetClickBuffer()
 {
-	std::queue<Input::MouseButton> new_buffer;
+	std::queue<float3> new_buffer;
 	std::swap(click_buffer, new_buffer);
 }
 
@@ -418,6 +467,8 @@ void Hachiko::Scripting::PlayerController::Dash()
 	_dash_progress = 0.f;
 	_dash_start = _player_position;
 	_current_dash_duration = _dash_duration;
+
+	StoreDashOrigin(_dash_start);
 
 	// If we are not inputing any direction default to player orientation
 	if (_movement_direction.Equals(float3::zero))
@@ -432,6 +483,8 @@ void Hachiko::Scripting::PlayerController::Dash()
 
 	float3 corrected_dash_final_position;
 	_dash_end = _dash_start + _dash_direction * _dash_distance;
+	_player_transform->LookAtTarget(_dash_end);
+	
 	// Correct by wall hit
 	CorrectDashDestination(_dash_start, _dash_end);
 }
@@ -447,7 +500,12 @@ void Hachiko::Scripting::PlayerController::CorrectDashDestination(const float3& 
 		corrected_dash_destination = Navigation::GetCorrectedPosition(dash_destination, float3(5.f, 0.5f, 5.f));
 		if (corrected_dash_destination.x >= FLT_MAX)
 		{
-			_level_manager->Respawn(this);
+			_player_position = GetLastValidDashOrigin();
+			if (_player_position.x >= FLT_MAX)
+			{
+				// If there is no valid position send it to the last checkpoint
+				_player_position = _level_manager->Respawn();
+			}
 		}
 	}
 	else
@@ -461,18 +519,59 @@ void Hachiko::Scripting::PlayerController::CorrectDashDestination(const float3& 
 	}
 }
 
+void Hachiko::Scripting::PlayerController::StoreDashOrigin(const float3& dash_origin)
+{
+	dashed_from_positions.push_back(dash_origin);
+	while (dashed_from_positions.size() > max_dashed_from_positions)
+	{
+		dashed_from_positions.pop_front();
+	}
+}
+
+float3 Hachiko::Scripting::PlayerController::GetLastValidDashOrigin()
+{
+	float3 valid_pos(FLT_MAX);
+
+	while (!dashed_from_positions.empty())
+	{
+		valid_pos = GetCorrectedPosition(dashed_from_positions.back());
+		if (valid_pos.x < FLT_MAX)
+		{
+			return valid_pos;
+		}
+		dashed_from_positions.pop_back();
+	}
+	return valid_pos;
+}
+
 void Hachiko::Scripting::PlayerController::MeleeAttack()
 {
 	_state = PlayerState::MELEE_ATTACKING;
-	const Weapon& weapon = GetCurrentWeapon();
+	Weapon& weapon = GetCurrentWeapon();
 	const PlayerAttack& attack = GetNextAttack();
+	if (!weapon.unlimited && _attack_charges)
+	{
+		_attack_charges--;
+	}
+
+	UpdateWeaponChargeUI();
+
 	_attack_current_duration = attack.duration;
 	_after_attack_timer = attack.cooldown + _combo_grace_period;
 	
 	// Attack will occur in the attack simulation after the delay
 	_attack_current_delay = attack.hit_delay;
 
-	_player_transform->LookAtTarget(GetRaycastPosition(_player_position));
+	if (!Input::IsGamepadModeOn())
+	{
+		float3 direction = HasBufferedClick() ? GetBufferedClick() : GetRaycastPosition(_player_position);
+		_player_transform->LookAtTarget(direction);
+	}
+	else
+	{
+		GetBufferedClick();
+	}
+
 	CombatManager* combat_manager = _bullet_emitter->GetComponent<CombatManager>();
 
 	// Move player a bit forward if it wouldnt fall	
@@ -501,8 +600,20 @@ void Hachiko::Scripting::PlayerController::MeleeAttack()
 	_attack_indicator->ChangeEmissiveColor(attack_color, attack.duration, true);
 }
 
-void Hachiko::Scripting::PlayerController::ChangeGOWeapon()
+void Hachiko::Scripting::PlayerController::ChangeWeapon(unsigned weapon_idx)
 {
+	_current_weapon = weapon_idx;
+	
+	if (weapon_idx >= weapons.size())
+	{
+		_current_weapon = 0;
+	}
+	_attack_charges = GetCurrentWeapon().charges;
+	_weapon_charge_bar->SetMax(_attack_charges);
+	_weapon_charge_bar->SetMin(0);
+
+	UpdateWeaponChargeUI();
+
 	if (_current_weapon == 0) { // MELEE
 		_claw_weapon->SetActive(false);
 		_sword_upper->SetActive(false);
@@ -572,7 +683,7 @@ bool Hachiko::Scripting::PlayerController::IsInComboWindow() const
 	return _after_attack_timer > 0;
 }
 
-const Hachiko::Scripting::PlayerController::Weapon& Hachiko::Scripting::PlayerController::GetCurrentWeapon() const
+Hachiko::Scripting::PlayerController::Weapon& Hachiko::Scripting::PlayerController::GetCurrentWeapon()
 {
 	return weapons[_current_weapon];
 }
@@ -595,14 +706,13 @@ const Hachiko::Scripting::PlayerController::PlayerAttack& Hachiko::Scripting::Pl
 	return GetCurrentAttack();
 }
 
-const Hachiko::Scripting::PlayerController::PlayerAttack& Hachiko::Scripting::PlayerController::GetCurrentAttack() const
+const Hachiko::Scripting::PlayerController::PlayerAttack& Hachiko::Scripting::PlayerController::GetCurrentAttack()
 {
 	return GetCurrentWeapon().attacks[_attack_idx];
 }
 
 void Hachiko::Scripting::PlayerController::RangedAttack()
 {
-	
 	_player_transform->LookAtTarget(GetRaycastPosition(_player_position));
 	const float3 forward = _player_transform->GetFront().Normalized();
 
@@ -682,10 +792,25 @@ void Hachiko::Scripting::PlayerController::MovementController()
 
 		if (_start_fall_pos.y - _player_position.y > _falling_distance)
 		{
-			_player_position = Navigation::GetCorrectedPosition(_dash_start, float3(5.0f, 5.0f, 5.0f));
+			// Fall dmg
+			RegisterHit(1);
+
+			// If its still alive place it in the first valid position, if none exists respawn it
+			_player_position = GetLastValidDashOrigin();
 			if (_player_position.x >= FLT_MAX)
 			{
-				_level_manager->Respawn(this);
+				// If there is no valid position send it to the last checkpoint
+				_player_position = _level_manager->Respawn();
+			}
+
+			// Check if the player has survived
+			if (IsAlive())
+			{
+				_state = PlayerState::IDLE;
+			}
+			else
+			{
+				return;
 			}
 		}
 	}
@@ -930,6 +1055,12 @@ void Hachiko::Scripting::PlayerController::AttackController()
 		// Melee attack
 		_attack_indicator->SetActive(false);
 		
+		Weapon& weapon = GetCurrentWeapon();
+		if (!weapon.unlimited && !_attack_charges)
+		{
+			ChangeWeapon(0);
+		}
+			
 		// When attack is over
 		_state = PlayerState::IDLE;
 	}
@@ -983,19 +1114,17 @@ void Hachiko::Scripting::PlayerController::PickupParasite(const float3& current_
 					UpdateHealthBar();
 
 					// Select a random weapon:
-					_current_weapon = RandomUtil::RandomIntBetween(0, weapons.size() - 1);
+					ChangeWeapon(RandomUtil::RandomIntBetween(1, weapons.size() - 1));
 					break;
 				}
 			}
 		}
 	}
-	
-	ChangeGOWeapon();
 }
 
-void Hachiko::Scripting::PlayerController::RegisterHit(float damage_received, float knockback, float3 direction)
+void Hachiko::Scripting::PlayerController::RegisterHit(int damage_received, float knockback, float3 direction)
 {
-	if (_god_mode)
+	if (_god_mode || !IsAlive())
 	{
 	    return;
 	}
@@ -1009,6 +1138,7 @@ void Hachiko::Scripting::PlayerController::RegisterHit(float damage_received, fl
 		}
 		_combat_stats->ReceiveDamage(damage_received);
 		UpdateHealthBar();
+		Input::GoBrr(0.3f, 500);
 		
 		if (_player_geometry != nullptr)
 		{
@@ -1055,7 +1185,7 @@ void Hachiko::Scripting::PlayerController::RecieveKnockback(const math::float3 d
 		_knock_end = _knock_start;
 	}
 	_stun_time = _stun_duration;
-	_player_transform->LookAtDirection(-direction);
+	//_player_transform->LookAtDirection(-direction);
 }
 
 void Hachiko::Scripting::PlayerController::CheckState()
@@ -1068,12 +1198,17 @@ void Hachiko::Scripting::PlayerController::CheckState()
 		return;
 	}
 
-	_previous_state = current_state;
-
 	switch (current_state)
 	{
 	case PlayerState::IDLE:
-		animation->SendTrigger("isIdle");
+		if (_previous_state == PlayerState::READY_TO_RESPAWN) 
+		{
+			animation->SendTrigger("isRespawn");
+		}
+		else 
+		{
+			animation->SendTrigger("isIdle");
+		}
 		break;
 	case PlayerState::WALKING:
 		animation->SendTrigger("isRun");
@@ -1096,11 +1231,16 @@ void Hachiko::Scripting::PlayerController::CheckState()
 	case PlayerState::DIE:
 		animation->SendTrigger("isDead");
 		break;
+	case PlayerState::STUNNED:
+		animation->SendTrigger("isIdle");
+		break;
 
 	case PlayerState::INVALID:
 	default:
 		break;
 	}
+
+	_previous_state = current_state;
 }
 
 // TODO: This is for Alpha, we need to find a better option to trigger this animations
@@ -1157,8 +1297,66 @@ void Hachiko::Scripting::PlayerController::ResetPlayer(float3 spawn_pos)
 {
 	_player_position = spawn_pos; // _initial_pos;
 	_combat_stats->_current_hp = 4;
-	UpdateHealthBar();
+	
 	// Reset properly
+
+	_ammo_count = 4;
+	
+	while (!click_buffer.empty())
+	{
+		click_buffer.pop();
+	}
+
+	_dash_charges = 2;
+	_current_dash_duration = 0.f;
+	_dash_progress = 0.0f;
+	_dash_charging_time = 0.0f;
+	_dash_start = float3::zero;
+	_dash_end = float3::zero;
+	_dash_direction = float3::zero;
+
+	// Dash
+	_dash_trail->SetActive(false);
+	_show_dashtrail = false;
+
+	// Attack management
+	_attack_current_cd = 0.0f;
+	_attack_current_duration = 0.0f;
+	_current_attack_cooldown = 0.f;
+	_attack_current_delay = 0.0f;
+	_after_attack_timer = 0.f;;
+	_current_bullet = -1;
+	_attack_idx = 0;
+	_current_weapon = 0;
+	_invulnerability_time_remaining = 0.0f;
+
+	// Movement management
+	_stun_time = 0.0f;
+	_stun_duration = 0.5f;
+	_rotation_progress = 0.0f;
+	_falling_distance = 10.0f;
+	_should_rotate = false;
+	_is_falling = false;
+
+	// Camera
+	_current_cam_setting = 0;
+
+	_movement_direction = float3::zero;
+	_knock_start = float3::zero;
+	_knock_end = float3::zero;
+	_start_fall_pos = float3::zero;
+	_rotation_start = Quat::identity;
+	_rotation_target = Quat::identity;
+
+	// Color
+	_player_geometry->ChangeTintColor(float4(1.0f, 1.0f, 1.0f, 1.0f), true);
+
+	// State
+	_state = PlayerState::IDLE;
+
+	ChangeWeapon(_current_weapon);
+	UpdateHealthBar();
+	UpdateAmmoUI();
 }
 
 void Hachiko::Scripting::PlayerController::UpdateHealthBar()
@@ -1202,6 +1400,18 @@ void Hachiko::Scripting::PlayerController::UpdateAmmoUI()
 			ammo_cells[i]->GetComponent(Component::Type::IMAGE)->Enable();
 		}
 	}
+}
+
+void Hachiko::Scripting::PlayerController::UpdateWeaponChargeUI()
+{
+	Weapon& weapon = GetCurrentWeapon();
+	if (weapon.unlimited)
+	{
+		_weapon_charge_bar_go->SetActive(false);
+		return;
+	}
+	_weapon_charge_bar_go->SetActive(true);
+	_weapon_charge_bar->SetFilledValue(_attack_charges);
 }
 
 void Hachiko::Scripting::PlayerController::ToggleGodMode()

@@ -12,6 +12,7 @@ Hachiko::ModuleInput::ModuleInput() :
 {
     memset(keyboard, static_cast<int>(KeyState::KEY_IDLE), sizeof(KeyState) * MAX_KEYS);
     memset(mouse, static_cast<int>(KeyState::KEY_IDLE), sizeof(KeyState) * NUM_MOUSE_BUTTONS);
+    memset(game_controller, static_cast<int>(KeyState::KEY_IDLE), sizeof(KeyState) * SDL_CONTROLLER_BUTTON_MAX);
 }
 
 Hachiko::ModuleInput::~ModuleInput()
@@ -34,6 +35,9 @@ bool Hachiko::ModuleInput::Init()
         ret = false;
     }
 
+    // Gamepad Controller
+    SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC);
+
     return ret;
 }
 
@@ -53,6 +57,7 @@ UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
     while (SDL_PollEvent(&sdl_event) != 0)
     {
         ImGui_ImplSDL2_ProcessEvent(&sdl_event);
+
         switch (sdl_event.type)
         {
         case SDL_WINDOWEVENT:
@@ -129,6 +134,75 @@ UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
             SDL_free(sdl_event.drop.file);
         }
         break;
+
+        case SDL_CONTROLLERDEVICEADDED:
+            {
+                int which = sdl_event.cdevice.which;
+
+                if (SDL_IsGameController(which))
+                {
+                    sdl_game_controller = SDL_GameControllerOpen(which);
+                    sdl_joystick = SDL_JoystickOpen(which);
+                    sdl_haptic = SDL_HapticOpen(which);
+                    SDL_HapticRumbleInit(sdl_haptic);
+                    SDL_HapticRumblePlay(sdl_haptic, 0.3f, 1000);
+                    HE_LOG("%s number %d was added", GetControllerTypeAsString(SDL_GameControllerTypeForIndex(which)), sdl_event.cdevice.which);
+                    gamepad_mode = true;
+                }
+            }
+
+            break;
+        case SDL_CONTROLLERDEVICEREMAPPED:
+            HE_LOG("Controller %d was remapped", sdl_event.cdevice.which);
+            break;
+        case SDL_CONTROLLERDEVICEREMOVED:
+            HE_LOG("%s was removed", SDL_GameControllerName(sdl_game_controller), sdl_event.cdevice.which);
+            SDL_GameControllerClose(sdl_game_controller);
+            SDL_JoystickClose(sdl_joystick);
+            SDL_HapticClose(sdl_haptic);
+            sdl_game_controller = nullptr;
+            sdl_joystick = nullptr;
+            sdl_haptic = nullptr;
+            gamepad_mode = false;
+
+            break;
+        case SDL_CONTROLLERBUTTONDOWN: 
+            HE_LOG("%d button down", sdl_event.cbutton.button);
+            game_controller[sdl_event.cbutton.button] = KeyState::KEY_DOWN;
+            
+            break;
+        case SDL_CONTROLLERBUTTONUP:
+            game_controller[sdl_event.cbutton.button] = KeyState::KEY_UP;
+
+            break;
+        case SDL_CONTROLLERAXISMOTION: {
+            // Triggers 
+            if (sdl_event.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERLEFT || sdl_event.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT) 
+            {
+                game_controller_axis[sdl_event.caxis.axis] = sdl_event.caxis.value;
+                HE_LOG("Axis: %d Value: %d", sdl_event.caxis.axis, sdl_event.caxis.value);
+                break;
+            }
+            // Left Joystick Axis
+            if (sdl_event.caxis.value < -JOYSTICK_DEAD_ZONE) 
+            {
+                game_controller_axis[sdl_event.caxis.axis] = sdl_event.caxis.value;
+                HE_LOG("Axis: %d Value: %d", sdl_event.caxis.axis, sdl_event.caxis.value);
+            }
+            // Right Joystick Axis
+            else if (sdl_event.caxis.value > JOYSTICK_DEAD_ZONE) 
+            {
+                game_controller_axis[sdl_event.caxis.axis] = sdl_event.caxis.value;
+                HE_LOG("Axis: %d Value: %d", sdl_event.caxis.axis, sdl_event.caxis.value);
+            }
+            else 
+            {
+                game_controller_axis[sdl_event.caxis.axis] = 0;
+                HE_LOG("Axis: %d Value: %d", sdl_event.caxis.axis, sdl_event.caxis.value);
+            }
+
+            break;
+        }
         default:
             scroll_delta = 0.0f;
             break;
@@ -182,6 +256,18 @@ void Hachiko::ModuleInput::UpdateInputMaps()
             mouse_button = KeyState::KEY_IDLE;
         }
     }
+
+    for (int i = 0; i < SDL_CONTROLLER_BUTTON_MAX; ++i) {
+        if (game_controller[i] == KeyState::KEY_DOWN) 
+        {
+            game_controller[i] = KeyState::KEY_REPEAT;
+        }
+
+        if (game_controller[i] == KeyState::KEY_UP)
+        {
+            game_controller[i] = KeyState::KEY_IDLE;
+        }
+    }
 }
 
 void Hachiko::ModuleInput::UpdateWindowSizeInversedCaches(int width,
@@ -201,6 +287,34 @@ void Hachiko::ModuleInput::NotifyMouseAction(const float2& position, MouseEventP
 bool Hachiko::ModuleInput::CleanUp()
 {
     HE_LOG("Quitting SDL input event subsystem");
+    SDL_GameControllerClose(sdl_game_controller);
+    SDL_JoystickClose(sdl_joystick);
+    SDL_HapticClose(sdl_haptic);
     SDL_QuitSubSystem(SDL_INIT_EVENTS);
     return true;
+}
+
+const char* Hachiko::ModuleInput::GetControllerTypeAsString(SDL_GameControllerType type)
+{
+    switch (type)
+    {
+        case SDL_GameControllerType::SDL_CONTROLLER_TYPE_PS3:
+            return "PS3 Controller";
+        case SDL_GameControllerType::SDL_CONTROLLER_TYPE_PS4:
+            return "PS4 Controller";
+        case SDL_GameControllerType::SDL_CONTROLLER_TYPE_PS5:
+            return "PS5 Controller";
+        case SDL_GameControllerType::SDL_CONTROLLER_TYPE_XBOX360:
+            return "XBOX 360 Controller";
+        case SDL_GameControllerType::SDL_CONTROLLER_TYPE_XBOXONE:
+            return "XBOX One Controller";
+        case SDL_GameControllerType::SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_PRO:
+            return "Nintendo Switch Pro Controller";
+        case SDL_GameControllerType::SDL_CONTROLLER_TYPE_AMAZON_LUNA:
+            return "Amazon Luna Controller";
+        case SDL_GameControllerType::SDL_CONTROLLER_TYPE_GOOGLE_STADIA:
+            return "Google Stadia Controller";
+        default:
+            return "UNKNOWN";
+    }
 }

@@ -33,8 +33,8 @@ Hachiko::Application::Application()
     modules.push_back(resources = new ModuleResources());
     modules.push_back(audio = new ModuleAudio());
     modules.push_back(navigation = new ModuleNavigation());
-    modules.push_back(scene_manager = new ModuleSceneManager());
     modules.push_back(program = new ModuleProgram());
+    modules.push_back(scene_manager = new ModuleSceneManager()); 
     modules.push_back(debug_draw = new ModuleDebugDraw());
     modules.push_back(editor = new ModuleEditor());
     modules.push_back(event = new ModuleEvent());
@@ -56,6 +56,9 @@ Hachiko::Application::~Application()
 bool Hachiko::Application::Init()
 {
     bool ret = true;
+
+    ret &= preferences->Init();
+
     file_system.Init();
 
     for (auto it = modules.begin(); it != modules.end() && ret; ++it)

@@ -7,9 +7,11 @@ namespace Hachiko
 {
 	class GameObject;
 	class ComponentTransform;
+	class ComponentText;
 	namespace Scripting
 	{
 		class PlayerController;
+		
 		class LevelManager : public Script
 		{
 			SERIALIZATION_METHODS(false)
@@ -18,10 +20,11 @@ namespace Hachiko
 			LevelManager(GameObject* game_object);
 			~LevelManager() override = default;
 
-			void SetLastGauntlet(GauntletManager* last_gauntlet) 
-			{
-				_last_gauntlet = last_gauntlet;
-			}
+			void OnAwake() override;
+			void OnUpdate() override;
+
+			void SetGauntlet(GauntletManager* last_gauntlet);
+			void SetEnemyCount(unsigned count);
 
 			void SetRespawnPosition(const float3& new_respawn_position) 
 			{
@@ -33,15 +36,16 @@ namespace Hachiko
 				return _respawn_position;
 			}
 
-			void Respawn(PlayerController* player);
+			float3 Respawn();
 
 			SERIALIZE_FIELD(float3, _respawn_position);
+			SERIALIZE_FIELD(GameObject*, _gauntlet_ui_go);
+			SERIALIZE_FIELD(GameObject*, _gauntlet_counter_go);
 
 
 		private:
-
 			GauntletManager* _last_gauntlet = nullptr;
-
+			ComponentText* _enemy_counter = nullptr;
 		};
 	}
 

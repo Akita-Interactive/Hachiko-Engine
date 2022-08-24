@@ -5,7 +5,7 @@ component:
   - !<transform>
     type: 1
     enabled: true
-    position: [-74.82, 4.072, -68.2]
+    position: [-45.39, 4.072, -91.94]
     rotation: [0, 0, 0, 1]
     scale: [4, 4, 4]
   - !<animation>
@@ -16,9 +16,9 @@ component:
     type: 17
     enabled: true
     max_speed: 5
-    max_acceleration: 10
+    max_acceleration: 20
     avoid_obstacles: false
-    radius: 0.5
+    radius: 2
     is_player: false
   - type: 20
     enabled: true
@@ -286,7 +286,7 @@ child:
                                                                                                 type: 1
                                                                                                 enabled: true
                                                                                                 position: [0, 0, 0]
-                                                                                                rotation: [-0.0085, -0.7071, 0.0085, 0.7071]
+                                                                                                rotation: [-0.0085, -0.7071, 0.0085, 0.707]
                                                                                                 scale: [1, 1, 1]
                                                                                             child:
                                                                                               - name: Head2_Jnt
@@ -604,7 +604,7 @@ child:
                                                                                                                         enabled: true
                                                                                                                         position: [0, 0, 0]
                                                                                                                         rotation: [-0.6647, -0.2755, 0.1059, 0.6863]
-                                                                                                                        scale: [1, 1, 0.9979]
+                                                                                                                        scale: [1, 1, 0.9941]
                                                                                                   - name: loc_Forearm
                                                                                                     enabled: true
                                                                                                     component:
@@ -650,8 +650,8 @@ child:
                                                                                 type: 1
                                                                                 enabled: true
                                                                                 position: [0, 0, 0]
-                                                                                rotation: [0.6991, 0.151, 0.1202, 0.6884]
-                                                                                scale: [0.9978, 1, 0.9978]
+                                                                                rotation: [0.6991, 0.151, 0.1202, 0.6885]
+                                                                                scale: [0.9978, 0.9999, 0.9977]
                                                                             child:
                                                                               - name: Wing1_Jnt_L
                                                                                 enabled: true

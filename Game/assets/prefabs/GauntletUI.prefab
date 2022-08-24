@@ -1,0 +1,84 @@
+prefab_name: GauntletUI
+name: GauntletUI
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [0, 0, 0, 1]
+    scale: [1, 1, 1]
+  - !<transform_2d>
+    type: 10
+    enabled: true
+    position: [0, 0, 0]
+    size: [814, 472]
+    scale: [1, 1]
+    rotation: [0, 0, 0, 1]
+    pivot: [0.5, 0.5]
+    anchor: [0.5, 0.5]
+  - !<canvas>
+    type: 8
+    enabled: true
+child:
+  - name: Icon
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [1, 1, 1]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [-480, -260, 0]
+        size: [65, 65]
+        scale: [1, 1]
+        rotation: [0, 0, 0, 1]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas_renderer>
+        type: 9
+        enabled: true
+      - !<image>
+        type: 11
+        enabled: true
+        image_id: 3566589708735269996
+        hover_image_id: 0
+        image_color: [1, 1, 1, 1]
+        hover_image_color: [1, 1, 1, 1]
+        image_is_tiled: false
+        image_x_tiles: 1
+        image_y_tiles: 1
+        image_tiles_per_second: 1
+        fill_window: false
+  - name: Counter
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [1, 1, 1]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [-430, 255.8, 0]
+        size: [10, 40]
+        scale: [1, 1]
+        rotation: [0, 0, 0, 1]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas_renderer>
+        type: 9
+        enabled: true
+      - !<text>
+        type: 16
+        enabled: true
+        font_id: 15852548707070218669
+        color: [0.935, 0.1368, 0.1368, 1]
+        size: 28
+        label_text: 0

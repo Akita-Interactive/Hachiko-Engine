@@ -28,6 +28,8 @@ Hachiko::Skybox::~Skybox()
     ReleaseCubemap();
 
     glDeleteTextures(1, &diffuse_ibl_id);
+    glDeleteTextures(1, &prefiltered_ibl_id);
+    glDeleteTextures(1, &environment_brdf_id);
 }
 
 void Hachiko::Skybox::Draw(ComponentCamera* camera) const
@@ -87,14 +89,27 @@ void Hachiko::Skybox::DrawImGui()
         BuildIBL();
     }
 
-    if (ImGui::Button("Diffuse"))
+    if (default_ibl == 0)
     {
-        cube.id = diffuse_ibl_id;
+        if (ImGui::Button("Diffuse (debug)"))
+        {
+            default_ibl = cube.id;
+            cube.id = diffuse_ibl_id;
+        }
+        ImGui::SameLine();
+        if (ImGui::Button("Prefiltered (debug)"))
+        {
+            default_ibl = cube.id;
+            cube.id = prefiltered_ibl_id;
+        }
     }
-
-    if (ImGui::Button("Prefiltered"))
+    else
     {
-        cube.id = prefiltered_ibl_id;
+        if (ImGui::Button("Reset (debug)"))
+        {
+            cube.id = default_ibl;
+            default_ibl = 0;
+        }
     }
 
     ImGui::PopID();
@@ -108,17 +123,17 @@ void Hachiko::Skybox::BindImageBasedLightingUniforms(Program* program) const
 
         if (App->renderer->IsDeferred())
         {
-            glActiveTexture(GL_TEXTURE5);
-            glBindTexture(GL_TEXTURE_CUBE_MAP, diffuse_ibl_id);
-            program->BindUniformInt("diffuseIBL", 5);
-
-            glActiveTexture(GL_TEXTURE6);
-            glBindTexture(GL_TEXTURE_CUBE_MAP, prefiltered_ibl_id);
-            program->BindUniformInt("prefilteredIBL", 6);
-
             glActiveTexture(GL_TEXTURE7);
+            glBindTexture(GL_TEXTURE_CUBE_MAP, diffuse_ibl_id);
+            //program->BindUniformInt("diffuseIBL", 7);
+
+            glActiveTexture(GL_TEXTURE8);
+            glBindTexture(GL_TEXTURE_CUBE_MAP, prefiltered_ibl_id);
+            //program->BindUniformInt("prefilteredIBL", 8);
+
+            glActiveTexture(GL_TEXTURE9);
             glBindTexture(GL_TEXTURE_2D, environment_brdf_id);
-            program->BindUniformInt("environmentBRDF", 7);
+            //program->BindUniformInt("environmentBRDF", 9);
         }
         else
         {
@@ -277,9 +292,15 @@ void Hachiko::Skybox::ChangeCubeMapSide(UID texture_uid, TextureCube::Side cube_
 
 void Hachiko::Skybox::BuildIBL() 
 {
+    glDeleteTextures(1, &diffuse_ibl_id);
+    glDeleteTextures(1, &prefiltered_ibl_id);
+    glDeleteTextures(1, &environment_brdf_id);
+
     GenerateDiffuseIBL();
     GeneratePrefilteredIBL();
     GenerateEnvironmentBRDF();
+
+    ibl_built = true;
 }
 
 void Hachiko::Skybox::GenerateDiffuseIBL()
@@ -523,10 +544,10 @@ void Hachiko::Skybox::GenerateEnvironmentBRDF()
     glBindTexture(GL_TEXTURE_2D, environment_brdf_id);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB32F, width, height, 0, GL_RG, GL_FLOAT, nullptr);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 
     unsigned attachment = GL_COLOR_ATTACHMENT0;
     glFramebufferTexture2D(GL_FRAMEBUFFER, attachment, GL_TEXTURE_2D, environment_brdf_id, 0);

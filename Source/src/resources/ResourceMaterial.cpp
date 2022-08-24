@@ -85,11 +85,8 @@ void Hachiko::ResourceMaterial::DrawGui()
             {
                 ImGui::SliderFloat("Metalness", &metalness_value, 0.0f, 1.0f, "%.2f", 1.0f);
                 AddTexture(ResourceTexture::Type::METALNESS);
+                ImGui::SliderFloat("Smoothness", &smoothness, 0.0f, 1.0f, "%.2f", 1.0f);
             }
-            ImGui::SliderFloat("Smoothness", &smoothness, 0.0f, 1.0f, "%.2f", 1.0f);
-
-            alpha_channels[1] = material_types[is_metallic];
-            ImGuiUtils::Combo("Alpha", alpha_channels, smoothness_alpha);
 
             ImGui::TreePop();
         }
@@ -120,11 +117,8 @@ void Hachiko::ResourceMaterial::DrawGui()
             {
                 ImGui::ColorEdit4("Specular color", &specular_color[0]);
                 AddTexture(ResourceTexture::Type::SPECULAR);
+                ImGui::SliderFloat("Smoothness", &smoothness, 0.0f, 1.0f, "%.2f", 1.0f);
             }
-            ImGui::SliderFloat("Smoothness", &smoothness, 0.0f, 1.0f, "%.2f", 1.0f);
-
-            alpha_channels[1] = material_types[is_metallic];
-            ImGuiUtils::Combo("Alpha", alpha_channels, smoothness_alpha);
 
             ImGui::TreePop();
         }

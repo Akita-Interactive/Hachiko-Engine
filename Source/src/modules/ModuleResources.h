@@ -57,6 +57,7 @@ namespace Hachiko
             {Hachiko::Resource::AssetType::PREFAB, PREFAB_EXTENSION},
             {Hachiko::Resource::AssetType::SKYBOX, SKYBOX_EXTENSION},
             {Hachiko::Resource::AssetType::STATE_MACHINE, STATE_MACHINE_EXTENSION},
+            {Hachiko::Resource::AssetType::VIDEO, MP4_VIDEO_EXTENSION},
         };
         
         Hachiko::ResourcesPreferences* preferences = nullptr;

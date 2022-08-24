@@ -274,6 +274,37 @@ dtCrowdAgent* Hachiko::ModuleNavigation::GetEditableAgent(int agent_id) const
     return crowd->getEditableAgent(agent_id);
 }
 
+bool Hachiko::ModuleNavigation::Raycast(const float3& start_pos, const float3& end_pos, float3& hit_position)
+{
+    if (!scene_navmesh) 
+    {
+        return false;
+    }
+
+    bool hit = false;
+    dtPolyRef poly_ref;
+    float3 extension(2, 4, 2);
+    dtQueryFilter filter;
+    scene_navmesh->navigation_query->findNearestPoly(start_pos.ptr(), extension.ptr(), &filter, &poly_ref, 0);
+    if (poly_ref)
+    {
+        float3 hit_normal;
+        float t = 0.f;
+        int npolys = 0;
+        static const int MAX_POLYS = 5;
+        dtPolyRef polys[MAX_POLYS];
+        scene_navmesh->navigation_query->raycast(poly_ref, start_pos.ptr(), end_pos.ptr(), &filter, &t, hit_normal.ptr(), polys, &npolys, MAX_POLYS);
+
+        if (t < FLT_MAX)
+        {
+            hit = true;
+            dtVlerp(hit_position.ptr(), start_pos.ptr(), end_pos.ptr(), t);
+        }
+    }
+    
+    return hit;
+}
+
 void Hachiko::ModuleNavigation::UpdateObstacleStats(dtTileCache* tile_cache)
 {
     total_obstacle_slots = tile_cache->getObstacleCount();

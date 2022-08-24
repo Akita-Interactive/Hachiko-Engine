@@ -17,11 +17,23 @@ namespace Hachiko
         void ChangeCubeMapSide(UID texture_uid, TextureCube::Side cube_side);
         void ReleaseCubemap();
 
+        [[nodiscard]] bool IsIBLActive() const
+        {
+            return activate_ibl;
+        }
         const TextureCube& GetCube() const
         {
             return cube;
         }
 
+        void ActivateIBL(bool active)
+        {
+            if (active && !ibl_built)
+            {
+                BuildIBL();
+            }
+            activate_ibl = active;
+        }
         void BuildIBL();
 
         void DrawImGui();
@@ -40,7 +52,9 @@ namespace Hachiko
         unsigned vao{};
         unsigned vbo{};
 
+        unsigned default_ibl = 0;
         bool activate_ibl = false;
+        bool ibl_built = false;
         unsigned diffuse_ibl_id = 0;
         unsigned prefiltered_ibl_id = 0;
         unsigned environment_brdf_id = 0;
