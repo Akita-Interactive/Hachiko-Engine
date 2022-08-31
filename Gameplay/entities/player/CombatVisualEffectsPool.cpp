@@ -17,7 +17,6 @@ void Hachiko::Scripting::CombatVisualEffectsPool::OnAwake()
 	for (ComponentBillboard* billboard : game_object->GetComponentsInDescendants<ComponentBillboard>())
 	{
 		_billboards.push_back(billboard);
-		HE_LOG("%s", billboard->GetGameObject()->GetName().c_str());
 	}
 }
 

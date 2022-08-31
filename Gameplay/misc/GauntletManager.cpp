@@ -3,6 +3,7 @@
 #include "GauntletManager.h"
 
 #include "misc/LevelManager.h"
+#include "misc/AudioManager.h"
 #include "constants/Scenes.h"
 
 // TODO: Delete this include:
@@ -36,6 +37,8 @@ void Hachiko::Scripting::GauntletManager::OnAwake()
 	{
 		_pack->SetActive(false);
 	}
+
+	_audio_manager = Scenes::GetAudioManager()->GetComponent<AudioManager>();
 }
 
 void Hachiko::Scripting::GauntletManager::OnStart()
@@ -74,6 +77,9 @@ void Hachiko::Scripting::GauntletManager::StartGauntlet()
 
 	// Notify level manager
 	_level_manager->SetGauntlet(this);
+	
+	// Notify audio manager
+	_audio_manager->RegisterGaunlet();
 }
 
 void Hachiko::Scripting::GauntletManager::ResetGauntlet()
@@ -98,6 +104,7 @@ void Hachiko::Scripting::GauntletManager::CheckRoundStatus()
 	if (current_round >= _enemy_packs.size()) {
 		completed = true;
 		OpenDoors();
+		_audio_manager->UnregisterGaunlet();
 		return;
 	}
 

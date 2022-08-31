@@ -123,17 +123,17 @@ void Hachiko::Skybox::BindImageBasedLightingUniforms(Program* program) const
 
         if (App->renderer->IsDeferred())
         {
-            glActiveTexture(GL_TEXTURE6);
-            glBindTexture(GL_TEXTURE_CUBE_MAP, diffuse_ibl_id);
-            program->BindUniformInt("diffuseIBL", 6);
-
             glActiveTexture(GL_TEXTURE7);
-            glBindTexture(GL_TEXTURE_CUBE_MAP, prefiltered_ibl_id);
-            program->BindUniformInt("prefilteredIBL", 7);
+            glBindTexture(GL_TEXTURE_CUBE_MAP, diffuse_ibl_id);
+            //program->BindUniformInt("diffuseIBL", 7);
 
             glActiveTexture(GL_TEXTURE8);
+            glBindTexture(GL_TEXTURE_CUBE_MAP, prefiltered_ibl_id);
+            //program->BindUniformInt("prefilteredIBL", 8);
+
+            glActiveTexture(GL_TEXTURE9);
             glBindTexture(GL_TEXTURE_2D, environment_brdf_id);
-            program->BindUniformInt("environmentBRDF", 8);
+            //program->BindUniformInt("environmentBRDF", 9);
         }
         else
         {

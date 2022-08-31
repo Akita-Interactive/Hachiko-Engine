@@ -17,6 +17,8 @@ namespace Hachiko
     public:
         PreferenceManager(const char* cfg);
         ~PreferenceManager();
+
+        bool Init();
         void LoadConfigurationFile() const;
         void SaveConfigurationFile() const;
         [[nodiscard]] Preferences* GetPreference(Preferences::Type type) const;

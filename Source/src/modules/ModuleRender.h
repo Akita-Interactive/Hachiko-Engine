@@ -6,6 +6,7 @@
 #include "core/rendering/RenderList.h"
 #include "core/rendering/GBuffer.h"
 #include "core/rendering/ShadowManager.h"
+#include "core/rendering/BloomManager.h"
 
 #include <vector>
 
@@ -13,6 +14,7 @@ namespace Hachiko
 {
     class ComponentCamera;
     class Scene;
+    class StandaloneGLTexture;
 
     struct GpuData
     {
@@ -112,15 +114,17 @@ namespace Hachiko
             return draw_deferred;
         }
 
-
-        [[nodiscard]] const unsigned& GetParticleVao() const
+        [[nodiscard]] const unsigned& GetFullScreenQuadVAO() const
         {
-            return particle_vao;
+            return full_screen_quad_vao;
         }
 
         void ApplyGaussianFilter(unsigned source_fbo, unsigned source_texture, 
             unsigned temp_fbo, unsigned temp_texture, float blur_scale_amount, 
-            unsigned width, unsigned height, const Program* program) const;
+            float blur_sigma, int blur_size, unsigned width, unsigned height, 
+            const Program* program) const;
+
+        void RenderFullScreenQuad() const;
             
         static void EnableBlending(GLenum blend_func_sfactor = GL_SRC_ALPHA, GLenum blend_func_dfactor = GL_ONE_MINUS_SRC_ALPHA, GLenum blend_equation = GL_FUNC_ADD) 
         {
@@ -133,9 +137,12 @@ namespace Hachiko
         {
             glDisable(GL_BLEND);
         }
-    
-        void RenderDeferredQuad() const;
 
+        BloomManager& GetBloomManager()
+        {
+            return bloom_manager;
+        };
+    
     private:
         void GenerateFrameBuffer();
         void ResizeFrameBuffer(int width, int height) const;
@@ -145,16 +152,16 @@ namespace Hachiko
         void DrawForward(Scene* scene, BatchManager* batch_manager);
         void DrawPreForwardPass(Scene* scene, ComponentCamera* camera) const;
         bool DrawToShadowMap(Scene* scene, ComponentCamera* camera, BatchManager* batch_manager, DrawConfig draw_config);
-        
+
         void SetRenderMode(bool is_deferred);
 
         void CreateContext();
         static void SetGLOptions();
-        void RetrieveLibVersions();
+        void RetrieveLibVersions() const;
         void RetrieveGpuInfo();
 
-        void GenerateDeferredQuad();
-        void FreeDeferredQuad();
+        void GenerateFullScreenQuad();
+        void FreeFullScreenQuad() const;
 
         void* context{};
 
@@ -166,21 +173,23 @@ namespace Hachiko
         unsigned fb_height = 0;
         unsigned fb_width = 0;
 
+        // Full Screen Quad related:
+        unsigned full_screen_quad_vao = 0;
+        unsigned full_screen_quad_vbo = 0;
+        unsigned full_screen_quad_ebo = 0;
+
         // Shadow Map related:
         ShadowManager shadow_manager;
         bool shadow_pass_enabled = true;
 
-        bool draw_deferred = true;
-
         // Deferred rendering:
         GBuffer g_buffer;
-        unsigned deferred_quad_vao = 0;
-        unsigned deferred_quad_vbo = 0;
-        unsigned deferred_quad_ebo = 0;
+        bool draw_deferred = true;
         int deferred_mode = 0;
         bool render_forward_pass = true;
 
-        // float4 clear_color;
+        BloomManager bloom_manager;
+
         bool draw_skybox = false;
         bool draw_navmesh = false;
         bool outline_selection = true;
@@ -193,11 +202,5 @@ namespace Hachiko
         std::vector<float> ms_log;
         float current_fps = 0.0f;
         float current_ms = 0.0f;
-
-        // Particle System
-        void GenerateParticlesBuffers();
-        unsigned particle_vbo;
-        unsigned particle_ebo;
-        unsigned particle_vao;
     };
 }

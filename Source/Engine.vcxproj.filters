@@ -668,6 +668,9 @@
     <ClCompile Include="vendors\OpenSimplex\OpenSimplex2S.cpp">
       <Filter>Vendors\OpenSimplex</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\rendering\StandaloneGLTexture.cpp" />
+    <ClCompile Include="src\core\rendering\BlurPixelSize.cpp" />
+    <ClCompile Include="src\core\rendering\BloomManager.cpp" />
     <ClCompile Include="src\components\ComponentVideo.cpp">
       <Filter>Core\Components</Filter>
     </ClCompile>
@@ -2525,6 +2528,10 @@
       <Filter>Resources</Filter>
     </ClInclude>
     <ClInclude Include="src\Batching\BatchingProperties.h" />
+    <ClInclude Include="src\core\rendering\StandaloneGLTexture.h" />
+    <ClInclude Include="src\core\rendering\BlurPixelSize.h" />
+    <ClInclude Include="src\core\rendering\BloomManager.h" />
+    <ClInclude Include="src\utils\MathUtil.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">

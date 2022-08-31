@@ -5,30 +5,30 @@ component:
   - !<transform>
     type: 1
     enabled: true
-    position: [-96.52, 3.309, -53.98]
+    position: [-93.56, 3.309, -54.89]
     rotation: [0, 0.0689, 0, 0.9976]
-    scale: [1.4, 1.4, 1.4]
+    scale: [2.5, 2.5, 2.5]
   - !<obstacle>
     type: 18
     enabled: true
     obstacle_type: 0
-    obstacle_size: [0.8, 1, 1]
+    obstacle_size: [0.9, 1, 1]
   - type: 20
     enabled: true
   - !<script>
     type: 15
     enabled: true
     class_name: CrystalExplosion
-    "'_player@GameObject*'": 0
     "'_explosion_crystal@GameObject*'": 4
     "'_static_crystal@GameObject*'": 2
     "'_explosion_indicator_helper@GameObject*'": 15
     "'_explosion_effect@GameObject*'": 17
     "'_crashing_index@unsigned'": 0
-    "'_detecting_radius@float'": 2
-    "'_explosion_radius@float'": 5
+    "'_detecting_radius@float'": 3
+    "'_explosion_radius@float'": 9
     "'_timer_explosion@float'": 1
     "'_explosive_crystal@bool'": true
+    "'_regen_time@float'": 5
   - !<script>
     type: 15
     enabled: true
@@ -38,6 +38,7 @@ component:
     "'_attack_range@float'": 3.5
     "'_move_speed@float'": 0
     "'_max_hp@int'": 1
+    "'_current_hp@int'": 3
 child:
   - name: crystalSpike_mesh
     enabled: true
@@ -56,8 +57,8 @@ child:
             type: 1
             enabled: true
             position: [1.203, 0.5688, -1.089]
-            rotation: [-0.6409, 0.2988, 0.2988, 0.6409]
-            scale: [1, 0.9999, 0.9999]
+            rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
+            scale: [1, 1, 1]
           - !<mesh_renderer>
             type: 2
             enabled: true
@@ -267,11 +268,11 @@ child:
             animation_section: false
             color_section: true
             size_section: true
-            size_over_time: [true, false, 0, [120, 10], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            size_over_time: [true, false, 0, [60, 5], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             rotation_section: false
             rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            start_size: [true, true, 0, [1, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_size: [true, true, 0, [0.5, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             blend_factor: 0
       - name: OuterEffect
@@ -300,10 +301,10 @@ child:
             animation_section: false
             color_section: false
             size_section: false
-            size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            size_over_time: [true, false, 0, [0.5, 0.5], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             rotation_section: true
             rotation_over_time: [true, false, 0, [5, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            start_size: [true, true, 0, [1, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_size: [true, true, 0, [0.5, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             blend_factor: 0

@@ -35,6 +35,7 @@ bool Hachiko::ModuleProgram::Init()
     CreateDeferredLightingPassProgram();
     CreateShadowMappingProgram();
     CreateParticleProgram();
+    CreateTextureCopyProgram();
     CreateVideoProgram();
     CreateTransparentDepthProgram();
     CreateFogProgram();
@@ -46,7 +47,7 @@ bool Hachiko::ModuleProgram::Init()
         !ui_image_program || !ui_text_program || 
         !particle_program || !shadow_mapping_program || 
         !gaussian_filtering_program || !transparent_depth_program || 
-        !video_program || !fog_program)
+        !video_program || !fog_program || !texture_copy_program)
     {
         return false;
     }
@@ -263,6 +264,13 @@ Hachiko::Program* Hachiko::ModuleProgram::CreateFogProgram()
     return fog_program;
 }
 
+Hachiko::Program* Hachiko::ModuleProgram::CreateTextureCopyProgram()
+{
+    texture_copy_program = CreateProgram(SHADERS_FOLDER "vertex_texture_copy.glsl", SHADERS_FOLDER "fragment_texture_copy.glsl");
+
+    return texture_copy_program;
+}
+
 void Hachiko::ModuleProgram::CreateUBO(UBOPoints binding_point, unsigned size)
 {
     glGenBuffers(1, &buffers[static_cast<int>(binding_point)]);
@@ -355,6 +363,9 @@ bool Hachiko::ModuleProgram::CleanUp()
 
     fog_program->CleanUp();
     delete fog_program;
+
+    texture_copy_program->CleanUp();
+    delete texture_copy_program;
 
     return true;
 }

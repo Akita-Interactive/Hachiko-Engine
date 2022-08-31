@@ -237,7 +237,7 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 	{
 		if (_state == PlayerState::READY_TO_RESPAWN)
 		{
-			if (Input::IsKeyPressed(Input::KeyCode::KEY_R)) 
+			if (Input::IsKeyPressed(Input::KeyCode::KEY_R) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_Y))
 			{
 				_death_screen->SetActive(false);
 
@@ -274,6 +274,20 @@ math::float3 Hachiko::Scripting::PlayerController::GetRaycastPosition(
 	const math::Plane plane(math::float3(0.0f, current_position.y, 0.0f),
 		math::float3(0.0f, 1.0f, 0.0f));
 
+	if(Input::IsGamepadModeOn())
+	{
+		const math::float2 gamepad_normalized_position =
+			math::float2(Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_RIGHTX), Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_RIGHTY));
+
+		const math::float2 gamepad_position_view =
+			ComponentCamera::ScreenPositionToView(gamepad_normalized_position);
+
+		const math::LineSegment ray = Debug::GetRenderingCamera()->Raycast(
+			gamepad_position_view.x, gamepad_position_view.y);
+
+		return plane.ClosestPoint(ray);
+	}
+
 	const math::float2 mouse_position_view =
 		ComponentCamera::ScreenPositionToView(Input::GetMouseNormalizedPosition());
 
@@ -292,7 +306,7 @@ void Hachiko::Scripting::PlayerController::SpawnGameObject() const
 {
 	static int times_hit_g = 0;
 
-	if (!Input::IsKeyDown(Input::KeyCode::KEY_G))
+	if (!Input::IsKeyDown(Input::KeyCode::KEY_G) || !(Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_BACK) && Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_START)))
 	{
 		return;
 	}
@@ -311,20 +325,20 @@ void Hachiko::Scripting::PlayerController::SpawnGameObject() const
 void Hachiko::Scripting::PlayerController::HandleInputAndStatus()
 {
 	// Movement Direction
-	if (Input::IsKeyPressed(Input::KeyCode::KEY_W))
+	if (Input::IsKeyPressed(Input::KeyCode::KEY_W) || Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_LEFTY) < 0)
 	{
 		_movement_direction -= math::float3::unitZ;
 	}
-	else if (Input::IsKeyPressed(Input::KeyCode::KEY_S))
+	else if (Input::IsKeyPressed(Input::KeyCode::KEY_S) || Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_LEFTY) > 0)
 	{
 		_movement_direction += math::float3::unitZ;
 	}
 
-	if (Input::IsKeyPressed(Input::KeyCode::KEY_D))
+	if (Input::IsKeyPressed(Input::KeyCode::KEY_D) || Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_LEFTX) > 0)
 	{
 		_movement_direction += math::float3::unitX;
 	}
-	else if (Input::IsKeyPressed(Input::KeyCode::KEY_A))
+	else if (Input::IsKeyPressed(Input::KeyCode::KEY_A) || Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_LEFTX) < 0)
 	{
 		_movement_direction -= math::float3::unitX;
 	}
@@ -337,16 +351,16 @@ void Hachiko::Scripting::PlayerController::HandleInputAndStatus()
 			ResetClickBuffer();
 			Dash();
 		}
-		else if (!IsAttackOnCooldown() && (HasBufferedClick() || Input::IsMouseButtonDown(Input::MouseButton::LEFT)))
+		else if (!IsAttackOnCooldown() && (HasBufferedClick() || Input::IsMouseButtonDown(Input::MouseButton::LEFT) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_RIGHTSHOULDER)))
 		{
 			MeleeAttack();
 		}
-		else if (!IsAttackOnCooldown() && _ammo_count > 0 && Input::IsMouseButtonDown(Input::MouseButton::RIGHT))
+		else if (!IsAttackOnCooldown() && _ammo_count > 0 && (Input::IsMouseButtonDown(Input::MouseButton::RIGHT) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_LEFTSHOULDER)))
 		{
 			RangedAttack();
 		}
 		// Keep dash here since it uses the input movement direction
-		else if (Input::IsKeyDown(Input::KeyCode::KEY_SPACE) && _dash_charges > 0)
+		else if ((Input::IsKeyDown(Input::KeyCode::KEY_SPACE) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_A)) && _dash_charges > 0)
 		{
 			Dash();
 		}
@@ -359,7 +373,7 @@ void Hachiko::Scripting::PlayerController::HandleInputAndStatus()
 			_state = PlayerState::IDLE;
 		}
 
-		if (Input::IsKeyDown(Input::KeyCode::KEY_F))
+		if (Input::IsKeyDown(Input::KeyCode::KEY_F) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_X))
 		{
 			PickupParasite(_player_position);
 		}
@@ -370,21 +384,21 @@ void Hachiko::Scripting::PlayerController::HandleInputAndStatus()
 	}
 
 	// Range attack charge cancel
-	if (_state == PlayerState::RANGED_ATTACKING && Input::IsMouseButtonUp(Input::MouseButton::RIGHT))
+	if (_state == PlayerState::RANGED_ATTACKING && (Input::IsMouseButtonUp(Input::MouseButton::RIGHT) || Input::IsGameControllerButtonUp(Input::GameControllerButton::CONTROLLER_BUTTON_LEFTSHOULDER)))
 	{
 		CancelAttack();
 	}
 
-	if (_god_mode && Input::IsKeyPressed(Input::KeyCode::KEY_Q))
+	if (_god_mode && (Input::IsKeyPressed(Input::KeyCode::KEY_Q) || Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_TRIGGERLEFT) > 0))
 	{
 		_player_position += math::float3::unitY * 0.5f;
 	}
-	else if (_god_mode && Input::IsKeyPressed(Input::KeyCode::KEY_E))
+	else if (_god_mode && (Input::IsKeyPressed(Input::KeyCode::KEY_E) || Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_TRIGGERRIGHT) > 0))
 	{
 		_player_position -= math::float3::unitY * 0.5f;
 	}
 
-	if (Input::IsKeyDown(Input::KeyCode::KEY_G))
+	if (Input::IsKeyDown(Input::KeyCode::KEY_G) || (Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_BACK) && Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_START)))
 	{
 		_god_mode = !_god_mode;
 
@@ -406,12 +420,12 @@ void Hachiko::Scripting::PlayerController::HandleInputAndStatus()
 
 void Hachiko::Scripting::PlayerController::HandleInputBuffering()
 {
-	if (Input::IsMouseButtonDown(Input::MouseButton::LEFT))
+	if (Input::IsMouseButtonDown(Input::MouseButton::LEFT) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_RIGHTSHOULDER))
 	{
 		// Melee combo input buffer
 		click_buffer.push(GetRaycastPosition(_player_position));
 	}
-	if (Input::IsKeyDown(Input::KeyCode::KEY_SPACE))
+	if (Input::IsKeyDown(Input::KeyCode::KEY_SPACE) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_A))
 	{
 		// Dash to cut a combo
 		dash_buffer = true;
@@ -548,8 +562,16 @@ void Hachiko::Scripting::PlayerController::MeleeAttack()
 	// Attack will occur in the attack simulation after the delay
 	_attack_current_delay = attack.hit_delay;
 
-	float3 direction = HasBufferedClick() ? GetBufferedClick() : GetRaycastPosition(_player_position);
-	_player_transform->LookAtTarget(direction);
+	if (!Input::IsGamepadModeOn())
+	{
+		float3 direction = HasBufferedClick() ? GetBufferedClick() : GetRaycastPosition(_player_position);
+		_player_transform->LookAtTarget(direction);
+	}
+	else
+	{
+		GetBufferedClick();
+	}
+
 	CombatManager* combat_manager = _bullet_emitter->GetComponent<CombatManager>();
 
 	// Move player a bit forward if it wouldnt fall	
@@ -691,7 +713,6 @@ const Hachiko::Scripting::PlayerController::PlayerAttack& Hachiko::Scripting::Pl
 
 void Hachiko::Scripting::PlayerController::RangedAttack()
 {
-	
 	_player_transform->LookAtTarget(GetRaycastPosition(_player_position));
 	const float3 forward = _player_transform->GetFront().Normalized();
 
@@ -1118,6 +1139,7 @@ void Hachiko::Scripting::PlayerController::RegisterHit(int damage_received, floa
 		}
 		_combat_stats->ReceiveDamage(damage_received);
 		UpdateHealthBar();
+		Input::GoBrr(0.3f, 500);
 		
 		if (_player_geometry != nullptr)
 		{

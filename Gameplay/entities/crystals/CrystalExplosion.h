@@ -21,7 +21,6 @@ namespace Hachiko
 
 
 			void OnAwake() override;
-			void OnStart() override;
 			void OnUpdate() override;
 
 			void StartExplosion();

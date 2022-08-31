@@ -7,6 +7,7 @@
 #include "modules/ModuleWindow.h"
 #include "modules/ModuleSceneManager.h"
 #include "modules/ModuleAudio.h"
+#include "modules/ModuleNavigation.h"
 #include "batching/BatchManager.h"
 
 #include "components/ComponentCamera.h"
@@ -28,7 +29,10 @@ void Hachiko::WindowConfiguration::Update()
     if (ImGui::CollapsingHeader("Scene"))
     {
         App->scene_manager->OptionsMenu();
-
+    }
+    if (ImGui::CollapsingHeader("Navigation"))
+    {
+        App->navigation->DrawOptionsGui();
     }
     if (ImGui::CollapsingHeader("Render"))
     {

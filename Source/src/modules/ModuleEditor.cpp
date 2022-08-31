@@ -233,6 +233,29 @@ UpdateStatus Hachiko::ModuleEditor::MainMenuBar()
         ThemeMenu();
         ViewMenu();
 
+        if (save_as_popup)
+        {
+            ImGui::OpenPopup("Save as");
+            save_as_popup = false;
+        }
+        
+        if (ImGui::BeginPopupModal("Save as", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+        {
+            ImGui::SetItemDefaultFocus();
+            ImGui::InputText("File name", &file_name_buffer, sizeof(file_name_buffer));
+            if (ImGui::Button("Save"))
+            {
+                HE_LOG("Saving Scene");
+                App->scene_manager->SaveScene(file_name_buffer.c_str());
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Cancel"))
+            {
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::EndPopup();
+        }
         if (ImGui::BeginMenu("Help"))
         {
             if (ImGui::MenuItem("Documentation"))
@@ -333,7 +356,8 @@ UpdateStatus Hachiko::ModuleEditor::FileMenu()
     }
     if (ImGui::MenuItem("Save as", nullptr, false, true)) // TODO: Use internal timer
     {
-        ImGui::OpenPopup("Save scene");
+        save_as_popup = true;
+        
     }
 
     ImGui::Separator();
@@ -349,27 +373,6 @@ UpdateStatus Hachiko::ModuleEditor::FileMenu()
     }
 
     ImGui::EndMenu();
-
-    char file_name_buffer[32] = {'\0'};
-    if (ImGui::BeginPopupModal("Save scene"))
-    {
-        ImGui::SetItemDefaultFocus();
-        ImGui::InputText("File name", file_name_buffer, sizeof(file_name_buffer));
-        if (ImGui::Button("Save"))
-        {
-            HE_LOG("Saving Scene");
-            const std::string temp_scene_file_path = std::string(ASSETS_FOLDER_SCENE) + "/" + file_name_buffer + SCENE_EXTENSION;
-            App->scene_manager->SaveScene(temp_scene_file_path.c_str());
-            ImGui::CloseCurrentPopup();
-        }
-        ImGui::SameLine();
-        if (ImGui::Button("Cancel"))
-        {
-            ImGui::CloseCurrentPopup();
-        }
-        ImGui::EndPopup();
-    }
-
     return status;
 }
 

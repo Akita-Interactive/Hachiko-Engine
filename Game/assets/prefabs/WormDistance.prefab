@@ -5,8 +5,8 @@ component:
   - !<transform>
     type: 1
     enabled: true
-    position: [-74.63, 3.687, -69.95]
-    rotation: [0, 0, 0, 1]
+    position: [67.26, -14.63, 44.25]
+    rotation: [0, -0.4209, 0, 0.9071]
     scale: [5, 5, 5]
   - !<animation>
     type: 14
@@ -44,7 +44,7 @@ component:
     "'_outer_indicator@GameObject*'": 52
     "'_already_in_combat@bool'": false
     "'_is_from_gautlet@bool'": false
-    "'_will_die@bool'": true
+    "'_will_die@bool'": false
     "'_attack_animation_duration@float'": 0
     "'_attack_animation_timer@float'": 0
     "'_current_spawning_time@float'": 0
@@ -152,7 +152,7 @@ child:
                               - !<transform>
                                 type: 1
                                 enabled: true
-                                position: [0.0452, -0.1103, -0]
+                                position: [0.0452, -0.1103, 0]
                                 rotation: [0, 0, -0.6081, 0.7939]
                                 scale: [1, 1, 1]
                             child:
@@ -162,7 +162,7 @@ child:
                                   - !<transform>
                                     type: 1
                                     enabled: true
-                                    position: [0.2763, -0, -0]
+                                    position: [0.2763, 0, 0]
                                     rotation: [0, 0, -0.155, 0.9879]
                                     scale: [1, 1, 1]
                                 child:
@@ -172,7 +172,7 @@ child:
                                       - !<transform>
                                         type: 1
                                         enabled: true
-                                        position: [0.2247, -0, -0]
+                                        position: [0.2247, 0, 0]
                                         rotation: [0, 0, -0.1224, 0.9925]
                                         scale: [1, 1, 1]
                                     child:
@@ -182,7 +182,7 @@ child:
                                           - !<transform>
                                             type: 1
                                             enabled: true
-                                            position: [0.2393, 0, -0]
+                                            position: [0.2393, 0, 0]
                                             rotation: [0, 0, -0.053, 0.9986]
                                             scale: [1, 1, 1]
                                         child:
@@ -192,7 +192,7 @@ child:
                                               - !<transform>
                                                 type: 1
                                                 enabled: true
-                                                position: [0.2402, -0, -0]
+                                                position: [0.2402, 0, 0]
                                                 rotation: [0, 0, 0, 1]
                                                 scale: [1, 1, 1]
                           - name: Head_$AssimpFbx$_Translation
@@ -261,8 +261,8 @@ child:
                                                     type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
-                                                    rotation: [0.2915, -0.6442, -0.2915, 0.6442]
-                                                    scale: [1, 1, 1]
+                                                    rotation: [0.2915, -0.6442, -0.2915, 0.6443]
+                                                    scale: [0.9999, 1, 0.9999]
                                                 child:
                                                   - name: Jaw_Start_R_$AssimpFbx$_Rotation
                                                     enabled: true
@@ -342,7 +342,7 @@ child:
                                                                                     enabled: true
                                                                                     position: [0, 0, 0]
                                                                                     rotation: [0.8948, 0.4464, 0, 0]
-                                                                                    scale: [1, 0.9938, 0.9938]
+                                                                                    scale: [1, 0.9912, 0.9912]
                                                                                 child:
                                                                                   - name: Jaw_End_R_$AssimpFbx$_Rotation
                                                                                     enabled: true
@@ -459,7 +459,7 @@ child:
                                                                               - !<transform>
                                                                                 type: 1
                                                                                 enabled: true
-                                                                                position: [0.0838, -0, -0]
+                                                                                position: [0.0838, 0, 0]
                                                                                 rotation: [0, 0, 0, 1]
                                                                                 scale: [1, 1, 1]
                                                                             child:
@@ -525,7 +525,7 @@ child:
           loop: false
           life: [true, true, 0, [0.2, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           speed: [true, true, 0, [5, 5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          size: [true, true, 0, [3.4, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 0, [1.7, 0.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           properties: [0.5, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
@@ -596,7 +596,7 @@ child:
           loop: false
           life: [true, true, 0, [0.5, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           speed: [true, true, 0, [10, 5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          size: [true, true, 1, [1, 3], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 1, [0.5, 1.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           properties: [0.4, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
@@ -707,11 +707,11 @@ child:
             animation_section: false
             color_section: true
             size_section: true
-            size_over_time: [true, false, 0, [75, 10], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            size_over_time: [true, false, 0, [37.5, 5], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             rotation_section: false
             rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            start_size: [true, true, 0, [1, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_size: [true, true, 0, [0.5, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             blend_factor: 0
       - name: OuterEffect
@@ -740,11 +740,11 @@ child:
             animation_section: false
             color_section: false
             size_section: false
-            size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            size_over_time: [true, false, 0, [0.5, 0.5], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             rotation_section: true
             rotation_over_time: [true, false, 0, [5, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            start_size: [true, true, 0, [1, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_size: [true, true, 0, [0.5, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             blend_factor: 0
   - name: BloodTrail
@@ -770,7 +770,7 @@ child:
           loop: false
           life: [true, true, 0, [0.75, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           speed: [true, true, 0, [0, 5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          size: [true, true, 0, [25, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 0, [12.5, 0.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           rotation: [true, true, 1, [0, 360], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]

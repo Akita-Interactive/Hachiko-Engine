@@ -291,6 +291,10 @@ void Hachiko::GameObject::Start()
 
         for (Component* component : components)
         {
+            if (component->GetType() == Component::Type::SCRIPT)
+            {
+                continue;
+            }
             component->Start();
         }
         started = true;

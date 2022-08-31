@@ -105,6 +105,7 @@ extern "C"
 #include "utils/WindowsFileUtil.h"
 #include "utils/Bool3.h"
 #include "utils/RandomUtil.h"
+#include "utils/MathUtil.h"
 
 #include "modules/ModuleEvent.h"
 

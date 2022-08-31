@@ -3,7 +3,6 @@
 #include "components/Component.h"
 #include "Globals.h"
 
-//enum ObstacleType;
 typedef unsigned int dtObstacleRef;
 
 namespace Hachiko
@@ -27,7 +26,6 @@ namespace Hachiko
         ComponentObstacle(GameObject* container);
         ~ComponentObstacle() override;
         
-        void Start() override; // Call AddObstacle
         void Stop() override; // Call RemoveObstacle
         virtual void Update() override; // Updates the obstacle (if dirty) every x ticks to prevent tile cache collapse
         virtual void OnTransformUpdated() override; // Sets the obstacle as dirty        

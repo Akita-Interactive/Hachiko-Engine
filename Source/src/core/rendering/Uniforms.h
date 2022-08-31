@@ -22,6 +22,8 @@ namespace Hachiko::Uniforms
     namespace Filtering
     {
         constexpr const char* GAUSSIAN_BLUR_SCALE = "blur_scale";
+        constexpr const char* GAUSSIAN_BLUR_PIXELS = "blur_pixels";
+        constexpr const char* GAUSSIAN_BLUR_SIGMA = "blur_sigma";
     } // namespace Filtering
 
     namespace ImageBasedLighting

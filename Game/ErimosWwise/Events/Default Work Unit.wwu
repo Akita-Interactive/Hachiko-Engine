@@ -278,6 +278,13 @@
 							</ReferenceList>
 						</Action>
 						<Action Name="" ID="{5677888F-2678-406F-94EE-3DA44BAAB355}" ShortID="308411869">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="LaserLoop2" ID="{266001FC-14CB-47CE-AAA8-F4542C5EA4D6}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>

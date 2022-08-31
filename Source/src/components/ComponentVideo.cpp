@@ -118,7 +118,7 @@ void Hachiko::ComponentVideo::Draw(ComponentCamera* camera, Program* /*program*/
     BindFrameToGLTexture();
     SetProjectionMatrices(camera, program);
 
-    App->renderer->RenderDeferredQuad();
+    App->renderer->RenderFullScreenQuad();
 
     // Clear
     glBindVertexArray(0);

@@ -140,6 +140,11 @@ namespace Hachiko
             return video_program;
         }
 
+        [[nodiscard]] Program* GetTextureCopyProgram() const
+        {
+            return texture_copy_program;
+        }
+
         void UpdateCamera(const ComponentCamera* camera) const;
         void UpdateCamera(const Frustum& frustum) const;
         void UpdateCamera(const CameraData& camera) const;
@@ -172,6 +177,7 @@ namespace Hachiko
         Program* CreateTransparentDepthProgram();
         Program* CreateFogProgram();
         
+        Program* CreateTextureCopyProgram();
 
         Program* forward_program = nullptr;
         Program* gaussian_filtering_program = nullptr;
@@ -189,6 +195,7 @@ namespace Hachiko
         Program* video_program = nullptr;
         Program* transparent_depth_program = nullptr;
         Program* fog_program = nullptr;
+        Program* texture_copy_program = nullptr;
 
         // Assume the shader already manages its binding points
         void CreateUBO(UBOPoints binding_point, unsigned size);

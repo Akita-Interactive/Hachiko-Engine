@@ -56,6 +56,9 @@ Hachiko::Application::~Application()
 bool Hachiko::Application::Init()
 {
     bool ret = true;
+
+    ret &= preferences->Init();
+
     file_system.Init();
 
     for (auto it = modules.begin(); it != modules.end() && ret; ++it)

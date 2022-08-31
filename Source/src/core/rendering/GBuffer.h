@@ -20,6 +20,11 @@ public:
     void UnbindFogTextures() const;
     [[nodiscard]] bool IsGenerated() const;
 
+    [[nodiscard]] unsigned int GetEmissiveTexture() const;
+    [[nodiscard]] static unsigned int GetEmissiveTextureType();
+    [[nodiscard]] static unsigned int GetEmissiveTextureFormat();
+    [[nodiscard]] static unsigned int GetEmissiveTextureInternalFormat();
+
 private:
     unsigned _g_buffer = 0;
     unsigned _diffuse_texture = 0;
@@ -36,4 +41,8 @@ inline bool GBuffer::IsGenerated() const
     return _is_generated;
 }
 
+inline unsigned int GBuffer::GetEmissiveTexture() const
+{
+    return _emissive_texture;
+}
 } // namespace Hachiko

@@ -223,9 +223,20 @@ void Hachiko::ModuleAudio::OptionsMenu()
     {
         SetMusicVolume(volume * 0.1);
     }
+
+    if (ImGui::Button("Reload Sound Banks"))
+    {
+        ReloadAssets();
+    }
 }
 
 void Hachiko::ModuleAudio::SetGameObjectOutputBusVolume(AkGameObjectID emitter, AkGameObjectID listener, float value) const 
 {
     AK::SoundEngine::SetGameObjectOutputBusVolume(emitter, listener, value);
+}
+
+void Hachiko::ModuleAudio::ReloadAssets()
+{
+    CleanUp();
+    Init();
 }
