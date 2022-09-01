@@ -193,15 +193,15 @@ void Hachiko::ModuleNavigation::DebugDraw()
 void Hachiko::ModuleNavigation::DrawOptionsGui()
 {
     ImGui::Separator();
-    ImGui::Text("Navmesh Editor");       
-    if (ImGui::Button("Rebuild Navmesh"))
+    ImGui::TextWrapped("Navmesh editor");       
+    if (ImGui::Button("Rebuild navmesh",ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         RebuildCurrentNavmesh(App->scene_manager->GetActiveScene());
     }
         
     if (scene_navmesh)
     {
-        if (ImGui::CollapsingHeader("Params"))
+        if (ImGui::CollapsingHeader("Parameters"))
         {
             scene_navmesh->DrawOptionsGui();
         }

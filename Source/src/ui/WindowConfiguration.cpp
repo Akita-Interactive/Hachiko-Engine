@@ -2,7 +2,6 @@
 #include "WindowConfiguration.h"
 
 #include "modules/ModuleEditor.h"
-#include "modules/ModuleProgram.h"
 #include "modules/ModuleCamera.h"
 #include "modules/ModuleWindow.h"
 #include "modules/ModuleSceneManager.h"
@@ -11,7 +10,6 @@
 #include "batching/BatchManager.h"
 
 #include "components/ComponentCamera.h"
-#include "core/preferences/src/EditorPreferences.h"
 
 Hachiko::WindowConfiguration::WindowConfiguration() :
     Window("Configuration", true)
@@ -49,7 +47,7 @@ void Hachiko::WindowConfiguration::Update()
 
     if (ImGui::CollapsingHeader("Engine"))
     {
-        ImGui::Checkbox("Undo/Redo", &App->editor->undo_redo_active);
+        Widgets::Checkbox("Undo/Redo", &App->editor->undo_redo_active);
         App->window->OptionsMenu();
         App->renderer->PerformanceMenu();
     }

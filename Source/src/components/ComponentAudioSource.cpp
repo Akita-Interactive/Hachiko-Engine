@@ -48,9 +48,9 @@ void Hachiko::ComponentAudioSource::DrawGui()
 {
     ImGui::PushID(this);
 
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Audio Source"))
+    if (ImGuiUtils::CollapsingHeader(this, "Audio source"))
     {
-        ImGui::Text("Now you can call events to be played ^-^");
+        ImGui::TextWrapped("Now you can call events to be played ^-^");
     }
 
     ImGui::PopID();

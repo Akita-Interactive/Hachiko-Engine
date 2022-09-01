@@ -329,14 +329,13 @@ void Hachiko::ModuleSceneManager::ReloadScene()
 
 void Hachiko::ModuleSceneManager::OptionsMenu()
 {
-    char scene_name[50];
-    strcpy_s(scene_name, 50, main_scene->GetName());
+    std::string scene_name =main_scene->GetName();
     const ImGuiInputTextFlags name_input_flags = ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue;
-    if (ImGui::InputText("###", scene_name, 50, name_input_flags))
+    if (Widgets::Input("Scene name", scene_name, name_input_flags))
     {
-        main_scene->SetName(scene_name);
+        main_scene->SetName(scene_name.c_str());
     }
-    ImGui::Checkbox("Autosave Scene", &scene_autosave);
+    Widgets::Checkbox("Autosave scene", &scene_autosave);
     ImGui::Separator();
     main_scene->AmbientLightOptionsMenu();
     ImGui::Separator();

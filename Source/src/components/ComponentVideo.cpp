@@ -68,7 +68,7 @@ void Hachiko::ComponentVideo::Update()
 void Hachiko::ComponentVideo::DrawGui()
 {
     ImGui::PushID(this);
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Video"))
+    if (ImGuiUtils::CollapsingHeader(this, "Video"))
     {
         if (video == nullptr)
         {

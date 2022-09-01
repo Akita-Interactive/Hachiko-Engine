@@ -4,26 +4,29 @@
 #include "modules/ModuleSceneManager.h"
 #include "importers/MaterialImporter.h"
 
-Hachiko::ResourceMaterial::ResourceMaterial(UID uid) : Resource(uid, Type::MATERIAL)
+Hachiko::ResourceMaterial::ResourceMaterial(UID uid) :
+    Resource(uid, Type::MATERIAL)
 {
     App->scene_manager->GetActiveScene();
 }
 
-Hachiko::ResourceMaterial::~ResourceMaterial() {}
+Hachiko::ResourceMaterial::~ResourceMaterial()
+{
+}
 
 void Hachiko::ResourceMaterial::DrawGui()
 {
     static const ImGuiTreeNodeFlags texture_flags = ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
-    ImGui::Text("Material: %s", name.c_str());
+    Widgets::Label("Material", name);
 
-    ImGuiUtils::Combo("Material Type", material_types, is_metallic);
+    Widgets::Combo("Material type", &is_metallic, material_types, IM_ARRAYSIZE(material_types));
     if (!is_metallic)
     {
         ImGui::TextDisabled("Keep in mind that the specular workflow is not fully suported!");
     }
 
     bool was_transparent = is_transparent;
-    ImGuiUtils::Combo("Transparency", transparency, is_transparent);
+    Widgets::Combo("Transparency", &is_transparent, transparency, IM_ARRAYSIZE(transparency));
 
     if (was_transparent != is_transparent)
     {
@@ -32,17 +35,16 @@ void Hachiko::ResourceMaterial::DrawGui()
         App->scene_manager->RebuildBatches();
     }
 
-    if (ImGui::TreeNodeEx((void*)&diffuse, texture_flags, "Diffuse"))
+    if (ImGui::TreeNodeEx(&diffuse, texture_flags, "Diffuse"))
     {
         if (diffuse != nullptr)
         {
             ImGui::Image(reinterpret_cast<void*>(diffuse->GetImageId()), ImVec2(80, 80));
-            ImGui::SameLine();
             ImGui::BeginGroup();
-            ImGui::Text("%dx%d", diffuse->width, diffuse->height);
-            ImGui::Text("Path: %s", diffuse->path.c_str());
+            Widgets::Label("Dimensions", StringUtils::Format("%dx%d", diffuse->width, diffuse->height));
+            Widgets::Label("Path", diffuse->path);
 
-            if (ImGui::CollapsingHeader("Resource Diffuse Texture")) 
+            if (ImGui::CollapsingHeader("Resource diffuse texture"))
             {
                 diffuse->DrawGui();
             }
@@ -55,24 +57,23 @@ void Hachiko::ResourceMaterial::DrawGui()
         }
         else
         {
-            ImGui::ColorEdit4("Diffuse color", &diffuse_color[0]);
+            Widgets::ColorEdit4("Diffuse color", diffuse_color);
             AddTexture(ResourceTexture::Type::DIFFUSE);
         }
         ImGui::TreePop();
     }
     if (is_metallic)
     {
-        if (ImGui::TreeNodeEx((void*)&metalness, texture_flags, "Metalness"))
+        if (ImGui::TreeNodeEx(&metalness, texture_flags, "Metalness"))
         {
             if (metalness != nullptr)
             {
                 ImGui::Image(reinterpret_cast<void*>(metalness->GetImageId()), ImVec2(80, 80));
-                ImGui::SameLine();
                 ImGui::BeginGroup();
-                ImGui::Text("%dx%d", metalness->width, metalness->height);
-                ImGui::Text("Path: %s", metalness->path.c_str());
+                Widgets::Label("Dimensions", StringUtils::Format("%dx%d", metalness->width, metalness->height));
+                Widgets::Label("Path", metalness->path);
 
-                if (ImGui::CollapsingHeader("Resource Metalness Texture"))
+                if (ImGui::CollapsingHeader("Resource metalness texture"))
                 {
                     metalness->DrawGui();
                 }
@@ -83,9 +84,9 @@ void Hachiko::ResourceMaterial::DrawGui()
             }
             else
             {
-                ImGui::SliderFloat("Metalness", &metalness_value, 0.0f, 1.0f, "%.2f", 1.0f);
+                Widgets::SliderFloat("Metalness", metalness_value);
                 AddTexture(ResourceTexture::Type::METALNESS);
-                ImGui::SliderFloat("Smoothness", &smoothness, 0.0f, 1.0f, "%.2f", 1.0f);
+                Widgets::SliderFloat("Smoothness", smoothness);
             }
 
             ImGui::TreePop();
@@ -93,18 +94,17 @@ void Hachiko::ResourceMaterial::DrawGui()
     }
     else
     {
-        if (ImGui::TreeNodeEx((void*)&specular, texture_flags, "Specular"))
+        if (ImGui::TreeNodeEx(&specular, texture_flags, "Specular"))
         {
             if (specular != nullptr)
             {
                 ImGui::Image(reinterpret_cast<void*>(specular->GetImageId()), ImVec2(80, 80));
-                ImGui::SameLine();
                 ImGui::BeginGroup();
-                ImGui::Text("%dx%d", specular->width, specular->height);
-                ImGui::Text("Path: %s", specular->path.c_str());
+                Widgets::Label("Dimensions", StringUtils::Format("%dx%d", specular->width, specular->height));
+                Widgets::Label("Path", specular->path);
 
                 // TODO: textue configuration (maybe delegate to the ResourceTexture)
-                if (ImGui::CollapsingHeader("Resource Specular Texture"))
+                if (ImGui::CollapsingHeader("Resource specular texture"))
                 {
                     specular->DrawGui();
                 }
@@ -115,9 +115,9 @@ void Hachiko::ResourceMaterial::DrawGui()
             }
             else
             {
-                ImGui::ColorEdit4("Specular color", &specular_color[0]);
+                Widgets::ColorEdit4("Specular color", specular_color);
                 AddTexture(ResourceTexture::Type::SPECULAR);
-                ImGui::SliderFloat("Smoothness", &smoothness, 0.0f, 1.0f, "%.2f", 1.0f);
+                Widgets::SliderFloat("Smoothness", smoothness);
             }
 
             ImGui::TreePop();
@@ -128,13 +128,12 @@ void Hachiko::ResourceMaterial::DrawGui()
         if (normal != nullptr)
         {
             ImGui::Image(reinterpret_cast<void*>(normal->GetImageId()), ImVec2(80, 80));
-            ImGui::SameLine();
             ImGui::BeginGroup();
-            ImGui::Text("%dx%d", normal->width, normal->height);
-            ImGui::Text("Path: %s", normal->path.c_str());
+            Widgets::Label("Dimensions", StringUtils::Format("%dx%d", normal->width, normal->height));
+            Widgets::Label("Path", normal->path);
 
             // TODO: textue configuration (maybe delegate to the ResourceTexture)
-            if (ImGui::CollapsingHeader("Resource Normal Texture"))
+            if (ImGui::CollapsingHeader("Resource normal texture"))
             {
                 normal->DrawGui();
             }
@@ -155,10 +154,9 @@ void Hachiko::ResourceMaterial::DrawGui()
         if (emissive != nullptr)
         {
             ImGui::Image(reinterpret_cast<void*>(emissive->GetImageId()), ImVec2(80, 80));
-            ImGui::SameLine();
             ImGui::BeginGroup();
-            ImGui::Text("%dx%d", emissive->width, emissive->height);
-            ImGui::Text("Path: %s", emissive->path.c_str());
+            Widgets::Label("Dimensions", StringUtils::Format("%dx%d", emissive->width, emissive->height));
+            Widgets::Label("Path", emissive->path);
 
             // TODO: textue configuration (maybe delegate to the ResourceTexture)
             if (ImGui::CollapsingHeader("Resource Emissive Texture"))
@@ -166,19 +164,19 @@ void Hachiko::ResourceMaterial::DrawGui()
                 emissive->DrawGui();
             }
 
-            ImGui::ColorEdit4("Emissive color", &emissive_color[0]);
+            Widgets::ColorEdit4("Emissive color", emissive_color);
             RemoveTexture(ResourceTexture::Type::EMISSIVE);
 
             ImGui::EndGroup();
         }
         else
         {
-            ImGui::ColorEdit4("Emissive color", &emissive_color[0]);
+            Widgets::ColorEdit4("Emissive color", emissive_color);
             AddTexture(ResourceTexture::Type::EMISSIVE);
         }
         ImGui::TreePop();
     }
-    if (ImGui::SmallButton("Save"))
+    if (ImGui:: Button("Save", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         UpdateMaterial();
     }
@@ -188,26 +186,26 @@ void Hachiko::ResourceMaterial::SetTexture(ResourceTexture* res, ResourceTexture
 {
     switch (type)
     {
-    case ResourceTexture::Type::DIFFUSE:
-        //App->resources->ReleaseResource(diffuse);
-        diffuse = res;
-        break;
-    case ResourceTexture::Type::SPECULAR:
-        //App->resources->ReleaseResource(specular);
-        specular = res;
-        break;
-    case ResourceTexture::Type::NORMALS:
-        //App->resources->ReleaseResource(normal);
-        normal = res;
-        break;
-    case ResourceTexture::Type::METALNESS:
-        //App->resources->ReleaseResource(metalness);
-        metalness = res;
-        break;
-    case ResourceTexture::Type::EMISSIVE:
-        //App->resources->ReleaseResource(emissive);
-        emissive = res;
-        break;
+        case ResourceTexture::Type::DIFFUSE:
+            //App->resources->ReleaseResource(diffuse);
+            diffuse = res;
+            break;
+        case ResourceTexture::Type::SPECULAR:
+            //App->resources->ReleaseResource(specular);
+            specular = res;
+            break;
+        case ResourceTexture::Type::NORMALS:
+            //App->resources->ReleaseResource(normal);
+            normal = res;
+            break;
+        case ResourceTexture::Type::METALNESS:
+            //App->resources->ReleaseResource(metalness);
+            metalness = res;
+            break;
+        case ResourceTexture::Type::EMISSIVE:
+            //App->resources->ReleaseResource(emissive);
+            emissive = res;
+            break;
     }
 }
 
@@ -215,37 +213,37 @@ std::string Hachiko::ResourceMaterial::TypeToString(ResourceTexture::Type type)
 {
     switch (type)
     {
-    case ResourceTexture::Type::DIFFUSE:
-        return "Diffuse";
-    case ResourceTexture::Type::SPECULAR:
-        return "Specular";
-    case ResourceTexture::Type::NORMALS:
-        return "Normals";
-    case ResourceTexture::Type::METALNESS:
-        return "Metalness";
-    case ResourceTexture::Type::EMISSIVE:
-        return "Emissive";
+        case ResourceTexture::Type::DIFFUSE:
+            return "Diffuse";
+        case ResourceTexture::Type::SPECULAR:
+            return "Specular";
+        case ResourceTexture::Type::NORMALS:
+            return "Normals";
+        case ResourceTexture::Type::METALNESS:
+            return "Metalness";
+        case ResourceTexture::Type::EMISSIVE:
+            return "Emissive";
     }
 }
 
 void Hachiko::ResourceMaterial::AddTexture(ResourceTexture::Type type)
 {
     const std::string title = StringUtils::Concat("Select texture ", TypeToString(type)) + "##" + name;
-    const char* filters = "Image files{.png,.tif,.jpg,.tga}";
 
-    if (ImGui::Button(StringUtils::Concat(TypeToString(type).c_str(), " Texture").c_str()))
+    if (ImGui::Button(StringUtils::Concat(TypeToString(type).c_str(), " texture").c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
-        ImGuiFileDialog::Instance()->OpenDialog(title.c_str(),
+        const char* filters = "Image files{.png,.tif,.jpg,.tga}";
+        ImGuiFileDialog::Instance()->OpenDialog(title,
                                                 "Select Texture",
                                                 filters,
                                                 "./assets/textures/",
                                                 1,
                                                 nullptr,
                                                 ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton | ImGuiFileDialogFlags_HideColumnType
-                                                    | ImGuiFileDialogFlags_HideColumnDate);
+                                                | ImGuiFileDialogFlags_HideColumnDate);
     }
 
-    if (ImGuiFileDialog::Instance()->Display(title.c_str()))
+    if (ImGuiFileDialog::Instance()->Display(title))
     {
         if (ImGuiFileDialog::Instance()->IsOk())
         {
@@ -272,25 +270,25 @@ void Hachiko::ResourceMaterial::AddTexture(ResourceTexture::Type type)
 
 void Hachiko::ResourceMaterial::RemoveTexture(ResourceTexture::Type type)
 {
-    if (ImGui::Button(StringUtils::Concat("Remove ", TypeToString(type).c_str()).c_str()))
+    if (ImGui::Button(StringUtils::Concat("Remove ", TypeToString(type)).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         switch (type)
         {
-        case ResourceTexture::Type::DIFFUSE:
-            diffuse = nullptr;
-            break;
-        case ResourceTexture::Type::SPECULAR:
-            specular = nullptr;
-            break;
-        case ResourceTexture::Type::NORMALS:
-            normal = nullptr;
-            break;
-        case ResourceTexture::Type::METALNESS:
-            metalness = nullptr;
-            break;
-        case ResourceTexture::Type::EMISSIVE:
-            emissive = nullptr;
-            break;
+            case ResourceTexture::Type::DIFFUSE:
+                diffuse = nullptr;
+                break;
+            case ResourceTexture::Type::SPECULAR:
+                specular = nullptr;
+                break;
+            case ResourceTexture::Type::NORMALS:
+                normal = nullptr;
+                break;
+            case ResourceTexture::Type::METALNESS:
+                metalness = nullptr;
+                break;
+            case ResourceTexture::Type::EMISSIVE:
+                emissive = nullptr;
+                break;
         }
         UpdateMaterial();
     }

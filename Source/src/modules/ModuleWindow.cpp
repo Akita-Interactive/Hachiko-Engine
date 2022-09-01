@@ -130,25 +130,24 @@ void Hachiko::ModuleWindow::SetVsync(bool vsync_enabled)
 
 void Hachiko::ModuleWindow::OptionsMenu()
 {
-    if (ImGui::Checkbox("Fullscreen", &fullscreen))
+    if (Widgets::Checkbox("Fullscreen", &fullscreen))
     {
         App->window->SetFullScreen(fullscreen);
     }
 
-    ImGui::SameLine();
-    if (ImGui::Checkbox("Vsync", &vsync))
+    if (Widgets::Checkbox("Vsync", &vsync))
     {
         SetVsync(vsync);
     }
 
     if (!fullscreen)
     {
-        if (ImGui::Checkbox("Resizable", &resizable))
+        if (Widgets::Checkbox("Resizable", &resizable))
         {
             SetResizable(resizable);
         }
     }
-    ImGui::Text("Monitor Refresh Rate: %d", refresh_rate);
+    Widgets::Label("Monitor refresh rate", std::to_string(refresh_rate));
 }
 
 void Hachiko::ModuleWindow::GetMonitorResolution(int& width, int& height)

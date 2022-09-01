@@ -18,13 +18,12 @@
 
 #include <debugdraw.h>
 
-Hachiko::ComponentMeshRenderer::ComponentMeshRenderer(GameObject* container) 
-    : Component(Type::MESH_RENDERER, container)
+Hachiko::ComponentMeshRenderer::ComponentMeshRenderer(GameObject* container) :
+    Component(Type::MESH_RENDERER, container)
 {
-
 }
 
-Hachiko::ComponentMeshRenderer::~ComponentMeshRenderer() 
+Hachiko::ComponentMeshRenderer::~ComponentMeshRenderer()
 {
     App->resources->ReleaseResource(mesh);
     App->resources->ReleaseResource(material);
@@ -40,7 +39,6 @@ void Hachiko::ComponentMeshRenderer::Update()
     if (!mesh || ! material)
     {
         return;
-
     }
 
     // Material override
@@ -76,7 +74,7 @@ void Hachiko::ComponentMeshRenderer::Draw(ComponentCamera* camera, Program* prog
     {
         return;
     }
-    
+
     program->BindUniformFloat4x4("model", game_object->GetTransform()->GetGlobalMatrix().ptr());
 
     // SKINING
@@ -97,7 +95,7 @@ void Hachiko::ComponentMeshRenderer::DrawStencil(ComponentCamera* camera, Progra
     {
         return;
     }
-    
+
     program->BindUniformFloat4x4("model", game_object->GetTransform()->GetGlobalMatrix().ptr());
 
     glBindVertexArray(mesh->vao);
@@ -126,13 +124,12 @@ void Hachiko::ComponentMeshRenderer::SetMeshResource(ResourceMesh* res)
 {
     // Component mesh renderer needs a mesh
     assert(res);
-    
+
     App->resources->ReleaseResource(mesh);
     mesh = res;
 
     if (!mesh)
     {
-        
         return;
     }
 
@@ -158,7 +155,7 @@ void Hachiko::ComponentMeshRenderer::SetMaterialResource(ResourceMaterial* res)
 void Hachiko::ComponentMeshRenderer::LoadMesh(UID mesh_id)
 {
     App->resources->ReleaseResource(mesh);
-    SetMeshResource(static_cast<ResourceMesh*> (App->resources->GetResource(Resource::Type::MESH, mesh_id)));
+    SetMeshResource(static_cast<ResourceMesh*>(App->resources->GetResource(Resource::Type::MESH, mesh_id)));
 }
 
 void Hachiko::ComponentMeshRenderer::LoadMaterial(UID material_id)
@@ -171,32 +168,26 @@ void Hachiko::ComponentMeshRenderer::DrawGui()
 {
     static const ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
     ImGui::PushID(this);
-    if (ImGui::CollapsingHeader("Mesh renderer", ImGuiTreeNodeFlags_DefaultOpen))
+    if (ImGuiUtils::CollapsingHeader(this, "Mesh renderer"))
     {
-        if (ImGui::TreeNodeEx((void*)&mesh, flags, "Mesh"))
+        if (ImGui::TreeNodeEx(&mesh, flags, "Mesh"))
         {
             if (mesh != nullptr)
             {
-                ImGui::Text("%d Triangles\n%d vertices\n%d indices\n%d bones binded",
+                ImGui::TextWrapped("%d Triangles\n%d vertices\n%d indices\n%d bones binded",
                             mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::INDICES)] / 3,
                             mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::VERTICES)],
                             mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::INDICES)],
                             mesh->buffer_sizes[static_cast<int>(ResourceMesh::Buffers::BONES)]);
-                if(ImGui::Checkbox("Visible", &visible))
-                {
-                    App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
-                }
-                if(ImGui::Checkbox("Navigable", &navigable))
-                {
-                    App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
-                }
+                Widgets::Checkbox("Visible", &visible);
+                Widgets::Checkbox("Navigable", &navigable);
             }
             ImGui::TreePop();
         }
 
         if (ImGui::TreeNodeEx((void*)&material, flags, "Material"))
         {
-            ImGui::ColorEdit4("Tint color", &tint_color[0]);
+            Widgets::ColorEdit4("Tint color", tint_color);
             ChangeMaterial();
             if (material != nullptr)
             {
@@ -204,7 +195,7 @@ void Hachiko::ComponentMeshRenderer::DrawGui()
             }
             else
             {
-                ImGui::Text("No material resource");
+                ImGui::TextWrapped("No material resource");
             }
             ImGui::TreePop();
         }
@@ -257,7 +248,7 @@ void Hachiko::ComponentMeshRenderer::Load(const YAML::Node& node)
     tint_color = node[RENDERER_TINT_COLOR].IsDefined() ? node[RENDERER_TINT_COLOR].as<float4>() : float4::one;
 }
 
-Hachiko::GameObject* GetRoot(Hachiko::GameObject* posible_root) 
+Hachiko::GameObject* GetRoot(Hachiko::GameObject* posible_root)
 {
     if (!posible_root)
     {
@@ -282,7 +273,7 @@ void Hachiko::ComponentMeshRenderer::UpdateSkinPalette(std::vector<float4x4>& pa
         {
             HE_LOG("Root not found");
             return;
-        }     
+        }
 
         float4x4 root_transform = root->GetTransform()->GetGlobalMatrix().Inverted();
 
@@ -308,23 +299,23 @@ void Hachiko::ComponentMeshRenderer::UpdateSkinPalette(std::vector<float4x4>& pa
     }
 }
 
-void Hachiko::ComponentMeshRenderer::ChangeMaterial() 
+void Hachiko::ComponentMeshRenderer::ChangeMaterial()
 {
-    const std::string title = StringUtils::Concat("Select Material#", std::to_string(uid));
-    
-    if (ImGui::Button("Select material"))
+    const std::string title = StringUtils::Concat("Select material#", std::to_string(uid));
+
+    if (ImGui::Button("Select material", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
-        ImGuiFileDialog::Instance()->OpenDialog(title.c_str(),
-                                                "Select Material",
+        ImGuiFileDialog::Instance()->OpenDialog(title,
+                                                "Select material",
                                                 MATERIAL_EXTENSION,
                                                 ASSETS_FOLDER_MATERIAL,
                                                 1,
                                                 nullptr,
                                                 ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton | ImGuiFileDialogFlags_HideColumnType
-                                                    | ImGuiFileDialogFlags_HideColumnDate);
+                                                | ImGuiFileDialogFlags_HideColumnDate);
     }
 
-    if (ImGuiFileDialog::Instance()->Display(title.c_str()))
+    if (ImGuiFileDialog::Instance()->Display(title))
     {
         if (ImGuiFileDialog::Instance()->IsOk())
         {
@@ -347,7 +338,7 @@ void Hachiko::ComponentMeshRenderer::ChangeMaterial()
     }
 }
 
-void Hachiko::ComponentMeshRenderer::OverrideEmissive(float4 color, float time) 
+void Hachiko::ComponentMeshRenderer::OverrideEmissive(const float4& color, float time)
 {
     override_material = true;
     override_timer = time;

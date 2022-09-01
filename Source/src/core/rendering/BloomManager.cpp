@@ -125,11 +125,11 @@ void Hachiko::BloomManager::DrawEditorContent()
     config_1.min = 0.0f;
     config_1.max = FLT_MAX;
 
-    Widgets::DragFloat("Gaussian Blur Intensity", _gaussian_intensity, &config_1);
-    Widgets::DragFloat("Gaussian Blur Sigma", _gaussian_sigma, &config_1);
+    DragFloat("Gaussian blur intensity", _gaussian_intensity, &config_1);
+    DragFloat("Gaussian blur sigma", _gaussian_sigma, &config_1);
     
-    int current_index = BlurPixelSize::ToIndex(_gaussian_blur_pixel_size);
-    if (Widgets::Combo("Gaussian Blur Pixel Size", &current_index, BlurPixelSize::blur_pixel_sizes_strings, BlurPixelSize::number_of_blur_pixel_sizes))
+    int current_index = ToIndex(_gaussian_blur_pixel_size);
+    if (Widgets::Combo("Gaussian blur pixel size", &current_index, BlurPixelSize::blur_pixel_sizes_strings, BlurPixelSize::number_of_blur_pixel_sizes))
     {
         _gaussian_blur_pixel_size = BlurPixelSize::FromIndex(current_index);
     }

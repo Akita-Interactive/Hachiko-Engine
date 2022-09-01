@@ -429,7 +429,7 @@ void Hachiko::GeometryBatch::ImGuiWindow()
 {
     for (unsigned i = 0; i < components.size(); ++i)
     {
-        ImGui::Text(components[i]->GetGameObject()->name.c_str());
+        ImGui::TextWrapped(components[i]->GetGameObject()->name.c_str());
     }
     texture_batch->ImGuiWindow();
 }

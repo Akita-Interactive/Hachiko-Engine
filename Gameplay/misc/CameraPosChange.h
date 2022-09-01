@@ -22,8 +22,8 @@ namespace Hachiko
 			void OnStart() override;
 			void OnUpdate() override;
 		private:
-			GameObject* _player;
-			PlayerCamera* _camera;
+			GameObject* _player{};
+			PlayerCamera* _camera{};
 			bool _is_inside = false;
 			SERIALIZE_FIELD(GameObject*, _objective);
 			SERIALIZE_FIELD(bool, _do_look_ahead);

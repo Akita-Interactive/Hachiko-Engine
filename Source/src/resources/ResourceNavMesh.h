@@ -217,17 +217,17 @@ namespace Hachiko
             float cell_height = 0.20f;
 
             // Region
-            int region_min_size = 8;
-            int region_merge_size = 20;
+            float region_min_size = 8;
+            float region_merge_size = 20;
 
             // Polygonization
-            int edge_max_length = 12;
-            int edge_max_error = 1.3f;
-            int max_vertices_per_poly = 6;
+            float edge_max_length = 12;
+            float edge_max_error = 1.3f;
+            float max_vertices_per_poly = 6;
 
             // Detail
-            int detail_sample_distance = 6;
-            int detail_sample_max_error = 1;
+            float detail_sample_distance = 6;
+            float detail_sample_max_error = 1;
         };
 
         NavmeshParams build_params;

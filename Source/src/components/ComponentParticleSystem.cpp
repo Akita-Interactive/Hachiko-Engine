@@ -116,7 +116,7 @@ void Hachiko::ComponentParticleSystem::Draw(ComponentCamera* camera, Program* pr
 
 void Hachiko::ComponentParticleSystem::DrawGui()
 {
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Particle system"))
+    if (ImGuiUtils::CollapsingHeader(this, "Particle system"))
     {
         const char* particle_render_modes[] = {"Additive", "Transparent"};
         const char* particle_orientations[] = {"Normal", "Vertical", "Horizontal", "Stretch"};

@@ -35,6 +35,16 @@ namespace Hachiko
             return temp;
         }
 
+        static std::string ToString(bool value)
+        {
+            return value ? "true" : "false";
+        }
+
+        static std::string ToString(int value)
+        {
+            return ToString(static_cast<bool>(value));
+        }
+
     private:
         static size_t StrSize(const char* str)
         {

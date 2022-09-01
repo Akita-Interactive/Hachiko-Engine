@@ -5,7 +5,6 @@
 #include "Application.h"
 
 #include "modules/ModuleNavigation.h"
-#include "resources/ResourceNavMesh.h"
 #include "DetourTileCache/DetourTileCache.h"
 
 Hachiko::ComponentObstacle::ComponentObstacle(GameObject* container) : Component(Type::OBSTACLE, container) {}
@@ -54,46 +53,69 @@ void Hachiko::ComponentObstacle::SetSize(const float3& new_size)
 void Hachiko::ComponentObstacle::DrawGui()
 {
     ImGui::PushID(this);
-    if (ImGui::CollapsingHeader("Obstacle", ImGuiTreeNodeFlags_DefaultOpen))
+    
+    if (ImGuiUtils::CollapsingHeader(this, "Obstacle"))
     {
-        if (!obstacle && ImGui::Button("Add to navmesh"))
+        if (!obstacle && ImGui::Button("Add to navmesh", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
         {
             AddObstacle();
         }
-        if (obstacle && ImGui::Button("Remove from navmesh"))
+        if (obstacle && ImGui::Button("Remove from navmesh", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
         {
             RemoveObstacle();
         }
 
-        if (obstacle_type == ObstacleType::DT_OBSTACLE_CYLINDER)
+        if (obstacle_type == DT_OBSTACLE_CYLINDER)
         {
-            if (ImGui::DragFloat2("Radius, Height", size.ptr()))
+            float2 sz = {size.x, size.y};
+            Widgets::DragFloat2Config cfg;
+            cfg.label_x = nullptr;
+            cfg.label_y = nullptr;
+            if (DragFloat2("Radius, Height", sz, &cfg))
             {
+                size.x = sz.x;
+                size.y = sz.y;
                 SetSize(size);
             }
         }
         else
         {
-            if (ImGui::DragFloat3("Size", size.ptr()))
+            if (Widgets::DragFloat3("Size", size))
             {
                 SetSize(size);
             }
         }
 
+        ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0, 2));
+        ImGui::BeginTable("", 2, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoBordersInBody | ImGuiTableFlags_NoSavedSettings);
+        ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch, 0.25f);
+        ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch, 0.75f);
+        ImGui::TableNextRow();
+        ImGui::TableSetColumnIndex(0);
+
+        ImGui::TextWrapped("Type");
+        ImGui::Spacing();
+
+        ImGui::TableNextColumn();
+        ImGui::PushItemWidth(-1);
+
         bool changed_type = false;
-        ImGui::Text("Type");
-        changed_type |= ImGui::RadioButton("Cylinder", (int*)&obstacle_type, static_cast<int>(ObstacleType::DT_OBSTACLE_CYLINDER));
+        changed_type |= ImGui::RadioButton("Cylinder", reinterpret_cast<int*>(&obstacle_type), DT_OBSTACLE_CYLINDER);
         ImGui::SameLine();
-        changed_type |= ImGui::RadioButton("Box", (int*)&obstacle_type, static_cast<int>(ObstacleType::DT_OBSTACLE_BOX));
+        changed_type |= ImGui::RadioButton("Box", reinterpret_cast<int*>(&obstacle_type), DT_OBSTACLE_BOX);
         ImGui::SameLine();
-        changed_type |= ImGui::RadioButton("Oriented Box", (int*)&obstacle_type, static_cast<int>(ObstacleType::DT_OBSTACLE_ORIENTED_BOX));
+        changed_type |= ImGui::RadioButton("Oriented Box", reinterpret_cast<int*>(&obstacle_type), DT_OBSTACLE_ORIENTED_BOX);
+
+        ImGui::PopItemWidth();
+        ImGui::EndTable();
+        ImGui::PopStyleVar();
 
         if (changed_type)
         {
             SetType(obstacle_type); // Changes the obstacle type
         }
 
-        ImGui::Text("Exists: %d", obstacle != nullptr);
+        Widgets::Label("Exists", StringUtils::ToString(obstacle != nullptr));
     }
     ImGui::PopID();
 }
@@ -117,12 +139,12 @@ void Hachiko::ComponentObstacle::AddObstacle()
 
     switch (obstacle_type)
     {
-    case ObstacleType::DT_OBSTACLE_CYLINDER:
+    case DT_OBSTACLE_CYLINDER:
         // In this case we dont use size z, we only need height and radius
         // Look for draw gizmo option that seems to be used on some examples
         tile_cache->addObstacle(transform->GetGlobalPosition().ptr(), size.x, size.y, obstacle);
         break;
-    case ObstacleType::DT_OBSTACLE_BOX:
+    case DT_OBSTACLE_BOX:
         {
             // This case needs a scope for initializing
             AABB aabb;
@@ -130,7 +152,7 @@ void Hachiko::ComponentObstacle::AddObstacle()
             tile_cache->addBoxObstacle(aabb.minPoint.ptr(), aabb.maxPoint.ptr(), obstacle);
             break;
         }
-    case ObstacleType::DT_OBSTACLE_ORIENTED_BOX:
+    case DT_OBSTACLE_ORIENTED_BOX:
         // Method expects half the desired size of the box to be passed
         // Expects y rotation in radians and says box cant be rotated in y
         tile_cache->addBoxObstacle(transform->GetGlobalPosition().ptr(), (size / 2.f).ptr(), transform->GetGlobalRotation().ToEulerXYZ().z, obstacle);

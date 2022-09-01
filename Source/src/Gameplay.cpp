@@ -7,7 +7,6 @@
 #include "modules/ModuleResources.h"
 #include "Gameplay.h"
 #include "modules/ModuleNavigation.h"
-#include "modules/ModuleDebugDraw.h"
 #include "utils/FileSystem.h"
 #include "debugdraw.h"
 
@@ -22,15 +21,14 @@ void Hachiko::Quit()
 
 /*---------------------------------------------------------------------------*/
 
-
 /*TIME-----------------------------------------------------------------------*/
 
 float Hachiko::Time::DeltaTime()
 {
-	// TODO: Return Gameplay Timer.
-	// Added for easiness of exposing to scripts. We need to refactor that
-	// timer code as it's unnecessarily complicated.
-	return EngineTimer::delta_time;
+    // TODO: Return Gameplay Timer.
+    // Added for easiness of exposing to scripts. We need to refactor that
+    // timer code as it's unnecessarily complicated.
+    return EngineTimer::delta_time;
 }
 
 /*---------------------------------------------------------------------------*/
@@ -235,7 +233,7 @@ HACHIKO_API void Hachiko::SceneManagement::Destroy(GameObject* game_object)
 
 /*DEBUG----------------------------------------------------------------------*/
 
-const Hachiko::ComponentCamera* Hachiko::Debug::GetRenderingCamera() 
+const Hachiko::ComponentCamera* Hachiko::Debug::GetRenderingCamera()
 {
     return App->camera->GetRenderingCamera();
 }
@@ -250,7 +248,7 @@ unsigned int Hachiko::Debug::GetMs()
     return App->renderer->GetCurrentMs();
 }
 
-void Hachiko::Debug::SetPolygonMode(bool is_fill) 
+void Hachiko::Debug::SetPolygonMode(bool is_fill)
 {
     glPolygonMode(GL_FRONT_AND_BACK, is_fill ? GL_FILL : GL_LINE);
 }
@@ -288,158 +286,179 @@ HACHIKO_API void Hachiko::Debug::DrawNavmesh(bool is_navmesh)
 
 /*EDITOR---------------------------------------------------------------------*/
 
-void Hachiko::Editor::ShowGameObjectDragDropArea(const char* field_name, 
-    const char* field_type, Hachiko::GameObject** game_object, bool& changed)
+bool Hachiko::Editor::ShowGameObjectDragDropArea(const char* field_name, const char* field_type, GameObject** game_object)
 {
-    changed = false;
+    bool changed = false;
+    ImGui::PushID(field_name);
+    ImGui::PushID(field_type);
+    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0, 2));
+    ImGui::BeginTable("", 2, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoBordersInBody | ImGuiTableFlags_NoSavedSettings);
+    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch, 0.25f);
+    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch, 0.75f);
+    ImGui::TableNextRow();
+    ImGui::TableSetColumnIndex(0);
+
+    ImGui::TextWrapped(field_name);
+    ImGui::Spacing();
+    ImGuiUtils::DisplayTooltip(field_type);
+
+    ImGui::TableNextColumn();
+    ImGui::PushItemWidth(-FLT_MIN);
 
     if ((*game_object) != nullptr && game_object != nullptr)
     {
         ImGui::Text((*game_object)->GetName().c_str());
-        
         ImGui::SameLine();
-        
-        ImGui::PushID(StringUtils::Concat(field_type, "@", field_name, ":CloseButton").c_str());
-        if (ImGui::Button("X"))
+
+        if (ImGui::Button(std::string(ICON_FA_XMARK).c_str()))
         {
             *game_object = nullptr;
             changed = true;
         }
-        ImGui::PopID();
-        
-        ImGui::SameLine();
+    }
+    else
+    {
+        ImGui::TextWrapped("<Drag content here>");
+        ImGuiUtils::DisplayTooltip(field_type);
     }
 
-    // Form the label:
-    std::string label = field_name;
-    label = label + " (" + field_type + ")";
+    ImGui::PopItemWidth();
+    ImGui::EndTable();
+    ImGui::PopStyleVar();
+    ImGui::PopID();
+    ImGui::PopID();
 
-    ImGui::Selectable(label.c_str());
-    
     if (ImGui::BeginDragDropTarget())
     {
-        const ImGuiPayload* payload = 
-            ImGui::AcceptDragDropPayload("GameObject");
+        const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("GameObject");
 
         if (payload != nullptr)
         {
             IM_ASSERT(payload->DataSize == sizeof(std::intptr_t*));
-            *game_object = *(GameObject**)payload->Data;
+            *game_object = *static_cast<GameObject**>(payload->Data);
 
-            HE_LOG("Drop: %s", (*game_object)->GetName().c_str());
+            HE_LOG("Dropped: %s", (*game_object)->GetName().c_str());
 
             changed = true;
         }
 
         ImGui::EndDragDropTarget();
     }
+    return changed;
 }
 
 void Hachiko::Editor::Show(const char* field_name, int& field)
 {
-    ImGui::DragInt(field_name, &field, 1.0f, INT_MIN, INT_MAX);
-    ImGui::SameLine();
-    ImGui::Text(" (int)");
+    Widgets::DragFloatConfig cfg;
+    cfg.format = "%.f";
+    cfg.speed = 1.0f;
+    cfg.min = INT_MIN;
+    cfg.max = INT_MAX;
+
+    float value = field;
+    if (DragFloat(field_name, value, &cfg))
+    {
+        field = value;
+    }
+    ImGuiUtils::DisplayTooltip("int");
 }
 
 void Hachiko::Editor::Show(const char* field_name, unsigned int& field)
 {
-    unsigned int uint_max = UINT32_MAX;
-    unsigned int uint_min = 0;
+    Widgets::DragFloatConfig cfg;
+    cfg.format = "%.f";
+    cfg.speed = 1.0f;
+    cfg.min = 0;
+    cfg.max = UINT32_MAX;
 
-    ImGui::DragScalar(field_name, 
-        ImGuiDataType_U32, (void*)(&field), 1.0f, 
-        (void*)(&uint_min), (void*)(&uint_max));
-    ImGui::SameLine();
-    ImGui::Text(" (unsigned int)");
-}
-
-void Hachiko::Editor::Show(const char* field_name, float& field)
-{
-    ImGui::DragFloat(field_name, &field, 0.1f);
-    ImGui::SameLine();
-    ImGui::Text(" (float)");
-}
-
-void Hachiko::Editor::Show(const char* field_name, double& field)
-{
-    ImGui::InputDouble(field_name, &field, 0.1, 1.0);
-    ImGui::SameLine();
-    ImGui::Text(" (double)");
+    float value = field;
+    if (DragFloat(field_name, value, &cfg))
+    {
+        field = value;
+    }
+    ImGuiUtils::DisplayTooltip("unsigned int");
 }
 
 void Hachiko::Editor::Show(const char* field_name, bool& field)
 {
-    ImGui::Checkbox(field_name, &field);
-    ImGui::SameLine();
-    ImGui::Text(" (bool)");
+    Widgets::Checkbox(field_name, &field);
+    ImGuiUtils::DisplayTooltip("boolean");
 }
 
-void Hachiko::Editor::Show(const char* field_name, math::float2& field)
+void Hachiko::Editor::Show(const char* field_name, double& field)
 {
-    ImGui::DragFloat2(field_name, field.ptr(), 0.1f, -inf, inf);
-    ImGui::SameLine();
-    ImGui::Text(" (float2)");
+    float value = field;
+    if(Widgets::DragFloat(field_name, value))
+    {
+        field = value;
+    }
+    ImGuiUtils::DisplayTooltip("double");
 }
 
-void Hachiko::Editor::Show(const char* field_name, math::float3& field)
+void Hachiko::Editor::Show(const char* field_name, float& field)
 {
-    ImGui::DragFloat3(field_name, field.ptr(), 0.1f, -inf, inf);
-    ImGui::SameLine();
-    ImGui::Text(" (float3)");
+    Widgets::DragFloat(field_name, field);
+    ImGuiUtils::DisplayTooltip("float");
 }
 
-void Hachiko::Editor::Show(const char* field_name, math::float4& field)
+void Hachiko::Editor::Show(const char* field_name, float2& field)
+{
+    Widgets::DragFloat2(field_name, field);
+    ImGuiUtils::DisplayTooltip("float2");
+}
+
+void Hachiko::Editor::Show(const char* field_name, float3& field)
+{
+    Widgets::DragFloat3(field_name, field);
+    ImGuiUtils::DisplayTooltip("float3");
+}
+
+void Hachiko::Editor::Show(const char* field_name, float4& field)
 {
     ImGui::DragFloat4(field_name, field.ptr(), 0.1f, -inf, inf);
     ImGui::SameLine();
-    ImGui::Text(" (float4)");
+    ImGuiUtils::DisplayTooltip("float4");
 }
 
-void Hachiko::Editor::Show(const char* field_name, math::Quat& field) 
+void Hachiko::Editor::Show(const char* field_name, Quat& field) 
 {
-    math::float3 degrees = RadToDeg(field.ToEulerXYZ());
+    float3 degrees = RadToDeg(field.ToEulerXYZ());
 
-    if (ImGui::DragFloat3(field_name, degrees.ptr(), 0.1f, -inf, inf))
+    if (Widgets::DragFloat3(field_name, degrees))
     {
-        math::float3 radians = DegToRad(degrees);
+        const float3 radians = DegToRad(degrees);
         field = Quat::FromEulerXYZ(radians.x, radians.y, radians.z).Normalized();
     }
 
-    ImGui::SameLine();
-    ImGui::Text(" (Quat)");
+    ImGuiUtils::DisplayTooltip("Quat");
 }
 
 void Hachiko::Editor::Show(const char* field_name, std::string& field)
 {
-    ImGui::InputText(field_name, &field);
-    ImGui::SameLine();
-    ImGui::Text(" (string)");
+    Widgets::Input(field_name, field);
+    ImGuiUtils::DisplayTooltip("string");
 }
 
 void Hachiko::Editor::Show(const char* field_name, GameObject*& field)
 {
-    // We don't need this here, just used to supply to the function.
-    bool changed = false;
-
-    ShowGameObjectDragDropArea(field_name, "GameObject*", &field, changed);
+    ShowGameObjectDragDropArea(field_name, "GameObject*", &field);
 }
 
 /*---------------------------------------------------------------------------*/
 
 /*NAVIGATION-----------------------------------------------------------------*/
 
-float Hachiko::Navigation::GetHeightFromPosition(const math::float3& position)
+float Hachiko::Navigation::GetHeightFromPosition(const float3& position)
 {
-    return App->navigation->GetYFromPosition(position);    
+    return App->navigation->GetYFromPosition(position);
 }
 
-math::float3 Hachiko::Navigation::GetCorrectedPosition(const math::float3& position, const math::float3& extents)
+float3 Hachiko::Navigation::GetCorrectedPosition(const float3& position, const float3& extents)
 {
     return App->navigation->GetCorrectedPosition(position, extents);
 }
 
-void Hachiko::Navigation::CorrectPosition(math::float3& position, const math::float3& extents)
+void Hachiko::Navigation::CorrectPosition(float3& position, const float3& extents)
 {
     return App->navigation->CorrectPosition(position, extents);
 }

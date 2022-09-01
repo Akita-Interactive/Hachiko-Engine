@@ -8,8 +8,8 @@
 
 Hachiko::Scripting::PillarCheckpoint::PillarCheckpoint(GameObject* game_object)
 	: Script(game_object, "PillarCheckpoint")
-	, _activation_range(5.0f)
 	, _respawn_go(nullptr)
+    , _activation_range(5.0f)
 {
 }
 

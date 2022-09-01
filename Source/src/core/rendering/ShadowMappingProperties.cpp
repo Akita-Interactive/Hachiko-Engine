@@ -152,44 +152,44 @@ bool Hachiko::ShadowMappingProperties::DrawEditorContent()
 
     bool changes_made = false;
 
-    if (Widgets::DragFloat("Bias", _bias, &config_2))
+    if (DragFloat("Bias", _bias, &config_2))
     {
         changes_made = true;
     }
 
-    if (Widgets::DragFloat("Light Bleeding Reduction", _light_bleeding_reduction_amount, &config_2)) 
+    if (DragFloat("Light bleeding reduction", _light_bleeding_reduction_amount, &config_2)) 
     {
         changes_made = true;
     }
 
-    if (Widgets::DragFloat("Min Variance", _min_variance, &config_2))
+    if (DragFloat("Minimum variance", _min_variance, &config_2))
     {
         changes_made = true;
     }
 
-    if (Widgets::DragFloat("Exponent", _exponent, &config_1))
+    if (DragFloat("Exponent", _exponent, &config_1))
     {
         changes_made = true;
     }
 
-    if (Widgets::DragFloat("Gaussian Blur Amount", _gaussian_filter_blur_amount, &config_1))
+    if (DragFloat("Gaussian blur amount", _gaussian_filter_blur_amount, &config_1))
     {
         changes_made = true;
     }
 
-    int current_index = BlurPixelSize::ToIndex(_gaussian_blur_size);
-    if (Widgets::Combo("Gaussian Blur Pixel Size", &current_index, BlurPixelSize::blur_pixel_sizes_strings, BlurPixelSize::number_of_blur_pixel_sizes))
+    int current_index = ToIndex(_gaussian_blur_size);
+    if (Widgets::Combo("Gaussian blur pixel size", &current_index, BlurPixelSize::blur_pixel_sizes_strings, BlurPixelSize::number_of_blur_pixel_sizes))
     {
         changes_made = true;
         _gaussian_blur_size = BlurPixelSize::FromIndex(current_index);
     }
 
-    if (Widgets::DragFloat("Gaussian Blur Sigma", _gaussian_blur_sigma, &config_1))
+    if (DragFloat("Gaussian blur sigma", _gaussian_blur_sigma, &config_1))
     {
         changes_made = true;
     }
 
-    if (ImGui::Button("Reset to Defaults"))
+    if (ImGui::Button("Reset to defaults", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         ResetToDefaults();
         changes_made = true;

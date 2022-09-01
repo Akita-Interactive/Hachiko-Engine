@@ -91,7 +91,7 @@ void Hachiko::ComponentBillboard::Draw(ComponentCamera* camera, Program* program
 void Hachiko::ComponentBillboard::DrawGui()
 {
     ImGui::PushID(this);
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Billboard"))
+    if (ImGuiUtils::CollapsingHeader(this, "Billboard"))
     {
         const char* particle_render_modes[] = {"Additive", "Transparent"};
         const char* billboards[] = {"Normal", "Vertical", "Horizontal", "Stretch", "World"};

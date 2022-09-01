@@ -9,7 +9,7 @@ namespace Hachiko
     {
     public:
         // TODO: add more light types
-        ComponentPointLight(GameObject* conatiner);
+        ComponentPointLight(GameObject* container);
         ~ComponentPointLight() override;
 
         void DebugDraw() override;

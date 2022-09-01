@@ -8,11 +8,11 @@
 Hachiko::Scripting::CameraPosChange::CameraPosChange(GameObject* game_object)
 	: Script(game_object, "CameraPosChange")
 	, _objective(nullptr)
-	, _relative_position(float3::zero)
-	, _rotation(float3::zero)
 	, _do_look_ahead(false)
-	, _speed(0.0f)
-	, _duration(0.0f)
+    , _speed(0.0f)
+    , _duration(0.0f)
+    , _relative_position(float3::zero)
+    , _rotation(float3::zero)
 {
 }
 

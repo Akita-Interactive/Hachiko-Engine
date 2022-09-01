@@ -211,20 +211,23 @@ void Hachiko::ModuleAudio::SetMusicVolume(const float value)
 
 void Hachiko::ModuleAudio::OptionsMenu()
 {
-    ImGui::Text("Audio");
-    int volume = sfx_volume * 10;
-    if (ImGui::SliderInt("Sounds", &volume, 0, 10))
+    static Widgets::SliderFloatConfig cfg;
+    cfg.max = 10.0f;
+    cfg.format = "%.f";
+
+    float volume = sfx_volume * 10;
+    if (SliderFloat("Sounds", volume, &cfg))
     {
         SetSFXVolume(volume * 0.1);
     }
 
     volume = music_volume * 10;
-    if (ImGui::SliderInt("Music", &volume, 0, 10))
+    if (SliderFloat("Music", volume, &cfg))
     {
         SetMusicVolume(volume * 0.1);
     }
 
-    if (ImGui::Button("Reload Sound Banks"))
+    if (ImGui::Button("Reload sound banks", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         ReloadAssets();
     }

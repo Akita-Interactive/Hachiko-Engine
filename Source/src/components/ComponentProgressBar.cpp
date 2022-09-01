@@ -62,17 +62,24 @@ void Hachiko::ComponentProgressBar::Update()
 
 void Hachiko::ComponentProgressBar::DrawGui()
 {
-    if (ImGui::CollapsingHeader("Progress Bar", ImGuiTreeNodeFlags_DefaultOpen))
+    if (ImGuiUtils::CollapsingHeader(this, "Progress Bar"))
     {
-        ImGui::DragFloat("Min", &min, 1.0f, -inf, max - 1);
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
-        ImGui::DragFloat("Max", &max, 1.0f, min + 1, inf);
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
-        ImGui::DragFloat("Filled", &filled_value, (max-min) / 100, min, max);
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
+        Widgets::DragFloatConfig cfg;
+        cfg.speed = 1.0f;
+        cfg.max = max -1;
+        DragFloat("Min", min, &cfg);
 
-        ImGui::Combo("Filling Direction", &direction_index, filling_directions, IM_ARRAYSIZE(filling_directions));
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
+        cfg.min = min+1;
+        cfg.max = inf;
+        DragFloat("Max", max, &cfg);
+
+        cfg.speed = (max-min) / 100;
+        cfg.min = min;
+        cfg.max = max;
+
+        DragFloat("Filled", filled_value, &cfg);
+
+        Widgets::Combo("Filling Direction", &direction_index, filling_directions, IM_ARRAYSIZE(filling_directions));
         fill_direction = static_cast<FillingDirection>(direction_index);
     }
 }

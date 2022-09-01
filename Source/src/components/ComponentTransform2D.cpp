@@ -24,68 +24,74 @@ void Hachiko::ComponentTransform2D::DrawGui()
     // TODO: Draw panel for the inspector and update transform
     ImGui::PushID(this);
 
-    if (ImGui::CollapsingHeader("2D Transform", ImGuiTreeNodeFlags_DefaultOpen))
+    if (ImGuiUtils::CollapsingHeader(this, "2D Transform"))
     {
+        Widgets::DragFloatConfig cfg;
+        cfg.speed = 0.05f;
+
+        Widgets::DragFloat2Config cfg2;
+        cfg2.speed = float2(0.05f);
+        cfg2.label_x = nullptr;
+        cfg2.label_y = nullptr;
+
+        Widgets::DragFloat3Config cfg3;
+        cfg3.speed = float3(0.05f);
+
         float3 ed_pos = position;
-        if (ImGui::DragFloat3("Position", ed_pos.ptr(), 0.05f))
+        if (DragFloat3("Position", ed_pos, &cfg3))
         {
             SetPosition(ed_pos);
         }
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
         if (!has_canvas)
         {
-            float2 ed_siz = size;
-            if (ImGui::DragFloat2("Size", ed_siz.ptr(), 0.05f))
+            float2 ed_size = size;
+
+            if (DragFloat2("Size", ed_size, &cfg2))
             {
-                SetSize(ed_siz);
+                SetSize(ed_size);
             }
-            CREATE_HISTORY_ENTRY_AFTER_EDIT()
         }
 
-        float3 ed_sc = scale;
-        if (ImGui::DragFloat2("Scale", ed_sc.ptr(), 0.05f))
+        float2 ed_sc = {scale.x, scale.y};
+        if (DragFloat2("Scale", ed_sc, &cfg2))
         {
-            SetScale(ed_sc.xy());
+            SetScale(ed_sc);
         }
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
         float3 ed_rot = rotation_euler;
-        if (ImGui::DragFloat("Rotation (z)", &ed_rot.z, 0.05f))
+        if (DragFloat("Rotation (z)", ed_rot.z, &cfg))
         {
             SetRotation(ed_rot);
         }
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
         float2 ed_anch = anchor_pct_position;
-        if (ImGui::DragFloat2("Anchor (Percent)", ed_anch.ptr(), 0.05f))
+        if (DragFloat2("Anchor (percent)", ed_anch, &cfg2))
         {
             SetAnchor(ed_anch);
         }
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
         float2 ed_piv = pivot_pct_position;
-        if (ImGui::DragFloat2("Pivot (Percent)", ed_piv.ptr(), 0.05f))
+        if (DragFloat2("Pivot (percent)", ed_piv, &cfg2))
         {
             SetPivot(ed_piv);
         }
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
-        ImGui::Checkbox("Debug Transform2D matrix", &debug_transforms);
+        Widgets::Checkbox("Debug Transform2D matrix", &debug_transforms);
         if (debug_transforms)
         {
             ImGui::Separator();
-            ImGui::Text("Scaled Transform");
+            ImGui::TextWrapped("Scaled transform");
             const float4x4& scaled = GetGlobalScaledTransform();
             for (int r = 0; r < 4; ++r)
             {
                 const float4& row = scaled.Row(r);
-                ImGui::Text("%.2f, %.2f, %.2f, %.2f", row.x, row.y, row.z, row.w);
+                ImGui::TextWrapped("%.2f, %.2f, %.2f, %.2f", row.x, row.y, row.z, row.w);
             }
 
             ImGui::Separator();
-            ImGui::Text("Bounding 2D");
-            ImGui::Text("%.2f %.2f, %.2f %.2f", aabb.minPoint.x, aabb.minPoint.y, aabb.maxPoint.x, aabb.maxPoint.y);
+            ImGui::TextWrapped("Bounding 2D");
+            ImGui::TextWrapped("%.2f %.2f, %.2f %.2f", aabb.minPoint.x, aabb.minPoint.y, aabb.maxPoint.x, aabb.maxPoint.y);
         }
     }
 
@@ -109,32 +115,32 @@ void Hachiko::ComponentTransform2D::DebugDraw()
     dd::box(global_transform.TranslatePart(), rect_color, size.x * scale.x, size.y * scale.y, 0.f);
 }
 
-void Hachiko::ComponentTransform2D::SetPosition(float3 new_position)
+void Hachiko::ComponentTransform2D::SetPosition(float3& new_position)
 {
     position = new_position;
     Invalidate();
 }
 
-void Hachiko::ComponentTransform2D::SetSize(float2 new_size)
+void Hachiko::ComponentTransform2D::SetSize(float2& new_size)
 {
     size = new_size;
     Invalidate();
 }
 
-void Hachiko::ComponentTransform2D::SetScale(float2 new_scale)
+void Hachiko::ComponentTransform2D::SetScale(float2& new_scale)
 {
     scale = float3(new_scale, 1.0f);
     Invalidate();
 }
 
-void Hachiko::ComponentTransform2D::SetRotation(Quat new_rotation)
+void Hachiko::ComponentTransform2D::SetRotation(Quat& new_rotation)
 {
     rotation = new_rotation;
     rotation_euler = RadToDeg(rotation.ToEulerXYZ());
     Invalidate();
 }
 
-void Hachiko::ComponentTransform2D::SetRotation(float3 new_rotation)
+void Hachiko::ComponentTransform2D::SetRotation(float3& new_rotation)
 {
     rotation_euler = new_rotation;
     new_rotation = DegToRad(new_rotation);
@@ -142,7 +148,7 @@ void Hachiko::ComponentTransform2D::SetRotation(float3 new_rotation)
     Invalidate();
 }
 
-void Hachiko::ComponentTransform2D::SetPivot(float2 new_pivot_position)
+void Hachiko::ComponentTransform2D::SetPivot(float2& new_pivot_position)
 {
     float2 pivot_delta = new_pivot_position - pivot_pct_position;
 
@@ -155,7 +161,7 @@ void Hachiko::ComponentTransform2D::SetPivot(float2 new_pivot_position)
     Invalidate();
 }
 
-void Hachiko::ComponentTransform2D::SetAnchor(float2 new_anchor_position)
+void Hachiko::ComponentTransform2D::SetAnchor(float2& new_anchor_position)
 {
     anchor_pct_position = new_anchor_position;
     Invalidate();

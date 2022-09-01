@@ -16,8 +16,8 @@ Hachiko::ComponentCamera::ComponentCamera(GameObject* container) :
 {
     frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
     frustum.SetViewPlaneDistances(1.0f, 100.0f);
-    
-    float2 frame_buffer_size = App->renderer->GetFrameBufferSize();    
+
+    float2 frame_buffer_size = App->renderer->GetFrameBufferSize();
     SetResolution(frame_buffer_size.x, frame_buffer_size.y);
 
     frustum.SetPos(float3(0.0f, 0.0f, 0.0f));
@@ -57,7 +57,7 @@ void Hachiko::ComponentCamera::SetCameraInitialPos()
     camera_pinned_pos = GetGameObject()->GetTransform()->GetGlobalPosition();
 }
 
-void Hachiko::ComponentCamera::SetFrame(const float3& position, const float3& front, const float3& up) 
+void Hachiko::ComponentCamera::SetFrame(const float3& position, const float3& front, const float3& up)
 {
     frustum.SetFrame(position, front, up);
 }
@@ -182,52 +182,55 @@ void Hachiko::ComponentCamera::DrawGui()
     ImGui::PushID(this);
     static bool debug_data = false;
 
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Camera"))
+    if (ImGuiUtils::CollapsingHeader(this, "Camera"))
     {
-        ImGui::Checkbox("Draw Frustum", &draw_frustum);
+        Widgets::Checkbox("Draw Frustum", &draw_frustum);
 
-        ImGui::SameLine();
-        #ifndef PLAY_BUILD
-            if(ImGui::Checkbox("Preview Camera", &preview_cam))
-            {
-                if (preview_cam)
-                {
-                    App->camera->SetRenderingCamera(this);
-                }
-                else
-                {
-                    App->camera->RestoreEditorCamera();
-                }
-            }
-            
-        #endif
-        float planes[2] = {frustum.NearPlaneDistance(), frustum.FarPlaneDistance()};
-        if (ImGui::InputFloat2("N & F", &planes[0]))
+#ifndef PLAY_BUILD
+        if (Widgets::Checkbox("Preview Camera", &preview_cam))
         {
-            SetPlaneDistances(planes[0], planes[1]);
+            if (preview_cam)
+            {
+                App->camera->SetRenderingCamera(this);
+            }
+            else
+            {
+                App->camera->RestoreEditorCamera();
+            }
         }
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
-        if (ImGui::SliderFloat("H. Fov", &horizontal_fov, 30.f, 178.f))
+#endif
+        float2 planes = {frustum.NearPlaneDistance(), frustum.FarPlaneDistance()};
+        Widgets::DragFloat2Config config;
+        config.label_x = nullptr;
+        config.label_y = nullptr;
+        if (DragFloat2("Near & Far", planes, &config))
+        {
+            SetPlaneDistances(planes.x, planes.y);
+        }
+
+        Widgets::DragFloatConfig cfg;
+        cfg.min = 30.0f;
+        cfg.max = 178.0f;
+        if (DragFloat("Horizontal FOV", horizontal_fov, &cfg))
         {
             SetHorizontalFov(horizontal_fov);
         }
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
-        if (ImGui::Button("Culling Camera"))
+        if (ImGui::Button("Culling camera", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
         {
             App->scene_manager->GetActiveScene()->SetCullingCamera(this);
         }
 
-        ImGui::Checkbox("Debug", &debug_data);
+        Widgets::Checkbox("Debug", &debug_data);
         if (debug_data)
         {
             ImGui::Separator();
-            ImGui::Text("Fov (H, V): %.2f, %.2f", RadToDeg(frustum.HorizontalFov()), RadToDeg(frustum.VerticalFov()));
-            ImGui::Text("Aspect Ratio: %.2f", frustum.AspectRatio());
-            ImGui::Text("Distance from initial point: %f", App->camera->GetRenderingCamera()->camera_pinned_pos.Distance(App->camera->GetRenderingCamera()->GetGameObject()->GetTransform()->GetGlobalPosition()));
+            ImGui::TextWrapped("Fov (H, V): %.2f, %.2f", RadToDeg(frustum.HorizontalFov()), RadToDeg(frustum.VerticalFov()));
+            ImGui::TextWrapped("Aspect Ratio: %.2f", frustum.AspectRatio());
+            ImGui::TextWrapped("Distance from initial point: %f",
+                               App->camera->GetRenderingCamera()->camera_pinned_pos.Distance(App->camera->GetRenderingCamera()->GetGameObject()->GetTransform()->GetGlobalPosition()));
         }
-        
     }
     ImGui::PopID();
 }

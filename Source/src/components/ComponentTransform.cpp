@@ -345,7 +345,7 @@ void Hachiko::ComponentTransform::DrawGui()
             SetLocalScale(scale_local_editor);
         }
 
-        ImGui::Checkbox("Debug info", &debug_transforms);
+        Widgets::Checkbox("Debug info", &debug_transforms);
         if (debug_transforms)
         {
             float3 position_editor = position;
@@ -354,7 +354,7 @@ void Hachiko::ComponentTransform::DrawGui()
 
             ImGui::Separator();
             ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 0, 0, 255));
-            ImGui::Text("Global transform");
+            ImGui::TextWrapped("Global transform");
             ImGui::PopStyleColor();
 
             if (Widgets::DragFloat3("Position", position_editor))
@@ -367,25 +367,25 @@ void Hachiko::ComponentTransform::DrawGui()
                 SetGlobalRotationEuler(rotation_editor);
             }
 
-            if (Widgets::DragFloat3("Scale", scale_editor, &scale_config))
+            if (DragFloat3("Scale", scale_editor, &scale_config))
             {
                 SetGlobalScale(scale_editor);
             }
 
             ImGui::Separator();
-            ImGui::Text("Local");
+            ImGui::TextWrapped("Local");
             for (int r = 0; r < 4; ++r)
             {
-                auto row = matrix_local.Row(r);
-                ImGui::Text("%.2f, %.2f, %.2f, %.2f", row[0], row[1], row[2], row[3]);
+                const auto row = matrix_local.Row(r);
+                ImGui::TextWrapped("%.2f, %.2f, %.2f, %.2f", row.x, row.y, row.z, row.w);
             }
 
             ImGui::Separator();
-            ImGui::Text("Global");
+            ImGui::TextWrapped("Global");
             for (int r = 0; r < 4; ++r)
             {
-                auto row = matrix.Row(r);
-                ImGui::Text("%.2f, %.2f, %.2f, %.2f", row[0], row[1], row[2], row[3]);
+                const auto row = matrix.Row(r);
+                ImGui::TextWrapped("%.2f, %.2f, %.2f, %.2f", row.x, row.y, row.z, row.w);
             }
         }
     }

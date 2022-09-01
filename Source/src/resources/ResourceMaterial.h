@@ -107,8 +107,8 @@ namespace Hachiko
         float4 emissive_color = float4::zero;
         float smoothness = 0.5f;
         float metalness_value = 0.5f;
-        unsigned is_metallic = 1;
-        unsigned is_transparent = 0;
+        int is_metallic = 1;
+        int is_transparent = 0;
 
     private:
         void AddTexture(ResourceTexture::Type type);
@@ -116,7 +116,7 @@ namespace Hachiko
         void UpdateMaterial();
         std::string name;
 
-        std::vector<std::string> transparency = {"Opaque", "Transparent"};
-        std::vector<std::string> material_types = {"Specular", "Metallic"};
+        inline static const char* transparency[]{"Opaque", "Transparent"};
+        inline static const char* material_types[]{"Specular", "Metallic"};
     };
 }

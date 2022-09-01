@@ -54,7 +54,7 @@ namespace Hachiko
 			bool completed = false;
 			bool started = false;
 			bool changing_rounds = false;
-			float remaining_between_round_time;
+			float remaining_between_round_time{};
 			CombatManager* _combat_manager = nullptr;
 			LevelManager* _level_manager = nullptr;
 			AudioManager* _audio_manager = nullptr;

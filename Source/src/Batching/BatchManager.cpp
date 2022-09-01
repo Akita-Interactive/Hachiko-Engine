@@ -162,13 +162,13 @@ void Hachiko::BatchManager::CleanUp()
 
 void Hachiko::BatchManager::DebugMenu() 
 {
-    ImGui::Text("Opaque Batches");
+    ImGui::TextWrapped("Opaque batches");
     ImGui::Separator();
     ShowDebugMenuForBatches(geometry_batches_opaque);
 
     ImGui::NewLine();
 
-    ImGui::Text("Transparent Batches"); 
+    ImGui::TextWrapped("Transparent batches"); 
     ImGui::Separator();
     ShowDebugMenuForBatches(geometry_batches_transparent);
 }
@@ -178,11 +178,9 @@ void Hachiko::BatchManager::ShowDebugMenuForBatches(
 {
     for (GeometryBatch* geometry_batch : batches)
     {
-        ImGui::Text(geometry_batch->batch->layout.bones ? "Bones = true; " : "Bones = false; ");
-        ImGui::SameLine();
-        ImGui::Text(geometry_batch->batch->layout.normals ? "Normals = true; " : "Normals = false; ");
-        ImGui::SameLine();
-        ImGui::Text(geometry_batch->batch->layout.text_coords ? "TexCoords = true; " : "TexCoords = false; ");
+        Widgets::Label("Bones", StringUtils::ToString(geometry_batch->batch->layout.bones));
+        Widgets::Label("Normals", StringUtils::ToString(geometry_batch->batch->layout.normals));
+        Widgets::Label("TexCoords", StringUtils::ToString(geometry_batch->batch->layout.text_coords));
 
         geometry_batch->ImGuiWindow();
         ImGui::Separator();
