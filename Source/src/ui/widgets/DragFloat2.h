@@ -67,8 +67,11 @@ namespace Hachiko::Widgets
 
         ImGui::PushItemWidth(item_width);
         ImGui::BeginDisabled(!config->enabled.x);
-        ImGui::Button(config->label_x, size);
-        ImGui::SameLine();
+        if(config->label_x)
+        {
+            ImGui::Button(config->label_x, size);
+            ImGui::SameLine();
+        }
         if (ImGui::DragFloat("##X", &values.x, config->speed.x, config->min.x, config->max.x, config->format, config->flags))
         {
             changed = true;
@@ -82,9 +85,12 @@ namespace Hachiko::Widgets
         ImGui::PushItemWidth(item_width);
 
         ImGui::BeginDisabled(!config->enabled.y);
-        ImGui::Button(config->label_y, size);
+        if (config->label_y)
+        {
+            ImGui::Button(config->label_y, size);
+            ImGui::SameLine();
+        }
 
-        ImGui::SameLine();
         if (ImGui::DragFloat("##Y", &values.y, config->speed.y, config->min.y, config->max.y, config->format, config->flags))
         {
             changed = true;

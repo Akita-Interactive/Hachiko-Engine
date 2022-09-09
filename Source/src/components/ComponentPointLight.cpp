@@ -5,8 +5,8 @@
 
 #include <debugdraw.h>
 
-Hachiko::ComponentPointLight::ComponentPointLight(GameObject* conatiner) :
-    Component(Type::POINTLIGHT, conatiner)
+Hachiko::ComponentPointLight::ComponentPointLight(GameObject* container) :
+    Component(Type::POINTLIGHT, container)
 {
     if (game_object->scene_owner)
     {
@@ -61,23 +61,20 @@ void Hachiko::ComponentPointLight::Load(const YAML::Node& node)
 void Hachiko::ComponentPointLight::DrawGui()
 {
     ImGui::PushID(this);
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Point Light"))
+    if (ImGuiUtils::CollapsingHeader(this, "Point Light"))
     {
-        if (ImGui::Checkbox("P.Active", &active))
+        if (Widgets::Checkbox("Active", &active))
         {
             App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
-        if (ImGui::Checkbox("Draw Sphere", &draw_sphere))
+        if (Widgets::Checkbox("Draw sphere", &draw_sphere))
         {
             App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
-        ImGui::PushItemWidth(100.0f);
-        ImGui::InputFloat("P.Intensity", &intensity);
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
-        ImGui::InputFloat("P.Radius", &radius);
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
-        ImGui::PopItemWidth();
-        ImGuiUtils::CompactColorPicker("Point Color", &color[0]);
+
+        Widgets::DragFloat("Intensity", intensity);
+        Widgets::DragFloat("Radius", radius);
+        ImGuiUtils::CompactColorPicker("Color", &color[0]);
         CREATE_HISTORY_ENTRY_AFTER_EDIT()
     }
     ImGui::PopID();

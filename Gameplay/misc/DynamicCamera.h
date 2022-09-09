@@ -30,8 +30,8 @@ private:
 	SERIALIZE_FIELD(float, _speed);
 	GameObject* _camera_go = nullptr;
 	std::vector< GameObject*> _camera_positions;
-	ComponentTransform* _camera_transform;
-	ComponentCamera* _camera;
+	ComponentTransform* _camera_transform{};
+	ComponentCamera* _camera{};
 	unsigned _current_target = 0;
 	float _transition_progress = 0.f;
 	float _transition_duration = 0.f;

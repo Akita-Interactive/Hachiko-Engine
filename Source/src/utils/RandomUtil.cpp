@@ -36,6 +36,20 @@ float Hachiko::RandomUtil::RandomBetween(const float a, const float b)
     return between_dist(generator);
 }
 
+int Hachiko::RandomUtil::RandomIntBetween(int a, int b)
+{
+    int min = a;
+    int max = b;
+
+    if (min > max)
+    {
+        std::swap(min, max);
+    }
+
+    const std::uniform_int_distribution between_dist(min, max);
+    return between_dist(generator);
+}
+
 float Hachiko::RandomUtil::RandomBetween(const float2& values)
 {
     return RandomBetween(values.x, values.y);

@@ -1,62 +1,50 @@
 #include "core/hepch.h"
-#include "ModuleUserInterface.h"
-#include "ModuleSceneManager.h"
-#include "ModuleProgram.h"
-#include "ModuleCamera.h"
-#include "ModuleEditor.h"
-#include "ModuleInput.h"
-#include "ModuleEvent.h"
-#include "ModuleWindow.h"
 #include "core/Scene.h"
 #include "core/GameObject.h"
+
+#include "modules/ModuleUserInterface.h"
+#include "modules/ModuleSceneManager.h"
+#include "modules/ModuleProgram.h"
+#include "modules/ModuleCamera.h"
+#include "modules/ModuleInput.h"
+#include "modules/ModuleEvent.h"
+#include "modules/ModuleWindow.h"
+
 #include "components/ComponentCanvasRenderer.h"
 #include "components/ComponentCamera.h"
 #include "components/ComponentTransform2D.h"
 #include "components/ComponentButton.h"
-
-
-#include "ui/WindowScene.h"
-
-Hachiko::ModuleUserInterface::ModuleUserInterface() = default;
-
-Hachiko::ModuleUserInterface::~ModuleUserInterface() = default;
 
 bool Hachiko::ModuleUserInterface::Init()
 {
     HE_LOG("INITIALIZING MODULE: USER INTERFACE");
 
     CreateSquare();
+
     std::function handle_mouse_action = [&](Event& evt) {
         const auto& payload = evt.GetEventData<MouseEventPayload>();
         const auto action = payload.GetAction();
-        if (action == MouseEventPayload::Action::CLICK)
-        {
-            HandleMouseAction(payload.GetCoords());
-        }
+
+        HandleMouseAction(action);
     };
+
     App->event->Subscribe(Event::Type::MOUSE_ACTION, handle_mouse_action);
+
     return true;
 }
 
 UpdateStatus Hachiko::ModuleUserInterface::Update(float delta)
 {
+    // Returns OpenGL mouse position local to the program window if the engine
+    // was built with PLAY_BUILD flag. Returns OpenGL mouse position local to
+    // scene window otherwise:
+    const float2 mouse_pos = Input::GetMouseOpenGLPosition();
+    constexpr bool is_click = false;
 
-    // On playbuild mouse position is taken from the Window, not ImGUI
-#ifdef PLAY_BUILD   
-    float2 mouse_pos = Input::GetMousePixelPosition();
-
-    RecursiveCheckMousePos(App->scene_manager->GetActiveScene()->GetRoot(), 
-        mouse_pos, false);
-#else
-    const WindowScene* w_scene = App->editor->GetSceneWindow();
-    
-    ImVec2 mouse_pos = ImGui::GetMousePos();
-    float2 click_pos = w_scene->ImguiToScreenPos(
-        float2(mouse_pos.x, mouse_pos.y));
-
-    RecursiveCheckMousePos(App->scene_manager->GetActiveScene()->GetRoot(), 
-        click_pos, false);
-#endif
+    RecursiveCheckMousePos(
+        App->scene_manager->GetActiveScene()->GetRoot(), 
+        mouse_pos, 
+        is_click);
 
     return UpdateStatus::UPDATE_CONTINUE;
 }
@@ -67,7 +55,7 @@ bool Hachiko::ModuleUserInterface::CleanUp()
     return true;
 }
 
-void Hachiko::ModuleUserInterface::DrawUI(const Scene* scene)
+void Hachiko::ModuleUserInterface::DrawUI(const Scene* scene) const
 {
     Program* img_program = App->program->GetUserInterfaceImageProgram();
     Program* txt_program = App->program->GetUserInterfaceTextProgram();
@@ -81,7 +69,11 @@ void Hachiko::ModuleUserInterface::DrawUI(const Scene* scene)
     // position data is unused on the ui program
     camera_data.pos = float3::zero;
     camera_data.view = float4x4::identity;
-    camera_data.proj = float4x4::D3DOrthoProjLH(-1, 1, static_cast<float>(width), static_cast<float>(height));
+    camera_data.proj = float4x4::D3DOrthoProjLH(
+        -1, 
+        1, 
+        static_cast<float>(width), 
+        static_cast<float>(height));
 
     App->program->UpdateCamera(camera_data);
     RecursiveDrawUI(scene->GetRoot(), img_program, txt_program);
@@ -89,9 +81,13 @@ void Hachiko::ModuleUserInterface::DrawUI(const Scene* scene)
     glDepthFunc(GL_LESS);
 }
 
-void Hachiko::ModuleUserInterface::RecursiveDrawUI(GameObject* game_object, Program* img_program, Program* txt_program)
+void Hachiko::ModuleUserInterface::RecursiveDrawUI(
+    GameObject* __restrict game_object, 
+    Program* img_program, 
+    Program* txt_program)
 {
-    ComponentCanvasRenderer* renderer = game_object->GetComponent<ComponentCanvasRenderer>();
+    const ComponentCanvasRenderer* renderer = 
+        game_object->GetComponent<ComponentCanvasRenderer>();
 
     if (renderer && game_object->IsActive() && renderer->IsActive())
     {
@@ -104,12 +100,17 @@ void Hachiko::ModuleUserInterface::RecursiveDrawUI(GameObject* game_object, Prog
     }
 }
 
-void Hachiko::ModuleUserInterface::RecursiveCheckMousePos(GameObject* game_object, const float2& mouse_pos, bool is_click)
+void Hachiko::ModuleUserInterface::RecursiveCheckMousePos(
+    GameObject* game_object, 
+    const float2& mouse_pos, 
+    const bool is_click)
 {
     // If it is not click it is considered a hover
-    ComponentTransform2D* transform = game_object->GetComponent<ComponentTransform2D>();
+    const ComponentTransform2D* transform = 
+        game_object->GetComponent<ComponentTransform2D>();
     // Find selectables TODO: Improve how this is handled
     ComponentButton* selectable = game_object->GetComponent<ComponentButton>();
+
     if (transform && selectable)
     {
         selectable->OnUnSelect();
@@ -128,30 +129,25 @@ void Hachiko::ModuleUserInterface::RecursiveCheckMousePos(GameObject* game_objec
             selectable->OnPointerExit();
         }
     }
+
     for (GameObject* child : game_object->children)
     {
         RecursiveCheckMousePos(child, mouse_pos, is_click);
     }
 }
 
-void Hachiko::ModuleUserInterface::HandleMouseAction(const float2& coords)
+void Hachiko::ModuleUserInterface::HandleMouseAction(
+    const MouseEventPayload::Action mouse_action)
 {
-#ifdef PLAY_BUILD
-    int height, width;
-    App->window->GetWindowSize(width, height);
-    
-    float2 mouse_pos = Input::GetMousePixelPosition();
-    
-    constexpr bool is_click = true;
-    RecursiveCheckMousePos(App->scene_manager->GetActiveScene()->GetRoot(), mouse_pos, is_click);
-#else
-    const WindowScene* w_scene = App->editor->GetSceneWindow();
-    ImVec2 mouse_pos = ImGui::GetMousePos();
-    float2 click_pos = w_scene->ImguiToScreenPos(float2(mouse_pos.x, mouse_pos.y));
+    if (mouse_action != MouseEventPayload::Action::CLICK)
+    {
+        return;
+    }
 
-    constexpr bool is_click = true;
-    RecursiveCheckMousePos(App->scene_manager->GetActiveScene()->GetRoot(), click_pos, is_click);
-#endif
+    RecursiveCheckMousePos(
+        App->scene_manager->GetActiveScene()->GetRoot(), 
+        Input::GetMouseOpenGLPosition(), // Click position.
+        true); // Is Click: true as we only handle Click action for now.
 }
 
 void Hachiko::ModuleUserInterface::CreateSquare()

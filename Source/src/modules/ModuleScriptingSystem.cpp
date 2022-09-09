@@ -506,6 +506,11 @@ void Hachiko::ModuleScriptingSystem::ExecuteOnLoadForAllScripts() const
 
 void Hachiko::ModuleScriptingSystem::LoadScriptNamesAndCount() 
 {
+    if (_loaded_dll == NULL)
+    {
+        return;
+    }
+       
     // Get the count of script classes that are available to be created:
     _available_script_count = *reinterpret_cast<size_t*>(
         GetProcAddress(_loaded_dll, "SCRIPT_COUNT"));
@@ -522,8 +527,6 @@ void Hachiko::ModuleScriptingSystem::LoadScriptNamesAndCount()
     {
         _script_names[i] = script_names_dll[i];
     }
-
-
 }
 
 bool Hachiko::ModuleScriptingSystem::IsDllVersionChanged()

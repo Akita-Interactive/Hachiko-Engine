@@ -12,9 +12,9 @@ Hachiko::ComponentCanvasRenderer::ComponentCanvasRenderer(GameObject* container)
 
 void Hachiko::ComponentCanvasRenderer::DrawGui()
 {
-    if (ImGui::CollapsingHeader("Canvas Renderer", ImGuiTreeNodeFlags_DefaultOpen))
+    if (ImGuiUtils::CollapsingHeader(this, "Canvas renderer"))
     {
-        ImGui::Text("Active: %d", active);
+        Widgets::Label("Active", StringUtils::ToString(active));
     }
 }
 

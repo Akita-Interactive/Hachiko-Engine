@@ -7,6 +7,7 @@ struct Material {
     vec4 diffuse_color;
     vec4 specular_color;
     vec4 emissive_color;
+    vec4 tint_color;
     uint diffuse_flag;
     uint specular_flag;
     uint normal_flag;
@@ -20,10 +21,8 @@ struct Material {
     float smoothness;
     float metalness_value;
     uint is_metallic;
-    uint smoothness_alpha;
     uint is_transparent;
-    vec4 tint_color;
-    //uint padding0;
+    uint padding0;
 };
 
 #endif

@@ -12,6 +12,7 @@ namespace Hachiko
 {
 	class GameObject;
 	class ComponentMeshRenderer;
+	class ComponentProgressBar;
 	namespace Scripting
 	{
 		class PlayerCamera;
@@ -28,6 +29,7 @@ namespace Hachiko
 			FALLING,
 			STUNNED,
 			DIE,
+			READY_TO_RESPAWN
 		};
 
 		class PlayerController : public Script
@@ -72,6 +74,8 @@ namespace Hachiko
 				CombatManager::BulletStats bullet;
 				// Here we define the combo of attacks		
 				float4 color = float4::zero;
+				bool unlimited = true;
+				unsigned charges = 0;
 				GameObject* weapon_go = nullptr;
 				std::vector<PlayerAttack> attacks;
 			};
@@ -87,18 +91,29 @@ namespace Hachiko
 			PlayerState GetState() const;
 
 			void CheckGoal(const float3& current_position);
-			void RegisterHit(float damage_received, bool is_heavy = false, math::float3 direction = float3::zero);
+			bool RegisterHit(int damage, float knockback = 0, math::float3 direction = float3::zero, bool force_dmg = false);
 			void UpdateHealthBar();
 			void UpdateAmmoUI();
+			void UpdateWeaponChargeUI();
 			void ToggleGodMode();
 
-			bool IsAlive() { return _combat_stats->_current_hp > 0; }
+			bool IsAlive() const { return _combat_stats->_current_hp > 0; }
+			int GetCurrentHp() const { return _combat_stats->_current_hp; }
 			bool _isInDebug = false;
+
+			int GetAttackIndex() const
+			{
+				return _attack_idx;
+			}
+
+			WeaponUsed GetCurrentWeaponType() const
+			{
+				return static_cast<WeaponUsed>(_current_weapon);
+			}
 
 		private:
 			math::float3 GetRaycastPosition(
 				const math::float3& current_position) const;
-
 			float3 GetCorrectedPosition(const float3& target_pos) const;
 
 			PlayerAttack GetAttackType(AttackType attack_type);
@@ -118,21 +133,24 @@ namespace Hachiko
 			bool IsAttackOnCooldown() const;
 			bool IsInComboWindow() const;
 
-			const Weapon& GetCurrentWeapon() const;
+			Weapon& GetCurrentWeapon();
 			const PlayerAttack& GetNextAttack();
-			const PlayerAttack& GetCurrentAttack() const;
+			const PlayerAttack& GetCurrentAttack();
 
 			// Input and status management
 			void HandleInputAndStatus();
 			void HandleInputBuffering();
-			Input::MouseButton GetBufferedClick();
+			bool HasBufferedClick();
+			float3 GetBufferedClick();
 			void ResetClickBuffer();
 
 			// Actions called by handle input
 			void Dash();
 			void CorrectDashDestination(const float3& dash_source, float3& dash_destination);
+			void StoreDashOrigin(const float3& dash_origin);
+			float3 GetLastValidDashOrigin();
 			void MeleeAttack();
-			void ChangeGOWeapon();
+			void ChangeWeapon(unsigned weapon_idx);
 			void RangedAttack();
 			void CancelAttack();
 			float4x4 GetMeleeAttackOrigin(float attack_range) const;
@@ -156,7 +174,7 @@ namespace Hachiko
 
 		public:
 			SERIALIZE_FIELD(PlayerState, _state);
-			SERIALIZE_FIELD(PlayerState, _previous_state);
+			PlayerState _previous_state = PlayerState::INVALID;
 			float3 _initial_pos = float3::zero;
 
 			SERIALIZE_FIELD(GameObject*, _sword_weapon);
@@ -171,7 +189,7 @@ namespace Hachiko
 			SERIALIZE_FIELD(GameObject*, _attack_indicator);
 			SERIALIZE_FIELD(GameObject*, _bullet_emitter);
 			SERIALIZE_FIELD(GameObject*, _goal);
-			SERIALIZE_FIELD(GameObject*, _geo);
+			SERIALIZE_FIELD(GameObject*, _player_geometry);
 
 			SERIALIZE_FIELD(float, _dash_duration);
 			SERIALIZE_FIELD(float, _dash_distance);
@@ -183,11 +201,14 @@ namespace Hachiko
 			SERIALIZE_FIELD(float, _trail_enlarger);
 			SERIALIZE_FIELD(GameObject*, _falling_dust);
 			SERIALIZE_FIELD(GameObject*, _walking_dust);
+			SERIALIZE_FIELD(GameObject*, _heal_effect);
 
 			const float _ranged_attack_cooldown = 0.2f;
 			const float _combo_grace_period = 0.4f;
 
 			SERIALIZE_FIELD(float, _rotation_duration);
+
+			SERIALIZE_FIELD(GameObject*, _death_screen);
 
 			SERIALIZE_FIELD(GameObject*, _hp_cell_1);
 			SERIALIZE_FIELD(GameObject*, _hp_cell_2);
@@ -202,23 +223,31 @@ namespace Hachiko
 			std::vector<GameObject*> ammo_cells;
 			int _ammo_count;
 
+			SERIALIZE_FIELD(GameObject*, _sword_ui_addon);
+			SERIALIZE_FIELD(GameObject*, _maze_ui_addon);
+			SERIALIZE_FIELD(GameObject*, _claw_ui_addon);
+
+			SERIALIZE_FIELD(GameObject*, _weapon_charge_bar_go);
+			ComponentProgressBar* _weapon_charge_bar = nullptr;
+
 			SERIALIZE_FIELD(GameObject*, _camera);
 			SERIALIZE_FIELD(GameObject*, _ui_damage);
 
-			
-
 			ComponentTransform* _player_transform = nullptr;
-			ComponentAnimation* animation;
-			ComponentParticleSystem* _falling_dust_particles;
-			ComponentParticleSystem* _walking_dust_particles;
-
+			ComponentAnimation* animation = nullptr;
+			ComponentParticleSystem* _falling_dust_particles = nullptr;
+			ComponentParticleSystem* _walking_dust_particles = nullptr;
+			ComponentParticleSystem* _heal_effect_particles_1 = nullptr;
+			ComponentParticleSystem* _heal_effect_particles_2 = nullptr;
+			
 			std::vector<Weapon> weapons{};
 
 			// Internal state variables
 
 			// Input buffer
 			// Use for combo for now, reset when combo ends
-			std::queue<Input::MouseButton> click_buffer{};
+			std::queue<float3> click_buffer{};
+			bool dash_buffer = false;
 
 			// Dash management
 			unsigned _dash_charges = 2;
@@ -228,6 +257,8 @@ namespace Hachiko
 			float3 _dash_start = float3::zero;
 			float3 _dash_end = float3::zero;
 			float3 _dash_direction = float3::zero;
+			const unsigned max_dashed_from_positions = 5;
+			std::deque<float3> dashed_from_positions;
 
 			float3 _trail_start_pos = float3::zero;
 			float3 _trail_start_scale = float3::zero;
@@ -244,7 +275,10 @@ namespace Hachiko
 			int _current_bullet = -1;
 			unsigned _attack_idx = 0;
 			unsigned _current_weapon = 0;
+			unsigned _attack_charges = 0;
 			float _invulnerability_time_remaining = 0.0f;
+			float _pickUp_duration = 0.5f;
+			float pickUp_time = _pickUp_duration;
 
 			// Movement management
 			float _stun_time = 0.0f;

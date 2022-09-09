@@ -173,18 +173,96 @@ void Hachiko::TextureBatch::BuildBatch(unsigned component_count)
         glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
     }
 
-    material_buffer_data = static_cast<Material*>(App->program->CreatePersistentBuffers(material_buffer, static_cast<int>(ModuleProgram::BINDING::MATERIAL), 2 * component_count * sizeof(Material)));
+    //glDeleteBuffers(1, &material_buffer);
+    material_buffer_data = static_cast<Material*>(
+        App->program->CreatePersistentBuffers(material_buffer, static_cast<int>(ModuleProgram::BINDING::MATERIAL), BatchingProperties::MAX_SEGMENTS * component_count * sizeof(Material)));
 
     loaded = true;
 }
 
-void Hachiko::TextureBatch::Draw(const Program* program, const std::vector<const ComponentMeshRenderer*>& components, bool use_first_segment, unsigned component_count)
+void Hachiko::TextureBatch::UpdateBatch(int segment, const std::vector<const ComponentMeshRenderer*>& components, unsigned component_count)
 {
-    GenerateMaterials(components);
-    UpdateBuffers(use_first_segment, component_count);
+    // Update material data
+    materials.clear();
+    materials.resize(components.size());
 
-    BindTextures(program);
-    BindBuffers(use_first_segment, component_count);
+    size_t offset = component_count * segment;
+    
+    for (unsigned i = 0; i < components.size(); ++i)
+    {
+        const ResourceMaterial* material = components[i]->GetResourceMaterial();
+
+        if (!material)
+        {
+            continue;
+        }
+
+        materials[i].diffuse_color = material->diffuse_color;
+        materials[i].specular_color = material->specular_color;
+        materials[i].emissive_color = material->emissive_color;
+        materials[i].tint_color = components[i]->GetTintColor();
+        materials[i].diffuse_flag = material->HasDiffuse();
+        materials[i].specular_flag = material->HasSpecular();
+        materials[i].normal_flag = material->HasNormal();
+        materials[i].metallic_flag = material->HasMetalness();
+        materials[i].emissive_flag = material->HasEmissive();
+
+        if (materials[i].diffuse_flag)
+        {
+            materials[i].diffuse_map = (*resources[material->diffuse]);
+        }
+        if (materials[i].specular_flag)
+        {
+            materials[i].specular_map = (*resources[material->specular]);
+        }
+        if (materials[i].normal_flag)
+        {
+            materials[i].normal_map = (*resources[material->normal]);
+        }
+        if (materials[i].metallic_flag)
+        {
+            materials[i].metallic_map = (*resources[material->metalness]);
+        }
+        if (materials[i].emissive_flag)
+        {
+            materials[i].emissive_map = (*resources[material->emissive]);
+        }
+
+        materials[i].smoothness = material->smoothness;
+        materials[i].metalness_value = material->metalness_value;
+        materials[i].is_metallic = material->is_metallic;
+        materials[i].is_transparent = material->is_transparent;
+
+        if (components[i]->OverrideMaterialActive())
+        {
+            materials[i].emissive_flag = 0;
+            materials[i].emissive_color = components[i]->GetOverrideEmissiveColor();
+        }
+
+        // Copy material to persistent buffer:
+        material_buffer_data[offset + i] = materials[i];
+    }
+}
+
+void Hachiko::TextureBatch::BindBatch(int segment, const Program* program, unsigned component_count)
+{
+    // Bind textures
+    const std::vector<int> texture_slots = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
+    program->BindUniformInts("allMyTextures", texture_arrays.size(), &texture_slots[0]);
+
+    for (unsigned i = 0; i < texture_arrays.size(); ++i)
+    {
+        glActiveTexture(GL_TEXTURE10 + i);
+        glBindTexture(GL_TEXTURE_2D_ARRAY, texture_arrays[i]->id);
+    }
+
+    // Bind persistent buffers
+    glBindBuffer(GL_ARRAY_BUFFER, material_buffer);
+    glBindBufferRange(GL_SHADER_STORAGE_BUFFER,
+                      static_cast<int>(ModuleProgram::BINDING::MATERIAL),
+                      material_buffer,
+                      (component_count * sizeof(Material)) * segment,
+                      component_count * sizeof(Material));
 }
 
 void Hachiko::TextureBatch::ImGuiWindow()
@@ -232,102 +310,6 @@ void Hachiko::TextureBatch::ImGuiWindow()
                 ImGui::Text(resource.first->path.c_str());
             }
         }
-    }
-}
-
-void Hachiko::TextureBatch::GenerateMaterials(const std::vector<const ComponentMeshRenderer*>& components)
-{
-    materials.resize(components.size());
-
-    for (unsigned i = 0; i < components.size(); ++i)
-    {
-        const ResourceMaterial* material = components[i]->GetResourceMaterial();
-
-        if (!material)
-        {
-            continue;
-        }
-
-        materials[i].diffuse_color = material->diffuse_color;
-        materials[i].specular_color = material->specular_color;
-        materials[i].emissive_color = material->emissive_color;
-        materials[i].diffuse_flag = material->HasDiffuse();
-        materials[i].specular_flag = material->HasSpecular();
-        materials[i].normal_flag = material->HasNormal();
-        materials[i].metallic_flag = material->HasMetalness();
-        materials[i].emissive_flag = material->HasEmissive();
-
-        if (materials[i].diffuse_flag)
-        {
-            materials[i].diffuse_map = (*resources[material->diffuse]);
-        }
-        if (materials[i].specular_flag)
-        {
-            materials[i].specular_map = (*resources[material->specular]);
-        }
-        if (materials[i].normal_flag)
-        {
-            materials[i].normal_map = (*resources[material->normal]);
-        }
-        if (materials[i].metallic_flag)
-        {
-            materials[i].metallic_map = (*resources[material->metalness]);
-        }
-        if (materials[i].emissive_flag)
-        {
-            materials[i].emissive_map = (*resources[material->emissive]);
-        }
-
-        materials[i].smoothness = material->smoothness;
-        materials[i].metalness_value = material->metalness_value;
-        materials[i].is_metallic = material->is_metallic;
-        materials[i].smoothness_alpha = material->smoothness_alpha;
-        materials[i].is_transparent = material->is_transparent;
-        materials[i].tint_color = components[i]->GetTintColor();
-
-        if (components[i]->OverrideMaterialActive())
-        {
-            materials[i].emissive_flag = 0;
-            materials[i].emissive_color = components[i]->GetOverrideEmissiveColor();
-        }
-    }
-}
-
-void Hachiko::TextureBatch::UpdateBuffers(bool use_first_segment, unsigned component_count)
-{
-    if (use_first_segment)
-    {
-        memcpy(material_buffer_data, materials.data(), materials.size() * sizeof(Material));
-    }
-    else
-    {
-        memcpy(&material_buffer_data[component_count], materials.data(), materials.size() * sizeof(Material));
-    }
-}
-
-void Hachiko::TextureBatch::BindTextures(const Program* program)
-{
-    const std::vector<int> texture_slots = { 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
-    program->BindUniformInts("allMyTextures", texture_arrays.size(), &texture_slots[0]);
-
-    for (unsigned i = 0; i < texture_arrays.size(); ++i)
-    {
-        glActiveTexture(GL_TEXTURE4 + i);
-        glBindTexture(GL_TEXTURE_2D_ARRAY, texture_arrays[i]->id);
-    }
-}
-
-void Hachiko::TextureBatch::BindBuffers(bool use_first_segment, int component_count)
-{
-    if (use_first_segment)
-    {
-        glBindBuffer(GL_ARRAY_BUFFER, material_buffer);
-        glBindBufferRange(GL_SHADER_STORAGE_BUFFER, static_cast<int>(ModuleProgram::BINDING::MATERIAL), material_buffer, 0, component_count * sizeof(Material));
-    }
-    else
-    {
-        glBindBuffer(GL_ARRAY_BUFFER, material_buffer);
-        glBindBufferRange(GL_SHADER_STORAGE_BUFFER, static_cast<int>(ModuleProgram::BINDING::MATERIAL), material_buffer, component_count * sizeof(Material), component_count * sizeof(Material));
     }
 }
 

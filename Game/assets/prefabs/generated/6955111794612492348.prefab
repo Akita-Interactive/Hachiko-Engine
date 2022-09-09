@@ -6,7 +6,7 @@ component:
     type: 1
     enabled: true
     position: [0, 0, 0]
-    rotation: [0, 0, 0, 1]
+    rotation: [-0, 0, -0]
     scale: [1, 1, 1]
 child:
   - name: StraightStair001
@@ -16,7 +16,7 @@ child:
         type: 1
         enabled: true
         position: [0.4814, -0.4583, -0.5582]
-        rotation: [0.0119, 0.707, 0.707, -0.0119]
+        rotation: [-90, -0, -178.1]
         scale: [1, 1, 1]
       - !<mesh_renderer>
         type: 2

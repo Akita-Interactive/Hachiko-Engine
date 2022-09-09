@@ -27,16 +27,6 @@ PreferenceManager::PreferenceManager(const char* cfg)
     preferences.emplace_back(camera);
     preferences.emplace_back(resources);
     preferences.emplace_back(audio);
-
-    if (std::filesystem::exists(config_file.c_str()))
-    {
-        nodes_vec = YAML::LoadAllFromFile(config_file);
-        LoadConfigurationFile();
-    }
-    else
-    {
-        std::filesystem::create_directory(SETTINGS_FOLDER);
-    }
 }
 
 PreferenceManager::~PreferenceManager()
@@ -46,6 +36,21 @@ PreferenceManager::~PreferenceManager()
         delete it;
     }
     preferences.clear();
+}
+
+bool Hachiko::PreferenceManager::Init()
+{
+    if (std::filesystem::exists(config_file.c_str()))
+    {
+        nodes_vec = YAML::LoadAllFromFile(config_file);
+        LoadConfigurationFile();
+    }
+    else
+    {
+        std::filesystem::create_directory(SETTINGS_FOLDER);
+    }
+
+    return true;
 }
 
 void PreferenceManager::LoadConfigurationFile() const

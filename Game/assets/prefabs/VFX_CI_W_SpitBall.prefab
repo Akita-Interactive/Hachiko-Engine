@@ -1,0 +1,30 @@
+prefab_name: VFX_CI_W_SpitBall
+name: VFX_CI_W_SpitBall
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 1.035, 7.313]
+    rotation: [0, 0, 0, 1]
+    scale: [1, 1, 1]
+  - !<billboard>
+    type: 21
+    enabled: true
+    play_on_awake: true
+    texture_id: 9624166589911938546
+    tiles: [1, 1]
+    flip: [false, false]
+    billboard_lifetime: 5
+    properties: [1, 0, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+    animation_speed: 0
+    total_tiles: 1
+    animation_loop: true
+    color_cycles: 1
+    color_gradient: [[0, 1, 0.1503, 0, 1]]
+    animation_section: false
+    color_section: true
+    start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+    start_size: [true, true, 0, [3, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+    start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+    blend_factor: 0

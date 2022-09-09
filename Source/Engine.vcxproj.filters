@@ -666,6 +666,27 @@
     <ClCompile Include="vendors\OpenSimplex\OpenSimplex2S.cpp">
       <Filter>Vendors\OpenSimplex</Filter>
     </ClCompile>
+    <ClCompile Include="src\components\ComponentVideo.cpp">
+      <Filter>Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resources\ResourceVideo.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\rendering\ShadowManager.cpp">
+      <Filter>Core\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\rendering\ShadowMappingProperties.cpp">
+      <Filter>Core\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\rendering\StandaloneGLTexture.cpp">
+      <Filter>Core\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\rendering\BloomManager.cpp">
+      <Filter>Core\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\rendering\BlurPixelSize.cpp">
+      <Filter>Core\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vendors\imgui\imgui_impl_opengl3.h">
@@ -2507,6 +2528,51 @@
     <ClInclude Include="src\utils\RandomUtilDefinitions.h">
       <Filter>Core\Util</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\ComponentVideo.h">
+      <Filter>Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resources\ResourceVideo.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\widgets\Input.h">
+      <Filter>UI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\rendering\ShadowManager.h">
+      <Filter>Core\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\rendering\ShadowMappingProperties.h">
+      <Filter>Core\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\rendering\StandaloneGLTexture.h">
+      <Filter>Core\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\rendering\Uniforms.h">
+      <Filter>Core\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Batching\BatchingProperties.h">
+      <Filter>Core\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\rendering\BloomManager.h">
+      <Filter>Core\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\rendering\BlurPixelSize.h">
+      <Filter>Core\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\MathUtil.h">
+      <Filter>Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\widgets\ColorEdit4.h">
+      <Filter>UI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\widgets\Label.h">
+      <Filter>UI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\widgets\RadioButton.h">
+      <Filter>UI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\widgets\SliderFloat.h">
+      <Filter>UI\Widgets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -3112,6 +3178,7 @@
     <None Include="vendors\imgui-node-editor-0.9\NodeEditor\Source\imgui_node_editor_internal.inl">
       <Filter>Vendors\NodeEditor</Filter>
     </None>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Hachiko.rc" />

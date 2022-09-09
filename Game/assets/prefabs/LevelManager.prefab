@@ -1,0 +1,138 @@
+prefab_name: LevelManager
+name: LevelManager
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [0, 0, 0, 1]
+    scale: [1, 1, 1]
+  - !<script>
+    type: 15
+    enabled: true
+    class_name: LevelManager
+    "'_respawn_position@float3'": [-80.79, 3.33, -57.33]
+    "'_gauntlet_ui_go@GameObject*'": 5
+    "'_gauntlet_counter_go@GameObject*'": 7
+child:
+  - name: Goal
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-39.62, -22.35, -80.62]
+        rotation: [0, 0, 0, 1]
+        scale: [1.1, 1.1, 1.1]
+    child:
+      - name: cube
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [0.9091, 0.9091, 0.9091]
+        child:
+          - name: Box001
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-0.7071, 0, 0, 0.7071]
+                scale: [1, 1, 1]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 1654487118907036717
+                navigable: false
+                visible: true
+                material_id: 6750369022920963075
+                tint_color: [1, 1, 1, 1]
+  - name: GauntletUI
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [1, 1, 1]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [0, 0, 0]
+        size: [1189, 681]
+        scale: [1, 1]
+        rotation: [0, 0, 0, 1]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas>
+        type: 8
+        enabled: true
+    child:
+      - name: Icon
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<transform_2d>
+            type: 10
+            enabled: true
+            position: [-480, -260, 0]
+            size: [65, 65]
+            scale: [1, 1]
+            rotation: [0, 0, 0, 1]
+            pivot: [0.5, 0.5]
+            anchor: [0.5, 0.5]
+          - !<canvas_renderer>
+            type: 9
+            enabled: true
+          - !<image>
+            type: 11
+            enabled: true
+            image_id: 3566589708735269996
+            hover_image_id: 0
+            image_color: [1, 1, 1, 1]
+            hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
+            fill_window: false
+      - name: Counter
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<transform_2d>
+            type: 10
+            enabled: true
+            position: [-430, 255.8, 0]
+            size: [10, 40]
+            scale: [1, 1]
+            rotation: [0, 0, 0, 1]
+            pivot: [0.5, 0.5]
+            anchor: [0.5, 0.5]
+          - !<canvas_renderer>
+            type: 9
+            enabled: true
+          - !<text>
+            type: 16
+            enabled: true
+            font_id: 15852548707070218669
+            color: [0.935, 0.1368, 0.1368, 1]
+            size: 28
+            label_text: 0

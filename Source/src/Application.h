@@ -38,11 +38,17 @@ namespace Hachiko
         ~Application();
 
         bool Init();
-        UpdateStatus Update();
-
         bool CleanUp();
 
+        UpdateStatus Update();
+
+        void MarkAsQuitting(bool value);
+
         static void RequestBrowser(const char* url);
+
+    private:
+        [[nodiscard]] UpdateStatus ReturnStatusWithQuit(UpdateStatus status) const;
+        [[nodiscard]] bool ReturnStatusWithQuit(bool status) const;
 
     public:
         ModuleRender* renderer = nullptr;
@@ -67,6 +73,7 @@ namespace Hachiko
 
     private:
         PerformanceTimer timer;
+        bool should_quit = false;
 
         double delta = 0;
         double prev_tick_time = 0;

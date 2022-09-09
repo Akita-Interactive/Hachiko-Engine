@@ -6,7 +6,7 @@ component:
     type: 1
     enabled: true
     position: [0, 0, 0]
-    rotation: [0, 0, 0, 1]
+    rotation: [-0, 0, -0]
     scale: [1, 1, 1]
 child:
   - name: Ramp001
@@ -16,7 +16,7 @@ child:
         type: 1
         enabled: true
         position: [0.5, -0.2165, 0.3778]
-        rotation: [0.6124, 0.3536, -0.6124, -0.3536]
+        rotation: [-120, -90, 0]
         scale: [1, 1, 1]
       - !<mesh_renderer>
         type: 2

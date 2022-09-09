@@ -27,14 +27,18 @@ component:
     enabled: true
     class_name: EnemyController
     "'_aggro_range@int'": 10
-    "'_attack_range@int'": 8
+    "'_attack_range@float'": 3
+    "'_attack_delay@float'": 0.3
+    "'_idle_cooldown@float'": 2
     "'_spawn_pos@float3'": [0, 0, 0]
     "'_spawn_is_initial@bool'": true
     "'_player@GameObject*'": 0
     "'_enemy_body@GameObject*'": 42
     "'_parasite@GameObject*'": 44
+    "'_blood_trail@GameObject*'": 0
     "'_audio_manager_game_object@GameObject*'": 0
     "'_already_in_combat@bool'": false
+    "'_is_from_gautlet@bool'": false
     "'_attack_animation_duration@float'": 1
     "'_attack_animation_timer@float'": 0
     "'_is_ranged_attack@bool'": true
@@ -48,11 +52,6 @@ component:
     "'_move_speed@float'": 7
     "'_max_hp@int'": 2
     "'_current_hp@int'": 3
-  - !<obstacle>
-    type: 18
-    enabled: true
-    obstacle_type: 1
-    obstacle_size: [1, 1, 5]
 child:
   - name: Main_root
     enabled: true
@@ -504,3 +503,74 @@ child:
             visible: true
             material_id: 3003390711770185065
             tint_color: [1, 1, 1, 1]
+  - name: BloodTrail
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [0.25, 0.25, 0.25]
+      - !<particle_system>
+        type: 22
+        enabled: true
+        sections:
+          parameters: true
+          emission: true
+          shape: true
+          lights: false
+          renderer: true
+        parameters:
+          duration: 0.75
+          loop: false
+          life: [true, true, 0, [0.75, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          speed: [true, true, 0, [0, 5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 0, [25, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rotation: [true, true, 1, [0, 360], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        emission:
+          rate: [true, true, 0, [0, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rate_burst: [true, true, 0, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          burst: true
+        emitter_shape:
+          type: 0
+          properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [1, 1, 1], 0.5]
+        texture:
+          texture_id: 16529898061671093590
+          tiles: [4, 2]
+          flip: [false, false]
+          total_tiles: 8
+        modifiers:
+          velocity:
+            active: false
+            speed: [true, true, 0, [0, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size:
+            active: true
+            size: [true, true, 0, [1, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          color:
+            active: false
+            color_gradient: [[0, 0, 0, 0, 0], [1, 1, 1, 0, 0.9855]]
+            color_cycles: 1
+          force:
+            active: false
+            rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            x_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            y_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            z_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          animation:
+            active: true
+            animation_speed: 0.1
+            blend_factor: 1
+            fit_to_lifetime: false
+          noise:
+            active: false
+            separate_axes: false
+            strength:
+              x: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              y: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              z: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            position: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]

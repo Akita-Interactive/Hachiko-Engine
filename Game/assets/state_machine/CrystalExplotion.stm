@@ -4,6 +4,20 @@ clips:
   - clip_name: Crashing
     clips_id: 9087701207749168962
     clips_loop: false
+  - clip_name: Regen
+    clips_id: 9308798761637020156
+    clips_loop: false
 nodes:
   - node_name: Crashing
     node_clip_name: Crashing
+  - node_name: Regen
+    node_clip_name: Regen
+transitions:
+  - transition_source: Crashing
+    transition_target: Regen
+    transition_trigger: Regen
+    transition_blend: 300
+  - transition_source: Regen
+    transition_target: Crashing
+    transition_trigger: Destroy
+    transition_blend: 300

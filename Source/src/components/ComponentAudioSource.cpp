@@ -30,8 +30,10 @@ void Hachiko::ComponentAudioSource::OnTransformUpdated()
     const float3& front = transform->GetFront();
     const float3& up = transform->GetUp();
 
+    const float3 reverse = (front * -1).Normalized();
+
     source_transform->Set(pos.x, pos.y, pos.z,
-                          front.x, front.y, front.z,
+                          reverse.x, reverse.y, reverse.z,
                           up.x, up.y, up.z);
 
     AK::SoundEngine::SetPosition(source_id, *source_transform);
@@ -46,9 +48,9 @@ void Hachiko::ComponentAudioSource::DrawGui()
 {
     ImGui::PushID(this);
 
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Audio Source"))
+    if (ImGuiUtils::CollapsingHeader(this, "Audio source"))
     {
-        ImGui::Text("Now you can call events to be played ^-^");
+        ImGui::TextWrapped("Now you can call events to be played ^-^");
     }
 
     ImGui::PopID();

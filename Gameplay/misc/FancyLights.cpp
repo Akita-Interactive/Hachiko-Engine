@@ -6,9 +6,9 @@ Hachiko::Scripting::FancyLights::FancyLights(Hachiko::GameObject* game_object)
 	, _radius(0.0f)
 	, _distance(0.0f)
 	, _speed(0.0f)
-	, _angle(0.0f)
 	, _rotate_on_y(false)
-	, _point_light(nullptr)
+    , _angle(0.0f)
+    , _point_light(nullptr)
 {
 }
 

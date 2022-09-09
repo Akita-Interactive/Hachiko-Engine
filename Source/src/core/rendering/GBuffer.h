@@ -13,9 +13,17 @@ public:
     void Resize(int width, int height) const;
     void BlitDepth(unsigned int target_buffer_id, int widht, int height) const;
     void BindTextures() const;
+    void UnbindTextures() const;
     void BindForReading() const;
     void BindForDrawing() const;
+    void BindFogTextures() const;
+    void UnbindFogTextures() const;
     [[nodiscard]] bool IsGenerated() const;
+
+    [[nodiscard]] unsigned int GetEmissiveTexture() const;
+    [[nodiscard]] static unsigned int GetEmissiveTextureType();
+    [[nodiscard]] static unsigned int GetEmissiveTextureFormat();
+    [[nodiscard]] static unsigned int GetEmissiveTextureInternalFormat();
 
 private:
     unsigned _g_buffer = 0;
@@ -33,4 +41,8 @@ inline bool GBuffer::IsGenerated() const
     return _is_generated;
 }
 
+inline unsigned int GBuffer::GetEmissiveTexture() const
+{
+    return _emissive_texture;
+}
 } // namespace Hachiko

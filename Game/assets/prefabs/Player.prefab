@@ -5,9 +5,9 @@ component:
   - !<transform>
     type: 1
     enabled: true
-    position: [4.961, -0.0154, -14.29]
+    position: [-84.74, 3.466, -56.32]
     rotation: [0, 0.886, 0, -0.4636]
-    scale: [0.4483, 0.45, 0.4483]
+    scale: [0.4418, 0.45, 0.4418]
   - !<animation>
     type: 14
     enabled: true
@@ -23,8 +23,8 @@ component:
     "'_claw_weapon@GameObject*'": 14
     "'_attack_indicator@GameObject*'": 192
     "'_bullet_emitter@GameObject*'": 0
-    "'_goal@GameObject*'": 191
-    "'_geo@GameObject*'": 2
+    "'_goal@GameObject*'": 0
+    "'_player_geometry@GameObject*'": 2
     "'_dash_duration@float'": 0.15
     "'_dash_distance@float'": 6
     "'_dash_cooldown@float'": 0.5
@@ -35,15 +35,21 @@ component:
     "'_trail_enlarger@float'": 8
     "'_falling_dust@GameObject*'": 196
     "'_walking_dust@GameObject*'": 195
+    "'_heal_effect@GameObject*'": 197
     "'_rotation_duration@float'": 0.075
-    "'_hp_cell_1@GameObject*'": 0
-    "'_hp_cell_2@GameObject*'": 0
-    "'_hp_cell_3@GameObject*'": 0
-    "'_hp_cell_4@GameObject*'": 0
-    "'_ammo_cell_1@GameObject*'": 0
-    "'_ammo_cell_2@GameObject*'": 0
-    "'_ammo_cell_3@GameObject*'": 0
-    "'_ammo_cell_4@GameObject*'": 0
+    "'_death_screen@GameObject*'": 0
+    "'_hp_cell_1@GameObject*'": 211
+    "'_hp_cell_2@GameObject*'": 212
+    "'_hp_cell_3@GameObject*'": 213
+    "'_hp_cell_4@GameObject*'": 214
+    "'_ammo_cell_1@GameObject*'": 206
+    "'_ammo_cell_2@GameObject*'": 207
+    "'_ammo_cell_3@GameObject*'": 208
+    "'_ammo_cell_4@GameObject*'": 209
+    "'_sword_ui_addon@GameObject*'": 203
+    "'_maze_ui_addon@GameObject*'": 218
+    "'_claw_ui_addon@GameObject*'": 219
+    "'_weapon_charge_bar_go@GameObject*'": 215
     "'_camera@GameObject*'": 0
     "'_ui_damage@GameObject*'": 0
   - !<script>
@@ -65,6 +71,14 @@ component:
     "'_move_speed@float'": 7
     "'_max_hp@int'": 4
     "'_current_hp@int'": 4
+  - !<agent>
+    type: 17
+    enabled: true
+    max_speed: 5
+    max_acceleration: 2
+    avoid_obstacles: false
+    radius: 1
+    is_player: true
 child:
   - name: GEO
     enabled: true
@@ -1013,7 +1027,7 @@ child:
                                     enabled: true
                                     position: [0, 0, 0]
                                     rotation: [0.2065, -0.119, 0.8415, 0.4848]
-                                    scale: [0.9946, 0.9946, 1]
+                                    scale: [0.9881, 0.9881, 1]
                                 child:
                                   - name: CenterShoulder_$AssimpFbx$_Rotation
                                     enabled: true
@@ -1281,7 +1295,7 @@ child:
                                                                                                             enabled: true
                                                                                                             position: [0, 0, 0]
                                                                                                             rotation: [0, 0.9999, 0, 0.0118]
-                                                                                                            scale: [0.9946, 1, 0.9946]
+                                                                                                            scale: [0.9881, 1, 0.9881]
                                                                                                         child:
                                                                                                           - name: Claw_Jnt
                                                                                                             enabled: true
@@ -1311,7 +1325,7 @@ child:
                                                                                                                         enabled: true
                                                                                                                         position: [0, 0, 0]
                                                                                                                         rotation: [0, 0.9999, 0, -0.0118]
-                                                                                                                        scale: [0.9946, 1, 0.9946]
+                                                                                                                        scale: [0.9881, 1, 0.9881]
                                                                                                                     child:
                                                                                                                       - name: Claw_Mid_Jnt
                                                                                                                         enabled: true
@@ -1341,7 +1355,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [0, -0.7329, 0, 0.6803]
-                                                                                                                                    scale: [0.9947, 1, 0.9947]
+                                                                                                                                    scale: [0.9882, 1, 0.9882]
                                                                                                                                 child:
                                                                                                                                   - name: Thumb_Start_$AssimpFbx$_Rotation
                                                                                                                                     enabled: true
@@ -1569,7 +1583,7 @@ child:
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
                                                                                                                                     rotation: [0, 0.9979, 0, 0.0641]
-                                                                                                                                    scale: [0.9892, 1, 0.9892]
+                                                                                                                                    scale: [0.9762, 1, 0.9762]
                                                                                                                                 child:
                                                                                                                                   - name: Index_start_$AssimpFbx$_Rotation
                                                                                                                                     enabled: true
@@ -1609,7 +1623,7 @@ child:
                                                                                                                                                     enabled: true
                                                                                                                                                     position: [0, 0, 0]
                                                                                                                                                     rotation: [0, 0.9979, 0, -0.0641]
-                                                                                                                                                    scale: [0.9892, 1, 0.9892]
+                                                                                                                                                    scale: [0.9762, 1, 0.9762]
                                                                                                                                                 child:
                                                                                                                                                   - name: Index_finish_$AssimpFbx$_Rotation
                                                                                                                                                     enabled: true
@@ -1795,8 +1809,8 @@ child:
                                     type: 1
                                     enabled: true
                                     position: [0, 0, 0]
-                                    rotation: [-0.3566, -0.5758, -0.3468, 0.6489]
-                                    scale: [0.9973, 1, 0.9973]
+                                    rotation: [-0.3566, -0.5758, -0.3468, 0.6488]
+                                    scale: [0.9941, 1, 0.9941]
                                 child:
                                   - name: JetPack_$AssimpFbx$_Rotation
                                     enabled: true
@@ -1975,7 +1989,7 @@ child:
                 rotation: [0, 0, 0, 1]
                 scale: [1, 1, 1]
   - name: Goal
-    enabled: true
+    enabled: false
     component:
       - !<transform>
         type: 1
@@ -2042,7 +2056,7 @@ child:
           loop: true
           life: [true, true, 1, [0.2, 0.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           speed: [true, true, 1, [1, 2], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          size: [true, true, 1, [2, 5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 1, [1, 2.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           rotation: [true, true, 1, [0, 360], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
@@ -2113,7 +2127,7 @@ child:
           loop: false
           life: [true, true, 1, [0.5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           speed: [true, true, 1, [1, 2], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          size: [true, true, 1, [3, 6], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 1, [1.5, 3], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           rotation: [true, true, 1, [0, 360], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
@@ -2161,3 +2175,842 @@ child:
             position: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+  - name: Heal_VFX
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0.886, 0, 0.4636]
+        scale: [2, 2, 2]
+      - !<particle_system>
+        type: 22
+        enabled: true
+        sections:
+          parameters: true
+          emission: true
+          shape: true
+          lights: false
+          renderer: true
+        parameters:
+          duration: 0.5
+          loop: false
+          life: [true, true, 1, [0.1, 0.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          speed: [true, true, 1, [80, 150], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 1, [1.5, 3], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          properties: [1, 3, 0, false, [false, false, 1, [0.2, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        emission:
+          rate: [true, true, 0, [100, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          burst: false
+        emitter_shape:
+          type: 0
+          properties: [360, 0, [0, 0, 0], 2, 0, [0, 0, 0], [1, 1, 1], 2]
+        texture:
+          tiles: [1, 0]
+          flip: [false, false]
+          total_tiles: 1
+        modifiers:
+          velocity:
+            active: true
+            speed: [true, true, 0, [-100, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size:
+            active: false
+            size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          color:
+            active: true
+            color_gradient: [[0.1098, 0.5529, 0, 0, 0], [1, 1, 1, 0, 0.9026], [0, 0, 0, 0, 0.9813]]
+            color_cycles: 1
+          force:
+            active: false
+            rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            x_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            y_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            z_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          animation:
+            active: false
+            animation_speed: 0
+            blend_factor: 0
+            fit_to_lifetime: false
+          noise:
+            active: false
+            separate_axes: false
+            strength:
+              x: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              y: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              z: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            position: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+    child:
+      - name: Heal_VFX_Sparkle
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<particle_system>
+            type: 22
+            enabled: true
+            sections:
+              parameters: true
+              emission: true
+              shape: true
+              lights: false
+              renderer: true
+            parameters:
+              duration: 0.5
+              loop: false
+              life: [true, true, 1, [0.2, 0.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              speed: [true, true, 1, [50, 100], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size: [true, true, 1, [1.5, 3], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              delay: [true, false, 0, [0.2, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              properties: [1, 3, 0, false, [false, false, 1, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            emission:
+              rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              burst: false
+            emitter_shape:
+              type: 0
+              properties: [360, 0, [0, 0, 0], 2, 0, [0, 0, 0], [1, 1, 1], 2]
+            texture:
+              texture_id: 3291545039621372658
+              tiles: [2, 1]
+              flip: [false, false]
+              total_tiles: 2
+            modifiers:
+              velocity:
+                active: true
+                speed: [true, true, 2, [0, 0], 0.001, [0, 0], [0.1777, 0.475], [0.4251, 0.85], [0.7422, 1], [1, 1], [0, 0]]
+              size:
+                active: false
+                size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              color:
+                active: true
+                color_gradient: [[0.1961, 1, 0, 0, 0], [0.6065, 0.9653, 0.5189, 0, 0.9101], [0, 0, 0, 0, 0.9738]]
+                color_cycles: 1
+              force:
+                active: false
+                rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                x_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                y_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                z_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              animation:
+                active: false
+                animation_speed: 0
+                blend_factor: 0
+                fit_to_lifetime: false
+              noise:
+                active: false
+                separate_axes: false
+                strength:
+                  x: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                  y: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                  z: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                position: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+  - name: ShootingParticles
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0.7071, 0, 0, 0.7071]
+        scale: [3, 3, 3]
+      - !<particle_system>
+        type: 22
+        enabled: true
+        sections:
+          parameters: true
+          emission: true
+          shape: true
+          lights: false
+          renderer: true
+        parameters:
+          duration: 0.1
+          loop: false
+          life: [true, true, 0, [0.1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          speed: [true, true, 0, [70, 5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 0, [0.5, 0.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        emission:
+          rate: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          burst: true
+        emitter_shape:
+          type: 0
+          properties: [360, 0, [0, 0, 0], 0.5, 0.001, [0, 0, 0], [1, 1, 1], 3]
+        texture:
+          texture_id: 3291545039621372658
+          tiles: [2, 1]
+          flip: [false, false]
+          total_tiles: 1
+        modifiers:
+          velocity:
+            active: false
+            speed: [true, true, 0, [0, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size:
+            active: false
+            size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          color:
+            active: true
+            color_gradient: [[0, 1, 0.1503, 0, 0], [0, 1, 0.0462, 0, 1]]
+            color_cycles: 1
+          force:
+            active: false
+            rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            x_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            y_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            z_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          animation:
+            active: false
+            animation_speed: 0
+            blend_factor: 0
+            fit_to_lifetime: false
+          noise:
+            active: false
+            separate_axes: false
+            strength:
+              x: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              y: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              z: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            position: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+  - name: ChargingParticles
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-0.8439, 2.157, 3.179]
+        rotation: [0, 0.7071, 0.7071, 0]
+        scale: [2, 2, 2]
+      - !<particle_system>
+        type: 22
+        enabled: true
+        sections:
+          parameters: true
+          emission: true
+          shape: true
+          lights: false
+          renderer: true
+        parameters:
+          duration: 0.3
+          loop: false
+          life: [true, true, 0, [0.3, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          speed: [true, true, 0, [-30, 5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 0, [0.25, 0.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        emission:
+          rate: [true, true, 0, [60, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rate_burst: [true, true, 0, [6, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          burst: true
+        emitter_shape:
+          type: 0
+          properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 180, 0], [1, 1, 1], 0.5]
+        texture:
+          tiles: [1, 1]
+          flip: [false, false]
+          total_tiles: 1
+        modifiers:
+          velocity:
+            active: false
+            speed: [true, true, 0, [-40, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size:
+            active: false
+            size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          color:
+            active: true
+            color_gradient: [[0.2312, 1, 0, 0, 0], [0, 0, 0, 0, 0.706], [0, 0, 0, 0, 1]]
+            color_cycles: 1
+          force:
+            active: false
+            rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            x_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            y_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            z_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          animation:
+            active: false
+            animation_speed: 0
+            blend_factor: 0
+            fit_to_lifetime: false
+          noise:
+            active: false
+            separate_axes: false
+            strength:
+              x: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              y: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              z: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            position: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+  - name: HUD_v2
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-426, -24.82, 74.89]
+        rotation: [-0, -0.8216, 0, 0.5701]
+        scale: [5.112, 4.938, 5.112]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [0, 0, 0]
+        size: [1242, 659]
+        scale: [1, 1]
+        rotation: [0, 0, 0, 1]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas>
+        type: 8
+        enabled: true
+    child:
+      - name: HP_Bar
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+        child:
+          - name: SWORD_ADDON
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0, 1]
+                scale: [1, 1, 1]
+              - !<transform_2d>
+                type: 10
+                enabled: true
+                position: [-331, 170, 1]
+                size: [20, 20]
+                scale: [24, 14]
+                rotation: [0, 0, 0, 1]
+                pivot: [0.5, 0.5]
+                anchor: [0.5, 0.5]
+              - !<canvas_renderer>
+                type: 9
+                enabled: true
+              - !<image>
+                type: 11
+                enabled: true
+                image_id: 7250747684639293339
+                hover_image_id: 0
+                image_color: [1, 1, 1, 1]
+                hover_image_color: [1, 1, 1, 1]
+                image_is_tiled: false
+                image_randomize_initial_frame: false
+                image_x_tiles: 1
+                image_y_tiles: 1
+                image_tiles_per_second: 1
+                fill_window: false
+          - name: BASE
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0, 1]
+                scale: [1, 1, 1]
+              - !<transform_2d>
+                type: 10
+                enabled: true
+                position: [-330, 170, 0]
+                size: [20, 20]
+                scale: [24, 14]
+                rotation: [0, 0, 0, 1]
+                pivot: [0.5, 0.5]
+                anchor: [0.5, 0.5]
+              - !<canvas_renderer>
+                type: 9
+                enabled: true
+              - !<image>
+                type: 11
+                enabled: true
+                image_id: 14728578588781681137
+                hover_image_id: 0
+                image_color: [1, 1, 1, 1]
+                hover_image_color: [1, 1, 1, 1]
+                image_is_tiled: false
+                image_randomize_initial_frame: false
+                image_x_tiles: 1
+                image_y_tiles: 1
+                image_tiles_per_second: 1
+                fill_window: false
+            child:
+              - name: Bullets
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                child:
+                  - name: BULLET_CELL_1
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                      - !<transform_2d>
+                        type: 10
+                        enabled: true
+                        position: [-400, 210, 0]
+                        size: [20, 20]
+                        scale: [3, 3]
+                        rotation: [0, 0, 0, 1]
+                        pivot: [0.5, 0.5]
+                        anchor: [0.5, 0.5]
+                      - !<canvas_renderer>
+                        type: 9
+                        enabled: true
+                      - !<image>
+                        type: 11
+                        enabled: true
+                        image_id: 336690227497419917
+                        hover_image_id: 0
+                        image_color: [1, 1, 1, 1]
+                        hover_image_color: [1, 1, 1, 1]
+                        image_is_tiled: false
+                        image_randomize_initial_frame: false
+                        image_x_tiles: 1
+                        image_y_tiles: 1
+                        image_tiles_per_second: 1
+                        fill_window: false
+                  - name: BULLET_CELL_2
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                      - !<transform_2d>
+                        type: 10
+                        enabled: true
+                        position: [-340, 210, 0]
+                        size: [20, 20]
+                        scale: [3, 3]
+                        rotation: [0, 0, 0, 1]
+                        pivot: [0.5, 0.5]
+                        anchor: [0.5, 0.5]
+                      - !<canvas_renderer>
+                        type: 9
+                        enabled: true
+                      - !<image>
+                        type: 11
+                        enabled: true
+                        image_id: 336690227497419917
+                        hover_image_id: 0
+                        image_color: [1, 1, 1, 1]
+                        hover_image_color: [1, 1, 1, 1]
+                        image_is_tiled: false
+                        image_randomize_initial_frame: false
+                        image_x_tiles: 1
+                        image_y_tiles: 1
+                        image_tiles_per_second: 1
+                        fill_window: false
+                  - name: BULLET_CELL_3
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                      - !<transform_2d>
+                        type: 10
+                        enabled: true
+                        position: [-280, 210, 0]
+                        size: [20, 20]
+                        scale: [3, 3]
+                        rotation: [0, 0, 0, 1]
+                        pivot: [0.5, 0.5]
+                        anchor: [0.5, 0.5]
+                      - !<canvas_renderer>
+                        type: 9
+                        enabled: true
+                      - !<image>
+                        type: 11
+                        enabled: true
+                        image_id: 336690227497419917
+                        hover_image_id: 0
+                        image_color: [1, 1, 1, 1]
+                        hover_image_color: [1, 1, 1, 1]
+                        image_is_tiled: false
+                        image_randomize_initial_frame: false
+                        image_x_tiles: 1
+                        image_y_tiles: 1
+                        image_tiles_per_second: 1
+                        fill_window: false
+                  - name: BULLET_CELL_4
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                      - !<transform_2d>
+                        type: 10
+                        enabled: true
+                        position: [-220, 210, 0]
+                        size: [20, 20]
+                        scale: [3, 3]
+                        rotation: [0, 0, 0, 1]
+                        pivot: [0.5, 0.5]
+                        anchor: [0.5, 0.5]
+                      - !<canvas_renderer>
+                        type: 9
+                        enabled: true
+                      - !<image>
+                        type: 11
+                        enabled: true
+                        image_id: 336690227497419917
+                        hover_image_id: 0
+                        image_color: [1, 1, 1, 1]
+                        hover_image_color: [1, 1, 1, 1]
+                        image_is_tiled: false
+                        image_randomize_initial_frame: false
+                        image_x_tiles: 1
+                        image_y_tiles: 1
+                        image_tiles_per_second: 1
+                        fill_window: false
+              - name: Health_capsules
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                child:
+                  - name: Health_capsule_1
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                      - !<transform_2d>
+                        type: 10
+                        enabled: true
+                        position: [-377, 253.9, 0]
+                        size: [20, 20]
+                        scale: [3.6, 2]
+                        rotation: [0, 0, 0, 1]
+                        pivot: [0.5, 0.5]
+                        anchor: [0.5, 0.5]
+                      - !<canvas_renderer>
+                        type: 9
+                        enabled: true
+                      - !<image>
+                        type: 11
+                        enabled: true
+                        image_id: 15478304056567162071
+                        hover_image_id: 0
+                        image_color: [1, 1, 1, 1]
+                        hover_image_color: [1, 1, 1, 1]
+                        image_is_tiled: true
+                        image_randomize_initial_frame: true
+                        image_x_tiles: 7
+                        image_y_tiles: 2
+                        image_tiles_per_second: 14
+                        fill_window: false
+                  - name: Health_capsule_2
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                      - !<transform_2d>
+                        type: 10
+                        enabled: true
+                        position: [-304, 253.9, 0]
+                        size: [20, 20]
+                        scale: [3.6, 2]
+                        rotation: [0, 0, 0, 1]
+                        pivot: [0.5, 0.5]
+                        anchor: [0.5, 0.5]
+                      - !<canvas_renderer>
+                        type: 9
+                        enabled: true
+                      - !<image>
+                        type: 11
+                        enabled: true
+                        image_id: 15478304056567162071
+                        hover_image_id: 0
+                        image_color: [1, 1, 1, 1]
+                        hover_image_color: [1, 1, 1, 1]
+                        image_is_tiled: true
+                        image_randomize_initial_frame: true
+                        image_x_tiles: 7
+                        image_y_tiles: 2
+                        image_tiles_per_second: 14
+                        fill_window: false
+                  - name: Health_capsule_3
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                      - !<transform_2d>
+                        type: 10
+                        enabled: true
+                        position: [-231, 253.9, 0]
+                        size: [20, 20]
+                        scale: [3.6, 2]
+                        rotation: [0, 0, 0, 1]
+                        pivot: [0.5, 0.5]
+                        anchor: [0.5, 0.5]
+                      - !<canvas_renderer>
+                        type: 9
+                        enabled: true
+                      - !<image>
+                        type: 11
+                        enabled: true
+                        image_id: 15478304056567162071
+                        hover_image_id: 0
+                        image_color: [1, 1, 1, 1]
+                        hover_image_color: [1, 1, 1, 1]
+                        image_is_tiled: true
+                        image_randomize_initial_frame: true
+                        image_x_tiles: 7
+                        image_y_tiles: 2
+                        image_tiles_per_second: 14
+                        fill_window: false
+                  - name: Health_capsule_4
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                      - !<transform_2d>
+                        type: 10
+                        enabled: true
+                        position: [-158, 253.9, 0]
+                        size: [20, 20]
+                        scale: [3.6, 2]
+                        rotation: [0, 0, 0, 1]
+                        pivot: [0.5, 0.5]
+                        anchor: [0.5, 0.5]
+                      - !<canvas_renderer>
+                        type: 9
+                        enabled: true
+                      - !<image>
+                        type: 11
+                        enabled: true
+                        image_id: 15478304056567162071
+                        hover_image_id: 0
+                        image_color: [1, 1, 1, 1]
+                        hover_image_color: [1, 1, 1, 1]
+                        image_is_tiled: true
+                        image_randomize_initial_frame: true
+                        image_x_tiles: 7
+                        image_y_tiles: 2
+                        image_tiles_per_second: 14
+                        fill_window: false
+              - name: Stamina
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                  - !<progress_bar>
+                    type: 13
+                    enabled: true
+                    params:
+                      min: 0
+                      max: 1
+                      filled: 1
+                      direction: 0
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [0, 0, 0]
+                    size: [20, 20]
+                    scale: [1, 1]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                child:
+                  - name: Bar Background
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                      - !<transform_2d>
+                        type: 10
+                        enabled: true
+                        position: [1.4, 0.25, 0]
+                        size: [12.5, 0.8]
+                        scale: [1, 1]
+                        rotation: [0, 0, 0, 1]
+                        pivot: [0.5, 0.5]
+                        anchor: [0.5, 0.5]
+                      - !<canvas_renderer>
+                        type: 9
+                        enabled: true
+                      - !<image>
+                        type: 11
+                        enabled: true
+                        image_id: 16846014220398556825
+                        hover_image_id: 0
+                        image_color: [1, 0, 0, 1]
+                        hover_image_color: [1, 1, 1, 1]
+                        image_is_tiled: false
+                        image_randomize_initial_frame: false
+                        image_x_tiles: 1
+                        image_y_tiles: 1
+                        image_tiles_per_second: 1
+                        fill_window: false
+                  - name: Bar Fill
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                      - !<transform_2d>
+                        type: 10
+                        enabled: true
+                        position: [1.4, 0.25, 0]
+                        size: [12.5, 0.8]
+                        scale: [1, 1]
+                        rotation: [0, 0, 0, 1]
+                        pivot: [0.5, 0.5]
+                        anchor: [0.5, 0.5]
+                      - !<canvas_renderer>
+                        type: 9
+                        enabled: true
+                      - !<image>
+                        type: 11
+                        enabled: true
+                        image_id: 16846014220398556825
+                        hover_image_id: 0
+                        image_color: [1, 1, 1, 1]
+                        hover_image_color: [1, 1, 1, 1]
+                        image_is_tiled: false
+                        image_randomize_initial_frame: false
+                        image_x_tiles: 1
+                        image_y_tiles: 1
+                        image_tiles_per_second: 1
+                        fill_window: false
+          - name: MAZE_ADDON
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0, 1]
+                scale: [1, 1, 1]
+              - !<transform_2d>
+                type: 10
+                enabled: true
+                position: [-331.1, 169.1, 0]
+                size: [20, 20]
+                scale: [24, 14]
+                rotation: [0, 0, 0, 1]
+                pivot: [0.5, 0.5]
+                anchor: [0.5, 0.5]
+              - !<canvas_renderer>
+                type: 9
+                enabled: true
+              - !<image>
+                type: 11
+                enabled: true
+                image_id: 14023195895871668462
+                hover_image_id: 0
+                image_color: [1, 1, 1, 1]
+                hover_image_color: [1, 1, 1, 1]
+                image_is_tiled: false
+                image_randomize_initial_frame: false
+                image_x_tiles: 1
+                image_y_tiles: 1
+                image_tiles_per_second: 1
+                fill_window: false
+          - name: CLAW_ADDON
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0, 1]
+                scale: [1, 1, 1]
+              - !<transform_2d>
+                type: 10
+                enabled: true
+                position: [-336, 170, 0]
+                size: [20, 20]
+                scale: [24, 14]
+                rotation: [0, 0, 0, 1]
+                pivot: [0.5, 0.5]
+                anchor: [0.5, 0.5]
+              - !<canvas_renderer>
+                type: 9
+                enabled: true
+              - !<image>
+                type: 11
+                enabled: true
+                image_id: 17147944466834967470
+                hover_image_id: 0
+                image_color: [1, 1, 1, 1]
+                hover_image_color: [1, 1, 1, 1]
+                image_is_tiled: false
+                image_randomize_initial_frame: false
+                image_x_tiles: 1
+                image_y_tiles: 1
+                image_tiles_per_second: 1
+                fill_window: false

@@ -1,0 +1,543 @@
+prefab_name: HUD_v2
+name: HUD_v2
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [-4.598, -7.702, -229.9]
+    rotation: [0, 0.886, 0, 0.4636]
+    scale: [2.26, 2.222, 2.26]
+  - !<transform_2d>
+    type: 10
+    enabled: true
+    position: [0, 0, 0]
+    size: [1133, 630]
+    scale: [1, 1]
+    rotation: [0, 0, 0, 1]
+    pivot: [0.5, 0.5]
+    anchor: [0.5, 0.5]
+  - !<canvas>
+    type: 8
+    enabled: true
+child:
+  - name: HP_Bar
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0, 1]
+        scale: [1, 1, 1]
+    child:
+      - name: SWORD_ADDON
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<transform_2d>
+            type: 10
+            enabled: true
+            position: [-331, 170, 1]
+            size: [20, 20]
+            scale: [24, 14]
+            rotation: [0, 0, 0, 1]
+            pivot: [0.5, 0.5]
+            anchor: [0.5, 0.5]
+          - !<canvas_renderer>
+            type: 9
+            enabled: true
+          - !<image>
+            type: 11
+            enabled: true
+            image_id: 7250747684639293339
+            hover_image_id: 0
+            image_color: [1, 1, 1, 1]
+            hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
+            fill_window: false
+      - name: BASE
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<transform_2d>
+            type: 10
+            enabled: true
+            position: [-330, 170, 0]
+            size: [20, 20]
+            scale: [24, 14]
+            rotation: [0, 0, 0, 1]
+            pivot: [0.5, 0.5]
+            anchor: [0.5, 0.5]
+          - !<canvas_renderer>
+            type: 9
+            enabled: true
+          - !<image>
+            type: 11
+            enabled: true
+            image_id: 14728578588781681137
+            hover_image_id: 0
+            image_color: [1, 1, 1, 1]
+            hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
+            fill_window: false
+        child:
+          - name: Bullets
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0, 1]
+                scale: [1, 1, 1]
+            child:
+              - name: BULLET_CELL_1
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [-400, 210, 0]
+                    size: [20, 20]
+                    scale: [3, 3]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 336690227497419917
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
+                    fill_window: false
+              - name: BULLET_CELL_2
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [-340, 210, 0]
+                    size: [20, 20]
+                    scale: [3, 3]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 336690227497419917
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
+                    fill_window: false
+              - name: BULLET_CELL_3
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [-280, 210, 0]
+                    size: [20, 20]
+                    scale: [3, 3]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 336690227497419917
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
+                    fill_window: false
+              - name: BULLET_CELL_4
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [-220, 210, 0]
+                    size: [20, 20]
+                    scale: [3, 3]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 336690227497419917
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
+                    fill_window: false
+          - name: Health_capsules
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0, 1]
+                scale: [1, 1, 1]
+            child:
+              - name: Health_capsule_1
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [-377, 253.9, 0]
+                    size: [20, 20]
+                    scale: [3.6, 2]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 15478304056567162071
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: true
+                    image_x_tiles: 7
+                    image_y_tiles: 2
+                    image_tiles_per_second: 14
+                    fill_window: false
+              - name: Health_capsule_2
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [-304, 253.9, 0]
+                    size: [20, 20]
+                    scale: [3.6, 2]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 15478304056567162071
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: true
+                    image_x_tiles: 7
+                    image_y_tiles: 2
+                    image_tiles_per_second: 14
+                    fill_window: false
+              - name: Health_capsule_3
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [-231, 253.9, 0]
+                    size: [20, 20]
+                    scale: [3.6, 2]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 15478304056567162071
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: true
+                    image_x_tiles: 7
+                    image_y_tiles: 2
+                    image_tiles_per_second: 14
+                    fill_window: false
+              - name: Health_capsule_4
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [-158, 253.9, 0]
+                    size: [20, 20]
+                    scale: [3.6, 2]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 15478304056567162071
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: true
+                    image_x_tiles: 7
+                    image_y_tiles: 2
+                    image_tiles_per_second: 14
+                    fill_window: false
+          - name: Stamina
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0, 1]
+                scale: [1, 1, 1]
+              - !<progress_bar>
+                type: 13
+                enabled: true
+                params:
+                  min: 0
+                  max: 1
+                  filled: 1
+                  direction: 0
+              - !<transform_2d>
+                type: 10
+                enabled: true
+                position: [0, 0, 0]
+                size: [20, 20]
+                scale: [1, 1]
+                rotation: [0, 0, 0, 1]
+                pivot: [0.5, 0.5]
+                anchor: [0.5, 0.5]
+            child:
+              - name: Bar Background
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [1.4, 0.25, 0]
+                    size: [12.5, 0.8]
+                    scale: [1, 1]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 16846014220398556825
+                    hover_image_id: 0
+                    image_color: [1, 0, 0, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
+                    fill_window: false
+              - name: Bar Fill
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [1.4, 0.25, 0]
+                    size: [12.5, 0.8]
+                    scale: [1, 1]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 16846014220398556825
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
+                    fill_window: false
+      - name: MAZE_ADDON
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<transform_2d>
+            type: 10
+            enabled: true
+            position: [-331.1, 169.1, 0]
+            size: [20, 20]
+            scale: [24, 14]
+            rotation: [0, 0, 0, 1]
+            pivot: [0.5, 0.5]
+            anchor: [0.5, 0.5]
+          - !<canvas_renderer>
+            type: 9
+            enabled: true
+          - !<image>
+            type: 11
+            enabled: true
+            image_id: 14023195895871668462
+            hover_image_id: 0
+            image_color: [1, 1, 1, 1]
+            hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
+            fill_window: false
+      - name: CLAW_ADDON
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+          - !<transform_2d>
+            type: 10
+            enabled: true
+            position: [-336, 170, 0]
+            size: [20, 20]
+            scale: [24, 14]
+            rotation: [0, 0, 0, 1]
+            pivot: [0.5, 0.5]
+            anchor: [0.5, 0.5]
+          - !<canvas_renderer>
+            type: 9
+            enabled: true
+          - !<image>
+            type: 11
+            enabled: true
+            image_id: 17147944466834967470
+            hover_image_id: 0
+            image_color: [1, 1, 1, 1]
+            hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
+            fill_window: false

@@ -141,6 +141,26 @@ namespace Hachiko
             return undo_redo_active;
         }
 
+        void SetShadowMappingGaussianBlurringEnabled(bool enabled) 
+        {
+            shadow_mapping_gaussian_blurring_enabled = enabled;
+        }
+
+        [[nodiscard]] bool GetShadowMapGaussianBlurringEnabled() const 
+        {
+            return shadow_mapping_gaussian_blurring_enabled;
+        }
+
+        [[nodiscard]] bool GetShadowPassEnabled() const 
+        {
+            return shadow_pass_enabled;
+        }
+
+        void SetShadowPassEnabled(bool enabled) 
+        {
+            shadow_pass_enabled = enabled;
+        }
+
     private:
         bool display_debug_draw = false;
 
@@ -155,6 +175,8 @@ namespace Hachiko
         bool draw_skybox = true;
         bool draw_navmesh = false;
         bool draw_quadtree = false;
+        bool shadow_mapping_gaussian_blurring_enabled = true;
+        bool shadow_pass_enabled = true;
         float fps_threshold = 1000.0f / max_fps;
         Editor::Theme::Type theme = Editor::Theme::Type::DARK;
         bool undo_redo_active = true;

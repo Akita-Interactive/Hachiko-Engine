@@ -30,12 +30,14 @@ namespace Hachiko
         [[nodiscard]] float4x4 GetViewMatrix(bool transpose = false) const;
         [[nodiscard]] float4x4 GetProjectionMatrix(bool transpose = false) const;
 
-        Frustum* GetFrustum()
+        const Frustum& GetFrustum() 
         {
-            return &frustum;
+            return frustum;
         }
 
         void SetCameraInitialPos();
+
+        void SetFrame(const float3& position, const float3& front, const float3& up);
 
         void SetNearPlane(float distance);
         void SetFarPlane(float distance);

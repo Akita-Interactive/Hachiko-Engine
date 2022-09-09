@@ -64,6 +64,11 @@ namespace Hachiko
         {
             return forward_program;
         }
+
+        [[nodiscard]] Program* GetGaussianFilteringProgram() const
+        {
+            return gaussian_filtering_program;
+        }
         
         [[nodiscard]] Program* GetDeferredGeometryProgram() const
         {
@@ -73,6 +78,11 @@ namespace Hachiko
         [[nodiscard]] Program* GetDeferredLightingProgram() const
         {
             return deferred_lighting_program;
+        }
+
+        [[nodiscard]] Program* GetShadowMappingProgram() const
+        {
+            return shadow_mapping_program;
         }
 
         [[nodiscard]] Program* GetSkyboxProgram() const
@@ -115,13 +125,31 @@ namespace Hachiko
             return particle_program;
         }
 
+        [[nodiscard]] Program* GetTransparentDepthProgram() const
+        {
+            return transparent_depth_program;
+        }
+
+        [[nodiscard]] Program* GetFogProgram() const
+        {
+            return fog_program;
+        }
+        
+        [[nodiscard]] Program* GetVideoProgram() const
+        {
+            return video_program;
+        }
+
+        [[nodiscard]] Program* GetTextureCopyProgram() const
+        {
+            return texture_copy_program;
+        }
+
         void UpdateCamera(const ComponentCamera* camera) const;
         void UpdateCamera(const Frustum& frustum) const;
         void UpdateCamera(const CameraData& camera) const;
         void UpdateMaterial(const ComponentMeshRenderer* component_mesh_renderer, const Program* program) const;
-        void UpdateLights(const ComponentDirLight* dir_light, const std::vector<ComponentPointLight*>& point_lights, const std::vector<ComponentSpotLight*>& spot_lights) const;
-
-        void OptionsMenu();
+        void UpdateLights(float ambient_intensity, const float4& ambient_color, const ComponentDirLight* dir_light, const std::vector<ComponentPointLight*>& point_lights, const std::vector<ComponentSpotLight*>& spot_lights) const;
 
         void* CreatePersistentBuffers(unsigned& buffer_id, int binding_point, unsigned size);
 
@@ -133,6 +161,7 @@ namespace Hachiko
         void CreateGLSLIncludes() const;
 
         Program* CreateForwardProgram();
+        Program* CreateGaussianFilteringProgram();
         Program* CreateSkyboxProgram();
         Program* CreateDiffuseIBLProgram();
         Program* CreatePrefilteredIBLProgram();
@@ -143,10 +172,18 @@ namespace Hachiko
         Program* CreateParticleProgram();
         Program* CreateDeferredGeometryPassProgram();
         Program* CreateDeferredLightingPassProgram();
+        Program* CreateShadowMappingProgram();
+        Program* CreateVideoProgram();
+        Program* CreateTransparentDepthProgram();
+        Program* CreateFogProgram();
+        
+        Program* CreateTextureCopyProgram();
 
         Program* forward_program = nullptr;
+        Program* gaussian_filtering_program = nullptr;
         Program* deferred_geometry_program = nullptr;
         Program* deferred_lighting_program = nullptr;
+        Program* shadow_mapping_program = nullptr;
         Program* skybox_program = nullptr;
         Program* diffuse_ibl_program = nullptr;
         Program* prefiltered_ibl_program = nullptr;
@@ -155,6 +192,10 @@ namespace Hachiko
         Program* ui_image_program = nullptr;
         Program* ui_text_program = nullptr;
         Program* particle_program = nullptr;
+        Program* video_program = nullptr;
+        Program* transparent_depth_program = nullptr;
+        Program* fog_program = nullptr;
+        Program* texture_copy_program = nullptr;
 
         // Assume the shader already manages its binding points
         void CreateUBO(UBOPoints binding_point, unsigned size);
@@ -226,8 +267,5 @@ namespace Hachiko
             unsigned int n_points {};
             unsigned int n_spots {};
         };
-
-        AmbientLight ambient_light;
-        float ambient_strength = 0.05f;
     };
 } // namespace Hachiko

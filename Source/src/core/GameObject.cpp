@@ -13,6 +13,7 @@
 #include "components/ComponentAudioSource.h"
 #include "components/ComponentParticleSystem.h"
 #include "components/ComponentBillboard.h"
+#include "components/ComponentVideo.h"
 
 // UI
 #include "components/ComponentCanvas.h"
@@ -241,6 +242,12 @@ Hachiko::Component* Hachiko::GameObject::CreateComponent(Component::Type type)
                 new_component = new ComponentBillboard(this);
             }
             break;
+        case Component::Type::VIDEO:
+            if (!GetComponent<ComponentVideo>())
+            {
+                new_component = new ComponentVideo(this);
+            }
+            break;
     }
 
     if (new_component != nullptr)
@@ -266,6 +273,13 @@ void Hachiko::GameObject::SetActive(bool set_active)
     {
         Start();
     }
+    else if (active && !set_active)
+    {
+        for (Component* component : components)
+        {
+            component->OnDisable();
+        }
+    }
     active = set_active;
 }
 
@@ -284,6 +298,10 @@ void Hachiko::GameObject::Start()
 
         for (Component* component : components)
         {
+            if (component->GetType() == Component::Type::SCRIPT)
+            {
+                continue;
+            }
             component->Start();
         }
         started = true;
@@ -759,4 +777,15 @@ void Hachiko::GameObject::SetVisible(bool v, bool include_children)
     {
         child->SetVisible(v, include_children);
     }
+}
+
+const OBB* Hachiko::GameObject::GetFirstMeshRendererOBB() const
+{
+    std::vector<ComponentMeshRenderer*> comp_mesh_renderer = GetComponents<ComponentMeshRenderer>();
+
+    if (!comp_mesh_renderer.empty())
+    {
+        return &comp_mesh_renderer[0]->GetOBB();
+    }
+    return nullptr;
 }

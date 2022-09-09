@@ -33,7 +33,6 @@ void main()
         material.metallic_flag,
         material.specular_flag,
         material.is_metallic,
-        material.smoothness_alpha,
         material.diffuse_color,
         material.specular_color,
         material.metalness_value,

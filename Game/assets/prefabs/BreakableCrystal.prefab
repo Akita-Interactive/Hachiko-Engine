@@ -5,14 +5,14 @@ component:
   - !<transform>
     type: 1
     enabled: true
-    position: [-9.38946342, 0, 0]
-    rotation: [0, 0.0688859746, 0, 0.997624576]
-    scale: [1.39999998, 1.39999998, 1.39999998]
+    position: [-71.45, 3.429, -73.55]
+    rotation: [0, 0.0689, 0, 0.9976]
+    scale: [1.4, 1.4, 1.4]
   - !<obstacle>
     type: 18
     enabled: true
     obstacle_type: 0
-    obstacle_size: [0.800000012, 1, 1]
+    obstacle_size: [0.8, 1, 1]
   - type: 20
     enabled: true
   - !<script>
@@ -20,15 +20,16 @@ component:
     enabled: true
     class_name: CrystalExplosion
     "'_player@GameObject*'": 0
-    "'_explosion_crystal@GameObject*'": 4
-    "'_static_crystal@GameObject*'": 2
-    "'_outer_explosion_indicator@GameObject*'": 0
-    "'_inner_explosion_indicator@GameObject*'": 0
+    "'_explosion_crystal@GameObject*'": 2
+    "'_static_crystal@GameObject*'": 13
+    "'_explosion_indicator_helper@GameObject*'": 0
+    "'_explosion_effect@GameObject*'": 0
     "'_crashing_index@unsigned'": 0
     "'_detecting_radius@float'": 2
     "'_explosion_radius@float'": 5
     "'_timer_explosion@float'": 0
     "'_explosive_crystal@bool'": false
+    "'_regen_time@float'": 2
   - !<script>
     type: 15
     enabled: true
@@ -38,42 +39,17 @@ component:
     "'_attack_range@float'": 3.5
     "'_move_speed@float'": 0
     "'_max_hp@int'": 1
+    "'_current_hp@int'": 3
 child:
-  - name: crystalSpike_mesh
-    enabled: true
-    component:
-      - !<transform>
-        type: 1
-        enabled: true
-        position: [0, 0, 0]
-        rotation: [0, 0, 0, 1]
-        scale: [1, 1, 1]
-    child:
-      - name: crystalSpike_mesh
-        enabled: true
-        component:
-          - !<transform>
-            type: 1
-            enabled: true
-            position: [1.2035023, 0.56883049, -1.08868277]
-            rotation: [-0.640856445, 0.298836708, 0.298836529, 0.640855968]
-            scale: [1.00000012, 1.0000006, 1.00000083]
-          - !<mesh_renderer>
-            type: 2
-            enabled: true
-            mesh_id: 12493242938431995642
-            navigable: false
-            visible: true
-            material_id: 15711698613413314858
   - name: crystalSpikeAnimacion_meshExplision
     enabled: true
     component:
       - !<transform>
         type: 1
         enabled: true
-        position: [0.0394845456, 0, -0.20355995]
+        position: [0.0395, 0, -0.2036]
         rotation: [0, 0, 0, 1]
-        scale: [0.406699985, 0.406699985, 0.406699985]
+        scale: [0.4067, 0.4067, 0.4067]
       - !<animation>
         type: 14
         enabled: true
@@ -86,8 +62,8 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [0.707106829, 0, 0, 0.707106709]
-            scale: [1, 0.999986887, 0.999986887]
+            rotation: [0.7071, 0, 0, 0.7071]
+            scale: [1, 1, 1]
         child:
           - name: crystalSpikeTop_mesh
             enabled: true
@@ -95,9 +71,9 @@ child:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [-0.0761962608, 0.494708151, 0.10228952]
-                rotation: [-0.707106829, 0, 0, 0.707106769]
-                scale: [2.53999996, 2.53999901, 2.53999901]
+                position: [-0.0762, 0.4947, 0.1023]
+                rotation: [-0.7071, 0, 0, 0.7071]
+                scale: [2.54, 2.54, 2.54]
               - !<mesh_renderer>
                 type: 2
                 enabled: true
@@ -105,15 +81,16 @@ child:
                 navigable: false
                 visible: true
                 material_id: 15711698613413314858
+                tint_color: [1, 1, 1, 1]
           - name: crystalSpikeBottom_mesh
             enabled: true
             component:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [0.0911449194, 0.299597561, 0.0456319116]
-                rotation: [-0.707106829, 0, 0, 0.707106769]
-                scale: [2.53999996, 2.53999901, 2.53999901]
+                position: [0.0911, 0.2996, 0.0456]
+                rotation: [-0.7071, 0, 0, 0.7071]
+                scale: [2.54, 2.54, 2.54]
               - !<mesh_renderer>
                 type: 2
                 enabled: true
@@ -121,15 +98,16 @@ child:
                 navigable: false
                 visible: true
                 material_id: 15711698613413314858
+                tint_color: [1, 1, 1, 1]
           - name: crystalSpikeMiddle_mesh
             enabled: true
             component:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [0.186976179, 0.484414041, 0.0622473769]
-                rotation: [-0.707106829, 0, 0, 0.707106769]
-                scale: [2.53999996, 2.53999901, 2.53999901]
+                position: [0.187, 0.4844, 0.0622]
+                rotation: [-0.7071, 0, 0, 0.7071]
+                scale: [2.54, 2.54, 2.54]
               - !<mesh_renderer>
                 type: 2
                 enabled: true
@@ -137,15 +115,16 @@ child:
                 navigable: false
                 visible: true
                 material_id: 15711698613413314858
+                tint_color: [1, 1, 1, 1]
           - name: crystalSpikeBottom2_mesh
             enabled: true
             component:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [0.14534016, 0.256375641, 0.271769315]
-                rotation: [-0.707106829, 0, 0, 0.707106769]
-                scale: [2.53999996, 2.53999901, 2.53999901]
+                position: [0.1453, 0.2564, 0.2718]
+                rotation: [-0.7071, 0, 0, 0.7071]
+                scale: [2.54, 2.54, 2.54]
               - !<mesh_renderer>
                 type: 2
                 enabled: true
@@ -153,13 +132,14 @@ child:
                 navigable: false
                 visible: true
                 material_id: 15711698613413314858
+                tint_color: [1, 1, 1, 1]
       - name: Father
         enabled: true
         component:
           - !<transform>
             type: 1
             enabled: true
-            position: [0.00118318188, -0.00236636377, 0]
+            position: [0.0012, -0.0024, 0]
             rotation: [0, 0, 0, 1]
             scale: [1, 1, 1]
         child:
@@ -169,7 +149,7 @@ child:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [0.144156978, 0.258742034, 0.271769315]
+                position: [0.1442, 0.2587, 0.2718]
                 rotation: [0, 0, 0, 1]
                 scale: [1, 1, 1]
           - name: Bottom
@@ -178,7 +158,7 @@ child:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [0.0899617374, 0.301963925, 0.0456319116]
+                position: [0.09, 0.302, 0.0456]
                 rotation: [0, 0, 0, 1]
                 scale: [1, 1, 1]
           - name: Top
@@ -187,7 +167,7 @@ child:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [-0.0773794428, 0.497074544, 0.10228952]
+                position: [-0.0774, 0.4971, 0.1023]
                 rotation: [0, 0, 0, 1]
                 scale: [1, 1, 1]
           - name: Middle
@@ -196,6 +176,214 @@ child:
               - !<transform>
                 type: 1
                 enabled: true
-                position: [0.185792997, 0.486780435, 0.0622473769]
+                position: [0.1858, 0.4868, 0.0622]
                 rotation: [0, 0, 0, 1]
                 scale: [1, 1, 1]
+  - name: crystalSpikeSpawn_mesh
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0.0521, -0.0731, -0.2364]
+        rotation: [0.637, -0.2423, -0.3069, 0.6643]
+        scale: [0.41, 0.41, 0.41]
+      - !<animation>
+        type: 14
+        enabled: true
+        state_machine: 13928376685907569755
+    child:
+      - name: crystalSpike_mesh
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.0107, 0.4875, 0.1376]
+            rotation: [-0.6409, 0.2988, 0.2988, 0.6408]
+            scale: [2.54, 2.54, 2.54]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 11281595652092777218
+            navigable: false
+            visible: true
+            material_id: 15711698613413314858
+            tint_color: [1, 1, 1, 1]
+      - name: Root_$AssimpFbx$_Translation
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0.0064, 0.147]
+            rotation: [0, 0, 0, 1]
+            scale: [1, 1, 1]
+        child:
+          - name: Root_$AssimpFbx$_PreRotation
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-0.4777, -0.5214, 0.4777, 0.5213]
+                scale: [1, 1, 1]
+            child:
+              - name: Root_$AssimpFbx$_Rotation
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0, 1]
+                    scale: [1, 1, 1]
+                child:
+                  - name: Root_$AssimpFbx$_Scaling
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [0, 0, 0, 1]
+                        scale: [1, 1, 1]
+                    child:
+                      - name: Root
+                        enabled: true
+                        component:
+                          - !<transform>
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [0, 0, 0, 1]
+                            scale: [1, 1, 1]
+                        child:
+                          - name: Top_$AssimpFbx$_Translation
+                            enabled: true
+                            component:
+                              - !<transform>
+                                type: 1
+                                enabled: true
+                                position: [0.9283, 0, 0]
+                                rotation: [0, 0, 0, 1]
+                                scale: [1, 1, 1]
+                            child:
+                              - name: Top_$AssimpFbx$_PreRotation
+                                enabled: true
+                                component:
+                                  - !<transform>
+                                    type: 1
+                                    enabled: true
+                                    position: [0, 0, 0]
+                                    rotation: [0.4777, 0.5214, -0.4777, 0.5213]
+                                    scale: [1, 1, 1]
+                                child:
+                                  - name: Top
+                                    enabled: true
+                                    component:
+                                      - !<transform>
+                                        type: 1
+                                        enabled: true
+                                        position: [0, 0, 0]
+                                        rotation: [0, 0, 0, 1]
+                                        scale: [1, 1, 1]
+                          - name: Mid_$AssimpFbx$_Translation
+                            enabled: true
+                            component:
+                              - !<transform>
+                                type: 1
+                                enabled: true
+                                position: [0.2227, 0.2871, 0.0603]
+                                rotation: [0, 0, 0, 1]
+                                scale: [1, 1, 1]
+                            child:
+                              - name: Mid_$AssimpFbx$_PreRotation
+                                enabled: true
+                                component:
+                                  - !<transform>
+                                    type: 1
+                                    enabled: true
+                                    position: [0, 0, 0]
+                                    rotation: [0.4777, 0.5214, -0.4777, 0.5213]
+                                    scale: [1, 1, 1]
+                                child:
+                                  - name: Mid_$AssimpFbx$_Rotation
+                                    enabled: true
+                                    component:
+                                      - !<transform>
+                                        type: 1
+                                        enabled: true
+                                        position: [0, 0, 0]
+                                        rotation: [0, 0, 0, 1]
+                                        scale: [1, 1, 1]
+                                    child:
+                                      - name: Mid_$AssimpFbx$_Scaling
+                                        enabled: true
+                                        component:
+                                          - !<transform>
+                                            type: 1
+                                            enabled: true
+                                            position: [0, 0, 0]
+                                            rotation: [0, 0, 0, 1]
+                                            scale: [1, 1, 1]
+                                        child:
+                                          - name: Mid
+                                            enabled: true
+                                            component:
+                                              - !<transform>
+                                                type: 1
+                                                enabled: true
+                                                position: [0, 0, 0]
+                                                rotation: [0, 0, 0, 1]
+                                                scale: [1, 1, 1]
+                          - name: Down_$AssimpFbx$_Translation
+                            enabled: true
+                            component:
+                              - !<transform>
+                                type: 1
+                                enabled: true
+                                position: [0.3439, 0.1186, -0.236]
+                                rotation: [0, 0, 0, 1]
+                                scale: [1, 1, 1]
+                            child:
+                              - name: Down_$AssimpFbx$_PreRotation
+                                enabled: true
+                                component:
+                                  - !<transform>
+                                    type: 1
+                                    enabled: true
+                                    position: [0, 0, 0]
+                                    rotation: [0.4777, 0.5214, -0.4777, 0.5213]
+                                    scale: [1, 1, 1]
+                                child:
+                                  - name: Down_$AssimpFbx$_Rotation
+                                    enabled: true
+                                    component:
+                                      - !<transform>
+                                        type: 1
+                                        enabled: true
+                                        position: [0, 0, 0]
+                                        rotation: [0, 0, 0, 1]
+                                        scale: [1, 1, 1]
+                                    child:
+                                      - name: Down_$AssimpFbx$_Scaling
+                                        enabled: true
+                                        component:
+                                          - !<transform>
+                                            type: 1
+                                            enabled: true
+                                            position: [0, 0, 0]
+                                            rotation: [0, 0, 0, 1]
+                                            scale: [1, 1, 1]
+                                        child:
+                                          - name: Down
+                                            enabled: true
+                                            component:
+                                              - !<transform>
+                                                type: 1
+                                                enabled: true
+                                                position: [0, 0, 0]
+                                                rotation: [0, 0, 0, 1]
+                                                scale: [1, 1, 1]

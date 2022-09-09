@@ -85,6 +85,13 @@ void Hachiko::Scripting::PlayerSoundManager::OnUpdate()
 		}
 		_timer = 0.0f;
 		break;
+	case PlayerState::PICK_UP:
+		if (state_changed)
+		{
+			_audio_source->PostEvent(Sounds::PARASITE_PICKUP);
+		}
+		_timer = 0.0f;
+		break;
 	case PlayerState::INVALID:
 	default:
 		_timer = 0.0f;

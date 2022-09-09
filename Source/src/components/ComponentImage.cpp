@@ -15,8 +15,9 @@
 #include "modules/ModuleCamera.h"
 #include "ComponentCamera.h"
 
-Hachiko::ComponentImage::ComponentImage(GameObject* container) 
-	: Component(Type::IMAGE, container) {
+Hachiko::ComponentImage::ComponentImage(GameObject* container) :
+    Component(Type::IMAGE, container)
+{
 }
 
 void Hachiko::ComponentImage::DrawGui()
@@ -25,15 +26,14 @@ void Hachiko::ComponentImage::DrawGui()
 
     ImGui::PushID(this);
 
+    if (ImGuiUtils::CollapsingHeader(this, "Image"))
+    {
+        Widgets::Checkbox("Fill Window", &fill_window);
 
-    if (ImGui::CollapsingHeader("Image", ImGuiTreeNodeFlags_DefaultOpen))
-    {   
-        ImGui::Checkbox("Fill Window", &fill_window);
+        ImGui::TextWrapped("Normal image");
 
-        ImGui::Text("Normal Image");
-
-        const std::string title = "Select Image";
-        if (ImGui::Button(title.c_str()))
+        const std::string title = "Select image";
+        if (ImGui::Button(title.c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
         {
             const char* filters = "Image files{.png,.tif,.jpg,.tga}";
             ImGuiFileDialog::Instance()->OpenDialog(title,
@@ -43,25 +43,24 @@ void Hachiko::ComponentImage::DrawGui()
                                                     1,
                                                     nullptr,
                                                     ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton | ImGuiFileDialogFlags_HideColumnType
-                                                        | ImGuiFileDialogFlags_HideColumnDate);
+                                                    | ImGuiFileDialogFlags_HideColumnDate);
         }
-        ImGui::SameLine();
+        // ImGui::SameLine();
         if (image != nullptr)
         {
-            if (ImGui::Button("X##image"))
+            if (ImGui::Button("Remove image", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
             {
                 App->resources->ReleaseResource(image);
                 image = nullptr;
             }
             else
             {
-                ImGui::SameLine();
-                ImGui::Text(StringUtils::Concat("Selected: ", image->path).c_str());
+                Widgets::Label("Selected image", image->path);
             }
         }
         else
         {
-            ImGui::Text("None");
+            ImGui::TextWrapped("No image selected");
         }
 
         if (ImGuiFileDialog::Instance()->Display(title.c_str()))
@@ -78,11 +77,11 @@ void Hachiko::ComponentImage::DrawGui()
             ImGuiFileDialog::Instance()->Close();
         }
 
-        ImGui::ColorEdit4("Image Color", &color[0]);
+        Widgets::ColorEdit4("Image color", color);
 
         if (image != nullptr)
         {
-            if (ImGui::Checkbox("Is tiled", &is_tiled))
+            if (Widgets::Checkbox("Is tiled", &is_tiled))
             {
                 if (!is_tiled)
                 {
@@ -91,31 +90,36 @@ void Hachiko::ComponentImage::DrawGui()
                 }
                 else
                 {
-                    factor = float2(1.0f / x_tiles, 1.0f / y_tiles);
+                    factor = float2(1.0f / tiles.x, 1.0f / tiles.y);
                 }
             }
             if (is_tiled)
             {
-                if (ImGui::DragInt("Frames per second", &frames_per_second, 1, 1))
+                Widgets::Checkbox("Randomize initial frame", &randomize_initial_frame);
+                Widgets::DragFloatConfig cfg;
+                cfg.format = "%.f";
+                cfg.min = 1.0f;
+                cfg.speed = 1.0f;
+                if (DragFloat("Frames per second", frames_per_second, &cfg))
                 {
                     time_per_frame = 1.0f / frames_per_second;
                 }
 
-                if (ImGui::DragInt("X tiles", &x_tiles, 1, 1))
+                if (DragFloat("X tiles", tiles.x, &cfg))
                 {
-                    factor.x = 1.0f / x_tiles;
+                    factor.x = 1.0f / tiles.x;
                 }
-                if (ImGui::DragInt("Y tiles", &y_tiles, 1, 1))
+                if (DragFloat("Y tiles", tiles.y, &cfg))
                 {
-                    factor.y = 1.0f / y_tiles;
+                    factor.y = 1.0f / tiles.y;
                 }
             }
         }
 
-        ImGui::Text("Hover Image");
+        ImGui::TextWrapped("Hover image");
 
-        const std::string hover_title = "Select Hover Image";
-        if (ImGui::Button(hover_title.c_str()))
+        const std::string hover_title = "Select hover image";
+        if (ImGui::Button(hover_title.c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
         {
             const char* filters = "Image files{.png,.tif,.jpg,.tga}";
             ImGuiFileDialog::Instance()->OpenDialog(hover_title,
@@ -125,25 +129,24 @@ void Hachiko::ComponentImage::DrawGui()
                                                     1,
                                                     nullptr,
                                                     ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton | ImGuiFileDialogFlags_HideColumnType
-                                                        | ImGuiFileDialogFlags_HideColumnDate);
+                                                    | ImGuiFileDialogFlags_HideColumnDate);
         }
-        ImGui::SameLine();
+
         if (hover_image != nullptr)
         {
-            if (ImGui::Button("X##hover_image"))
+            if (ImGui::Button("Remove hover image",ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
             {
                 App->resources->ReleaseResource(hover_image);
                 hover_image = nullptr;
             }
             else
             {
-                ImGui::SameLine();
-                ImGui::Text(StringUtils::Concat("Selected: ", hover_image->path).c_str());
+                Widgets::Label("Selected hover image: ", hover_image->path);
             }
         }
         else
         {
-            ImGui::Text("None");
+            ImGui::TextWrapped("No hover image selected");
         }
 
         if (ImGuiFileDialog::Instance()->Display(hover_title.c_str()))
@@ -160,8 +163,8 @@ void Hachiko::ComponentImage::DrawGui()
             ImGuiFileDialog::Instance()->Close();
         }
 
-        ImGui::ColorEdit4("Hover Color", &hover_color[0]);
-	}
+        Widgets::ColorEdit4("Hover color", hover_color);
+    }
     ImGui::PopID();
 }
 
@@ -169,7 +172,7 @@ void Hachiko::ComponentImage::Draw(ComponentTransform2D* transform, Program* pro
 {
     OPTICK_CATEGORY("Draw", Optick::Category::Rendering);
 
-	// Activate program & bind square:
+    // Activate program & bind square:
     program->Activate();
     App->ui->BindSquare();
 
@@ -187,16 +190,27 @@ void Hachiko::ComponentImage::Draw(ComponentTransform2D* transform, Program* pro
 
     program->BindUniformBool("diffuse_flag", img_to_draw != nullptr);
     program->BindUniformFloat4("img_color", render_color->ptr());
-    ModuleTexture::Bind(img_to_draw? img_to_draw->GetImageId(): 0, static_cast<int>(Hachiko::ModuleProgram::TextureSlots::DIFFUSE));
+    ModuleTexture::Bind(img_to_draw ? img_to_draw->GetImageId() : 0, static_cast<int>(Hachiko::ModuleProgram::TextureSlots::DIFFUSE));
 
     program->BindUniformFloat2("factor", factor.ptr());
     program->BindUniformFloat2("animation_index", animation_index.ptr());
 
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
     // Unbind square & deactivate program:
     App->ui->UnbindSquare();
     Program::Deactivate();
+}
+
+void Hachiko::ComponentImage::Start()
+{
+    if (image != nullptr && is_tiled && randomize_initial_frame)
+    {
+        animation_index = float2(
+            RandomUtil::RandomIntBetween(0, tiles.x - 1),
+            RandomUtil::RandomIntBetween(0, tiles.y - 1)
+            );
+    }
 }
 
 void Hachiko::ComponentImage::Update()
@@ -208,17 +222,17 @@ void Hachiko::ComponentImage::Update()
     if (image != nullptr && is_tiled)
     {
         elapse += EngineTimer::delta_time;
-        
-        while (elapse >= time_per_frame) 
+
+        while (elapse >= time_per_frame)
         {
             elapse -= time_per_frame;
 
-            if (animation_index.x < x_tiles - 1)
+            if (animation_index.x < tiles.x - 1)
             {
                 animation_index.x += 1.0f;
                 break;
             }
-            else if (animation_index.y < y_tiles - 1)
+            else if (animation_index.y < tiles.y - 1)
             {
                 animation_index.x = 0.0f;
                 animation_index.y += 1.0f;
@@ -238,8 +252,9 @@ void Hachiko::ComponentImage::Save(YAML::Node& node) const
     node[IMAGE_COLOR] = color;
     node[IMAGE_HOVER_COLOR] = hover_color;
     node[IMAGE_TILED] = is_tiled;
-    node[IMAGE_X_TILES] = x_tiles;
-    node[IMAGE_Y_TILES] = y_tiles;
+    node[IMAGE_RANDOMIZE_INITIAL_FRAME] = randomize_initial_frame;
+    node[IMAGE_X_TILES] = tiles.x;
+    node[IMAGE_Y_TILES] = tiles.y;
     node[IMAGE_TILES_PER_SEC] = frames_per_second;
     node[IMAGE_FILL_WINDOW] = fill_window;
 }
@@ -253,11 +268,12 @@ void Hachiko::ComponentImage::Load(const YAML::Node& node)
     hover_color = node[IMAGE_HOVER_COLOR].as<float4>();
     fill_window = node[IMAGE_FILL_WINDOW].IsDefined() ? node[IMAGE_FILL_WINDOW].as<bool>() : false;
     is_tiled = node[IMAGE_TILED].IsDefined() ? node[IMAGE_TILED].as<bool>() : false;
-    x_tiles = node[IMAGE_X_TILES].IsDefined() ? node[IMAGE_X_TILES].as<int>() : 1;
-    y_tiles = node[IMAGE_Y_TILES].IsDefined() ? node[IMAGE_Y_TILES].as<int>() : 1;
+    randomize_initial_frame = node[IMAGE_RANDOMIZE_INITIAL_FRAME].IsDefined() ? node[IMAGE_RANDOMIZE_INITIAL_FRAME].as<bool>() : false;
+    tiles.x = node[IMAGE_X_TILES].IsDefined() ? node[IMAGE_X_TILES].as<int>() : 1;
+    tiles.y = node[IMAGE_Y_TILES].IsDefined() ? node[IMAGE_Y_TILES].as<int>() : 1;
 
     frames_per_second = node[IMAGE_TILES_PER_SEC].IsDefined() ? node[IMAGE_TILES_PER_SEC].as<int>() : 1;
-    factor = float2(1.0f / x_tiles, 1.0f / y_tiles);
+    factor = float2(1.0f / tiles.x, 1.0f / tiles.y);
     time_per_frame = 1.0f / frames_per_second;
 }
 

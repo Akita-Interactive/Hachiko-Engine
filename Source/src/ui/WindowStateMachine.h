@@ -44,7 +44,7 @@ namespace Hachiko
         ImVec2 new_node_pos;
         ed::PinId new_node_pin = 0;
 
-        ResourceStateMachine* r_state_machien = nullptr;
+        ResourceStateMachine* r_state_machine = nullptr;
         ed::EditorContext* context = nullptr;
     };
 } // namespace Hachiko

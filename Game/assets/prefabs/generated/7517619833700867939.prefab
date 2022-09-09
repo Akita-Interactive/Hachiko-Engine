@@ -6,7 +6,7 @@ component:
     type: 1
     enabled: true
     position: [0, 0, 0]
-    rotation: [0, 0, 0, 1]
+    rotation: [-0, 0, -0]
     scale: [1, 1, 1]
   - !<animation>
     type: 14
@@ -20,7 +20,7 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [0, 0, 0, 1]
+        rotation: [-0, 0, -0]
         scale: [1, 1, 1]
     child:
       - name: crystalSpikeTop_mesh
@@ -30,7 +30,7 @@ child:
             type: 1
             enabled: true
             position: [-0.0762, 0.4947, 0.1023]
-            rotation: [-0.7071, 0, 0, 0.7071]
+            rotation: [-90, 0, 0]
             scale: [2.54, 2.54, 2.54]
           - !<mesh_renderer>
             type: 2
@@ -47,7 +47,7 @@ child:
             type: 1
             enabled: true
             position: [0.0911, 0.2996, 0.0456]
-            rotation: [-0.7071, 0, 0, 0.7071]
+            rotation: [-90, 0, 0]
             scale: [2.54, 2.54, 2.54]
           - !<mesh_renderer>
             type: 2
@@ -64,7 +64,7 @@ child:
             type: 1
             enabled: true
             position: [0.187, 0.4844, 0.0622]
-            rotation: [-0.7071, 0, 0, 0.7071]
+            rotation: [-90, 0, 0]
             scale: [2.54, 2.54, 2.54]
           - !<mesh_renderer>
             type: 2
@@ -81,7 +81,7 @@ child:
             type: 1
             enabled: true
             position: [0.1453, 0.2564, 0.2718]
-            rotation: [-0.7071, 0, 0, 0.7071]
+            rotation: [-90, 0, 0]
             scale: [2.54, 2.54, 2.54]
           - !<mesh_renderer>
             type: 2
@@ -98,7 +98,7 @@ child:
         type: 1
         enabled: true
         position: [0.0012, -0.0024, 0]
-        rotation: [0, 0, 0, 1]
+        rotation: [-0, 0, -0]
         scale: [1, 1, 1]
     child:
       - name: Bottom2
@@ -108,7 +108,7 @@ child:
             type: 1
             enabled: true
             position: [0.1442, 0.2587, 0.2718]
-            rotation: [0, 0, 0, 1]
+            rotation: [-0, 0, -0]
             scale: [1, 1, 1]
       - name: Bottom
         enabled: true
@@ -117,7 +117,7 @@ child:
             type: 1
             enabled: true
             position: [0.09, 0.302, 0.0456]
-            rotation: [0, 0, 0, 1]
+            rotation: [-0, 0, -0]
             scale: [1, 1, 1]
       - name: Top
         enabled: true
@@ -126,7 +126,7 @@ child:
             type: 1
             enabled: true
             position: [-0.0774, 0.4971, 0.1023]
-            rotation: [0, 0, 0, 1]
+            rotation: [-0, 0, -0]
             scale: [1, 1, 1]
       - name: Middle
         enabled: true
@@ -135,5 +135,5 @@ child:
             type: 1
             enabled: true
             position: [0.1858, 0.4868, 0.0622]
-            rotation: [0, 0, 0, 1]
+            rotation: [-0, 0, -0]
             scale: [1, 1, 1]

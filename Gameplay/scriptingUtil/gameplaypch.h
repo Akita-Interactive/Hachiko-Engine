@@ -14,6 +14,7 @@
 #include <components/Component.h>
 #include <components/ComponentText.h>
 #include <components/ComponentButton.h>
+#include <components/ComponentProgressBar.h>
 #include <components/ComponentAnimation.h>
 #include <components/ComponentAudioSource.h>
 #include <components/ComponentCamera.h>
@@ -27,6 +28,7 @@
 #include <core/particles/Particle.h>
 #include <core/particles/ParticleSystem.h>
 #include <components/ComponentParticleSystem.h>
+#include <components/ComponentBillboard.h>
 
 #include <core/GameObject.h>
 #include <Gameplay.h>

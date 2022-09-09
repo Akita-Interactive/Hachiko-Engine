@@ -22,10 +22,9 @@ namespace Hachiko
 			void OnStart() override;
 			void OnUpdate() override;
 		private:
-			SERIALIZE_FIELD(GameObject*, _combat_manager);
 			CombatManager* _combat_manager_script = nullptr;
+			GameObject* _player = nullptr;
 			SERIALIZE_FIELD(GameObject*, _enemy_pack);
-			SERIALIZE_FIELD(GameObject*, _player);
 		};
 	}
 }

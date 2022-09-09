@@ -3,10 +3,12 @@
 #include "GauntletManager.h"
 
 #include "misc/LevelManager.h"
+#include "misc/AudioManager.h"
 #include "constants/Scenes.h"
 
 // TODO: Delete this include:
 #include <modules/ModuleSceneManager.h>
+#include "entities/player/CombatManager.h"
 
 Hachiko::Scripting::GauntletManager::GauntletManager(GameObject* game_object)
 	: Script(game_object, "GauntletManager")
@@ -31,10 +33,17 @@ void Hachiko::Scripting::GauntletManager::OnAwake()
 	if (_pack_1) _enemy_packs.push_back(_pack_1);
 	if (_pack_2) _enemy_packs.push_back(_pack_2);
 	if (_pack_3) _enemy_packs.push_back(_pack_3);
+	for (GameObject* _pack : _enemy_packs)
+	{
+		_pack->SetActive(false);
+	}
+
+	_audio_manager = Scenes::GetAudioManager()->GetComponent<AudioManager>();
 }
 
 void Hachiko::Scripting::GauntletManager::OnStart()
 {
+	_level_manager = Scenes::GetLevelManager()->GetComponent<LevelManager>();
 	game_object->SetVisible(false, false);
 
 	ResetGauntlet();
@@ -54,20 +63,10 @@ void Hachiko::Scripting::GauntletManager::OnUpdate()
 	}
 	else
 	{
+		
 		CheckRoundStatus();
 	}
 
-}
-
-void Hachiko::Scripting::GauntletManager::StartGauntlet()
-{
-	started = true;
-	current_round = 0;
-	SpawnRound(current_round);
-
-	// Notify level manager
-	LevelManager* level_manager = Scenes::GetLevelManager()->GetComponent<LevelManager>();
-	level_manager->SetLastGauntlet(this);
 }
 
 void Hachiko::Scripting::GauntletManager::ResetGauntlet()
@@ -82,6 +81,19 @@ void Hachiko::Scripting::GauntletManager::ResetGauntlet()
 	remaining_between_round_time = 0.f;
 }
 
+void Hachiko::Scripting::GauntletManager::StartGauntlet()
+{
+	started = true;
+	current_round = 0;
+	SpawnRound(current_round);
+
+	// Notify level manager
+	_level_manager->SetGauntlet(this);
+
+	// Notify audio manager
+	_audio_manager->RegisterGaunlet();
+}
+
 bool Hachiko::Scripting::GauntletManager::IsFinished() const
 {
 	return current_round >= _enemy_packs.size();
@@ -92,10 +104,15 @@ void Hachiko::Scripting::GauntletManager::CheckRoundStatus()
 	if (current_round >= _enemy_packs.size()) {
 		completed = true;
 		OpenDoors();
+		_audio_manager->UnregisterGaunlet();
 		return;
 	}
 
-	if(!_combat_manager->IsPackDead(_enemy_packs[current_round])) return;
+	unsigned alive_count = _combat_manager->GetPackAliveCount(_enemy_packs[current_round]);
+
+	_level_manager->SetEnemyCount(alive_count);
+
+	if(alive_count > 0) return;
 
 	if (!changing_rounds)
 	{
@@ -146,6 +163,6 @@ void Hachiko::Scripting::GauntletManager::CloseDoors()
 void Hachiko::Scripting::GauntletManager::SpawnRound(unsigned round)
 {
 	if (round >= _enemy_packs.size()) return;
-	_combat_manager->ResetEnemyPack(_enemy_packs[round], true);
 	_combat_manager->ActivateEnemyPack(_enemy_packs[round]);
+	_combat_manager->ResetEnemyPack(_enemy_packs[round], true);
 }

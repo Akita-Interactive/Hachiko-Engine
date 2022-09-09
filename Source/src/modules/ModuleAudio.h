@@ -31,5 +31,6 @@ namespace Hachiko
         AudioPreferences* audio_prefs = nullptr;
 
         void SetGameObjectOutputBusVolume(AkGameObjectID emitter, AkGameObjectID listener, float value) const;
+        void ReloadAssets();
     };
 } // namespace Hachiko

@@ -158,10 +158,8 @@ UpdateStatus Hachiko::ModuleEditor::Update(const float delta)
     ImGui::CaptureMouseFromApp(true);
     ImGui::CaptureKeyboardFromApp(true);
 
-#ifdef PLAY_BUILD
-    const UpdateStatus retval = UpdateStatus::UPDATE_CONTINUE;
-#else
-    const UpdateStatus retval = MainMenuBar();
+#ifndef PLAY_BUILD
+    MainMenuBar();
 
     if (ImGuiFileDialog::Instance()->Display("LoadScene"))
     {
@@ -195,7 +193,7 @@ UpdateStatus Hachiko::ModuleEditor::Update(const float delta)
         }
     }
 
-    return retval;
+    return UpdateStatus::UPDATE_CONTINUE;
 }
 
 UpdateStatus Hachiko::ModuleEditor::PostUpdate(const float delta)
@@ -220,19 +218,41 @@ UpdateStatus Hachiko::ModuleEditor::PostUpdate(const float delta)
     return UpdateStatus::UPDATE_CONTINUE;
 }
 
-UpdateStatus Hachiko::ModuleEditor::MainMenuBar()
+void Hachiko::ModuleEditor::MainMenuBar()
 {
-    auto status = UpdateStatus::UPDATE_CONTINUE;
     ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0);
     ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0, 4));
     if (ImGui::BeginMainMenuBar())
     {
-        status = FileMenu();
+        FileMenu();
         EditMenu();
         GoMenu();
         ThemeMenu();
         ViewMenu();
 
+        if (save_as_popup)
+        {
+            ImGui::OpenPopup("Save as");
+            save_as_popup = false;
+        }
+        
+        if (ImGui::BeginPopupModal("Save as", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+        {
+            ImGui::SetItemDefaultFocus();
+            ImGui::InputText("File name", &file_name_buffer, sizeof(file_name_buffer));
+            if (ImGui::Button("Save"))
+            {
+                HE_LOG("Saving Scene");
+                App->scene_manager->SaveScene(file_name_buffer.c_str());
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Cancel"))
+            {
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::EndPopup();
+        }
         if (ImGui::BeginMenu("Help"))
         {
             if (ImGui::MenuItem("Documentation"))
@@ -261,8 +281,6 @@ UpdateStatus Hachiko::ModuleEditor::MainMenuBar()
         ImGui::PopStyleVar(2);
         ImGui::EndMainMenuBar();
     }
-
-    return status;
 }
 
 void Hachiko::ModuleEditor::GenerateDockingSpace()
@@ -308,16 +326,13 @@ void Hachiko::ModuleEditor::GenerateDockingSpace()
     }
 }
 
-UpdateStatus Hachiko::ModuleEditor::FileMenu()
+void Hachiko::ModuleEditor::FileMenu()
 {
-    auto status = UpdateStatus::UPDATE_CONTINUE;
-    // TODO: shortcuts
-    Scene* current_scene = App->scene_manager->GetActiveScene();
-
     if (!ImGui::BeginMenu("File"))
     {
-        return UpdateStatus::UPDATE_CONTINUE;
+        return;
     }
+
     if (ImGui::MenuItem(ICON_FA_PLUS "New"))
     {
         history.CleanUp();
@@ -333,7 +348,8 @@ UpdateStatus Hachiko::ModuleEditor::FileMenu()
     }
     if (ImGui::MenuItem("Save as", nullptr, false, true)) // TODO: Use internal timer
     {
-        ImGui::OpenPopup("Save scene");
+        save_as_popup = true;
+        
     }
 
     ImGui::Separator();
@@ -345,32 +361,10 @@ UpdateStatus Hachiko::ModuleEditor::FileMenu()
     ImGui::Separator();
     if (ImGui::MenuItem("Exit"))
     {
-        status = UpdateStatus::UPDATE_STOP;
+        App->MarkAsQuitting(true);
     }
 
     ImGui::EndMenu();
-
-    char file_name_buffer[32] = {'\0'};
-    if (ImGui::BeginPopupModal("Save scene"))
-    {
-        ImGui::SetItemDefaultFocus();
-        ImGui::InputText("File name", file_name_buffer, sizeof(file_name_buffer));
-        if (ImGui::Button("Save"))
-        {
-            HE_LOG("Saving Scene");
-            const std::string temp_scene_file_path = std::string(ASSETS_FOLDER_SCENE) + "/" + file_name_buffer + SCENE_EXTENSION;
-            App->scene_manager->SaveScene(temp_scene_file_path.c_str());
-            ImGui::CloseCurrentPopup();
-        }
-        ImGui::SameLine();
-        if (ImGui::Button("Cancel"))
-        {
-            ImGui::CloseCurrentPopup();
-        }
-        ImGui::EndPopup();
-    }
-
-    return status;
 }
 
 void Hachiko::ModuleEditor::ViewMenu()

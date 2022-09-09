@@ -72,27 +72,21 @@ void Hachiko::ComponentSpotLight::Load(const YAML::Node& node)
 void Hachiko::ComponentSpotLight::DrawGui()
 {
     ImGui::PushID(this);
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Spot Light"))
+    if (ImGuiUtils::CollapsingHeader(this, "Spotlight"))
     {
-        ImGui::PushItemWidth(100.0f);
-        if (ImGui::Checkbox("S.Active", &active))
+        if (Widgets::Checkbox("Active", &active))
         {
             App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
-        if (ImGui::Checkbox("Draw Cone", &draw_cone))
+        if (Widgets::Checkbox("Draw cone", &draw_cone))
         {
             App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
-        ImGui::InputFloat("S.Intensity", &intensity);
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
-        ImGui::InputFloat("S.Radius", &radius);
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
-        ImGui::InputFloat("Inner Angle", &inner);
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
-        ImGui::InputFloat("Outer Angle", &outer);
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
-        ImGui::PopItemWidth();
-        ImGuiUtils::CompactColorPicker("Spot Color", &color[0]);
+        Widgets::DragFloat("Intensity", intensity);
+        Widgets::DragFloat("Radius", radius);
+        Widgets::DragFloat("Inner angle", inner);
+        Widgets::DragFloat("Outer angle", outer);
+        ImGuiUtils::CompactColorPicker("Color", &color[0]);
         CREATE_HISTORY_ENTRY_AFTER_EDIT()
     }
     ImGui::PopID();

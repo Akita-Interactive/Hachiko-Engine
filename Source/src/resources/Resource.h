@@ -79,6 +79,7 @@ namespace Hachiko
                 {AssetType::FONT, "fonts"},
                 {AssetType::PREFAB, "prefab"},
                 {AssetType::STATE_MACHINE, "state_machine"},
+                {AssetType::VIDEO, "video"},
             };
 
             auto it = string_map.find(t);

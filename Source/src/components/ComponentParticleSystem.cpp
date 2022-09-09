@@ -36,6 +36,7 @@ void Hachiko::ComponentParticleSystem::Start()
         App->scene_manager->GetActiveScene()->AddParticleComponent(this);
         in_scene = true;
     }
+
     for (auto& particle : particles)
     {
         particle.SetEmitter(this);
@@ -62,7 +63,7 @@ void Hachiko::ComponentParticleSystem::Start()
 
     std::function selection_changed = [&](Event& evt) {
         const auto data = evt.GetEventData<SelectionChangedEventPayload>();
-        if (data.GetSelected() != GetGameObject())
+        if (!data.GetSelected() || data.GetSelected() != GetGameObject())
         {
             Pause();
         }
@@ -85,10 +86,18 @@ void Hachiko::ComponentParticleSystem::Update()
 #endif //PLAY_BUILD
     if (emitter_state != ParticleSystem::Emitter::State::PAUSED)
     {
-        UpdateEmitterTimes();
         ActivateParticles();
+        UpdateEmitterTimes();
         UpdateActiveParticles();
         UpdateModifiers();
+    }
+}
+
+void Hachiko::ComponentParticleSystem::OnDisable() 
+{
+    if (in_scene)
+    {
+        ResetActiveParticles();
     }
 }
 
@@ -107,7 +116,7 @@ void Hachiko::ComponentParticleSystem::Draw(ComponentCamera* camera, Program* pr
 
 void Hachiko::ComponentParticleSystem::DrawGui()
 {
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Particle system"))
+    if (ImGuiUtils::CollapsingHeader(this, "Particle system"))
     {
         const char* particle_render_modes[] = {"Additive", "Transparent"};
         const char* particle_orientations[] = {"Normal", "Vertical", "Horizontal", "Stretch"};
@@ -581,16 +590,17 @@ void Hachiko::ComponentParticleSystem::UpdateModifiers()
 
 void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
 {
-    if (!loop && emitter_elapsed_time >= duration)
+    if (active_particles == 0 && emitter_state == ParticleSystem::Emitter::State::STOPPED)
     {
         able_to_emit = false;
+        emitter_elapsed_time = 0.0f;
         return;
     }
 
-    if(active_particles == 0 && emitter_state == ParticleSystem::Emitter::State::STOPPED)
+    if (!loop && emitter_elapsed_time >= duration)
     {
+        Stop();
         able_to_emit = false;
-        emitter_elapsed_time = 0;
         return;
     }
 
@@ -638,6 +648,8 @@ void Hachiko::ComponentParticleSystem::Reset()
 {
     emitter_elapsed_time = 0.0f;
     time = 0.0f;
+    burst_time = 0.0f;
+    burst_emit = true;
     ResetActiveParticles();
 }
 

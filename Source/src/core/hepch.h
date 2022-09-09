@@ -66,6 +66,13 @@
 #include <assimp/Importer.hpp>
 #include <assimp/include/assimp/postprocess.h>
 
+extern "C"
+{
+    #include "libavutil/rational.h"
+    #include "libavformat/avformat.h"
+    #include "libavcodec/avcodec.h"
+    #include "libswscale/swscale.h"
+}
 
 //project includes
 #include "Globals.h"
@@ -98,6 +105,7 @@
 #include "utils/WindowsFileUtil.h"
 #include "utils/Bool3.h"
 #include "utils/RandomUtil.h"
+#include "utils/MathUtil.h"
 
 #include "modules/ModuleEvent.h"
 

@@ -47,13 +47,23 @@
 #ifndef MATH_SILENT_ASSUME
 #define MATH_SILENT_ASSUME
 #endif
-
 #endif
+
 
 #ifdef _DEBUG
 // If MATH_ASSERT_CORRECTNESS is defined, special (and possibly rather costly) mathassert()
 // tests are enabled, which test the internal correctness of the library.
-#define MATH_ASSERT_CORRECTNESS
+
+// ADDED BY AKITA INTERACTIVE PROGRAMMERS, UNCOMMENT:
+//#define MATH_ASSERT_CORRECTNESS
+/////////////////////////////////////////////////////
+
+// ADDED BY AKITA INTERACTIVE PROGRAMMERS, DELETE:
+#ifndef MATH_SILENT_ASSUME
+#define MATH_SILENT_ASSUME
+#endif
+//////////////////////////////////////////////////
+
 #endif
 
 // If FAIL_USING_EXCEPTIONS is defined, all mathassert(), assert() and assume() macros turn into

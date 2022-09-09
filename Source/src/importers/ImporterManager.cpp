@@ -16,6 +16,7 @@ ImporterManager::ImporterManager()
     asset_importers.emplace(Resource::AssetType::SCENE, &scene);
     asset_importers.emplace(Resource::AssetType::SKYBOX, &skybox);
     asset_importers.emplace(Resource::AssetType::STATE_MACHINE, &state_machine);
+    asset_importers.emplace(Resource::AssetType::VIDEO, &video);
 
 
     // Importers used to save and load the different resource types
@@ -29,6 +30,7 @@ ImporterManager::ImporterManager()
     resource_importers.emplace(Resource::Type::NAVMESH, &navmesh);
     resource_importers.emplace(Resource::Type::SKYBOX, &skybox);
     resource_importers.emplace(Resource::Type::STATE_MACHINE, &state_machine);
+    resource_importers.emplace(Resource::Type::VIDEO, &video);
 }
 
 std::vector<UID> ImporterManager::ImportAsset(const std::string& asset_path, const Resource::AssetType asset_type, YAML::Node& meta)

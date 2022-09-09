@@ -26,19 +26,23 @@ namespace Hachiko
 			void RegisterCombat();
 			void UnregisterCombat();
 
+			void RegisterGaunlet();
+			void UnregisterGaunlet();
+
 		private:
-			ComponentAudioSource* _audio_source;
-
 			SERIALIZE_FIELD(int, _enemies_in_combat);
-			SERIALIZE_FIELD(bool, _previous_in_combat);
-
-			bool isPlayingMoving1 = false;
-			bool isPlayingMoving = false;
-
-			GameObject* enemy_pool;
-
+			SERIALIZE_FIELD(bool, _in_combat);
+			SERIALIZE_FIELD(bool, _in_gaunlet);
 			SERIALIZE_FIELD(std::vector<GameObject*>, enemics);
-			int cont;
+
+			bool updated = false;
+			GameObject* enemy_pool = nullptr;
+			ComponentAudioSource* _audio_source = nullptr;
+
+			void StopMusic();
+			void UpdateState();
+			void PlayCombatMusic();
+			void PlayNavigationMusic();
 		};
 	} // namespace Scripting
 } // namespace Hachiko

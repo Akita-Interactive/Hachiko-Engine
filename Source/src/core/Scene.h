@@ -25,6 +25,24 @@ namespace Hachiko
         friend class ModuleSceneManager;
 
     public:
+
+        struct FogConfig
+        {
+            bool enabled = false;
+            float3 color = float3::one;
+            float global_density = 0.01f;
+            float height_falloff = 0.01f;
+            void LoadFogParams(const YAML::Node& node);
+            void SaveFogParams(YAML::Node& node);
+        };
+
+        struct AmbientLightConfig
+        {
+            float intensity = 0.05f;
+            float4 color = float4::one;
+            void LoadAmbientParams(const YAML::Node& node);
+            void SaveAmbientParams(YAML::Node& node);
+        };
         Scene();
         ~Scene();
 
@@ -37,7 +55,6 @@ namespace Hachiko
 
         // --- GameObject Management --- //
         [[nodiscard]] ComponentCamera* GetMainCamera() const;
-        void DestroyGameObject(GameObject* game_object);
         GameObject* CreateNewGameObject(GameObject* parent = nullptr, const char* name = nullptr);
 
         void HandleInputMaterial(ResourceMaterial* material);
@@ -116,8 +133,23 @@ namespace Hachiko
             name = new_name;
         }
 
+        const FogConfig& GetFogConfig()
+        {
+            return fog;
+        }
+
+        const AmbientLightConfig& GetAmbientLightConfig()
+        {
+            return ambient_light;
+        }
+        
         void Save(YAML::Node& node);
         void Load(const YAML::Node& node, bool meshes_only = false);
+        
+
+        void AmbientLightOptionsMenu();
+        void FogOptionsMenu();
+        void SkyboxOptionsMenu();
 
         void GetNavmeshData(std::vector<float>& scene_vertices, std::vector<int>& scene_triangles, std::vector<float>& scene_normals, AABB& scene_bounds);
 
@@ -132,12 +164,13 @@ namespace Hachiko
         {
             return particles;
         }
-
+        
         std::vector<ComponentDirLight*> dir_lights{};
         std::vector<ComponentPointLight*> point_lights{};
         std::vector<ComponentSpotLight*> spot_lights{};
 
     private:
+
         std::string name;
         GameObject* root = nullptr;
         ComponentCamera* culling_camera = nullptr;
@@ -147,12 +180,19 @@ namespace Hachiko
 
         Skybox* skybox = nullptr;
         Quadtree* quadtree = nullptr;
+        
+        float ambient_light_intensity = 0.05f;
+        float4 ambient_light_color = float4::one;
 
         bool rebuild_batch = true;
         BatchManager* batch_manager = nullptr;
         std::vector<Component*> particles{};
 
-        
+        // Ambient light params
+        AmbientLightConfig ambient_light;
+
+        // Fog params
+        FogConfig fog;      
 
     public:
         class Memento

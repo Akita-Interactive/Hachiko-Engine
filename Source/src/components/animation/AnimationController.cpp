@@ -191,7 +191,7 @@ bool Hachiko::AnimationController::GetTransform(Instance* instance, const std::s
 
             if (instance->previous != nullptr)
             {
-                assert(instance->fade_duration > 0.0f);
+                assert(instance->fade_duration >= 0.0f);
 
                 float3 next_position;
                 Quat next_rotation;

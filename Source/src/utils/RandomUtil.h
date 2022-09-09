@@ -20,6 +20,8 @@ namespace Hachiko
         HACHIKO_API static int RandomInt();
         // (a; b) if a > b returns a
         HACHIKO_API static float RandomBetween(float a, float b);
+
+        HACHIKO_API static int RandomIntBetween(int a, int b);
         // (values.x; values.y) if x > y returns x
         HACHIKO_API static float RandomBetween(const float2& values);
     };

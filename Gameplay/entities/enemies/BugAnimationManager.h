@@ -22,7 +22,7 @@ namespace Hachiko
 		
 		private:
 			SERIALIZE_FIELD(ComponentAnimation*, _animator);
-			SERIALIZE_FIELD(BugState, _previous_state);
+			SERIALIZE_FIELD(EnemyState, _previous_state);
 			SERIALIZE_FIELD(std::string, _state_string);
 			SERIALIZE_FIELD(unsigned, _idle_index);
 			SERIALIZE_FIELD(unsigned, _attacking_index);

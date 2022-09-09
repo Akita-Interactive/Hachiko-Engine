@@ -6,7 +6,7 @@ component:
     type: 1
     enabled: true
     position: [0, 0, 0]
-    rotation: [0, 0, 0, 1]
+    rotation: [-0, 0, -0]
     scale: [1, 1, 1]
 child:
   - name: Cylinder001
@@ -16,7 +16,7 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [-0.7071, 0, 0, 0.7071]
+        rotation: [-90, 0, 0]
         scale: [1, 1, 1]
       - !<mesh_renderer>
         type: 2

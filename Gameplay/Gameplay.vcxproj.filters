@@ -517,13 +517,18 @@
     <ClInclude Include="ui\DebugManager.h" />
     <ClInclude Include="misc\AudioManager.h" />
     <ClInclude Include="misc\PillarCheckpoint.h" />
-    <ClInclude Include="CrystalPlatform.h" />
+    <ClInclude Include="misc\CrystalPlatform.h" />
     <ClInclude Include="misc\Spawner.h" />
     <ClInclude Include="misc\DoorController.h" />
     <ClInclude Include="misc\GauntletManager.h" />
     <ClInclude Include="misc\LevelManager.h" />
+    <ClInclude Include="misc\LaserController.h" />
     <ClInclude Include="misc\BlinkingLight.h" />
     <ClInclude Include="generated\GeneratedProperties.h" />
+    <ClInclude Include="entities\player\CombatVisualEffectsPool.h" />
+    <ClInclude Include="TriggerAnim.h" />
+    <ClInclude Include="misc\CameraPosChange.h" />
+    <ClInclude Include="entities\enemies\BossController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scriptingUtil\gameplaypch.cpp">
@@ -792,12 +797,17 @@
     <ClCompile Include="misc\FancyLights.cpp" />
     <ClCompile Include="misc\AudioManager.cpp" />
     <ClCompile Include="misc\PillarCheckpoint.cpp" />
-    <ClCompile Include="CrystalPlatform.cpp" />
+    <ClCompile Include="misc\CrystalPlatform.cpp" />
     <ClCompile Include="misc\Spawner.cpp" />
     <ClCompile Include="misc\DoorController.cpp" />
     <ClCompile Include="misc\GauntletManager.cpp" />
     <ClCompile Include="misc\LevelManager.cpp" />
+    <ClCompile Include="misc\LaserController.cpp" />
     <ClCompile Include="misc\BlinkingLight.cpp" />
+    <ClCompile Include="entities\player\CombatVisualEffectsPool.cpp" />
+    <ClCompile Include="TriggerAnim.cpp" />
+    <ClCompile Include="misc\CameraPosChange.cpp" />
+    <ClCompile Include="entities\enemies\BossController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\vendors\MathGeoLib\Math\float2.inl">

@@ -1,15 +1,19 @@
 #pragma once
 
 #include <scripting/Script.h>
-#include "entities/player/CombatManager.h"
 #include "misc/DoorController.h"
 
 namespace Hachiko
 {
 	class GameObject;
 	class ComponentTransform;
+
 	namespace Scripting
 	{
+		class LevelManager;
+		class CombatManager;
+		class AudioManager;
+
 		class GauntletManager : public Script
 		{
 			SERIALIZATION_METHODS(false)
@@ -22,8 +26,10 @@ namespace Hachiko
 			void OnStart() override;
 			void OnUpdate() override;
 			void ResetGauntlet();
-			bool IsCompleted() const {return completed;}
+			void StartGauntlet();
+			bool IsCompleted() const { return completed; }
 			bool IsFinished() const;
+			bool IsStarted() const { return started; }
 
 			SERIALIZE_FIELD(GameObject*, _combat_manager_go);
 			SERIALIZE_FIELD(float, _trigger_radius);
@@ -38,8 +44,7 @@ namespace Hachiko
 			SERIALIZE_FIELD(GameObject*, _pack_3);		
 
 		private:
-
-			void StartGauntlet();
+			
 			void CheckRoundStatus();
 			void OpenDoors();
 			void CloseDoors();
@@ -49,8 +54,10 @@ namespace Hachiko
 			bool completed = false;
 			bool started = false;
 			bool changing_rounds = false;
-			float remaining_between_round_time;
+			float remaining_between_round_time{};
 			CombatManager* _combat_manager = nullptr;
+			LevelManager* _level_manager = nullptr;
+			AudioManager* _audio_manager = nullptr;
 			std::vector<GameObject*> _enemy_packs{};
 			std::vector<DoorController*> _doors{};
 

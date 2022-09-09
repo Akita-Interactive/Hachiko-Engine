@@ -111,7 +111,8 @@ namespace Hachiko
             NORMAL,
             VERTICAL,
             HORIZONTAL,
-            STRETCH
+            STRETCH,
+            WORLD
         };
 
         struct ParticleProperties

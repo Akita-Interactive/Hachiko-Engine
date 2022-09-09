@@ -19,6 +19,7 @@ namespace Hachiko
 
             void ReceiveDamage(int _damage);
             void Heal(int _health);
+            void SetHealth(int health);
 
             void ChangeWeapon(int attk_pwr, float attk_cd, float attk_range)
             {

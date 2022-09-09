@@ -8,7 +8,7 @@ namespace Hachiko
 {
     class GameObject;
 
-    class ComponentProgressBar : public Component
+    class HACHIKO_API ComponentProgressBar : public Component
     {
     public:
         enum class FillingDirection

@@ -1,0 +1,39 @@
+prefab_name: rocklight
+name: rocklight
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [0, 0, 0, 1]
+    scale: [0.0197, 0.0197, 0.0197]
+  - type: 6
+    enabled: true
+    light_type: 6
+    color: [0, 0.0488, 1, 1]
+    intensity: 30
+    radius: 5
+    draw_sphere: true
+  - !<script>
+    type: 15
+    enabled: true
+    class_name: BlinkingLight
+    "'_use_perlin_noise@bool'": true
+    "'_min_radius@float'": 10
+    "'_max_radius@float'": 250
+    "'_radius_amplitude@float'": 1
+    "'_min_duration@float'": 0.01
+    "'_max_duration@float'": 0.5
+    "'_duration_amplitude@float'": 1
+    "'_min_intensity@float'": 50
+    "'_max_intensity@float'": 200
+    "'_intensity_amplitude@float'": 1
+    "'_starting_intensity@float'": 0
+    "'_starting_radius@float'": 0
+    "'_current_intensity@float'": 0
+    "'_current_duration@float'": 0
+    "'_current_radius@float'": 0
+    "'_next_duration@float'": 0
+    "'_next_intensity@float'": 0
+    "'_next_radius@float'": 0

@@ -30,7 +30,7 @@ public:
 	/// <param name="new_relative_position"></param>
 	/// <param name="speed"></param>
 	/// <param name="duration"></param>
-	void ChangeRelativePosition(math::float3 new_relative_position, float speed = 0.0f, float duration = -1.0f);
+	void ChangeRelativePosition(math::float3 new_relative_position, bool do_look_ahead = true, float speed = 0.0f, float duration = -1.0f);
 
 	/// <summary>
 	/// Reverts Camera relative position to its previous position
@@ -54,6 +54,8 @@ public:
 	/// <param name="new_rotation"></param>
 	/// <param name="speed"></param>
 	void RotateCameraTo(math::float3 new_rotation, float speed = 0.0f);
+
+	void SetObjective(GameObject* objective) { _objective = objective; };
 
 	float3 GetRelativePosition() { return _relative_position_to_player; };
 
@@ -81,6 +83,7 @@ private:
 	bool _is_temporary_moved = false;
 	bool _is_in_position = true;
 	bool _is_in_rotation = true;
+	bool _do_look_ahead = true;
 	float _position_timer = 0.0f;
 	float _reposition_time = 0.0f;
 	float _rotation_time = 0.0f;

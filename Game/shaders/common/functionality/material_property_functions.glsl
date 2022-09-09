@@ -31,7 +31,6 @@ void CalculateSpecularDiffuseSmoothness(
     uint material_metallic_flag,
     uint material_specular_flag,
     uint material_is_metallic,
-    uint material_smoothness_alpha,
     vec4 material_diffuse_color,
     vec4 material_specular_color,
     float material_metalness_value,
@@ -65,8 +64,8 @@ void CalculateSpecularDiffuseSmoothness(
         // f0:
         specular = vec3(0.04) * (1 - metalness_mask) + diffuse_temp.rgb * metalness_mask;
 
-        smoothness = material_smoothness * ((material_smoothness_alpha * texture_metal_color.a) + // true
-                     ((1 - material_smoothness_alpha) * diffuse_temp.a ));                        // false
+        smoothness = (material_metallic_flag * texture_metal_color.a) +     // smoothness = metalic.a, if it has texture
+                     ((1 - material_metallic_flag) * material_smoothness);  // smoothness = material smoothness
     }
     else 
     {
@@ -80,8 +79,8 @@ void CalculateSpecularDiffuseSmoothness(
         // f0:
         specular = color_specular.rgb;
 
-        smoothness = material_smoothness * ((material_smoothness_alpha * color_specular.a) + // true
-                     ((1 - material_smoothness_alpha)* diffuse_temp.a ));                    // false
+        smoothness = (material_specular_flag * color_specular.a) +         // smoothness = specular.a, if it has texture
+                     ((1 - material_specular_flag) * material_smoothness); // smoothness = material smoothness
     } 
 
     // This is later then used in gamma correction & alpha stage of forward rendering,

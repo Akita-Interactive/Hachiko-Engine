@@ -21,8 +21,7 @@ bool Hachiko::ModuleWindow::Init()
 
     fullscreen = editor_prefs->IsFullscreen();
     resizable = editor_prefs->IsResizable();
-    vsync = editor_prefs->IsVsyncActive();
- 
+    
     HE_LOG("Init SDL window & surface");
     bool ret = true;
 
@@ -63,6 +62,13 @@ bool Hachiko::ModuleWindow::Init()
     }
 
     return ret;
+}
+
+bool Hachiko::ModuleWindow::Start()
+{
+    SetVsync(editor_prefs->IsVsyncActive());
+
+    return true;
 }
 
 // Called before quitting
@@ -115,32 +121,33 @@ void Hachiko::ModuleWindow::SetSize(int w, int h) const
     SDL_SetWindowSize(window, w, h);
 }
 
-void Hachiko::ModuleWindow::SetVsync(bool vsync)
+void Hachiko::ModuleWindow::SetVsync(bool vsync_enabled)
 {
+    vsync = vsync_enabled;
     SDL_GL_SetSwapInterval(vsync);
+    App->preferences->GetEditorPreference()->SetVsync(vsync);
 }
 
 void Hachiko::ModuleWindow::OptionsMenu()
 {
-    if (ImGui::Checkbox("Fullscreen", &fullscreen))
+    if (Widgets::Checkbox("Fullscreen", &fullscreen))
     {
         App->window->SetFullScreen(fullscreen);
     }
 
-    ImGui::SameLine();
-    if (ImGui::Checkbox("Vsync", &vsync))
+    if (Widgets::Checkbox("Vsync", &vsync))
     {
         SetVsync(vsync);
     }
 
     if (!fullscreen)
     {
-        if (ImGui::Checkbox("Resizable", &resizable))
+        if (Widgets::Checkbox("Resizable", &resizable))
         {
             SetResizable(resizable);
         }
     }
-    ImGui::Text("Monitor Refresh Rate: %d", refresh_rate);
+    Widgets::Label("Monitor refresh rate", std::to_string(refresh_rate));
 }
 
 void Hachiko::ModuleWindow::GetMonitorResolution(int& width, int& height)

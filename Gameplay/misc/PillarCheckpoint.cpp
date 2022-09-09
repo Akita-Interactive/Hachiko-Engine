@@ -8,8 +8,8 @@
 
 Hachiko::Scripting::PillarCheckpoint::PillarCheckpoint(GameObject* game_object)
 	: Script(game_object, "PillarCheckpoint")
-	, _activation_range(5.0f)
 	, _respawn_go(nullptr)
+    , _activation_range(5.0f)
 {
 }
 
@@ -66,7 +66,7 @@ void Hachiko::Scripting::PillarCheckpoint::ActivateCheckpoint()
 bool Hachiko::Scripting::PillarCheckpoint::IsPlayerInRange()
 {
 	float3 player_pos = _player->GetComponent<ComponentTransform>()->GetGlobalPosition();
-	float distance_to_player = player_pos.Distance(game_object->GetComponent<ComponentTransform>()->GetGlobalPosition());
+	float distance_to_player = player_pos.Distance(_respawn_go->GetComponent<ComponentTransform>()->GetGlobalPosition());
 	
 	return distance_to_player <= _activation_range;
 }

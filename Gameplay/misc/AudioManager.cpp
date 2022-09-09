@@ -10,7 +10,8 @@
 Hachiko::Scripting::AudioManager::AudioManager(GameObject* game_object)
 	: Script(game_object, "AudioManager")
 	, _enemies_in_combat(0)
-	, _previous_in_combat(false)
+	, _in_combat(false)
+	, _in_gaunlet(false)
 {
 }
 
@@ -25,39 +26,84 @@ void Hachiko::Scripting::AudioManager::OnStart()
 	_audio_source->PostEvent(Sounds::PLAY_NAVIGATION);
 	_audio_source->PostEvent(Sounds::PLAY_WIND);
 	_audio_source->PostEvent(Sounds::PLAY_PEBBLE);
+	updated = true;
 }
 
 void Hachiko::Scripting::AudioManager::OnUpdate()
 {
-	bool current_in_combat = _enemies_in_combat > 0;
+	UpdateState();
+}
 
-	if (_previous_in_combat == current_in_combat)
+void Hachiko::Scripting::AudioManager::UpdateState()
+{
+	if (updated)
 	{
 		return;
 	}
 
-	_previous_in_combat = current_in_combat;
-
-	if (!current_in_combat)
+	if (_in_gaunlet || _in_combat)
 	{
-		_audio_source->PostEvent(Sounds::STOP_COMBAT);
-		_audio_source->PostEvent(Sounds::PLAY_NAVIGATION);
+		PlayCombatMusic();
 	}
 	else
 	{
-		_audio_source->PostEvent(Sounds::PLAY_COMBAT);
-		_audio_source->PostEvent(Sounds::STOP_NAVIGATION);
+		PlayNavigationMusic();
 	}
+
+	updated = true;
 }
 
 void Hachiko::Scripting::AudioManager::RegisterCombat()
 {
 	++_enemies_in_combat;
+	if (!_in_combat)
+	{
+		_in_combat = true;
+		updated = false;
+	}
+
 }
 
 void Hachiko::Scripting::AudioManager::UnregisterCombat()
 {
 	--_enemies_in_combat;
+	if (_enemies_in_combat <= 0)
+	{
+		_enemies_in_combat = 0;
+		updated = false;
+		_in_combat = false;
+	}
+}
 
-	_enemies_in_combat = _enemies_in_combat < 0 ? 0 : _enemies_in_combat;
+void Hachiko::Scripting::AudioManager::RegisterGaunlet()
+{
+	_in_gaunlet = true;
+	_in_combat = true;
+	updated = false;
+}
+
+void Hachiko::Scripting::AudioManager::UnregisterGaunlet()
+{
+	_in_gaunlet = false;
+	_in_combat = false;
+	updated = false;
+}
+
+void Hachiko::Scripting::AudioManager::PlayCombatMusic()
+{
+	StopMusic();
+	_audio_source->PostEvent(Sounds::PLAY_COMBAT);
+}
+
+void Hachiko::Scripting::AudioManager::PlayNavigationMusic()
+{
+	StopMusic();
+	_audio_source->PostEvent(Sounds::PLAY_NAVIGATION);
+}
+
+void Hachiko::Scripting::AudioManager::StopMusic()
+{
+	_audio_source->PostEvent(Sounds::STOP_COMBAT);
+	_audio_source->PostEvent(Sounds::STOP_NAVIGATION);
+
 }

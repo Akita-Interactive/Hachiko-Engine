@@ -101,8 +101,8 @@ namespace Hachiko
         void GenerateDockingSpace();
 
         // Main menu bar
-        UpdateStatus MainMenuBar();
-        UpdateStatus FileMenu();
+        void MainMenuBar();
+        void FileMenu();
         void EditMenu();
         void GoMenu() const;
         void ViewMenu();
@@ -147,6 +147,8 @@ namespace Hachiko
         };
 
         History history;
+        bool save_as_popup = false;
+        std::string file_name_buffer {""};
 #ifndef PLAY_BUILD
         inline static bool history_enabled = true;
 #else

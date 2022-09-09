@@ -40,7 +40,8 @@ namespace Hachiko
 			ComponentObstacle* door_obstacle = nullptr;
 
 		private:
-			State _state = State::CLOSED;
+			State _prev_state = State::OPEN;
+			State _state = State::OPEN;
 		};
 	}
 	

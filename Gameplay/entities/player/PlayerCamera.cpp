@@ -9,7 +9,7 @@
 
 Hachiko::Scripting::PlayerCamera::PlayerCamera(GameObject* game_object)
 	: Script(game_object, "PlayerCamera")
-	, _relative_position_to_player(math::float3(0.0f, 19.0f, 13.0f))
+	, _relative_position_to_player(math::float3(0.0f, 24.0f, 16.0f))
 	, _objective(nullptr)
 	, _follow_delay(0.6f)
 {
@@ -64,7 +64,7 @@ void Hachiko::Scripting::PlayerCamera::CheckForObjective()
 
 void Hachiko::Scripting::PlayerCamera::SetLookAhead()
 {
-	if (_player_ctrl && _player_ctrl->_state == PlayerState::WALKING)
+	if (_do_look_ahead && _player_ctrl && _player_ctrl->_state == PlayerState::WALKING)
 	{
 		const float look_ahead_time = Time::DeltaTime() / 0.8f;
 		Clamp<float>(look_ahead_time, 0.0f, 1.0f);
@@ -175,7 +175,7 @@ float3 Hachiko::Scripting::PlayerCamera::Shake()
 	}
 }
 
-void Hachiko::Scripting::PlayerCamera::ChangeRelativePosition(math::float3 new_relative_position, float speed, float time)
+void Hachiko::Scripting::PlayerCamera::ChangeRelativePosition(math::float3 new_relative_position, bool do_look_ahead, float speed, float time)
 {
 	if (time > 0.0f)
 	{
@@ -197,6 +197,7 @@ void Hachiko::Scripting::PlayerCamera::ChangeRelativePosition(math::float3 new_r
 		_reposition_time = 1.0f;
 		_reposition_progress = 1.0f;
 	}
+	_do_look_ahead = do_look_ahead;
 }
 
 void Hachiko::Scripting::PlayerCamera::RevertRelativePosition(float speed)

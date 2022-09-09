@@ -100,7 +100,7 @@ void Hachiko::Particle::Draw(ComponentCamera* camera, const Program* program)
     program->BindUniformInts("flip_y", 1, &flip_y);
     program->BindUniformFloat("animation_blend", &animation_blend);
 
-    glBindVertexArray(App->renderer->GetParticleVao());
+    glBindVertexArray(App->renderer->GetFullScreenQuadVAO());
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
     // Clear
@@ -120,10 +120,10 @@ void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_ma
     {
         case ParticleSystem::ParticleOrientation::NORMAL:
         {
-            Frustum* frustum = camera->GetFrustum();
+            const Frustum& frustum = camera->GetFrustum();
             float3x3 rotate_part = transform->GetGlobalMatrix().RotatePart();
             float4x4 global_model_matrix = transform->GetGlobalMatrix();
-            out_matrix = global_model_matrix.LookAt(rotate_part.Col(2), -frustum->Front(), rotate_part.Col(1), float3::unitY);
+            out_matrix = global_model_matrix.LookAt(rotate_part.Col(2), -frustum.Front(), rotate_part.Col(1), float3::unitY);
             out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart() * rotate_part * particle_rotation_matrix, particle_size);
             break;
         }
@@ -153,7 +153,7 @@ void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_ma
         }
         case ParticleSystem::ParticleOrientation::VERTICAL:
         {
-            const float3 camera_position = camera->GetFrustum()->Pos();
+            const float3 camera_position = camera->GetFrustum().Pos();
             const float3 camera_direction = (float3(camera_position.x, current_position.y, camera_position.z) - current_position).Normalized();
             out_matrix = float4x4::LookAt(float3::unitZ, camera_direction, float3::unitY, float3::unitY);
             out_matrix = float4x4::FromTRS(current_position, out_matrix.RotatePart() * particle_rotation_matrix, particle_size);
@@ -167,7 +167,7 @@ void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_ma
             float4x4 particle_model = float4x4::FromTRS(current_position, float3x3::identity, float3::one);
             float3 global_direction = (particle_model.RotatePart() * current_direction).Normalized();
 
-            float3 camera_position = camera->GetFrustum()->Pos();
+            float3 camera_position = camera->GetFrustum().Pos();
             float3 camera_direction = (float3(camera_position.x, current_position.y, camera_position.z) - current_position).Normalized();
             float3 up_direction = Cross(global_direction, camera_direction);
             float3 new_camera_direction = Cross(global_direction, up_direction);
