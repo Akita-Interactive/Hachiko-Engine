@@ -379,5 +379,5 @@
 
 // Component Canvas Renderer
 #define SCALE_UI "scale_ui"
-#define ORIGINAL_SIZE_X "original"
-#define ORIGINAL_SIZE_Y "scale_ui"
+#define ORIGINAL_SIZE_X "original_size_x"
+#define ORIGINAL_SIZE_Y "original_size_y"
