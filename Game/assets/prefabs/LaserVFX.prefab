@@ -5,8 +5,8 @@ component:
   - !<transform>
     type: 1
     enabled: true
-    position: [-0, 0.5, -10.24]
-    rotation: [90, 0, 0]
+    position: [0, 0, 0]
+    rotation: [-0, 0, -0]
     scale: [1, 1, 1]
 child:
   - name: Charging
@@ -16,7 +16,7 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [0, 0, 0]
+        rotation: [-0, 0, -0]
         scale: [1, 1, 1]
       - !<particle_system>
         type: 22
@@ -27,7 +27,6 @@ child:
           shape: true
           lights: false
           renderer: true
-          texture: false
         parameters:
           duration: 5
           loop: true
@@ -36,14 +35,14 @@ child:
           size: [true, true, 0, [1, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           rotation: [true, true, 0, [2.8, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
+          properties: [1, 0, 0, false, [false, false, 1, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
         emission:
           rate: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           rate_burst: [true, true, 0, [1.8, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           burst: false
         emitter_shape:
           type: 2
-          properties: [360, 0, [0, 0, 0], 0.001, 0.55, [0, 0, 0], [9, 9, 9], 1, false]
+          properties: [360, 0, [0, 0, 0], 0.001, 0.55, [0, 0, 0], [9, 9, 9], 1]
         texture:
           texture_id: 9634985123220384871
           tiles: [4, 4]
@@ -88,7 +87,7 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [0, 0, 0]
+        rotation: [90, 0, -0]
         scale: [0.1, 0.1, 1]
       - !<particle_system>
         type: 22
@@ -99,7 +98,6 @@ child:
           shape: true
           lights: false
           renderer: true
-          texture: true
         parameters:
           duration: 1
           loop: true
@@ -108,14 +106,14 @@ child:
           size: [true, true, 0, [10, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
+          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
         emission:
           rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           burst: false
         emitter_shape:
           type: 0
-          properties: [360, 0, [0, 0, 0], 0.001, 0.001, [0, 0, 0], [1, 1, 1], 0.005, false]
+          properties: [360, 0, [0, 0, 0], 0.001, 0.001, [0, 0, 0], [1, 1, 1], 0.005]
         texture:
           texture_id: 2183419842552565431
           tiles: [1, 1]
