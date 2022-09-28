@@ -317,6 +317,7 @@
 #define PARTICLE_PARAMETERS "parameters"
 #define PARTICLES_DURATION "duration"
 #define PARTICLES_LOOP "loop"
+#define PARTICLES_ATTACHED "attached"
 #define PARTICLES_LIFE "life"
 #define PARTICLES_SPEED "speed"
 #define PARTICLES_SIZE "size"

@@ -138,6 +138,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
 
             DragFloat("Duration", duration, &duration_cfg);
             Widgets::Checkbox("Loop", &loop);
+            Widgets::Checkbox("Attached to emitter", &emitter_properties.attached);
             Widgets::MultiTypeSelector("Start delay", start_delay);
             Widgets::MultiTypeSelector("Start lifetime", start_life);
 
