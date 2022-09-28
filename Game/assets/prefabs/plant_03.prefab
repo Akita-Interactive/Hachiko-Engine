@@ -1,0 +1,402 @@
+prefab_name: plant_03
+name: plant_03
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0.3986, 0, 4.405]
+    rotation: [-0, 0, -0]
+    scale: [75.79, 75.79, 75.79]
+  - !<animation>
+    type: 14
+    enabled: true
+    state_machine: 11288549854287937466
+  - !<script>
+    type: 15
+    enabled: true
+    class_name: TriggerAnim
+child:
+  - name: plant_03_mesh:Mesh_$AssimpFbx$_RotationPivot
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0.0025, 0]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+    child:
+      - name: plant_03_mesh:Mesh_$AssimpFbx$_RotationPivotInverse
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, -0.0025, 0]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+        child:
+          - name: plant_03_mesh:Mesh_$AssimpFbx$_ScalingPivot
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0.0025, 0]
+                rotation: [-0, 0, -0]
+                scale: [1, 1, 1]
+            child:
+              - name: plant_03_mesh:Mesh_$AssimpFbx$_ScalingPivotInverse
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, -0.0025, 0]
+                    rotation: [-0, 0, -0]
+                    scale: [1, 1, 1]
+                child:
+                  - name: plant_03_mesh:Mesh
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [-0, 0, -0]
+                        scale: [1, 1, 1]
+                      - !<mesh_renderer>
+                        type: 2
+                        enabled: true
+                        mesh_id: 11503510754591858765
+                        navigable: false
+                        visible: true
+                        material_id: 7319699834671474656
+                        tint_color: [1, 1, 1, 1]
+  - name: Root
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+    child:
+      - name: joint2_$AssimpFbx$_Translation
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-0.01, 0.0042, 0.0002]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+        child:
+          - name: joint2_$AssimpFbx$_PreRotation
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-180, 1.372, -180]
+                scale: [1, 1, 1]
+            child:
+              - name: joint2_$AssimpFbx$_Rotation
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [1.401, -4.828, 16.21]
+                    scale: [1, 1, 1]
+                child:
+                  - name: joint2_$AssimpFbx$_Scaling
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [-0, 0, -0]
+                        scale: [1, 1, 1]
+                    child:
+                      - name: joint2
+                        enabled: true
+                        component:
+                          - !<transform>
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [-0, 0, -0]
+                            scale: [1, 1, 1]
+                        child:
+                          - name: joint3_$AssimpFbx$_Translation
+                            enabled: true
+                            component:
+                              - !<transform>
+                                type: 1
+                                enabled: true
+                                position: [0.0094, 0.0014, 0]
+                                rotation: [-0, 0, -0]
+                                scale: [1, 1, 1]
+                            child:
+                              - name: joint3_$AssimpFbx$_PreRotation
+                                enabled: true
+                                component:
+                                  - !<transform>
+                                    type: 1
+                                    enabled: true
+                                    position: [0, 0, 0]
+                                    rotation: [-180, -1.372, -180]
+                                    scale: [1, 1, 1]
+                                child:
+                                  - name: joint3
+                                    enabled: true
+                                    component:
+                                      - !<transform>
+                                        type: 1
+                                        enabled: true
+                                        position: [0, 0, 0]
+                                        rotation: [-0, 0, -0]
+                                        scale: [1, 1, 1]
+      - name: joint4_$AssimpFbx$_Translation
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.01, 0.0042, 0.0001]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+        child:
+          - name: joint4_$AssimpFbx$_PreRotation
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, -0.3452, 0]
+                scale: [1, 1, 1]
+            child:
+              - name: joint4_$AssimpFbx$_Rotation
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [-0.8052, 12.22, 3.798]
+                    scale: [1, 1, 1]
+                child:
+                  - name: joint4_$AssimpFbx$_Scaling
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [-0, 0, -0]
+                        scale: [1, 1, 1]
+                    child:
+                      - name: joint4
+                        enabled: true
+                        component:
+                          - !<transform>
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [-0, 0, -0]
+                            scale: [1, 1, 1]
+                        child:
+                          - name: joint5_$AssimpFbx$_Translation
+                            enabled: true
+                            component:
+                              - !<transform>
+                                type: 1
+                                enabled: true
+                                position: [0.0093, 0.0014, 0]
+                                rotation: [-0, 0, -0]
+                                scale: [1, 1, 1]
+                            child:
+                              - name: joint5_$AssimpFbx$_PreRotation
+                                enabled: true
+                                component:
+                                  - !<transform>
+                                    type: 1
+                                    enabled: true
+                                    position: [0, 0, 0]
+                                    rotation: [-0, 0.3452, -0]
+                                    scale: [1, 1, 1]
+                                child:
+                                  - name: joint5
+                                    enabled: true
+                                    component:
+                                      - !<transform>
+                                        type: 1
+                                        enabled: true
+                                        position: [0, 0, 0]
+                                        rotation: [-0, 0, -0]
+                                        scale: [1, 1, 1]
+      - name: joint6_$AssimpFbx$_Translation
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-0.0002, 0.0042, -0.0099]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+        child:
+          - name: joint6_$AssimpFbx$_PreRotation
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-0, 88.54, -0]
+                scale: [1, 1, 1]
+            child:
+              - name: joint6_$AssimpFbx$_Rotation
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [1.976, -3.605, 28.76]
+                    scale: [1, 1, 1]
+                child:
+                  - name: joint6_$AssimpFbx$_Scaling
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [-0, 0, -0]
+                        scale: [1, 1, 1]
+                    child:
+                      - name: joint6
+                        enabled: true
+                        component:
+                          - !<transform>
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [-0, 0, -0]
+                            scale: [1, 1, 1]
+                        child:
+                          - name: joint7_$AssimpFbx$_Translation
+                            enabled: true
+                            component:
+                              - !<transform>
+                                type: 1
+                                enabled: true
+                                position: [0.0094, 0.0014, 0]
+                                rotation: [-0, 0, -0]
+                                scale: [1, 1, 1]
+                            child:
+                              - name: joint7_$AssimpFbx$_PreRotation
+                                enabled: true
+                                component:
+                                  - !<transform>
+                                    type: 1
+                                    enabled: true
+                                    position: [0, 0, 0]
+                                    rotation: [0, -88.54, 0]
+                                    scale: [1, 1, 1]
+                                child:
+                                  - name: joint7
+                                    enabled: true
+                                    component:
+                                      - !<transform>
+                                        type: 1
+                                        enabled: true
+                                        position: [0, 0, 0]
+                                        rotation: [-0, 0, -0]
+                                        scale: [1, 1, 1]
+      - name: joint8_$AssimpFbx$_Translation
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0.0042, 0.0099]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+        child:
+          - name: joint8_$AssimpFbx$_PreRotation
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, -89.98, 0]
+                scale: [1, 1, 1]
+            child:
+              - name: joint8_$AssimpFbx$_Rotation
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [-1.095, 8.955, 7.001]
+                    scale: [1, 1, 1]
+                child:
+                  - name: joint8_$AssimpFbx$_Scaling
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [-0, 0, -0]
+                        scale: [1, 1, 1]
+                    child:
+                      - name: joint8
+                        enabled: true
+                        component:
+                          - !<transform>
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [-0, 0, -0]
+                            scale: [1, 1, 1]
+                        child:
+                          - name: joint9_$AssimpFbx$_Translation
+                            enabled: true
+                            component:
+                              - !<transform>
+                                type: 1
+                                enabled: true
+                                position: [0.0096, 0.0014, 0]
+                                rotation: [-0, 0, -0]
+                                scale: [1, 1, 1]
+                            child:
+                              - name: joint9_$AssimpFbx$_PreRotation
+                                enabled: true
+                                component:
+                                  - !<transform>
+                                    type: 1
+                                    enabled: true
+                                    position: [0, 0, 0]
+                                    rotation: [-0, 89.98, -0]
+                                    scale: [1, 1, 1]
+                                child:
+                                  - name: joint9
+                                    enabled: true
+                                    component:
+                                      - !<transform>
+                                        type: 1
+                                        enabled: true
+                                        position: [0, 0, 0]
+                                        rotation: [-0, 0, -0]
+                                        scale: [1, 1, 1]
