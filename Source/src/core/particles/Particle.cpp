@@ -49,7 +49,7 @@ void Hachiko::Particle::Reset()
     float4x4 current_model;
     if (emitter->GetEmitterProperties().attached)
     {
-        current_model = emitter_model * particle_model * float4x4::FromTRS(float3::zero, game_object_model.RotatePart(), float3::one);
+        current_model = emitter_model * particle_model;
     }
     else
     {
@@ -70,11 +70,6 @@ void Hachiko::Particle::Reset()
 
 void Hachiko::Particle::Draw(ComponentCamera* camera, const Program* program)
 {
-    if (!emitter->GetParticlesProperties().draw)
-    {
-        return;
-    }
-
     glActiveTexture(GL_TEXTURE0);
     int has_texture = 0;
     const auto texture_resource = emitter->GetTexture();
@@ -134,9 +129,7 @@ void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_ma
     float3 world_position = current_position;
     if (emitter->GetEmitterProperties().attached)
     {
-        float4 corrected_world_position = float4(current_position, 1.0f);
-        corrected_world_position = emitter->GetGameObject()->GetTransform()->GetGlobalMatrix() * corrected_world_position;
-        world_position = float3(corrected_world_position.x, corrected_world_position.y, corrected_world_position.z);
+        world_position = emitter->GetGameObject()->GetTransform()->GetGlobalPosition() + current_position;
     }
 
     switch (emitter->GetParticlesProperties().orientation)
