@@ -438,6 +438,7 @@ namespace YAML
             node.push_back(rhs.rotation);
             node.push_back(rhs.scale);
             node.push_back(rhs.top);
+            node.push_back(rhs.attached);
 
             node.SetStyle(EmitterStyle::Flow);
             return node;
@@ -445,7 +446,7 @@ namespace YAML
 
         static bool decode(const Node& node, Hachiko::ParticleSystem::Emitter::Properties& rhs)
         {
-            if (!node.IsSequence() || node.size() != 8)
+            if (!node.IsSequence() || node.size() != 8) // TODO: After save the scene change to 9
             {
                 return false;
             }
@@ -458,6 +459,7 @@ namespace YAML
             rhs.rotation = node[5].as<float3>();
             rhs.scale = node[6].as<float3>();
             rhs.top = node[7].as<float>();
+            //rhs.attached = node[8].as<bool>(); // TODO: After save the scene add this line
 
             return true;
         }
