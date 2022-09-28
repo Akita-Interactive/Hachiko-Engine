@@ -15,7 +15,8 @@ namespace Hachiko
 				enum State
 			{
 				CLOSED = 0,
-				OPEN = 1
+				OPENING = 1,
+				OPEN = 2
 			};
 
 		// Methods
@@ -42,6 +43,8 @@ namespace Hachiko
 		private:
 			State _prev_state = State::OPEN;
 			State _state = State::OPEN;
+
+			float _initial_z = 0;
 		};
 	}
 	

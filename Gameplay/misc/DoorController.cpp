@@ -13,6 +13,7 @@ void Hachiko::Scripting::DoorController::OnAwake()
 	_closed_door_mesh = _door_prefab->children[0];
 	_open_door_mesh = _door_prefab->children[1];
 	Close();
+	_initial_z = _closed_door_mesh->GetTransform()->GetLocalPosition().y;
 }
 
 void Hachiko::Scripting::DoorController::OnUpdate()
@@ -22,7 +23,7 @@ void Hachiko::Scripting::DoorController::OnUpdate()
 
 void Hachiko::Scripting::DoorController::Open()
 {
-	_state = State::OPEN;
+	_state = State::OPENING;
 }
 
 void Hachiko::Scripting::DoorController::Close()
@@ -32,7 +33,7 @@ void Hachiko::Scripting::DoorController::Close()
 
 void Hachiko::Scripting::DoorController::UpdateDoorState()
 {
-	if (_prev_state == _state)
+	if (_prev_state == _state && _state != State::OPENING)
 	{
 		return;
 	}
@@ -44,6 +45,14 @@ void Hachiko::Scripting::DoorController::UpdateDoorState()
 		_door_prefab->SetActive(true);
 		_open_door_mesh->SetActive(false);
 		door_obstacle->AddObstacle();
+		break;
+	case State::OPENING:
+		_open_door_mesh->SetActive(true);
+		_closed_door_mesh->GetTransform()->SetLocalPosition(_closed_door_mesh->GetTransform()->GetLocalPosition() - float3(0.0f, 0.0f, 0.1f));
+		if (math::Abs(_initial_z - _closed_door_mesh->GetTransform()->GetLocalPosition().z) >= 1.1f)
+		{
+			_state = State::OPEN;
+		}
 		break;
 	case State::OPEN:
 		door_obstacle->RemoveObstacle();
