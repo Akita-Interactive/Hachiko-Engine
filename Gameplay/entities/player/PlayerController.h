@@ -194,7 +194,7 @@ namespace Hachiko
 			void MovementController();
 			void DashController();
 			void DashChargesManager();
-			void DashTrailManager(float dash_progress);
+			void DashTrailManager();
 			void WalkingOrientationController();
 			void AttackController();
 
@@ -236,6 +236,7 @@ namespace Hachiko
 			SERIALIZE_FIELD(unsigned, _dash_scaler);
 			SERIALIZE_FIELD(unsigned, _max_dash_charges);
 			SERIALIZE_FIELD(GameObject*, _dash_trail);
+			SERIALIZE_FIELD(GameObject*, _dash_trail_vfx);
 			SERIALIZE_FIELD(float, _trail_enlarger);
 			SERIALIZE_FIELD(GameObject*, _falling_dust);
 			SERIALIZE_FIELD(GameObject*, _walking_dust);
@@ -303,12 +304,12 @@ namespace Hachiko
 			float3 _dash_direction = float3::zero;
 			const unsigned max_dashed_from_positions = 5;
 			std::deque<float3> dashed_from_positions;
+			ComponentParticleSystem* _dash_particles = nullptr;
 
 			float3 _trail_start_pos = float3::zero;
 			float3 _trail_start_scale = float3::zero;
 			float3 _trail_end_pos = float3::zero;
 			float3 _trail_end_scale = float3::zero;
-			bool _show_dashtrail = false;
 
 			//Attack management
 			float _attack_current_cd = 0.0f;
