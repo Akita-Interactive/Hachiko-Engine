@@ -47,7 +47,7 @@ void Hachiko::Scripting::LaserController::OnAwake()
 	if (_beam != nullptr)
 	{
 		_beam_particles = _beam->GetComponent<ComponentParticleSystem>();
-		//_beam_length = _beam_particles->GetParticlesLife().GetValue();
+		_beam_length = _beam_particles->GetParticlesLifetime();
 	}
 
 	if (_beam_reduced != nullptr)
