@@ -848,6 +848,11 @@ void Hachiko::ComponentParticleSystem::Stop()
     emitter_state = ParticleSystem::Emitter::State::STOPPED;
 }
 
+float Hachiko::ComponentParticleSystem::GetParticlesLifetime()
+{
+    return GetParticlesLife().GetValue();
+}
+
 void Hachiko::ComponentParticleSystem::DisplayControls()
 {
     const auto& pos = App->editor->GetSceneWindow()->GetViewportPosition();
