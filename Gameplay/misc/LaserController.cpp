@@ -3,6 +3,8 @@
 #include "constants/Scenes.h"
 #include "constants/Sounds.h"
 #include "entities/player/PlayerController.h"
+#include "components/ComponentParticleSystem.h"
+#include "core/particles/ParticleSystem.h"
 
 // TODO: Delete this include:
 #include <modules/ModuleSceneManager.h>
@@ -40,6 +42,17 @@ void Hachiko::Scripting::LaserController::OnAwake()
 	{
 		_sparks_particles = _sparks->GetComponent<ComponentParticleSystem>();
 		_sparks_particles->Stop();
+	}
+	
+	if (_beam != nullptr)
+	{
+		_beam_particles = _beam->GetComponent<ComponentParticleSystem>();
+		//_beam_length = _beam_particles->GetParticlesLife().GetValue();
+	}
+
+	if (_beam_reduced != nullptr)
+	{
+		_beam_reduced_particles = _beam_reduced->GetComponent<ComponentParticleSystem>();
 	}
 }
 
@@ -181,6 +194,24 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 
 	if (_length != new_length || _state == ACTIVATING || _state == ACTIVE)
 	{
+		if (_sparks != nullptr && (_length - new_length) > 0.1f)
+		{
+			_sparks->GetTransform()->SetLocalPosition(float3(0.0f, 0.0f, -new_length));
+			_sparks_particles->Restart();
+
+			if (_beam != nullptr && _beam_reduced != nullptr)
+			{
+				_beam->SetActive(false);
+				_beam_reduced->SetActive(true);
+			}
+		}
+
+		if (_beam != nullptr && _beam_reduced && (new_length - _length) > 0.1f)
+		{
+			_beam->SetActive(true);
+			_beam_reduced->SetActive(false);
+		}
+
 		_length = new_length;
 		_laser->GetTransform()->SetLocalScale(float3(_scale, _scale, _length * 0.5f));
 	}
