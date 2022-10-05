@@ -47,6 +47,7 @@ namespace Hachiko
         HACHIKO_API void Pause();
         HACHIKO_API void Restart();
         HACHIKO_API void Stop() override;
+        HACHIKO_API float GetParticlesLifetime();
 
     private:
         ParticleSystem::Emitter::State emitter_state = ParticleSystem::Emitter::State::STOPPED;
