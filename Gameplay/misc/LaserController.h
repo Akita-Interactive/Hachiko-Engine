@@ -54,7 +54,7 @@ namespace Hachiko
             SERIALIZE_FIELD(GameObject* , _sparks);
             SERIALIZE_FIELD(GameObject* , _beam);
             SERIALIZE_FIELD(GameObject* , _beam_reduced);
-            //SERIALIZE_FIELD(float , _beam_length);
+            SERIALIZE_FIELD(float , _beam_length);
             //SERIALIZE_FIELD(float , _beam_reduced);
             
         private:
