@@ -49,7 +49,7 @@ void Hachiko::Particle::Reset()
     float4x4 current_model;
     if (emitter->GetEmitterProperties().attached)
     {
-        current_model = emitter_model * particle_model;
+        current_model = emitter_model * particle_model * float4x4::FromTRS(float3::zero, game_object_model.RotatePart(), float3::one);
     }
     else
     {
