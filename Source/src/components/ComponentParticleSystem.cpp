@@ -156,6 +156,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
 
             MultiTypeSelector("Rate over time", rate_over_time, &rate_cfg);
             Widgets::Checkbox("Burst", &burst);
+            Widgets::Checkbox("Draw Particles", &particle_properties.draw);
 
             if (burst)
             {
@@ -846,6 +847,11 @@ void Hachiko::ComponentParticleSystem::Stop()
 float Hachiko::ComponentParticleSystem::GetParticlesLifetime()
 {
     return GetParticlesLife().GetValue();
+}
+
+void Hachiko::ComponentParticleSystem::DrawParticles(bool draw)
+{
+    particle_properties.draw = draw;
 }
 
 void Hachiko::ComponentParticleSystem::DisplayControls()

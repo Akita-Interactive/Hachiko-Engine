@@ -476,6 +476,7 @@ namespace YAML
             node.push_back(static_cast<int>(rhs.render_mode));
             node.push_back(rhs.orientate_to_direction);
             node.push_back(rhs.stretch);
+            node.push_back(rhs.draw);
 
             node.SetStyle(EmitterStyle::Flow);
             return node;
@@ -493,6 +494,7 @@ namespace YAML
             rhs.render_mode = static_cast<Hachiko::ParticleSystem::ParticleRenderMode>(node[2].as<int>());
             rhs.orientate_to_direction = node[3].as<bool>();
             rhs.stretch = node[4].as<Hachiko::ParticleSystem::VariableTypeProperty>();
+            //rhs.draw = node[5].as<bool>(); // TODO: After save the scene add this line
             return true;
         }
     };
