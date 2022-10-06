@@ -47,7 +47,6 @@ void Hachiko::Scripting::LaserController::OnAwake()
 	if (_beam != nullptr)
 	{
 		_beam_particles = _beam->GetComponent<ComponentParticleSystem>();
-		_beam_length = _beam_particles->GetParticlesLifetime();
 	}
 
 	if (_beam_reduced != nullptr)
@@ -202,15 +201,15 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 
 			if (_beam != nullptr && _beam_reduced != nullptr)
 			{
-				_beam->SetActive(false);
-				_beam_reduced->SetActive(true);
+				_beam_particles->DrawParticles(false);
+				_beam_reduced_particles->DrawParticles(true);
 			}
 		}
 
 		if (_beam != nullptr && _beam_reduced && (new_length - _length) > 0.1f)
 		{
-			_beam->SetActive(true);
-			_beam_reduced->SetActive(false);
+			_beam_particles->DrawParticles(true);
+			_beam_reduced_particles->DrawParticles(false);
 		}
 
 		_length = new_length;
