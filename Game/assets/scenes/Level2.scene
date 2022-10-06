@@ -44,6 +44,9 @@ child:
       - id: 13742647254358042644
         type: 19
         enabled: true
+      - id: 17366640235562355003
+        type: 20
+        enabled: true
       - !<script>
         id: 12628990202166580358
         type: 15
@@ -52,9 +55,6 @@ child:
         "'_relative_position_to_player@math::float3'": [0, 24, 16]
         "'_objective@GameObject*'": 3004978374883448461
         "'_follow_delay@float'": 0.6
-      - id: 17366640235562355003
-        type: 20
-        enabled: true
   - id: 18425328451805713761
     name: DirectionalLight
     enabled: true
@@ -12608,6 +12608,9 @@ child:
         position: [0, 0, 0]
         rotation: [-0, 0, -0]
         scale: [1, 1, 1]
+      - id: 14843021346743948753
+        type: 20
+        enabled: true
       - !<script>
         id: 15283572140114050448
         type: 15
@@ -12616,9 +12619,6 @@ child:
         "'_enemies_in_combat@int'": 0
         "'_in_combat@bool'": false
         "'_in_gaunlet@bool'": false
-      - id: 14843021346743948753
-        type: 20
-        enabled: true
   - id: 10930005240183632013
     name: LevelManager
     enabled: true
@@ -32450,6 +32450,9 @@ child:
             position: [-26.01, 1.3, 38.88]
             rotation: [-0, 45, -0]
             scale: [1, 1, 1]
+          - id: 17817942635228409429
+            type: 20
+            enabled: true
           - !<script>
             id: 9657277446745110557
             type: 15
@@ -32471,9 +32474,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-          - id: 17817942635228409429
-            type: 20
-            enabled: true
         child:
           - id: 13176359943753856767
             name: Box
@@ -32686,6 +32686,9 @@ child:
             position: [-16.42, 1.3, 28.68]
             rotation: [-0, 45, -0]
             scale: [1, 1, 1]
+          - id: 7855138358787914724
+            type: 20
+            enabled: true
           - !<script>
             id: 16461775054731255410
             type: 15
@@ -32707,9 +32710,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-          - id: 7855138358787914724
-            type: 20
-            enabled: true
         child:
           - id: 2323538910354459903
             name: Box
@@ -32922,6 +32922,9 @@ child:
             position: [-2.708, 1.3, -8.675]
             rotation: [-179.7, -89.98, -179.7]
             scale: [1, 1, 1]
+          - id: 1560203970384173830
+            type: 20
+            enabled: true
           - !<script>
             id: 2315815456579080644
             type: 15
@@ -32943,9 +32946,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-          - id: 1560203970384173830
-            type: 20
-            enabled: true
         child:
           - id: 231048860373121676
             name: Box
@@ -33158,6 +33158,9 @@ child:
             position: [-2.621, 1.3, 13.14]
             rotation: [-179.8, -89.98, -179.8]
             scale: [1, 1, 1]
+          - id: 14695003231451741538
+            type: 20
+            enabled: true
           - !<script>
             id: 13596318806624474293
             type: 15
@@ -33179,9 +33182,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-          - id: 14695003231451741538
-            type: 20
-            enabled: true
         child:
           - id: 7871960754833536717
             name: Box
@@ -33394,6 +33394,9 @@ child:
             position: [-10.57, 1.3, 4.57]
             rotation: [-0, 0, -0]
             scale: [1, 1, 1]
+          - id: 18244783952425888498
+            type: 20
+            enabled: true
           - !<script>
             id: 4557603939341787704
             type: 15
@@ -33415,9 +33418,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-          - id: 18244783952425888498
-            type: 20
-            enabled: true
         child:
           - id: 10049393491770869103
             name: Box
@@ -33630,6 +33630,9 @@ child:
             position: [11.02, 1.3, 4.25]
             rotation: [-0.0115, -1, -0]
             scale: [1, 1, 1]
+          - id: 11606083925199337313
+            type: 20
+            enabled: true
           - !<script>
             id: 6754595036315934827
             type: 15
@@ -33651,9 +33654,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-          - id: 11606083925199337313
-            type: 20
-            enabled: true
         child:
           - id: 8185768695953097981
             name: Box
@@ -33866,6 +33866,9 @@ child:
             position: [4.59, 1.3, 12.18]
             rotation: [-0.015, -45, -0.0062]
             scale: [1, 1, 1]
+          - id: 12003283733495858845
+            type: 20
+            enabled: true
           - !<script>
             id: 10017085444928666400
             type: 15
@@ -33887,9 +33890,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-          - id: 12003283733495858845
-            type: 20
-            enabled: true
         child:
           - id: 8856030624583368245
             name: Box
@@ -34102,6 +34102,9 @@ child:
             position: [-9.88, 1.3, -2.62]
             rotation: [-0.015, -45, -0.0062]
             scale: [1, 1, 1]
+          - id: 8302683609660054132
+            type: 20
+            enabled: true
           - !<script>
             id: 7346807530137523059
             type: 15
@@ -34123,9 +34126,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-          - id: 8302683609660054132
-            type: 20
-            enabled: true
         child:
           - id: 13679529185828630184
             name: Box
@@ -34338,6 +34338,9 @@ child:
             position: [48.73, 1.3, 3.493]
             rotation: [-0.015, -45, -0.0062]
             scale: [1, 1, 1]
+          - id: 10194373368110108326
+            type: 20
+            enabled: true
           - !<script>
             id: 7565871568706253814
             type: 15
@@ -34359,9 +34362,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-          - id: 10194373368110108326
-            type: 20
-            enabled: true
         child:
           - id: 12990161435696835532
             name: Box
@@ -34574,6 +34574,9 @@ child:
             position: [55.3, 1.846, 12.8]
             rotation: [-0.015, -45, -0.0062]
             scale: [1, 1, 1]
+          - id: 3348784641776943634
+            type: 20
+            enabled: true
           - !<script>
             id: 11328786995689348862
             type: 15
@@ -34595,9 +34598,6 @@ child:
             "'_sparks@GameObject*'": 2373261524069017800
             "'_beam@GameObject*'": 5674482526297699435
             "'_beam_reduced@GameObject*'": 9163656319461378127
-          - id: 3348784641776943634
-            type: 20
-            enabled: true
         child:
           - id: 10005038885590080420
             name: Box
@@ -34695,7 +34695,7 @@ child:
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, true]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -34781,7 +34781,7 @@ child:
                       burst: false
                     emitter_shape:
                       type: 2
-                      properties: [360, 0, [0, 0, 0], 0.001, 0.55, [0, 0, 0], [9, 9, 9], 1, false]
+                      properties: [360, 0, [0, 0, 0], 0.001, 0.55, [0, 0, 0], [9, 9, 9], 1, true]
                     texture:
                       texture_id: 9634985123220384871
                       tiles: [4, 4]
@@ -34855,7 +34855,7 @@ child:
                       burst: false
                     emitter_shape:
                       type: 0
-                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [-90, 0, -45], [1, 1, 1], 0.005, true]
+                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [0, 0, 0], [1, 1, 1], 0.005, true]
                     texture:
                       texture_id: 2183419842552565431
                       tiles: [1, 1]
@@ -34929,7 +34929,7 @@ child:
                       burst: false
                     emitter_shape:
                       type: 0
-                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [-90, 0, -45], [1, 1, 1], 0.005, true]
+                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [0, 0, 0], [1, 1, 1], 0.005, true]
                     texture:
                       texture_id: 2183419842552565431
                       tiles: [1, 1]
@@ -34998,6 +34998,9 @@ child:
             position: [72.21, 1.846, 29.5]
             rotation: [-0.015, -45, -0.0062]
             scale: [1, 1, 1]
+          - id: 14306024741120179351
+            type: 20
+            enabled: true
           - !<script>
             id: 14802523025390994518
             type: 15
@@ -35019,9 +35022,6 @@ child:
             "'_sparks@GameObject*'": 10419062081009056423
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-          - id: 14306024741120179351
-            type: 20
-            enabled: true
         child:
           - id: 6111601366910945143
             name: Box
@@ -35119,7 +35119,7 @@ child:
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, true]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -35205,7 +35205,7 @@ child:
                       burst: false
                     emitter_shape:
                       type: 2
-                      properties: [360, 0, [0, 0, 0], 0.001, 0.55, [0, 0, 0], [9, 9, 9], 1, false]
+                      properties: [360, 0, [0, 0, 0], 0.001, 0.55, [0, 0, 0], [9, 9, 9], 1, true]
                     texture:
                       texture_id: 9634985123220384871
                       tiles: [4, 4]
@@ -35279,7 +35279,7 @@ child:
                       burst: false
                     emitter_shape:
                       type: 0
-                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [-90, 0, -45], [1, 1, 1], 0.005, true]
+                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [0, 0, 0], [1, 1, 1], 0.005, true]
                     texture:
                       texture_id: 2183419842552565431
                       tiles: [1, 1]
@@ -35353,7 +35353,7 @@ child:
                       burst: false
                     emitter_shape:
                       type: 0
-                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [-90, 0, -45], [1, 1, 1], 0.005, true]
+                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [0, 0, 0], [1, 1, 1], 0.005, true]
                     texture:
                       texture_id: 2183419842552565431
                       tiles: [1, 1]
@@ -35422,6 +35422,9 @@ child:
             position: [139.8, 2.276, 35]
             rotation: [-0.015, -45, -0.0062]
             scale: [1, 1, 1]
+          - id: 17510398279683272903
+            type: 20
+            enabled: true
           - !<script>
             id: 8534150216004039853
             type: 15
@@ -35443,9 +35446,6 @@ child:
             "'_sparks@GameObject*'": 1656843390739561150
             "'_beam@GameObject*'": 10405634182930701119
             "'_beam_reduced@GameObject*'": 8705229166779009021
-          - id: 17510398279683272903
-            type: 20
-            enabled: true
         child:
           - id: 17375908909364486516
             name: Box
@@ -35703,7 +35703,7 @@ child:
                       burst: false
                     emitter_shape:
                       type: 0
-                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [-90, 0, -45], [1, 1, 1], 0.005, true]
+                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [0, 0, 0], [1, 1, 1], 0.005, true]
                     texture:
                       texture_id: 2183419842552565431
                       tiles: [1, 1]
@@ -35777,7 +35777,7 @@ child:
                       burst: false
                     emitter_shape:
                       type: 0
-                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [-90, 0, -45], [1, 1, 1], 0.005, true]
+                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [0, 0, 0], [1, 1, 1], 0.005, true]
                     texture:
                       texture_id: 2183419842552565431
                       tiles: [1, 1]
@@ -35826,6 +35826,9 @@ child:
             position: [139.8, 1.38, 35]
             rotation: [-0.015, -45, -0.0062]
             scale: [1, 1, 1]
+          - id: 5762238692053394355
+            type: 20
+            enabled: true
           - !<script>
             id: 13668162196903433379
             type: 15
@@ -35847,9 +35850,6 @@ child:
             "'_sparks@GameObject*'": 25346659490403541
             "'_beam@GameObject*'": 896532365850200197
             "'_beam_reduced@GameObject*'": 635270418211741840
-          - id: 5762238692053394355
-            type: 20
-            enabled: true
         child:
           - id: 5304557671972825743
             name: Box
@@ -36087,7 +36087,7 @@ child:
                       burst: false
                     emitter_shape:
                       type: 0
-                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [-90, 0, -45], [1, 1, 1], 0.005, true]
+                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [0, 0, 0], [1, 1, 1], 0.005, true]
                     texture:
                       texture_id: 2183419842552565431
                       tiles: [1, 1]
@@ -36161,7 +36161,7 @@ child:
                       burst: false
                     emitter_shape:
                       type: 0
-                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [-90, 0, -45], [1, 1, 1], 0.005, true]
+                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [0, 0, 0], [1, 1, 1], 0.005, true]
                     texture:
                       texture_id: 2183419842552565431
                       tiles: [1, 1]
@@ -36210,6 +36210,15 @@ child:
             position: [128.2, 1.38, 18.38]
             rotation: [-0.041, -75, -0.0352]
             scale: [1, 1, 1]
+          - id: 12515943156503302189
+            type: 20
+            enabled: true
+          - !<obstacle>
+            id: 13353521894427939105
+            type: 18
+            enabled: true
+            obstacle_type: 1
+            obstacle_size: [20, 2, 2]
           - !<script>
             id: 8419728512630548669
             type: 15
@@ -36231,15 +36240,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-          - id: 12515943156503302189
-            type: 20
-            enabled: true
-          - !<obstacle>
-            id: 13353521894427939105
-            type: 18
-            enabled: true
-            obstacle_type: 1
-            obstacle_size: [20, 2, 2]
         child:
           - id: 4079039382543262054
             name: Cylinder
@@ -36452,6 +36452,15 @@ child:
             position: [8.31, 1.38, -5.57]
             rotation: [180, -43.85, 180]
             scale: [1, 1, 1]
+          - id: 5626211156909438935
+            type: 20
+            enabled: true
+          - !<obstacle>
+            id: 1385287981506477783
+            type: 18
+            enabled: true
+            obstacle_type: 1
+            obstacle_size: [4, 2, 3]
           - !<script>
             id: 6417308694981683722
             type: 15
@@ -36473,15 +36482,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-          - id: 5626211156909438935
-            type: 20
-            enabled: true
-          - !<obstacle>
-            id: 1385287981506477783
-            type: 18
-            enabled: true
-            obstacle_type: 1
-            obstacle_size: [4, 2, 3]
         child:
           - id: 12462284003168003668
             name: Cylinder
@@ -39881,6 +39881,15 @@ child:
       - id: 14467014540797078622
         type: 20
         enabled: true
+      - !<agent>
+        id: 15430520503083769939
+        type: 17
+        enabled: true
+        max_speed: 5
+        max_acceleration: 2
+        avoid_obstacles: false
+        radius: 0.5
+        is_player: true
       - !<script>
         id: 6096310886645976222
         type: 15
@@ -39943,15 +39952,6 @@ child:
         "'_move_speed@float'": 7
         "'_max_hp@int'": 4
         "'_current_hp@int'": 4
-      - !<agent>
-        id: 15430520503083769939
-        type: 17
-        enabled: true
-        max_speed: 5
-        max_acceleration: 2
-        avoid_obstacles: false
-        radius: 0.5
-        is_player: true
     child:
       - id: 14951885274661915044
         name: GEO_$AssimpFbx$_RotationOffset
