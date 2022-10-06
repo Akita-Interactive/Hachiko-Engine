@@ -70,6 +70,11 @@ void Hachiko::Particle::Reset()
 
 void Hachiko::Particle::Draw(ComponentCamera* camera, const Program* program)
 {
+    if (!emitter->GetParticlesProperties().draw)
+    {
+        return;
+    }
+
     glActiveTexture(GL_TEXTURE0);
     int has_texture = 0;
     const auto texture_resource = emitter->GetTexture();
