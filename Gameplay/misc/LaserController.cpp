@@ -52,6 +52,13 @@ void Hachiko::Scripting::LaserController::OnAwake()
 	if (_beam_reduced != nullptr)
 	{
 		_beam_reduced_particles = _beam_reduced->GetComponent<ComponentParticleSystem>();
+		_beam_reduced_particles->DrawParticles(false);
+	}
+	
+	if (_beam_crystals != nullptr)
+	{
+		_beam_crystals_particles = _beam_crystals->GetComponent<ComponentParticleSystem>();
+		_beam_crystals_particles->DrawParticles(false);
 	}
 }
 
@@ -193,22 +200,34 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 
 	if (_length != new_length || _state == ACTIVATING || _state == ACTIVE)
 	{
-		if (_sparks != nullptr && (_length - new_length) > 0.1f)
+		if (_sparks != nullptr && _beam != nullptr && _beam_reduced != nullptr && (_length - new_length) > 0.1f )
 		{
 			_sparks->GetTransform()->SetLocalPosition(float3(0.0f, 0.0f, -new_length));
 			_sparks_particles->Restart();
+			_beam_particles->DrawParticles(false);
 
-			if (_beam != nullptr && _beam_reduced != nullptr)
+			if (_beam_crystals != nullptr && new_length > 10.0f)
 			{
-				_beam_particles->DrawParticles(false);
+				_beam_crystals_particles->DrawParticles(true);
+			}
+			else
+			{
 				_beam_reduced_particles->DrawParticles(true);
 			}
 		}
 
-		if (_beam != nullptr && _beam_reduced && (new_length - _length) > 0.1f)
+		if (_beam != nullptr && _beam_reduced != nullptr && (new_length - _length) > 0.1f)
 		{
+			if (_beam_crystals != nullptr && _length > 10.0f)
+			{
+				_beam_crystals_particles->DrawParticles(false);
+			}
+			else
+			{
+				_beam_reduced_particles->DrawParticles(false);
+			}
+
 			_beam_particles->DrawParticles(true);
-			_beam_reduced_particles->DrawParticles(false);
 		}
 
 		_length = new_length;
