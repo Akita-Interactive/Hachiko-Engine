@@ -54,6 +54,7 @@ namespace Hachiko
             SERIALIZE_FIELD(GameObject* , _sparks);
             SERIALIZE_FIELD(GameObject* , _beam);
             SERIALIZE_FIELD(GameObject* , _beam_reduced);
+            SERIALIZE_FIELD(GameObject* , _beam_crystals);
             
         private:
             State _state = ACTIVE;
@@ -74,6 +75,7 @@ namespace Hachiko
             ComponentParticleSystem* _sparks_particles = nullptr;
             ComponentParticleSystem* _beam_particles = nullptr;
             ComponentParticleSystem* _beam_reduced_particles = nullptr;
+            ComponentParticleSystem* _beam_crystals_particles = nullptr;
         };
     }
 }
