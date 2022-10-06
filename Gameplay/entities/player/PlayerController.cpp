@@ -108,7 +108,7 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 		_dash_trail->SetActive(false);
 	}
 
-	if (_dash_particles)
+	if (_dash_trail_vfx)
 	{
 		_dash_particles = _dash_trail_vfx->GetComponent<ComponentParticleSystem>();
 	}
@@ -997,7 +997,12 @@ void Hachiko::Scripting::PlayerController::DashController()
 		DashTrailManager(_dash_progress);
 		return;
 	}
-	_dash_particles->Play();
+
+	if (_dash_particles != nullptr)
+	{
+		_dash_particles->Play();
+	}
+
 	_dash_progress += Time::DeltaTime() / _dash_duration;
 	_dash_progress = _dash_progress > 1.0f ? 1.0f : _dash_progress;
 	
