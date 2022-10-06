@@ -484,7 +484,7 @@ namespace YAML
 
         static bool decode(const Node& node, Hachiko::ParticleSystem::ParticleProperties& rhs)
         {
-            if (!node.IsSequence() || node.size() != 5)
+            if (!node.IsSequence() || node.size() != 5) // After save the scene increment to 6
             {
                 return false;
             }
