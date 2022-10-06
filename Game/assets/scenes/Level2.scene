@@ -12656,7 +12656,7 @@ child:
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [818, 472]
+            size: [1679, 1011]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
@@ -32471,7 +32471,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-            "'_beam_length@float'": 0
           - id: 17817942635228409429
             type: 20
             enabled: true
@@ -32708,7 +32707,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-            "'_beam_length@float'": 0
           - id: 7855138358787914724
             type: 20
             enabled: true
@@ -32945,7 +32943,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-            "'_beam_length@float'": 0
           - id: 1560203970384173830
             type: 20
             enabled: true
@@ -33084,8 +33081,8 @@ child:
                     id: 3881173192533531901
                     type: 1
                     enabled: true
-                    position: [-0, 0, -0.0334]
-                    rotation: [90, 0, 0]
+                    position: [0, 0, -0.0334]
+                    rotation: [90, 0, -0]
                     scale: [0.1, 0.1, 1]
                   - !<particle_system>
                     id: 4427820486581041909
@@ -33182,7 +33179,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-            "'_beam_length@float'": 0
           - id: 14695003231451741538
             type: 20
             enabled: true
@@ -33236,7 +33232,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-0.0451, 0.2404, -0.8825]
-                rotation: [-180, -0, 180]
+                rotation: [-180, 0, 180]
                 scale: [1, 1, 1]
             child:
               - id: 13796775883843822075
@@ -33321,8 +33317,8 @@ child:
                     id: 2877483954206077038
                     type: 1
                     enabled: true
-                    position: [-0, 0, -0.0812]
-                    rotation: [90, -0, 0]
+                    position: [0, 0, -0.0812]
+                    rotation: [90, 0, -0]
                     scale: [0.1, 0.1, 1]
                   - !<particle_system>
                     id: 12856996765747217157
@@ -33419,7 +33415,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-            "'_beam_length@float'": 0
           - id: 18244783952425888498
             type: 20
             enabled: true
@@ -33473,7 +33468,7 @@ child:
                 type: 1
                 enabled: true
                 position: [0, 0.3136, -4.095]
-                rotation: [-0, -3, -0]
+                rotation: [0, -3, 0]
                 scale: [1, 1, 1]
             child:
               - id: 5579454422176499407
@@ -33656,7 +33651,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-            "'_beam_length@float'": 0
           - id: 11606083925199337313
             type: 20
             enabled: true
@@ -33690,7 +33684,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-0.0104, 0.5001, 0]
-                rotation: [-180, 0, 0]
+                rotation: [-180, 0, -0]
                 scale: [0.2, 0.2, 3.492]
               - !<mesh_renderer>
                 id: 14834755152510694427
@@ -33710,7 +33704,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-0.0101, 0.0001, -0.5818]
-                rotation: [-180, -0, 180]
+                rotation: [-180, 0, 180]
                 scale: [1, 1, 1]
             child:
               - id: 9899566859613976531
@@ -33796,7 +33790,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0, 0.2691, 0]
-                    rotation: [90, 0, 0]
+                    rotation: [90, 0, -0]
                     scale: [0.1, 0.1, 1]
                   - !<particle_system>
                     id: 10348486565416992755
@@ -33893,7 +33887,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-            "'_beam_length@float'": 0
           - id: 12003283733495858845
             type: 20
             enabled: true
@@ -33927,7 +33920,7 @@ child:
                 type: 1
                 enabled: true
                 position: [0, 0.5002, 0]
-                rotation: [-180, 0, 0]
+                rotation: [-180, 0, -0]
                 scale: [0.2, 0.2, 3.492]
               - !<mesh_renderer>
                 id: 10514618043208100116
@@ -33947,7 +33940,7 @@ child:
                 type: 1
                 enabled: true
                 position: [0.0134, 0.2, -0.8696]
-                rotation: [180, -0, -180]
+                rotation: [180, 0, -180]
                 scale: [1, 1, 1]
             child:
               - id: 12179357501009462159
@@ -34033,7 +34026,7 @@ child:
                     type: 1
                     enabled: true
                     position: [-0.0005, 0, -0.0012]
-                    rotation: [90, 0, 0.0001]
+                    rotation: [90, -0, 0.0001]
                     scale: [0.1, 0.1, 1]
                   - !<particle_system>
                     id: 16903352730241270039
@@ -34130,7 +34123,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-            "'_beam_length@float'": 0
           - id: 8302683609660054132
             type: 20
             enabled: true
@@ -34184,7 +34176,7 @@ child:
                 type: 1
                 enabled: true
                 position: [0.0566, 0.2, -6.7]
-                rotation: [0.015, 0, -0.0062]
+                rotation: [0.015, -0, -0.0062]
                 scale: [1, 1, 1]
             child:
               - id: 9821395559376018343
@@ -34367,7 +34359,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-            "'_beam_length@float'": 0
           - id: 10194373368110108326
             type: 20
             enabled: true
@@ -34421,7 +34412,7 @@ child:
                 type: 1
                 enabled: true
                 position: [0.0375, 0.2, -0.7322]
-                rotation: [-180, -0, 180]
+                rotation: [-180, 0, 180]
                 scale: [1, 1, 1]
             child:
               - id: 256209349948544544
@@ -34604,7 +34595,6 @@ child:
             "'_sparks@GameObject*'": 2373261524069017800
             "'_beam@GameObject*'": 5674482526297699435
             "'_beam_reduced@GameObject*'": 9163656319461378127
-            "'_beam_length@float'": 0
           - id: 3348784641776943634
             type: 20
             enabled: true
@@ -34752,7 +34742,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-0.0505, 0.0002, -1.118]
-                rotation: [180, -0, -180]
+                rotation: [180, 0, -180]
                 scale: [1, 1, 1]
             child:
               - id: 10664475069288158594
@@ -34838,7 +34828,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0, 0, 0]
-                    rotation: [90, -0.0001, 0]
+                    rotation: [90, -0.0001, -0]
                     scale: [0.1, 0.1, 9]
                   - !<particle_system>
                     id: 16786580655611608338
@@ -34865,7 +34855,7 @@ child:
                       burst: false
                     emitter_shape:
                       type: 0
-                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [0, 0, 0], [1, 1, 1], 0.005, false]
+                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [-90, 0, -45], [1, 1, 1], 0.005, true]
                     texture:
                       texture_id: 2183419842552565431
                       tiles: [1, 1]
@@ -34880,7 +34870,7 @@ child:
                         size: [true, true, 0, [0.2, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       color:
                         active: true
-                        color_gradient: [[0.578, 1, 0.9341, 0, 0], [0, 0.3931, 1, 0, 1]]
+                        color_gradient: [[0.578, 1, 0.9341, 0, 0], [0, 0.5665, 1, 0, 0.9876]]
                         color_cycles: 1
                       force:
                         active: true
@@ -34912,7 +34902,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0, -0.0006, 0]
-                    rotation: [90, -0.001, 0]
+                    rotation: [90, -0.001, -0]
                     scale: [0.1, 0.1, 1]
                   - !<particle_system>
                     id: 1995133728019858859
@@ -34939,7 +34929,7 @@ child:
                       burst: false
                     emitter_shape:
                       type: 0
-                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [0, 0, 0], [1, 1, 1], 0.005, false]
+                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [-90, 0, -45], [1, 1, 1], 0.005, true]
                     texture:
                       texture_id: 2183419842552565431
                       tiles: [1, 1]
@@ -34954,7 +34944,7 @@ child:
                         size: [true, true, 0, [0.2, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       color:
                         active: true
-                        color_gradient: [[0.578, 1, 0.9341, 0, 0], [0, 0.3931, 1, 0, 1]]
+                        color_gradient: [[0.578, 1, 0.9341, 0, 0]]
                         color_cycles: 1
                       force:
                         active: true
@@ -35029,7 +35019,6 @@ child:
             "'_sparks@GameObject*'": 10419062081009056423
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-            "'_beam_length@float'": 0
           - id: 14306024741120179351
             type: 20
             enabled: true
@@ -35177,7 +35166,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-0.0588, 0.2002, -0.9877]
-                rotation: [180, -0, 180]
+                rotation: [180, 0, 180]
                 scale: [1, 1, 1]
             child:
               - id: 9175511078739455261
@@ -35290,7 +35279,7 @@ child:
                       burst: false
                     emitter_shape:
                       type: 0
-                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [0, 0, 0], [1, 1, 1], 0.005, false]
+                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [-90, 0, -45], [1, 1, 1], 0.005, true]
                     texture:
                       texture_id: 2183419842552565431
                       tiles: [1, 1]
@@ -35337,7 +35326,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0, 0, 0]
-                    rotation: [90, -0, 0]
+                    rotation: [90, 0, -0]
                     scale: [0.1, 0.1, 1]
                   - !<particle_system>
                     id: 15292988713295089018
@@ -35364,7 +35353,7 @@ child:
                       burst: false
                     emitter_shape:
                       type: 0
-                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [0, 0, 0], [1, 1, 1], 0.005, false]
+                      properties: [360, 0, [0, 0, 0], 0.001, 0.001, [-90, 0, -45], [1, 1, 1], 0.005, true]
                     texture:
                       texture_id: 2183419842552565431
                       tiles: [1, 1]
@@ -35379,7 +35368,7 @@ child:
                         size: [true, true, 0, [0.2, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       color:
                         active: true
-                        color_gradient: [[0.578, 1, 0.9341, 0, 0], [0, 0.3931, 1, 0, 1]]
+                        color_gradient: [[0.578, 1, 0.9341, 0, 0]]
                         color_cycles: 1
                       force:
                         active: true
@@ -35454,7 +35443,6 @@ child:
             "'_sparks@GameObject*'": 1656843390739561150
             "'_beam@GameObject*'": 10405634182930701119
             "'_beam_reduced@GameObject*'": 8705229166779009021
-            "'_beam_length@float'": 0
           - id: 17510398279683272903
             type: 20
             enabled: true
@@ -35488,7 +35476,7 @@ child:
                 type: 1
                 enabled: true
                 position: [0.0001, 0.5, -0.4999]
-                rotation: [-180, 0, 0]
+                rotation: [-180, 0, -0]
                 scale: [0.2, 0.2, 3.492]
               - !<mesh_renderer>
                 id: 15847024984485385201
@@ -35602,7 +35590,7 @@ child:
                 type: 1
                 enabled: true
                 position: [0, 0.5001, -0.5]
-                rotation: [-180, -0, 180]
+                rotation: [-180, 0, 180]
                 scale: [1, 1, 1]
             child:
               - id: 2343571077009132691
@@ -35762,7 +35750,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0, 0, 0]
-                    rotation: [90, 0, 0]
+                    rotation: [90, 0, -0]
                     scale: [0.1, 0.1, 1]
                   - !<particle_system>
                     id: 14333357263268802947
@@ -35859,7 +35847,6 @@ child:
             "'_sparks@GameObject*'": 25346659490403541
             "'_beam@GameObject*'": 896532365850200197
             "'_beam_reduced@GameObject*'": 635270418211741840
-            "'_beam_length@float'": 0
           - id: 5762238692053394355
             type: 20
             enabled: true
@@ -35987,7 +35974,7 @@ child:
                 type: 1
                 enabled: true
                 position: [0, 0.5, -0.5]
-                rotation: [0.015, 180, -0.0062]
+                rotation: [180, 0, -180]
                 scale: [1, 1, 1]
             child:
               - id: 2440812681742528459
@@ -36147,7 +36134,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0.0001, 0, 0]
-                    rotation: [90.01, 0, 0]
+                    rotation: [90.01, 0, -0]
                     scale: [0.1, 0.1, 1]
                   - !<particle_system>
                     id: 6766508384550948619
@@ -36244,7 +36231,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-            "'_beam_length@float'": 0
           - id: 12515943156503302189
             type: 20
             enabled: true
@@ -36487,7 +36473,6 @@ child:
             "'_sparks@GameObject*'": 0
             "'_beam@GameObject*'": 0
             "'_beam_reduced@GameObject*'": 0
-            "'_beam_length@float'": 0
           - id: 5626211156909438935
             type: 20
             enabled: true
@@ -36547,7 +36532,7 @@ child:
                 type: 1
                 enabled: true
                 position: [0.9606, 0, -2.688]
-                rotation: [-0, 0.0002, 0]
+                rotation: [-0, 0.0002, -0]
                 scale: [1, 1, 1]
             child:
               - id: 4248108375279064404
@@ -43033,7 +43018,7 @@ child:
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [818, 472]
+            size: [1679, 1011]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
