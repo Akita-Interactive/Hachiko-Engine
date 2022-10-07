@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{D4B90C1A-D5A0-4CD0-82EB-1E7666F66EDB}" SchemaVersion="103">
+	<Events>
+		<WorkUnit Name="Music" ID="{D4B90C1A-D5A0-4CD0-82EB-1E7666F66EDB}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Play_Combat" ID="{DF59185F-C72C-4550-8276-02199898FFD6}">
+					<ChildrenList>
+						<Action Name="" ID="{64058D04-61CF-4C5B-B7C8-6F94C79BC1C0}" ShortID="675123979">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="38"/>
+								<Property Name="BypassGameParameterInternalTransition" Type="bool" Value="True"/>
+								<Property Name="GameParameterValue" Type="Real64" Value="100"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="EnemyAware" ID="{AA4A7D7C-95D8-4C61-B605-792EEBC96CF0}" WorkUnitID="{5077D92F-D971-4BAD-B936-0C1CED1B7E69}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_Navigation" ID="{D7EBD3F1-A44F-41C6-BB5F-F2012825BD2B}">
+					<ChildrenList>
+						<Action Name="" ID="{5E603B12-46A6-4889-8932-EE230A2EC39E}" ShortID="164375468">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="36"/>
+								<Property Name="FadeOutCurve" Type="int16" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Erimos Music Switch Container" ID="{33679B7E-6A06-48AF-B200-D959BA936BAF}" WorkUnitID="{9B3979AF-6373-40FD-A6FD-C5074B4E0B6D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{11CEB5B7-42DD-4D8A-9A86-3190F68A3A21}" ShortID="116181203">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Gameplay" ID="{130FBCEE-8CBF-4113-B45E-A257238567D1}" WorkUnitID="{58D3A6EC-B8FF-4FD8-B774-6F4619FF9B9B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{293170B5-4898-475E-A7F5-446672DCD137}" ShortID="424277968">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="38"/>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="EnemyAware" ID="{AA4A7D7C-95D8-4C61-B605-792EEBC96CF0}" WorkUnitID="{5077D92F-D971-4BAD-B936-0C1CED1B7E69}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Navigation" ID="{C72B32F3-D0E9-476D-A101-B04D035F2671}">
+					<ChildrenList>
+						<Action Name="" ID="{274E2788-F91F-4631-8679-A2EE2976055C}" ShortID="930289284">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="39"/>
+								<Property Name="BypassGameParameterInternalTransition" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="EnemyAware" ID="{AA4A7D7C-95D8-4C61-B605-792EEBC96CF0}" WorkUnitID="{5077D92F-D971-4BAD-B936-0C1CED1B7E69}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{E4DC014B-583C-4A94-9030-385F2B335453}" ShortID="564059532">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="Scope" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Erimos Music Switch Container" ID="{33679B7E-6A06-48AF-B200-D959BA936BAF}" WorkUnitID="{9B3979AF-6373-40FD-A6FD-C5074B4E0B6D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{68E49CC3-A98B-465D-8A9C-B1D5D1EA3B4B}" ShortID="1045126481">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Alive" ID="{F78DEA1E-406E-4706-B5BC-D2290B952F54}" WorkUnitID="{58D3A6EC-B8FF-4FD8-B774-6F4619FF9B9B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{56438677-532B-47E9-8EF8-725740D6992A}" ShortID="965430097">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Gameplay" ID="{130FBCEE-8CBF-4113-B45E-A257238567D1}" WorkUnitID="{58D3A6EC-B8FF-4FD8-B774-6F4619FF9B9B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{A3B2606C-ED37-4330-90F7-FBE0C1EEFDC8}" ShortID="1058564306">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Erimos Music Switch Container" ID="{33679B7E-6A06-48AF-B200-D959BA936BAF}" WorkUnitID="{9B3979AF-6373-40FD-A6FD-C5074B4E0B6D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_Combat" ID="{5DE2B3AE-E618-4BF8-BEB5-34D4EABAE122}">
+					<ChildrenList>
+						<Action Name="" ID="{E2E4E5B5-BA24-4FA0-9183-AD7581E9D0C5}" ShortID="825527364">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="38"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="EnemyAware" ID="{AA4A7D7C-95D8-4C61-B605-792EEBC96CF0}" WorkUnitID="{5077D92F-D971-4BAD-B936-0C1CED1B7E69}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

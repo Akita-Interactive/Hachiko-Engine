@@ -256,6 +256,23 @@ HACHIKO_API void Hachiko::SceneManagement::Destroy(GameObject* game_object)
     App->scene_manager->RemoveGameObject(game_object);
 }
 
+HACHIKO_API void Hachiko::SceneManagement::SetFogActive(bool active)
+{
+    App->scene_manager->GetActiveScene()->SetFogActive(active);
+}
+HACHIKO_API void Hachiko::SceneManagement::SetFogColor(float3 color)
+{
+    App->scene_manager->GetActiveScene()->SetFogColor(color);
+}
+HACHIKO_API void Hachiko::SceneManagement::SetFogGlobalDensity(float density)
+{
+    App->scene_manager->GetActiveScene()->SetFogGlobalDensity(density);
+}
+HACHIKO_API void Hachiko::SceneManagement::SetFogHeightFalloff(float falloff)
+{
+    App->scene_manager->GetActiveScene()->SetFogHeightFalloff(falloff);
+}
+
 /*---------------------------------------------------------------------------*/
 
 /*DEBUG----------------------------------------------------------------------*/

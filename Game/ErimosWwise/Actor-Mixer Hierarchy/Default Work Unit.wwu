@@ -142,7 +142,7 @@
 								</Sound>
 								<Sound Name="LaserLoop" ID="{7C294618-BEB3-4A00-A87A-8D0019917B06}" ShortID="492085068">
 									<PropertyList>
-										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="3DSpatialization" Type="int16" Value="2"/>
 										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
@@ -155,6 +155,18 @@
 											<Custom>
 												<Attenuation Name="Attenuation (Custom)" ID="{127AF175-B900-4CAF-94D9-9A2FC5D83E0C}" ShortID="265552876">
 													<PropertyList>
+														<Property Name="ConeAttenuation" Type="Real64">
+															<ValueList>
+																<Value>-4</Value>
+															</ValueList>
+														</Property>
+														<Property Name="ConeInnerAngle" Type="int32" Value="100"/>
+														<Property Name="ConeOuterAngle" Type="int32" Value="260"/>
+														<Property Name="ConeUse" Type="bool">
+															<ValueList>
+																<Value>True</Value>
+															</ValueList>
+														</Property>
 														<Property Name="RadiusMax" Type="Real64" Value="50"/>
 													</PropertyList>
 													<CurveUsageInfoList>
@@ -169,15 +181,23 @@
 																			<XPos>0</XPos>
 																			<YPos>0</YPos>
 																			<Flags>5</Flags>
+																			<SegmentShape>Log1</SegmentShape>
 																		</Point>
 																		<Point>
-																			<XPos>20</XPos>
-																			<YPos>-0.04632</YPos>
+																			<XPos>17.69698</XPos>
+																			<YPos>-1.44921</YPos>
 																			<Flags>0</Flags>
+																			<SegmentShape>Log1</SegmentShape>
 																		</Point>
 																		<Point>
-																			<XPos>39.87013</XPos>
-																			<YPos>-200</YPos>
+																			<XPos>29.27273</XPos>
+																			<YPos>-7.24294</YPos>
+																			<Flags>0</Flags>
+																			<SegmentShape>Exp1</SegmentShape>
+																		</Point>
+																		<Point>
+																			<XPos>42.5368</XPos>
+																			<YPos>-26.11658</YPos>
 																			<Flags>0</Flags>
 																		</Point>
 																		<Point>
@@ -196,7 +216,31 @@
 															<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
 														</VolumeWetUserUsage>
 														<LowPassFilterUsage>
-															<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+															<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
+																<Curve Name="LowPassFilter" ID="{8A97C660-6C4F-4228-A65B-35660E4910EE}">
+																	<PropertyList>
+																		<Property Name="Flags" Type="int32" Value="65537"/>
+																	</PropertyList>
+																	<PointList>
+																		<Point>
+																			<XPos>0</XPos>
+																			<YPos>0</YPos>
+																			<Flags>5</Flags>
+																		</Point>
+																		<Point>
+																			<XPos>30.60606</XPos>
+																			<YPos>52</YPos>
+																			<Flags>0</Flags>
+																			<SegmentShape>Exp1</SegmentShape>
+																		</Point>
+																		<Point>
+																			<XPos>50</XPos>
+																			<YPos>100</YPos>
+																			<Flags>37</Flags>
+																		</Point>
+																	</PointList>
+																</Curve>
+															</CurveUsageInfo>
 														</LowPassFilterUsage>
 														<HighPassFilterUsage>
 															<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
@@ -920,12 +964,19 @@
 							</ActiveSourceList>
 						</Sound>
 						<SwitchContainer Name="Footsteps" ID="{A14E74A9-F76D-46FB-92B7-0FD1A7464A60}" ShortID="204878910">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-4</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
 								</Reference>
 								<Reference Name="DefaultSwitchOrState">
-									<ObjectRef Name="Wood" ID="{453FD6AC-2658-48CA-9152-F3C1A8A9CC4E}" WorkUnitID="{6536FABF-333A-452A-B74C-9E3C608C8B9B}"/>
+									<ObjectRef Name="Gravel" ID="{F7D7D03C-0417-4D3E-9CEC-0FC5F71A0B58}" WorkUnitID="{6536FABF-333A-452A-B74C-9E3C608C8B9B}"/>
 								</Reference>
 								<Reference Name="OutputBus">
 									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
@@ -2545,6 +2596,7 @@
 						</RandomSequenceContainer>
 						<RandomSequenceContainer Name="Ranged" ID="{5CFE7FE7-1D64-4EE6-9C60-DD9AB9A36BA7}" ShortID="661888617">
 							<PropertyList>
+								<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
 										<Value>-6</Value>
@@ -2552,6 +2604,9 @@
 								</Property>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Obeject_Attenuation" ID="{EC34A9B4-44ED-4040-89BB-316034AEB7F1}" WorkUnitID="{E5831051-8D78-47DE-BAB7-AB60DEB49674}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
 								</Reference>
@@ -2660,7 +2715,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>12</Value>
+										<Value>6</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>

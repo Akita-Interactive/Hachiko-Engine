@@ -4,13 +4,14 @@
 
 namespace Hachiko::ShadowMappingDefaults
 {
-    constexpr const float GAUSSIAN_FILTER_BLUR_AMOUNT = 0.62f;
-    constexpr const float MIN_VARIANCE = 0.001f;
-    constexpr const float LIGHT_BLEEDING_REDUCTION_AMOUNT = 0.35f;
-    constexpr const float BIAS = 0.00001f;
-    constexpr const float EXPONENT = 14.37f;
-    constexpr const float SIGMA = 3.5f;
-    constexpr const BlurPixelSize::Type BLUR_SIZE = BlurPixelSize::Type::Gaussian11x11;
+    constexpr float BIAS = 0.0003f;
+    constexpr float LIGHT_BLEEDING_REDUCTION_AMOUNT = 0.5f;
+    constexpr float MIN_VARIANCE = 0.001f;
+    constexpr float EXPONENT = 7.0f;
+    constexpr float GAUSSIAN_FILTER_BLUR_AMOUNT = 0.85f;
+    constexpr BlurPixelSize::Type BLUR_SIZE = BlurPixelSize::Type::Gaussian5x5;
+    constexpr float SIGMA = 1.45f; // #sigmagrindset
+    constexpr float LIGHT_FRUSTUM_BOUNDING_BOX_PADDING = 3.0f;
 } // namespace Hachiko::ShadowMappingDefaults
 
 namespace Hachiko
@@ -22,7 +23,6 @@ class ShadowMappingProperties
 {
 public:
     ShadowMappingProperties();
-    ~ShadowMappingProperties() = default;
 
     void BindForShadowMapGenerationPass(const Program* program) const;
     void BindForLightingPass(const Program* program) const;
@@ -38,20 +38,23 @@ public:
     void SetExponent(float value);
     void SetGaussianBlurSize(BlurPixelSize::Type value);
     void SetGaussianBlurSigma(float value);
+    void SetLightFrustumBoundingBoxPadding(float value);
     bool DrawEditorContent();
-    
+
+    [[nodiscard]] float GetLightFrustumBoundingBoxPadding() const;
     [[nodiscard]] float GetGaussianFilterBlurAmount() const;
     [[nodiscard]] float GetMinVariance() const;
     [[nodiscard]] float GetLightBleedingReductionAmount() const;
     [[nodiscard]] float GetBias() const;
     [[nodiscard]] float GetExponent() const;
     [[nodiscard]] int GetGaussianBlurSize() const;
-    [[nodiscard]] int GetGaussianBlurSigma() const;
+    [[nodiscard]] float GetGaussianBlurSigma() const;
 
 private:
     void BindCommon(const Program* program) const;
 
 private:
+    float _light_frustum_bounding_box_padding = 0.0f;
     float _gaussian_filter_blur_amount = 0.0f;
     float _min_variance = 0.0f;
     float _light_bleeding_reduction_amount = 0.0f;

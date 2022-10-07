@@ -4,6 +4,9 @@
 #include "core/rendering/Program.h"
 #include "ui/widgets/Widgets.h"
 
+constexpr const char* LIGHT_FRUSTUM_BOUNDING_BOX_PADDING = 
+    "light_frustum_bounding_box_padding";
+
 Hachiko::ShadowMappingProperties::ShadowMappingProperties()
 {
     ResetToDefaults();
@@ -34,6 +37,7 @@ void Hachiko::ShadowMappingProperties::Save(YAML::Node& node) const
     node[Uniforms::Filtering::GAUSSIAN_BLUR_SCALE] = _gaussian_filter_blur_amount;
     node[Uniforms::Filtering::GAUSSIAN_BLUR_PIXELS] = GetGaussianBlurSize();
     node[Uniforms::Filtering::GAUSSIAN_BLUR_SIGMA] = _gaussian_blur_sigma;
+    node[LIGHT_FRUSTUM_BOUNDING_BOX_PADDING] = _light_frustum_bounding_box_padding;
 }
 
 void Hachiko::ShadowMappingProperties::Load(const YAML::Node& node) 
@@ -80,64 +84,79 @@ void Hachiko::ShadowMappingProperties::Load(const YAML::Node& node)
     {
         _gaussian_blur_sigma = node[Uniforms::Filtering::GAUSSIAN_BLUR_SIGMA].as<float>();
     }
+
+    if (node[LIGHT_FRUSTUM_BOUNDING_BOX_PADDING].IsDefined())
+    {
+        _light_frustum_bounding_box_padding = 
+            node[LIGHT_FRUSTUM_BOUNDING_BOX_PADDING].as<float>();
+    }
 }
 
 void Hachiko::ShadowMappingProperties::ResetToDefaults() 
 {
-    _gaussian_filter_blur_amount = ShadowMappingDefaults::GAUSSIAN_FILTER_BLUR_AMOUNT;
+    _gaussian_filter_blur_amount = 
+        ShadowMappingDefaults::GAUSSIAN_FILTER_BLUR_AMOUNT;
     _min_variance = ShadowMappingDefaults::MIN_VARIANCE;
-    _light_bleeding_reduction_amount = ShadowMappingDefaults::LIGHT_BLEEDING_REDUCTION_AMOUNT;
+    _light_bleeding_reduction_amount = 
+        ShadowMappingDefaults::LIGHT_BLEEDING_REDUCTION_AMOUNT;
     _bias = ShadowMappingDefaults::BIAS;
     _exponent = ShadowMappingDefaults::EXPONENT;
     _gaussian_blur_sigma = ShadowMappingDefaults::SIGMA;
     _gaussian_blur_size = ShadowMappingDefaults::BLUR_SIZE;
+    _light_frustum_bounding_box_padding = 
+        ShadowMappingDefaults::LIGHT_FRUSTUM_BOUNDING_BOX_PADDING;
 }
 
-void Hachiko::ShadowMappingProperties::SetGaussianFilterBlurAmount(float value)
+void Hachiko::ShadowMappingProperties::SetGaussianFilterBlurAmount(const float value)
 {
     _gaussian_filter_blur_amount = value;
 
-    std::clamp<float>(_gaussian_filter_blur_amount, 0.0f, FLT_MAX);
+    std::clamp(_gaussian_filter_blur_amount, 0.0f, FLT_MAX);
 }
 
-void Hachiko::ShadowMappingProperties::SetMinVariance(float value) 
+void Hachiko::ShadowMappingProperties::SetMinVariance(const float value) 
 {
     _min_variance = value;
 
-    std::clamp<float>(_min_variance, 0.0f, 1.0f);
-}
+    std::clamp(_min_variance, 0.0f, 1.0f);
+} 
 
-void Hachiko::ShadowMappingProperties::SetLightBleedingReductionAmount(float value) 
+void Hachiko::ShadowMappingProperties::SetLightBleedingReductionAmount(const float value) 
 {
     _light_bleeding_reduction_amount = value;
 
-    std::clamp<float>(_light_bleeding_reduction_amount, 0.0f, 1.0f);
+    std::clamp(_light_bleeding_reduction_amount, 0.0f, 1.0f);
 }
 
-void Hachiko::ShadowMappingProperties::SetBias(float value) 
+void Hachiko::ShadowMappingProperties::SetBias(const float value) 
 {
     _bias = value;
 
-    std::clamp<float>(_bias, 0.0f, 1.0f);
+    std::clamp(_bias, 0.0f, 1.0f);
 }
 
-void Hachiko::ShadowMappingProperties::SetExponent(float value) 
+void Hachiko::ShadowMappingProperties::SetExponent(const float value) 
 {
     _exponent = value;
 
-    std::clamp<float>(_exponent, 0.0f, FLT_MAX);
+    std::clamp(_exponent, 0.0f, FLT_MAX);
 }
 
-void Hachiko::ShadowMappingProperties::SetGaussianBlurSize(BlurPixelSize::Type value) 
+void Hachiko::ShadowMappingProperties::SetGaussianBlurSize(const BlurPixelSize::Type value) 
 {
     _gaussian_blur_size = value;
 }
 
-void Hachiko::ShadowMappingProperties::SetGaussianBlurSigma(float value) 
+void Hachiko::ShadowMappingProperties::SetGaussianBlurSigma(const float value) 
 {
     _gaussian_blur_sigma = value;
 
-    std::clamp<float>(_gaussian_blur_sigma, 0.0f, FLT_MAX);
+    std::clamp(_gaussian_blur_sigma, 0.0f, FLT_MAX);
+}
+
+void Hachiko::ShadowMappingProperties::SetLightFrustumBoundingBoxPadding(const float value)
+{
+    _light_frustum_bounding_box_padding = std::clamp(value, 0.0f, FLT_MAX);
 }
 
 bool Hachiko::ShadowMappingProperties::DrawEditorContent() 
@@ -189,6 +208,12 @@ bool Hachiko::ShadowMappingProperties::DrawEditorContent()
         changes_made = true;
     }
 
+    if (DragFloat("Light frustum bounding box padding", _light_frustum_bounding_box_padding, &config_1))
+    {
+        SetLightFrustumBoundingBoxPadding(_light_frustum_bounding_box_padding);
+        changes_made = true;
+    }
+
     if (ImGui::Button("Reset to defaults", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         ResetToDefaults();
@@ -196,6 +221,11 @@ bool Hachiko::ShadowMappingProperties::DrawEditorContent()
     }
 
     return changes_made;
+}
+
+float Hachiko::ShadowMappingProperties::GetLightFrustumBoundingBoxPadding() const
+{
+    return _light_frustum_bounding_box_padding;
 }
 
 float Hachiko::ShadowMappingProperties::GetGaussianFilterBlurAmount() const
@@ -228,7 +258,7 @@ int Hachiko::ShadowMappingProperties::GetGaussianBlurSize() const
     return static_cast<int>(_gaussian_blur_size);
 }
 
-int Hachiko::ShadowMappingProperties::GetGaussianBlurSigma() const
+float Hachiko::ShadowMappingProperties::GetGaussianBlurSigma() const
 {
     return _gaussian_blur_sigma;
 }

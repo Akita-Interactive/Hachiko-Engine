@@ -221,6 +221,7 @@
 #define MESH_TEXTURE_TYPE "texture_type"
 #define MESH_NAVIGABLE "navigable"
 #define MESH_VISIBLE "visible"
+#define MESH_CASTING_SHADOW "casting_shadow"
 
 // Component Lights
 #define LIGHT_TYPE "light_type"

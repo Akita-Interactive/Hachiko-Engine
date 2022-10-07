@@ -19,7 +19,6 @@ in VertexData fragment;
 in flat uint instance;
 
 layout (binding = 10) uniform sampler2D noise;
-uniform float noise_progress;
 
 void main()
 {
@@ -27,14 +26,14 @@ void main()
 
     // Disolving check
     bool modify_emisive = false;
-    if (noise_progress < 1.0)
+    if (material.dissolve_progress < 1.0)
     {
         float noise_value = texture(noise, fragment.tex_coord).r;
         if (noise_value >= material.dissolve_progress)
         {
             discard;
         }
-        else if (noise_value >= material.dissolve_progress - 0.01)
+        else if (noise_value >= material.dissolve_progress - 0.05)
         {
             modify_emisive = true;
         }

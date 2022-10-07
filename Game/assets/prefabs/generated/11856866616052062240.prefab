@@ -1,0 +1,28 @@
+prefab_name: path_secret
+name: RootNode
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [-0, 0, -0]
+    scale: [1, 1, 1]
+child:
+  - name: Plane247
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-6.264, 3.506, -73.46]
+        rotation: [-90, -0, -180]
+        scale: [1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 15046246283846993737
+        navigable: false
+        visible: true
+        material_id: 3129521747293907650
+        tint_color: [1, 1, 1, 1]

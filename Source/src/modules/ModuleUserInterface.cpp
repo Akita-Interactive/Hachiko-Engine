@@ -42,10 +42,13 @@ UpdateStatus Hachiko::ModuleUserInterface::Update(const float delta)
     const float2 mouse_pos = Input::GetMouseOpenGLPosition();
     constexpr bool is_click = false;
 
-    RecursiveCheckMousePos(
-        App->scene_manager->GetActiveScene()->GetRoot(), 
-        mouse_pos, 
-        is_click);
+    if(!App->input->IsGamepadModeOn())
+    {
+        RecursiveCheckMousePos(
+            App->scene_manager->GetActiveScene()->GetRoot(), 
+            mouse_pos, 
+            is_click);
+    }
 
     return UpdateStatus::UPDATE_CONTINUE;
 }

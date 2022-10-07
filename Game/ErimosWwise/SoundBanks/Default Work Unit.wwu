@@ -5,11 +5,9 @@
 			<ChildrenList>
 				<SoundBank Name="BackgroundMusic" ID="{3EA8A1A2-7429-4B2C-847E-AEA973584D2B}">
 					<ObjectInclusionList>
-						<ObjectRef Name="Stop_Navigation" ID="{D7EBD3F1-A44F-41C6-BB5F-F2012825BD2B}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_Combat" ID="{DF59185F-C72C-4550-8276-02199898FFD6}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_Navigation" ID="{C72B32F3-D0E9-476D-A101-B04D035F2671}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Stop_Combat" ID="{5DE2B3AE-E618-4BF8-BEB5-34D4EABAE122}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_BackgroundMusic" ID="{88A4A1D0-45F5-4DD6-AA56-80482AADDF56}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Combat" ID="{DF59185F-C72C-4550-8276-02199898FFD6}" WorkUnitID="{D4B90C1A-D5A0-4CD0-82EB-1E7666F66EDB}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Navigation" ID="{C72B32F3-D0E9-476D-A101-B04D035F2671}" WorkUnitID="{D4B90C1A-D5A0-4CD0-82EB-1E7666F66EDB}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stop_Combat" ID="{5DE2B3AE-E618-4BF8-BEB5-34D4EABAE122}" WorkUnitID="{D4B90C1A-D5A0-4CD0-82EB-1E7666F66EDB}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

@@ -4,36 +4,78 @@
 
 Hachiko::Scripting::CombatVisualEffectsPool::CombatVisualEffectsPool(GameObject* game_object)
 	: Script(game_object, "CombatVisualEffectsPool")
-	, _billboards({})
-	, _current_billboard_index(0)
+	, claw_vfxes({})
+	, sword_vfxes({})
+	, melee_vfxes({})
+	, hammer_vfxes({})
+	, worm_vfxes({})
+	, beetle_vfxes({})
+	, current_claw_vfx_index(0)
 {
 }
 
 void Hachiko::Scripting::CombatVisualEffectsPool::OnAwake()
 {
-	_billboards.clear();
-	_billboards.reserve(15);
+	// 0 - Claw 
+	claw_vfxes.clear();
+	claw_vfxes.reserve(10);
+	claw_vfxes = game_object->children[0]->children;
 
-	for (ComponentBillboard* billboard : game_object->GetComponentsInDescendants<ComponentBillboard>())
-	{
-		_billboards.push_back(billboard);
-	}
-}
+	// 1 - Sword 
+	sword_vfxes.clear();
+	sword_vfxes.reserve(10);
+	sword_vfxes = game_object->children[1]->children;
 
-void Hachiko::Scripting::CombatVisualEffectsPool::OnUpdate()
-{
+	// 2 - Melee 
+	melee_vfxes.clear();
+	melee_vfxes.reserve(10);
+	melee_vfxes = game_object->children[2]->children;
+
+	// 3 - Hammer 
+	hammer_vfxes.clear();
+	hammer_vfxes.reserve(10);
+	hammer_vfxes = game_object->children[3]->children;
+
+	// 4 - Worm 
+	worm_vfxes.clear();
+	worm_vfxes.reserve(10);
+	worm_vfxes = game_object->children[4]->children;
+
+	// 5 - Beetle 
+	beetle_vfxes.clear();
+	beetle_vfxes.reserve(10);
+	beetle_vfxes = game_object->children[5]->children;
 }
 
 void Hachiko::Scripting::CombatVisualEffectsPool::PlayPlayerAttackEffect(PlayerController::WeaponUsed weapon_type, int attack_index, float3 position)
 {
-	if (_billboards.size() <= 0)
+	ComponentBillboard* current_attack_billboard = nullptr;
+
+	switch (weapon_type)
 	{
-		return;
+	case PlayerController::WeaponUsed::MELEE:
+	{
+		current_attack_billboard = GetCurrentMeleeVfx();
+		break;
 	}
-
-	_current_billboard_index = _current_billboard_index % _billboards.size();
-
-	ComponentBillboard* current_attack_billboard = _billboards[_current_billboard_index];
+	case PlayerController::WeaponUsed::CLAW:
+	{
+		current_attack_billboard = GetCurrentClawVfx();
+		break;
+	}
+	case PlayerController::WeaponUsed::SWORD:
+	{
+		current_attack_billboard = GetCurrentSwordVfx();
+		break;
+	}
+	case PlayerController::WeaponUsed::HAMMER:
+	{
+		current_attack_billboard = GetCurrentHammerVfx();
+		break;
+	}
+	default:
+		break;
+	}
 
 	if (current_attack_billboard == nullptr)
 	{
@@ -44,68 +86,38 @@ void Hachiko::Scripting::CombatVisualEffectsPool::PlayPlayerAttackEffect(PlayerC
 
 	current_attack_billboard->GetGameObject()->GetTransform()->SetGlobalPosition(main_camera_direction + position + float3::unitY * 1.5f);
 
-	switch (weapon_type)
+	current_attack_billboard->Restart();
+}
+
+void Hachiko::Scripting::CombatVisualEffectsPool::PlayEnemyAttackEffect(EnemyType _enemy_type, float3 position)
+{
+	ComponentBillboard* current_attack_billboard = nullptr;
+
+	switch (_enemy_type)
 	{
-	case PlayerController::WeaponUsed::RED:
+	case EnemyType::BEETLE:
 	{
-		
+		current_attack_billboard = GetCurrentBeetleVfx();
 		break;
 	}
-	case PlayerController::WeaponUsed::BLUE:
+	case EnemyType::WORM:
 	{
-		std::string texture_file_name = FileUtility::GetWorkingDirectory() + "/assets/textures/vfx/slash_sprite.png";
-
-		current_attack_billboard->GetTextureProperties().SetTexture(texture_file_name);
-		current_attack_billboard->GetTextureProperties().SetTiles(float2(3.0f, 4.0f));
-		
-		break;
-	}
-	case PlayerController::WeaponUsed::GREEN:
-	{
-		std::string texture_file_name = FileUtility::GetWorkingDirectory() + "/assets/textures/vfx/slash_vfx.png";
-
-		current_attack_billboard->GetTextureProperties().SetTexture(texture_file_name);
-		current_attack_billboard->GetTextureProperties().SetTiles(float2(5.0f, 2.0f));
-
+		current_attack_billboard = GetCurrentWormVfx();
 		break;
 	}
 	default:
 		break;
 	}
 
-	switch (attack_index)
+	if (current_attack_billboard == nullptr)
 	{
-	case 0:
-	{
-		current_attack_billboard->GetTextureProperties().SetFlip(Hachiko::bool2(false, true));
-
-		break;
+		return;
 	}
 
-	case 1:
-	{
-		current_attack_billboard->GetTextureProperties().SetFlip(Hachiko::bool2(true, false));
+	float3 main_camera_direction = (Scenes::GetMainCamera()->GetTransform()->GetGlobalPosition() - position).Normalized() * 1.5f;
 
-		break;
-	}
-
-	case 2:
-	{
-		current_attack_billboard->GetTextureProperties().SetFlip(Hachiko::bool2(false, false));
-
-		break;
-	}
-
-	default:
-		break;
-	}
+	current_attack_billboard->GetGameObject()->GetTransform()->SetGlobalPosition(main_camera_direction + position + float3::unitY * 1.5f);
 
 	current_attack_billboard->Restart();
-
-	_current_billboard_index = (_current_billboard_index + 1) % _billboards.size();
 }
 
-Hachiko::ComponentBillboard* Hachiko::Scripting::CombatVisualEffectsPool::GetCurrentBillboard() const
-{
-	return _billboards[_current_billboard_index];
-}

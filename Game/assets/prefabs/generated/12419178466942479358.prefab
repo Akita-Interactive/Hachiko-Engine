@@ -1,0 +1,28 @@
+prefab_name: path_04
+name: RootNode
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [-0, 0, -0]
+    scale: [1, 1, 1]
+child:
+  - name: path_04
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-6.264, 3.506, -73.46]
+        rotation: [-90, -0, -180]
+        scale: [1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 14740685799991025223
+        navigable: false
+        visible: true
+        material_id: 13314502501752868651
+        tint_color: [1, 1, 1, 1]

@@ -29,20 +29,23 @@ namespace Hachiko
 			void RegisterGaunlet();
 			void UnregisterGaunlet();
 
-		private:
-			SERIALIZE_FIELD(int, _enemies_in_combat);
-			SERIALIZE_FIELD(bool, _in_combat);
-			SERIALIZE_FIELD(bool, _in_gaunlet);
-			SERIALIZE_FIELD(std::vector<GameObject*>, enemics);
+			void Restart();
+			void SetLevel(unsigned level);
 
+		private:
 			bool updated = false;
-			GameObject* enemy_pool = nullptr;
+			bool _in_combat = false;
+			bool _in_gaunlet = false;
+			unsigned _level = 0;
+			int _enemies_in_combat = 0;
 			ComponentAudioSource* _audio_source = nullptr;
 
 			void StopMusic();
-			void UpdateState();
-			void PlayCombatMusic();
-			void PlayNavigationMusic();
+			void SetCombat();
+			void SetNavigation();
+			const wchar_t* GetPlayMusicEventName(unsigned level);
+			const wchar_t* GetStopMusicEventName(unsigned level);
+			
 		};
 	} // namespace Scripting
 } // namespace Hachiko

@@ -54,16 +54,21 @@ bool ModuleResources::Init()
     App->event->Subscribe(Event::Type::FILE_ADDED, handleAddedFile);
 #endif
 
+    App->renderer->LoadLoadingScreen();
+
     return true;
 }
 
 bool ModuleResources::CleanUp()
 {
+    App->renderer->DeleteLoadingScreen();
+
     for (auto& it : loaded_resources)
     {
         HE_LOG("Removing unreleased resources %llu %i", it.first, it.second.n_users);
         delete it.second.resource;
     }
+    loaded_resources.clear();
 
     return true;
 }

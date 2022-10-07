@@ -98,25 +98,32 @@ namespace Hachiko
             return material;
         }
 
-        void SetTintColor(const float4& color)
+        HACHIKO_API void SetTintColor(const float4& color)
         {
             tint_color = color;
         }
 
-        [[nodiscard]] const float4& GetTintColor() const
+        HACHIKO_API  [[nodiscard]] const float4& GetTintColor() const
         {
             return tint_color;
         }
 
-        void SetDissolveProgress(const float progress)
+        HACHIKO_API void SetDissolveProgress(const float progress)
         {
             dissolve_progress = progress;
         }
 
-        [[nodiscard]] float GetDissolveProgress() const
+        HACHIKO_API [[nodiscard]] float GetDissolveProgress() const
         {
             return dissolve_progress;
         }
+
+        HACHIKO_API [[nodiscard]] bool IsCastingShadow() const
+        {
+            return is_casting_shadow;
+        }
+
+        HACHIKO_API void SetCastingShadow(bool value);
 
         void DrawGui() override;
 
@@ -131,14 +138,14 @@ namespace Hachiko
         }
 
         // Scripting
-        [[nodiscard]] bool OverrideMaterialActive() const
+        HACHIKO_API [[nodiscard]] bool OverrideMaterialActive() const
         {
             return override_material;
         }
 
-        void OverrideEmissive(const float4& color, float time);
+        HACHIKO_API void OverrideEmissive(const float4& color, float time);
 
-        [[nodiscard]] const float4& GetOverrideEmissiveColor() const
+        HACHIKO_API [[nodiscard]] const float4& GetOverrideEmissiveColor() const
         {
             return override_emissive;
         }
@@ -155,6 +162,7 @@ namespace Hachiko
         void UpdateBoundingBoxes();
         bool visible = true;
         bool navigable = false;
+        bool is_casting_shadow = true;
 
         AABB aabb;
         OBB obb;

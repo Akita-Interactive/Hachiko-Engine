@@ -55,7 +55,7 @@ Hachiko::Scripting::EnemyController::EnemyController(GameObject* game_object)
 }
 
 void Hachiko::Scripting::EnemyController::OnAwake()
-{		
+{
 	if (_worm)
 	{
 		_enemy_type = EnemyType::WORM;
@@ -69,13 +69,13 @@ void Hachiko::Scripting::EnemyController::OnAwake()
 	// particle, animation and billboard to respond to the changes in time
 	// scale:
 	game_object->SetTimeScaleMode(TimeScaleMode::SCALED);
-	
+
 	GetComponents();
 
 	SetStats();
 
 	SetVfx();
-	
+
 	_spawn_pos = transform->GetGlobalPosition();
 	_spawn_rot = transform->GetGlobalRotation();
 
@@ -173,7 +173,13 @@ void Hachiko::Scripting::EnemyController::SpawnController()
 			_enemy_body->SetActive(true);
 			_big_dust_particles->Restart();
 			//Push the player back
-			_combat_manager->EnemyMeleeAttack(transform->GetGlobalMatrix(), push_attack);
+			int hit = _combat_manager->EnemyMeleeAttack(transform->GetGlobalMatrix(), push_attack);
+
+			if (hit > 0)
+			{
+				_combat_visual_effects_pool->PlayEnemyAttackEffect(_enemy_type, _player_pos);
+			}
+
 			_attack_cooldown = _combat_stats->_attack_cd;
 			return;
 		}
@@ -488,7 +494,8 @@ void Hachiko::Scripting::EnemyController::BeetleAttackController()
 			_current_idle_cooldown = _idle_cooldown;
 		}
 	}
-	else {
+	else 
+	{
 		_state = EnemyState::IDLE;
 	}
 
@@ -497,7 +504,7 @@ void Hachiko::Scripting::EnemyController::BeetleAttackController()
 	// If an enemy is from a gautlet, it will always follow the player
 	if ((_is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && _player_controller->IsAlive())
 	{
-		if (dist_to_player <= _attack_range)
+		if (dist_to_player <= _attack_range || IsAttacking())
 		{
 			BeetleAttack();
 		}
@@ -521,7 +528,7 @@ void Hachiko::Scripting::EnemyController::BeetleAttack()
 		_attack_current_delay = _attack_delay;
 		_state = EnemyState::ATTACKING;
 	}
-	else 
+	else
 	{
 		_current_idle_cooldown = _idle_cooldown;
 	}
@@ -550,7 +557,12 @@ void Hachiko::Scripting::EnemyController::BeetleAttack()
 
 	Debug::DebugDraw(_combat_manager->CreateAttackHitbox(GetMeleeAttackOrigin(attack_stats.range), attack_stats), float3(1.0f, 1.0f, 0.0f));
 
-	_combat_manager->EnemyMeleeAttack(GetMeleeAttackOrigin(attack_stats.range), attack_stats);
+	int hit = _combat_manager->EnemyMeleeAttack(GetMeleeAttackOrigin(attack_stats.range), attack_stats);
+
+	if (hit > 0)
+	{
+		_combat_visual_effects_pool->PlayEnemyAttackEffect(_enemy_type, _player_pos);
+	}
 
 	_attack_alt = !_attack_alt;
 
@@ -629,18 +641,13 @@ void Hachiko::Scripting::EnemyController::WormAttackController()
 
 	float dist_to_player = _current_pos.Distance(_player_pos);
 
-	if (_previous_state == EnemyState::IDLE && _state != EnemyState::ATTACKING && !_attack_landing && dist_to_player <= _attack_range)
+	if (_previous_state == EnemyState::IDLE && _state != EnemyState::ATTACKING && !_attack_landing && dist_to_player <= _attack_range && _player_controller->IsAlive())
 	{
 		_state = EnemyState::ATTACKING;
 		_attack_current_delay = _attack_delay;
 		return;
 	}
 
-	WormSpit();
-}
-
-void Hachiko::Scripting::EnemyController::WormSpit()
-{
 	if (_state == EnemyState::ATTACKING && animation->IsAnimationStopped())
 	{
 		_state = EnemyState::IDLE;
@@ -652,7 +659,7 @@ void Hachiko::Scripting::EnemyController::WormSpit()
 		_attack_current_delay = 0;
 	}
 
-	if (!_attack_landing && _attack_current_delay <= 0.0f)
+	if (!_attack_landing && _attack_current_delay <= 0.0f && dist_to_player <= _attack_range && _player_controller->IsAlive())
 	{
 		// We create the attack zone after the delay
 		_attack_zone->GetTransform()->SetGlobalPosition(_player_pos);
@@ -675,7 +682,15 @@ void Hachiko::Scripting::EnemyController::WormSpit()
 			attack_stats.width = 0.f;
 			attack_stats.range = 2.5; // a bit bigger than its attack activation range
 			attack_stats.type = CombatManager::AttackType::CIRCLE;
-			_combat_manager->EnemyMeleeAttack(_attack_zone->GetTransform()->GetGlobalMatrix(), attack_stats);
+
+
+			int hit = _combat_manager->EnemyMeleeAttack(_attack_zone->GetTransform()->GetGlobalMatrix(), attack_stats);
+
+			if (hit > 0)
+			{
+				_combat_visual_effects_pool->PlayEnemyAttackEffect(_enemy_type, _player_pos);
+			}
+
 			_attack_landing = false;
 			_attack_cooldown = _combat_stats->_attack_cd;
 
@@ -721,7 +736,8 @@ void Hachiko::Scripting::EnemyController::DropParasite()
 	StopMoving();
 	_state = EnemyState::PARASITE;
 	//TODO: Check if in scene there's already a parasite? Maybe?
-	if (_parasite) {
+	if (_parasite) 
+	{
 		_parasite->SetActive(true);
 	}
 
@@ -827,7 +843,7 @@ void Hachiko::Scripting::EnemyController::CheckState()
 		return;
 	}
 
-	if (((_previous_state == EnemyState::ATTACKING || _previous_state == EnemyState::MOVING) && 
+	if (((_previous_state == EnemyState::ATTACKING || _previous_state == EnemyState::MOVING) &&
 		(current_state == EnemyState::IDLE || current_state == EnemyState::MOVING_BACK || current_state == EnemyState::DEAD))
 		|| (_enemy_type == EnemyType::WORM && (current_state == EnemyState::DEAD || (current_state == EnemyState::HIDEN))))
 	{
@@ -836,9 +852,9 @@ void Hachiko::Scripting::EnemyController::CheckState()
 			_audio_manager->UnregisterCombat();
 			_already_in_combat = false;
 		}
-	} 
+	}
 	else if (((current_state == EnemyState::ATTACKING || current_state == EnemyState::MOVING) &&
-		     (_previous_state == EnemyState::IDLE || _previous_state == EnemyState::MOVING_BACK || _previous_state == EnemyState::DEAD))
+		(_previous_state == EnemyState::IDLE || _previous_state == EnemyState::MOVING_BACK || _previous_state == EnemyState::DEAD))
 		|| (_enemy_type == EnemyType::WORM && current_state != EnemyState::DEAD && current_state != EnemyState::HIDEN))
 	{
 		if (!_already_in_combat)
@@ -912,7 +928,7 @@ void Hachiko::Scripting::EnemyController::ResetEnemy()
 		_enemy_body->SetActive(true);
 		_enemy_body->ChangeDissolveProgress(1.0f, true);
 	}
-	
+
 	if (_parasite)
 	{
 		_parasite->ChangeTintColor(float4(1.0f, 1.0f, 1.0f, 1.0f), true);

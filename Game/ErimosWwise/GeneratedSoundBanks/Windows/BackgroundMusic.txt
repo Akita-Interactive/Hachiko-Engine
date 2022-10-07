@@ -1,21 +1,43 @@
 Event	ID	Name			Wwise Object Path	Notes
-	445689598	Stop_Navigation			\Default Work Unit\Stop_Navigation	
-	513571230	Play_Combat			\Default Work Unit\Play_Combat	
-	548088167	Play_BackgroundMusic			\Default Work Unit\Play_BackgroundMusic	
-	913896232	Stop_Combat			\Default Work Unit\Stop_Combat	
-	3849525492	Play_Navigation			\Default Work Unit\Play_Navigation	
+	513571230	Play_Combat			\Music\Play_Combat	
+	913896232	Stop_Combat			\Music\Stop_Combat	
+	3849525492	Play_Navigation			\Music\Play_Navigation	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	2702523344	Gameplay_Switch			\Music\Gameplay_Switch	
+
+Switch	ID	Name	Switch Group			Notes
+	579523862	Explore	Gameplay_Switch			
+	2764240573	Combat	Gameplay_Switch			
+
+State Group	ID	Name			Wwise Object Path	Notes
+	1690668539	Music_States			\Default Work Unit\Music_States	
+	3762137787	Player_Life			\Default Work Unit\Player_Life	
+
+State	ID	Name	State Group			Notes
+	89505537	Gameplay	Music_States			
+	748895195	None	Music_States			
+	1560169506	Boss	Music_States			
+	2716678721	Victory	Music_States			
+	655265632	Alive	Player_Life			
+	748895195	None	Player_Life			
+	2791675679	Defeated	Player_Life			
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	3963624107	EnemyAware			\Music\EnemyAware	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	126846833	Exp_b_108bpm	D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\.cache\Windows\SFX\Exp_b_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Exploracion A\Exp_b_108bpm\Exp_b_108bpm		3840256
-	181335723	Com_b_108bpm	D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\.cache\Windows\SFX\Com_b_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Combate A\Com_b_108bpm\Com_b_108bpm		3840240
-	220998542	Com_e_108bpm	D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\.cache\Windows\SFX\Com_e_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Combate A\Com_e_108bpm\Com_e_108bpm		3840240
-	283120831	Com_d_108bpm	D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\.cache\Windows\SFX\Com_d_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Combate A\Com_d_108bpm\Com_d_108bpm		3840240
-	341546302	Exp_a_108bpm	D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\.cache\Windows\SFX\Exp_a_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Exploracion A\Exp_a_108bpm\Exp_a_108bpm		3840256
-	503682454	Com_a_108bpm	D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\.cache\Windows\SFX\Com_a_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Combate A\Com_a_108bpm\Com_a_108bpm		3840240
-	715960795	Com_c_108bpm	D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\.cache\Windows\SFX\Com_c_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Combate A\Com_c_108bpm\Com_c_108bpm		3840240
-	718840818	Exp_d_108bpm	D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\.cache\Windows\SFX\Exp_d_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Exploracion A\Exp_d_108bpm\Exp_d_108bpm		3840256
-	759444810	Com_108bpm_full	D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\.cache\Windows\SFX\Com_108bpm_full_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Combate A\Com_108bpm_full\Com_108bpm_full		19200240
-	854415901	Exp_c_108bpm	D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\.cache\Windows\SFX\Exp_c_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Exploracion A\Exp_c_108bpm\Exp_c_108bpm		3840256
-	903340460	Exp_108bpm_full	D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\.cache\Windows\SFX\Exp_108bpm_full_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Exploracion A\Exp_108bpm_full\Exp_108bpm_full		19200256
-	988655692	Exp_e_108bpm	D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\.cache\Windows\SFX\Exp_e_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Exploracion A\Exp_e_108bpm\Exp_e_108bpm		3840256
+	31154168	Defeated-138bpm4-4_L4M-P0	D:\Erimos\Alpha2LastBuild\Alpha2LastBuild\Game\ErimosWwise\.cache\Windows\SFX\Defeated-138bpm4-4_L4M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Defeated\Defeated-138bpm4-4_L4M-P0\Defeated-138bpm4-4_L4M-P0		1502676
+	126846833	Exp_b_108bpm	D:\Erimos\Alpha2LastBuild\Alpha2LastBuild\Game\ErimosWwise\.cache\Windows\SFX\Exp_b_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Exploracion A\Exp_b_108bpm\Exp_b_108bpm		3840256
+	181335723	Com_b_108bpm	D:\Erimos\Alpha2LastBuild\Alpha2LastBuild\Game\ErimosWwise\.cache\Windows\SFX\Com_b_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Combate A\Com_b_108bpm\Com_b_108bpm		3840240
+	220998542	Com_e_108bpm	D:\Erimos\Alpha2LastBuild\Alpha2LastBuild\Game\ErimosWwise\.cache\Windows\SFX\Com_e_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Combate A\Com_e_108bpm\Com_e_108bpm		3840240
+	283120831	Com_d_108bpm	D:\Erimos\Alpha2LastBuild\Alpha2LastBuild\Game\ErimosWwise\.cache\Windows\SFX\Com_d_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Combate A\Com_d_108bpm\Com_d_108bpm		3840240
+	341546302	Exp_a_108bpm	D:\Erimos\Alpha2LastBuild\Alpha2LastBuild\Game\ErimosWwise\.cache\Windows\SFX\Exp_a_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Exploracion A\Exp_a_108bpm\Exp_a_108bpm		3840256
+	503682454	Com_a_108bpm	D:\Erimos\Alpha2LastBuild\Alpha2LastBuild\Game\ErimosWwise\.cache\Windows\SFX\Com_a_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Combate A\Com_a_108bpm\Com_a_108bpm		3840240
+	715960795	Com_c_108bpm	D:\Erimos\Alpha2LastBuild\Alpha2LastBuild\Game\ErimosWwise\.cache\Windows\SFX\Com_c_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Combate A\Com_c_108bpm\Com_c_108bpm		3840240
+	718840818	Exp_d_108bpm	D:\Erimos\Alpha2LastBuild\Alpha2LastBuild\Game\ErimosWwise\.cache\Windows\SFX\Exp_d_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Exploracion A\Exp_d_108bpm\Exp_d_108bpm		3840256
+	759444810	Com_108bpm_full	D:\Erimos\Alpha2LastBuild\Alpha2LastBuild\Game\ErimosWwise\.cache\Windows\SFX\Com_108bpm_full_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Combate A\Com_108bpm_full\Com_108bpm_full		19200240
+	854415901	Exp_c_108bpm	D:\Erimos\Alpha2LastBuild\Alpha2LastBuild\Game\ErimosWwise\.cache\Windows\SFX\Exp_c_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Exploracion A\Exp_c_108bpm\Exp_c_108bpm		3840256
+	903340460	Exp_108bpm_full	D:\Erimos\Alpha2LastBuild\Alpha2LastBuild\Game\ErimosWwise\.cache\Windows\SFX\Exp_108bpm_full_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Exploracion A\Exp_108bpm_full\Exp_108bpm_full		19200256
+	988655692	Exp_e_108bpm	D:\Erimos\Alpha2LastBuild\Alpha2LastBuild\Game\ErimosWwise\.cache\Windows\SFX\Exp_e_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Exploracion A\Exp_e_108bpm\Exp_e_108bpm		3840256
 

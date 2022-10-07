@@ -18,6 +18,38 @@
 						<State Name="None" ID="{8C7FD041-000B-4CF6-90A3-9487DB812AB2}"/>
 					</ChildrenList>
 				</StateGroup>
+				<StateGroup Name="Music_States" ID="{78E4EDC4-7307-43E3-B46B-D9454B2DF4BD}">
+					<ChildrenList>
+						<State Name="None" ID="{F4E7D95B-60DE-4AD8-9D64-569149B9E444}"/>
+						<State Name="Gameplay" ID="{130FBCEE-8CBF-4113-B45E-A257238567D1}"/>
+						<State Name="Boss" ID="{E24A9ED8-8BD2-4861-BCA8-61FD9CE536E5}"/>
+						<State Name="Victory" ID="{4218ECB3-FF93-4574-883F-453CD6E8D154}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="Player_Life" ID="{DEB1DF95-2877-494B-8D4B-E6FC5AF08A62}">
+					<PropertyList>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="0.25"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="None" ID="{8550BE43-0498-443A-A3B3-A7A82196A796}"/>
+						<State Name="Alive" ID="{F78DEA1E-406E-4706-B5BC-D2290B952F54}"/>
+						<State Name="Defeated" ID="{6D9231D6-6EC9-4CBF-8DA7-97EC649CB00E}"/>
+					</ChildrenList>
+					<TransitionList>
+						<Transition>
+							<StartState Name="Defeated" ID="{6D9231D6-6EC9-4CBF-8DA7-97EC649CB00E}"/>
+							<EndState Name="Alive" ID="{F78DEA1E-406E-4706-B5BC-D2290B952F54}"/>
+							<Time>5</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Alive" ID="{F78DEA1E-406E-4706-B5BC-D2290B952F54}"/>
+							<EndState Name="Defeated" ID="{6D9231D6-6EC9-4CBF-8DA7-97EC649CB00E}"/>
+							<Time>1</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+					</TransitionList>
+				</StateGroup>
 			</ChildrenList>
 		</WorkUnit>
 	</States>
