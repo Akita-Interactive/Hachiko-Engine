@@ -998,7 +998,7 @@ void Hachiko::Scripting::PlayerController::DashController()
 		return;
 	}
 
-	if (_dash_particles != nullptr)
+	if (_dash_particles != nullptr && IsDashing())
 	{
 		_dash_particles->Play();
 	}
