@@ -3,7 +3,7 @@
 #include "BounceEffect.h"
 
 Hachiko::Scripting::BounceEffect::BounceEffect(GameObject* game_object)
-    : Script(game_object, "Bounce effect"),
+    : Script(game_object, "BounceEffect"),
       _altitude(1.0f),
       _magnitude(0.5f),
       _speed(1.0f)

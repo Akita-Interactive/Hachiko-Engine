@@ -2,7 +2,7 @@
 #include "RotationEffect.h"
 
 Hachiko::Scripting::RotationEffect::RotationEffect(GameObject* game_object)
-    : Script(game_object, "Rotation effect"),
+    : Script(game_object, "RotationEffect"),
       _rotate_x(false),
       _rotate_y(true),
       _rotate_z(false),

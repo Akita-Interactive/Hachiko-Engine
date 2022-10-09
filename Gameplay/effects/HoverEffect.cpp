@@ -3,7 +3,7 @@
 #include "HoverEffect.h"
 
 Hachiko::Scripting::HoverEffect::HoverEffect(GameObject* game_object)
-    : Script(game_object, "Hover effect"),
+    : Script(game_object, "HoverEffect"),
       _altitude(1.0f),
       _magnitude(0.5f),
       _speed(1.0f)
