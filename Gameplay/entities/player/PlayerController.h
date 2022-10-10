@@ -13,9 +13,11 @@ namespace Hachiko
 	class GameObject;
 	class ComponentMeshRenderer;
 	class ComponentProgressBar;
+
 	namespace Scripting
 	{
 		class PlayerCamera;
+		class CombatVisualEffectsPool;
 
 		enum class PlayerState
 		{
@@ -41,10 +43,10 @@ namespace Hachiko
 
 			enum class WeaponUsed
 			{
-				RED = 0,
-				GREEN,
-				BLUE,
-				YELLOW,
+				MELEE = 0,
+				CLAW,
+				SWORD,
+				HAMMER,
 				SIZE
 			};
 
@@ -122,7 +124,7 @@ namespace Hachiko
 			{
 				return _attack_idx;
 			}
-			
+
 			void SetLockTime(float lock_time)
 			{
 				_lock_time = lock_time;
@@ -140,6 +142,24 @@ namespace Hachiko
 				DamageType ret_value = damaged_by;
 				damaged_by = DamageType::NONE;
 				return ret_value;
+			}
+
+			void ActivateTooltip()
+			{
+				if (Input::IsGamepadModeOn())
+				{
+					_controller_tooltip_display->GetComponent(Component::Type::IMAGE)->Enable();
+				}
+				else
+				{
+					_keyboard_tooltip_display->GetComponent(Component::Type::IMAGE)->Enable();
+				}
+			}
+
+			void DeactivateTooltip()
+			{
+				_controller_tooltip_display->GetComponent(Component::Type::IMAGE)->Disable();
+				_keyboard_tooltip_display->GetComponent(Component::Type::IMAGE)->Disable();
 			}
 
 		private:
@@ -182,7 +202,7 @@ namespace Hachiko
 			void StoreDashOrigin(const float3& dash_origin);
 			float3 GetLastValidDashOrigin();
 			void MeleeAttack();
-			
+
 			void RangedAttack();
 			void ReleaseAttack();
 			void CancelAttack();
@@ -198,7 +218,8 @@ namespace Hachiko
 			void WalkingOrientationController();
 			void AttackController();
 
-			void PickupParasite(const math::float3& current_position);
+			void CheckNearbyParasytes(const math::float3& current_position);
+			void PickupParasite(EnemyController* enemy_contr);
 			void RecieveKnockback(const math::float3 direction);
 
 			void CheckState();
@@ -224,6 +245,7 @@ namespace Hachiko
 			const float fall_speed = 25.f;
 
 			SERIALIZE_FIELD(GameObject*, _attack_indicator);
+			SERIALIZE_FIELD(GameObject*, _aim_indicator);
 			SERIALIZE_FIELD(GameObject*, _bullet_emitter);
 			SERIALIZE_FIELD(GameObject*, _goal);
 			SERIALIZE_FIELD(GameObject*, _player_geometry);
@@ -240,6 +262,16 @@ namespace Hachiko
 			SERIALIZE_FIELD(GameObject*, _walking_dust);
 			SERIALIZE_FIELD(GameObject*, _heal_effect);
 			SERIALIZE_FIELD(GameObject*, _damage_effect);
+			SERIALIZE_FIELD(GameObject*, _parasite_pickup_effect);
+			SERIALIZE_FIELD(GameObject*, _melee_trail_right);
+			SERIALIZE_FIELD(GameObject*, _melee_trail_left);
+			SERIALIZE_FIELD(GameObject*, _claws_trail_right);
+			SERIALIZE_FIELD(GameObject*, _claws_trail_left);
+			SERIALIZE_FIELD(GameObject*, _sword_trail_right);
+			SERIALIZE_FIELD(GameObject*, _sword_trail_left);
+			SERIALIZE_FIELD(GameObject*, _hammer_trail_right);
+			SERIALIZE_FIELD(GameObject*, _hammer_trail_left);
+			
 
 			const float _ranged_attack_cooldown = 0.2f;
 			const float _combo_grace_period = .5f;
@@ -268,6 +300,9 @@ namespace Hachiko
 			SERIALIZE_FIELD(GameObject*, _weapon_charge_bar_go);
 			ComponentProgressBar* _weapon_charge_bar = nullptr;
 
+			SERIALIZE_FIELD(GameObject*, _keyboard_tooltip_display);
+			SERIALIZE_FIELD(GameObject*, _controller_tooltip_display);
+
 			SERIALIZE_FIELD(GameObject*, _camera);
 			SERIALIZE_FIELD(GameObject*, _ui_damage);
 
@@ -278,6 +313,11 @@ namespace Hachiko
 			ComponentParticleSystem* _heal_effect_particles_1 = nullptr;
 			ComponentParticleSystem* _heal_effect_particles_2 = nullptr;
 			ComponentBillboard* _damage_effect_billboard = nullptr;
+			ComponentBillboard* _parasite_pickup_billboard = nullptr;
+			ComponentBillboard* _weapon_trails_billboard_right[static_cast<int>(WeaponUsed::SIZE)];
+			ComponentBillboard* _weapon_trails_billboard_left[static_cast<int>(WeaponUsed::SIZE)];
+
+			ComponentBillboard* _aim_indicator_billboard = nullptr;
 
 			std::vector<Weapon> weapons{};
 
@@ -351,6 +391,8 @@ namespace Hachiko
 
 			LevelManager* _level_manager;
 
+			// Visual Effects:
+			CombatVisualEffectsPool* _combat_visual_effects_pool;
 		};
 	} // namespace Scripting
 } // namespace Hachiko

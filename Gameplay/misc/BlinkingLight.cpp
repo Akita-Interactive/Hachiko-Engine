@@ -22,7 +22,7 @@ Hachiko::Scripting::BlinkingLight::BlinkingLight(Hachiko::GameObject* game_objec
     , _next_intensity(0.0f)
     , _next_radius(0.0f)
     , _point_light(nullptr)
-	, _perlin_noise(PerlinNoise1D())
+	, _perlin_noise(PerlinNoise())
 {
 }
 

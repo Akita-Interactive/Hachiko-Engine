@@ -39,7 +39,7 @@ void Hachiko::BloomManager::ApplyBloom(unsigned int texture_to_use) const
     // Copy texture_to_use to _main_texture:
     // Bind frame buffer attached to main texture:
     _main_texture->BindBuffer(true);
-    App->program->GetTextureCopyProgram()->Activate();
+    App->program->GetProgram(Program::PROGRAMS::TEXTURE_COPY)->Activate();
     // Bind the texture to copy:
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture_to_use);
@@ -65,7 +65,7 @@ void Hachiko::BloomManager::ApplyBloom(unsigned int texture_to_use) const
                         blur_pixel_size_integer,
                         width,
                         height,
-                        App->program->GetGaussianFilteringProgram());
+                        App->program->GetProgram(Program::PROGRAMS::GAUSSIAN_FILTERING));
 }
 
 void Hachiko::BloomManager::BindForReading() const

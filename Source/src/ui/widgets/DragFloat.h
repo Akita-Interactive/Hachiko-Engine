@@ -12,7 +12,7 @@ namespace Hachiko::Widgets
         float min = std::numeric_limits<float>::lowest();
         float max = std::numeric_limits<float>::max();
         bool enabled = true;
-        const char* format = "%.2f";
+        const char* format = "%.4f";
         int flags = ImGuiSliderFlags_AlwaysClamp;
     };
 

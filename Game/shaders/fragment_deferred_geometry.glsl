@@ -18,9 +18,26 @@ layout (location = 4) out vec4 g_emissive;
 in VertexData fragment;
 in flat uint instance;
 
+layout (binding = 10) uniform sampler2D noise;
+
 void main()
 {
     Material material = materialsBuffer.materials[instance];
+
+    // Disolving check
+    bool modify_emisive = false;
+    if (material.dissolve_progress < 1.0)
+    {
+        float noise_value = texture(noise, fragment.tex_coord).r;
+        if (noise_value >= material.dissolve_progress)
+        {
+            discard;
+        }
+        else if (noise_value >= material.dissolve_progress - 0.05)
+        {
+            modify_emisive = true;
+        }
+    }
 
     // Temporary values that will be calculated:
     float smoothness;
@@ -71,11 +88,18 @@ void main()
     g_position.xyz = fragment.pos.xyz;
 
     // Store the fragment emissive color in rgb channels of g buffer texture for emissive:
-    g_emissive.xyz = CalculateEmissive(
-        allMyTextures[material.emissive_map.texIndex],
-        fragment.tex_coord,
-        material.emissive_map.layerIndex,
-        material.emissive_color,
-        material.emissive_flag
-    );
+    if (modify_emisive)
+    {
+        g_emissive.xyz = vec3(1.0, 1.0, 1.0);
+    }
+    else
+    {
+        g_emissive.xyz = CalculateEmissive(
+            allMyTextures[material.emissive_map.texIndex],
+            fragment.tex_coord,
+            material.emissive_map.layerIndex,
+            material.emissive_color,
+            material.emissive_flag
+        );
+    }
 }

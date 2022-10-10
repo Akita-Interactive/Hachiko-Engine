@@ -47,7 +47,7 @@ namespace Hachiko
             float metalness_value = 0.f;
             unsigned is_metallic = false;
             unsigned is_transparent = 0;
-            unsigned padding[1];
+            float dissolve_progress = 1.0f;
         };
 
         TextureBatch() {};

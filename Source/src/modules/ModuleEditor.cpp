@@ -278,6 +278,18 @@ void Hachiko::ModuleEditor::MainMenuBar()
             ImGui::EndMenu();
         }
 
+#ifdef _DEBUG
+        if (ImGui::BeginMenu("Debug"))
+        {
+            if (ImGui::MenuItem("Rebuild Gameplay.vcxproj"))
+            {
+                std::system("cd .. && cd Source && build_scripts.bat");
+            }
+
+            ImGui::EndMenu();
+        }
+#endif
+
         ImGui::PopStyleVar(2);
         ImGui::EndMainMenuBar();
     }

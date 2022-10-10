@@ -24,6 +24,7 @@ namespace Hachiko
             BEETLE,
             WORM,
         };
+
         enum class EnemyState
         {
             INVALID,
@@ -96,7 +97,6 @@ namespace Hachiko
             void StopMoving();
             void MoveInNavmesh();
             void WormAttackController();
-            void WormSpit();
             
             void DropParasite();
             void DestroyEntity();
@@ -162,8 +162,10 @@ namespace Hachiko
             EnemyState _state = EnemyState::SPAWNING;
             EnemyState _previous_state = EnemyState::INVALID;
 
+            // Enemy status
             bool _parasite_dropped = false;
             bool _is_stunned = false;
+            // Enemy exclusive stats
             float _stun_time = 0.0f;
             float _acceleration = 0.0f;
             float _speed = 0.0f;
@@ -172,17 +174,23 @@ namespace Hachiko
             float _enemy_dissolve_time = 1.0f;
             float _enemy_dissolving_time_progress = 0.0f;
             const float _enemy_dissolving = 1 / math::Sqrt(_enemy_dissolve_time);
+            // Parasite exclusive stats
             float _parasite_dissolve_time = 10.0f;
             float _parasite_dissolving_time_progress = 0.0f;
             const float _parasite_dissolving = 1 / math::Sqrt(_parasite_dissolve_time);
+            // Combat info
             float3 _knockback_pos = float3::zero;
             float _attack_current_delay = 0.f;
-            SERIALIZE_FIELD(float, _current_spawning_time);
-            //float _current_spawning_time = 0.f;
+            // Spawning times
+            float _current_spawning_time = 2.0f;
+            float spawn_progress = 0.0f;
+            const float spawn_rate = 0.5f;
             bool _has_spawned = false;
 
             bool _immune = false;
             bool _attack_landing = false;
+            bool _attack_alt = false;
+
 
             EnemyType _enemy_type = EnemyType::BEETLE;
 

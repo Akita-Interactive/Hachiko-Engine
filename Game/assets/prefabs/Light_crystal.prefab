@@ -1,0 +1,17 @@
+prefab_name: Light_crystal
+name: Light_crystal
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [-33.58, 4.202, 17.36]
+    rotation: [-0, 0, -0]
+    scale: [1, 1, 1]
+  - type: 6
+    enabled: true
+    light_type: 6
+    color: [0, 1, 0.878, 1]
+    intensity: 100
+    radius: 100
+    draw_sphere: false

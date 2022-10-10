@@ -1,0 +1,169 @@
+prefab_name: laserNew
+name: RootNode
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [-0, 0, -0]
+    scale: [1, 1, 1]
+  - !<animation>
+    type: 14
+    enabled: true
+    state_machine: 0
+child:
+  - name: lasers
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-1.515, 1.724, 1.485]
+        rotation: [-90, 0, 0]
+        scale: [1, 1, 1]
+    child:
+      - name: laser_mesh003
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [16.25, 21.17, -0.858]
+            rotation: [90, 0, -0]
+            scale: [0.0082, 0.0082, 0.0082]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 17034093875613561344
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 16971418098135223375
+            tint_color: [1, 1, 1, 1]
+      - name: laser_mesh
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-17.09, 10.54, -0.858]
+            rotation: [-90, -0, 180]
+            scale: [0.0082, 0.0082, 0.0082]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 14208435674116020990
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 16971418098135223375
+            tint_color: [1, 1, 1, 1]
+      - name: laser_mesh001
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-4.906, 10.6, -0.858]
+            rotation: [90, 45, -0]
+            scale: [0.0082, 0.0082, 0.0082]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 17363186164443538160
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 16971418098135223375
+            tint_color: [1, 1, 1, 1]
+      - name: laser_mesh002
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-2.023, 3.662, -0.858]
+            rotation: [-90, 45, 180]
+            scale: [0.0082, 0.0082, 0.0082]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 17746616063911308829
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 16971418098135223375
+            tint_color: [1, 1, 1, 1]
+      - name: laser_mesh007
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [5.18, -10.59, -0.858]
+            rotation: [90, 0, -0]
+            scale: [0.0082, 0.0082, 0.0082]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 46703828231858111
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 16971418098135223375
+            tint_color: [1, 1, 1, 1]
+      - name: laser_mesh004
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-5.183, -20.33, -0.858]
+            rotation: [-90, -0, 180]
+            scale: [0.0082, 0.0082, 0.0082]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 2492793005099875349
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 16971418098135223375
+            tint_color: [1, 1, 1, 1]
+      - name: laser_mesh005
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [13.65, 12.02, -0.858]
+            rotation: [90, 45, -0]
+            scale: [0.0082, 0.0082, 0.0082]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 5736703883065460038
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 16971418098135223375
+            tint_color: [1, 1, 1, 1]
+      - name: laser_mesh006
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-20.61, 5.102, -0.858]
+            rotation: [-90, 45, 180]
+            scale: [0.0082, 0.0082, 0.0082]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 5866954036839100534
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 16971418098135223375
+            tint_color: [1, 1, 1, 1]

@@ -49,7 +49,7 @@ void Hachiko::Skybox::Draw(ComponentCamera* camera) const
     glDepthFunc(GL_LEQUAL);
     glClearDepth(1.0);
 
-    Program* program = App->program->GetSkyboxProgram();
+    Program* program = App->program->GetProgram(Program::PROGRAMS::SKYBOX);
     program->Activate();
     // Draw skybox
     glBindVertexArray(vao);
@@ -354,7 +354,7 @@ void Hachiko::Skybox::GenerateDiffuseIBL()
     // Activate shader and deactivate the depth mask
     glDepthFunc(GL_ALWAYS);
     glDepthMask(false);
-    Program* program = App->program->GetDiffuseIBLProgram();
+    Program* program = App->program->GetProgram(Program::PROGRAMS::DIFFUSE_IBL);
     program->Activate();
     
     glViewport(0, 0, cube.resources[0]->height, cube.resources[0]->width);
@@ -453,7 +453,7 @@ void Hachiko::Skybox::GeneratePrefilteredIBL()
     // Activate shader and deactivate the depth mask
     glDepthFunc(GL_ALWAYS);
     glDepthMask(false);
-    Program* program = App->program->GetPrefilteredIBLProgram();
+    Program* program = App->program->GetProgram(Program::PROGRAMS::PREFILTERED_IBL);
     program->Activate();
 
     unsigned frame_buffer;
@@ -555,7 +555,7 @@ void Hachiko::Skybox::GenerateEnvironmentBRDF()
     // Activate shader and deactivate the depth mask
     glDepthFunc(GL_ALWAYS);
     glDepthMask(false);
-    Program* program = App->program->GetEnvironmentBRDFProgram();
+    Program* program = App->program->GetProgram(Program::PROGRAMS::ENVIRONMENT_BRDF);
     program->Activate();
 
     glViewport(0, 0, height, width);

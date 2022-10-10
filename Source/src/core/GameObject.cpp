@@ -261,6 +261,21 @@ Hachiko::Component* Hachiko::GameObject::CreateComponent(Component::Type type)
 
     return new_component;
 }
+void Hachiko::GameObject::SetActiveNonRecursive(bool set_active)
+{
+    if (!active && set_active)
+    {
+        Start();
+    }
+    else if (active && !set_active)
+    {
+        for (Component* component : components)
+        {
+            component->OnDisable();
+        }
+    }
+    active = set_active;
+}
 
 void Hachiko::GameObject::SetActive(bool set_active)
 {
@@ -330,6 +345,8 @@ void Hachiko::GameObject::Stop()
 
 void Hachiko::GameObject::Update()
 {
+    if (!active || (parent != nullptr && !parent->active))   return;
+
     if (transform->HasChanged())
     {
         OnTransformUpdated();
@@ -807,6 +824,23 @@ void Hachiko::GameObject::ChangeTintColor(float4 color, bool include_children)
     for (GameObject* child : children)
     {
         child->ChangeTintColor(color, include_children);
+    }
+}
+
+void Hachiko::GameObject::ChangeDissolveProgress(float progress, bool include_children) 
+{
+    std::vector<ComponentMeshRenderer*> v_mesh_renderer = GetComponents<ComponentMeshRenderer>();
+    for (ComponentMeshRenderer* component_mesh : v_mesh_renderer)
+    {
+        component_mesh->SetDissolveProgress(progress);
+    }
+
+    if (!include_children)
+        return;
+
+    for (GameObject* child : children)
+    {
+        child->ChangeDissolveProgress(progress, include_children);
     }
 }
 

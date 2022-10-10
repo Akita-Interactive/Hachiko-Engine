@@ -26,6 +26,8 @@ namespace Hachiko
 
 			void FallingStalagmite(Stalagmite* stalagmite);
 
+			void TriggerStalagmites();
+
 			bool CheckPreviousStalagmite(int idx);
 
 		private:
@@ -37,6 +39,7 @@ namespace Hachiko
 			float cooldown_elapsed = 0.0f;
 			float _falling_time = 0.5f;
 
+			bool _should_fall_stalagmites = false;
 
 			PlayerCamera* _player_camera = nullptr;
 			PlayerController* _player_controller = nullptr;

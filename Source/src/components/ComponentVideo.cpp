@@ -21,6 +21,15 @@ Hachiko::ComponentVideo::~ComponentVideo()
     glDeleteTextures(1, &frame_texture);
     DetachFromScene();
     RemoveVideoResource();
+
+    if (preloaded_frames > 0)
+    {
+        for (int i = 0; i < preloaded_frames; ++i)
+        {
+            glDeleteTextures(1, &preloaded_frame_textures[i]);
+        }
+        delete preloaded_frame_textures;
+    }
 }
 
 void Hachiko::ComponentVideo::Start()
@@ -106,16 +115,29 @@ void Hachiko::ComponentVideo::Draw(ComponentCamera* camera, Program* /*program*/
         return;
     }
     
-    const Hachiko::Program* program = App->program->GetVideoProgram();
+    const Hachiko::Program* program = App->program->GetProgram(Program::PROGRAMS::VIDEO);
     program->Activate();
     glDepthMask(GL_FALSE);
 
-    if (IsPlaying() && able_to_capture)
+    if (preloaded)
     {
-        ReadNextFrame();
-    }
+        if (IsPlaying() && able_to_capture)
+        {
+            preloaded_frame_idx = (preloaded_frame_idx + 1) % preloaded_frames;
+        }
 
-    BindFrameToGLTexture();
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, preloaded_frame_textures[preloaded_frame_idx]);
+    }
+    else
+    {
+        if (IsPlaying() && able_to_capture)
+        {
+            ReadNextFrame();
+        }
+
+        BindFrameToGLTexture();
+    }
     SetProjectionMatrices(camera, program);
 
     App->renderer->RenderFullScreenQuad();
@@ -150,6 +172,29 @@ void Hachiko::ComponentVideo::Load(const YAML::Node& node)
     fps = node[VIDEO_FPS].IsDefined() ? node[VIDEO_FPS].as<float>() : fps;
 }
 
+void Hachiko::ComponentVideo::Preload(unsigned frame_amount)
+{
+    preloaded = true;
+    preloaded_frames = frame_amount;
+    preloaded_frame_textures = new unsigned[frame_amount];
+
+    for (int i = 0; i < preloaded_frames; ++i)
+    {
+        ReadNextFrame();
+
+        glGenTextures(1, &preloaded_frame_textures[i]);
+
+        glBindTexture(GL_TEXTURE_2D, preloaded_frame_textures[i]);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        // Set texture clamping method
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, frame_width, frame_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, frame_data);
+    }
+}
+
 void Hachiko::ComponentVideo::Play()
 {
     state = VideoState::PLAYING;
@@ -168,10 +213,12 @@ void Hachiko::ComponentVideo::Stop()
 
 void Hachiko::ComponentVideo::BindFrameToGLTexture() const
 {
+    glActiveTexture(GL_TEXTURE0);
+
     // allocate memory and set texture data
     glBindTexture(GL_TEXTURE_2D, frame_texture);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 
     // Set texture clamping method
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
@@ -275,8 +322,17 @@ void Hachiko::ComponentVideo::SetProjectionMatrices(const ComponentCamera* camer
     ComponentTransform* transform = GetGameObject()->GetComponent<ComponentTransform>();
     program->BindUniformInt("ignore_camera", projected ? 0 : 1);
     program->BindUniformFloat4x4("model", transform->GetGlobalMatrix().ptr());
-    program->BindUniformFloat4x4("view", &camera->GetViewMatrix()[0][0]);
-    program->BindUniformFloat4x4("proj", &camera->GetProjectionMatrix()[0][0]);
+    if (camera)
+    {
+        program->BindUniformFloat4x4("view", &camera->GetViewMatrix()[0][0]);
+        program->BindUniformFloat4x4("proj", &camera->GetProjectionMatrix()[0][0]);
+    }
+    else
+    {
+        float4x4 identity = float4x4::identity;
+        program->BindUniformFloat4x4("view", &identity[0][0]);
+        program->BindUniformFloat4x4("proj", &identity[0][0]);
+    }
 }
 
 void Hachiko::ComponentVideo::AddVideo()

@@ -1,12 +1,28 @@
+Switch Group	ID	Name			Wwise Object Path	Notes
+	2702523344	Gameplay_Switch			\Music\Gameplay_Switch	
+
+Switch	ID	Name	Switch Group			Notes
+	579523862	Explore	Gameplay_Switch			
+	2764240573	Combat	Gameplay_Switch			
+
 State Group	ID	Name			Wwise Object Path	Notes
 	1281810935	Start			\Default Work Unit\Start	
 	1651971902	ON			\Default Work Unit\ON	
+	1690668539	Music_States			\Default Work Unit\Music_States	
 	1847882743	ShuttingDown			\Default Work Unit\ShuttingDown	
+	3762137787	Player_Life			\Default Work Unit\Player_Life	
 
 State	ID	Name	State Group			Notes
 	748895195	None	Start			
 	748895195	None	ON			
+	89505537	Gameplay	Music_States			
+	748895195	None	Music_States			
+	1560169506	Boss	Music_States			
+	2716678721	Victory	Music_States			
 	748895195	None	ShuttingDown			
+	655265632	Alive	Player_Life			
+	748895195	None	Player_Life			
+	2791675679	Defeated	Player_Life			
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	

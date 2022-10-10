@@ -5,6 +5,8 @@
 #include "entities/player/PlayerCamera.h"
 #include "entities/player/PlayerController.h"
 
+#include "entities/player/CombatVisualEffectsPool.h"
+
 constexpr int MAX_AMMO = 4;
 constexpr int ATTACK_VFX_POOL_SIZE = 6;
 
@@ -31,6 +33,7 @@ Hachiko::Scripting::PlayerController::PlayerController(GameObject* game_object)
 	, _death_screen(nullptr)
 	, _camera(nullptr)
 	, _ui_damage(nullptr)
+	, _combat_visual_effects_pool(nullptr)
 {
 	CombatManager::BulletStats common_bullet;
 	common_bullet.charge_time = .5f;
@@ -38,7 +41,7 @@ Hachiko::Scripting::PlayerController::PlayerController(GameObject* game_object)
 	common_bullet.size = 1.f;
 	common_bullet.speed = 50.f;
 	common_bullet.damage = 1.f;
-	
+
 	Weapon melee;
 	melee.name = "Melee";
 	melee.bullet = common_bullet;
@@ -56,7 +59,7 @@ Hachiko::Scripting::PlayerController::PlayerController(GameObject* game_object)
 	claw.charges = 12;
 	claw.attacks.push_back(GetAttackType(AttackType::QUICK_1));
 	claw.attacks.push_back(GetAttackType(AttackType::QUICK_2));
-	
+
 	Weapon sword;
 	sword.name = "Sword";
 	sword.bullet = common_bullet;
@@ -91,6 +94,7 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 	_enemies = Scenes::GetEnemiesContainer();
 	_bullet_emitter = Scenes::GetCombatManager();
 	_level_manager = Scenes::GetLevelManager()->GetComponent<LevelManager>();
+	_combat_visual_effects_pool = Scenes::GetCombatVisualEffectsPool()->GetComponent<CombatVisualEffectsPool>();
 
 	_dash_charges = _max_dash_charges;
 
@@ -108,11 +112,11 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 		_dash_trail->SetActive(false);
 	}
 
-	if (_falling_dust != nullptr) 
+	if (_falling_dust != nullptr)
 	{
 		_falling_dust_particles = _falling_dust->GetComponent<ComponentParticleSystem>();
 	}
-	if (_walking_dust != nullptr) 
+	if (_walking_dust != nullptr)
 	{
 		_walking_dust_particles = _walking_dust->GetComponent<ComponentParticleSystem>();
 	}
@@ -124,6 +128,48 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 	if (_damage_effect != nullptr)
 	{
 		_damage_effect_billboard = _damage_effect->GetComponent<ComponentBillboard>();
+	}
+	if (_melee_trail_right != nullptr)
+	{
+		_weapon_trails_billboard_right[static_cast<int>(WeaponUsed::MELEE)] = _melee_trail_right->GetComponent<ComponentBillboard>();
+	}
+	if (_melee_trail_left != nullptr)
+	{
+		_weapon_trails_billboard_left[static_cast<int>(WeaponUsed::MELEE)] = _melee_trail_left->GetComponent<ComponentBillboard>();
+	}
+	if (_claws_trail_right != nullptr)
+	{
+		_weapon_trails_billboard_right[static_cast<int>(WeaponUsed::CLAW)] = _claws_trail_right->GetComponent<ComponentBillboard>();
+	}
+	if (_claws_trail_left != nullptr)
+	{
+		_weapon_trails_billboard_left[static_cast<int>(WeaponUsed::CLAW)] = _claws_trail_left->GetComponent<ComponentBillboard>();
+	}
+	if (_sword_trail_right != nullptr)
+	{
+		_weapon_trails_billboard_right[static_cast<int>(WeaponUsed::SWORD)] = _sword_trail_right->GetComponent<ComponentBillboard>();
+	}
+	if (_sword_trail_left != nullptr)
+	{
+		_weapon_trails_billboard_left[static_cast<int>(WeaponUsed::SWORD)] = _sword_trail_left->GetComponent<ComponentBillboard>();
+	}
+	if (_hammer_trail_right != nullptr)
+	{
+		_weapon_trails_billboard_right[static_cast<int>(WeaponUsed::HAMMER)] = _hammer_trail_right->GetComponent<ComponentBillboard>();
+	}
+	if (_hammer_trail_left != nullptr)
+	{
+		_weapon_trails_billboard_left[static_cast<int>(WeaponUsed::HAMMER)] = _hammer_trail_left->GetComponent<ComponentBillboard>();
+	}
+	if (_parasite_pickup_effect != nullptr)
+	{
+		_parasite_pickup_billboard = _parasite_pickup_effect->GetComponent<ComponentBillboard>();
+	}
+
+	
+	if (_aim_indicator != nullptr)
+	{
+		_aim_indicator_billboard = _aim_indicator->GetComponent<ComponentBillboard>();
 	}
 
 	_combat_stats = game_object->GetComponent<Stats>();
@@ -194,6 +240,8 @@ void Hachiko::Scripting::PlayerController::OnStart()
 		_trail_end_scale = _dash_trail->GetTransform()->GetLocalScale();
 		_trail_end_scale = math::float3(_trail_end_scale.x * _trail_enlarger, _trail_end_scale.y, _trail_end_scale.z);
 	}
+
+	_aim_indicator_billboard->Stop();
 }
 
 void Hachiko::Scripting::PlayerController::OnUpdate()
@@ -202,15 +250,15 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 	_player_position = _player_transform->GetGlobalPosition();
 	_movement_direction = float3::zero;
 
-	_lock_time -= Time::DeltaTime();
+	_lock_time -= Time::DeltaTimeScaled();
 	if (_lock_time < 0.0f)
 	{
 		_lock_time = 0.0f;
 	}
-	
+
 	if (_invulnerability_time_remaining > 0.0f)
 	{
-		_invulnerability_time_remaining -= Time::DeltaTime();
+		_invulnerability_time_remaining -= Time::DeltaTimeScaled();
 		if (_invulnerability_time_remaining <= 0.0f && _player_geometry != nullptr)
 		{
 			_player_geometry->ChangeTintColor(float4(1.0f, 1.0f, 1.0f, 1.0f), true);
@@ -224,7 +272,7 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 		_god_mode_trigger = false;
 	}
 
-	if (IsAlive()) 
+	if (IsAlive())
 	{
 		if (!_level_manager->AreInputsBlocked())
 		{
@@ -242,6 +290,8 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 
 		// Rotate player to the necessary direction:
 		WalkingOrientationController();
+
+		CheckNearbyParasytes(_player_position);
 
 		// Apply the position after everything is simulated
 		_player_transform->SetGlobalPosition(_player_position);
@@ -263,7 +313,7 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 				_player_transform->SetGlobalPosition(_player_position);
 			}
 		}
-		else 
+		else
 		{
 			_state = PlayerState::DIE;
 
@@ -277,7 +327,7 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 				_state = PlayerState::READY_TO_RESPAWN;
 				damaged_by = DamageType::NONE;
 
-				if (_death_screen != nullptr) 
+				if (_death_screen != nullptr)
 				{
 					_death_screen->SetActive(true);
 				}
@@ -299,7 +349,7 @@ math::float3 Hachiko::Scripting::PlayerController::GetRaycastPosition(
 	const math::Plane plane(math::float3(0.0f, current_position.y, 0.0f),
 		math::float3(0.0f, 1.0f, 0.0f));
 
-	if(Input::IsGamepadModeOn())
+	if (Input::IsGamepadModeOn())
 	{
 		// TODO: Check the Look at of the player to not force the user move the stick because it's not accurate
 		const math::float2 gamepad_normalized_position =
@@ -310,7 +360,7 @@ math::float3 Hachiko::Scripting::PlayerController::GetRaycastPosition(
 
 		const math::LineSegment ray = Debug::GetRenderingCamera()->Raycast(
 			gamepad_position_view.x, gamepad_position_view.y);
-		
+
 		return plane.ClosestPoint(ray);
 	}
 
@@ -325,7 +375,7 @@ math::float3 Hachiko::Scripting::PlayerController::GetRaycastPosition(
 
 float3 Hachiko::Scripting::PlayerController::GetCorrectedPosition(const float3& target_pos, bool fps_relative) const
 {
-	if (fps_relative) 
+	if (fps_relative)
 	{
 		const float correction_distance = Time::DeltaTime() * _combat_stats->_move_speed + 0.05;
 		const float y_correction_distance = Time::DeltaTime() * fall_speed + 0.2;
@@ -411,11 +461,6 @@ void Hachiko::Scripting::PlayerController::HandleInputAndStatus()
 		{
 			_state = PlayerState::IDLE;
 		}
-
-		if (Input::IsKeyDown(Input::KeyCode::KEY_F) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_B))
-		{
-			PickupParasite(_player_position);
-		}
 	}	
 	else
 	{
@@ -445,7 +490,7 @@ void Hachiko::Scripting::PlayerController::HandleInputAndStatus()
 
 		ToggleGodMode();
 	}
-	
+
 	// Testing for camera
 	if (Input::IsKeyDown(Input::KeyCode::KEY_C))
 	{
@@ -518,7 +563,7 @@ void Hachiko::Scripting::PlayerController::Dash()
 	float3 corrected_dash_final_position;
 	_dash_end = _dash_start + _dash_direction * _dash_distance;
 	_player_transform->LookAtTarget(_dash_end);
-	
+
 	// Correct by wall hit
 	CorrectDashDestination(_dash_start, _dash_end);
 }
@@ -583,11 +628,18 @@ void Hachiko::Scripting::PlayerController::MeleeAttack()
 	_state = PlayerState::MELEE_ATTACKING;
 	Weapon& weapon = GetCurrentWeapon();
 	const PlayerAttack& attack = GetNextAttack();
+	if (attack.stats.attack_trail == CombatManager::AttackTrail::RIGHT)
+	{
+		_weapon_trails_billboard_right[static_cast<int>(GetCurrentWeaponType())]->Play();
+	}
+	if (attack.stats.attack_trail == CombatManager::AttackTrail::LEFT)
+	{
+		_weapon_trails_billboard_left[static_cast<int>(GetCurrentWeaponType())]->Play();
+	}
 	if (!weapon.unlimited && _attack_charges)
 	{
 		_attack_charges--;
 	}
-
 	UpdateWeaponChargeUI();
 
 	_attack_current_duration = attack.duration;
@@ -595,7 +647,7 @@ void Hachiko::Scripting::PlayerController::MeleeAttack()
 
 	// The attacks lock the player just for 2/3 of the duration
 	_lock_time = attack.duration * 0.6666f;
-	
+
 	// Attack will occur in the attack simulation after the delay
 	_attack_current_delay = attack.hit_delay;
 
@@ -613,7 +665,7 @@ void Hachiko::Scripting::PlayerController::MeleeAttack()
 	if (attack.dash_distance != 0.0f)
 	{
 		_dash_progress = 0.f;
-		_current_dash_duration = attack.duration * (2/3);
+		_current_dash_duration = attack.duration * (2 / 3);
 		_dash_start = _player_position;
 
 		// Check for inertia
@@ -649,7 +701,7 @@ void Hachiko::Scripting::PlayerController::MeleeAttack()
 void Hachiko::Scripting::PlayerController::ChangeWeapon(unsigned weapon_idx)
 {
 	_current_weapon = weapon_idx;
-	
+
 	if (weapon_idx >= weapons.size())
 	{
 		_current_weapon = 0;
@@ -666,9 +718,9 @@ void Hachiko::Scripting::PlayerController::ChangeWeapon(unsigned weapon_idx)
 		_sword_weapon->SetActive(false);
 		_hammer_weapon->SetActive(false);
 
-		_sword_ui_addon->SetActive(false);
-		_claw_ui_addon->SetActive(false);
-		_maze_ui_addon->SetActive(false);
+		_sword_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
+		_claw_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
+		_maze_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 	}
 	else if (_current_weapon == 1) // CLAW
 	{
@@ -677,9 +729,9 @@ void Hachiko::Scripting::PlayerController::ChangeWeapon(unsigned weapon_idx)
 		_sword_weapon->SetActive(false);
 		_hammer_weapon->SetActive(false);
 
-		_sword_ui_addon->SetActive(false);
-		_claw_ui_addon->SetActive(true);
-		_maze_ui_addon->SetActive(false);
+		_sword_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
+		_claw_ui_addon->GetComponent(Component::Type::IMAGE)->Enable();
+		_maze_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 	}
 	else if (_current_weapon == 2) // SWORD
 	{
@@ -688,9 +740,9 @@ void Hachiko::Scripting::PlayerController::ChangeWeapon(unsigned weapon_idx)
 		_sword_weapon->SetActive(true);
 		_hammer_weapon->SetActive(false);
 
-		_sword_ui_addon->SetActive(true);
-		_claw_ui_addon->SetActive(false);
-		_maze_ui_addon->SetActive(false);
+		_sword_ui_addon->GetComponent(Component::Type::IMAGE)->Enable();
+		_claw_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
+		_maze_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 	}
 	else if (_current_weapon == 3) // HAMMER
 	{
@@ -699,10 +751,11 @@ void Hachiko::Scripting::PlayerController::ChangeWeapon(unsigned weapon_idx)
 		_sword_weapon->SetActive(false);
 		_hammer_weapon->SetActive(true);
 
-		_sword_ui_addon->SetActive(false);
-		_claw_ui_addon->SetActive(false);
-		_maze_ui_addon->SetActive(true);
+		_sword_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
+		_claw_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
+		_maze_ui_addon->GetComponent(Component::Type::IMAGE)->Enable();
 	}
+	_parasite_pickup_billboard->Play();
 }
 
 void Hachiko::Scripting::PlayerController::ReloadAmmo(unsigned ammo)
@@ -817,6 +870,8 @@ void Hachiko::Scripting::PlayerController::RangedAttack()
 			_state = PlayerState::RANGED_CHARGING;
 		}
 	}
+
+	_aim_indicator_billboard->Restart();
 }
 
 void Hachiko::Scripting::PlayerController::ReleaseAttack()
@@ -834,7 +889,10 @@ void Hachiko::Scripting::PlayerController::ReleaseAttack()
 		else
 		{
 			math::Clamp(++_ammo_count, 0, MAX_AMMO);
+			_state = PlayerState::IDLE;
 		}
+
+		_aim_indicator_billboard->Stop();
 	}
 }
 
@@ -849,6 +907,9 @@ void Hachiko::Scripting::PlayerController::CancelAttack()
 		CombatManager* bullet_controller = _bullet_emitter->GetComponent<CombatManager>();
 		bullet_controller->StopBullet(_current_bullet);
 		math::Clamp(++_ammo_count, 0, MAX_AMMO);
+
+		_state = PlayerState::IDLE;
+		_aim_indicator_billboard->Stop();
 	}
 }
 
@@ -875,7 +936,7 @@ void Hachiko::Scripting::PlayerController::MovementController()
 	if (IsWalking())
 	{
 		_player_position += (_movement_direction * _combat_stats->_move_speed * Time::DeltaTime());
-		if(_walking_dust_particles)
+		if (_walking_dust_particles)
 			_walking_dust_particles->Play();
 	}
 	else
@@ -891,7 +952,7 @@ void Hachiko::Scripting::PlayerController::MovementController()
 
 	if (IsFalling())
 	{
-		_player_position.y -= fall_speed * Time::DeltaTime();
+		_player_position.y -= fall_speed * Time::DeltaTimeScaled();
 
 		if (_start_fall_pos.y - _player_position.y > _falling_distance)
 		{
@@ -919,9 +980,9 @@ void Hachiko::Scripting::PlayerController::MovementController()
 	}
 	else if (IsStunned())
 	{
-		if(_stun_time > 0.0f)
+		if (_stun_time > 0.0f)
 		{
-			_stun_time -= Time::DeltaTime();
+			_stun_time -= Time::DeltaTimeScaled();
 			float stun_completion = (_stun_duration - _stun_time) * (1.0 / _stun_duration);
 			_player_position = math::float3::Lerp(_knock_start, _knock_end,
 				stun_completion);
@@ -941,8 +1002,8 @@ void Hachiko::Scripting::PlayerController::MovementController()
 	float3 corrected_position = GetCorrectedPosition(_player_position, true);
 	// Valid corrected position
 	if (corrected_position.x < FLT_MAX)
-	{ 
-		if (IsFalling()) 
+	{
+		if (IsFalling())
 		{
 			if (corrected_position.y > _player_position.y)
 			{
@@ -954,7 +1015,7 @@ void Hachiko::Scripting::PlayerController::MovementController()
 					_falling_dust_particles->Restart();
 			}
 		}
-		else 
+		else
 		{
 			_player_position = corrected_position;
 		}
@@ -982,16 +1043,16 @@ void Hachiko::Scripting::PlayerController::DashController()
 
 	_dash_progress += Time::DeltaTime() / _dash_duration;
 	_dash_progress = _dash_progress > 1.0f ? 1.0f : _dash_progress;
-	
+
 	// using y = x^p
 	float acceleration = 1.0f - math::Pow((1.0f - _dash_progress) / 1.0f, (int)_dash_scaler);
-	
+
 	_player_position = math::float3::Lerp(_dash_start, _dash_end,
 		acceleration);
 
 
 	DashTrailManager(_dash_progress);
-	
+
 	// Attack status is stopped in attack controller
 	if (_dash_progress >= 1.0f && IsDashing())
 	{
@@ -1008,7 +1069,7 @@ void Hachiko::Scripting::PlayerController::DashChargesManager()
 		return;
 	}
 
-	_dash_charging_time += Time::DeltaTime();
+	_dash_charging_time += Time::DeltaTimeScaled();
 
 	if (_dash_charging_time >= _dash_cooldown)
 	{
@@ -1022,7 +1083,7 @@ void Hachiko::Scripting::PlayerController::DashChargesManager()
 
 void Hachiko::Scripting::PlayerController::DashTrailManager(float dash_progress)
 {
-	
+
 	_show_dashtrail = _state == PlayerState::DASHING;
 	_dash_trail->SetActive(_show_dashtrail);
 
@@ -1030,7 +1091,7 @@ void Hachiko::Scripting::PlayerController::DashTrailManager(float dash_progress)
 	{
 		return;
 	}
-	
+
 	_dash_trail->GetTransform()->SetLocalPosition(math::float3::Lerp(_trail_start_pos, _trail_end_pos,
 		_dash_progress));
 	_dash_trail->GetTransform()->SetLocalScale(math::float3::Lerp(_trail_start_scale, _trail_end_scale,
@@ -1043,7 +1104,7 @@ void Hachiko::Scripting::PlayerController::WalkingOrientationController()
 	if (_state == PlayerState::WALKING)
 	{
 		// Get the rotation player is going to have:
-		const math::Quat target_rotation = 
+		const math::Quat target_rotation =
 			_player_transform->SimulateLookAt(_movement_direction);
 
 		// If rotation is gonna be changed fire up the rotating process:
@@ -1086,14 +1147,14 @@ void Hachiko::Scripting::PlayerController::AttackController()
 	{
 		if (_after_attack_timer > 0.0f)
 		{
-			_after_attack_timer -= Time::DeltaTime();
+			_after_attack_timer -= Time::DeltaTimeScaled();
 		}
 		return;
 	}
 
 	if (_attack_current_duration > 0.0f)
 	{
-		_attack_current_duration -= Time::DeltaTime();
+		_attack_current_duration -= Time::DeltaTimeScaled();
 
 		if (_state == PlayerState::MELEE_ATTACKING)
 		{
@@ -1118,18 +1179,18 @@ void Hachiko::Scripting::PlayerController::AttackController()
 
 			if (_attack_current_delay > 0.f)
 			{
-				_attack_current_delay -= Time::DeltaTime();
+				_attack_current_delay -= Time::DeltaTimeScaled();
 				
 				if (_attack_current_delay <= 0.f)
 				{
 					int hit_count = 0;
-					
+
 					if (combat_manager)
 					{
 						// Offset the center of the attack if its a rectangle
 						if (attack.stats.type == CombatManager::AttackType::RECTANGLE)
 						{
-							hit_count = combat_manager->PlayerMeleeAttack(GetMeleeAttackOrigin(attack.stats.range) , attack.stats);
+							hit_count = combat_manager->PlayerMeleeAttack(GetMeleeAttackOrigin(attack.stats.range), attack.stats);
 						}
 						else
 						{
@@ -1143,7 +1204,7 @@ void Hachiko::Scripting::PlayerController::AttackController()
 						_camera->GetComponent<PlayerCamera>()->Shake(0.6f, 0.2f);
 					}
 				}
-			}	
+			}
 		}
 	}
 
@@ -1158,7 +1219,7 @@ void Hachiko::Scripting::PlayerController::AttackController()
 		ChangeWeapon(0);
 	}
 
-	if(_attack_current_duration <= 0)
+	if (_attack_current_duration <= 0)
 	{
 		if (_state == PlayerState::RANGED_CHARGING)
 		{
@@ -1172,21 +1233,21 @@ void Hachiko::Scripting::PlayerController::AttackController()
 		}
 		// Melee attack
 		_attack_indicator->SetActive(false);
-			
+
 		// When attack is over
 		_state = PlayerState::IDLE;
 	}
 }
 
-void Hachiko::Scripting::PlayerController::PickupParasite(const float3& current_position)
+void Hachiko::Scripting::PlayerController::CheckNearbyParasytes(const float3& current_position)
 {
-	if (_enemies == nullptr) 
+	if (_enemies == nullptr)
 	{
 		return;
 	}
 
 	std::vector<GameObject*>& enemy_packs = _enemies->children;
-	
+
 	for (int i = 0; i < enemy_packs.size(); ++i)
 	{
 		GameObject* pack = enemy_packs[i];
@@ -1194,7 +1255,6 @@ void Hachiko::Scripting::PlayerController::PickupParasite(const float3& current_
 		{
 			continue;
 		}
-
 		std::vector<GameObject*>& enemies = pack->children;
 
 		for (int i = 0; i < enemies.size(); ++i)
@@ -1205,43 +1265,58 @@ void Hachiko::Scripting::PlayerController::PickupParasite(const float3& current_
 
 				if (enemy_controller->IsAlive() == false && enemy_controller->ParasiteDropped())
 				{
-
-					_state = PlayerState::PICK_UP;
-
-					enemy_controller->GetParasite();
-
-					// Make player invulnerable for a period of time:
-					_invulnerability_time_remaining = _invulnerability_time;
-					if (_player_geometry != nullptr)
+					ActivateTooltip();
+					if (Input::IsKeyDown(Input::KeyCode::KEY_F) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_B))
 					{
-						_player_geometry->ChangeTintColor(float4(1.0f, 1.0f, 1.0f, 0.5f), true);
+						PickupParasite(enemy_controller);
+						DeactivateTooltip();
 					}
-
-					_combat_stats->Heal(1);
-
-					_heal_effect_particles_1->Restart();
-					_heal_effect_particles_2->Restart();
-
-					UpdateHealthBar();
-
-					if (_player_geometry != nullptr)
-					{
-						_player_geometry->ChangeEmissiveColor(float4(0.0f, 255.0f, 0.0f, 255.0f), 0.3f, true);
-					}
-
-					// Select a random weapon:
-					ChangeWeapon(RandomUtil::RandomIntBetween(1, weapons.size() - 1));
-					break;
+					return;
 				}
+			}
+			else
+			{
+				continue;
 			}
 		}
 	}
+
+	DeactivateTooltip();
+}
+
+void Hachiko::Scripting::PlayerController::PickupParasite(EnemyController* enemy_controller)
+{
+	_state = PlayerState::PICK_UP;
+
+	enemy_controller->GetParasite();
+
+	// Make player invulnerable for a period of time:
+	_invulnerability_time_remaining = _invulnerability_time;
+	if (_player_geometry != nullptr)
+	{
+		_player_geometry->ChangeTintColor(float4(1.0f, 1.0f, 1.0f, 0.5f), true);
+	}
+
+	_combat_stats->Heal(1);
+
+	_heal_effect_particles_1->Restart();
+	_heal_effect_particles_2->Restart();
+
+	UpdateHealthBar();
+
+	if (_player_geometry != nullptr)
+	{
+		_player_geometry->ChangeEmissiveColor(float4(0.0f, 255.0f, 0.0f, 255.0f), 0.3f, true);
+	}
+
+	// Select a random weapon:
+	ChangeWeapon(RandomUtil::RandomIntBetween(1, weapons.size() - 1));
 }
 
 bool Hachiko::Scripting::PlayerController::RegisterHit(int damage_received, float knockback, float3 direction, bool force_dmg, DamageType dmg_by)
 {
 	damaged_by = dmg_by;
-	
+
 	if (_god_mode || !IsAlive() || _level_manager->AreInputsBlocked())
 	{
 		return false;
@@ -1254,11 +1329,6 @@ bool Hachiko::Scripting::PlayerController::RegisterHit(int damage_received, floa
 		if (_player_geometry != nullptr)
 		{
 			_player_geometry->ChangeTintColor(float4(1.0f, 1.0f, 1.0f, 0.5f), true);
-		}
-
-		if (_damage_effect_billboard != nullptr)
-		{
-			_damage_effect_billboard->Play();
 		}
 
 		_combat_stats->ReceiveDamage(damage_received);
@@ -1327,11 +1397,11 @@ void Hachiko::Scripting::PlayerController::CheckState()
 	switch (current_state)
 	{
 	case PlayerState::IDLE:
-		if (_previous_state == PlayerState::READY_TO_RESPAWN) 
+		if (_previous_state == PlayerState::READY_TO_RESPAWN)
 		{
 			animation->SendTrigger("isRespawn");
 		}
-		else 
+		else
 		{
 			animation->SendTrigger("isIdle");
 		}
@@ -1442,11 +1512,11 @@ void Hachiko::Scripting::PlayerController::ResetPlayer(float3 spawn_pos)
 {
 	_player_position = spawn_pos; // _initial_pos;
 	_combat_stats->_current_hp = 4;
-	
+
 	// Reset properly
 
 	_ammo_count = 4;
-	
+
 	_remaining_buffer_time = 0.0f;
 	dash_buffer = false;
 
@@ -1501,6 +1571,8 @@ void Hachiko::Scripting::PlayerController::ResetPlayer(float3 spawn_pos)
 
 	// State
 	_state = PlayerState::IDLE;
+
+	_aim_indicator_billboard->Stop();
 
 	ChangeWeapon(_current_weapon);
 	UpdateHealthBar();
@@ -1557,7 +1629,7 @@ void Hachiko::Scripting::PlayerController::UpdateAmmoUI()
 		return;
 	}
 
-	for(int i = 0; i < ammo_cells.size(); ++i)
+	for (int i = 0; i < ammo_cells.size(); ++i)
 	{
 		if (i >= _ammo_count)
 		{
@@ -1576,9 +1648,11 @@ void Hachiko::Scripting::PlayerController::UpdateWeaponChargeUI()
 	if (weapon.unlimited)
 	{
 		_weapon_charge_bar_go->SetActive(false);
+		_weapon_charge_bar->Disable();
 		return;
 	}
 	_weapon_charge_bar_go->SetActive(true);
+	_weapon_charge_bar->Enable();
 	_weapon_charge_bar->SetFilledValue(_attack_charges);
 }
 
@@ -1617,7 +1691,7 @@ Hachiko::Scripting::PlayerController::PlayerAttack Hachiko::Scripting::PlayerCon
 	PlayerAttack attack;
 	switch (attack_type)
 	{
-	// COMMON ATTACKS
+		// COMMON ATTACKS
 	case AttackType::COMMON_1:
 		// Make hit delay shorter than duration!
 		attack.hit_delay = 0.05f;
@@ -1630,6 +1704,7 @@ Hachiko::Scripting::PlayerController::PlayerAttack Hachiko::Scripting::PlayerCon
 		// If its cone use degrees on width
 		attack.stats.width = 3.f;
 		attack.stats.range = 2.5f;
+		attack.stats.attack_trail = CombatManager::AttackTrail::RIGHT;
 		break;
 
 	case AttackType::COMMON_2:
@@ -1643,6 +1718,7 @@ Hachiko::Scripting::PlayerController::PlayerAttack Hachiko::Scripting::PlayerCon
 		// If its cone use degrees on width
 		attack.stats.width = 3.f;
 		attack.stats.range = 2.5f;
+		attack.stats.attack_trail = CombatManager::AttackTrail::LEFT;
 		break;
 
 	case AttackType::COMMON_3:
@@ -1658,7 +1734,7 @@ Hachiko::Scripting::PlayerController::PlayerAttack Hachiko::Scripting::PlayerCon
 		attack.stats.range = 3.5f;
 		break;
 
-	// QUICK ATTACKS
+		// QUICK ATTACKS
 	case AttackType::QUICK_1:
 		attack.hit_delay = 0.05f;
 		attack.duration = 0.6f;
@@ -1670,6 +1746,7 @@ Hachiko::Scripting::PlayerController::PlayerAttack Hachiko::Scripting::PlayerCon
 		// If its cone use degrees on width
 		attack.stats.width = 2.5f;
 		attack.stats.range = 2.5f;
+		attack.stats.attack_trail = CombatManager::AttackTrail::RIGHT;
 		break;
 
 	case AttackType::QUICK_2:
@@ -1683,9 +1760,10 @@ Hachiko::Scripting::PlayerController::PlayerAttack Hachiko::Scripting::PlayerCon
 		// If its cone use degrees on width
 		attack.stats.width = 2.5f;
 		attack.stats.range = 2.5f;
+		attack.stats.attack_trail = CombatManager::AttackTrail::LEFT;
 		break;
 
-	// HEAVY ATTACKS
+		// HEAVY ATTACKS
 	case AttackType::HEAVY_1:
 		attack.hit_delay = 0.1f;
 		attack.duration = 0.8f;
@@ -1697,6 +1775,7 @@ Hachiko::Scripting::PlayerController::PlayerAttack Hachiko::Scripting::PlayerCon
 		// If its cone use degrees on width
 		attack.stats.width = 5.f;
 		attack.stats.range = 3.f;
+		attack.stats.attack_trail = CombatManager::AttackTrail::RIGHT;
 		break;
 
 	case AttackType::HEAVY_2:
@@ -1710,6 +1789,7 @@ Hachiko::Scripting::PlayerController::PlayerAttack Hachiko::Scripting::PlayerCon
 		// If its cone use degrees on width
 		attack.stats.width = 5.f;
 		attack.stats.range = 3.f;
+		attack.stats.attack_trail = CombatManager::AttackTrail::LEFT;
 		break;
 
 	case AttackType::HEAVY_3:
@@ -1725,7 +1805,7 @@ Hachiko::Scripting::PlayerController::PlayerAttack Hachiko::Scripting::PlayerCon
 		attack.stats.range = 4.5f;
 		break;
 
-	// HAMMER ATTACKS
+		// HAMMER ATTACKS
 	case AttackType::HAMMER_1:
 		attack.hit_delay = 0.1f;
 		attack.duration = 0.5f;
@@ -1737,6 +1817,7 @@ Hachiko::Scripting::PlayerController::PlayerAttack Hachiko::Scripting::PlayerCon
 		// If its cone use degrees on width
 		attack.stats.width = 5.f;
 		attack.stats.range = 3.f;
+		attack.stats.attack_trail = CombatManager::AttackTrail::RIGHT;
 		break;
 
 	case AttackType::HAMMER_2:
@@ -1750,6 +1831,7 @@ Hachiko::Scripting::PlayerController::PlayerAttack Hachiko::Scripting::PlayerCon
 		// If its cone use degrees on width
 		attack.stats.width = 5.f;
 		attack.stats.range = 3.f;
+		attack.stats.attack_trail = CombatManager::AttackTrail::LEFT;
 		break;
 
 	case AttackType::HAMMER_3:
@@ -1764,7 +1846,7 @@ Hachiko::Scripting::PlayerController::PlayerAttack Hachiko::Scripting::PlayerCon
 		attack.stats.width = 4.f;
 		attack.stats.range = 4.5f;
 		break;
-	
+
 	}
 	return attack;
 }

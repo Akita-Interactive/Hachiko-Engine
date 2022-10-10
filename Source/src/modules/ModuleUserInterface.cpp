@@ -42,10 +42,13 @@ UpdateStatus Hachiko::ModuleUserInterface::Update(const float delta)
     const float2 mouse_pos = Input::GetMouseOpenGLPosition();
     constexpr bool is_click = false;
 
-    RecursiveCheckMousePos(
-        App->scene_manager->GetActiveScene()->GetRoot(), 
-        mouse_pos, 
-        is_click);
+    if(!App->input->IsGamepadModeOn())
+    {
+        RecursiveCheckMousePos(
+            App->scene_manager->GetActiveScene()->GetRoot(), 
+            mouse_pos, 
+            is_click);
+    }
 
     return UpdateStatus::UPDATE_CONTINUE;
 }
@@ -58,8 +61,8 @@ bool Hachiko::ModuleUserInterface::CleanUp()
 
 void Hachiko::ModuleUserInterface::DrawUI(const Scene* scene) const
 {
-    Program* img_program = App->program->GetUserInterfaceImageProgram();
-    Program* txt_program = App->program->GetUserInterfaceTextProgram();
+    Program* img_program = App->program->GetProgram(Program::PROGRAMS::UI_IMAGE);
+    Program* txt_program = App->program->GetProgram(Program::PROGRAMS::UI_TEXT);
 
     glDepthFunc(GL_ALWAYS);
 
@@ -88,6 +91,7 @@ void Hachiko::ModuleUserInterface::RecursiveDrawUI(
     Program* img_program, 
     Program* txt_program)
 {
+    if (!game_object->IsActive())   return;
     ComponentCanvas* new_canvas = game_object->GetComponent<ComponentCanvas>();
     if (new_canvas)
     {

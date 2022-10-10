@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{EB35472C-6EAE-4830-9195-AA32D2E9C9DE}" SchemaVersion="103">
 	<SoundcasterSessions>
-		<WorkUnit Name="Default Work Unit" ID="{EB35472C-6EAE-4830-9195-AA32D2E9C9DE}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{EB35472C-6EAE-4830-9195-AA32D2E9C9DE}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundcasterSession Name="teste musica" ID="{52A5A888-14F8-4B56-B35B-13E4F1B0BE3A}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="Play_Navigation" ID="{C72B32F3-D0E9-476D-A101-B04D035F2671}" WorkUnitID="{D4B90C1A-D5A0-4CD0-82EB-1E7666F66EDB}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Play_Footstep" ID="{12BD81DB-B728-4B71-81F1-938BB62E6042}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Play_Combat" ID="{DF59185F-C72C-4550-8276-02199898FFD6}" WorkUnitID="{D4B90C1A-D5A0-4CD0-82EB-1E7666F66EDB}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Play_Footstep" ID="{12BD81DB-B728-4B71-81F1-938BB62E6042}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}"/>
+							<Position X="1" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Stop_Combat" ID="{5DE2B3AE-E618-4BF8-BEB5-34D4EABAE122}" WorkUnitID="{D4B90C1A-D5A0-4CD0-82EB-1E7666F66EDB}"/>
+							<Position X="2" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Play_Footstep" ID="{12BD81DB-B728-4B71-81F1-938BB62E6042}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}"/>
+							<Position X="2" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Stop_Navigation" ID="{D7EBD3F1-A44F-41C6-BB5F-F2012825BD2B}" WorkUnitID="{D4B90C1A-D5A0-4CD0-82EB-1E7666F66EDB}"/>
+							<Position X="3" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Play_GameOver" ID="{67AE84D6-FEB9-4443-A8F1-0F56D8966BBE}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}"/>
+							<Position X="3" Y="1"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="EnemyAware" ID="{AA4A7D7C-95D8-4C61-B605-792EEBC96CF0}"/>
+							<Value>1.45213581124783E-311</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="None" ID="{093DE04C-2356-40B2-B42A-97E481832213}"/>
+						<CurrentStateRef Name="Gameplay" ID="{130FBCEE-8CBF-4113-B45E-A257238567D1}"/>
+						<CurrentStateRef Name="None" ID="{8C7FD041-000B-4CF6-90A3-9487DB812AB2}"/>
+						<CurrentStateRef Name="None" ID="{EB21219F-F14F-41E6-98DB-CCC321D31358}"/>
+						<CurrentStateRef Name="Alive" ID="{F78DEA1E-406E-4706-B5BC-D2290B952F54}"/>
+					</CurrentStateList>
+					<CurrentSwitchList ShowAll="true">
+						<CurrentSwitchRef Name="Explore" ID="{B92814EE-2B24-4C85-AE4E-9753BE866E50}"/>
+						<CurrentSwitchRef Name="Gravel" ID="{F7D7D03C-0417-4D3E-9CEC-0FC5F71A0B58}"/>
+					</CurrentSwitchList>
+				</SoundcasterSession>
+			</ChildrenList>
+		</WorkUnit>
 	</SoundcasterSessions>
 </WwiseDocument>

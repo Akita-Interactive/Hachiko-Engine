@@ -40,8 +40,8 @@ void Hachiko::BatchManager::CollectMesh(const GameObject* game_object)
         {
             const ComponentMeshRenderer* mesh_renderer = static_cast<ComponentMeshRenderer*>(components[i]);
             const ResourceMesh* resource = mesh_renderer->GetResourceMesh();
+            const ResourceMaterial* resource_material = mesh_renderer->GetResourceMaterial();
             bool batch_found = false;
-
 
             if (mesh_renderer->GetResourceMaterial())
             {
@@ -53,7 +53,8 @@ void Hachiko::BatchManager::CollectMesh(const GameObject* game_object)
                 // Find matching batch to include the mesh
                 for (GeometryBatch* geometry_batch : (*geometry_batches))
                 {
-                    if (geometry_batch->batch->layout.Equal(resource->layout))
+                    if (geometry_batch->layout.mesh_layout.Equal(resource->layout) && 
+                        geometry_batch->layout.shader == resource_material->shader)
                     {
                         geometry_batch->AddMesh(mesh_renderer);
                         batch_found = true;
@@ -62,8 +63,12 @@ void Hachiko::BatchManager::CollectMesh(const GameObject* game_object)
                 }
                 if (!batch_found)
                 {
+                    GeometryBatch::Layout layout;
+                    layout.mesh_layout = resource->layout;
+                    layout.shader = resource_material->shader;
+
                     // Create new batch if there are no matching ones
-                    GeometryBatch* new_batch = new GeometryBatch(resource->layout);
+                    GeometryBatch* new_batch = new GeometryBatch(layout);
                     new_batch->AddMesh(mesh_renderer);
                     geometry_batches->push_back(new_batch);
                 }

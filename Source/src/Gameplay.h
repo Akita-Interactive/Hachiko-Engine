@@ -469,6 +469,10 @@ HACHIKO_API GameObject* FindInCurrentScene(unsigned long long id);
 HACHIKO_API GameObject* FindInCurrentScene(const char* name);
 HACHIKO_API std::vector<GameObject*> Instantiate(unsigned long long prefab_uid, GameObject* parent, unsigned n_instances);
 HACHIKO_API void Destroy(GameObject* game_object);
+HACHIKO_API void SetFogActive(bool active);
+HACHIKO_API void SetFogColor(float3 color);
+HACHIKO_API void SetFogGlobalDensity(float density);
+HACHIKO_API void SetFogHeightFalloff(float falloff);
 } // namespace Hachiko::SceneManagement
 
 namespace Hachiko::Debug

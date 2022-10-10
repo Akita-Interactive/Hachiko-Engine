@@ -20,7 +20,10 @@ Hachiko::Scripting::MainMenuManager::MainMenuManager(GameObject* new_game_object
     , _audio_source(nullptr)
     , _quit_button_delay_duration(1.0f)
     , _remaining_waiting_time_for_quit(0.0f)
-    , _started_to_quit(false) {}
+    , _started_to_quit(false)
+    , _option_selected(0)
+	, _buttons_gamepad({})
+{}
 
 void Hachiko::Scripting::MainMenuManager::OnAwake()
 {
@@ -35,18 +38,22 @@ void Hachiko::Scripting::MainMenuManager::OnAwake()
 	_button_play = game_object->GetFirstChildWithName(
 		"button_play")->GetComponent<ComponentButton>();
 	any_null |= (_button_play == nullptr);
-
-	_button_quit = game_object->GetFirstChildWithName(
-		"button_quit")->GetComponent<ComponentButton>();
-	any_null |= (_button_quit == nullptr);
+	_buttons_gamepad.push_back(_button_play);
 
 	_button_settings = game_object->GetFirstChildWithName(
 		"button_settings")->GetComponent<ComponentButton>();
 	any_null |= (_button_settings == nullptr);
+	_buttons_gamepad.push_back(_button_settings);
 
 	_button_credits = game_object->GetFirstChildWithName(
 		"button_credits")->GetComponent<ComponentButton>();
 	any_null |= (_button_credits == nullptr);
+	_buttons_gamepad.push_back(_button_credits);
+
+	_button_quit = game_object->GetFirstChildWithName(
+		"button_quit")->GetComponent<ComponentButton>();
+	any_null |= (_button_quit == nullptr);
+	_buttons_gamepad.push_back(_button_quit);
 
 	_credits = game_object->GetFirstChildWithName(
 		"credits");
@@ -71,6 +78,7 @@ void Hachiko::Scripting::MainMenuManager::OnStart()
 {
 	_state = State::MAIN;
 	_state_changed = true;
+	_button_play->OnPointerEnter();
 }
 
 void Hachiko::Scripting::MainMenuManager::OnUpdate()
@@ -80,11 +88,11 @@ void Hachiko::Scripting::MainMenuManager::OnUpdate()
 		case State::MAIN:
 			OnUpdateMain();
 		break;
-		
+
 		case State::SETTINGS:
 			OnUpdateSettings();
 		break;
-		
+
 		case State::CREDITS:
 			OnUpdateCredits();
 		break;
@@ -92,6 +100,31 @@ void Hachiko::Scripting::MainMenuManager::OnUpdate()
 		case State::PLAY:
 			SceneManagement::SwitchScene(Scenes::GAME);
 		break;
+	}
+	
+	if (Input::IsGamepadModeOn())
+	{
+		if(Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_DPAD_RIGHT) && _state == State::MAIN)
+		{
+			_buttons_gamepad[_option_selected]->OnPointerExit();
+			_option_selected = (_option_selected + 1) % _buttons_gamepad.size();
+			_buttons_gamepad[_option_selected]->OnPointerEnter();
+		}
+		if (Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_DPAD_LEFT) && _state == State::MAIN)
+		{
+			_buttons_gamepad[_option_selected]->OnPointerExit();
+			_option_selected = (_option_selected - 1) % _buttons_gamepad.size();
+			_buttons_gamepad[_option_selected]->OnPointerEnter();
+		}
+		if (Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_A) && _state == State::MAIN)
+		{
+			_buttons_gamepad[_option_selected]->OnSelect();
+		}
+		if (Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_B) && _state != State::MAIN)
+		{
+			_buttons_gamepad[_option_selected]->OnUnSelect();
+			_button_back->OnSelect();
+		}
 	}
 }
 
@@ -184,6 +217,7 @@ void Hachiko::Scripting::MainMenuManager::OnUpdateSettings()
 		_audio_source->PostEvent(Sounds::CLICK);
 		_state = State::MAIN;
 		_state_changed = true;
+		_button_back->OnUnSelect();
 	}
 }
 
@@ -214,6 +248,7 @@ void Hachiko::Scripting::MainMenuManager::OnUpdateCredits()
 		_audio_source->PostEvent(Sounds::CLICK);
 		_state = State::MAIN;
 		_state_changed = true;
+		_button_back->OnUnSelect();
 	}
 }
 

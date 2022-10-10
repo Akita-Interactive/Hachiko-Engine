@@ -1,5 +1,14 @@
 scene_name: Menu
 navmesh_id: 10486354987637615518
+ambient_light:
+  intensity: 0.05
+  color: [1, 1, 1, 1]
+fog:
+  fog: false
+  color: [1, 1, 1]
+  global_density: 0.01
+  height_falloff: 0.01
+ibl: false
 skybox:
   right_cube_id: 0
   left_cube_id: 0
@@ -18,7 +27,7 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [0, 0, 0, 1]
+        rotation: [-0, 0, -0]
         scale: [1, 1, 1]
       - !<camera>
         id: 18001305682756485085
@@ -44,14 +53,14 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [0, 0, 0, 1]
+        rotation: [-0, 0, -0]
         scale: [1, 1, 1]
       - !<transform_2d>
         id: 3983201684690593019
         type: 10
         enabled: true
         position: [0, 0, 0]
-        size: [1231, 876]
+        size: [1842, 1042]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
@@ -73,7 +82,7 @@ child:
         "'_button_settings@ComponentButton*'": 5517220911348165701
         "'_button_credits@ComponentButton*'": 5507085151890769082
         "'_game_title@GameObject*'": 3619082081880393002
-        "'_settings@GameObject*'": 5517220911348165701
+        "'_settings@GameObject*'": 831669987700788447
         "'_credits@GameObject*'": 15157299374494226041
         "'_button_back@ComponentButton*'": 7162107976364272364
       - id: 2073226486703277877
@@ -89,14 +98,14 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [0, 0, 0, 1]
+            rotation: [-0, 0, -0]
             scale: [1, 1, 1]
           - !<transform_2d>
             id: 4765053955944909810
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [1231, 876]
+            size: [1842, 1042]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
@@ -105,18 +114,22 @@ child:
             id: 7897173408432867405
             type: 9
             enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
           - !<image>
             id: 11903064509535993690
             type: 11
             enabled: true
-            image_id: 797053075814051175
+            image_id: 3086097473457666917
             hover_image_id: 0
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
-            image_is_tiled: false
-            image_x_tiles: 1
-            image_y_tiles: 1
-            image_tiles_per_second: 1
+            image_is_tiled: true
+            image_randomize_initial_frame: false
+            image_x_tiles: 4
+            image_y_tiles: 2
+            image_tiles_per_second: 16
             fill_window: true
       - id: 12216311029793036440
         name: button_play
@@ -127,15 +140,15 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [0, 0, 0, 1]
+            rotation: [-0, 0, -0]
             scale: [1, 1, 1]
           - !<transform_2d>
             id: 11573762086171599171
             type: 10
             enabled: true
-            position: [-443.2, 75, 0]
-            size: [249, 79]
-            scale: [1, 1]
+            position: [55, 600, 0]
+            size: [438, 158]
+            scale: [0.45, 0.45]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
             anchor: [0.5, 0]
@@ -143,6 +156,9 @@ child:
             id: 6340919664879631665
             type: 9
             enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
           - !<button>
             id: 14922076439648240991
             type: 12
@@ -151,11 +167,12 @@ child:
             id: 11436036971468394748
             type: 11
             enabled: true
-            image_id: 11919729748734287842
-            hover_image_id: 6522213574127010677
+            image_id: 386778669826096178
+            hover_image_id: 4342223417350971500
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
             image_is_tiled: false
+            image_randomize_initial_frame: false
             image_x_tiles: 1
             image_y_tiles: 1
             image_tiles_per_second: 1
@@ -169,15 +186,15 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [0, 0, 0, 1]
+            rotation: [-0, 0, -0]
             scale: [1, 1, 1]
           - !<transform_2d>
             id: 12485261860033650679
             type: 10
             enabled: true
-            position: [-158.3, 75, 0]
-            size: [449, 79]
-            scale: [1, 1]
+            position: [150, 526, 0]
+            size: [700, 174]
+            scale: [0.45, 0.45]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
             anchor: [0.5, 0]
@@ -185,6 +202,9 @@ child:
             id: 13961633755337133385
             type: 9
             enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
           - !<button>
             id: 5627592797897612334
             type: 12
@@ -193,11 +213,12 @@ child:
             id: 530510889224547790
             type: 11
             enabled: true
-            image_id: 7524279948013613040
-            hover_image_id: 5111959007001328776
+            image_id: 15447268756533974621
+            hover_image_id: 7582176368851017498
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
             image_is_tiled: false
+            image_randomize_initial_frame: false
             image_x_tiles: 1
             image_y_tiles: 1
             image_tiles_per_second: 1
@@ -211,15 +232,15 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [0, 0, 0, 1]
+            rotation: [-0, 0, -0]
             scale: [1, 1, 1]
           - !<transform_2d>
             id: 4231912232200162890
             type: 10
             enabled: true
-            position: [202.1, 75, 0]
-            size: [426, 82]
-            scale: [1, 1]
+            position: [137, 442.8, 0]
+            size: [663, 160]
+            scale: [0.45, 0.45]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
             anchor: [0.5, 0]
@@ -227,6 +248,9 @@ child:
             id: 16549682737339658831
             type: 9
             enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
           - !<button>
             id: 11766846335578041050
             type: 12
@@ -235,11 +259,12 @@ child:
             id: 13184592598170642105
             type: 11
             enabled: true
-            image_id: 2646447994811262748
-            hover_image_id: 8092465931412803397
+            image_id: 12266893399834391028
+            hover_image_id: 6714238953932019409
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
             image_is_tiled: false
+            image_randomize_initial_frame: false
             image_x_tiles: 1
             image_y_tiles: 1
             image_tiles_per_second: 1
@@ -253,15 +278,15 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [0, 0, 0, 1]
+            rotation: [-0, 0, -0]
             scale: [1, 1, 1]
           - !<transform_2d>
             id: 12612247618848250662
             type: 10
             enabled: true
-            position: [451.9, 75, 0]
-            size: [259, 84]
-            scale: [1, 1]
+            position: [55, 362.4, 0]
+            size: [432, 147]
+            scale: [0.45, 0.45]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
             anchor: [0.5, 0]
@@ -269,6 +294,9 @@ child:
             id: 7984435262585265924
             type: 9
             enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
           - !<button>
             id: 16903851833182070283
             type: 12
@@ -277,11 +305,12 @@ child:
             id: 17769493676886326825
             type: 11
             enabled: true
-            image_id: 3751464411723826872
-            hover_image_id: 5850061941833811652
+            image_id: 4739612341744585028
+            hover_image_id: 15702877565834034454
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
             image_is_tiled: false
+            image_randomize_initial_frame: false
             image_x_tiles: 1
             image_y_tiles: 1
             image_tiles_per_second: 1
@@ -295,14 +324,14 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [0, 0, 0, 1]
+            rotation: [-0, 0, -0]
             scale: [1, 1, 1]
           - !<transform_2d>
             id: 3158429781987651114
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [1517, 1056]
+            size: [1842, 1042]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
@@ -311,61 +340,23 @@ child:
             id: 17824769307433963587
             type: 9
             enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
           - !<image>
             id: 3288816736132035746
             type: 11
             enabled: true
-            image_id: 9470256371827250406
+            image_id: 11218389582422756760
             hover_image_id: 0
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
-            image_is_tiled: false
-            image_x_tiles: 1
-            image_y_tiles: 1
-            image_tiles_per_second: 1
-            fill_window: false
-      - id: 7162107976364272364
-        name: button_back
-        enabled: true
-        component:
-          - !<transform>
-            id: 15717323362502186912
-            type: 1
-            enabled: true
-            position: [0, 0, 0]
-            rotation: [0, 0, 0, 1]
-            scale: [1, 1, 1]
-          - !<transform_2d>
-            id: 7637097761508394094
-            type: 10
-            enabled: true
-            position: [0, 0, 0]
-            size: [310, 100]
-            scale: [1, 1]
-            rotation: [0, 0, 0, 1]
-            pivot: [0.5, 0.5]
-            anchor: [0.75, 0.85]
-          - !<canvas_renderer>
-            id: 13379399604533935340
-            type: 9
-            enabled: true
-          - !<button>
-            id: 7268867612220351968
-            type: 12
-            enabled: true
-          - !<image>
-            id: 8781217700864061631
-            type: 11
-            enabled: true
-            image_id: 12801498884348566920
-            hover_image_id: 14223851074699602382
-            image_color: [1, 1, 1, 1]
-            hover_image_color: [1, 1, 1, 1]
-            image_is_tiled: false
-            image_x_tiles: 1
-            image_y_tiles: 1
-            image_tiles_per_second: 1
-            fill_window: false
+            image_is_tiled: true
+            image_randomize_initial_frame: false
+            image_x_tiles: 4
+            image_y_tiles: 2
+            image_tiles_per_second: 10
+            fill_window: true
       - id: 831669987700788447
         name: settings
         enabled: false
@@ -375,14 +366,14 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [0, 0, 0, 1]
+            rotation: [-0, 0, -0]
             scale: [1, 1, 1]
           - !<transform_2d>
             id: 12505313811313725007
             type: 10
             enabled: true
             position: [0, 0, 0]
-            size: [1068, 704]
+            size: [1842, 1042]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
@@ -391,18 +382,22 @@ child:
             id: 9871573166627518170
             type: 9
             enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
           - !<image>
             id: 4807624678484144569
             type: 11
             enabled: true
-            image_id: 18244565694302770990
+            image_id: 11322285367643034639
             hover_image_id: 0
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
-            image_is_tiled: false
-            image_x_tiles: 1
-            image_y_tiles: 1
-            image_tiles_per_second: 1
+            image_is_tiled: true
+            image_randomize_initial_frame: false
+            image_x_tiles: 4
+            image_y_tiles: 2
+            image_tiles_per_second: 10
             fill_window: true
       - id: 3619082081880393002
         name: title
@@ -413,7 +408,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [0, 0, 0, 1]
+            rotation: [-0, 0, -0]
             scale: [1, 1, 1]
           - !<transform_2d>
             id: 2030388677375672639
@@ -429,15 +424,93 @@ child:
             id: 17108095599516651498
             type: 9
             enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
+      - id: 2929381977610906746
+        name: GameObject
+        enabled: false
+        component:
+          - !<transform>
+            id: 15280147778722016947
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+          - !<transform_2d>
+            id: 2531125604461379895
+            type: 10
+            enabled: true
+            position: [35, -47.4, 0]
+            size: [792.4, 449.8]
+            scale: [1, 1]
+            rotation: [0, 0, 0, 1]
+            pivot: [0.5, 0.5]
+            anchor: [0.5, 0.5]
+          - !<canvas_renderer>
+            id: 9986770077203136445
+            type: 9
+            enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
           - !<image>
-            id: 2939800161397744075
+            id: 690512461764315959
             type: 11
             enabled: true
-            image_id: 14716769391895676594
+            image_id: 14375597159741693031
             hover_image_id: 0
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
             image_is_tiled: false
+            image_randomize_initial_frame: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
+            fill_window: false
+      - id: 7162107976364272364
+        name: button_back
+        enabled: true
+        component:
+          - !<transform>
+            id: 15717323362502186912
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+          - !<transform_2d>
+            id: 7637097761508394094
+            type: 10
+            enabled: true
+            position: [-257.7, -582.5, 0]
+            size: [206, 70]
+            scale: [0.6, 0.6]
+            rotation: [0, 0, 0, 1]
+            pivot: [0.5, 0.5]
+            anchor: [0.75, 0.85]
+          - !<canvas_renderer>
+            id: 13379399604533935340
+            type: 9
+            enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
+          - !<button>
+            id: 7268867612220351968
+            type: 12
+            enabled: true
+          - !<image>
+            id: 8781217700864061631
+            type: 11
+            enabled: true
+            image_id: 4651405426881075442
+            hover_image_id: 4651405426881075442
+            image_color: [1, 1, 1, 1]
+            hover_image_color: [0.9536, 0.1448, 0, 1]
+            image_is_tiled: false
+            image_randomize_initial_frame: false
             image_x_tiles: 1
             image_y_tiles: 1
             image_tiles_per_second: 1

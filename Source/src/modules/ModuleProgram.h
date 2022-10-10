@@ -60,89 +60,9 @@ namespace Hachiko
         bool Init() override;
         bool CleanUp() override;
 
-        [[nodiscard]] Program* GetForwardProgram() const
+        [[nodiscard]] Program* GetProgram(Program::PROGRAMS program) const
         {
-            return forward_program;
-        }
-
-        [[nodiscard]] Program* GetGaussianFilteringProgram() const
-        {
-            return gaussian_filtering_program;
-        }
-        
-        [[nodiscard]] Program* GetDeferredGeometryProgram() const
-        {
-            return deferred_geometry_program;
-        }
-
-        [[nodiscard]] Program* GetDeferredLightingProgram() const
-        {
-            return deferred_lighting_program;
-        }
-
-        [[nodiscard]] Program* GetShadowMappingProgram() const
-        {
-            return shadow_mapping_program;
-        }
-
-        [[nodiscard]] Program* GetSkyboxProgram() const
-        {
-            return skybox_program;
-        }
-
-        [[nodiscard]] Program* GetDiffuseIBLProgram() const
-        {
-            return diffuse_ibl_program;
-        }
-        
-        [[nodiscard]] Program* GetPrefilteredIBLProgram() const
-        {
-            return prefiltered_ibl_program;
-        }
-        
-        [[nodiscard]] Program* GetEnvironmentBRDFProgram() const
-        {
-            return environment_brdf_program;
-        }
-
-        [[nodiscard]] Program* GetStencilProgram() const
-        {
-            return stencil_program;
-        }
-
-        [[nodiscard]] Program* GetUserInterfaceImageProgram() const
-        {
-            return ui_image_program;
-        }
-
-        [[nodiscard]] Program* GetUserInterfaceTextProgram() const
-        {
-            return ui_text_program;
-        }
-
-        [[nodiscard]] Program* GetParticleProgram() const
-        {
-            return particle_program;
-        }
-
-        [[nodiscard]] Program* GetTransparentDepthProgram() const
-        {
-            return transparent_depth_program;
-        }
-
-        [[nodiscard]] Program* GetFogProgram() const
-        {
-            return fog_program;
-        }
-        
-        [[nodiscard]] Program* GetVideoProgram() const
-        {
-            return video_program;
-        }
-
-        [[nodiscard]] Program* GetTextureCopyProgram() const
-        {
-            return texture_copy_program;
+            return programs[static_cast<int>(program)];
         }
 
         void UpdateCamera(const ComponentCamera* camera) const;
@@ -160,42 +80,7 @@ namespace Hachiko
         Program* CreateProgram(const char* vtx_shader_path, const char* frg_shader_path);
         void CreateGLSLIncludes() const;
 
-        Program* CreateForwardProgram();
-        Program* CreateGaussianFilteringProgram();
-        Program* CreateSkyboxProgram();
-        Program* CreateDiffuseIBLProgram();
-        Program* CreatePrefilteredIBLProgram();
-        Program* CreateEnvironmentBRDFProgram();
-        Program* CreateStencilProgram();
-        Program* CreateUserInterfaceImageProgram();
-        Program* CreateUserInterfaceTextProgram();
-        Program* CreateParticleProgram();
-        Program* CreateDeferredGeometryPassProgram();
-        Program* CreateDeferredLightingPassProgram();
-        Program* CreateShadowMappingProgram();
-        Program* CreateVideoProgram();
-        Program* CreateTransparentDepthProgram();
-        Program* CreateFogProgram();
-        
-        Program* CreateTextureCopyProgram();
-
-        Program* forward_program = nullptr;
-        Program* gaussian_filtering_program = nullptr;
-        Program* deferred_geometry_program = nullptr;
-        Program* deferred_lighting_program = nullptr;
-        Program* shadow_mapping_program = nullptr;
-        Program* skybox_program = nullptr;
-        Program* diffuse_ibl_program = nullptr;
-        Program* prefiltered_ibl_program = nullptr;
-        Program* environment_brdf_program = nullptr;
-        Program* stencil_program = nullptr;
-        Program* ui_image_program = nullptr;
-        Program* ui_text_program = nullptr;
-        Program* particle_program = nullptr;
-        Program* video_program = nullptr;
-        Program* transparent_depth_program = nullptr;
-        Program* fog_program = nullptr;
-        Program* texture_copy_program = nullptr;
+        Program* programs[static_cast<int>(Program::PROGRAMS::COUNT)];
 
         // Assume the shader already manages its binding points
         void CreateUBO(UBOPoints binding_point, unsigned size);

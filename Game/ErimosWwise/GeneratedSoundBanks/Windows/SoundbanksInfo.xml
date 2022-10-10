@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\</ProjectRoot>
-		<SourceFilesRoot>D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>D:\PreAlpha2_backup\PreAlpha2\Game\ErimosWwise\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\MO\Documents\Hachiko-Engine\Game\ErimosWwise\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="626769978" Language="SFX" Hash="4202865845">
+		<SoundBank Id="626769978" Language="SFX" Hash="1167542298">
 			<ObjectPath>\SoundBanks\Default Work Unit\BackgroundMusic</ObjectPath>
 			<ShortName>BackgroundMusic</ShortName>
 			<Path>BackgroundMusic.bnk</Path>
 			<IncludedEvents>
-				<Event Id="548088167" Name="Play_BackgroundMusic" ObjectPath="\Events\Default Work Unit\Play_BackgroundMusic"/>
-				<Event Id="513571230" Name="Play_Combat" ObjectPath="\Events\Default Work Unit\Play_Combat">
+				<Event Id="513571230" Name="Play_Combat" ObjectPath="\Events\Music\Play_Combat"/>
+				<Event Id="3849525492" Name="Play_Navigation" ObjectPath="\Events\Music\Play_Navigation">
 					<IncludedMemoryFiles>
+						<File Id="31154168" Language="SFX">
+							<ShortName>Defeated-138bpm4-4_L4M-P0.wav</ShortName>
+							<Path>SFX\Defeated-138bpm4-4_L4M-P0_D79FB2B7.wem</Path>
+						</File>
+						<File Id="126846833" Language="SFX">
+							<ShortName>Exp_b_108bpm.wav</ShortName>
+							<Path>SFX\Exp_b_108bpm_D79FB2B7.wem</Path>
+						</File>
 						<File Id="181335723" Language="SFX">
 							<ShortName>Com_b_108bpm.wav</ShortName>
 							<Path>SFX\Com_b_108bpm_D79FB2B7.wem</Path>
@@ -31,6 +39,10 @@
 							<ShortName>Com_d_108bpm.wav</ShortName>
 							<Path>SFX\Com_d_108bpm_D79FB2B7.wem</Path>
 						</File>
+						<File Id="341546302" Language="SFX">
+							<ShortName>Exp_a_108bpm.wav</ShortName>
+							<Path>SFX\Exp_a_108bpm_D79FB2B7.wem</Path>
+						</File>
 						<File Id="503682454" Language="SFX">
 							<ShortName>Com_a_108bpm.wav</ShortName>
 							<Path>SFX\Com_a_108bpm_D79FB2B7.wem</Path>
@@ -39,25 +51,13 @@
 							<ShortName>Com_c_108bpm.wav</ShortName>
 							<Path>SFX\Com_c_108bpm_D79FB2B7.wem</Path>
 						</File>
-						<File Id="759444810" Language="SFX">
-							<ShortName>Com_108bpm_full.wav</ShortName>
-							<Path>SFX\Com_108bpm_full_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3849525492" Name="Play_Navigation" ObjectPath="\Events\Default Work Unit\Play_Navigation">
-					<IncludedMemoryFiles>
-						<File Id="126846833" Language="SFX">
-							<ShortName>Exp_b_108bpm.wav</ShortName>
-							<Path>SFX\Exp_b_108bpm_D79FB2B7.wem</Path>
-						</File>
-						<File Id="341546302" Language="SFX">
-							<ShortName>Exp_a_108bpm.wav</ShortName>
-							<Path>SFX\Exp_a_108bpm_D79FB2B7.wem</Path>
-						</File>
 						<File Id="718840818" Language="SFX">
 							<ShortName>Exp_d_108bpm.wav</ShortName>
 							<Path>SFX\Exp_d_108bpm_D79FB2B7.wem</Path>
+						</File>
+						<File Id="759444810" Language="SFX">
+							<ShortName>Com_108bpm_full.wav</ShortName>
+							<Path>SFX\Com_108bpm_full_D79FB2B7.wem</Path>
 						</File>
 						<File Id="854415901" Language="SFX">
 							<ShortName>Exp_c_108bpm.wav</ShortName>
@@ -72,17 +72,105 @@
 							<Path>SFX\Exp_e_108bpm_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
+					<SwitchContainers>
+						<SwitchContainer SwitchValue="{6D9231D6-6EC9-4CBF-8DA7-97EC649CB00E}">
+							<Children>
+								<SwitchContainer SwitchValue="{78E4EDC4-7307-43E3-B46B-D9454B2DF4BD}">
+									<Children>
+										<SwitchContainer SwitchValue="{7441A8D7-1473-42C8-84AC-E7692335FD53}">
+											<Media>
+												<File Id="31154168"/>
+											</Media>
+										</SwitchContainer>
+									</Children>
+								</SwitchContainer>
+							</Children>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{F78DEA1E-406E-4706-B5BC-D2290B952F54}">
+							<Children>
+								<SwitchContainer SwitchValue="{130FBCEE-8CBF-4113-B45E-A257238567D1}">
+									<Children>
+										<SwitchContainer SwitchValue="{B9D34D9B-4164-4F24-B1C3-D91B169DA95F}">
+											<Media>
+												<File Id="181335723"/>
+												<File Id="220998542"/>
+												<File Id="283120831"/>
+												<File Id="503682454"/>
+												<File Id="715960795"/>
+												<File Id="759444810"/>
+											</Media>
+										</SwitchContainer>
+									</Children>
+								</SwitchContainer>
+							</Children>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{F78DEA1E-406E-4706-B5BC-D2290B952F54}">
+							<Children>
+								<SwitchContainer SwitchValue="{130FBCEE-8CBF-4113-B45E-A257238567D1}">
+									<Children>
+										<SwitchContainer SwitchValue="{B92814EE-2B24-4C85-AE4E-9753BE866E50}">
+											<Media>
+												<File Id="126846833"/>
+												<File Id="341546302"/>
+												<File Id="718840818"/>
+												<File Id="854415901"/>
+												<File Id="903340460"/>
+												<File Id="988655692"/>
+											</Media>
+										</SwitchContainer>
+									</Children>
+								</SwitchContainer>
+							</Children>
+						</SwitchContainer>
+					</SwitchContainers>
+					<ActionSetState>
+						<ActionSetStateEntry Id="89505537" Name="Gameplay" ObjectPath="\States\Default Work Unit\Music_States\Gameplay"/>
+						<ActionSetStateEntry Id="655265632" Name="Alive" ObjectPath="\States\Default Work Unit\Player_Life\Alive"/>
+					</ActionSetState>
 				</Event>
-				<Event Id="913896232" Name="Stop_Combat" ObjectPath="\Events\Default Work Unit\Stop_Combat"/>
-				<Event Id="445689598" Name="Stop_Navigation" ObjectPath="\Events\Default Work Unit\Stop_Navigation"/>
+				<Event Id="913896232" Name="Stop_Combat" ObjectPath="\Events\Music\Stop_Combat"/>
 			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="3963624107" Name="EnemyAware" ObjectPath="\Game Parameters\Music\EnemyAware"/>
+			</GameParameters>
+			<StateGroups>
+				<StateGroup Id="89505537" Name="Gameplay" ObjectPath="\States\Default Work Unit\Music_States\Gameplay" GUID="{130FBCEE-8CBF-4113-B45E-A257238567D1}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="655265632" Name="Alive" ObjectPath="\States\Default Work Unit\Player_Life\Alive" GUID="{F78DEA1E-406E-4706-B5BC-D2290B952F54}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="1690668539" Name="Music_States" ObjectPath="\States\Default Work Unit\Music_States" GUID="{78E4EDC4-7307-43E3-B46B-D9454B2DF4BD}">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Music_States\None" GUID="{F4E7D95B-60DE-4AD8-9D64-569149B9E444}"/>
+						<State Id="89505537" Name="Gameplay" ObjectPath="\States\Default Work Unit\Music_States\Gameplay" GUID="{130FBCEE-8CBF-4113-B45E-A257238567D1}"/>
+						<State Id="1560169506" Name="Boss" ObjectPath="\States\Default Work Unit\Music_States\Boss" GUID="{E24A9ED8-8BD2-4861-BCA8-61FD9CE536E5}"/>
+						<State Id="2716678721" Name="Victory" ObjectPath="\States\Default Work Unit\Music_States\Victory" GUID="{4218ECB3-FF93-4574-883F-453CD6E8D154}"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="3762137787" Name="Player_Life" ObjectPath="\States\Default Work Unit\Player_Life" GUID="{DEB1DF95-2877-494B-8D4B-E6FC5AF08A62}">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Player_Life\None" GUID="{8550BE43-0498-443A-A3B3-A7A82196A796}"/>
+						<State Id="655265632" Name="Alive" ObjectPath="\States\Default Work Unit\Player_Life\Alive" GUID="{F78DEA1E-406E-4706-B5BC-D2290B952F54}"/>
+						<State Id="2791675679" Name="Defeated" ObjectPath="\States\Default Work Unit\Player_Life\Defeated" GUID="{6D9231D6-6EC9-4CBF-8DA7-97EC649CB00E}"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
+			<SwitchGroups>
+				<SwitchGroup Id="2702523344" Name="Gameplay_Switch" ObjectPath="\Switches\Music\Gameplay_Switch" GUID="{7441A8D7-1473-42C8-84AC-E7692335FD53}">
+					<Switches>
+						<Switch Id="579523862" Name="Explore" ObjectPath="\Switches\Music\Gameplay_Switch\Explore" GUID="{B92814EE-2B24-4C85-AE4E-9753BE866E50}"/>
+						<Switch Id="2764240573" Name="Combat" ObjectPath="\Switches\Music\Gameplay_Switch\Combat" GUID="{B9D34D9B-4164-4F24-B1C3-D91B169DA95F}"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="1505528289">
+		<SoundBank Id="1355168291" Language="SFX" Hash="3716961101">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="1551306167" Language="SFX" Hash="1805102344">
+		<SoundBank Id="1551306167" Language="SFX" Hash="1933214614">
 			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
 			<ShortName>UI</ShortName>
 			<Path>UI.bnk</Path>
@@ -105,7 +193,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="2385628198" Language="SFX" Hash="3837336879">
+		<SoundBank Id="2385628198" Language="SFX" Hash="364181247">
 			<ObjectPath>\SoundBanks\Default Work Unit\Footsteps</ObjectPath>
 			<ShortName>Footsteps</ShortName>
 			<Path>Footsteps.bnk</Path>
@@ -349,7 +437,7 @@
 							<Path>SFX\Steps\Gravel\Step_39Gravel_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
-					<DefaultSwitchValue>{453FD6AC-2658-48CA-9152-F3C1A8A9CC4E}</DefaultSwitchValue>
+					<DefaultSwitchValue>{F7D7D03C-0417-4D3E-9CEC-0FC5F71A0B58}</DefaultSwitchValue>
 					<SwitchContainers>
 						<SwitchContainer SwitchValue="{F7D7D03C-0417-4D3E-9CEC-0FC5F71A0B58}">
 							<Media>
@@ -435,7 +523,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3768541028" Language="SFX" Hash="2643980876">
+		<SoundBank Id="3768541028" Language="SFX" Hash="4210262672">
 			<ObjectPath>\SoundBanks\Default Work Unit\Attacks</ObjectPath>
 			<ShortName>Attacks</ShortName>
 			<Path>Attacks.bnk</Path>
@@ -465,12 +553,9 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="3174629258" Name="Play_GameOver" ObjectPath="\Events\Default Work Unit\Play_GameOver">
-					<IncludedMemoryFiles>
-						<File Id="418495884" Language="SFX">
-							<ShortName>game-die.wav</ShortName>
-							<Path>SFX\game-die_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
+					<ActionSetState>
+						<ActionSetStateEntry Id="2791675679" Name="Defeated" ObjectPath="\States\Default Work Unit\Player_Life\Defeated"/>
+					</ActionSetState>
 				</Event>
 				<Event Id="998505444" Name="Play_LoadingAmmo" ObjectPath="\Events\Default Work Unit\Play_LoadingAmmo">
 					<IncludedMemoryFiles>
@@ -553,8 +638,13 @@
 					</IncludedMemoryFiles>
 				</Event>
 			</IncludedEvents>
+			<StateGroups>
+				<StateGroup Id="2791675679" Name="Defeated" ObjectPath="\States\Default Work Unit\Player_Life\Defeated" GUID="{6D9231D6-6EC9-4CBF-8DA7-97EC649CB00E}">
+					<States/>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3909959462" Language="SFX" Hash="2487878154">
+		<SoundBank Id="3909959462" Language="SFX" Hash="3859404213">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enviroment</ObjectPath>
 			<ShortName>Enviroment</ShortName>
 			<Path>Enviroment.bnk</Path>
@@ -620,6 +710,14 @@
 						<File Id="857441310" Language="SFX">
 							<ShortName>Ambient\Pebbles 4.wav</ShortName>
 							<Path>SFX\Ambient\Pebbles 4_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3948925255" Name="Play_Splash" ObjectPath="\Events\Default Work Unit\Play_Splash">
+					<IncludedMemoryFiles>
+						<File Id="293397634" Language="SFX">
+							<ShortName>Splash-centipede.wav</ShortName>
+							<Path>SFX\Splash-centipede_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

@@ -1,0 +1,441 @@
+prefab_name: centipede_mesh
+name: RootNode
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [-0, 0, -0]
+    scale: [1, 1, 1]
+  - !<animation>
+    type: 14
+    enabled: true
+    state_machine: 0
+child:
+  - name: Geo
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+    child:
+      - name: Sphere.014_$AssimpFbx$_RotationPivot
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.0529, 0.0603, 0.1271]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+        child:
+          - name: Sphere.014_$AssimpFbx$_RotationPivotInverse
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.0529, -0.0603, -0.1271]
+                rotation: [-0, 0, -0]
+                scale: [1, 1, 1]
+            child:
+              - name: Sphere.014_$AssimpFbx$_ScalingPivot
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0.0529, 0.0603, 0.1271]
+                    rotation: [-0, 0, -0]
+                    scale: [1, 1, 1]
+                child:
+                  - name: Sphere.014_$AssimpFbx$_ScalingPivotInverse
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [-0.0529, -0.0603, -0.1271]
+                        rotation: [-0, 0, -0]
+                        scale: [1, 1, 1]
+                    child:
+                      - name: Sphere.014
+                        enabled: true
+                        component:
+                          - !<transform>
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [-0, 0, -0]
+                            scale: [1, 1, 1]
+                          - !<mesh_renderer>
+                            type: 2
+                            enabled: true
+                            mesh_id: 7135448508068517713
+                            navigable: false
+                            visible: true
+                            material_id: 2794686973665786143
+                            tint_color: [1, 1, 1, 1]
+  - name: Head_$AssimpFbx$_Translation
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-0.8453, 0.0664, -0.0984]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+    child:
+      - name: Head_$AssimpFbx$_PreRotation
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0, 41.01, -0]
+            scale: [1, 1, 1]
+        child:
+          - name: Head_$AssimpFbx$_Rotation
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-0, 16.88, -0]
+                scale: [1, 1, 1]
+            child:
+              - name: Head_$AssimpFbx$_Scaling
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [-0, 0, -0]
+                    scale: [1, 1, 1]
+                child:
+                  - name: Head
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [-0, 0, -0]
+                        scale: [1, 1, 1]
+                    child:
+                      - name: Neck_$AssimpFbx$_Translation
+                        enabled: true
+                        component:
+                          - !<transform>
+                            type: 1
+                            enabled: true
+                            position: [0.2315, 0, 0]
+                            rotation: [-0, 0, -0]
+                            scale: [1, 1, 1]
+                        child:
+                          - name: Neck_$AssimpFbx$_PreRotation
+                            enabled: true
+                            component:
+                              - !<transform>
+                                type: 1
+                                enabled: true
+                                position: [0, 0, 0]
+                                rotation: [0, -22.44, 0]
+                                scale: [1, 1, 1]
+                            child:
+                              - name: Neck_$AssimpFbx$_Rotation
+                                enabled: true
+                                component:
+                                  - !<transform>
+                                    type: 1
+                                    enabled: true
+                                    position: [0, 0, 0]
+                                    rotation: [-0, 58.07, -0]
+                                    scale: [1, 1, 1]
+                                child:
+                                  - name: Neck_$AssimpFbx$_Scaling
+                                    enabled: true
+                                    component:
+                                      - !<transform>
+                                        type: 1
+                                        enabled: true
+                                        position: [0, 0, 0]
+                                        rotation: [-0, 0, -0]
+                                        scale: [1, 1, 1]
+                                    child:
+                                      - name: Neck
+                                        enabled: true
+                                        component:
+                                          - !<transform>
+                                            type: 1
+                                            enabled: true
+                                            position: [0, 0, 0]
+                                            rotation: [-0, 0, -0]
+                                            scale: [1, 1, 1]
+                                        child:
+                                          - name: Body_1_$AssimpFbx$_Translation
+                                            enabled: true
+                                            component:
+                                              - !<transform>
+                                                type: 1
+                                                enabled: true
+                                                position: [0.256, 0, 0]
+                                                rotation: [-0, 0, -0]
+                                                scale: [1, 1, 1]
+                                            child:
+                                              - name: Body_1_$AssimpFbx$_PreRotation
+                                                enabled: true
+                                                component:
+                                                  - !<transform>
+                                                    type: 1
+                                                    enabled: true
+                                                    position: [0, 0, 0]
+                                                    rotation: [0, -56.42, 0]
+                                                    scale: [1, 1, 1]
+                                                child:
+                                                  - name: Body_1_$AssimpFbx$_Rotation
+                                                    enabled: true
+                                                    component:
+                                                      - !<transform>
+                                                        type: 1
+                                                        enabled: true
+                                                        position: [0, 0, 0]
+                                                        rotation: [-0, 86.29, -0]
+                                                        scale: [1, 1, 1]
+                                                    child:
+                                                      - name: Body_1_$AssimpFbx$_Scaling
+                                                        enabled: true
+                                                        component:
+                                                          - !<transform>
+                                                            type: 1
+                                                            enabled: true
+                                                            position: [0, 0, 0]
+                                                            rotation: [-0, 0, -0]
+                                                            scale: [1, 1, 1]
+                                                        child:
+                                                          - name: Body_1
+                                                            enabled: true
+                                                            component:
+                                                              - !<transform>
+                                                                type: 1
+                                                                enabled: true
+                                                                position: [0, 0, 0]
+                                                                rotation: [-0, 0, -0]
+                                                                scale: [1, 1, 1]
+                                                            child:
+                                                              - name: Body_2
+                                                                enabled: true
+                                                                component:
+                                                                  - !<transform>
+                                                                    type: 1
+                                                                    enabled: true
+                                                                    position: [0.2122, -0.0032, -0.0259]
+                                                                    rotation: [-0, 64.3, -0]
+                                                                    scale: [1, 1, 1]
+                                                                child:
+                                                                  - name: Body_3_$AssimpFbx$_Translation
+                                                                    enabled: true
+                                                                    component:
+                                                                      - !<transform>
+                                                                        type: 1
+                                                                        enabled: true
+                                                                        position: [0.2518, 0.0032, 0.0469]
+                                                                        rotation: [-0, 0, -0]
+                                                                        scale: [1, 1, 1]
+                                                                    child:
+                                                                      - name: Body_3_$AssimpFbx$_PreRotation
+                                                                        enabled: true
+                                                                        component:
+                                                                          - !<transform>
+                                                                            type: 1
+                                                                            enabled: true
+                                                                            position: [0, 0, 0]
+                                                                            rotation: [0, -10.43, 0]
+                                                                            scale: [1, 1, 1]
+                                                                        child:
+                                                                          - name: Body_3_$AssimpFbx$_Rotation
+                                                                            enabled: true
+                                                                            component:
+                                                                              - !<transform>
+                                                                                type: 1
+                                                                                enabled: true
+                                                                                position: [0, 0, 0]
+                                                                                rotation: [-0, 50.57, -0]
+                                                                                scale: [1, 1, 1]
+                                                                            child:
+                                                                              - name: Body_3_$AssimpFbx$_Scaling
+                                                                                enabled: true
+                                                                                component:
+                                                                                  - !<transform>
+                                                                                    type: 1
+                                                                                    enabled: true
+                                                                                    position: [0, 0, 0]
+                                                                                    rotation: [-0, 0, -0]
+                                                                                    scale: [1, 1, 1]
+                                                                                child:
+                                                                                  - name: Body_3
+                                                                                    enabled: true
+                                                                                    component:
+                                                                                      - !<transform>
+                                                                                        type: 1
+                                                                                        enabled: true
+                                                                                        position: [0, 0, 0]
+                                                                                        rotation: [-0, 0, -0]
+                                                                                        scale: [1, 1, 1]
+                                                                                    child:
+                                                                                      - name: Body_4_$AssimpFbx$_Translation
+                                                                                        enabled: true
+                                                                                        component:
+                                                                                          - !<transform>
+                                                                                            type: 1
+                                                                                            enabled: true
+                                                                                            position: [0.2888, 0, 0]
+                                                                                            rotation: [-0, 0, -0]
+                                                                                            scale: [1, 1, 1]
+                                                                                        child:
+                                                                                          - name: Body_4_$AssimpFbx$_PreRotation
+                                                                                            enabled: true
+                                                                                            component:
+                                                                                              - !<transform>
+                                                                                                type: 1
+                                                                                                enabled: true
+                                                                                                position: [0, 0, 0]
+                                                                                                rotation: [-0, 31.39, -0]
+                                                                                                scale: [1, 1, 1]
+                                                                                            child:
+                                                                                              - name: Body_4_$AssimpFbx$_Rotation
+                                                                                                enabled: true
+                                                                                                component:
+                                                                                                  - !<transform>
+                                                                                                    type: 1
+                                                                                                    enabled: true
+                                                                                                    position: [0, 0, 0]
+                                                                                                    rotation: [-0, 20.12, -0]
+                                                                                                    scale: [1, 1, 1]
+                                                                                                child:
+                                                                                                  - name: Body_4_$AssimpFbx$_Scaling
+                                                                                                    enabled: true
+                                                                                                    component:
+                                                                                                      - !<transform>
+                                                                                                        type: 1
+                                                                                                        enabled: true
+                                                                                                        position: [0, 0, 0]
+                                                                                                        rotation: [-0, 0, -0]
+                                                                                                        scale: [1, 1, 1]
+                                                                                                    child:
+                                                                                                      - name: Body_4
+                                                                                                        enabled: true
+                                                                                                        component:
+                                                                                                          - !<transform>
+                                                                                                            type: 1
+                                                                                                            enabled: true
+                                                                                                            position: [0, 0, 0]
+                                                                                                            rotation: [-0, 0, -0]
+                                                                                                            scale: [1, 1, 1]
+                                                                                                        child:
+                                                                                                          - name: Body_5_$AssimpFbx$_Translation
+                                                                                                            enabled: true
+                                                                                                            component:
+                                                                                                              - !<transform>
+                                                                                                                type: 1
+                                                                                                                enabled: true
+                                                                                                                position: [0.2486, 0, -0.0014]
+                                                                                                                rotation: [-0, 0, -0]
+                                                                                                                scale: [1, 1, 1]
+                                                                                                            child:
+                                                                                                              - name: Body_5_$AssimpFbx$_PreRotation
+                                                                                                                enabled: true
+                                                                                                                component:
+                                                                                                                  - !<transform>
+                                                                                                                    type: 1
+                                                                                                                    enabled: true
+                                                                                                                    position: [0, 0, 0]
+                                                                                                                    rotation: [-0, 39.72, -0]
+                                                                                                                    scale: [1, 1, 1]
+                                                                                                                child:
+                                                                                                                  - name: Body_5_$AssimpFbx$_Rotation
+                                                                                                                    enabled: true
+                                                                                                                    component:
+                                                                                                                      - !<transform>
+                                                                                                                        type: 1
+                                                                                                                        enabled: true
+                                                                                                                        position: [0, 0, 0]
+                                                                                                                        rotation: [0.4624, 19.04, -0.5355]
+                                                                                                                        scale: [1, 1, 1]
+                                                                                                                    child:
+                                                                                                                      - name: Body_5_$AssimpFbx$_Scaling
+                                                                                                                        enabled: true
+                                                                                                                        component:
+                                                                                                                          - !<transform>
+                                                                                                                            type: 1
+                                                                                                                            enabled: true
+                                                                                                                            position: [0, 0, 0]
+                                                                                                                            rotation: [-0, 0, -0]
+                                                                                                                            scale: [1, 1, 1]
+                                                                                                                        child:
+                                                                                                                          - name: Body_5
+                                                                                                                            enabled: true
+                                                                                                                            component:
+                                                                                                                              - !<transform>
+                                                                                                                                type: 1
+                                                                                                                                enabled: true
+                                                                                                                                position: [0, 0, 0]
+                                                                                                                                rotation: [-0, 0, -0]
+                                                                                                                                scale: [1, 1, 1]
+                                                                                                                            child:
+                                                                                                                              - name: Tail_$AssimpFbx$_Translation
+                                                                                                                                enabled: true
+                                                                                                                                component:
+                                                                                                                                  - !<transform>
+                                                                                                                                    type: 1
+                                                                                                                                    enabled: true
+                                                                                                                                    position: [0.2938, 0, 0.0324]
+                                                                                                                                    rotation: [-0, 0, -0]
+                                                                                                                                    scale: [1, 1, 1]
+                                                                                                                                child:
+                                                                                                                                  - name: Tail_$AssimpFbx$_PreRotation
+                                                                                                                                    enabled: true
+                                                                                                                                    component:
+                                                                                                                                      - !<transform>
+                                                                                                                                        type: 1
+                                                                                                                                        enabled: true
+                                                                                                                                        position: [0, 0, 0]
+                                                                                                                                        rotation: [0, -22.82, 0]
+                                                                                                                                        scale: [1, 1, 1]
+                                                                                                                                    child:
+                                                                                                                                      - name: Tail_$AssimpFbx$_Rotation
+                                                                                                                                        enabled: true
+                                                                                                                                        component:
+                                                                                                                                          - !<transform>
+                                                                                                                                            type: 1
+                                                                                                                                            enabled: true
+                                                                                                                                            position: [0, 0, 0]
+                                                                                                                                            rotation: [-0, 50.9, -0]
+                                                                                                                                            scale: [1, 1, 1]
+                                                                                                                                        child:
+                                                                                                                                          - name: Tail_$AssimpFbx$_Scaling
+                                                                                                                                            enabled: true
+                                                                                                                                            component:
+                                                                                                                                              - !<transform>
+                                                                                                                                                type: 1
+                                                                                                                                                enabled: true
+                                                                                                                                                position: [0, 0, 0]
+                                                                                                                                                rotation: [-0, 0, -0]
+                                                                                                                                                scale: [1, 1, 1]
+                                                                                                                                            child:
+                                                                                                                                              - name: Tail
+                                                                                                                                                enabled: true
+                                                                                                                                                component:
+                                                                                                                                                  - !<transform>
+                                                                                                                                                    type: 1
+                                                                                                                                                    enabled: true
+                                                                                                                                                    position: [0, 0, 0]
+                                                                                                                                                    rotation: [-0, 0, -0]
+                                                                                                                                                    scale: [1, 1, 1]

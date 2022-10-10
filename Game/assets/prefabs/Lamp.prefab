@@ -1,0 +1,166 @@
+prefab_name: Lamp
+name: Lamp
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [-88, -0.5267, 5.438]
+    rotation: [-0, 0, -0]
+    scale: [1.5, 1.5, 1.5]
+  - !<obstacle>
+    type: 18
+    enabled: true
+    obstacle_type: 0
+    obstacle_size: [1, 6, 1]
+child:
+  - name: Crystal_Floating_01
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0.9989, -0.0725]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+    child:
+      - name: Crystal.001
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.0005, 0, -0.0006]
+            rotation: [-0, 0, -0]
+            scale: [150, 150, 150]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 9697926766399336822
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 18249348712515306135
+            tint_color: [1, 1, 1, 1]
+  - name: Crystal_lamp_01
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 2.232, 0]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+    child:
+      - name: Crystal2.002
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0, 0, -0]
+            scale: [100, 100, 100]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 3996608725693908784
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 13838716584693807781
+            tint_color: [1, 1, 1, 1]
+  - name: Crystal_lamp_02
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 1.051, -0.0561]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+    child:
+      - name: Plane.001
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.0005, -0.0109, -0.0006]
+            rotation: [-0, 0, -0]
+            scale: [100, 140, 100]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 12261142078418812676
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 4891175381920237845
+            tint_color: [1, 1, 1, 1]
+  - name: Light
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 3.803, 0]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+      - type: 6
+        enabled: true
+        light_type: 6
+        color: [0.6393, 0.1301, 1, 1]
+        intensity: 22.33
+        radius: 17.49
+        draw_sphere: false
+      - !<script>
+        type: 15
+        enabled: true
+        class_name: BlinkingLight
+        "'_use_perlin_noise@bool'": false
+        "'_min_radius@float'": 8
+        "'_max_radius@float'": 20
+        "'_radius_amplitude@float'": 1
+        "'_min_duration@float'": 1
+        "'_max_duration@float'": 1
+        "'_duration_amplitude@float'": 1
+        "'_min_intensity@float'": 10
+        "'_max_intensity@float'": 30
+        "'_intensity_amplitude@float'": 1
+        "'_starting_intensity@float'": 14.77
+        "'_starting_radius@float'": 18.6
+        "'_current_intensity@float'": 22.33
+        "'_current_duration@float'": 0.6132
+        "'_current_radius@float'": 17.49
+        "'_next_duration@float'": 1
+        "'_next_intensity@float'": 27.1
+        "'_next_radius@float'": 16.79
+  - name: Crystal_lamp_011
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 3.398, 0]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+    child:
+      - name: Crystal2.002
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0, 0, -0]
+            scale: [100, 100, 100]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 3996608725693908784
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 13838716584693807781
+            tint_color: [1, 1, 1, 1]

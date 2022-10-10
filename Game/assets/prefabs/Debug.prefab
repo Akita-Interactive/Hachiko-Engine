@@ -12,7 +12,7 @@ component:
     type: 10
     enabled: true
     position: [0, 0, 0]
-    size: [1130, 630]
+    size: [1225, 736]
     scale: [1, 1]
     rotation: [0, 0, 0, 1]
     pivot: [0.5, 0.5]
@@ -68,11 +68,11 @@ child:
       - !<transform_2d>
         type: 10
         enabled: true
-        position: [700, -50, 0]
-        size: [1130, 630]
+        position: [-439.7, -88.1, 0]
+        size: [1225, 736]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
-        pivot: [0.5, 0.5]
+        pivot: [-0.5, 0.5]
         anchor: [0.5, 0.5]
       - !<canvas>
         type: 8
@@ -84,7 +84,7 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [-25, 0, -25]
+            position: [-85, 1, 10]
             rotation: [-0, 0, -0]
             scale: [1, 1, 1]
       - name: tpPos2
@@ -93,7 +93,7 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [-20, 0, -25]
+            position: [142.3, 1.024, 30.11]
             rotation: [-0, 0, -0]
             scale: [1, 1, 1]
       - name: tpPos3
@@ -102,7 +102,7 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [-15, 0, -25]
+            position: [179.8, 1.005, -48.25]
             rotation: [-0, 0, -0]
             scale: [1, 1, 1]
       - name: Background
@@ -992,7 +992,7 @@ child:
         type: 10
         enabled: true
         position: [0, 0, 0]
-        size: [1130, 630]
+        size: [1225, 736]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
@@ -1178,7 +1178,7 @@ child:
         type: 10
         enabled: true
         position: [0, 0, 0]
-        size: [1130, 630]
+        size: [1225, 736]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
@@ -1199,12 +1199,12 @@ child:
           - !<transform_2d>
             type: 10
             enabled: true
-            position: [-105, 105, 0]
+            position: [-115, -585, 0]
             size: [200, 80]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
-            anchor: [1, 0]
+            anchor: [1, 1]
           - !<canvas_renderer>
             type: 9
             enabled: true
@@ -1236,12 +1236,12 @@ child:
           - !<transform_2d>
             type: 10
             enabled: true
-            position: [-135, -10, 0]
+            position: [-140, 555, 0]
             size: [100, 100]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
-            anchor: [1, 0.8]
+            anchor: [1, 0]
           - !<canvas_renderer>
             type: 9
             enabled: true
@@ -1267,12 +1267,12 @@ child:
           - !<transform_2d>
             type: 10
             enabled: true
-            position: [-35, -12.5, 0]
+            position: [-40, 555, 0]
             size: [25, 25]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
-            anchor: [1, 0.8]
+            anchor: [1, 0]
           - !<canvas_renderer>
             type: 9
             enabled: true
@@ -1298,12 +1298,12 @@ child:
           - !<transform_2d>
             type: 10
             enabled: true
-            position: [-127, 15, 0]
+            position: [-132, 586, 0]
             size: [125, 25]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
-            anchor: [1, 0.8]
+            anchor: [1, 0]
           - !<canvas_renderer>
             type: 9
             enabled: true
@@ -1329,12 +1329,12 @@ child:
           - !<transform_2d>
             type: 10
             enabled: true
-            position: [-35, 12.5, 0]
+            position: [-40, 586, 0]
             size: [25, 25]
             scale: [1, 1]
             rotation: [0, 0, 0, 1]
             pivot: [0.5, 0.5]
-            anchor: [1, 0.8]
+            anchor: [1, 0]
           - !<canvas_renderer>
             type: 9
             enabled: true

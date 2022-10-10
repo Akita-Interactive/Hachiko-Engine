@@ -11,6 +11,8 @@ namespace Hachiko
     class ComponentMeshRenderer;
     class TextureBatch;
 
+    enum class Program::PROGRAMS;
+
     struct Material;
 
     struct PalettePerInstance
@@ -23,8 +25,15 @@ namespace Hachiko
     class GeometryBatch
     {
     public:
+        struct Layout
+        {
+            ResourceMesh::Layout mesh_layout;
+            Program::PROGRAMS shader;
+        };
 
-        GeometryBatch(ResourceMesh::Layout batch_layout);
+    public:
+
+        GeometryBatch(Layout batch_layout);
         ~GeometryBatch();
 
         void AddMesh(const ComponentMeshRenderer* mesh);
@@ -66,6 +75,7 @@ namespace Hachiko
         unsigned component_count = 0;
         unsigned component_palette_count = 0;
 
+        Layout layout;
         ResourceMesh* batch = nullptr;
         unsigned instance_indices_vbo;
         std::vector<float4x4> transforms;

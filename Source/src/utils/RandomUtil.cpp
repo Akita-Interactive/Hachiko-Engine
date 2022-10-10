@@ -2,7 +2,6 @@
 #include "utils/RandomUtilDefinitions.h"
 #include "utils/RandomUtil.h"
 
-
 constexpr float MapToRange(float value, float min_old, float max_old, 
     float min_new, float max_new) 
 {
@@ -60,19 +59,19 @@ int Hachiko::RandomUtil::RandomInt()
     return std::rand() & 1 ? 1 : -1;
 }
 
-Hachiko::PerlinNoise1D::PerlinNoise1D()
+Hachiko::PerlinNoise::PerlinNoise()
 {
     _seed = FloorInt(RandomUtil::RandomBetween(FLT_MIN, FLT_MAX));
 
     Initialize();
 }
 
-Hachiko::PerlinNoise1D::PerlinNoise1D(unsigned int seed) : _seed(seed)
+Hachiko::PerlinNoise::PerlinNoise(unsigned int seed) : _seed(seed)
 {
     Initialize();
 }
 
-float Hachiko::PerlinNoise1D::Random(float previous)
+float Hachiko::PerlinNoise::Random(float previous)
 {
     float perlin0 = std::floor(previous);
     float perlin1 = perlin0 + 1.0f;
@@ -87,23 +86,23 @@ float Hachiko::PerlinNoise1D::Random(float previous)
     return (1.0f - faded_delta) * grad0 * (previous - perlin0) + faded_delta * grad1 * (previous - perlin1);
 }
 
-float Hachiko::PerlinNoise1D::RandomRange(float previous, float min, float max)
+float Hachiko::PerlinNoise::RandomRange(float previous, float min, float max)
 {
     return MapToRange(Random(previous), -1.0f, 1.0f, min, max);
 }
 
-float Hachiko::PerlinNoise1D::Fade(float t)
+float Hachiko::PerlinNoise::Fade(float t)
 {
     return t * t * t * (t * (t * 6.0f - 15.0f) + 10.0f);
 }
 
-float Hachiko::PerlinNoise1D::Gradient(float value)
+float Hachiko::PerlinNoise::Gradient(float value)
 {
     int gradient = _permutations[FloorInt(value) % 256];
     return (gradient < 128 ? -1.0f : 1.0f);
 }
 
-void Hachiko::PerlinNoise1D::Initialize()
+void Hachiko::PerlinNoise::Initialize()
 {
     _permutations.resize(256);
 

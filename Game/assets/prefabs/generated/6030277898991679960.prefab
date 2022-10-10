@@ -1,0 +1,458 @@
+prefab_name: wormAnim
+name: RootNode
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [-0, 0, -0]
+    scale: [1, 1, 1]
+  - !<animation>
+    type: 14
+    enabled: true
+    state_machine: 0
+child:
+  - name: Geo
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+    child:
+      - name: worm_geo2
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 5793162437190017523
+            navigable: false
+            visible: true
+            material_id: 9460093468938292877
+            tint_color: [1, 1, 1, 1]
+  - name: Joints
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+    child:
+      - name: Root
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0.1555, 0.0598]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+        child:
+          - name: Neck_$AssimpFbx$_Translation
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0.6603, 0.0916]
+                rotation: [-0, 0, -0]
+                scale: [1, 1, 1]
+            child:
+              - name: Neck_$AssimpFbx$_PreRotation
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [-0, 89.98, -0]
+                    scale: [1, 1, 1]
+                child:
+                  - name: Neck_$AssimpFbx$_Rotation
+                    enabled: true
+                    component:
+                      - !<transform>
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [-0, 0, 13.14]
+                        scale: [1, 1, 1]
+                    child:
+                      - name: Neck
+                        enabled: true
+                        component:
+                          - !<transform>
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [-0, 0, -0]
+                            scale: [1, 1, 1]
+                        child:
+                          - name: Body
+                            enabled: true
+                            component:
+                              - !<transform>
+                                type: 1
+                                enabled: true
+                                position: [0.0486, -0.1088, -0]
+                                rotation: [0, 0, -69.62]
+                                scale: [1, 1, 1]
+                            child:
+                              - name: Tail_Start
+                                enabled: true
+                                component:
+                                  - !<transform>
+                                    type: 1
+                                    enabled: true
+                                    position: [0.2763, -0, -0]
+                                    rotation: [0, 0, -17.83]
+                                    scale: [1, 1, 1]
+                                child:
+                                  - name: Tail_Mid
+                                    enabled: true
+                                    component:
+                                      - !<transform>
+                                        type: 1
+                                        enabled: true
+                                        position: [0.2247, 0, -0]
+                                        rotation: [0, 0, -13.64]
+                                        scale: [1, 1, 1]
+                                    child:
+                                      - name: Tail_Middle
+                                        enabled: true
+                                        component:
+                                          - !<transform>
+                                            type: 1
+                                            enabled: true
+                                            position: [0.2393, 0, 0]
+                                            rotation: [0, 0, -8.156]
+                                            scale: [1, 1, 1]
+                                        child:
+                                          - name: Tail_End
+                                            enabled: true
+                                            component:
+                                              - !<transform>
+                                                type: 1
+                                                enabled: true
+                                                position: [0.2385, 0.0251, 0]
+                                                rotation: [-0, 0, 6.106]
+                                                scale: [1, 1, 1]
+                          - name: Head_$AssimpFbx$_Translation
+                            enabled: true
+                            component:
+                              - !<transform>
+                                type: 1
+                                enabled: true
+                                position: [-0.1007, 0, 0]
+                                rotation: [-0, 0, -0]
+                                scale: [1, 1, 1]
+                            child:
+                              - name: Head_$AssimpFbx$_PreRotation
+                                enabled: true
+                                component:
+                                  - !<transform>
+                                    type: 1
+                                    enabled: true
+                                    position: [0, 0, 0]
+                                    rotation: [0, -89.98, 0]
+                                    scale: [1, 1, 1]
+                                child:
+                                  - name: Head_$AssimpFbx$_Rotation
+                                    enabled: true
+                                    component:
+                                      - !<transform>
+                                        type: 1
+                                        enabled: true
+                                        position: [0, 0, 0]
+                                        rotation: [-0, 0, -0]
+                                        scale: [1, 1, 1]
+                                    child:
+                                      - name: Head
+                                        enabled: true
+                                        component:
+                                          - !<transform>
+                                            type: 1
+                                            enabled: true
+                                            position: [0, 0, 0]
+                                            rotation: [-0, 0, -0]
+                                            scale: [1, 1, 1]
+                                        child:
+                                          - name: EYE
+                                            enabled: true
+                                            component:
+                                              - !<transform>
+                                                type: 1
+                                                enabled: true
+                                                position: [0, 0.12, -0.0252]
+                                                rotation: [-32.23, -90, 0]
+                                                scale: [1, 1, 1]
+                                          - name: Jaw_Start_R_$AssimpFbx$_Translation
+                                            enabled: true
+                                            component:
+                                              - !<transform>
+                                                type: 1
+                                                enabled: true
+                                                position: [-0.0948, -0.1061, 0.0563]
+                                                rotation: [-0, 0, -0]
+                                                scale: [1, 1, 1]
+                                            child:
+                                              - name: Jaw_Start_R_$AssimpFbx$_PreRotation
+                                                enabled: true
+                                                component:
+                                                  - !<transform>
+                                                    type: 1
+                                                    enabled: true
+                                                    position: [0, 0, 0]
+                                                    rotation: [48.69, -90, 0]
+                                                    scale: [1, 1, 1]
+                                                child:
+                                                  - name: Jaw_Start_R_$AssimpFbx$_Rotation
+                                                    enabled: true
+                                                    component:
+                                                      - !<transform>
+                                                        type: 1
+                                                        enabled: true
+                                                        position: [0, 0, 0]
+                                                        rotation: [-0, 0, -0]
+                                                        scale: [1, 1, 1]
+                                                    child:
+                                                      - name: Jaw_Start_R
+                                                        enabled: true
+                                                        component:
+                                                          - !<transform>
+                                                            type: 1
+                                                            enabled: true
+                                                            position: [0, 0, 0]
+                                                            rotation: [-0, 0, -0]
+                                                            scale: [1, 1, 1]
+                                                        child:
+                                                          - name: Jaw_Midlle_R_$AssimpFbx$_Translation
+                                                            enabled: true
+                                                            component:
+                                                              - !<transform>
+                                                                type: 1
+                                                                enabled: true
+                                                                position: [0.1488, 0.0041, 0.0213]
+                                                                rotation: [-0, 0, -0]
+                                                                scale: [1, 1, 1]
+                                                            child:
+                                                              - name: Jaw_Midlle_R_$AssimpFbx$_PreRotation
+                                                                enabled: true
+                                                                component:
+                                                                  - !<transform>
+                                                                    type: 1
+                                                                    enabled: true
+                                                                    position: [0, 0, 0]
+                                                                    rotation: [-0, 0, 96.79]
+                                                                    scale: [1, 1, 1]
+                                                                child:
+                                                                  - name: Jaw_Midlle_R_$AssimpFbx$_Rotation
+                                                                    enabled: true
+                                                                    component:
+                                                                      - !<transform>
+                                                                        type: 1
+                                                                        enabled: true
+                                                                        position: [0, 0, 0]
+                                                                        rotation: [-0, 0, -0]
+                                                                        scale: [1, 1, 1]
+                                                                    child:
+                                                                      - name: Jaw_Midlle_R
+                                                                        enabled: true
+                                                                        component:
+                                                                          - !<transform>
+                                                                            type: 1
+                                                                            enabled: true
+                                                                            position: [0, 0, 0]
+                                                                            rotation: [-0, 0, -0]
+                                                                            scale: [1, 1, 1]
+                                                                        child:
+                                                                          - name: Jaw_End_R_$AssimpFbx$_Translation
+                                                                            enabled: true
+                                                                            component:
+                                                                              - !<transform>
+                                                                                type: 1
+                                                                                enabled: true
+                                                                                position: [0.0776, 0.0002, 0.0316]
+                                                                                rotation: [-0, 0, -0]
+                                                                                scale: [1, 1, 1]
+                                                                            child:
+                                                                              - name: Jaw_End_R_$AssimpFbx$_PreRotation
+                                                                                enabled: true
+                                                                                component:
+                                                                                  - !<transform>
+                                                                                    type: 1
+                                                                                    enabled: true
+                                                                                    position: [0, 0, 0]
+                                                                                    rotation: [180, 0, -53.02]
+                                                                                    scale: [1, 1, 1]
+                                                                                child:
+                                                                                  - name: Jaw_End_R_$AssimpFbx$_Rotation
+                                                                                    enabled: true
+                                                                                    component:
+                                                                                      - !<transform>
+                                                                                        type: 1
+                                                                                        enabled: true
+                                                                                        position: [0, 0, 0]
+                                                                                        rotation: [-0, 0, -0]
+                                                                                        scale: [1, 1, 1]
+                                                                                    child:
+                                                                                      - name: Jaw_End_R
+                                                                                        enabled: true
+                                                                                        component:
+                                                                                          - !<transform>
+                                                                                            type: 1
+                                                                                            enabled: true
+                                                                                            position: [0, 0, 0]
+                                                                                            rotation: [-0, 0, -0]
+                                                                                            scale: [1, 1, 1]
+                                                                                        child:
+                                                                                          - name: Jaw_Zero_R
+                                                                                            enabled: true
+                                                                                            component:
+                                                                                              - !<transform>
+                                                                                                type: 1
+                                                                                                enabled: true
+                                                                                                position: [0.0806, 0.0073, 0.0024]
+                                                                                                rotation: [-0, 0, -0]
+                                                                                                scale: [1, 1, 1]
+                                          - name: Jaw_Start_L_$AssimpFbx$_Translation
+                                            enabled: true
+                                            component:
+                                              - !<transform>
+                                                type: 1
+                                                enabled: true
+                                                position: [0.0948, -0.1061, 0.0563]
+                                                rotation: [-0, 0, -0]
+                                                scale: [1, 1, 1]
+                                            child:
+                                              - name: Jaw_Start_L_$AssimpFbx$_PreRotation
+                                                enabled: true
+                                                component:
+                                                  - !<transform>
+                                                    type: 1
+                                                    enabled: true
+                                                    position: [0, 0, 0]
+                                                    rotation: [-42.89, 0, -81.86]
+                                                    scale: [1, 1, 1]
+                                                child:
+                                                  - name: Jaw_Start_L_$AssimpFbx$_Rotation
+                                                    enabled: true
+                                                    component:
+                                                      - !<transform>
+                                                        type: 1
+                                                        enabled: true
+                                                        position: [0, 0, 0]
+                                                        rotation: [-0, 0, -0]
+                                                        scale: [1, 1, 1]
+                                                    child:
+                                                      - name: Jaw_Start_L
+                                                        enabled: true
+                                                        component:
+                                                          - !<transform>
+                                                            type: 1
+                                                            enabled: true
+                                                            position: [0, 0, 0]
+                                                            rotation: [-0, 0, -0]
+                                                            scale: [1, 1, 1]
+                                                        child:
+                                                          - name: Jaw_Midlle_L_$AssimpFbx$_Translation
+                                                            enabled: true
+                                                            component:
+                                                              - !<transform>
+                                                                type: 1
+                                                                enabled: true
+                                                                position: [0.1504, 0, 0]
+                                                                rotation: [-0, 0, -0]
+                                                                scale: [1, 1, 1]
+                                                            child:
+                                                              - name: Jaw_Midlle_L_$AssimpFbx$_PreRotation
+                                                                enabled: true
+                                                                component:
+                                                                  - !<transform>
+                                                                    type: 1
+                                                                    enabled: true
+                                                                    position: [0, 0, 0]
+                                                                    rotation: [-123.4, -80.28, -100.9]
+                                                                    scale: [1, 1, 1]
+                                                                child:
+                                                                  - name: Jaw_Midlle_L_$AssimpFbx$_Rotation
+                                                                    enabled: true
+                                                                    component:
+                                                                      - !<transform>
+                                                                        type: 1
+                                                                        enabled: true
+                                                                        position: [0, 0, 0]
+                                                                        rotation: [-0, 0, -0]
+                                                                        scale: [1, 1, 1]
+                                                                    child:
+                                                                      - name: Jaw_Midlle_L
+                                                                        enabled: true
+                                                                        component:
+                                                                          - !<transform>
+                                                                            type: 1
+                                                                            enabled: true
+                                                                            position: [0, 0, 0]
+                                                                            rotation: [-0, 0, -0]
+                                                                            scale: [1, 1, 1]
+                                                                        child:
+                                                                          - name: Jaw_End_L_$AssimpFbx$_Translation
+                                                                            enabled: true
+                                                                            component:
+                                                                              - !<transform>
+                                                                                type: 1
+                                                                                enabled: true
+                                                                                position: [0.0838, -0, -0]
+                                                                                rotation: [-0, 0, -0]
+                                                                                scale: [1, 1, 1]
+                                                                            child:
+                                                                              - name: Jaw_End_L_$AssimpFbx$_PreRotation
+                                                                                enabled: true
+                                                                                component:
+                                                                                  - !<transform>
+                                                                                    type: 1
+                                                                                    enabled: true
+                                                                                    position: [0, 0, 0]
+                                                                                    rotation: [-22.52, -43.28, -32.88]
+                                                                                    scale: [1, 1, 1]
+                                                                                child:
+                                                                                  - name: Jaw_End_L_$AssimpFbx$_Rotation
+                                                                                    enabled: true
+                                                                                    component:
+                                                                                      - !<transform>
+                                                                                        type: 1
+                                                                                        enabled: true
+                                                                                        position: [0, 0, 0]
+                                                                                        rotation: [-0, 0, -0]
+                                                                                        scale: [1, 1, 1]
+                                                                                    child:
+                                                                                      - name: Jaw_End_L
+                                                                                        enabled: true
+                                                                                        component:
+                                                                                          - !<transform>
+                                                                                            type: 1
+                                                                                            enabled: true
+                                                                                            position: [0, 0, 0]
+                                                                                            rotation: [-0, 0, -0]
+                                                                                            scale: [1, 1, 1]
+                                                                                        child:
+                                                                                          - name: Jaw_Zero_L
+                                                                                            enabled: true
+                                                                                            component:
+                                                                                              - !<transform>
+                                                                                                type: 1
+                                                                                                enabled: true
+                                                                                                position: [0.081, 0, 0]
+                                                                                                rotation: [-0, 0, -0]
+                                                                                                scale: [1, 1, 1]

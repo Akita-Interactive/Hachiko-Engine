@@ -13,49 +13,20 @@ component:
     enabled: true
     class_name: LevelManager
     "'_level@unsigned'": 1
-    "'_respawn_position@float3'": [-80.79, 3.33, -57.33]
-    "'_gauntlet_ui_go@GameObject*'": 5
-    "'_gauntlet_counter_go@GameObject*'": 7
+    "'_respawn_position@float3'": [-84.74, 3.47, -56.32]
+    "'_gauntlet_ui_go@GameObject*'": 2
+    "'_gauntlet_counter_go@GameObject*'": 4
+  - !<script>
+    type: 15
+    enabled: true
+    class_name: PauseMenu
+    "'_pause_ui@GameObject*'": 6
+    "'_player_hud@GameObject*'": 0
+    "'_resume_button@ComponentButton*'": 0
+    "'_quit_button@ComponentButton*'": 0
 child:
-  - name: Goal
-    enabled: true
-    component:
-      - !<transform>
-        type: 1
-        enabled: true
-        position: [-39.62, -22.35, -80.62]
-        rotation: [-0, 0, -0]
-        scale: [1.1, 1.1, 1.1]
-    child:
-      - name: cube
-        enabled: true
-        component:
-          - !<transform>
-            type: 1
-            enabled: true
-            position: [0, 0, 0]
-            rotation: [-0, 0, -0]
-            scale: [0.9091, 0.9091, 0.9091]
-        child:
-          - name: Box001
-            enabled: true
-            component:
-              - !<transform>
-                type: 1
-                enabled: true
-                position: [0, 0, 0]
-                rotation: [-90, 0, 0]
-                scale: [1, 1, 1]
-              - !<mesh_renderer>
-                type: 2
-                enabled: true
-                mesh_id: 1654487118907036717
-                navigable: false
-                visible: true
-                material_id: 6750369022920963075
-                tint_color: [1, 1, 1, 1]
   - name: GauntletUI
-    enabled: true
+    enabled: false
     component:
       - !<transform>
         type: 1
@@ -67,7 +38,7 @@ child:
         type: 10
         enabled: true
         position: [0, 0, 0]
-        size: [1707, 937]
+        size: [1180, 637]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
@@ -97,10 +68,13 @@ child:
           - !<canvas_renderer>
             type: 9
             enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
           - !<image>
             type: 11
             enabled: true
-            image_id: 6742704004173880459
+            image_id: 15126335777279321710
             hover_image_id: 0
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
@@ -131,6 +105,9 @@ child:
           - !<canvas_renderer>
             type: 9
             enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
           - !<text>
             type: 16
             enabled: true
@@ -138,3 +115,161 @@ child:
             color: [0.935, 0.1368, 0.1368, 1]
             size: 28
             label_text: 0
+  - name: Goal
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-39.71, -22.14, -72.37]
+        rotation: [180, -55.25, 180]
+        scale: [1.074, 1.098, 1.074]
+  - name: PauseMenu
+    enabled: false
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [0, 0, 0]
+        size: [1180, 637]
+        scale: [1, 1]
+        rotation: [0, 0, 0, 1]
+        pivot: [0, 1]
+        anchor: [0, 1]
+      - !<canvas>
+        type: 8
+        enabled: true
+    child:
+      - name: Background
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+          - !<transform_2d>
+            type: 10
+            enabled: true
+            position: [-571.8, 313.9, 0]
+            size: [1180, 637]
+            scale: [1, 1]
+            rotation: [0, 0, 0, 1]
+            pivot: [0.5, 0.5]
+            anchor: [0.5, 0.5]
+          - !<canvas_renderer>
+            type: 9
+            enabled: true
+            scale_ui: true
+            original_size_x: 1157
+            original_size_y: 628
+          - !<image>
+            type: 11
+            enabled: true
+            image_id: 0
+            hover_image_id: 0
+            image_color: [0, 0, 0, 0.8]
+            hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_randomize_initial_frame: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
+            fill_window: true
+      - name: Buttons
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+        child:
+          - name: Resume
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-0, 0, -0]
+                scale: [1, 1, 1]
+              - !<transform_2d>
+                type: 10
+                enabled: true
+                position: [-100, 100, 0]
+                size: [20, 20]
+                scale: [10, 4]
+                rotation: [0, 0, 0, 1]
+                pivot: [0, 1]
+                anchor: [0, 1]
+              - !<canvas_renderer>
+                type: 9
+                enabled: true
+                scale_ui: false
+                original_size_x: 0
+                original_size_y: 0
+              - !<button>
+                type: 12
+                enabled: true
+              - !<image>
+                type: 11
+                enabled: true
+                image_id: 14946830610424765549
+                hover_image_id: 1430857250527776094
+                image_color: [1, 1, 1, 1]
+                hover_image_color: [1, 1, 1, 1]
+                image_is_tiled: false
+                image_randomize_initial_frame: false
+                image_x_tiles: 1
+                image_y_tiles: 1
+                image_tiles_per_second: 1
+                fill_window: false
+          - name: Exit
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-0, 0, -0]
+                scale: [1, 1, 1]
+              - !<transform_2d>
+                type: 10
+                enabled: true
+                position: [-100, 6, 0]
+                size: [20, 20]
+                scale: [10, 4]
+                rotation: [0, 0, 0, 1]
+                pivot: [0, 1]
+                anchor: [0, 1]
+              - !<canvas_renderer>
+                type: 9
+                enabled: true
+                scale_ui: false
+                original_size_x: 0
+                original_size_y: 0
+              - !<button>
+                type: 12
+                enabled: true
+              - !<image>
+                type: 11
+                enabled: true
+                image_id: 10387759699808828896
+                hover_image_id: 3995525956884596057
+                image_color: [1, 1, 1, 1]
+                hover_image_color: [1, 1, 1, 1]
+                image_is_tiled: false
+                image_randomize_initial_frame: false
+                image_x_tiles: 1
+                image_y_tiles: 1
+                image_tiles_per_second: 1
+                fill_window: false

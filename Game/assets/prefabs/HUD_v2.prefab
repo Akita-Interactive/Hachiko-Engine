@@ -5,14 +5,14 @@ component:
   - !<transform>
     type: 1
     enabled: true
-    position: [-4.589, -7.702, -230.4]
-    rotation: [-180, 55.25, -180]
-    scale: [2.264, 2.222, 2.264]
+    position: [-428.9, -24.83, 75.84]
+    rotation: [180, -69.5, 180]
+    scale: [5.145, 4.938, 5.145]
   - !<transform_2d>
     type: 10
     enabled: true
     position: [0, 0, 0]
-    size: [1184, 630]
+    size: [1194, 637]
     scale: [1, 1]
     rotation: [0, 0, 0, 1]
     pivot: [0.5, 0.5]
@@ -42,6 +42,9 @@ child:
       - !<canvas_renderer>
         type: 9
         enabled: true
+        scale_ui: false
+        original_size_x: 0
+        original_size_y: 0
       - !<image>
         type: 11
         enabled: true
@@ -77,6 +80,9 @@ child:
           - !<canvas_renderer>
             type: 9
             enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
           - !<image>
             type: 11
             enabled: true
@@ -111,6 +117,9 @@ child:
           - !<canvas_renderer>
             type: 9
             enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
           - !<image>
             type: 11
             enabled: true
@@ -146,6 +155,9 @@ child:
               - !<canvas_renderer>
                 type: 9
                 enabled: true
+                scale_ui: false
+                original_size_x: 0
+                original_size_y: 0
               - !<image>
                 type: 11
                 enabled: true
@@ -181,6 +193,9 @@ child:
                   - !<canvas_renderer>
                     type: 9
                     enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
                   - !<image>
                     type: 11
                     enabled: true
@@ -215,6 +230,9 @@ child:
                   - !<canvas_renderer>
                     type: 9
                     enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
                   - !<image>
                     type: 11
                     enabled: true
@@ -249,6 +267,9 @@ child:
                   - !<canvas_renderer>
                     type: 9
                     enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
                   - !<image>
                     type: 11
                     enabled: true
@@ -283,6 +304,9 @@ child:
                   - !<canvas_renderer>
                     type: 9
                     enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
                   - !<image>
                     type: 11
                     enabled: true
@@ -317,6 +341,9 @@ child:
               - !<canvas_renderer>
                 type: 9
                 enabled: true
+                scale_ui: false
+                original_size_x: 0
+                original_size_y: 0
               - !<image>
                 type: 11
                 enabled: true
@@ -352,6 +379,9 @@ child:
                   - !<canvas_renderer>
                     type: 9
                     enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
                   - !<image>
                     type: 11
                     enabled: true
@@ -386,6 +416,9 @@ child:
                   - !<canvas_renderer>
                     type: 9
                     enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
                   - !<image>
                     type: 11
                     enabled: true
@@ -420,6 +453,9 @@ child:
                   - !<canvas_renderer>
                     type: 9
                     enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
                   - !<image>
                     type: 11
                     enabled: true
@@ -454,6 +490,9 @@ child:
                   - !<canvas_renderer>
                     type: 9
                     enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
                   - !<image>
                     type: 11
                     enabled: true
@@ -468,7 +507,7 @@ child:
                     image_tiles_per_second: 14
                     fill_window: false
           - name: Stamina
-            enabled: true
+            enabled: false
             component:
               - !<transform>
                 type: 1
@@ -481,7 +520,7 @@ child:
                 enabled: true
                 params:
                   min: 0
-                  max: 1
+                  max: 0
                   filled: 1
                   direction: 0
               - !<transform_2d>
@@ -515,6 +554,9 @@ child:
                   - !<canvas_renderer>
                     type: 9
                     enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
                   - !<image>
                     type: 11
                     enabled: true
@@ -549,6 +591,9 @@ child:
                   - !<canvas_renderer>
                     type: 9
                     enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
                   - !<image>
                     type: 11
                     enabled: true
@@ -563,7 +608,7 @@ child:
                     image_tiles_per_second: 1
                     fill_window: false
       - name: MAZE_ADDON
-        enabled: true
+        enabled: false
         component:
           - !<transform>
             type: 1
@@ -583,6 +628,9 @@ child:
           - !<canvas_renderer>
             type: 9
             enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
           - !<image>
             type: 11
             enabled: true
@@ -617,6 +665,9 @@ child:
           - !<canvas_renderer>
             type: 9
             enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
           - !<image>
             type: 11
             enabled: true
@@ -630,3 +681,77 @@ child:
             image_y_tiles: 1
             image_tiles_per_second: 1
             fill_window: false
+  - name: KeyboardTooltipDisplay
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [-0, 0, -0]
+        scale: [0.4417, 0.45, 0.4417]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [0, -150, 1]
+        size: [934, 148]
+        scale: [0.5, 0.5]
+        rotation: [0, 0, 0, 1]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas_renderer>
+        type: 9
+        enabled: true
+        scale_ui: false
+        original_size_x: 0
+        original_size_y: 0
+      - !<image>
+        type: 11
+        enabled: true
+        image_id: 18000803453350606936
+        hover_image_id: 0
+        image_color: [1, 1, 1, 1]
+        hover_image_color: [1, 1, 1, 1]
+        image_is_tiled: false
+        image_randomize_initial_frame: false
+        image_x_tiles: 1
+        image_y_tiles: 1
+        image_tiles_per_second: 1
+        fill_window: false
+  - name: GamepadTooltipDisplay
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-0.7397, 3.369, -63.07]
+        rotation: [0, 20.48, -0]
+        scale: [0.4417, 0.45, 0.4417]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [0, -150, 0]
+        size: [934, 148]
+        scale: [0.5, 0.5]
+        rotation: [0, 0, 0, 1]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas_renderer>
+        type: 9
+        enabled: true
+        scale_ui: false
+        original_size_x: 0
+        original_size_y: 0
+      - !<image>
+        type: 11
+        enabled: true
+        image_id: 407881782410796713
+        hover_image_id: 0
+        image_color: [1, 1, 1, 1]
+        hover_image_color: [1, 1, 1, 1]
+        image_is_tiled: false
+        image_randomize_initial_frame: false
+        image_x_tiles: 1
+        image_y_tiles: 1
+        image_tiles_per_second: 1
+        fill_window: false

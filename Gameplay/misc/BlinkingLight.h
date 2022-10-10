@@ -45,7 +45,7 @@ private:
 	SERIALIZE_FIELD(float, _next_radius);
 	
 	Hachiko::ComponentPointLight* _point_light;
-	PerlinNoise1D _perlin_noise;
+	PerlinNoise _perlin_noise;
 };
 } // namespace Scripting
 } // namespace Hachiko

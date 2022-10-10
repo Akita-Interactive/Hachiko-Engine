@@ -1,0 +1,100 @@
+prefab_name: ShrineLamp
+name: ShrineLamp
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [-1.045, 1.026, -15.38]
+    rotation: [-90, 0, 0]
+    scale: [1, 1, 1]
+  - !<mesh_renderer>
+    type: 2
+    enabled: true
+    mesh_id: 5746596155727572461
+    navigable: false
+    visible: true
+    material_id: 16007776213478930409
+    tint_color: [1, 1, 1, 1]
+child:
+  - name: Crystal_Floating_01
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-0, -0, -1.785]
+        rotation: [90, 0, 0.0016]
+        scale: [1.7, 1.7, 1.7]
+    child:
+      - name: Crystal.001
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.0005, 0, -0.0006]
+            rotation: [-0, 0, -0]
+            scale: [150, 150, 150]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 9697926766399336822
+            navigable: false
+            visible: true
+            material_id: 18249348712515306135
+            tint_color: [1, 1, 1, 1]
+  - name: TopLight
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-0.0001, 0.0001, 3.255]
+        rotation: [90, -45, -0.0004]
+        scale: [1.5, 1.5, 1.5]
+      - type: 6
+        enabled: true
+        light_type: 6
+        color: [0.3821, 0.9548, 1, 1]
+        intensity: 29.25
+        radius: 13
+        draw_sphere: false
+      - !<script>
+        type: 15
+        enabled: true
+        class_name: BlinkingLight
+        "'_use_perlin_noise@bool'": false
+        "'_min_radius@float'": 8
+        "'_max_radius@float'": 20
+        "'_radius_amplitude@float'": 1
+        "'_min_duration@float'": 1
+        "'_max_duration@float'": 1
+        "'_duration_amplitude@float'": 1
+        "'_min_intensity@float'": 10
+        "'_max_intensity@float'": 30
+        "'_intensity_amplitude@float'": 1
+        "'_starting_intensity@float'": 14.64
+        "'_starting_radius@float'": 13.75
+        "'_current_intensity@float'": 14.25
+        "'_current_duration@float'": 0.602
+        "'_current_radius@float'": 13.9
+        "'_next_duration@float'": 5
+        "'_next_intensity@float'": 11.44
+        "'_next_radius@float'": 14.97
+  - name: BottomLight
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-0, 0, 0.4764]
+        rotation: [106.8, -3.514, 1.059]
+        scale: [1, 1, 1]
+      - type: 6
+        enabled: true
+        light_type: 6
+        color: [0.3821, 0.9548, 1, 1]
+        intensity: 20
+        radius: 13
+        draw_sphere: false

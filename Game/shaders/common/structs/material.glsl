@@ -22,7 +22,7 @@ struct Material {
     float metalness_value;
     uint is_metallic;
     uint is_transparent;
-    uint padding0;
+    float dissolve_progress;
 };
 
 #endif

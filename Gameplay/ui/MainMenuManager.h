@@ -69,6 +69,10 @@ private:
 	const float _quit_button_delay_duration;
 	float _remaining_waiting_time_for_quit;
 	bool _started_to_quit;
+
+	int _option_selected;
+	std::vector<ComponentButton*> _buttons_gamepad;
+
 };
 } // namespace Scripting
 } // namespace Hachiko

@@ -20,6 +20,7 @@
 #include "components/ComponentTransform2D.h"
 #include "components/ComponentDirLight.h"
 #include "components/ComponentImage.h"
+#include "components/ComponentVideo.h"
 
 #ifdef _DEBUG
 #include "core/ErrorHandler.h"
@@ -64,28 +65,8 @@ bool Hachiko::ModuleRender::Init()
     shadow_manager.SetGaussianBlurringEnabled(
         App->preferences->GetEditorPreference()->GetShadowMapGaussianBlurringEnabled());
 
-    loading_game_object = new GameObject(nullptr, float4x4::identity, "Loading");
-    loading_transform2d = static_cast<ComponentTransform2D*>(loading_game_object->CreateComponent(Component::Type::TRANSFORM_2D));
-    loading_image = static_cast<ComponentImage*>(loading_game_object->CreateComponent(Component::Type::IMAGE));
-
-    // For now the loading screen configuration will be hardcoded:
-    {
-        YAML::Node node;
-
-        node.SetTag("image");
-        node[IMAGE_IMAGE_ID] = 9856915381281154687;
-        node[IMAGE_HOVER_IMAGE_ID] = 0;
-        node[IMAGE_COLOR] = float4::one;
-        node[IMAGE_HOVER_COLOR] = float4::one;
-        node[IMAGE_TILED] = true;
-        node[IMAGE_RANDOMIZE_INITIAL_FRAME] = false;
-        node[IMAGE_X_TILES] = 2;
-        node[IMAGE_Y_TILES] = 2;
-        node[IMAGE_TILES_PER_SEC] = 2;
-        node[IMAGE_FILL_WINDOW] = true;
-
-        loading_image->Load(node);
-    }
+    // Create noise texture for general use (dissolve effect)
+    CreateNoiseTexture();
 
     return true;
 }
@@ -321,7 +302,7 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
     if (shadow_pass_enabled)
     {
         // Generate shadow map from the scene:
-        DrawToShadowMap(scene, camera, batch_manager, DRAW_CONFIG_OPAQUE | DRAW_CONFIG_TRANSPARENT);
+        DrawToShadowMap(scene, batch_manager, DRAW_CONFIG_OPAQUE | DRAW_CONFIG_TRANSPARENT);
     }
 
     render_list.Update(scene->GetCullingCamera()->GetFrustum(), scene->GetQuadtree());
@@ -348,8 +329,13 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
     }
 
     // Draw collected meshes with geometry pass rogram:
-    program = App->program->GetDeferredGeometryProgram();
+    program = App->program->GetProgram(Program::PROGRAMS::DEFERRED_GEOMETRY);
+
     program->Activate();
+
+    // Binding the noise texture
+    BindNoiseTexture(program);
+
     batch_manager->DrawOpaqueBatches(program);
     Program::Deactivate();
 
@@ -362,7 +348,7 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Use Deferred rendering lighting pass program:
-    program = App->program->GetDeferredLightingProgram();
+    program = App->program->GetProgram(Program::PROGRAMS::DEFERRED_LIGHTING);
     program->Activate();
 
     // Bind shadow specific necessary uniforms for lighting pass:
@@ -425,7 +411,7 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
             }
 
             // Forward rendering pass for transparent game objects:
-            program = App->program->GetForwardProgram();
+            program = App->program->GetProgram(Program::PROGRAMS::FORWARD);
             program->Activate();
 
             EnableBlending();
@@ -434,7 +420,7 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
 
             g_buffer.BindForDrawing();
             // Forward depth (Used for fog)
-            program = App->program->GetTransparentDepthProgram();
+            program = App->program->GetProgram(Program::PROGRAMS::TRANSPARENT_DEPTH);
             program->Activate();
 
             batch_manager->DrawTransparentBatches(program);
@@ -452,7 +438,7 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
         g_buffer.BindForReading();
         g_buffer.BindFogTextures();
 
-        program = App->program->GetFogProgram();
+        program = App->program->GetProgram(Program::PROGRAMS::FOG_PROGRAM);
         program->Activate();
 
         EnableBlending();
@@ -475,7 +461,7 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
 
 void Hachiko::ModuleRender::DrawForward(Scene* scene, BatchManager* batch_manager)
 {
-    Program* program = App->program->GetForwardProgram();
+    Program* program = App->program->GetProgram(Program::PROGRAMS::FORWARD);
     program->Activate();
 
     // Bind ImageBasedLighting uniforms
@@ -520,7 +506,7 @@ void Hachiko::ModuleRender::DrawPreForwardPass(Scene* scene, ComponentCamera* ca
     const auto& scene_particles = scene->GetSceneParticles();
     if (!scene_particles.empty())
     {
-        Program* particle_program = App->program->GetParticleProgram();
+        Program* particle_program = App->program->GetProgram(Program::PROGRAMS::PARTICLE);
         particle_program->Activate();
         for (auto particle : scene_particles)
         {
@@ -549,24 +535,27 @@ void Hachiko::ModuleRender::DrawPreForwardPass(Scene* scene, ComponentCamera* ca
     }*/
 }
 
-bool Hachiko::ModuleRender::DrawToShadowMap(Scene* scene,
-                                            ComponentCamera* camera,
-                                            BatchManager* batch_manager,
-                                            DrawConfig draw_config)
+bool Hachiko::ModuleRender::DrawToShadowMap(
+    Scene* scene,
+    BatchManager* batch_manager,
+    DrawConfig draw_config)
 {
-    if (scene->dir_lights.size() < 0)
+    if (scene->dir_lights.empty())
     {
         return false;
     }
 
     // Update directional light frustum if there are any changes:
-    shadow_manager.CalculateLightFrustum();
+    shadow_manager.LazyCalculateLightFrustum();
 
     // Cull the scene with directional light frustum:
-    render_list.Update(shadow_manager.GetDirectionalLightFrustum(), scene->GetQuadtree());
+    render_list.Update(
+        shadow_manager.GetDirectionalLightFrustum(), 
+        scene->GetQuadtree());
 
     // Draw collected meshes with shadow mapping program:
-    Program* program = App->program->GetShadowMappingProgram();
+    const Program* program = 
+        App->program->GetProgram(Program::PROGRAMS::SHADOW_MAPPING);
     program->Activate();
 
     // Bind shadow map generation specific necessary uniforms:
@@ -582,6 +571,11 @@ bool Hachiko::ModuleRender::DrawToShadowMap(Scene* scene,
 
         for (const RenderTarget& target : render_list.GetOpaqueTargets())
         {
+            if (!target.mesh_renderer->IsCastingShadow())
+            {
+                continue;
+            }
+
             batch_manager->AddDrawComponent(target.mesh_renderer);
         }
 
@@ -596,6 +590,11 @@ bool Hachiko::ModuleRender::DrawToShadowMap(Scene* scene,
 
         for (const RenderTarget& target : render_list.GetTransparentTargets())
         {
+            if (!target.mesh_renderer->IsCastingShadow())
+            {
+                continue;
+            }
+
             batch_manager->AddDrawComponent(target.mesh_renderer);
         }
 
@@ -603,26 +602,28 @@ bool Hachiko::ModuleRender::DrawToShadowMap(Scene* scene,
     }
 
     // Unbind shadow map fbo:
-    shadow_manager.UnbindBuffer();
+    ShadowManager::UnbindBuffer();
 
     Program::Deactivate();
 
-    // Smoothen the shadow map by applying gaussian filtering:
-    shadow_manager.ApplyGaussianBlur(App->program->GetGaussianFilteringProgram());
+    // Smooth out the shadow map by applying gaussian filtering:
+    shadow_manager.ApplyGaussianBlur(
+        App->program->GetProgram(Program::PROGRAMS::GAUSSIAN_FILTERING));
 
     return true;
 }
 
-void Hachiko::ModuleRender::ApplyGaussianFilter(unsigned source_fbo,
-                                                unsigned source_texture,
-                                                unsigned temp_fbo,
-                                                unsigned temp_texture,
-                                                float blur_scale_amount,
-                                                float blur_sigma,
-                                                int blur_size,
-                                                unsigned width,
-                                                unsigned height,
-                                                const Program* program) const
+void Hachiko::ModuleRender::ApplyGaussianFilter(
+    unsigned source_fbo,
+    unsigned source_texture,
+    unsigned temp_fbo,
+    unsigned temp_texture,
+    float blur_scale_amount,
+    float blur_sigma,
+    int blur_size,
+    unsigned width,
+    unsigned height,
+    const Program* program) const
 {
     // Calculate blur scales:
     float blur_scale_x = blur_scale_amount / static_cast<float>(width);
@@ -770,6 +771,10 @@ void Hachiko::ModuleRender::LoadingScreenOptions()
     if (loading_image != nullptr)
     {
         loading_image->DrawGui();
+    }
+    if (loading_video != nullptr)
+    {
+        loading_video->DrawGui();
     }
 }
 
@@ -992,6 +997,36 @@ void Hachiko::ModuleRender::FreeFullScreenQuad() const
     glBindVertexArray(0);
 }
 
+void Hachiko::ModuleRender::CreateNoiseTexture() 
+{
+    const unsigned width = 128;
+    const unsigned height = 128;
+    const double delta = 0.01f;
+
+    OpenSimplex2S os;
+    byte* result = new byte[width * height];
+
+    for (int i = 0; i < width; ++i)
+    {
+        for (int j = 0; j < height; ++j)
+        {
+            result[i * height + j] = static_cast<byte>((os.noise2_XBeforeY((double)i * delta, (double)j * delta) + 1) * 127.0f);
+        }
+    }
+
+    glGenTextures(1, &noise_id);
+    glBindTexture(GL_TEXTURE_2D, noise_id);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, width, height, 0, GL_RED, GL_UNSIGNED_BYTE, result);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    delete result;
+}
+
 bool Hachiko::ModuleRender::CleanUp()
 {
     FreeFullScreenQuad();
@@ -1005,16 +1040,61 @@ bool Hachiko::ModuleRender::CleanUp()
     App->preferences->GetEditorPreference()->SetDrawSkybox(draw_skybox);
     App->preferences->GetEditorPreference()->SetDrawNavmesh(draw_navmesh);
 
-    delete loading_game_object;
-
     return true;
+}
+
+void Hachiko::ModuleRender::LoadLoadingScreen() 
+{
+    loading_game_object = new GameObject(nullptr, float4x4::identity, "Loading");
+    loading_transform2d = static_cast<ComponentTransform2D*>(loading_game_object->CreateComponent(Component::Type::TRANSFORM_2D));
+    loading_image = static_cast<ComponentImage*>(loading_game_object->CreateComponent(Component::Type::IMAGE));
+    loading_video = static_cast<ComponentVideo*>(loading_game_object->CreateComponent(Component::Type::VIDEO));
+
+    // For now the loading screen configuration will be hardcoded:
+    {
+        //Image
+        YAML::Node node_image;
+        node_image.SetTag("image");
+        node_image[IMAGE_IMAGE_ID] = 9856915381281154687;
+        node_image[IMAGE_HOVER_IMAGE_ID] = 0;
+        node_image[IMAGE_COLOR] = float4::one;
+        node_image[IMAGE_HOVER_COLOR] = float4::one;
+        node_image[IMAGE_TILED] = true;
+        node_image[IMAGE_RANDOMIZE_INITIAL_FRAME] = false;
+        node_image[IMAGE_X_TILES] = 2;
+        node_image[IMAGE_Y_TILES] = 2;
+        node_image[IMAGE_TILES_PER_SEC] = 2;
+        node_image[IMAGE_FILL_WINDOW] = true;
+
+        loading_image->Load(node_image);
+
+        //Video
+        YAML::Node node_video;
+        node_video.SetTag("video");
+        node_video[VIDEO_ID] = 12654021748852338787;
+        node_video[VIDEO_PROJECTED] = false;
+        node_video[VIDEO_LOOP] = true;
+        node_video[VIDEO_FLIP] = false;
+        node_video[VIDEO_FPS] = 12;
+
+        loading_video->Load(node_video);
+        loading_video->SetAsInScene();
+        loading_video->Start();
+        loading_video->Preload(12 * 4);
+        loading_video->Play();
+    }
+}
+
+void Hachiko::ModuleRender::DeleteLoadingScreen() 
+{
+    delete loading_game_object;
 }
 
 void Hachiko::ModuleRender::DrawLoadingScreen(const float delta)
 {
     OPTICK_CATEGORY("DrawLoadingScreen", Optick::Category::Rendering);
 
-    Program* img_program = App->program->GetUserInterfaceImageProgram();
+    Program* img_program = App->program->GetProgram(Program::PROGRAMS::UI_IMAGE);
 
     glDepthFunc(GL_ALWAYS);
 
@@ -1027,27 +1107,43 @@ void Hachiko::ModuleRender::DrawLoadingScreen(const float delta)
     if (res_x != fb_width || res_y != fb_height)
     {
         ResizeFrameBuffer(res_x, res_y);
-        glViewport(0, 0, res_x, res_y);
         fb_width = res_x;
         fb_height = res_y;
     }
+    glViewport(0, 0, fb_width, fb_height);
 
-    loading_transform2d->SetSize(float2(fb_width, fb_height));
-    loading_image->Update();
+    if (using_image)
+    {
+        loading_transform2d->SetSize(float2(fb_width, fb_height));
+        loading_image->Update();
 
-    ModuleProgram::CameraData camera_data;
-    // position data is unused on the ui program
-    camera_data.pos = float3::zero;
-    camera_data.view = float4x4::identity;
-    camera_data.proj = float4x4::D3DOrthoProjLH(-1, 1, static_cast<float>(fb_width), static_cast<float>(fb_height));
+        ModuleProgram::CameraData camera_data;
+        // position data is unused on the ui program
+        camera_data.pos = float3::zero;
+        camera_data.view = float4x4::identity;
+        camera_data.proj = float4x4::D3DOrthoProjLH(-1, 1, static_cast<float>(fb_width), static_cast<float>(fb_height));
 
-    App->program->UpdateCamera(camera_data);
+        App->program->UpdateCamera(camera_data);
 
-    loading_image->Draw(loading_transform2d, img_program);
+        loading_image->Draw(loading_transform2d, img_program);
+    }
+    else
+    {
+        loading_video->Update();
+        loading_video->Draw(nullptr, nullptr);
+    }
 
     glDepthFunc(GL_LESS);
 
     glBindFramebuffer(GL_READ_FRAMEBUFFER, frame_buffer);
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
     glBlitFramebuffer(0, 0, fb_width, fb_height, 0, 0, fb_width, fb_height, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+}
+
+void Hachiko::ModuleRender::BindNoiseTexture(Program* program)
+{
+    // Binding the noise texture
+    glActiveTexture(GL_TEXTURE10);
+    glBindTexture(GL_TEXTURE_2D, noise_id);
+    program->BindUniformInt("noise", 10);
 }

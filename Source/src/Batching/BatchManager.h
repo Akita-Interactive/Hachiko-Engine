@@ -10,7 +10,7 @@ namespace Hachiko
 {
     class ComponentMeshRenderer;
     class Program;
-    
+
     class BatchManager
     {
     public:

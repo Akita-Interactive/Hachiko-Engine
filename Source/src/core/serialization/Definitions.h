@@ -221,6 +221,7 @@
 #define MESH_TEXTURE_TYPE "texture_type"
 #define MESH_NAVIGABLE "navigable"
 #define MESH_VISIBLE "visible"
+#define MESH_CASTING_SHADOW "casting_shadow"
 
 // Component Lights
 #define LIGHT_TYPE "light_type"
@@ -295,6 +296,7 @@
 #define START_ROTATION "start_rotation"
 #define BILLBOARD_PROPERTIES "properties"
 #define BILLBOARD_PROJECTION "projection"
+#define RANDOMIZE_TILE "randomize_tiles"
 
 #define COLOR_CYCLES "color_cycles"
 #define COLOR_GRADIENT "color_gradient"
@@ -308,6 +310,7 @@
 #define SHAPE_SECTION "shape"
 #define LIGHTS_SECTION "lights"
 #define RENDERER_SECTION "renderer"
+#define TEXTURE_SECTION "texture"
 //particle config
 #define PARTICLE_PARAMETERS "parameters"
 #define PARTICLES_DURATION "duration"

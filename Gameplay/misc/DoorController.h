@@ -12,10 +12,11 @@ namespace Hachiko
 		{
 			SERIALIZATION_METHODS(false)
 
-				enum State
+			enum State
 			{
 				CLOSED = 0,
-				OPEN = 1
+				OPENNING = 1,
+				OPEN = 2
 			};
 
 		// Methods
@@ -42,6 +43,8 @@ namespace Hachiko
 		private:
 			State _prev_state = State::OPEN;
 			State _state = State::OPEN;
+
+			float _elapsed_time = 0.0f;
 		};
 	}
 	

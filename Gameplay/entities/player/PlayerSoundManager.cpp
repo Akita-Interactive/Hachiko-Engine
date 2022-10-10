@@ -58,10 +58,20 @@ void Hachiko::Scripting::PlayerSoundManager::OnUpdate()
 		}
 
 		break;
-	case PlayerState::RANGED_ATTACKING:
-		_current_frequency = _ranged_frequency;
+
+	case PlayerState::RANGED_CHARGING:
+		_current_frequency = 1.0f;// _ranged_frequency;
 
 		if (_timer == 0.0f)
+		{
+			_audio_source->PostEvent(Sounds::LOADING_AMMO);
+		}
+
+		break;
+
+	case PlayerState::RANGED_ATTACKING:
+
+		if (state_changed)
 		{
 			_audio_source->PostEvent(Sounds::RANGED_ATTACK);
 		}
@@ -77,8 +87,7 @@ void Hachiko::Scripting::PlayerSoundManager::OnUpdate()
 	case PlayerState::DIE:
 		if (state_changed)
 		{
-			_audio_source->PostEvent(Sounds::GAME_OVER);
-			_audio_source->PostEvent(Sounds::STOP_COMBAT);
+			_audio_source->PostEvent(Sounds::PLAY_DEAD_MUSIC);
 			_audio_source->PostEvent(Sounds::STOP_PEBBLE);
 			_audio_source->PostEvent(Sounds::STOP_WIND);
 		}

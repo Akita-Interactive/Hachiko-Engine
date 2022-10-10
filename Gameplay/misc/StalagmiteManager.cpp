@@ -22,7 +22,7 @@ void Hachiko::Scripting::StalagmiteManager::OnAwake()
 
 void Hachiko::Scripting::StalagmiteManager::OnStart()
 {
-	GenerateStalagmites();
+	//GenerateStalagmites();
 }
 
 void Hachiko::Scripting::StalagmiteManager::GenerateStalagmites()
@@ -46,7 +46,14 @@ void Hachiko::Scripting::StalagmiteManager::GenerateStalagmites()
 
 void Hachiko::Scripting::StalagmiteManager::OnUpdate()
 {
+	if (!_should_fall_stalagmites)
+	{
+		return;
+	}
+
 	_player_pos = _player_controller->GetGameObject()->GetTransform()->GetGlobalPosition();
+
+	size_t fallen_stalagmites_count = 0;
 
 	for (unsigned i = 0; i < _stalagmites.size(); i++)
 	{
@@ -83,7 +90,10 @@ void Hachiko::Scripting::StalagmiteManager::OnUpdate()
 					
 
 					_stalagmites[i]->SetNewState(StalagmiteState::COLLAPSED);
-					falling_elapsed = 0;
+
+				    ++fallen_stalagmites_count;
+
+				    falling_elapsed = 0;
 				}
 				else
 				{
@@ -94,6 +104,11 @@ void Hachiko::Scripting::StalagmiteManager::OnUpdate()
 
 			UpdateStalagmiteState(_stalagmites[i]);
 		}
+	}
+
+	if (fallen_stalagmites_count >= _stalagmites.size())
+	{
+		_should_fall_stalagmites = false;
 	}
 }
 
@@ -130,6 +145,12 @@ void Hachiko::Scripting::StalagmiteManager::UpdateStalagmiteState(Stalagmite* st
 void Hachiko::Scripting::StalagmiteManager::FallingStalagmite(Stalagmite* stalagmite)
 {
 	stalagmite->Falling();
+}
+
+void Hachiko::Scripting::StalagmiteManager::TriggerStalagmites()
+{
+	_should_fall_stalagmites = true;
+	GenerateStalagmites();
 }
 
 bool Hachiko::Scripting::StalagmiteManager::CheckPreviousStalagmite(int idx)

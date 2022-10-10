@@ -17,12 +17,25 @@ void Hachiko::Scripting::DoorController::OnAwake()
 
 void Hachiko::Scripting::DoorController::OnUpdate()
 {
+	if (_state == State::OPENNING) 
+	{
+		_elapsed_time += Time::DeltaTime();
+		if (_elapsed_time < 2.0f)
+		{
+			_closed_door_mesh->ChangeDissolveProgress(1 - (_elapsed_time / 2.0f));
+		}
+		else
+		{
+			_state = State::OPEN;
+		}
+	}
+
 	UpdateDoorState();
 }
 
 void Hachiko::Scripting::DoorController::Open()
 {
-	_state = State::OPEN;
+	_state = State::OPENNING;
 }
 
 void Hachiko::Scripting::DoorController::Close()
@@ -41,15 +54,20 @@ void Hachiko::Scripting::DoorController::UpdateDoorState()
 	switch (_state)
 	{
 	case State::CLOSED:
-		_door_prefab->SetActive(true);
+		_closed_door_mesh->SetActive(true);
 		_open_door_mesh->SetActive(false);
 		door_obstacle->AddObstacle();
 		break;
-	case State::OPEN:
+	case State::OPENNING:
 		door_obstacle->RemoveObstacle();
 		_door_prefab->SetActive(false);
 		// Small hack to keep things simple, even if the parent is inactive it will still render
 		_open_door_mesh->SetActive(true);
+		_closed_door_mesh->SetActive(true);
+		break;
+	case State::OPEN:
+		_closed_door_mesh->SetActive(false);
+		_closed_door_mesh->ChangeDissolveProgress(1.0f);
 		break;
 	}
 }

@@ -41,11 +41,17 @@ namespace Hachiko
                 ComponentTransform* emitter_transform = nullptr;
             };
 
-            enum AttackType
+            enum class AttackType
             {
                 CONE,
                 RECTANGLE,
                 CIRCLE
+            };
+            enum class AttackTrail
+            {
+                DEFAULT,
+                RIGHT,
+                LEFT
             };
 
             struct AttackStats
@@ -58,6 +64,8 @@ namespace Hachiko
                 float width = 0.f;
                 float range = 0.f;
                 // Status effect
+                //Trail direction 1 for right and 2 for left
+                AttackTrail attack_trail = AttackTrail::DEFAULT;
             };
             
         public:

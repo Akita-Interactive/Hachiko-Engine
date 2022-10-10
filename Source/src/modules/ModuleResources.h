@@ -5,6 +5,8 @@
 #include "core/preferences/src/ResourcesPreferences.h"
 #include "utils/UUID.h"
 
+#include <set>
+
 namespace Hachiko
 {
     class ResourceMesh;
@@ -45,7 +47,7 @@ namespace Hachiko
         };
         std::map<UID, ResourceInstance> loaded_resources;
 
-        std::vector<ResourceTexture*> scene_loaded_texures;
+        std::set<UID> scene_loaded_texures;
 
         unsigned imported_assets = 0;
         unsigned cleaned_resources = 0;

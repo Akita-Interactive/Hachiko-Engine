@@ -4,10 +4,12 @@
 #include "modules/ModuleSceneManager.h"
 #include "importers/MaterialImporter.h"
 
+#include "modules/ModuleProgram.h"
+
 Hachiko::ResourceMaterial::ResourceMaterial(UID uid) :
     Resource(uid, Type::MATERIAL)
 {
-    App->scene_manager->GetActiveScene();
+    shader = Program::PROGRAMS::DEFERRED_GEOMETRY;
 }
 
 Hachiko::ResourceMaterial::~ResourceMaterial()
@@ -176,6 +178,14 @@ void Hachiko::ResourceMaterial::DrawGui()
         }
         ImGui::TreePop();
     }
+
+    if (ImGui::BeginCombo("Shader", ShaderName(shader)))
+    {
+        ShaderOption(Program::PROGRAMS::DEFERRED_GEOMETRY);
+
+        ImGui::EndCombo();
+    }
+
     if (ImGui:: Button("Save", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         UpdateMaterial();
@@ -300,4 +310,27 @@ void Hachiko::ResourceMaterial::UpdateMaterial()
     material_importer.Save(GetID(), this);
 
     App->scene_manager->GetActiveScene()->RebuildBatches();
+}
+
+void Hachiko::ResourceMaterial::ShaderOption(Program::PROGRAMS value)
+{
+    bool is_selected = (shader == value);
+    if (ImGui::Selectable(ShaderName(value), is_selected))
+    {
+        shader = value;
+    }
+    if (is_selected)
+    {
+        ImGui::SetItemDefaultFocus();
+    }
+}
+
+const char* Hachiko::ResourceMaterial::ShaderName(Program::PROGRAMS value) 
+{
+    switch (value)
+    {
+        case Hachiko::Program::PROGRAMS::DEFERRED_GEOMETRY:
+            return "STANDARD";
+    }
+    return nullptr;
 }

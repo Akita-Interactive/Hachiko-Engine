@@ -165,6 +165,23 @@ namespace Hachiko
             return particles;
         }
         
+        void SetFogActive(bool active) 
+        {
+            fog.enabled = active;
+        }
+        void SetFogColor(float3 color)
+        {
+            fog.color = color;
+        }
+        void SetFogGlobalDensity(float density)
+        {
+            fog.global_density = density;
+        }
+        void SetFogHeightFalloff(float falloff)
+        {
+            fog.height_falloff = falloff;
+        }
+
         std::vector<ComponentDirLight*> dir_lights{};
         std::vector<ComponentPointLight*> point_lights{};
         std::vector<ComponentSpotLight*> spot_lights{};

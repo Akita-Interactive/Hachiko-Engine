@@ -61,6 +61,7 @@ namespace Hachiko
 
     private:
         bool in_scene = false;
+        bool delayed = true;
         ParticleSystem::Emitter::State state = ParticleSystem::Emitter::State::STOPPED;
         ParticleSystem::Emitter::Properties emitter_properties;
         float elapsed_time = 0.0f;
@@ -89,6 +90,7 @@ namespace Hachiko
         bool projection = true;
 
         // Texture
+        bool randomize_tiles = false;
         TextureProperties texture_properties = {};
 
         // Animation
@@ -125,9 +127,10 @@ namespace Hachiko
         void UpdateColorOverLifetime(float delta_time);
         void UpdateRotationOverLifetime(float delta_time);
         void UpdateSizeOverLifetime(float delta_time);
-
+        
         void GetOrientationMatrix(ComponentCamera* camera, float4x4& model_matrix);
         void DisplayControls();
+        float2 GetRandomTile();
 
     };
 }

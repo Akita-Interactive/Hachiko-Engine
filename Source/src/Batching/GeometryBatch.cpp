@@ -9,9 +9,12 @@
 
 #include "batching/TextureBatch.h"
 
-Hachiko::GeometryBatch::GeometryBatch(ResourceMesh::Layout batch_layout) {
+Hachiko::GeometryBatch::GeometryBatch(Layout batch_layout) 
+{
+    layout = batch_layout;
+
     batch = new ResourceMesh(0);
-    batch->layout = batch_layout;
+    batch->layout = batch_layout.mesh_layout;
 
     texture_batch = new TextureBatch();
 
