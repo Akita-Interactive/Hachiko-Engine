@@ -446,7 +446,7 @@ namespace YAML
 
         static bool decode(const Node& node, Hachiko::ParticleSystem::Emitter::Properties& rhs)
         {
-            if (!node.IsSequence() || node.size() != 9)
+            if (!node.IsSequence() || node.size() != 8)
             {
                 return false;
             }
@@ -459,7 +459,7 @@ namespace YAML
             rhs.rotation = node[5].as<float3>();
             rhs.scale = node[6].as<float3>();
             rhs.top = node[7].as<float>();
-            rhs.attached = node[8].as<bool>();
+            //rhs.attached = node[8].as<bool>();
 
             return true;
         }
@@ -484,7 +484,7 @@ namespace YAML
 
         static bool decode(const Node& node, Hachiko::ParticleSystem::ParticleProperties& rhs)
         {
-            if (!node.IsSequence() || node.size() != 6)
+            if (!node.IsSequence() || node.size() != 5)
             {
                 return false;
             }
@@ -494,7 +494,7 @@ namespace YAML
             rhs.render_mode = static_cast<Hachiko::ParticleSystem::ParticleRenderMode>(node[2].as<int>());
             rhs.orientate_to_direction = node[3].as<bool>();
             rhs.stretch = node[4].as<Hachiko::ParticleSystem::VariableTypeProperty>();
-            rhs.draw = node[5].as<bool>();
+            //rhs.draw = node[5].as<bool>();
             return true;
         }
     };
