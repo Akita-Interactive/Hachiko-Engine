@@ -136,6 +136,7 @@ void Hachiko::Scripting::LaserController::OnUpdate()
 			}
 		}
 		break;
+		
 	case DISSOLVING:
 		_elapsed_time += Time::DeltaTime();
 		const float dissolve_progress = (_dissolving_time - _elapsed_time) / _dissolving_time;
@@ -200,10 +201,10 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 
 	if (_length != new_length || _state == ACTIVATING || _state == ACTIVE)
 	{
-		if (_sparks != nullptr && _beam != nullptr && _beam_reduced != nullptr && (_length - new_length) > 0.1f )
+		if (_beam != nullptr && _beam_reduced != nullptr && (_length - new_length) > 0.1f )
 		{
-			_sparks->GetTransform()->SetLocalPosition(float3(0.0f, 0.0f, -new_length));
-			_sparks_particles->Restart();
+			//_sparks->GetTransform()->SetLocalPosition(float3(0.0f, 0.0f, -new_length));
+			//_sparks_particles->Restart();
 			_beam_particles->DrawParticles(false);
 
 			if (_beam_crystals != nullptr && new_length > 10.0f)
@@ -246,7 +247,6 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 			_sparks_particles->Stop();
 		}
 	}
-
 }
 
 void Hachiko::Scripting::LaserController::CheckPlayerCollision() const
