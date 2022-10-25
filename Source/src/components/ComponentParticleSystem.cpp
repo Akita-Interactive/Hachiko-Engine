@@ -484,7 +484,7 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
     start_size = node[PARTICLE_PARAMETERS][PARTICLES_SIZE].as<ParticleSystem::VariableTypeProperty>();
     start_rotation = node[PARTICLE_PARAMETERS][PARTICLES_ROTATION].as<ParticleSystem::VariableTypeProperty>();
     start_delay = node[PARTICLE_PARAMETERS][PARTICLES_DELAY].as<ParticleSystem::VariableTypeProperty>();
-    particle_properties = node[PARTICLE_PARAMETERS][PARTICLES_PROPERTIES].as<ParticleSystem::ParticleProperties>();
+    particle_properties = node[PARTICLE_EMISSION][PARTICLES_PROPERTIES].IsDefined() ? node[PARTICLE_EMISSION][PARTICLES_PROPERTIES].as<ParticleSystem::ParticleProperties>() : ParticleSystem::ParticleProperties();
 
     // emission
     rate_over_time = node[PARTICLE_EMISSION][RATE].as<ParticleSystem::VariableTypeProperty>();
@@ -492,8 +492,8 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
     burst = node[PARTICLE_EMISSION][BURST].IsDefined() ? node[PARTICLE_EMISSION][BURST].as<bool>() : burst;
 
     // emitter
-    emitter_type = static_cast<ParticleSystem::Emitter::Type>(node[EMITTER][EMITTER_TYPE].as<int>());
-    emitter_properties = node[EMITTER][EMITTER_PROPERTIES].as<ParticleSystem::Emitter::Properties>();
+    emitter_type = node[EMITTER][EMITTER_TYPE].IsDefined() ? static_cast<ParticleSystem::Emitter::Type>(node[EMITTER][EMITTER_TYPE].as<int>()) : ParticleSystem::Emitter::Type::CONE;
+    emitter_properties = node[EMITTER][EMITTER_PROPERTIES].IsDefined() ? node[EMITTER][EMITTER_PROPERTIES].as<ParticleSystem::Emitter::Properties>() : ParticleSystem::Emitter::Properties();
 
     // texture
     flip_texture = node[PARTICLES_TEXTURE][FLIP].IsDefined() ? node[PARTICLES_TEXTURE][FLIP].as<bool2>() : bool2::False;
