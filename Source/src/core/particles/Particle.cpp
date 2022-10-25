@@ -134,7 +134,9 @@ void Hachiko::Particle::GetModelMatrix(ComponentCamera* camera, float4x4& out_ma
     float3 world_position = current_position;
     if (emitter->GetEmitterProperties().attached)
     {
-        world_position = emitter->GetGameObject()->GetTransform()->GetGlobalPosition() + current_position;
+        float4 corrected_world_position = float4(current_position, 1.0f);
+        corrected_world_position = emitter->GetGameObject()->GetTransform()->GetGlobalMatrix() * corrected_world_position;
+        world_position = float3(corrected_world_position.x, corrected_world_position.y, corrected_world_position.z);
     }
 
     switch (emitter->GetParticlesProperties().orientation)
