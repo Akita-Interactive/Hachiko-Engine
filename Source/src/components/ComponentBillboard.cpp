@@ -15,7 +15,7 @@
 #include "utils/ComponentUtility.h"
 
 Hachiko::ComponentBillboard::ComponentBillboard(GameObject* container) :
-    Component(Component::Type::BILLBOARD, container)
+    Component(Component::Type::BILLBOARD, container, true)
 {
     gradient = new ImGradient();
 }

@@ -2,7 +2,7 @@
 #include "ComponentProgressBar.h"
 #include "modules/ModuleEvent.h"
 
-Hachiko::ComponentProgressBar::ComponentProgressBar(GameObject* container) : Component(Type::PROGRESS_BAR, container) 
+Hachiko::ComponentProgressBar::ComponentProgressBar(GameObject* container) : Component(Type::PROGRESS_BAR, container, true) 
 {
 	// Get backgroundID;
 	// Get foregroundID;

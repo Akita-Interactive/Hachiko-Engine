@@ -59,6 +59,9 @@ namespace Hachiko
         Component* CreateComponent(Component::Type type);
         void RemoveChild(GameObject* gameObject);
 
+        void AddUpdateableComponent();
+        void RemoveUpdateableComponent();
+
         /// <summary>
         /// Creates a new GameObject as child of the root of current Scene.
         /// </summary>
@@ -236,6 +239,7 @@ namespace Hachiko
         GameObject* parent = nullptr;
         std::vector<GameObject*> children{};
         bool active = true;
+        int updateable_components = 0;
 
     private:
         bool started = false;

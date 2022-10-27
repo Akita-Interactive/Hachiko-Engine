@@ -14,7 +14,7 @@
 #include "utils/ComponentUtility.h"
 
 Hachiko::ComponentAnimation::ComponentAnimation(GameObject* container) :
-    Component(Type::ANIMATION, container)
+    Component(Type::ANIMATION, container, true)
 {
     auxiliary_name = game_object->name;
     controller = new AnimationController();

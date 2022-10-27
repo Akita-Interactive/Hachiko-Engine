@@ -124,7 +124,12 @@ void Hachiko::ComponentMeshRenderer::SetMeshResource(ResourceMesh* res)
         return;
     }
 
-    if (mesh->num_bones > 0)
+    bool has_bones = mesh->num_bones > 0;
+
+    // Only updateable if it has bones
+    SetUpdateable(has_bones);
+
+    if (has_bones)
     {
         node_cache = new const GameObject*[mesh->num_bones];
 

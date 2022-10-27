@@ -482,6 +482,7 @@ void Hachiko::Scene::Update()
 {
     OPTICK_CATEGORY("UpdateScene", Optick::Category::Scene);
     root->Update();
+    HE_LOG("%i Updateable", root->updateable_components);
 }
 
 Hachiko::Scene::Memento* Hachiko::Scene::CreateSnapshot()

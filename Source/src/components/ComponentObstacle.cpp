@@ -7,7 +7,7 @@
 #include "modules/ModuleNavigation.h"
 #include "DetourTileCache/DetourTileCache.h"
 
-Hachiko::ComponentObstacle::ComponentObstacle(GameObject* container) : Component(Type::OBSTACLE, container) {}
+Hachiko::ComponentObstacle::ComponentObstacle(GameObject* container) : Component(Type::OBSTACLE, container, true) {}
 
 Hachiko::ComponentObstacle::~ComponentObstacle()
 {

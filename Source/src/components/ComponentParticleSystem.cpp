@@ -11,7 +11,7 @@
 #include "utils/ComponentUtility.h"
 
 Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container) :
-    Component(Type::PARTICLE_SYSTEM, container)
+    Component(Type::PARTICLE_SYSTEM, container, true)
 {
     particle_modifiers.push_back(std::make_shared<VelocityParticleModifier>("Velocity over lifetime"));
     particle_modifiers.push_back(std::make_shared<SizeParticleModifier>("Size over lifetime"));

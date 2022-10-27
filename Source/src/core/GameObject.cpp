@@ -82,6 +82,24 @@ void Hachiko::GameObject::RemoveChild(GameObject* game_object)
     children.erase(std::remove(children.begin(), children.end(), game_object), children.end());
 }
 
+void Hachiko::GameObject::AddUpdateableComponent()
+{
+    ++updateable_components;
+    if (parent)
+    {
+        parent->AddUpdateableComponent();
+    }
+}
+
+void Hachiko::GameObject::RemoveUpdateableComponent()
+{
+    --updateable_components;
+    if (parent)
+    {
+        parent->RemoveUpdateableComponent();
+    }
+}
+
 Hachiko::GameObject* Hachiko::GameObject::CreateChild()
 {
     GameObject* new_child = new GameObject(this);
@@ -347,25 +365,27 @@ void Hachiko::GameObject::Update()
 {
     if (!active || (parent != nullptr && !parent->active))   return;
 
+    if (!updateable_components && !transform->HasChanged())
+    {
+        return;
+    }
+
+
     if (transform->HasChanged())
     {
         OnTransformUpdated();
     }
 
-    // NOTE: It is weird that a non-sense nullptr exception we were facing is 
-    // solved by converting the for loop for children vector to use the follow
-    // ing for loop instead of range based and iterator based ones. Thanks to 
-    // Vicenc for coming up with this approach. Maybe we should convert all 
-    // vector loops to be like the ones following.
-    // TODO: Ask this to the teachers.
-
-    for (int i = 0; i < components.size(); ++i)
+    if (updateable_components)
     {
-        if (!components[i]->IsActive())
+        for (int i = 0; i < components.size(); ++i)
         {
-            continue;
+            if (!components[i]->IsActive())
+            {
+                continue;
+            }
+            components[i]->Update();
         }
-        components[i]->Update();
     }
 
     for (int i = 0; i < children.size(); ++i)
@@ -417,12 +437,6 @@ void Hachiko::GameObject::OnTransformUpdated()
     {
         component->OnTransformUpdated();
     }
-
-    // Update children
-    for (GameObject* child : children)
-    {
-        child->OnTransformUpdated();
-    }
 }
 
 void Hachiko::GameObject::DebugDrawAll()
@@ -461,6 +475,10 @@ bool Hachiko::GameObject::AttemptRemoveComponent(const Component* component)
         const auto it = std::find(components.begin(), components.end(), component);
         if (it != components.end())
         {
+            if ((*it)->IsUpdateable())
+            {
+                RemoveUpdateableComponent();
+            }
             delete *it;
             components.erase(it);
         }
@@ -473,6 +491,11 @@ bool Hachiko::GameObject::AttemptRemoveComponent(const Component* component)
 // Be aware that this method does not free the memory of the component
 void Hachiko::GameObject::ForceRemoveComponent(Component* component)
 {
+    if (component->IsUpdateable())
+    {
+        RemoveUpdateableComponent();
+    }
+    
     components.erase(std::remove(components.begin(), components.end(), component));
 }
 

@@ -9,7 +9,7 @@
 #include "debugdraw.h"
 
 Hachiko::ComponentCanvas::ComponentCanvas(GameObject* container) :
-    Component(Type::CANVAS, container)
+    Component(Type::CANVAS, container, true)
 {
 }
 

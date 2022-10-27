@@ -48,7 +48,8 @@ namespace Hachiko
             UNKNOWN
         };
 
-        Component(Type type, GameObject* container, UID id = 0);
+        Component(Type type, GameObject* container, UID id = 0, bool updateable = false);
+        
 
         virtual ~Component() = default;
 
@@ -148,6 +149,9 @@ namespace Hachiko
         [[nodiscard]] virtual bool CanBeRemoved() const;
         virtual bool HasDependentComponents(GameObject* game_object) const;
 
+        void SetUpdateable(bool v);
+        bool IsUpdateable() const;
+
     protected:
         void OverrideUID(UID new_uid)
         {
@@ -161,6 +165,7 @@ namespace Hachiko
         UID uid = 0;
 
     private:
+        bool updateable;
         TimeScaleMode time_scale_mode;
     };
 }
