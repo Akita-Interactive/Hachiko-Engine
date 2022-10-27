@@ -15,7 +15,7 @@
 #include "utils/ComponentUtility.h"
 
 Hachiko::ComponentBillboard::ComponentBillboard(GameObject* container) :
-    Component(Component::Type::BILLBOARD, container, true)
+    Component(Component::Type::BILLBOARD, container, 0, true)
 {
     gradient = new ImGradient();
 }
@@ -332,6 +332,8 @@ void Hachiko::ComponentBillboard::Start()
 void Hachiko::ComponentBillboard::Update()
 {
 #ifndef PLAY_BUILD
+    //HE_LOG("Updating billboard");
+    //HE_LOG(game_object->name.c_str());
     if (!in_scene)
     {
         Start();

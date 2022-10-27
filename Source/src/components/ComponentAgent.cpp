@@ -10,7 +10,7 @@
 
 
 Hachiko::ComponentAgent::ComponentAgent(GameObject* container) :
-    Component(Type::AGENT, container, true)
+    Component(Type::AGENT, container, 0, true)
 {
 }
 

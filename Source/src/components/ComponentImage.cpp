@@ -17,7 +17,7 @@
 #include "utils/ComponentUtility.h"
 
 Hachiko::ComponentImage::ComponentImage(GameObject* container) :
-    Component(Type::IMAGE, container, true)
+    Component(Type::IMAGE, container, 0, true)
 {
 }
 

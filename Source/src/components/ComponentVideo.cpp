@@ -12,7 +12,7 @@
 #include "resources/ResourceVideo.h"
 
 Hachiko::ComponentVideo::ComponentVideo(GameObject* container)
-: Component(Component::Type::VIDEO, container, true)
+: Component(Component::Type::VIDEO, container, 0, true)
 {}
 
 Hachiko::ComponentVideo::~ComponentVideo()

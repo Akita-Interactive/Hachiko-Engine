@@ -6,7 +6,7 @@
 
 Hachiko::Scripting::Script::Script(GameObject* new_game_object, 
 	std::string new_name) 
-	: Component(Hachiko::Component::Type::SCRIPT, new_game_object, true)
+	: Component(Hachiko::Component::Type::SCRIPT, new_game_object, 0, true)
 	, IRuntimeSerializable()
 	, name(new_name) 
 {
