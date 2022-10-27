@@ -674,6 +674,7 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsI
 {
 	// If an enemy is from a gautlet, has the player on agro distance or is enrage, it will always follow the player if its reachable
 	float dist_to_player = _current_pos.Distance(_player_pos);
+
 	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && _player_controller->IsAlive())
 	{
 		if (dist_to_player <= _attack_range && _attack_cooldown <= 0.0f)
@@ -837,7 +838,7 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsM
 	// If an enemy is from a gautlet, has the player on agro distance or is enrage, it will always follow the player if its reachable
 	float dist_to_player = _current_pos.Distance(_player_pos);
 
-	if (!_valid_path)
+	if (!HasValidPath())
 	{
 		return EnemyState::MOVING_BACK;
 	}
@@ -890,10 +891,12 @@ void Hachiko::Scripting::EnemyController::EndMovingBackState()
 }
 
 Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsMovingBackState()
+
 {
 	// If an enemy is from a gautlet, has the player on agro distance or is enrage, it will always follow the player if its reachable
 	float dist_to_player = _current_pos.Distance(_player_pos);
-	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && _player_controller->IsAlive())
+
+	if ((_is_from_boss || dist_to_player < _aggro_range || _enraged > 0.0f) && _player_controller->IsAlive())
 	{		
 		if (dist_to_player <= _attack_range && _attack_cooldown <= 0.0f)
 		{
@@ -1413,15 +1416,23 @@ void Hachiko::Scripting::EnemyController::SpitController()
 	}
 }
 
-bool Hachiko::Scripting::EnemyController::CheckValidPath()
+void Hachiko::Scripting::EnemyController::CheckValidPath()
 {
+	
 	_timer_check_path -= Time::DeltaTime();
-	if (_timer_check_path <= 0.0f)
+	// If path is invalid check with some delay
+	if (!_valid_path)
 	{
-		_timer_check_path = 5.f;
-		//_timer_check_path = 0.0f;
-
-		_valid_path = _component_agent->CanReachTarget();
+		if (!_timer_check_path > 0.0f)
+		{
+			return;
+		}
 	}
+	_timer_check_path = 5.f;
+	_valid_path = _component_agent->CanReachTarget();
+}
+
+bool Hachiko::Scripting::EnemyController::HasValidPath()
+{
 	return _valid_path;
 }

@@ -92,7 +92,8 @@ namespace Hachiko
             // The worm attack is completely separated from the worm itself once its shot
             void SpitController();
 
-            bool CheckValidPath();
+            void CheckValidPath();
+            bool HasValidPath();
 
         private:
             struct StateBehaviour {
