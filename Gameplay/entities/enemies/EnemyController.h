@@ -93,7 +93,6 @@ namespace Hachiko
             void SpitController();
 
             bool CheckValidPath();
-            bool CheckValidPath(float3 position);
 
         private:
             struct StateBehaviour {

@@ -192,6 +192,8 @@ void Hachiko::Scripting::EnemyController::OnUpdate()
 {
 	_state_num = (int)_state;
 
+	CheckValidPath();
+
 	if (_state == EnemyState::SUPER_DEAD)
 	{
 		return;
@@ -672,7 +674,7 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsI
 {
 	// If an enemy is from a gautlet, has the player on agro distance or is enrage, it will always follow the player if its reachable
 	float dist_to_player = _current_pos.Distance(_player_pos);
-	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && CheckValidPath(_player_pos) && _player_controller->IsAlive())
+	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && _player_controller->IsAlive())
 	{
 		if (dist_to_player <= _attack_range && _attack_cooldown <= 0.0f)
 		{
@@ -778,7 +780,7 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsA
 	}
 
 	float dist_to_player = _current_pos.Distance(_player_pos);
-	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && CheckValidPath(_player_pos) && _player_controller->IsAlive())
+	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && _player_controller->IsAlive())
 	{
 		if (dist_to_player <= _attack_range && _attack_cooldown <= 0.0f)
 		{
@@ -823,11 +825,7 @@ void Hachiko::Scripting::EnemyController::StartMovingState()
 
 void Hachiko::Scripting::EnemyController::UpdateMovingState()
 {
-	float3 corrected_pos = Navigation::GetCorrectedPosition(_player_pos, math::float3(10.0f, 10.0f, 10.0f));
-	if (corrected_pos.x < FLT_MAX)
-	{
-		MoveInNavmesh(corrected_pos);
-	}
+	MoveInNavmesh(_player_pos);
 }
 
 void Hachiko::Scripting::EnemyController::EndMovingState()
@@ -838,7 +836,13 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsM
 {
 	// If an enemy is from a gautlet, has the player on agro distance or is enrage, it will always follow the player if its reachable
 	float dist_to_player = _current_pos.Distance(_player_pos);
-	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && CheckValidPath() && _player_controller->IsAlive())
+
+	if (!_valid_path)
+	{
+		return EnemyState::MOVING_BACK;
+	}
+
+	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && _player_controller->IsAlive())
 	{
 		if (dist_to_player <= _attack_range && _attack_cooldown <= 0.0f)
 		{
@@ -872,7 +876,6 @@ void Hachiko::Scripting::EnemyController::StartMovingBackState()
 
 	_speed = 3.0f;
 	_component_agent->SetMaxSpeed(_speed);
-
 	MoveInNavmesh(_spawn_pos);
 
 	animation->SendTrigger("idle");
@@ -890,8 +893,8 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsM
 {
 	// If an enemy is from a gautlet, has the player on agro distance or is enrage, it will always follow the player if its reachable
 	float dist_to_player = _current_pos.Distance(_player_pos);
-	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && CheckValidPath(_player_pos) && _player_controller->IsAlive())
-	{
+	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && _player_controller->IsAlive())
+	{		
 		if (dist_to_player <= _attack_range && _attack_cooldown <= 0.0f)
 		{
 			return EnemyState::ATTACKING;
@@ -964,7 +967,7 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsP
 {
 	// If an enemy is from a gautlet, has the player on agro distance or is enrage, it will always follow the player if its reachable
 	float dist_to_player = _current_pos.Distance(_player_pos);
-	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && CheckValidPath(_player_pos) && _player_controller->IsAlive())
+	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && _player_controller->IsAlive())
 	{
 		if (dist_to_player <= _attack_range && _attack_cooldown <= 0.0f)
 		{
@@ -1033,7 +1036,7 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsH
 
 	// If an enemy is from a gautlet, has the player on agro distance or is enrage, it will always follow the player if its reachable
 	float dist_to_player = _current_pos.Distance(_player_pos);
-	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && CheckValidPath(_player_pos) && _player_controller->IsAlive())
+	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && _player_controller->IsAlive())
 	{
 		if (dist_to_player <= _attack_range && _attack_cooldown <= 0.0f)
 		{
@@ -1412,21 +1415,13 @@ void Hachiko::Scripting::EnemyController::SpitController()
 
 bool Hachiko::Scripting::EnemyController::CheckValidPath()
 {
-	_valid_path = _component_agent->CanReachTarget();
-	return _valid_path;
-}
-
-bool Hachiko::Scripting::EnemyController::CheckValidPath(float3 position)
-{
+	_timer_check_path -= Time::DeltaTime();
 	if (_timer_check_path <= 0.0f)
 	{
-		//_timer_check_path = 2.5f;
-		_timer_check_path = 0.0f;
+		_timer_check_path = 5.f;
+		//_timer_check_path = 0.0f;
 
-		_component_agent->SetTargetPosition(position);
 		_valid_path = _component_agent->CanReachTarget();
-		_component_agent->SetTargetPosition(_target_pos);
 	}
-	_timer_check_path -= Time::DeltaTime();
 	return _valid_path;
 }
