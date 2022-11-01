@@ -21,6 +21,9 @@ Hachiko::Scripting::LevelManager::LevelManager(GameObject* game_object)
 	, _fog_frequency(0.1)
 	, _fog_max_density(0.015)
 	, _fog_min_density(0.005)
+	, _modify_fog_by_height(false)
+	, _player_height(float2::zero)
+	, _fog_height(float2::zero)
 {}
 
 void Hachiko::Scripting::LevelManager::OnAwake()
@@ -52,6 +55,7 @@ void Hachiko::Scripting::LevelManager::OnAwake()
 	}
 
 	_time = 0;
+	_player_transform = Scenes::GetPlayer()->GetTransform();
 }
 
 void Hachiko::Scripting::LevelManager::OnUpdate()
@@ -63,6 +67,12 @@ void Hachiko::Scripting::LevelManager::OnUpdate()
 		float avg_density = (_fog_min_density + _fog_max_density) / 2;
 		float amp_density = (_fog_max_density - _fog_min_density) / 2;
 		SceneManagement::SetFogGlobalDensity(avg_density + amp_density * (math::Sin(_time * _fog_frequency * math::pi * 2)));
+	}
+	else if (_modify_fog_by_height)
+	{
+		float delta_fog_height = (_fog_height.y - _fog_height.x) / (_player_height.y - _player_height.x);
+		float fog_height = _fog_height.x + (_player_transform->GetGlobalPosition().y - _player_height.x) * delta_fog_height;
+		SceneManagement::SetFogHeightFalloff(fog_height);
 	}
 
 	if (_last_gauntlet) 

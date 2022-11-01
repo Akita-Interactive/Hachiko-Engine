@@ -62,6 +62,9 @@ namespace Hachiko
 			SERIALIZE_FIELD(float, _fog_frequency);
 			SERIALIZE_FIELD(float, _fog_max_density);
 			SERIALIZE_FIELD(float, _fog_min_density);
+			SERIALIZE_FIELD(bool, _modify_fog_by_height);
+			SERIALIZE_FIELD(float2, _player_height);
+			SERIALIZE_FIELD(float2, _fog_height);
 			SERIALIZE_FIELD(GameObject*, _audio_manager_go);
 			SERIALIZE_FIELD(GameObject*, _player_sound_manager_go);
 			SERIALIZE_FIELD(GameObject*, _victory_screen);
@@ -69,6 +72,7 @@ namespace Hachiko
 			static bool increased_health;
 			
 		private:
+			ComponentTransform* _player_transform = nullptr;
 			GauntletManager* _last_gauntlet = nullptr;
 			ComponentText* _enemy_counter = nullptr;
 			AudioManager* _audio_manager = nullptr;
