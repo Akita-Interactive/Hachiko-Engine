@@ -152,6 +152,8 @@ void Hachiko::Scripting::EnemyController::OnAwake()
 
 	SetStats();
 
+	_attacking = false;
+
 	SetVfx();
 
 	_spawn_pos = transform->GetGlobalPosition();
@@ -222,6 +224,7 @@ void Hachiko::Scripting::EnemyController::OnUpdate()
 			EnemyState aux = _state;
 			_state = _previous_state;
 			_previous_state = aux;
+			states_behaviour[static_cast<int>(_state)].Start();
 		}
 		else
 		{
@@ -287,6 +290,10 @@ void Hachiko::Scripting::EnemyController::SetStats()
 		_acceleration = _component_agent->GetMaxAcceleration();
 		_speed = _component_agent->GetMaxSpeed();
 		_component_agent->SetRadius(1.5f);
+
+		_attack_delay = 0.75f;
+		_combat_stats->_attack_cd = 1.5f;
+		_attack_animation_duration = 1.25f;
 		break;
 	}
 }
@@ -482,7 +489,6 @@ void Hachiko::Scripting::EnemyController::ResetEnemy()
 	_stun_time = 0.0f;
 	_is_stunned = false;
 	_has_spawned = false;
-	_attack_delay = 0.3f;
 	_state = EnemyState::INVALID;
 	_previous_state = EnemyState::INVALID;
 	_parasite_dissolving_time_progress = 0.f;
@@ -727,8 +733,10 @@ void Hachiko::Scripting::EnemyController::StartAttackingState()
 		_already_in_combat = true;
 	}
 
+	_attacking = false;
 	_attack_animation_timer = 0.0f;
 	_attack_current_delay = _attack_delay;
+	animation->SetSpeed(0.75f);
 	StopMoving();
 
 	_audio_source->PostEvent(Sounds::BEETLE_ATTACK);
@@ -746,16 +754,19 @@ void Hachiko::Scripting::EnemyController::UpdateAttackingState()
 {
 	_attack_animation_timer += Time::DeltaTimeScaled();
 
-	// If attacking lower attack delay
-	_attack_current_delay -= Time::DeltaTimeScaled();
-
 	if (_attack_current_delay > 0.0f)
 	{
+		_attack_current_delay -= Time::DeltaTimeScaled();
+		animation->SetSpeed(0.75f);
 		transform->LookAtTarget(_player_pos);
 		return;
 	}
+	else 
+	{
+		animation->SetSpeed(1.0f);
+	}
 
-	if (_attack_cooldown > 0.0f)
+	if (_attacking)
 	{
 		return;
 	}
@@ -773,6 +784,11 @@ void Hachiko::Scripting::EnemyController::UpdateAttackingState()
 	attack_stats.range = _attack_range * 1.1f; // a bit bigger than its attack activation range
 	attack_stats.type = CombatManager::AttackType::RECTANGLE;
 
+#ifdef VERBOUSE
+	// Debug attack area
+	Debug::DebugDraw(_combat_manager->CreateAttackHitbox(GetMeleeAttackOrigin(attack_stats.range), attack_stats), float3(1.0f, 1.0f, 0.0f));
+#endif
+
 	int hit = _combat_manager->EnemyMeleeAttack(GetMeleeAttackOrigin(attack_stats.range), attack_stats);
 
 	if (hit > 0)
@@ -781,10 +797,13 @@ void Hachiko::Scripting::EnemyController::UpdateAttackingState()
 	}
 
 	_attack_alt = !_attack_alt;
+
+	_attacking = true;
 }
 
 void Hachiko::Scripting::EnemyController::EndAttackingState()
 {
+	animation->SetSpeed(1.0f);
 }
 
 Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsAttackingState()
@@ -1014,6 +1033,7 @@ void Hachiko::Scripting::EnemyController::StartHitState()
 	_is_stunned = true;
 	_stun_time = 0.8f;
 
+	animation->SetSpeed(1.0f);
 	animation->SendTrigger("isHit");
 
 	RecieveKnockback();
