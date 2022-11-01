@@ -1602,6 +1602,11 @@
 							<PropertyList>
 								<Property Name="EndPosition" Type="Real64" Value="137142.854166667"/>
 								<Property Name="Tempo" Type="Real64" Value="108"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-10</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -1825,7 +1830,7 @@
 								<MusicTransition Name="Transition" ID="{3776E3E2-50B2-4121-9ECA-5E2853693049}">
 									<PropertyList>
 										<Property Name="DestinationContextType" Type="int16" Value="2"/>
-										<Property Name="DestinationJumpPositionPreset" Type="int16" Value="1"/>
+										<Property Name="DestinationJumpPositionPreset" Type="int16" Value="2"/>
 										<Property Name="EnableDestinationFadeIn" Type="bool" Value="True"/>
 										<Property Name="EnableSourceFadeOut" Type="bool" Value="True"/>
 										<Property Name="ExitSourceAt" Type="int16" Value="3"/>
@@ -1854,8 +1859,9 @@
 										<DestinationFadeIn>
 											<MusicFade Name="Destination Fade-in" ID="{16B446E5-5E5B-4B87-88A0-8D68448E23C6}">
 												<PropertyList>
+													<Property Name="FadeCurve" Type="int16" Value="8"/>
 													<Property Name="FadeOffset" Type="Real64" Value="-0.5"/>
-													<Property Name="FadeTime" Type="Real64" Value="1"/>
+													<Property Name="FadeTime" Type="Real64" Value="2"/>
 												</PropertyList>
 											</MusicFade>
 										</DestinationFadeIn>
