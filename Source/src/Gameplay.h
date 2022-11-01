@@ -531,6 +531,7 @@ namespace Hachiko::Editor
 namespace Hachiko::Navigation
 {
     HACHIKO_API float GetHeightFromPosition(const math::float3& position);
+    HACHIKO_API bool ValidPath(const float3& start, const float3& end);
     HACHIKO_API math::float3 GetCorrectedPosition(const math::float3& position, const math::float3& extents);
     HACHIKO_API void CorrectPosition(math::float3& position, const math::float3& extents);
     HACHIKO_API bool Raycast(const float3& start_pos, const float3& end_pos, float3& hit_position);

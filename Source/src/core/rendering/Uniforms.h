@@ -31,7 +31,7 @@ namespace Hachiko::Uniforms
         constexpr const char* COLOR = "fog_color";
         constexpr const char* GLOBAL_DENSITY = "fog_global_density";
         constexpr const char* HEIGHT_FALLOFF = "fog_height_falloff";
-    }
+    } // namespace Fog
 
     namespace SSAO
     {
@@ -40,9 +40,9 @@ namespace Hachiko::Uniforms
         constexpr const char* RADIUS = "radius";
         constexpr const char* BIAS = "bias";
         constexpr const char* POWER = "power";
-        constexpr const char* CAMERA_VIEW_PROJ = "camera_view_projection";
+        constexpr const char* CAMERA_VIEW = "camera_view";
+        constexpr const char* CAMERA_PROJ = "camera_proj";
         constexpr const char* KERNEL_SAMPLES_PREFIX = "samples[";
         constexpr const char* KERNEL_SAMPLES_SUFFIX = "]";
-    }
-
+    } // namespace SSAO
 } // namespace Hachiko::Uniforms

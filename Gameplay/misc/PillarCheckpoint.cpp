@@ -2,9 +2,8 @@
 #include "PillarCheckpoint.h"
 #include "entities/player/PlayerController.h"
 #include "constants/Scenes.h"
+#include "components/ComponentAudioSource.h"
 #include "constants/Sounds.h"
-#include "misc/AudioManager.h"
-
 
 // TODO: This include must go
 #include <resources/ResourceAnimation.h>
@@ -22,6 +21,7 @@ void Hachiko::Scripting::PillarCheckpoint::OnAwake()
 	_restart_position = _respawn_go->GetComponent<ComponentTransform>()->GetGlobalPosition();
 	_respawn_go->SetActive(false);
 	_animation = game_object->GetComponent<ComponentAnimation>();
+	_audio_source = game_object->GetComponent<ComponentAudioSource>();
 	_player = Scenes::GetPlayer();
 	_level_manager = Scenes::GetLevelManager()->GetComponent<LevelManager>();
 	assert(_player != nullptr);
@@ -55,17 +55,16 @@ void Hachiko::Scripting::PillarCheckpoint::OnUpdate()
 void Hachiko::Scripting::PillarCheckpoint::ActivateCheckpoint()
 {
 	_used = true;
+	if (_audio_source)
+	{
+		_audio_source->PostEvent(Sounds::PLAY_CHECKPOINT);
+	}
 
 	if (_level_manager)
 	{
 		_level_manager->SetRespawnPosition(_restart_position);
 	}
 
-	AudioManager* audio_manager = Scenes::GetAudioManager()->GetComponent<AudioManager>();
-	if (audio_manager)
-	{
-		audio_manager->GetAudioSource()->PostEvent(Sounds::CHECKPOINT_ACTIVATE);
-	}
 	// Save Checkpoint on player variable
 	_player->GetComponent<PlayerController>()->_initial_pos = _restart_position;
 

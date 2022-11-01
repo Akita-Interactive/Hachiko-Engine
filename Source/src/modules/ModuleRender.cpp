@@ -343,9 +343,12 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
 
     if (ssao_enabled)
     {
-        const float4x4 camera_view_proj = 
-            scene->GetCullingCamera()->GetFrustum().ViewProjMatrix();
-        ssao_manager.DrawSSAO(g_buffer, camera_view_proj, fb_width, fb_height);
+        ssao_manager.DrawSSAO(
+            g_buffer, 
+            scene->GetCullingCamera()->GetFrustum().ViewMatrix(), 
+            scene->GetCullingCamera()->GetFrustum().ProjectionMatrix(), 
+            fb_width, 
+            fb_height);
     }
 
     // Read the emissive texture, copy it and blur it band write to another

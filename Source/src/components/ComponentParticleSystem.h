@@ -51,6 +51,7 @@ namespace Hachiko
         HACHIKO_API void DrawParticles(bool draw);
 
     private:
+        bool initialized = false;
         ParticleSystem::Emitter::State emitter_state = ParticleSystem::Emitter::State::STOPPED;
 
         //sections

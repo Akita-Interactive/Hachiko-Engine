@@ -64,7 +64,6 @@ namespace Hachiko
 
 			void SetStalagmiteOnGround()
 			{
-				_explosion_effect->SetActive(false);
 				_stalagmite_collapsed = true;
 			}
 
@@ -78,10 +77,12 @@ namespace Hachiko
 			StalagmiteState _previous_state = StalagmiteState::INVALID;
 
 			SERIALIZE_FIELD(GameObject*, _explosion_effect);
+			SERIALIZE_FIELD(GameObject*, _area_indicator);
 			SERIALIZE_FIELD(GameObject*, GEO);
 			SERIALIZE_FIELD(GameObject*, _obstacle);
 
 			ComponentObstacle* _obstacle_comp = nullptr;
+			ComponentAudioSource* _audio_source = nullptr;
 
 			bool _stalagmite_collapsed = false;
 		};

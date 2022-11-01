@@ -196,6 +196,11 @@ bool Hachiko::WindowHierarchy::DrawGameObject(GameObject* game_object, bool stop
             PrefabImporter prefab_importer;
             prefab_importer.CreatePrefabAsset(game_object->GetName().c_str(), game_object);
         }
+        if (ImGui::MenuItem("Simplify Game Object (WIP)"))
+        {
+            ImGui::CloseCurrentPopup();
+            game_object->SimplifyChildren();
+        }
         ImGui::EndPopup();
     }
 

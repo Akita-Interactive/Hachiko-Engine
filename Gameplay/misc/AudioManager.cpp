@@ -7,6 +7,10 @@
 
 #include "entities/enemies/EnemyController.h"
 
+static const unsigned LEVEL_1 = 1;
+static const unsigned LEVEL_2 = 2;
+static const unsigned BOSS_LEVEL = 3;
+
 Hachiko::Scripting::AudioManager::AudioManager(GameObject* game_object)
 	: Script(game_object, "AudioManager")
 	, _enemies_in_combat(0)
@@ -86,6 +90,27 @@ void Hachiko::Scripting::AudioManager::UnregisterGaunlet()
 	updated = false;
 }
 
+void Hachiko::Scripting::AudioManager::PlayGaunletComplete()
+{
+	if (_level != BOSS_LEVEL)
+	{
+		_audio_source->PostEvent(Sounds::GAUNTLET_COMPLETE);
+	}
+}
+
+void Hachiko::Scripting::AudioManager::PlayGaunletStart()
+{
+	if (_level == BOSS_LEVEL)
+	{
+		_audio_source->PostEvent(Sounds::SET_STATE3_BOSS_FIGHT);
+	}
+}
+
+void Hachiko::Scripting::AudioManager::PlayGaunletNextRound()
+{
+	_audio_source->PostEvent(Sounds::GAUNTLET_NEXT_ROUND);
+}
+
 void Hachiko::Scripting::AudioManager::Restart()
 {
 	OnStart();
@@ -93,6 +118,7 @@ void Hachiko::Scripting::AudioManager::Restart()
 
 void Hachiko::Scripting::AudioManager::SetLevel(unsigned level)
 {
+	HE_LOG("AudioManager - Setting Level: %ud", level);
 	_level = level;
 }
 
@@ -100,6 +126,11 @@ void Hachiko::Scripting::AudioManager::PlaySpawnWorm()
 {
 	_audio_source->PostEvent(Sounds::WORM_ROAR);
 	_audio_source->PostEvent(Sounds::WORM_SPAWN);
+}
+
+void Hachiko::Scripting::AudioManager::PlayDoorOpening()
+{
+	_audio_source->PostEvent(Sounds::PLAY_DOOR_OPENING);
 }
 
 void Hachiko::Scripting::AudioManager::SetCombat()
@@ -114,7 +145,7 @@ void Hachiko::Scripting::AudioManager::SetNavigation()
 
 void Hachiko::Scripting::AudioManager::SetFootstepEffect()
 {
-	if (_level == 1)
+	if (_level == LEVEL_1)
 	{
 		_audio_source->SetSwitch(Sounds::SWITCH_GROUP_FOOTSTEPS, Sounds::SWITCH_STATE_FOOTSTEPS_GRAVEL);
 	}
@@ -128,17 +159,14 @@ const wchar_t* Hachiko::Scripting::AudioManager::GetPlayMusicEventName(unsigned 
 {
 	switch (level)
 	{
-	case 1:
+	case LEVEL_1:
 		return Sounds::PLAY_BACKGROUND_MUSIC_LVL1;
 
-	case 2:
+	case LEVEL_2:
 		return Sounds::PLAY_BACKGROUND_MUSIC_LVL2;
 
-	case 3:
+	case BOSS_LEVEL:
 		return Sounds::PLAY_BACKGROUND_MUSIC_BOSS;
-
-	default:
-		return Sounds::PLAY_BACKGROUND_MUSIC_LVL1;
 	}
 }
 
@@ -146,17 +174,14 @@ const wchar_t* Hachiko::Scripting::AudioManager::GetStopMusicEventName(unsigned 
 {
 	switch (level)
 	{
-	case 1:
+	case LEVEL_1:
 		return Sounds::STOP_BACKGROUND_MUSIC_LVL1;
 
-	case 2:
+	case LEVEL_2:
 		return Sounds::STOP_BACKGROUND_MUSIC_LVL2;
 
-	case 3:
+	case BOSS_LEVEL:
 		return Sounds::STOP_BACKGROUND_MUSIC_BOSS;
-
-	default:
-		return Sounds::STOP_BACKGROUND_MUSIC_LVL1;
 	}
 }
 

@@ -14,6 +14,8 @@
 #include <modules/ModuleSceneManager.h>
 
 
+// TODO: Joel make this class delta time scaled as well.
+
 Hachiko::Scripting::CrystalExplosion::CrystalExplosion(GameObject* game_object)
 	: Script(game_object, "CrystalExplosion")
 	, _stats()

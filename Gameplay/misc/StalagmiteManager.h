@@ -41,7 +41,7 @@ namespace Hachiko
 
 		private:
 
-			float falling_elapsed = 0.0f;
+			float falling_elapsed = -1.f;
 			float cooldown_elapsed = 0.0f;
 			float _falling_time = 0.5f;
 			float _total_dissolving_time = 2.5f;

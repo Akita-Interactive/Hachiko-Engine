@@ -497,6 +497,11 @@ float Hachiko::Navigation::GetHeightFromPosition(const float3& position)
     return App->navigation->GetYFromPosition(position);
 }
 
+bool Hachiko::Navigation::ValidPath(const float3& start, const float3& end)
+{
+    return App->navigation->ValidPath(start, end);
+}
+
 float3 Hachiko::Navigation::GetCorrectedPosition(const float3& position, const float3& extents)
 {
     return App->navigation->GetCorrectedPosition(position, extents);

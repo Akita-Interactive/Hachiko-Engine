@@ -494,32 +494,6 @@
 							</ChildrenList>
 							<ObjectLists/>
 						</RandomSequenceContainer>
-						<Sound Name="DoorOpenSlime" ID="{943C9847-A1AA-4DDF-AE5D-0AF1D773F76E}" ShortID="309443166">
-							<PropertyList>
-								<Property Name="3DSpatialization" Type="int16" Value="1"/>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="DoorOpenSlime" ID="{2917132D-5975-49DE-87BD-FAD0CB34B628}">
-									<Language>SFX</Language>
-									<AudioFile>DoorOpenSlime.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="291347773"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="DoorOpenSlime" ID="{2917132D-5975-49DE-87BD-FAD0CB34B628}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 						<Sound Name="Wind" ID="{50287AC6-E65F-477E-99AF-E8235BFA8282}" ShortID="605320073">
 							<PropertyList>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
@@ -577,6 +551,489 @@
 								<ActiveSource Name="Splash-centipede" ID="{46B0591E-2673-4277-93AA-9F17B5C324F1}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Folder Name="Gaunlet" ID="{6CD25879-AEDF-402E-B9B6-E4CCD4272A23}" ShortID="819421566">
+							<ChildrenList>
+								<Sound Name="NextRound" ID="{DAB6DE0F-7DDD-4DD8-BE2E-61ABA7CFABB1}" ShortID="1073127911">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ES_Gong Hit Cymbal - SFX Producer" ID="{55D7519F-C945-457F-8617-D37CE848A58A}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="3.17503602484472"/>
+												<Property Name="FadeOutShape" Type="int16" Value="6"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="3.81614906832298"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ES_Gong Hit Cymbal - SFX Producer.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="298947520"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Gong Hit Cymbal - SFX Producer" ID="{55D7519F-C945-457F-8617-D37CE848A58A}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="End" ID="{020CF240-E236-42C9-B15B-109FCE671222}" ShortID="130733001">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="InitialDelay" Type="Real64">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{3843F6D6-68DB-4B3E-8FC0-8677F08D6CA2}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="0.7"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{2C5F9016-C05B-4F5C-88A5-98A242990A4B}"/>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>3</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ES_Sci Fi Spaceship 36 - SFX Producer" ID="{1BA74338-3EB2-4FCD-B385-3B5853A1F886}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.871916010498687"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="3.51451711393218"/>
+												<Property Name="TrimEnd" Type="Real64" Value="6.4997375328084"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ES_Sci Fi Spaceship 36 - SFX Producer.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="557030509"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Sci Fi Spaceship 36 - SFX Producer" ID="{1BA74338-3EB2-4FCD-B385-3B5853A1F886}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</Folder>
+						<BlendContainer Name="Checkpoint" ID="{48FB85E1-82F2-47B9-B746-686CD8D02BCB}" ShortID="454506517">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>3</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="ES_Swoosh 02 Short - Jon Bjork" ID="{3B9530A6-9310-418B-8107-8FCC9CC81286}" ShortID="466028921">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ES_Swoosh 02 Short - Jon Bjork" ID="{C7F5CF04-3E4F-4B1A-B0E7-2AACE00BD7E8}">
+											<Language>SFX</Language>
+											<AudioFile>ES_Swoosh 02 Short - Jon Bjork.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="223665965"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Swoosh 02 Short - Jon Bjork" ID="{C7F5CF04-3E4F-4B1A-B0E7-2AACE00BD7E8}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="ES_Swoosh 12 Short - Jon Bjork" ID="{8DFB793A-5878-4A1C-9007-A69B2E8F1A63}" ShortID="599687854">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ES_Swoosh 12 Short - Jon Bjork" ID="{A5CC32F6-56D8-47B5-97CE-D2D99FE70E6D}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="2.2976525297619"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="4.03172991071429"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ES_Swoosh 12 Short - Jon Bjork.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="326766638"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Swoosh 12 Short - Jon Bjork" ID="{A5CC32F6-56D8-47B5-97CE-D2D99FE70E6D}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<ObjectLists/>
+						</BlendContainer>
+						<Folder Name="Stalagmites" ID="{12BDC71B-EF6B-4F0F-BE05-A1E0956223F7}" ShortID="816062820">
+							<ChildrenList>
+								<BlendContainer Name="Ceiling Crack" ID="{37F02A4E-D502-454C-BE1E-2C3193BA1596}" ShortID="882565464">
+									<PropertyList>
+										<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>3</Value>
+											</ValueList>
+										</Property>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="ES_Avalanche Rock Cracks 2 - SFX Producer" ID="{C0679BB8-E2F3-43F0-B1DF-3F3D3DAEB4C6}" ShortID="437776145">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>8</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Avalanche Rock Cracks 2 - SFX Producer" ID="{C3B0CD20-66B2-40C2-AC4F-B63738F49248}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.42284348864994"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.219450418160096"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.27923536439666"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_Avalanche Rock Cracks 2 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="836889846"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Avalanche Rock Cracks 2 - SFX Producer" ID="{C3B0CD20-66B2-40C2-AC4F-B63738F49248}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ES_Swoosh 09 Short - Jon Bjork" ID="{8F4689A3-E616-435A-A923-3F329477BE7A}" ShortID="570441219">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>400</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>9</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Swoosh 09 Short - Jon Bjork" ID="{000941E2-1A19-4E10-9D56-1E25B85F759F}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.594643817204301"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="1.35446647252091"/>
+														<Property Name="FadeOutShape" Type="int16" Value="1"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.23333532457189"/>
+														<Property Name="TrimEnd" Type="Real64" Value="3.39167214257267"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_Swoosh 09 Short - Jon Bjork.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="416998960"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Swoosh 09 Short - Jon Bjork" ID="{000941E2-1A19-4E10-9D56-1E25B85F759F}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ES_Ceiling Crack Wood - SFX Producer" ID="{DEF1F1B4-EDD6-459F-9E5C-7C0810F14C2F}" ShortID="137337296">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>6</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Ceiling Crack Wood - SFX Producer" ID="{37D5F55C-4B5F-4605-8257-062CBB517EB6}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.795679808841099"/>
+														<Property Name="FadeOutShape" Type="int16" Value="1"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.10912943050577"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_Ceiling Crack Wood - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="124169010"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Ceiling Crack Wood - SFX Producer" ID="{37D5F55C-4B5F-4605-8257-062CBB517EB6}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</BlendContainer>
+								<BlendContainer Name="Ground Impact" ID="{D6076A34-FB53-4915-949D-14644737C76B}" ShortID="773520015">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{301004DB-EB41-494F-82D3-24FDCFF9BCFE}">
+														<PropertyList>
+															<Property Name="Max" Type="Real64" Value="300"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>3</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="ES_Sonic Boom 4 - SFX Producer" ID="{3622ED18-911E-4F56-A1E9-9E93A2957349}" ShortID="651801374">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>15</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Sonic Boom 4 - SFX Producer" ID="{A115E2F4-F543-44FF-BE00-6F1460A4BE7D}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.270808442851453"/>
+														<Property Name="FadeOutShape" Type="int16" Value="0"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.0866587017124651"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.1915571485464"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_Sonic Boom 4 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="223048066"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Sonic Boom 4 - SFX Producer" ID="{A115E2F4-F543-44FF-BE00-6F1460A4BE7D}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ES_Earthquake Tremor Rocks 2 - SFX Producer" ID="{9F14E9DE-DEF4-4F89-AC89-67DE73CBE2F0}" ShortID="896836470">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Earthquake Tremor Rocks 2 - SFX Producer" ID="{1B134340-C112-4241-A93A-C89E525EEB92}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.595918757467144"/>
+														<Property Name="FadeOutShape" Type="int16" Value="0"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.84194026284349"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_Earthquake Tremor Rocks 2 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1018062011"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Earthquake Tremor Rocks 2 - SFX Producer" ID="{1B134340-C112-4241-A93A-C89E525EEB92}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ES_Rock Debris Spill 2 - SFX Producer" ID="{C69EC47A-986A-4C5F-8502-9BAE5E7B7F7A}" ShortID="87647667">
+											<PropertyList>
+												<Property Name="InitialDelay" Type="Real64">
+													<ValueList>
+														<Value>0.2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>3</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{C6890341-C64E-4692-8934-AA315017E326}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="500"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>5</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Rock Debris Spill 2 - SFX Producer" ID="{9B122356-881A-4A90-AA1A-82312C1D53FC}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.376965352449224"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.23228673835126"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_Rock Debris Spill 2 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="803151951"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Rock Debris Spill 2 - SFX Producer" ID="{9B122356-881A-4A90-AA1A-82312C1D53FC}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</BlendContainer>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{C0368863-E296-4CEF-8414-B7D2D6740F0E}" ShortID="637683217">
@@ -631,383 +1088,31 @@
 				</Folder>
 				<Folder Name="Enemies" ID="{41638AC0-6BD1-46BD-A53F-DEAADC79C010}" ShortID="712972026">
 					<ChildrenList>
-						<Sound Name="Earthquake" ID="{F0CA4DD7-8064-40E9-ADDF-7B8C07903D55}" ShortID="225385521">
-							<PropertyList>
-								<Property Name="3DSpatialization" Type="int16" Value="1"/>
-								<Property Name="EnableAttenuation" Type="bool" Value="False"/>
-								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
-								<Property Name="ListenerRelativeRouting" Type="bool" Value="False"/>
-								<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
-								<Property Name="MaxSoundPerInstance" Type="int16">
-									<ValueList>
-										<Value>1</Value>
-									</ValueList>
-								</Property>
-								<Property Name="UseMaxSoundPerInstance" Type="bool">
-									<ValueList>
-										<Value>True</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Attenuation">
-									<Custom>
-										<Attenuation Name="Attenuation (Custom)" ID="{95075429-98E0-4F95-87E1-B515005010C8}" ShortID="60989872">
-											<CurveUsageInfoList>
-												<VolumeDryUsage>
-													<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-														<Curve Name="VolumeDry" ID="{61F38586-FF3B-4A66-88FA-5DC05DD4817C}">
-															<PropertyList>
-																<Property Name="Flags" Type="int32" Value="3"/>
-															</PropertyList>
-															<PointList>
-																<Point>
-																	<XPos>0</XPos>
-																	<YPos>0</YPos>
-																	<Flags>5</Flags>
-																</Point>
-																<Point>
-																	<XPos>100</XPos>
-																	<YPos>-200</YPos>
-																	<Flags>37</Flags>
-																</Point>
-															</PointList>
-														</Curve>
-													</CurveUsageInfo>
-												</VolumeDryUsage>
-												<VolumeWetGameUsage>
-													<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-												</VolumeWetGameUsage>
-												<VolumeWetUserUsage>
-													<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-												</VolumeWetUserUsage>
-												<LowPassFilterUsage>
-													<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-												</LowPassFilterUsage>
-												<HighPassFilterUsage>
-													<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-												</HighPassFilterUsage>
-												<SpreadUsage>
-													<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-												</SpreadUsage>
-												<FocusUsage>
-													<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-												</FocusUsage>
-											</CurveUsageInfoList>
-										</Attenuation>
-									</Custom>
-								</Reference>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-								</Reference>
-							</ReferenceList>
+						<Folder Name="Boss" ID="{A8C629B3-EBF9-443B-9791-4E1CAF964B75}" ShortID="401465046">
 							<ChildrenList>
-								<AudioFileSource Name="quake-and-break-99034" ID="{8B51F0B9-98A3-4330-A1E1-F19BB308A36E}">
+								<Sound Name="Roar" ID="{A63F4444-4040-46C8-B77B-1F7F8D6ED935}" ShortID="827593466">
 									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.544110992529349"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="1.70110960757781"/>
-										<Property Name="FadeOutShape" Type="int16" Value="0"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimBegin" Type="Real64" Value="1.32140114969752"/>
-										<Property Name="TrimEnd" Type="Real64" Value="6.76663599458728"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>quake-and-break-99034.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="678769752"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="quake-and-break-99034" ID="{8B51F0B9-98A3-4330-A1E1-F19BB308A36E}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="WormRoar" ID="{72E8272F-7641-4D38-9A67-C5547C903C68}" ShortID="126410661">
-							<PropertyList>
-								<Property Name="3DSpatialization" Type="int16" Value="1"/>
-								<Property Name="CenterPercentage" Type="int32">
-									<ValueList>
-										<Value>50</Value>
-									</ValueList>
-								</Property>
-								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
-								<Property Name="Lowpass" Type="int16">
-									<ValueList>
-										<Value>20</Value>
-									</ValueList>
-								</Property>
-								<Property Name="MaxSoundPerInstance" Type="int16">
-									<ValueList>
-										<Value>1</Value>
-									</ValueList>
-								</Property>
-								<Property Name="Pitch" Type="int32">
-									<ValueList>
-										<Value>-150</Value>
-									</ValueList>
-									<ModifierList>
-										<ModifierInfo>
-											<Modifier Name="" ID="{C976CB89-6A6C-4015-AB58-9EE2FA54A9A7}">
-												<PropertyList>
-													<Property Name="Max" Type="Real64" Value="300"/>
-												</PropertyList>
-											</Modifier>
-										</ModifierInfo>
-									</ModifierList>
-								</Property>
-								<Property Name="UseMaxSoundPerInstance" Type="bool">
-									<ValueList>
-										<Value>True</Value>
-									</ValueList>
-								</Property>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>5</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="dragon-low-roar-mammel-growl-94668" ID="{5244DA61-1E37-4553-9113-6DF6F29ABEE6}">
-									<PropertyList>
-										<Property Name="LoopBegin" Type="Real64" Value="0"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="3.2494"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>dragon-low-roar-mammel-growl-94668.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="34852454"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="dragon-low-roar-mammel-growl-94668" ID="{5244DA61-1E37-4553-9113-6DF6F29ABEE6}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="WormAttack" ID="{8AC589FC-B000-4D88-8913-C0161A1579E6}" ShortID="798099975">
-							<PropertyList>
-								<Property Name="3DSpatialization" Type="int16" Value="1"/>
-								<Property Name="CenterPercentage" Type="int32">
-									<ValueList>
-										<Value>50</Value>
-									</ValueList>
-								</Property>
-								<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
-								<Property Name="MaxSoundPerInstance" Type="int16">
-									<ValueList>
-										<Value>1</Value>
-									</ValueList>
-								</Property>
-								<Property Name="Pitch" Type="int32">
-									<ValueList>
-										<Value>100</Value>
-									</ValueList>
-									<ModifierList>
-										<ModifierInfo>
-											<Modifier Name="" ID="{214A0025-8E97-4510-8F41-E7AD730186D5}">
-												<PropertyList>
-													<Property Name="Enabled" Type="bool" Value="True"/>
-													<Property Name="Max" Type="Real64" Value="200"/>
-												</PropertyList>
-											</Modifier>
-										</ModifierInfo>
-									</ModifierList>
-								</Property>
-								<Property Name="UseMaxSoundPerInstance" Type="bool">
-									<ValueList>
-										<Value>True</Value>
-									</ValueList>
-								</Property>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-4</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Dragon fire" ID="{0EBE67DB-1BEE-4BBF-A262-1FE567B0DCA4}">
-									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.236848432494691"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimBegin" Type="Real64" Value="2.95363927581615"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>Dragon fire.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="199242398"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Dragon fire" ID="{0EBE67DB-1BEE-4BBF-A262-1FE567B0DCA4}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<BlendContainer Name="BeetleAttack" ID="{7850B448-DC3A-474B-973E-5C97ABB7454C}" ShortID="1037568321">
-							<PropertyList>
-								<Property Name="3DSpatialization" Type="int16" Value="1"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-5</Value>
-									</ValueList>
-									<ModifierList>
-										<ModifierInfo>
-											<Modifier Name="" ID="{1CDD1881-4827-47EA-8117-7554B7822695}"/>
-										</ModifierInfo>
-									</ModifierList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<RandomSequenceContainer Name="Hit" ID="{6008E93E-59FA-480C-916D-9FCD092105D7}" ShortID="307738257">
-									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+										<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>1</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>200</Value>
 											</ValueList>
 										</Property>
-										<Property Name="Volume" Type="Real64">
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
 											<ValueList>
-												<Value>-8</Value>
+												<Value>True</Value>
 											</ValueList>
-											<ModifierList>
-												<ModifierInfo>
-													<Modifier Name="" ID="{E78580EB-4F62-48DD-8AFA-2970AEA7D4F1}">
-														<PropertyList>
-															<Property Name="Enabled" Type="bool" Value="True"/>
-															<Property Name="Max" Type="Real64" Value="7"/>
-															<Property Name="Min" Type="Real64" Value="-3"/>
-														</PropertyList>
-													</Modifier>
-												</ModifierInfo>
-											</ModifierList>
 										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<Sound Name="ES_Punch Face 5 - SFX Producer" ID="{13469ADB-CEE1-46F0-BBC2-66C7AD1957A5}" ShortID="777857556">
-											<PropertyList>
-												<Property Name="Pitch" Type="int32">
-													<ValueList>
-														<Value>200</Value>
-													</ValueList>
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{3CBD3306-9E27-45AE-BFC4-533585F293F9}">
-																<PropertyList>
-																	<Property Name="Enabled" Type="bool" Value="True"/>
-																	<Property Name="Max" Type="Real64" Value="400"/>
-																</PropertyList>
-															</Modifier>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Punch Face 5 - SFX Producer" ID="{708021DC-C9D9-4811-A175-A1E0E2C2EB2A}">
-													<Language>SFX</Language>
-													<AudioFile>ES_Punch Face 5 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="132361843"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Punch Face 5 - SFX Producer" ID="{708021DC-C9D9-4811-A175-A1E0E2C2EB2A}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="ES_Punch 44 - SFX Producer" ID="{975C00F1-82A8-48BC-A137-E106DA24AF5E}" ShortID="217391775">
-											<PropertyList>
-												<Property Name="Pitch" Type="int32">
-													<ValueList>
-														<Value>300</Value>
-													</ValueList>
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{EA76621A-97D4-47F2-9408-D0C8AC840D51}">
-																<PropertyList>
-																	<Property Name="Enabled" Type="bool" Value="True"/>
-																	<Property Name="Max" Type="Real64" Value="300"/>
-																</PropertyList>
-															</Modifier>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Punch 44 - SFX Producer" ID="{725306A9-8FA5-4A36-813B-058CA39B3CFD}">
-													<Language>SFX</Language>
-													<AudioFile>ES_Punch 44 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="53399867"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Punch 44 - SFX Producer" ID="{725306A9-8FA5-4A36-813B-058CA39B3CFD}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-									</ChildrenList>
-									<ObjectLists/>
-								</RandomSequenceContainer>
-								<RandomSequenceContainer Name="Wings" ID="{5BF07F4F-3653-4117-B3C8-06B2685BA78F}" ShortID="210492422">
-									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>10</Value>
+												<Value>20</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -1020,224 +1125,703 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="ES_Insect Wings Fly 9 - SFX Producer" ID="{295CD25F-8058-4ECC-B28A-0EF8EA8EEE11}" ShortID="403605984">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Insect Wings Fly 9 - SFX Producer" ID="{22987493-864F-40B0-8589-F975AE75A19D}">
-													<PropertyList>
-														<Property Name="FadeInShape" Type="int16" Value="6"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.760059259259258"/>
-														<Property Name="FadeOutShape" Type="int16" Value="6"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimEnd" Type="Real64" Value="1.09297777777778"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>ES_Insect Wings Fly 9 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="589813107"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Insect Wings Fly 9 - SFX Producer" ID="{22987493-864F-40B0-8589-F975AE75A19D}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="ES_Insect Wings Fly 4 - SFX Producer" ID="{CE3A77C8-5B07-4F43-BF7B-69D6FB0B9354}" ShortID="762499482">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Insect Wings Fly 4 - SFX Producer" ID="{1F7851C4-5E7A-47D3-B688-E6F161B7572F}">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.487733333333333"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="3.04177777777778"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>ES_Insect Wings Fly 4 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="170332924"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Insect Wings Fly 4 - SFX Producer" ID="{1F7851C4-5E7A-47D3-B688-E6F161B7572F}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
+										<AudioFileSource Name="249686__cylon8472__cthulhu-growl" ID="{72E42D6B-FE51-4BAA-9D5D-E56CAA9B226A}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.566458689202553"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.242462454628364"/>
+												<Property Name="FadeOutShape" Type="int16" Value="0"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="1.69372761913983"/>
+												<Property Name="TrimEnd" Type="Real64" Value="3.96959057450625"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>249686__cylon8472__cthulhu-growl.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="929986589"/>
+											</MediaIDList>
+										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
-								</RandomSequenceContainer>
-								<RandomSequenceContainer Name="Voice" ID="{C6534B1A-4FBC-464A-BDA1-6EC53535F985}" ShortID="966462992">
-									<PropertyList>
-										<Property Name="3DSpatialization" Type="int16" Value="1"/>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>-7</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<Sound Name="ES_Alien Chirp Critter 1 - SFX Producer_01" ID="{BB8644CB-4C2C-42B8-95C7-926C1572E259}" ShortID="171182258">
-											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
-												<Property Name="Pitch" Type="int32">
-													<ValueList>
-														<Value>-500</Value>
-													</ValueList>
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{E74C6414-18C8-4C38-82F3-CB4D75FBDF43}">
-																<PropertyList>
-																	<Property Name="Enabled" Type="bool" Value="True"/>
-																	<Property Name="Min" Type="Real64" Value="-250"/>
-																</PropertyList>
-															</Modifier>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Alien Chirp Critter 1 - SFX Producer" ID="{8C5877D7-0BCA-40E0-B48F-5F64549B2E34}">
-													<PropertyList>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.382552691090004"/>
-														<Property Name="TrimEnd" Type="Real64" Value="0.585783808231569"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>ES_Alien Chirp Critter 1 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="519900430"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Alien Chirp Critter 1 - SFX Producer" ID="{8C5877D7-0BCA-40E0-B48F-5F64549B2E34}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="ES_Alien Chirp Critter 2 - SFX Producer_01" ID="{9A0D3F40-7CAF-4ECA-836B-0AD0F6AB3848}" ShortID="652182623">
-											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
-												<Property Name="Pitch" Type="int32">
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{542009A7-5136-4C1D-92A8-C18702ABB8CC}">
-																<PropertyList>
-																	<Property Name="Enabled" Type="bool" Value="True"/>
-																	<Property Name="Min" Type="Real64" Value="-500"/>
-																</PropertyList>
-															</Modifier>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Alien Chirp Critter 2 - SFX Producer" ID="{C4D98099-0FEC-4D60-B0AD-1ED888EDE2A0}">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.0287146087743103"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.0125626413387607"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.309579375848033"/>
-														<Property Name="TrimEnd" Type="Real64" Value="0.618261420171868"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>ES_Alien Chirp Critter 2 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="364841447"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Alien Chirp Critter 2 - SFX Producer" ID="{C4D98099-0FEC-4D60-B0AD-1ED888EDE2A0}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-									</ChildrenList>
-									<ObjectLists/>
-								</RandomSequenceContainer>
-							</ChildrenList>
-							<ObjectLists/>
-						</BlendContainer>
-						<BlendContainer Name="BeetleDie" ID="{B0A8F7CD-488D-48C0-B8AC-F7A6DAFEE2B2}" ShortID="337783972">
-							<PropertyList>
-								<Property Name="3DSpatialization" Type="int16" Value="1"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>2</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<RandomSequenceContainer Name="Body" ID="{4F1D847A-CBCE-4065-AA64-4E9A9B59AC5E}" ShortID="154284867">
+									<ActiveSourceList>
+										<ActiveSource Name="249686__cylon8472__cthulhu-growl" ID="{72E42D6B-FE51-4BAA-9D5D-E56CAA9B226A}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="MeleeStand" ID="{96F91E02-3963-4C24-84FB-0414DB0FDF0E}" ShortID="75207228">
 									<PropertyList>
 										<Property Name="3DSpatialization" Type="int16" Value="1"/>
 										<Property Name="MakeUpGain" Type="Real64">
-											<ModifierList>
-												<ModifierInfo>
-													<Modifier Name="" ID="{F4FBF693-969C-4522-B00B-E886C844EF04}">
-														<PropertyList>
-															<Property Name="Enabled" Type="bool" Value="True"/>
-															<Property Name="Max" Type="Real64" Value="4"/>
-															<Property Name="Min" Type="Real64" Value="-3"/>
-														</PropertyList>
-													</Modifier>
-												</ModifierInfo>
-											</ModifierList>
+											<ValueList>
+												<Value>15</Value>
+											</ValueList>
+										</Property>
+										<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>2</Value>
+											</ValueList>
 										</Property>
 										<Property Name="Pitch" Type="int32">
 											<ModifierList>
 												<ModifierInfo>
-													<Modifier Name="" ID="{987534BB-C33D-4E4C-B1AD-3408957A653A}">
+													<Modifier Name="" ID="{0407D6CF-86CB-455E-937A-BC31134BB3B4}">
 														<PropertyList>
 															<Property Name="Enabled" Type="bool" Value="True"/>
-															<Property Name="Max" Type="Real64" Value="100"/>
-															<Property Name="Min" Type="Real64" Value="-25"/>
+															<Property Name="Max" Type="Real64" Value="400"/>
+															<Property Name="Min" Type="Real64" Value="-200"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ES_Monster Growl 11 - SFX Producer" ID="{5BBB2BE2-0A23-4022-941E-5376B0DE18B0}">
+											<Language>SFX</Language>
+											<AudioFile>ES_Monster Growl 11 - SFX Producer.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="144556513"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Monster Growl 11 - SFX Producer" ID="{5BBB2BE2-0A23-4022-941E-5376B0DE18B0}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Jump" ID="{8337BE53-5184-4003-8FCE-C746C29BC050}" ShortID="161494246">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</Sound>
+								<Sound Name="Walk" ID="{74B641D6-1A08-4DBC-874B-EF7CE545169E}" ShortID="961077648">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</Sound>
+								<Sound Name="IdleBreathe" ID="{9C048A04-A9CE-4198-BA16-8C204991CC2A}" ShortID="810700582">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="InitialDelay" Type="Real64">
+											<ValueList>
+												<Value>1.5</Value>
+											</ValueList>
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{08C7CDCF-D42E-40BF-8456-D41C1305ADA1}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="0.5"/>
+															<Property Name="Min" Type="Real64" Value="-0.5"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+										<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>1</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{EBB53E59-84D4-4592-ACD7-D36D5CDF5655}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="450"/>
+															<Property Name="Min" Type="Real64" Value="-200"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{3236F474-22C4-41BD-BBDC-68D29E38BFB0}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="3"/>
+															<Property Name="Min" Type="Real64" Value="-3"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ES_Creature Growl - SFX Producer" ID="{2ECD86A3-B181-418C-8CE8-FDC2E28B225F}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="6.11480701754386"/>
+												<Property Name="FadeOutShape" Type="int16" Value="0"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="7.62365550239234"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ES_Creature Growl - SFX Producer.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="97924898"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Creature Growl - SFX Producer" ID="{2ECD86A3-B181-418C-8CE8-FDC2E28B225F}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<RandomSequenceContainer Name="Voice" ID="{2210AC87-90D5-481C-BC73-D229E2AFAF3D}" ShortID="73303484">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>1</Value>
+											</ValueList>
+										</Property>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Voice" ID="{E02F3C81-F689-43D6-8280-A740B0823AFC}" ShortID="992414892">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{E5F3B8F4-79E5-404E-BFF6-95548B40085D}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="200"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>8</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Monster Growl 3 - SFX Producer" ID="{C2A2513B-4910-4DD2-BB83-51AF20B03FBC}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.05898136645963"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_Monster Growl 3 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="955556891"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Monster Growl 3 - SFX Producer" ID="{C2A2513B-4910-4DD2-BB83-51AF20B03FBC}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="Footsteps" ID="{7EFF1146-05F3-4167-94E9-7A44FCA9626B}" ShortID="114386429">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{4091977A-353E-48B2-812F-EBF10B2CF6E7}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="500"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>20</Value>
+											</ValueList>
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{DF200BA1-D8EA-4082-A9E0-2ECB8D8AEC5F}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="10"/>
+															<Property Name="Min" Type="Real64" Value="-10"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+											<ObjectRef Name="Room_Small" ID="{577F1466-A63B-47F7-98BD-C56E433F8B5D}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="ES_Earthquake Tremor 2 - SFX Producer" ID="{1C7B9AF1-BC94-45C8-AEB2-C056C88E5D44}" ShortID="769041480">
+											<PropertyList>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>25</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{FF29DA33-C914-489B-B4C7-977F8C473D8E}"/>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>30</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Earthquake Tremor 2 - SFX Producer" ID="{4F3E520A-812E-47F2-B9FB-6CFFD9EF3DFC}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.273808695652175"/>
+														<Property Name="FadeOutShape" Type="int16" Value="0"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.53240579710145"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_Earthquake Tremor 2 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="960655361"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Earthquake Tremor 2 - SFX Producer" ID="{4F3E520A-812E-47F2-B9FB-6CFFD9EF3DFC}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ES_Earthquake Tremor 3 - SFX Producer" ID="{6072B9C5-3DC9-45F7-9B88-41F3918F05FB}" ShortID="951652176">
+											<PropertyList>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>25</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>30</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Earthquake Tremor 3 - SFX Producer" ID="{DDD7FBC6-CDEC-4549-80DC-EB7FB065BE57}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.4224"/>
+														<Property Name="FadeOutShape" Type="int16" Value="0"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.669257142857142"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_Earthquake Tremor 3 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="921763871"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Earthquake Tremor 3 - SFX Producer" ID="{DDD7FBC6-CDEC-4549-80DC-EB7FB065BE57}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</RandomSequenceContainer>
+								<Sound Name="BossSpawnCrystalLaugh" ID="{2A3BA01A-46C5-45C3-B77C-5BC46AA728AF}" ShortID="369224443">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-200</Value>
+											</ValueList>
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{F6DD352A-B6AF-490F-B5D0-4F3C29C33742}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="150"/>
+															<Property Name="Min" Type="Real64" Value="-100"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>8</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ES_Devil Laugh 2 - SFX Producer" ID="{AC1A560B-23C7-4143-A05A-06B28758A186}">
+											<Language>SFX</Language>
+											<AudioFile>ES_Devil Laugh 2 - SFX Producer.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="376674477"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Devil Laugh 2 - SFX Producer" ID="{AC1A560B-23C7-4143-A05A-06B28758A186}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<BlendContainer Name="FloorBoom" ID="{1266B89B-CB17-46A3-B51D-3D28B68EE361}" ShortID="36755270">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="ES_Earthquake Tremor 5 - SFX Producer" ID="{45863891-8845-4669-ABE3-D2EFD85DF589}" ShortID="255701785">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Earthquake Tremor 5 - SFX Producer" ID="{563F9259-144E-46DC-93E9-6C97966F063F}">
+													<Language>SFX</Language>
+													<AudioFile>ES_Earthquake Tremor 5 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="761932427"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Earthquake Tremor 5 - SFX Producer" ID="{563F9259-144E-46DC-93E9-6C97966F063F}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Boom" ID="{13F623ED-9AA3-445B-9806-9AA1F4775422}" ShortID="908636236">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>40</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverrideEffect" Type="bool" Value="True"/>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{0493BEC2-FF77-40F3-BF9F-E92000371D22}">
+																<PropertyList>
+																	<Property Name="Max" Type="Real64" Value="200"/>
+																	<Property Name="Min" Type="Real64" Value="-200"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{3CE76A55-F75B-43FD-99AE-BA3ABA991CC9}">
+																<PropertyList>
+																	<Property Name="Max" Type="Real64" Value="10"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+													<ObjectRef Name="Room_Large" ID="{AD8EFAFC-7121-4D5F-BE4D-B13FBD6CEBAE}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Glass Boom - SFX Producer" ID="{6C9466CC-E320-4BD5-B4F4-54924F5C11C5}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.360626086956522"/>
+														<Property Name="FadeOutShape" Type="int16" Value="0"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.991721739130434"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.60779130434783"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_Glass Boom - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="91551775"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Glass Boom - SFX Producer" ID="{6C9466CC-E320-4BD5-B4F4-54924F5C11C5}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ES_Earthquake Tremor 2 - SFX Producer" ID="{759F06F4-9595-449B-9C5E-565EDB286248}" ShortID="908845983">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Earthquake Tremor 2 - SFX Producer" ID="{4BB1D98A-478F-491E-AC33-6249FD00993D}">
+													<Language>SFX</Language>
+													<AudioFile>ES_Earthquake Tremor 2 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="546278332"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Earthquake Tremor 2 - SFX Producer" ID="{4BB1D98A-478F-491E-AC33-6249FD00993D}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</BlendContainer>
+								<BlendContainer Name="Death" ID="{C5786BD2-F7D3-4B94-AA7E-ADA4571EB150}" ShortID="121606125">
+									<PropertyList>
+										<Property Name="MakeUpGain" Type="Real64">
+											<ValueList>
+												<Value>10</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>8</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Low" ID="{D0BA9B57-B5AF-4B4A-B6C3-57F7A8EF318B}" ShortID="685070087">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>10</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Monster Groan 6 - SFX Producer" ID="{A21A683F-2CAB-4ADC-9FBC-5DE4E70CD452}">
+													<Language>SFX</Language>
+													<AudioFile>ES_Monster Groan 6 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="416633218"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Monster Groan 6 - SFX Producer" ID="{A21A683F-2CAB-4ADC-9FBC-5DE4E70CD452}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="High" ID="{F7D69A2C-ABAA-403D-B225-A23F0A8B94E8}" ShortID="716852189">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Dinosaur Groan 3 - SFX Producer" ID="{40E678DB-5FD3-4544-A27D-CF903701014A}">
+													<Language>SFX</Language>
+													<AudioFile>ES_Dinosaur Groan 3 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="960851544"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Dinosaur Groan 3 - SFX Producer" ID="{40E678DB-5FD3-4544-A27D-CF903701014A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</BlendContainer>
+								<Sound Name="BossWinsLaugh" ID="{7F85AFF2-9484-4887-B270-5BDA6C4A9B1F}" ShortID="728023110">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="InitialDelay" Type="Real64">
+											<ValueList>
+												<Value>1</Value>
+											</ValueList>
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{A474D7DF-87E5-46D8-8B62-022E0139DB77}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="2"/>
 														</PropertyList>
 													</Modifier>
 												</ModifierInfo>
@@ -1258,102 +1842,141 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="ES_Insect Squish 24 - SFX Producer" ID="{96C8A800-7C2B-4C98-8691-4C5C83D99A29}" ShortID="812162284">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Insect Squish 24 - SFX Producer" ID="{C733E81C-13D6-4731-BE6D-19663842F870}">
-													<Language>SFX</Language>
-													<AudioFile>ES_Insect Squish 24 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="839850156"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Insect Squish 24 - SFX Producer" ID="{C733E81C-13D6-4731-BE6D-19663842F870}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="ES_Insect Squish 25 - SFX Producer" ID="{B116F33E-7693-4B21-9A7A-7BA8B96549C2}" ShortID="681600797">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Insect Squish 25 - SFX Producer" ID="{A3D4E126-6530-4ACE-B157-5929A91382A1}">
-													<Language>SFX</Language>
-													<AudioFile>ES_Insect Squish 25 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="908863149"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Insect Squish 25 - SFX Producer" ID="{A3D4E126-6530-4ACE-B157-5929A91382A1}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="ES_Insect Squish 20 - SFX Producer" ID="{B03D32A4-D563-4F66-BB2F-D182B32F73FF}" ShortID="169717815">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Insect Squish 20 - SFX Producer" ID="{409A553F-066B-4469-AD24-D3687B2F9EFA}">
-													<Language>SFX</Language>
-													<AudioFile>ES_Insect Squish 20 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="238216169"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Insect Squish 20 - SFX Producer" ID="{409A553F-066B-4469-AD24-D3687B2F9EFA}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="ES_Insect Squish 23 - SFX Producer" ID="{68177EA0-61FA-4604-B151-A320916149A1}" ShortID="21419529">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Insect Squish 23 - SFX Producer" ID="{E33012D6-2833-4AC7-A857-7773D77CADE1}">
-													<Language>SFX</Language>
-													<AudioFile>ES_Insect Squish 23 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="673438877"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Insect Squish 23 - SFX Producer" ID="{E33012D6-2833-4AC7-A857-7773D77CADE1}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
+										<AudioFileSource Name="ES_Devil Laugh 1 - SFX Producer" ID="{DBA5F561-45FA-4162-B03D-CD2343E77CCB}">
+											<Language>SFX</Language>
+											<AudioFile>ES_Devil Laugh 1 - SFX Producer.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="421868321"/>
+											</MediaIDList>
+										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
-								</RandomSequenceContainer>
-								<BlendContainer Name="BeetleVoice" ID="{33BAC00F-8892-431B-BE35-1FC5AC0412DC}" ShortID="614834407">
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Devil Laugh 1 - SFX Producer" ID="{DBA5F561-45FA-4162-B03D-CD2343E77CCB}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Worm" ID="{0AFA0BB5-7670-4010-B2AC-8CAE14C853F1}" ShortID="677591503">
+							<ChildrenList>
+								<Sound Name="Earthquake" ID="{F0CA4DD7-8064-40E9-ADDF-7B8C07903D55}" ShortID="225385521">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+										<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+										<Property Name="ListenerRelativeRouting" Type="bool" Value="False"/>
+										<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>1</Value>
+											</ValueList>
+										</Property>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Attenuation">
+											<Custom>
+												<Attenuation Name="Attenuation (Custom)" ID="{95075429-98E0-4F95-87E1-B515005010C8}" ShortID="60989872">
+													<CurveUsageInfoList>
+														<VolumeDryUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
+																<Curve Name="VolumeDry" ID="{61F38586-FF3B-4A66-88FA-5DC05DD4817C}">
+																	<PropertyList>
+																		<Property Name="Flags" Type="int32" Value="3"/>
+																	</PropertyList>
+																	<PointList>
+																		<Point>
+																			<XPos>0</XPos>
+																			<YPos>0</YPos>
+																			<Flags>5</Flags>
+																		</Point>
+																		<Point>
+																			<XPos>100</XPos>
+																			<YPos>-200</YPos>
+																			<Flags>37</Flags>
+																		</Point>
+																	</PointList>
+																</Curve>
+															</CurveUsageInfo>
+														</VolumeDryUsage>
+														<VolumeWetGameUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+														</VolumeWetGameUsage>
+														<VolumeWetUserUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+														</VolumeWetUserUsage>
+														<LowPassFilterUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+														</LowPassFilterUsage>
+														<HighPassFilterUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+														</HighPassFilterUsage>
+														<SpreadUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+														</SpreadUsage>
+														<FocusUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+														</FocusUsage>
+													</CurveUsageInfoList>
+												</Attenuation>
+											</Custom>
+										</Reference>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="quake-and-break-99034" ID="{8B51F0B9-98A3-4330-A1E1-F19BB308A36E}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.544110992529349"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="1.70110960757781"/>
+												<Property Name="FadeOutShape" Type="int16" Value="0"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="1.32140114969752"/>
+												<Property Name="TrimEnd" Type="Real64" Value="6.76663599458728"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>quake-and-break-99034.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="678769752"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="quake-and-break-99034" ID="{8B51F0B9-98A3-4330-A1E1-F19BB308A36E}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<BlendContainer Name="HideAndSand" ID="{A2905973-8F9A-4F8F-9504-D52A69E8E83C}" ShortID="698102155">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="2"/>
+										<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+										<Property Name="Highpass" Type="int16">
+											<ValueList>
+												<Value>25</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{9100D583-41B7-4137-BB66-4D8462228C0B}">
+														<PropertyList>
+															<Property Name="Max" Type="Real64" Value="300"/>
+															<Property Name="Min" Type="Real64" Value="-200"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="SpeakerPanning3DSpatializationMix" Type="int32" Value="0"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
@@ -1363,22 +1986,18 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="Low" ID="{21D7FDBB-8236-4BA8-A28D-29EAC8D8B286}" ShortID="858082631">
+										<Sound Name="Sand" ID="{E8D59F81-FCBC-4CBE-B923-4099966356F4}" ShortID="952266040">
 											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
-												<Property Name="Highpass" Type="int16">
+												<Property Name="InitialDelay" Type="Real64">
 													<ValueList>
-														<Value>35</Value>
+														<Value>0.3</Value>
 													</ValueList>
 												</Property>
-												<Property Name="Pitch" Type="int32">
-													<ValueList>
-														<Value>500</Value>
-													</ValueList>
-												</Property>
+												<Property Name="ListenerRelativeRouting" Type="bool" Value="False"/>
+												<Property Name="OverridePositioning" Type="bool" Value="True"/>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-15</Value>
+														<Value>30</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -1391,31 +2010,902 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ES_Monster Snarl Growl 8 - SFX Producer" ID="{0EF5F3C8-E808-4DEC-B668-F4913CFE1DFC}">
+												<AudioFileSource Name="WormGiantSpawn" ID="{D6961B87-CA70-4ED9-A50E-081A8569A563}">
 													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.260507379395284"/>
+														<Property Name="FadeInShape" Type="int16" Value="6"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="1.69403711058843"/>
+														<Property Name="FadeOutShape" Type="int16" Value="0"/>
 														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="5.31543461829176"/>
+														<Property Name="TrimEnd" Type="Real64" Value="7.6437398534293"/>
 													</PropertyList>
 													<Language>SFX</Language>
-													<AudioFile>ES_Monster Snarl Growl 8 - SFX Producer.wav</AudioFile>
+													<AudioFile>WormGiantSpawn.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="532585285"/>
+														<MediaID ID="668240954"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ES_Monster Snarl Growl 8 - SFX Producer" ID="{0EF5F3C8-E808-4DEC-B668-F4913CFE1DFC}" Platform="Linked"/>
+												<ActiveSource Name="WormGiantSpawn" ID="{D6961B87-CA70-4ED9-A50E-081A8569A563}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-										<RandomSequenceContainer Name="High" ID="{ED61487D-628F-4635-B85D-5F94E4A131CE}" ShortID="125233593">
+										<Sound Name="WormBleat" ID="{F6882170-98F4-44F9-8047-092736D220C6}" ShortID="572410557">
 											<PropertyList>
 												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>400</Value>
+													</ValueList>
 													<ModifierList>
 														<ModifierInfo>
-															<Modifier Name="" ID="{6CAE2328-5AB0-47D5-B41C-8B5E79126A76}"/>
+															<Modifier Name="" ID="{51B5409A-AC68-4A06-BE81-398ACD705208}">
+																<PropertyList>
+																	<Property Name="Max" Type="Real64" Value="500"/>
+																</PropertyList>
+															</Modifier>
 														</ModifierInfo>
 													</ModifierList>
 												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Dinosaur Bleat 1 - SFX Producer" ID="{E5ABE769-7D5D-4AEB-92C2-3F38C0AAB5C9}">
+													<Language>SFX</Language>
+													<AudioFile>ES_Dinosaur Bleat 1 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="197652279"/>
+													</MediaIDList>
+												</AudioFileSource>
+												<AudioFileSource Name="ES_Monster Bleat Groan 1 - SFX Producer" ID="{125B559F-FF22-4685-A158-03BA76B5713B}">
+													<Language>SFX</Language>
+													<AudioFile>ES_Monster Bleat Groan 1 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="136172761"/>
+													</MediaIDList>
+												</AudioFileSource>
+												<AudioFileSource Name="ES_Monster Groan 6 - SFX Producer" ID="{36975EB1-A79F-46E9-BBD0-80316A842EA3}">
+													<Language>SFX</Language>
+													<AudioFile>ES_Monster Groan 6 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="416633218"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Monster Groan 6 - SFX Producer" ID="{36975EB1-A79F-46E9-BBD0-80316A842EA3}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</BlendContainer>
+								<Sound Name="WormDeath" ID="{89ACD02B-8681-4714-8780-3943DA1F5073}" ShortID="553964662">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="2"/>
+										<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+										<Property Name="MakeUpGain" Type="Real64">
+											<ValueList>
+												<Value>10</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>500</Value>
+											</ValueList>
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{E57FE2E4-793D-4D2F-99F8-EFA2BEDF7A40}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="500"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="SpeakerPanning3DSpatializationMix" Type="int32" Value="0"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ES_Dinosaur Bleat 4 - SFX Producer" ID="{6EE3F193-B6CC-49FA-8618-83479BC4F0B2}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.249971014492753"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.71563409693003"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ES_Dinosaur Bleat 4 - SFX Producer.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="745835708"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Dinosaur Bleat 4 - SFX Producer" ID="{6EE3F193-B6CC-49FA-8618-83479BC4F0B2}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="WormSpawn" ID="{A1A57D6F-0138-477C-9A9C-C3D88EF66A09}" ShortID="210966454">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="2"/>
+										<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+										<Property Name="InitialDelay" Type="Real64">
+											<ValueList>
+												<Value>1</Value>
+											</ValueList>
+										</Property>
+										<Property Name="MakeUpGain" Type="Real64">
+											<ValueList>
+												<Value>10</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>200</Value>
+											</ValueList>
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{B91BC33E-AFEE-4345-ACB6-29BC86FDDFED}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="400"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="SpeakerPanning3DSpatializationMix" Type="int32" Value="0"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ES_Dinosaur Groan 3 - SFX Producer" ID="{CB9DE07F-8B32-4B1D-A081-43C01975A420}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.92820189229502"/>
+												<Property Name="FadeOutShape" Type="int16" Value="6"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ES_Dinosaur Groan 3 - SFX Producer.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="358856772"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Dinosaur Groan 3 - SFX Producer" ID="{CB9DE07F-8B32-4B1D-A081-43C01975A420}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<BlendContainer Name="WormAttack" ID="{7A96BFC7-0467-434D-AD7C-50F2E8C4AFD1}" ShortID="296333749">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+										<Property Name="SpeakerPanning3DSpatializationMix" Type="int32" Value="0"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Fire" ID="{8AC589FC-B000-4D88-8913-C0161A1579E6}" ShortID="798099975">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="CenterPercentage" Type="int32">
+													<ValueList>
+														<Value>50</Value>
+													</ValueList>
+												</Property>
+												<Property Name="InitialDelay" Type="Real64">
+													<ValueList>
+														<Value>0.3</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{214A0025-8E97-4510-8F41-E7AD730186D5}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="200"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-4</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Dragon fire" ID="{0EBE67DB-1BEE-4BBF-A262-1FE567B0DCA4}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.236848432494691"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="2.95363927581615"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>Dragon fire.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="199242398"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="Dragon fire" ID="{0EBE67DB-1BEE-4BBF-A262-1FE567B0DCA4}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice" ID="{4200512C-9DBA-4024-945D-E85159FB5CAF}" ShortID="511896056">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>500</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{C881E9E3-8E2B-4F8A-9E9F-53473EBC1013}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="500"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Monster Snarl 39 - SFX Producer" ID="{D050092A-ACC4-477E-855A-3F2AEA7195F5}">
+													<Language>SFX</Language>
+													<AudioFile>ES_Monster Snarl 39 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="954472947"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Monster Snarl 39 - SFX Producer" ID="{D050092A-ACC4-477E-855A-3F2AEA7195F5}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</BlendContainer>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Beetle" ID="{3143F2C4-C15D-472F-B38A-FE30F3F98F29}" ShortID="831659435">
+							<ChildrenList>
+								<BlendContainer Name="BeetleDie" ID="{B0A8F7CD-488D-48C0-B8AC-F7A6DAFEE2B2}" ShortID="337783972">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>2</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<RandomSequenceContainer Name="Body" ID="{4F1D847A-CBCE-4065-AA64-4E9A9B59AC5E}" ShortID="154284867">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{F4FBF693-969C-4522-B00B-E886C844EF04}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="4"/>
+																	<Property Name="Min" Type="Real64" Value="-3"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{987534BB-C33D-4E4C-B1AD-3408957A653A}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="100"/>
+																	<Property Name="Min" Type="Real64" Value="-25"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="ES_Insect Squish 24 - SFX Producer" ID="{96C8A800-7C2B-4C98-8691-4C5C83D99A29}" ShortID="812162284">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ES_Insect Squish 24 - SFX Producer" ID="{C733E81C-13D6-4731-BE6D-19663842F870}">
+															<Language>SFX</Language>
+															<AudioFile>ES_Insect Squish 24 - SFX Producer.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="839850156"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ES_Insect Squish 24 - SFX Producer" ID="{C733E81C-13D6-4731-BE6D-19663842F870}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="ES_Insect Squish 25 - SFX Producer" ID="{B116F33E-7693-4B21-9A7A-7BA8B96549C2}" ShortID="681600797">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ES_Insect Squish 25 - SFX Producer" ID="{A3D4E126-6530-4ACE-B157-5929A91382A1}">
+															<Language>SFX</Language>
+															<AudioFile>ES_Insect Squish 25 - SFX Producer.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="908863149"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ES_Insect Squish 25 - SFX Producer" ID="{A3D4E126-6530-4ACE-B157-5929A91382A1}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="ES_Insect Squish 20 - SFX Producer" ID="{B03D32A4-D563-4F66-BB2F-D182B32F73FF}" ShortID="169717815">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ES_Insect Squish 20 - SFX Producer" ID="{409A553F-066B-4469-AD24-D3687B2F9EFA}">
+															<Language>SFX</Language>
+															<AudioFile>ES_Insect Squish 20 - SFX Producer.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="238216169"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ES_Insect Squish 20 - SFX Producer" ID="{409A553F-066B-4469-AD24-D3687B2F9EFA}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="ES_Insect Squish 23 - SFX Producer" ID="{68177EA0-61FA-4604-B151-A320916149A1}" ShortID="21419529">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ES_Insect Squish 23 - SFX Producer" ID="{E33012D6-2833-4AC7-A857-7773D77CADE1}">
+															<Language>SFX</Language>
+															<AudioFile>ES_Insect Squish 23 - SFX Producer.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="673438877"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ES_Insect Squish 23 - SFX Producer" ID="{E33012D6-2833-4AC7-A857-7773D77CADE1}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<BlendContainer Name="BeetleVoice" ID="{33BAC00F-8892-431B-BE35-1FC5AC0412DC}" ShortID="614834407">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="Low" ID="{21D7FDBB-8236-4BA8-A28D-29EAC8D8B286}" ShortID="858082631">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="Highpass" Type="int16">
+															<ValueList>
+																<Value>35</Value>
+															</ValueList>
+														</Property>
+														<Property Name="Pitch" Type="int32">
+															<ValueList>
+																<Value>500</Value>
+															</ValueList>
+														</Property>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>-15</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ES_Monster Snarl Growl 8 - SFX Producer" ID="{0EF5F3C8-E808-4DEC-B668-F4913CFE1DFC}">
+															<PropertyList>
+																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>ES_Monster Snarl Growl 8 - SFX Producer.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="532585285"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ES_Monster Snarl Growl 8 - SFX Producer" ID="{0EF5F3C8-E808-4DEC-B668-F4913CFE1DFC}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<RandomSequenceContainer Name="High" ID="{ED61487D-628F-4635-B85D-5F94E4A131CE}" ShortID="125233593">
+													<PropertyList>
+														<Property Name="Pitch" Type="int32">
+															<ModifierList>
+																<ModifierInfo>
+																	<Modifier Name="" ID="{6CAE2328-5AB0-47D5-B41C-8B5E79126A76}"/>
+																</ModifierInfo>
+															</ModifierList>
+														</Property>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>-7</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<Sound Name="ES_Alien Chirp Critter 2 - SFX Producer" ID="{9F969E8C-A392-4066-90AA-94106471B7A6}" ShortID="147714593">
+															<PropertyList>
+																<Property Name="Pitch" Type="int32">
+																	<ValueList>
+																		<Value>-500</Value>
+																	</ValueList>
+																	<ModifierList>
+																		<ModifierInfo>
+																			<Modifier Name="" ID="{77670536-1873-423B-A4DD-9CEC90F5F961}">
+																				<PropertyList>
+																					<Property Name="Enabled" Type="bool" Value="True"/>
+																					<Property Name="Min" Type="Real64" Value="-250"/>
+																				</PropertyList>
+																			</Modifier>
+																		</ModifierInfo>
+																	</ModifierList>
+																</Property>
+															</PropertyList>
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="ES_Alien Chirp Critter 2 - SFX Producer" ID="{C092A8FB-F5E4-4D27-A7CC-3AC1C67B0E81}">
+																	<PropertyList>
+																		<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>ES_Alien Chirp Critter 2 - SFX Producer.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="760142074"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ObjectLists/>
+															<ActiveSourceList>
+																<ActiveSource Name="ES_Alien Chirp Critter 2 - SFX Producer" ID="{C092A8FB-F5E4-4D27-A7CC-3AC1C67B0E81}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="ES_Alien Chirp Critter 1 - SFX Producer" ID="{984F5874-D8FE-4128-8412-854784E1F299}" ShortID="725648253">
+															<PropertyList>
+																<Property Name="Pitch" Type="int32">
+																	<ValueList>
+																		<Value>-500</Value>
+																	</ValueList>
+																	<ModifierList>
+																		<ModifierInfo>
+																			<Modifier Name="" ID="{A9AA1B7D-353D-4AF2-BDD0-931FCE976A71}">
+																				<PropertyList>
+																					<Property Name="Enabled" Type="bool" Value="True"/>
+																					<Property Name="Min" Type="Real64" Value="-250"/>
+																				</PropertyList>
+																			</Modifier>
+																		</ModifierInfo>
+																	</ModifierList>
+																</Property>
+															</PropertyList>
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="ES_Alien Chirp Critter 1 - SFX Producer" ID="{3382B498-DE4A-4EE1-A36E-F848F47DA2EB}">
+																	<PropertyList>
+																		<Property Name="LoopBegin" Type="Real64" Value="0.38084486657621"/>
+																		<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="0.271544097693351"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>ES_Alien Chirp Critter 1 - SFX Producer.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="236324433"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ObjectLists/>
+															<ActiveSourceList>
+																<ActiveSource Name="ES_Alien Chirp Critter 1 - SFX Producer" ID="{3382B498-DE4A-4EE1-A36E-F848F47DA2EB}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+													</ChildrenList>
+													<ObjectLists/>
+												</RandomSequenceContainer>
+											</ChildrenList>
+											<ObjectLists/>
+										</BlendContainer>
+									</ChildrenList>
+									<ObjectLists/>
+								</BlendContainer>
+								<BlendContainer Name="BossDeath" ID="{A4A06B30-5B36-4109-A12E-19BACFB594D0}" ShortID="363127908">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</BlendContainer>
+								<BlendContainer Name="BeetleAttack" ID="{7850B448-DC3A-474B-973E-5C97ABB7454C}" ShortID="1037568321">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-5</Value>
+											</ValueList>
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{1CDD1881-4827-47EA-8117-7554B7822695}"/>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<RandomSequenceContainer Name="Hit" ID="{6008E93E-59FA-480C-916D-9FCD092105D7}" ShortID="307738257">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>200</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-8</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{E78580EB-4F62-48DD-8AFA-2970AEA7D4F1}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="7"/>
+																	<Property Name="Min" Type="Real64" Value="-3"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="ES_Punch Face 5 - SFX Producer" ID="{13469ADB-CEE1-46F0-BBC2-66C7AD1957A5}" ShortID="777857556">
+													<PropertyList>
+														<Property Name="Pitch" Type="int32">
+															<ValueList>
+																<Value>200</Value>
+															</ValueList>
+															<ModifierList>
+																<ModifierInfo>
+																	<Modifier Name="" ID="{3CBD3306-9E27-45AE-BFC4-533585F293F9}">
+																		<PropertyList>
+																			<Property Name="Enabled" Type="bool" Value="True"/>
+																			<Property Name="Max" Type="Real64" Value="400"/>
+																		</PropertyList>
+																	</Modifier>
+																</ModifierInfo>
+															</ModifierList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ES_Punch Face 5 - SFX Producer" ID="{708021DC-C9D9-4811-A175-A1E0E2C2EB2A}">
+															<Language>SFX</Language>
+															<AudioFile>ES_Punch Face 5 - SFX Producer.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="132361843"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ES_Punch Face 5 - SFX Producer" ID="{708021DC-C9D9-4811-A175-A1E0E2C2EB2A}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="ES_Punch 44 - SFX Producer" ID="{975C00F1-82A8-48BC-A137-E106DA24AF5E}" ShortID="217391775">
+													<PropertyList>
+														<Property Name="Pitch" Type="int32">
+															<ValueList>
+																<Value>300</Value>
+															</ValueList>
+															<ModifierList>
+																<ModifierInfo>
+																	<Modifier Name="" ID="{EA76621A-97D4-47F2-9408-D0C8AC840D51}">
+																		<PropertyList>
+																			<Property Name="Enabled" Type="bool" Value="True"/>
+																			<Property Name="Max" Type="Real64" Value="300"/>
+																		</PropertyList>
+																	</Modifier>
+																</ModifierInfo>
+															</ModifierList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ES_Punch 44 - SFX Producer" ID="{725306A9-8FA5-4A36-813B-058CA39B3CFD}">
+															<Language>SFX</Language>
+															<AudioFile>ES_Punch 44 - SFX Producer.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="53399867"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ES_Punch 44 - SFX Producer" ID="{725306A9-8FA5-4A36-813B-058CA39B3CFD}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Wings" ID="{5BF07F4F-3653-4117-B3C8-06B2685BA78F}" ShortID="210492422">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>10</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="ES_Insect Wings Fly 9 - SFX Producer" ID="{295CD25F-8058-4ECC-B28A-0EF8EA8EEE11}" ShortID="403605984">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ES_Insect Wings Fly 9 - SFX Producer" ID="{22987493-864F-40B0-8589-F975AE75A19D}">
+															<PropertyList>
+																<Property Name="FadeInShape" Type="int16" Value="6"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.760059259259258"/>
+																<Property Name="FadeOutShape" Type="int16" Value="6"/>
+																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																<Property Name="TrimEnd" Type="Real64" Value="1.09297777777778"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>ES_Insect Wings Fly 9 - SFX Producer.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="589813107"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ES_Insect Wings Fly 9 - SFX Producer" ID="{22987493-864F-40B0-8589-F975AE75A19D}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="ES_Insect Wings Fly 4 - SFX Producer" ID="{CE3A77C8-5B07-4F43-BF7B-69D6FB0B9354}" ShortID="762499482">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ES_Insect Wings Fly 4 - SFX Producer" ID="{1F7851C4-5E7A-47D3-B688-E6F161B7572F}">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.487733333333333"/>
+																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																<Property Name="TrimBegin" Type="Real64" Value="3.04177777777778"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>ES_Insect Wings Fly 4 - SFX Producer.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="170332924"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ES_Insect Wings Fly 4 - SFX Producer" ID="{1F7851C4-5E7A-47D3-B688-E6F161B7572F}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Voice" ID="{C6534B1A-4FBC-464A-BDA1-6EC53535F985}" ShortID="966462992">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>-7</Value>
@@ -1431,15 +2921,16 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<Sound Name="ES_Alien Chirp Critter 2 - SFX Producer" ID="{9F969E8C-A392-4066-90AA-94106471B7A6}" ShortID="147714593">
+												<Sound Name="ES_Alien Chirp Critter 1 - SFX Producer_01" ID="{BB8644CB-4C2C-42B8-95C7-926C1572E259}" ShortID="171182258">
 													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="1"/>
 														<Property Name="Pitch" Type="int32">
 															<ValueList>
 																<Value>-500</Value>
 															</ValueList>
 															<ModifierList>
 																<ModifierInfo>
-																	<Modifier Name="" ID="{77670536-1873-423B-A4DD-9CEC90F5F961}">
+																	<Modifier Name="" ID="{E74C6414-18C8-4C38-82F3-CB4D75FBDF43}">
 																		<PropertyList>
 																			<Property Name="Enabled" Type="bool" Value="True"/>
 																			<Property Name="Min" Type="Real64" Value="-250"/>
@@ -1458,65 +2949,67 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="ES_Alien Chirp Critter 2 - SFX Producer" ID="{C092A8FB-F5E4-4D27-A7CC-3AC1C67B0E81}">
+														<AudioFileSource Name="ES_Alien Chirp Critter 1 - SFX Producer" ID="{8C5877D7-0BCA-40E0-B48F-5F64549B2E34}">
 															<PropertyList>
 																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>ES_Alien Chirp Critter 2 - SFX Producer.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="760142074"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="ES_Alien Chirp Critter 2 - SFX Producer" ID="{C092A8FB-F5E4-4D27-A7CC-3AC1C67B0E81}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="ES_Alien Chirp Critter 1 - SFX Producer" ID="{984F5874-D8FE-4128-8412-854784E1F299}" ShortID="725648253">
-													<PropertyList>
-														<Property Name="Pitch" Type="int32">
-															<ValueList>
-																<Value>-500</Value>
-															</ValueList>
-															<ModifierList>
-																<ModifierInfo>
-																	<Modifier Name="" ID="{A9AA1B7D-353D-4AF2-BDD0-931FCE976A71}">
-																		<PropertyList>
-																			<Property Name="Enabled" Type="bool" Value="True"/>
-																			<Property Name="Min" Type="Real64" Value="-250"/>
-																		</PropertyList>
-																	</Modifier>
-																</ModifierInfo>
-															</ModifierList>
-														</Property>
-													</PropertyList>
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="ES_Alien Chirp Critter 1 - SFX Producer" ID="{3382B498-DE4A-4EE1-A36E-F848F47DA2EB}">
-															<PropertyList>
-																<Property Name="LoopBegin" Type="Real64" Value="0.38084486657621"/>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.271544097693351"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.382552691090004"/>
+																<Property Name="TrimEnd" Type="Real64" Value="0.585783808231569"/>
 															</PropertyList>
 															<Language>SFX</Language>
 															<AudioFile>ES_Alien Chirp Critter 1 - SFX Producer.wav</AudioFile>
 															<MediaIDList>
-																<MediaID ID="236324433"/>
+																<MediaID ID="519900430"/>
 															</MediaIDList>
 														</AudioFileSource>
 													</ChildrenList>
 													<ObjectLists/>
 													<ActiveSourceList>
-														<ActiveSource Name="ES_Alien Chirp Critter 1 - SFX Producer" ID="{3382B498-DE4A-4EE1-A36E-F848F47DA2EB}" Platform="Linked"/>
+														<ActiveSource Name="ES_Alien Chirp Critter 1 - SFX Producer" ID="{8C5877D7-0BCA-40E0-B48F-5F64549B2E34}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="ES_Alien Chirp Critter 2 - SFX Producer_01" ID="{9A0D3F40-7CAF-4ECA-836B-0AD0F6AB3848}" ShortID="652182623">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="Pitch" Type="int32">
+															<ModifierList>
+																<ModifierInfo>
+																	<Modifier Name="" ID="{542009A7-5136-4C1D-92A8-C18702ABB8CC}">
+																		<PropertyList>
+																			<Property Name="Enabled" Type="bool" Value="True"/>
+																			<Property Name="Min" Type="Real64" Value="-500"/>
+																		</PropertyList>
+																	</Modifier>
+																</ModifierInfo>
+															</ModifierList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ES_Alien Chirp Critter 2 - SFX Producer" ID="{C4D98099-0FEC-4D60-B0AD-1ED888EDE2A0}">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.0287146087743103"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.0125626413387607"/>
+																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.309579375848033"/>
+																<Property Name="TrimEnd" Type="Real64" Value="0.618261420171868"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>ES_Alien Chirp Critter 2 - SFX Producer.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="364841447"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ES_Alien Chirp Critter 2 - SFX Producer" ID="{C4D98099-0FEC-4D60-B0AD-1ED888EDE2A0}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
 											</ChildrenList>
@@ -1526,165 +3019,7 @@
 									<ObjectLists/>
 								</BlendContainer>
 							</ChildrenList>
-							<ObjectLists/>
-						</BlendContainer>
-						<Sound Name="WormDeath" ID="{73DC3121-6AE8-4502-9CE4-4C0B4260FB78}" ShortID="448102653">
-							<PropertyList>
-								<Property Name="3DSpatialization" Type="int16" Value="1"/>
-								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
-								<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
-								<Property Name="MaxSoundPerInstance" Type="int16">
-									<ValueList>
-										<Value>1</Value>
-									</ValueList>
-								</Property>
-								<Property Name="Pitch" Type="int32">
-									<ValueList>
-										<Value>350</Value>
-									</ValueList>
-								</Property>
-								<Property Name="UseMaxSoundPerInstance" Type="bool">
-									<ValueList>
-										<Value>True</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Dragon roar" ID="{8BF87EA4-C312-42D5-916A-7AAF694449B4}">
-									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.161005794910557"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.231445830183926"/>
-										<Property Name="FadeOutShape" Type="int16" Value="6"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimBegin" Type="Real64" Value="1.75596945074326"/>
-										<Property Name="TrimEnd" Type="Real64" Value="3.26036734693878"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>Dragon roar.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="644673135"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Dragon roar" ID="{8BF87EA4-C312-42D5-916A-7AAF694449B4}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<BlendContainer Name="HideAndSand" ID="{A2905973-8F9A-4F8F-9504-D52A69E8E83C}" ShortID="698102155">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<Sound Name="WormHide" ID="{271E9397-E7D5-46F5-8902-1E09387A7D37}" ShortID="791067424">
-									<PropertyList>
-										<Property Name="3DSpatialization" Type="int16" Value="1"/>
-										<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
-										<Property Name="Lowpass" Type="int16">
-											<ValueList>
-												<Value>25</Value>
-											</ValueList>
-										</Property>
-										<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
-										<Property Name="MaxSoundPerInstance" Type="int16">
-											<ValueList>
-												<Value>1</Value>
-											</ValueList>
-										</Property>
-										<Property Name="Pitch" Type="int32">
-											<ModifierList>
-												<ModifierInfo>
-													<Modifier Name="" ID="{36FC977A-80C5-4877-8B95-5B5A9B59F97D}">
-														<PropertyList>
-															<Property Name="Enabled" Type="bool" Value="True"/>
-															<Property Name="Max" Type="Real64" Value="250"/>
-														</PropertyList>
-													</Modifier>
-												</ModifierInfo>
-											</ModifierList>
-										</Property>
-										<Property Name="UseMaxSoundPerInstance" Type="bool">
-											<ValueList>
-												<Value>True</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Dragon roar" ID="{4F273A02-7A29-4949-AEE9-528031E3145E}">
-											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="0.130129249073133"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.397483056185437"/>
-												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimBegin" Type="Real64" Value="2.45030694129504"/>
-												<Property Name="TrimEnd" Type="Real64" Value="3.20502160493827"/>
-											</PropertyList>
-											<Language>SFX</Language>
-											<AudioFile>Dragon roar.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="142787767"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="Dragon roar" ID="{4F273A02-7A29-4949-AEE9-528031E3145E}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="Sand" ID="{E8D59F81-FCBC-4CBE-B923-4099966356F4}" ShortID="952266040">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="WormGiantSpawn" ID="{D6961B87-CA70-4ED9-A50E-081A8569A563}">
-											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="0.89912824389015"/>
-												<Property Name="FadeInShape" Type="int16" Value="6"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="2.15526329050139"/>
-												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimBegin" Type="Real64" Value="5.31543461829176"/>
-												<Property Name="TrimEnd" Type="Real64" Value="8.88550264550265"/>
-											</PropertyList>
-											<Language>SFX</Language>
-											<AudioFile>WormGiantSpawn.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="668240954"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="WormGiantSpawn" ID="{D6961B87-CA70-4ED9-A50E-081A8569A563}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-							</ChildrenList>
-							<ObjectLists/>
-						</BlendContainer>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Player" ID="{FB7CD1BD-E88B-474D-B27A-C390D0EFA017}" ShortID="411809325">
@@ -1917,7 +3252,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>5</Value>
+												<Value>10</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -2638,14 +3973,9 @@
 				</Folder>
 				<Folder Name="Cinematics" ID="{D9DEF62D-F0E1-4206-86CF-AD13E1128CB1}" ShortID="310417662">
 					<ChildrenList>
-						<Sound Name="Intro" ID="{15A3A9FA-90AA-4E1D-9BE7-EA7233284557}" ShortID="221027909">
+						<BlendContainer Name="IntroCinematic" ID="{C2297FA7-6A95-466A-8EFB-4EE587008364}" ShortID="1069323963">
 							<PropertyList>
 								<Property Name="ListenerRelativeRouting" Type="bool" Value="False"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-5</Value>
-									</ValueList>
-								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -2656,19 +3986,123 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="ER_cinematica_masterv2" ID="{438F1F35-38FD-4B6A-A794-C035FC9B9B3E}">
-									<Language>SFX</Language>
-									<AudioFile>ER_cinematica_masterv2.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="1003919086"/>
-									</MediaIDList>
-								</AudioFileSource>
+								<Sound Name="Intro" ID="{15A3A9FA-90AA-4E1D-9BE7-EA7233284557}" ShortID="221027909">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-8</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ER_cinematica_masterv2" ID="{438F1F35-38FD-4B6A-A794-C035FC9B9B3E}">
+											<Language>SFX</Language>
+											<AudioFile>ER_cinematica_masterv2.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1003919086"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ER_cinematica_masterv2" ID="{438F1F35-38FD-4B6A-A794-C035FC9B9B3E}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="VoiceEffect" ID="{94E3EB6E-45DD-4B50-AE2B-679FC18D2883}" ShortID="770303398">
+									<PropertyList>
+										<Property Name="InitialDelay" Type="Real64">
+											<ValueList>
+												<Value>17.5</Value>
+											</ValueList>
+										</Property>
+										<Property Name="OverrideEffect" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="Effect0">
+											<Custom CreatedFrom="{940CCB47-F031-4C6A-B0E6-726CAC418C02}">
+												<Effect Name="Church_Small_Wood (Custom)" ID="{889B1D4B-D7B0-4E55-94F9-006FA660C5A2}" ShortID="661152191" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+													<PropertyList>
+														<Property Name="DecayTime" Type="Real32" Value="1.3"/>
+														<Property Name="Density" Type="Real32" Value="27"/>
+														<Property Name="ERLevel" Type="Real32" Value="-24"/>
+														<Property Name="ERPattern" Type="int32" Value="6"/>
+														<Property Name="Filter1Freq" Type="Real32" Value="490"/>
+														<Property Name="Filter1Gain" Type="Real32" Value="-5.5"/>
+														<Property Name="Filter1InsertPos" Type="int32" Value="2"/>
+														<Property Name="Filter2InsertPos" Type="int32" Value="0"/>
+														<Property Name="Filter3Freq" Type="Real32" Value="11000"/>
+														<Property Name="Filter3Gain" Type="Real32" Value="-7"/>
+														<Property Name="HFDamping" Type="Real32" Value="3.7"/>
+														<Property Name="PreDelay" Type="Real32" Value="18"/>
+														<Property Name="Quality" Type="int32" Value="12"/>
+														<Property Name="ReverbLevel" Type="Real32" Value="-23"/>
+														<Property Name="RoomSize" Type="Real32" Value="20"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ES_Sci Fi Voice Clip 663 - SFX Producer" ID="{254A7AE9-F933-462D-A8B1-C5527E8B695B}">
+											<Language>SFX</Language>
+											<AudioFile>ES_Sci Fi Voice Clip 663 - SFX Producer.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="267500250"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Sci Fi Voice Clip 663 - SFX Producer" ID="{254A7AE9-F933-462D-A8B1-C5527E8B695B}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Cutscene_effects" ID="{D52B76EC-0A39-4FFC-9FC4-134765DB343F}" ShortID="940513850">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>8</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Cutscene_effects" ID="{D89F40DF-BC41-4951-88A4-961414276400}">
+											<Language>SFX</Language>
+											<AudioFile>Cutscene_effects.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="203035445"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Cutscene_effects" ID="{D89F40DF-BC41-4951-88A4-961414276400}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="ER_cinematica_masterv2" ID="{438F1F35-38FD-4B6A-A794-C035FC9B9B3E}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
+						</BlendContainer>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

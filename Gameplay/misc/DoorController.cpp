@@ -1,6 +1,7 @@
 #include "scriptingUtil/gameplaypch.h"
 #include "DoorController.h"
 #include "components/ComponentObstacle.h"
+#include "misc/AudioManager.h"
 
 Hachiko::Scripting::DoorController::DoorController(GameObject* game_object)
 	: Script(game_object, "DoorController")

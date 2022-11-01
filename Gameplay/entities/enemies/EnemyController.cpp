@@ -156,6 +156,7 @@ void Hachiko::Scripting::EnemyController::OnAwake()
 
 	_spawn_pos = transform->GetGlobalPosition();
 	_spawn_rot = transform->GetGlobalRotation();
+	_target_pos = _spawn_pos;
 
 	if (animation)
 	{
@@ -286,9 +287,13 @@ void Hachiko::Scripting::EnemyController::SetStats()
 
 void Hachiko::Scripting::EnemyController::SetVfx()
 {
+	_blood_trail = game_object->FindDescendantWithName("BloodTrail");
+	
 	if (_blood_trail != nullptr)
 	{
-		_blood_trail_particles = _blood_trail->GetComponent<ComponentParticleSystem>();
+		_blood_trail->SetTimeScaleMode(TimeScaleMode::SCALED);
+		_blood_trail_billboard = _blood_trail->GetComponent<ComponentBillboard>();
+		_blood_trail_billboard->Disable();
 	}
 
 	switch (_enemy_type)
@@ -303,6 +308,7 @@ void Hachiko::Scripting::EnemyController::SetUpWormVfx()
 {
 	if (_small_dust)
 	{
+		_small_dust->SetTimeScaleMode(TimeScaleMode::SCALED);
 		_small_dust_particles = _small_dust->GetComponent<ComponentParticleSystem>();
 		if (_small_dust_particles)
 		{
@@ -311,6 +317,7 @@ void Hachiko::Scripting::EnemyController::SetUpWormVfx()
 	}
 	if (_big_dust)
 	{
+		_big_dust->SetTimeScaleMode(TimeScaleMode::SCALED);
 		_big_dust_particles = _big_dust->GetComponent<ComponentParticleSystem>();
 		if (_big_dust_particles)
 		{
@@ -319,6 +326,7 @@ void Hachiko::Scripting::EnemyController::SetUpWormVfx()
 	}
 	if (_inner_indicator)
 	{
+		_inner_indicator->SetTimeScaleMode(TimeScaleMode::SCALED);
 		_inner_indicator_billboard = _inner_indicator->GetComponent<ComponentBillboard>();
 		if (_inner_indicator_billboard)
 		{
@@ -327,6 +335,7 @@ void Hachiko::Scripting::EnemyController::SetUpWormVfx()
 	}
 	if (_outer_indicator)
 	{
+		_outer_indicator->SetTimeScaleMode(TimeScaleMode::SCALED);
 		_outer_indicator_billboard = _outer_indicator->GetComponent<ComponentBillboard>();
 		if (_outer_indicator_billboard)
 		{
@@ -335,6 +344,7 @@ void Hachiko::Scripting::EnemyController::SetUpWormVfx()
 	}
 	if (_projectile_particles)
 	{
+		_projectile_particles->SetTimeScaleMode(TimeScaleMode::SCALED);
 		_projectile_particles_comp = _projectile_particles->GetComponent<ComponentParticleSystem>();
 		if (_projectile_particles_comp)
 		{
@@ -343,6 +353,7 @@ void Hachiko::Scripting::EnemyController::SetUpWormVfx()
 	}
 	if (_explosion_particles)
 	{
+		_explosion_particles->SetTimeScaleMode(TimeScaleMode::SCALED);
 		_explosion_particles_comp = _explosion_particles->GetComponent<ComponentParticleSystem>();
 		if (_explosion_particles_comp)
 		{
@@ -434,10 +445,10 @@ void Hachiko::Scripting::EnemyController::RegisterHit(int damage, float3 directi
 		}
 	}
 
-	if (_blood_trail_particles != nullptr)
+	if (_blood_trail_billboard != nullptr)
 	{
-		_blood_trail_particles->Enable();
-		_blood_trail_particles->Restart();
+		_blood_trail_billboard->Enable();
+		_blood_trail_billboard->Restart();
 	}
 
 	_combat_stats->ReceiveDamage(damage);
@@ -473,6 +484,8 @@ void Hachiko::Scripting::EnemyController::ResetEnemy()
 	_parasite_dropped = false;
 	_spit_shot = false;
 
+	_target_pos = _spawn_pos;
+
 	animation->ResetState();
 
 	if (_enemy_body)
@@ -487,9 +500,9 @@ void Hachiko::Scripting::EnemyController::ResetEnemy()
 		_parasite->SetActive(false);
 	}
 
-	if (_blood_trail_particles != nullptr)
+	if (_blood_trail_billboard != nullptr)
 	{
-		_blood_trail_particles->Disable();
+		_blood_trail_billboard->Stop();
 	}
 
 	if (_inner_indicator_billboard != nullptr)
@@ -669,8 +682,7 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsI
 {
 	// If an enemy is from a gautlet, has the player on agro distance or is enrage, it will always follow the player if its reachable
 	float dist_to_player = _current_pos.Distance(_player_pos);
-	bool can_reach_player = true; //TODO
-	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && can_reach_player && _player_controller->IsAlive())
+	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && CheckValidPath(_player_pos) && _player_controller->IsAlive())
 	{
 		if (dist_to_player <= _attack_range && _attack_cooldown <= 0.0f)
 		{
@@ -776,8 +788,7 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsA
 	}
 
 	float dist_to_player = _current_pos.Distance(_player_pos);
-	bool can_reach_player = true; //TODO
-	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && _player_controller->IsAlive())
+	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && CheckValidPath(_player_pos) && _player_controller->IsAlive())
 	{
 		if (dist_to_player <= _attack_range && _attack_cooldown <= 0.0f)
 		{
@@ -837,8 +848,7 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsM
 {
 	// If an enemy is from a gautlet, has the player on agro distance or is enrage, it will always follow the player if its reachable
 	float dist_to_player = _current_pos.Distance(_player_pos);
-	bool can_reach_player = true; //TODO
-	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && can_reach_player && _player_controller->IsAlive())
+	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && CheckValidPath() && _player_controller->IsAlive())
 	{
 		if (dist_to_player <= _attack_range && _attack_cooldown <= 0.0f)
 		{
@@ -890,8 +900,7 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsM
 {
 	// If an enemy is from a gautlet, has the player on agro distance or is enrage, it will always follow the player if its reachable
 	float dist_to_player = _current_pos.Distance(_player_pos);
-	bool can_reach_player = true; //TODO
-	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && can_reach_player && _player_controller->IsAlive())
+	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && CheckValidPath(_player_pos) && _player_controller->IsAlive())
 	{
 		if (dist_to_player <= _attack_range && _attack_cooldown <= 0.0f)
 		{
@@ -965,8 +974,7 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsP
 {
 	// If an enemy is from a gautlet, has the player on agro distance or is enrage, it will always follow the player if its reachable
 	float dist_to_player = _current_pos.Distance(_player_pos);
-	bool can_reach_player = true; //TODO
-	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && can_reach_player && _player_controller->IsAlive())
+	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && CheckValidPath(_player_pos) && _player_controller->IsAlive())
 	{
 		if (dist_to_player <= _attack_range && _attack_cooldown <= 0.0f)
 		{
@@ -1035,8 +1043,7 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::TransitionsH
 
 	// If an enemy is from a gautlet, has the player on agro distance or is enrage, it will always follow the player if its reachable
 	float dist_to_player = _current_pos.Distance(_player_pos);
-	bool can_reach_player = true; //TODO
-	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && can_reach_player && _player_controller->IsAlive())
+	if ((_is_from_boss || _is_from_gautlet || dist_to_player < _aggro_range || _enraged > 0.0f) && CheckValidPath(_player_pos) && _player_controller->IsAlive())
 	{
 		if (dist_to_player <= _attack_range && _attack_cooldown <= 0.0f)
 		{
@@ -1232,7 +1239,6 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::WormTransiti
 
 	if (_attack_cooldown <= 0.0f && !_attack_landing && _current_pos.Distance(_player_pos) <= _attack_range && _player_controller->IsAlive())
 	{
-
 		return EnemyState::ATTACKING;
 	}
 
@@ -1330,6 +1336,7 @@ Hachiko::Scripting::EnemyState Hachiko::Scripting::EnemyController::WormTransiti
 
 void Hachiko::Scripting::EnemyController::WormStartHidenState()
 {
+	_audio_source->PostEvent(Sounds::WORM_HIDE);
 	animation->SendTrigger("isHide");
 }
 
@@ -1412,4 +1419,25 @@ void Hachiko::Scripting::EnemyController::SpitController()
 		_attack_animation_timer = 0.0f;
 		_projectile_particles_comp->Play();
 	}
+}
+
+bool Hachiko::Scripting::EnemyController::CheckValidPath()
+{
+	_valid_path = _component_agent->CanReachTarget();
+	return _valid_path;
+}
+
+bool Hachiko::Scripting::EnemyController::CheckValidPath(float3 position)
+{
+	if (_timer_check_path <= 0.0f)
+	{
+		//_timer_check_path = 2.5f;
+		_timer_check_path = 0.0f;
+
+		Navigation::ValidPath(_current_pos, position);
+
+		_valid_path = Navigation::ValidPath(_current_pos, position);
+	}
+	_timer_check_path -= Time::DeltaTime();
+	return _valid_path;
 }

@@ -8,6 +8,8 @@ namespace Hachiko
 	class ComponentTransform;
 	namespace Scripting
 	{
+		class AudioManager;
+
 		class DoorController : public Script
 		{
 			SERIALIZATION_METHODS(false)

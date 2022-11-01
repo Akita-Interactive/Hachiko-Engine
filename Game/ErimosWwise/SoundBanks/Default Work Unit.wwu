@@ -4,7 +4,15 @@
 		<WorkUnit Name="Default Work Unit" ID="{774839F6-7393-4AAB-A30B-0D20A5DB65E1}" PersistMode="Standalone">
 			<ChildrenList>
 				<SoundBank Name="BackgroundMusic" ID="{3EA8A1A2-7429-4B2C-847E-AEA973584D2B}">
+					<PropertyList>
+						<Property Name="Maximum" Type="int32">
+							<ValueList>
+								<Value>100000000</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ObjectInclusionList>
+						<ObjectRef Name="Stop_Navigation" ID="{D7EBD3F1-A44F-41C6-BB5F-F2012825BD2B}" WorkUnitID="{D4B90C1A-D5A0-4CD0-82EB-1E7666F66EDB}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Combat" ID="{DF59185F-C72C-4550-8276-02199898FFD6}" WorkUnitID="{D4B90C1A-D5A0-4CD0-82EB-1E7666F66EDB}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Navigation" ID="{C72B32F3-D0E9-476D-A101-B04D035F2671}" WorkUnitID="{D4B90C1A-D5A0-4CD0-82EB-1E7666F66EDB}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_IntroCinematic" ID="{6A505290-4483-47BB-AD2E-7CE891B2721F}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
@@ -14,6 +22,13 @@
 					<GameSyncExclusionList/>
 				</SoundBank>
 				<SoundBank Name="Footsteps" ID="{36C9EC42-8758-49F9-BFF4-59F1B8080238}">
+					<PropertyList>
+						<Property Name="Maximum" Type="int32">
+							<ValueList>
+								<Value>100000000</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ObjectInclusionList>
 						<ObjectRef Name="Play_Footstep" ID="{12BD81DB-B728-4B71-81F1-938BB62E6042}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
@@ -21,6 +36,13 @@
 					<GameSyncExclusionList/>
 				</SoundBank>
 				<SoundBank Name="Attacks" ID="{DB2C905B-568D-4B66-AC0A-61B413B8C327}">
+					<PropertyList>
+						<Property Name="Maximum" Type="int32">
+							<ValueList>
+								<Value>100000000</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ObjectInclusionList>
 						<ObjectRef Name="Play_WormHide" ID="{3CF76374-4614-412C-A303-B3F6FEAD0C65}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_WormRoar" ID="{B8781F99-A075-41D1-B0EC-BB7E2E7FDC19}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
@@ -33,6 +55,7 @@
 						<ObjectRef Name="Play_ShootNoAmmo" ID="{7BB2ABDB-C806-47F0-9B66-71A5BF844916}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_RangedAttack" ID="{1AB4989D-79DB-4814-8BB0-2FA70A13AC2C}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_BeetleAttack" ID="{416579A2-32FC-48B0-8308-5AEB9768B0CE}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_GaunletNextRound" ID="{9BC7BE81-5954-48D1-A2D1-BC59EA102A64}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Dash" ID="{A12C6C82-D071-492B-81CF-704393DEA18F}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_MeleeAttack" ID="{40AC6350-5EEA-49F4-A273-59760B0CCEE2}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_ReceiveDamage" ID="{009EFC75-6F1D-4AE0-84A0-23C30571893A}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
@@ -42,13 +65,23 @@
 					<GameSyncExclusionList/>
 				</SoundBank>
 				<SoundBank Name="Enviroment" ID="{6E695F10-29FF-4E59-A778-2BB3D66E2CF8}">
+					<PropertyList>
+						<Property Name="Maximum" Type="int32">
+							<ValueList>
+								<Value>100000000</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ObjectInclusionList>
+						<ObjectRef Name="Play_StalagmiteGroundImpact" ID="{39EDCACC-115D-460B-A4BC-3491A724BFF6}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_StalagmiteCeilingCrack" ID="{C0EB5CD0-421F-466E-895F-80AE7B542994}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Wind" ID="{82BFA4D8-2D61-4677-9935-C9ECF62165FD}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Stop_Wind" ID="{8852E513-771E-46D6-A0F7-A2A033D473B4}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_DoorOpens" ID="{09669178-5F77-470B-BFFB-70F04C2CB080}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_GaunletDoorOpening" ID="{09669178-5F77-470B-BFFB-70F04C2CB080}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Splash" ID="{8AB68101-D4D2-4994-8516-F54362626C04}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Laser_Hit" ID="{A0BD3D63-D265-4CA9-B88D-C6E42632F4E3}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Pebble" ID="{7E7451A2-4336-4CCF-BE28-99A6CF205E0D}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Checkpoint" ID="{B28BAE08-CDD5-4CD0-84F8-CF5D4D8C0144}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Laser" ID="{944F2DC9-1865-4DE5-A41F-7D847F3A9945}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Crystal" ID="{422E26F2-F986-4E14-B6FC-38411475A3E4}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Stop_Pebble" ID="{3C2F1626-380B-4EF3-9CB2-4CA76FA289C8}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
@@ -57,9 +90,43 @@
 					<GameSyncExclusionList/>
 				</SoundBank>
 				<SoundBank Name="UI" ID="{4630C971-6A19-4FE4-A67F-513C1B1EE192}">
+					<PropertyList>
+						<Property Name="Maximum" Type="int32">
+							<ValueList>
+								<Value>100000000</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ObjectInclusionList>
 						<ObjectRef Name="Play_UIClick" ID="{742A12E8-BB18-44A5-B986-135865CD918E}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_UIHover" ID="{ED1A53D6-1E8B-4FCA-B65E-843FF12134F1}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="Boss" ID="{3ABB9DE5-0394-4039-BBDD-F0BFF2657D54}">
+					<PropertyList>
+						<Property Name="Maximum" Type="int32">
+							<ValueList>
+								<Value>100000000</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ObjectInclusionList>
+						<ObjectRef Name="Set_State3_BossFight" ID="{5208E28A-D477-4010-BB0B-C66E6240293E}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_BossFootsteps" ID="{D1EF6058-34CA-409C-A19F-20E96A31AAE1}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_BossBreathe" ID="{6D7BC92C-033E-40E9-AB9E-CF8E1959E2CD}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_BossMusic" ID="{93BAF0FF-2F54-4345-BAB0-7FBDABDE2904}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stop_BossFootsteps" ID="{C1FDE2D5-875C-4425-BB6B-171F30E51DD4}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_BossHitFloor" ID="{437A0E43-143E-4568-83B2-E8CFEED29511}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Set_State2_BossFight" ID="{567DC4F3-C692-45DC-A7B6-4CFBE9E66346}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Set_State_Defeated" ID="{36DCBD87-7AD2-46C4-A983-939230547915}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_BossPreJump" ID="{CA22960E-3A37-477D-B643-9C02C2787206}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_BossLaugh" ID="{753C1E5F-D163-4C54-8F42-A92D818392CE}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Set_State1_BossFight" ID="{FE322C64-0026-4C6E-92A8-DCABFA3366B0}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_BossRoar" ID="{2AAEC1AA-3C8F-4D16-BE79-2F8D1F384AB3}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_BossDeath" ID="{1A055BA6-1DFF-4EC9-909B-BD7668F15408}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_BossMeleeStand" ID="{5723808B-C20C-4F26-936E-6D6CB2C6D340}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

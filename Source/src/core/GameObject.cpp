@@ -910,3 +910,28 @@ const OBB* Hachiko::GameObject::GetFirstMeshRendererOBB() const
     }
     return nullptr;
 }
+
+void Hachiko::GameObject::SimplifyChildren()
+{
+    std::vector<GameObject*> aux_children = children;
+    for (int i = 0; i < aux_children.size(); ++i)
+    {
+        aux_children[i]->Simplify(this);
+
+        if (aux_children[i]->components.size() <= 1)
+            delete aux_children[i];
+    }
+}
+
+void Hachiko::GameObject::Simplify(GameObject* target) 
+{
+    while (children.size() > 0)
+    {
+        children[0]->Simplify(target);
+        
+        if (children[0]->components.size() <= 1)
+            delete children[0];
+        else
+            children[0]->SetNewParent(target);
+    }
+}

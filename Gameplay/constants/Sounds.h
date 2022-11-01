@@ -1,3 +1,4 @@
+#pragma once
 
 namespace Hachiko::Sounds
 {
@@ -21,13 +22,21 @@ namespace Hachiko::Sounds
 	constexpr const wchar_t* WORM_HIDE = L"Play_WormHide";
 	constexpr const wchar_t* WORM_DEATH = L"Play_WormDeath";
 
-	// Gauntlet
-	constexpr const wchar_t* GAUNTLET_START = L"Play_WormSpawn";
-	constexpr const wchar_t* GAUNTLET_NEXT_ROUND = L"Play_WormRoar";
-	constexpr const wchar_t* GAUNTLET_COMPLETE = L"Play_WormDeath";
+	// Boss
+	constexpr const wchar_t* BOSS_ROAR = L"Play_BossRoar";
+	constexpr const wchar_t* BOSS_MELEE_STAND = L"Play_BossMeleeStand";
+	constexpr const wchar_t* BOSS_BREATHE = L"Play_BossBreathe";
+	constexpr const wchar_t* BOSS_PRE_JUMP = L"Play_BossPreJump";
+	constexpr const wchar_t* BOSS_HIT_FLOOR = L"Play_BossHitFloor";
+	constexpr const wchar_t* BOSS_FOOTSTEPS = L"Play_BossFootsteps";
+	constexpr const wchar_t* STOP_BOSS_FOOTSTEPS = L"Stop_BossFootsteps";
+	constexpr const wchar_t* BOSS_LAUGH = L"Play_BossLaugh";
+	constexpr const wchar_t* BOSS_DEATH = L"Play_BossDeath";
 
-	// Checkpoint
-	constexpr const wchar_t* CHECKPOINT_ACTIVATE = L"Play_Dash";
+	// Gauntlet
+	constexpr const wchar_t* GAUNTLET_START = L"Play_GaunletStart";
+	constexpr const wchar_t* GAUNTLET_NEXT_ROUND = L"Play_GaunletNextRound";
+	constexpr const wchar_t* GAUNTLET_COMPLETE = L"Play_GaunletDoorOpening";
 
 	// Enviroment
 	constexpr const wchar_t* CRYSTAL = L"Play_Crystal";
@@ -38,16 +47,25 @@ namespace Hachiko::Sounds
 	constexpr const wchar_t* PLAY_LASER = L"Play_Laser";
 	constexpr const wchar_t* PLAY_LASER_HIT = L"Play_Laser_Hit";
 	constexpr const wchar_t* PLAY_SPLASH = L"Play_Splash";
+	constexpr const wchar_t* PLAY_DOOR_OPENING = L"Play_DoorOpening";
+	constexpr const wchar_t* PLAY_CHECKPOINT = L"Play_Checkpoint";
+	constexpr const wchar_t* STALAGMITE_CEILING_CRACK = L"Play_StalagmiteCeilingCrack";
+	constexpr const wchar_t* STALAGMITE_GROUND_IMPACT = L"Play_StalagmiteGroundImpact";
 
 	// Background Music
 	// TODO: Rename this events in wwise
 	constexpr const wchar_t* PLAY_BACKGROUND_MUSIC_LVL1 = L"Play_Navigation";
 	constexpr const wchar_t* PLAY_BACKGROUND_MUSIC_LVL2 = L"Play_Navigation";
-	constexpr const wchar_t* PLAY_BACKGROUND_MUSIC_BOSS = L"Play_Navigation";
+	constexpr const wchar_t* PLAY_BACKGROUND_MUSIC_BOSS = L"Play_BossMusic";
 	constexpr const wchar_t* STOP_BACKGROUND_MUSIC_LVL1 = L"Stop_Navigation";
 	constexpr const wchar_t* STOP_BACKGROUND_MUSIC_LVL2 = L"Stop_Navigation";
 	constexpr const wchar_t* STOP_BACKGROUND_MUSIC_BOSS = L"Stop_Navigation";
 	constexpr const wchar_t* PLAY_DEAD_MUSIC = L"Play_GameOver";
+	constexpr const wchar_t* SET_STATE1_BOSS_FIGHT = L"Set_State1_BossFight";
+	constexpr const wchar_t* SET_STATE2_BOSS_FIGHT = L"Set_State2_BossFight";
+	constexpr const wchar_t* SET_STATE3_BOSS_FIGHT = L"Set_State3_BossFight";
+	constexpr const wchar_t* SET_STATE_DEFEATED = L"Set_State_Defeated";
+	constexpr const wchar_t* SET_STATE_VICTORY = L"Set_State_Victory";
 
 	constexpr const wchar_t* PLAY_COMBAT_MUSIC = L"Play_Combat"; // Deprecated
 	constexpr const wchar_t* STOP_COMBAT_MUSIC = L"Stop_Combat"; // Deprecated

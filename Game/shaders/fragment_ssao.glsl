@@ -21,13 +21,14 @@ const vec2 noise_scale = vec2(
 uniform float radius;
 uniform float bias;
 uniform float power;
-uniform mat4 camera_view_projection;
+uniform mat4 camera_view;
+uniform mat4 camera_proj;
 uniform vec3 samples[kernel_size];
 
 void main()
 {
-    vec3 fragment_position = texture(g_position, texture_coords).xyz;
-    vec3 fragment_normal = normalize(texture(g_normal, texture_coords).xyz);
+    vec3 fragment_position = (camera_view*texture(g_position, texture_coords)).xyz;
+    vec3 fragment_normal = mat3(camera_view)*normalize(texture(g_normal, texture_coords).xyz*2.0-1.0);
     vec3 random_vec = normalize(texture(texture_noise, texture_coords * noise_scale).xyz);
 
     // Create TBN change-of-basis matrix. From tangent-space to view-space:
@@ -44,21 +45,17 @@ void main()
         sample_position = fragment_position + sample_position * radius; 
         
         // Project sample position (to sample texture) (to get position on screen/texture):
-        vec4 offset = vec4(sample_position, 1.0);
-        offset = camera_view_projection * offset; // From view to clip-space
-        
-        // Save check position before interval mapping and perspective division for the comparison
-        // at the end of the loop:
-        vec4 check_position = offset;
+        vec4 offset = camera_proj*vec4(sample_position, 1.0);
         
         offset.xyz /= offset.w; // Perspective division
         offset.xyz = offset.xyz * 0.5 + 0.5; // Transform to range 0.0 - 1.0
         
         // Get sample depth:
-        float sample_depth = (camera_view_projection * texture(g_position, offset.xy)).z; // Get depth value of kernel sample
+        float sample_depth = (camera_view * texture(g_position, offset.xy)).z; // Get depth value of kernel sample
 
         // Range check & accumulate:
-        occlusion += (abs(sample_depth - check_position.z) > bias ? 1.0 : 0.0);
+        float rangeCheck = smoothstep(0.0, 1.0, radius / abs(sample_position.z - sample_depth));
+        occlusion += (sample_depth - sample_position.z >= bias ? 1.0 : 0.0)* rangeCheck;
     }
 
     out_fragment_color = pow(1.0 - (occlusion / kernel_size), power);

@@ -1,6 +1,6 @@
 prefab_name: Stalagmite
 name: Stalagmite
-enabled: false
+enabled: true
 component:
   - !<transform>
     type: 1
@@ -12,12 +12,15 @@ component:
     type: 15
     enabled: true
     class_name: Stalagmite
-    "'_explosion_effect@GameObject*'": 6
+    "'_explosion_effect@GameObject*'": 5
+    "'_area_indicator@GameObject*'": 8
     "'GEO@GameObject*'": 2
-    "'_obstacle@GameObject*'": 8
+    "'_obstacle@GameObject*'": 7
+  - type: 20
+    enabled: true
 child:
   - name: GEO
-    enabled: false
+    enabled: true
     component:
       - !<transform>
         type: 1
@@ -31,7 +34,7 @@ child:
         state_machine: 0
     child:
       - name: LaserBlock
-        enabled: false
+        enabled: true
         component:
           - !<transform>
             type: 1
@@ -48,26 +51,8 @@ child:
             casting_shadow: false
             material_id: 6750369022920963075
             tint_color: [1, 1, 1, 1]
-      - name: Stalactite_GEO
-        enabled: false
-        component:
-          - !<transform>
-            type: 1
-            enabled: true
-            position: [-0.0008, -0.68, -0.08]
-            rotation: [180, 0, 0]
-            scale: [0.005, 0.005, 0.004]
-          - !<mesh_renderer>
-            type: 2
-            enabled: true
-            mesh_id: 5123642657171642590
-            navigable: false
-            visible: true
-            casting_shadow: true
-            material_id: 3759531071522823328
-            tint_color: [1, 1, 1, 1]
       - name: rockSpike_01
-        enabled: false
+        enabled: true
         component:
           - !<transform>
             type: 1
@@ -85,17 +70,17 @@ child:
             material_id: 3759531071522823328
             tint_color: [1, 1, 1, 0.5176]
   - name: ExplosionIndicatorHelper
-    enabled: false
+    enabled: true
     component:
       - !<transform>
         type: 1
         enabled: true
         position: [0, -1.3, 0]
         rotation: [0, 7.901, 0]
-        scale: [6, 0.1, 6]
+        scale: [5, 0.1, 5]
     child:
       - name: Cylinder001
-        enabled: false
+        enabled: true
         component:
           - !<transform>
             type: 1
@@ -113,7 +98,7 @@ child:
             material_id: 6462450398853139216
             tint_color: [1, 1, 1, 1]
   - name: StObstacle
-    enabled: false
+    enabled: true
     component:
       - !<transform>
         type: 1
@@ -126,3 +111,38 @@ child:
         enabled: true
         obstacle_type: 0
         obstacle_size: [2.5, 3, 1]
+  - name: AreaIndicator
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, -1, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      - !<billboard>
+        type: 21
+        enabled: true
+        play_on_awake: true
+        texture_id: 15537058005441777461
+        tiles: [1, 1]
+        flip: [false, false]
+        billboard_lifetime: 1
+        properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        animation_speed: 0
+        total_tiles: 1
+        animation_loop: false
+        color_cycles: 0
+        color_gradient: [[0.763, 0, 0, 0, 0]]
+        animation_section: false
+        color_section: true
+        size_section: true
+        size_over_time: [true, false, 0, [70, 10], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        rotation_section: false
+        rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_size: [true, true, 0, [1, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        blend_factor: 0
+        projection: true
+        randomize_tiles: false

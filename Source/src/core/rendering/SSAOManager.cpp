@@ -115,7 +115,8 @@ void Hachiko::SSAOManager::BlurSSAO() const
 
 void Hachiko::SSAOManager::DrawSSAO(
     const GBuffer& g_buffer, 
-    const float4x4& camera_view_proj,
+    const float4x4& camera_view,
+    const float4x4& camera_proj,
     const unsigned fb_width,
     const unsigned fb_height) const
 {
@@ -142,8 +143,14 @@ void Hachiko::SSAOManager::DrawSSAO(
 
     // Bind projection matrix:
     ssao_program->BindUniformFloat4x4(
-        Uniforms::SSAO::CAMERA_VIEW_PROJ, 
-        camera_view_proj.ptr());
+        Uniforms::SSAO::CAMERA_VIEW,
+        camera_view.ptr());
+
+    // Bind projection matrix:
+    ssao_program->BindUniformFloat4x4(
+        Uniforms::SSAO::CAMERA_PROJ,
+        camera_proj.ptr());
+
     // Bind frame buffer sizes:
     // TODO: Make these uniforms used through variables.
     ssao_program->BindUniformFloat(
@@ -208,7 +215,8 @@ void Hachiko::SSAOManager::SaveConfig(YAML::Node& node) const
 {
     node[CONFIG_GAUSSIAN_INTENSITY] = _blur_config.intensity;
     node[CONFIG_GAUSSIAN_SIGMA] = _blur_config.sigma;
-    node[CONFIG_GAUSSIAN_BLUR_PIXEL_SIZE] = BlurPixelSize::ToIndex(_blur_config.size);
+    node[CONFIG_GAUSSIAN_BLUR_PIXEL_SIZE] = 
+        BlurPixelSize::ToIndex(_blur_config.size);
     node[CONFIG_SSAO_BLUR_ENABLED] = _blur_enabled;
     node[CONFIG_SSAO_BIAS] = _bias;
     node[CONFIG_SSAO_RADIUS] = _radius;
@@ -229,12 +237,15 @@ void Hachiko::SSAOManager::LoadConfig(const YAML::Node& node)
         _blur_config.sigma = gaussian_sigma.as<float>();
     }
 
-    const YAML::Node& gaussian_blur_pixel_size = node[CONFIG_GAUSSIAN_BLUR_PIXEL_SIZE];
+    const YAML::Node& gaussian_blur_pixel_size = 
+        node[CONFIG_GAUSSIAN_BLUR_PIXEL_SIZE];
     if (gaussian_blur_pixel_size.IsDefined())
     {
         int temp_size = gaussian_blur_pixel_size.as<int>();
 
-        _blur_config.size = BlurPixelSize::IsValidPixelSize(temp_size) ? static_cast<BlurPixelSize::Type>(temp_size) : BloomDefaultValues::PIXEL_SIZE;
+        _blur_config.size = BlurPixelSize::IsValidPixelSize(temp_size)
+            ? static_cast<BlurPixelSize::Type>(temp_size)
+            : BloomDefaultValues::PIXEL_SIZE;
     }
 
     const YAML::Node& ssao_blur_enabled = node[CONFIG_SSAO_BLUR_ENABLED];

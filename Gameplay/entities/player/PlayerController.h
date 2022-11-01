@@ -144,23 +144,9 @@ namespace Hachiko
 				return ret_value;
 			}
 
-			void ActivateTooltip()
-			{
-				if (Input::IsGamepadModeOn())
-				{
-					_controller_tooltip_display->GetComponent(Component::Type::IMAGE)->Enable();
-				}
-				else
-				{
-					_keyboard_tooltip_display->GetComponent(Component::Type::IMAGE)->Enable();
-				}
-			}
+			void ActivateTooltip(const float3& position);
+			void DeactivateTooltip();
 
-			void DeactivateTooltip()
-			{
-				_controller_tooltip_display->GetComponent(Component::Type::IMAGE)->Disable();
-				_keyboard_tooltip_display->GetComponent(Component::Type::IMAGE)->Disable();
-			}
 
 			float3 GetCamBasicPos()
 			{
@@ -318,6 +304,7 @@ namespace Hachiko
 
 			SERIALIZE_FIELD(GameObject*, _keyboard_tooltip_display);
 			SERIALIZE_FIELD(GameObject*, _controller_tooltip_display);
+			SERIALIZE_FIELD(float, tooltip_y_offset);
 
 			SERIALIZE_FIELD(GameObject*, _camera);
 			SERIALIZE_FIELD(GameObject*, _ui_damage);

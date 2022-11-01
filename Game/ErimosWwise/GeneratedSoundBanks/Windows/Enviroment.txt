@@ -2,10 +2,13 @@ Event	ID	Name			Wwise Object Path	Notes
 	707649828	Stop_Pebble			\Default Work Unit\Stop_Pebble	
 	1020223172	Play_Wind			\Default Work Unit\Play_Wind	
 	1157125118	Play_Pebble			\Default Work Unit\Play_Pebble	
-	1196441153	Play_DoorOpens			\Default Work Unit\Play_DoorOpens	
 	2035174344	Play_Crystal			\Default Work Unit\Play_Crystal	
 	2270376495	Play_Laser			\Default Work Unit\Play_Laser	
+	2603336188	Play_StalagmiteGroundImpact			\Default Work Unit\Play_StalagmiteGroundImpact	
+	2962822744	Play_Checkpoint			\Default Work Unit\Play_Checkpoint	
+	2988819998	Play_GaunletDoorOpening			\Default Work Unit\Play_GaunletDoorOpening	
 	3173136834	Stop_Wind			\Default Work Unit\Stop_Wind	
+	3250624050	Play_StalagmiteCeilingCrack			\Default Work Unit\Play_StalagmiteCeilingCrack	
 	3948925255	Play_Splash			\Default Work Unit\Play_Splash	
 	4092857357	Play_Laser_Hit			\Default Work Unit\Play_Laser_Hit	
 
@@ -16,14 +19,22 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	11692854	Pebbles 3	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 3		551392
 	23504808	Pebbles 2	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 2		797616
 	101284139	cristal broken 1	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Crystal\cristal broken 1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\cristal broken 1		374996
+	124169010	ES_Ceiling Crack Wood - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Ceiling Crack Wood - SFX Producer_945D8CFD.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Stalagmites\Ceiling Crack\ES_Ceiling Crack Wood - SFX Producer		213016
 	202657829	cristal broken 2	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Crystal\cristal broken 2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\cristal broken 2		374996
+	223048066	ES_Sonic Boom 4 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Sonic Boom 4 - SFX Producer_0B87E41F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Stalagmites\Ground Impact\ES_Sonic Boom 4 - SFX Producer		212204
+	223665965	ES_Swoosh 02 Short - Jon Bjork	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Swoosh 02 Short - Jon Bjork_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Checkpoint\ES_Swoosh 02 Short - Jon Bjork		1364220
 	244703648	Wind	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Desert_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Wind		22579344
-	291347773	DoorOpenSlime	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\DoorOpenSlime_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\DoorOpenSlime		81664
 	293397634	SplashCentipede	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Splash-centipede_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\SplashCentipede		97780
+	326766638	ES_Swoosh 12 Short - Jon Bjork	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Swoosh 12 Short - Jon Bjork_5656B412.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Checkpoint\ES_Swoosh 12 Short - Jon Bjork		774156
 	376669262	Pebbles 1	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 1		1146744
+	416998960	ES_Swoosh 09 Short - Jon Bjork	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Swoosh 09 Short - Jon Bjork_2F2D746B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Stalagmites\Ceiling Crack\ES_Swoosh 09 Short - Jon Bjork		414464
+	557030509	End	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Sci Fi Spaceship 36 - SFX Producer_CBF79404.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Gaunlet\End		573224
 	706795758	cristal broken 3	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Crystal\cristal broken 3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\cristal broken 3		330896
+	803151951	ES_Rock Debris Spill 2 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Rock Debris Spill 2 - SFX Producer_89472BDF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Stalagmites\Ground Impact\ES_Rock Debris Spill 2 - SFX Producer		236664
+	836889846	ES_Avalanche Rock Cracks 2 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Avalanche Rock Cracks 2 - SFX Producer_E42CCB30.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Stalagmites\Ceiling Crack\ES_Avalanche Rock Cracks 2 - SFX Producer		203540
 	857441310	Pebbles 4	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 4		661644
 	971224351	Hit2	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_MM Design Element 43 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LaserHit\Hit2		165952
+	1018062011	ES_Earthquake Tremor Rocks 2 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Earthquake Tremor Rocks 2 - SFX Producer_8B7E2A2E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Stalagmites\Ground Impact\ES_Earthquake Tremor Rocks 2 - SFX Producer		161716
 	1029896715	LaserStart	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Laser Sword Hum - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LaserStart		342080
 	1053424550	Hit1	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Laser\Swish - Call And Response_EB955B5F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LaserHit\Hit1		268756
 

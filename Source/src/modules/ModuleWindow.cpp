@@ -44,7 +44,13 @@ bool Hachiko::ModuleWindow::Init()
         }
 
         App->renderer->SetOpenGLAttributes();
+
+#ifdef PLAY_BUILD
+        window = SDL_CreateWindow("Erimos", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
+#else
         window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
+#endif // PLAY_BUILD
+
 
         if (window == nullptr)
         {

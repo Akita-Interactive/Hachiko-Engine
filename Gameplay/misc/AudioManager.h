@@ -29,6 +29,9 @@ namespace Hachiko
 
 			void RegisterGaunlet();
 			void UnregisterGaunlet();
+			void PlayGaunletComplete();
+			void PlayGaunletStart();
+			void PlayGaunletNextRound();
 
 			void Restart();
 			void SetLevel(unsigned level);
@@ -37,7 +40,8 @@ namespace Hachiko
 			void PlayEnemyDeath(EnemyType enemy_type);
 			void PlaySpawnWorm();
 
-			ComponentAudioSource* GetAudioSource() { return _audio_source; }
+			// Environment
+			void PlayDoorOpening();
 		private:
 			bool updated = false;
 			bool _in_combat = false;

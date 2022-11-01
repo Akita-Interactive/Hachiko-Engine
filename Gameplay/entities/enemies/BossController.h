@@ -17,6 +17,7 @@ namespace Hachiko
     class ComponentBillboard;
     class ComponentProgressBar;
     class ComponentObstacle;
+    class ComponentAudioSource;
 
 	namespace Scripting
 	{
@@ -168,12 +169,11 @@ namespace Hachiko
             SERIALIZE_FIELD(bool, second_phase);
             SERIALIZE_FIELD(GameObject*, hp_bar_go);
             SERIALIZE_FIELD(GameObject*, crystal_target_go);
-            SERIALIZE_FIELD(GameObject*, cocoon_placeholder_go);
+            SERIALIZE_FIELD(GameObject*, cocoons_parent);
             SERIALIZE_FIELD(GameObject*, gauntlet_go);
             std::vector<GameObject*> _explosive_crystals;
             SERIALIZE_FIELD(int, _current_index_crystals);
             SERIALIZE_FIELD(GameObject*, crystal_pool);
-            SERIALIZE_FIELD(float, start_encounter_range);
             SERIALIZE_FIELD(float, attack_delay);
             SERIALIZE_FIELD(float, after_attack_wait);
             GameObject* player = nullptr; // It's found on scene based on name
@@ -185,6 +185,7 @@ namespace Hachiko
             ComponentAnimation* animation = nullptr;
             GauntletManager* gauntlet = nullptr;
             CombatManager* combat_manager = nullptr;
+            ComponentAudioSource* audio_source = nullptr;
             Stats* combat_stats = nullptr;
             BossState state = BossState::WAITING_ENCOUNTER;
             BossState prev_state = state;

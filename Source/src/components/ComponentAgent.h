@@ -22,6 +22,7 @@ namespace Hachiko
         void SetAsPlayer(bool is_player);
 
 
+		[[nodiscard]] int GetAgentIndex() const { return agent_id; }
 		[[nodiscard]] float GetMaxSpeed() const { return max_speed; }
         [[nodiscard]] float GetRadius() const{ return radius; }
 		[[nodiscard]] float GetMaxAcceleration() const { return max_acceleration; }

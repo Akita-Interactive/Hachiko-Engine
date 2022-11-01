@@ -9,7 +9,7 @@
 
 Hachiko::Scripting::StalagmiteManager::StalagmiteManager(GameObject* game_object)
 	: Script(game_object, "StalagmiteManager")
-	, _falling_cooldown(1.0f)
+	, _falling_cooldown(0.5f)
 {
 }
 
@@ -42,6 +42,7 @@ void Hachiko::Scripting::StalagmiteManager::GenerateStalagmites()
         }
 
         _stalagmites.push_back(stalagmite);
+		stalagmite->Dissolved();
     }
 
 	cooldown_elapsed = 0.f;
@@ -64,7 +65,7 @@ void Hachiko::Scripting::StalagmiteManager::OnUpdate()
 	}
 	else
 	{
-		_stalactites_timer -= Time::DeltaTime();
+		_stalactites_timer -= Time::DeltaTimeScaled();
 	}
 
 	for (unsigned i = 0; i < _stalagmites.size(); i++)
@@ -73,7 +74,7 @@ void Hachiko::Scripting::StalagmiteManager::OnUpdate()
 		{
 			if (_stalagmites[i]->GetState() == StalagmiteState::DISSOLVING)
 			{
-				_stalagmites[i]->_dissolving_time -= Time::DeltaTime();
+				_stalagmites[i]->_dissolving_time -= Time::DeltaTimeScaled();
 				_stalagmites[i]->GetGameObject()->ChangeDissolveProgress(_stalagmites[i]->_dissolving_time/_total_dissolving_time, true);
 				if (_stalagmites[i]->_dissolving_time <= 0.0f)
 				{
@@ -96,17 +97,21 @@ void Hachiko::Scripting::StalagmiteManager::OnUpdate()
 		{
 			// MOVE STALAGMITE TO THE PLAYER
 
-			cooldown_elapsed += Time::DeltaTime();
+			cooldown_elapsed += Time::DeltaTimeScaled();
 			if (cooldown_elapsed >= _falling_cooldown)
 			{
 				_stalagmites[i]->SetNewState(StalagmiteState::FALLING);
 				cooldown_elapsed = 0.f;
 			}
+			else
+			{
+				_player_camera->Shake(0.15f, 0.1f);
+			}
 		}
 		else {
 			if (_stalagmites[i]->GetState() == StalagmiteState::FALLING)
 			{
-				falling_elapsed += Time::DeltaTime();
+				falling_elapsed += Time::DeltaTimeScaled();
 				if (falling_elapsed >= _falling_time)
 				{
 					FallingStalagmite(_stalagmites[i], 1.0f);
@@ -131,14 +136,13 @@ void Hachiko::Scripting::StalagmiteManager::OnUpdate()
 
 				    ++updated_stalagmites_count;
 
-				    falling_elapsed = 0;
+				    falling_elapsed = -1.f;
 				}
-				else
+				else if (falling_elapsed > 0.0f)
 				{
 					float fall_progress = falling_elapsed / _falling_time;
 					FallingStalagmite(_stalagmites[i], fall_progress);
 				}
-
 			}
 
 			UpdateStalagmiteState(_stalagmites[i]);

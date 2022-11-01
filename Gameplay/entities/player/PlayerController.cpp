@@ -36,6 +36,7 @@ Hachiko::Scripting::PlayerController::PlayerController(GameObject* game_object)
 	, _heal_effect_fade_duration(0.3)
 	, damage_effect_duration(1.0f)
 	, _combat_visual_effects_pool(nullptr)
+	, tooltip_y_offset(2.f)
 {
 	CombatManager::BulletStats common_bullet;
 	common_bullet.charge_time = .5f;
@@ -104,6 +105,7 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 	if (_attack_indicator)
 	{
 		_attack_indicator->SetActive(false);
+		_attack_indicator->SetTimeScaleMode(TimeScaleMode::SCALED);
 	}
 	if (_ui_damage)
 	{
@@ -177,7 +179,10 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 	{
 		_parasite_pickup_billboard = _parasite_pickup_effect->GetComponent<ComponentBillboard>();
 	}
-
+	if (_death_screen != nullptr)
+	{
+		_death_screen->GetComponent(Component::Type::IMAGE)->Disable();
+	}
 	
 	if (_aim_indicator != nullptr)
 	{
@@ -262,6 +267,7 @@ void Hachiko::Scripting::PlayerController::OnStart()
 	}
 
 	UpdateHealthBar();
+
 }
 
 void Hachiko::Scripting::PlayerController::OnUpdate()
@@ -335,7 +341,7 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 			{
 				if (_death_screen != nullptr)
 				{
-					_death_screen->SetActive(false);
+					_death_screen->GetComponent(Component::Type::IMAGE)->Disable();
 				}
 				if (_level_manager->_level > 2) {
 					_level_manager->ReloadBossScene();
@@ -370,7 +376,7 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 
 				if (_death_screen != nullptr)
 				{
-					_death_screen->SetActive(true);
+					_death_screen->GetComponent(Component::Type::IMAGE)->Enable();
 				}
 			}
 		}
@@ -416,6 +422,29 @@ math::float3 Hachiko::Scripting::PlayerController::GetRaycastPosition(
 		mouse_position_view.x, mouse_position_view.y);
 
 	return plane.ClosestPoint(ray);
+}
+
+void Hachiko::Scripting::PlayerController::ActivateTooltip(const float3& position)
+{
+	float3 final_position = position;
+	final_position.y += tooltip_y_offset;
+
+	if (Input::IsGamepadModeOn())
+	{
+		_controller_tooltip_display->GetTransform()->SetGlobalPosition(final_position);
+		_controller_tooltip_display->GetComponent(Component::Type::BILLBOARD)->Start();
+	}
+	else
+	{
+		_keyboard_tooltip_display->GetTransform()->SetGlobalPosition(final_position);
+		_keyboard_tooltip_display->GetComponent(Component::Type::BILLBOARD)->Start();
+	}
+}
+
+void Hachiko::Scripting::PlayerController::DeactivateTooltip()
+{
+	_controller_tooltip_display->GetComponent(Component::Type::BILLBOARD)->Stop();
+	_keyboard_tooltip_display->GetComponent(Component::Type::BILLBOARD)->Stop();
 }
 
 float3 Hachiko::Scripting::PlayerController::GetCorrectedPosition(const float3& target_pos, bool fps_relative) const
@@ -1277,6 +1306,9 @@ if (_attack_current_delay > 0.f)
 
 void Hachiko::Scripting::PlayerController::CheckNearbyParasytes(const float3& current_position)
 {
+	GameObject* closest_parasyte_in_range = nullptr;
+	float closest_parasyte_distance = FLOAT_INF;
+	
 	if (_enemies == nullptr)
 	{
 		return;
@@ -1293,13 +1325,15 @@ void Hachiko::Scripting::PlayerController::CheckNearbyParasytes(const float3& cu
 		}
 		std::vector<GameObject*>& enemies = pack->children;
 
-		float parasyte_pickup_distance = 1.5f;
+		float parasyte_pickup_distance = 3.5f;
 
 		if (_magic_parasyte && _magic_parasyte->IsActive())
 		{
 			if (parasyte_pickup_distance >= _player_transform->GetGlobalPosition().Distance(_magic_parasyte->GetTransform()->GetGlobalPosition()))
 			{
-				ActivateTooltip();
+				// If there is a nearby parasyte tooltip of the normal parasyte would be the one appearing
+				// This will never happen on our level layout so its fine
+				ActivateTooltip(_magic_parasyte->GetTransform()->GetGlobalPosition());
 				if (Input::IsKeyDown(Input::KeyCode::KEY_F) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_B))
 				{
 					PickupParasite(nullptr, true);
@@ -1316,9 +1350,25 @@ void Hachiko::Scripting::PlayerController::CheckNearbyParasytes(const float3& cu
 			{
 				EnemyController* enemy_controller = enemies[i]->GetComponent<EnemyController>();
 
-				if (enemy_controller->IsAlive() == false && enemy_controller->ParasiteDropped())
+				if (!enemy_controller->IsAlive() && enemy_controller->ParasiteDropped())
 				{
-					ActivateTooltip();
+					if (!closest_parasyte_in_range)
+					{
+						closest_parasyte_in_range = enemies[i];
+						closest_parasyte_distance = Distance(_player_position, closest_parasyte_in_range->GetTransform()->GetGlobalPosition());
+					}
+					else
+					{
+						float dist = Distance(_player_position, closest_parasyte_in_range->GetTransform()->GetGlobalPosition());
+						if (dist < closest_parasyte_distance)
+						{
+							closest_parasyte_in_range = enemies[i];
+						}
+					}
+					
+					
+					ActivateTooltip(closest_parasyte_in_range->GetTransform()->GetGlobalPosition());
+
 					if (Input::IsKeyDown(Input::KeyCode::KEY_F) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_B))
 					{
 						PickupParasite(enemy_controller);

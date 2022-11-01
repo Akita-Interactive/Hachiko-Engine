@@ -75,6 +75,8 @@ void Hachiko::ComponentParticleSystem::Start()
     };
     App->event->Subscribe(Event::Type::SELECTION_CHANGED, selection_changed, GetID());*/
     emitter_state = ParticleSystem::Emitter::State::PLAYING;
+
+    initialized = true;
 }
 
 void Hachiko::ComponentParticleSystem::Update()
@@ -835,7 +837,10 @@ void Hachiko::ComponentParticleSystem::Pause()
 
 void Hachiko::ComponentParticleSystem::Restart()
 {
-    Reset();
+    if (initialized)
+    {
+        Reset();
+    }
     emitter_state = ParticleSystem::Emitter::State::PLAYING;
 }
 
