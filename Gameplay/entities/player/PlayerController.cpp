@@ -1025,6 +1025,10 @@ void Hachiko::Scripting::PlayerController::MovementController()
 			// Fall dmg
 			RegisterHit(1, 0, float3::zero, true, DamageType::FALL);
 
+			// Empty the buffer action
+			_remaining_buffer_time = 0.0f;
+			dash_buffer = false;
+
 			// If its still alive place it in the first valid position, if none exists respawn it
 			_player_position = GetLastValidDashOrigin();
 			if (_player_position.x >= FLT_MAX)
