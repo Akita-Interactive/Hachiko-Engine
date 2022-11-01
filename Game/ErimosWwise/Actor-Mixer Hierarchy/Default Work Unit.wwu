@@ -1206,28 +1206,6 @@
 										<ActiveSource Name="ES_Monster Growl 11 - SFX Producer" ID="{5BBB2BE2-0A23-4022-941E-5376B0DE18B0}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="Jump" ID="{8337BE53-5184-4003-8FCE-C746C29BC050}" ShortID="161494246">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-										</Reference>
-									</ReferenceList>
-									<ObjectLists/>
-								</Sound>
-								<Sound Name="Walk" ID="{74B641D6-1A08-4DBC-874B-EF7CE545169E}" ShortID="961077648">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-										</Reference>
-									</ReferenceList>
-									<ObjectLists/>
-								</Sound>
 								<Sound Name="IdleBreathe" ID="{9C048A04-A9CE-4198-BA16-8C204991CC2A}" ShortID="810700582">
 									<PropertyList>
 										<Property Name="3DSpatialization" Type="int16" Value="1"/>
@@ -1240,7 +1218,7 @@
 													<Modifier Name="" ID="{08C7CDCF-D42E-40BF-8456-D41C1305ADA1}">
 														<PropertyList>
 															<Property Name="Enabled" Type="bool" Value="True"/>
-															<Property Name="Max" Type="Real64" Value="0.5"/>
+															<Property Name="Max" Type="Real64" Value="1.5"/>
 															<Property Name="Min" Type="Real64" Value="-0.5"/>
 														</PropertyList>
 													</Modifier>

@@ -1,24 +1,22 @@
 Event	ID	Name			Wwise Object Path	Notes
-	998505444	Play_LoadingAmmo			\Default Work Unit\Play_LoadingAmmo	
-	1126614951	Play_GaunletNextRound			\Default Work Unit\Play_GaunletNextRound	
-	1388583332	Play_ShootNoAmmo			\Default Work Unit\Play_ShootNoAmmo	
-	1678827735	Play_WormAttack			\Default Work Unit\Play_WormAttack	
-	1996518743	Play_WormDeath			\Default Work Unit\Play_WormDeath	
-	2211787386	Play_Dash			\Default Work Unit\Play_Dash	
-	2988676654	Play_MeleeAttack			\Default Work Unit\Play_MeleeAttack	
-	3126715392	Play_WormSpawn			\Default Work Unit\Play_WormSpawn	
-	3174629258	Play_GameOver			\Default Work Unit\Play_GameOver	
-	3318027631	Play_BeetleDeath			\Default Work Unit\Play_BeetleDeath	
-	3438014598	Play_ReceiveDamage			\Default Work Unit\Play_ReceiveDamage	
-	3766948527	Play_RangedAttack			\Default Work Unit\Play_RangedAttack	
-	3772493585	Play_ParasitePickUp			\Default Work Unit\Play_ParasitePickUp	
-	3900269399	Play_WormHide			\Default Work Unit\Play_WormHide	
-	4242710327	Play_WormRoar			\Default Work Unit\Play_WormRoar	
-	4275867775	Play_BeetleAttack			\Default Work Unit\Play_BeetleAttack	
+	998505444	Play_LoadingAmmo			\Default Work Unit\Player\Play_LoadingAmmo	
+	1126614951	Play_GaunletNextRound			\Default Work Unit\Environment\Play_GaunletNextRound	
+	1678827735	Play_WormAttack			\Default Work Unit\Enemies\Worm\Play_WormAttack	
+	1996518743	Play_WormDeath			\Default Work Unit\Enemies\Worm\Play_WormDeath	
+	2211787386	Play_Dash			\Default Work Unit\Player\Play_Dash	
+	2988676654	Play_MeleeAttack			\Default Work Unit\Player\Play_MeleeAttack	
+	3126715392	Play_WormSpawn			\Default Work Unit\Enemies\Worm\Play_WormSpawn	
+	3318027631	Play_BeetleDeath			\Default Work Unit\Enemies\Beetle\Play_BeetleDeath	
+	3438014598	Play_ReceiveDamage			\Default Work Unit\Player\Play_ReceiveDamage	
+	3766948527	Play_RangedAttack			\Default Work Unit\Player\Play_RangedAttack	
+	3772493585	Play_ParasitePickUp			\Default Work Unit\Player\Play_ParasitePickUp	
+	3900269399	Play_WormHide			\Default Work Unit\Enemies\Worm\Play_WormHide	
+	4242710327	Play_WormRoar			\Default Work Unit\Enemies\Worm\Play_WormRoar	
+	4275867775	Play_BeetleAttack			\Default Work Unit\Enemies\Beetle\Play_BeetleAttack	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	53399867	ES_Punch 44 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Punch 44 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Beetle\BeetleAttack\Hit\ES_Punch 44 - SFX Producer		108608
-	132361843	ES_Punch Face 5 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Punch Face 5 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\MeleeAttack\ES_Punch Face 5 - SFX Producer		67648
+	132361843	ES_Punch Face 5 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Punch Face 5 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Beetle\BeetleAttack\Hit\ES_Punch Face 5 - SFX Producer		67648
 	132796318	Damage 7	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Damage\Damage 7_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\ReceiveDamage\Damage 7		96244
 	154933663	Impact - Lightweight	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Ranged attack\Impact - Lightweight_C96353A1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Ranged\Impact - Lightweight		256412
 	170332924	ES_Insect Wings Fly 4 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Insect Wings Fly 4 - SFX Producer_C6DECE43.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Beetle\BeetleAttack\Wings\ES_Insect Wings Fly 4 - SFX Producer		141036
@@ -30,7 +28,6 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	358856772	WormSpawn	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Dinosaur Groan 3 - SFX Producer_D755891D.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Worm\WormSpawn		313408
 	364841447	ES_Alien Chirp Critter 2 - SFX Producer_01	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Alien Chirp Critter 2 - SFX Producer_801B1EBA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Beetle\BeetleAttack\Voice\ES_Alien Chirp Critter 2 - SFX Producer_01		59332
 	392689559	Damage 6	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Damage\Damage 6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\ReceiveDamage\Damage 6		37996
-	415761682	EmptyShoot	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Ranged attack\No ammo_29610A08.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\EmptyShoot		51676
 	416633218	WormBleat	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Monster Groan 6 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Worm\HideAndSand\WormBleat		249920
 	433395220	ES_Punch Face 3 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Punch Face 3 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\MeleeAttack\ES_Punch Face 3 - SFX Producer		71744
 	519900430	ES_Alien Chirp Critter 1 - SFX Producer_01	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Alien Chirp Critter 1 - SFX Producer_4F1280FD.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Beetle\BeetleAttack\Voice\ES_Alien Chirp Critter 1 - SFX Producer_01		39084

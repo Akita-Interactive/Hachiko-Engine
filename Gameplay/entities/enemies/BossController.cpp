@@ -132,6 +132,7 @@ void Hachiko::Scripting::BossController::OnStart()
 {
 	animation->StartAnimating();
 	animation->SendTrigger("isCacoonLoop");
+    audio_source->PostEvent(Sounds::SET_STATE1_BOSS_FIGHT);
     audio_source->PostEvent(Sounds::BOSS_BREATHE);
 	OverrideCameraOffset();
 }
@@ -401,6 +402,7 @@ void Hachiko::Scripting::BossController::ResetCombatState()
 void Hachiko::Scripting::BossController::Die()
 {
 	// Start death
+    audio_source->PostEvent(Sounds::SET_STATE_VICTORY);
 }
 
 void Hachiko::Scripting::BossController::DieController()
