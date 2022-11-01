@@ -669,6 +669,17 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Event Name="Play_ExplosiveCrystal" ID="{E2CB2EA0-F1F2-439D-959E-E6D4F7856857}">
+					<ChildrenList>
+						<Action Name="" ID="{47F6AA41-6D9B-45DB-BB84-0B5FED5E0F46}" ShortID="741620204">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="ExplosiveCrystal" ID="{15BBAE26-83A9-4103-B023-BB47308572E0}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

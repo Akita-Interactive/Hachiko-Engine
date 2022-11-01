@@ -285,29 +285,6 @@
 										<ActiveSource Name="cristal broken 1" ID="{00D40BBD-942C-42A3-BC13-720EF04152D4}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="cristal broken 2" ID="{91C3E651-327E-4D04-B4B4-54E7099AE432}" ShortID="22123325">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="cristal broken 2" ID="{854929D5-4F8B-42CC-ABB8-B1509EF288FB}">
-											<Language>SFX</Language>
-											<AudioFile>Crystal\cristal broken 2.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="202657829"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="cristal broken 2" ID="{854929D5-4F8B-42CC-ABB8-B1509EF288FB}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
 								<Sound Name="cristal broken 3" ID="{E11FB8C3-F029-4826-809E-FECBCF9B7995}" ShortID="665297841">
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -1034,6 +1011,17 @@
 								</BlendContainer>
 							</ChildrenList>
 						</Folder>
+						<BlendContainer Name="ExplosiveCrystal" ID="{15BBAE26-83A9-4103-B023-BB47308572E0}" ShortID="977618785">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+								</Reference>
+							</ReferenceList>
+							<ObjectLists/>
+						</BlendContainer>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{C0368863-E296-4CEF-8414-B7D2D6740F0E}" ShortID="637683217">
