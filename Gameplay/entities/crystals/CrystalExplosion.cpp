@@ -302,7 +302,16 @@ void Hachiko::Scripting::CrystalExplosion::ResetCrystal()
 
 void Hachiko::Scripting::CrystalExplosion::DestroyCrystal()
 {
-	_audio_source->PostEvent(Sounds::CRYSTAL);
+	if (!_explosive_crystal)
+	{
+		_audio_source->PostEvent(Sounds::CRYSTAL);
+	}
+	else
+	{
+		_audio_source->PostEvent(Sounds::EXPLOSIVE_CRYSTAL);
+	}
+	
+	
 	if (obstacle)
 	{
 		obstacle->RemoveObstacle();
