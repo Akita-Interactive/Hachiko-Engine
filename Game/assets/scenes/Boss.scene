@@ -11190,6 +11190,7 @@ child:
             "'_explosive_crystal@bool'": false
             "'_regen_time@float'": 5
             "'_should_regen@bool'": true
+            "'_for_boss_cocoon@bool'": true
             "'damage_effect_duration@float'": 0.5
         child:
           - id: 5213186095063174052
@@ -11598,6 +11599,7 @@ child:
             "'_explosive_crystal@bool'": false
             "'_regen_time@float'": 5
             "'_should_regen@bool'": true
+            "'_for_boss_cocoon@bool'": true
             "'damage_effect_duration@float'": 0.5
         child:
           - id: 1373826432828410078
@@ -12006,6 +12008,7 @@ child:
             "'_explosive_crystal@bool'": false
             "'_regen_time@float'": 5
             "'_should_regen@bool'": true
+            "'_for_boss_cocoon@bool'": true
             "'damage_effect_duration@float'": 0.5
         child:
           - id: 8901936930191146217
@@ -12414,6 +12417,7 @@ child:
             "'_explosive_crystal@bool'": false
             "'_regen_time@float'": 5
             "'_should_regen@bool'": true
+            "'_for_boss_cocoon@bool'": true
             "'damage_effect_duration@float'": 0.5
         child:
           - id: 18110449753150817775
@@ -12822,6 +12826,7 @@ child:
             "'_explosive_crystal@bool'": false
             "'_regen_time@float'": 5
             "'_should_regen@bool'": true
+            "'_for_boss_cocoon@bool'": true
             "'damage_effect_duration@float'": 0.5
         child:
           - id: 12654953992903386457
@@ -14776,6 +14781,7 @@ child:
             "'_explosive_crystal@bool'": true
             "'_regen_time@float'": 5
             "'_should_regen@bool'": false
+            "'_for_boss_cocoon@bool'": false
             "'damage_effect_duration@float'": 0.5
           - !<script>
             id: 6077611968635403717
@@ -15362,6 +15368,7 @@ child:
             "'_explosive_crystal@bool'": true
             "'_regen_time@float'": 5
             "'_should_regen@bool'": false
+            "'_for_boss_cocoon@bool'": false
             "'damage_effect_duration@float'": 0.5
           - !<script>
             id: 9065436237217412926
@@ -15948,6 +15955,7 @@ child:
             "'_explosive_crystal@bool'": true
             "'_regen_time@float'": 5
             "'_should_regen@bool'": false
+            "'_for_boss_cocoon@bool'": false
             "'damage_effect_duration@float'": 0.5
           - !<script>
             id: 896431789428387748
@@ -16534,6 +16542,7 @@ child:
             "'_explosive_crystal@bool'": true
             "'_regen_time@float'": 5
             "'_should_regen@bool'": false
+            "'_for_boss_cocoon@bool'": false
             "'damage_effect_duration@float'": 0.5
           - !<script>
             id: 1920219171547589371
@@ -17120,6 +17129,7 @@ child:
             "'_explosive_crystal@bool'": true
             "'_regen_time@float'": 5
             "'_should_regen@bool'": false
+            "'_for_boss_cocoon@bool'": false
             "'damage_effect_duration@float'": 0.5
           - !<script>
             id: 11548036809262709320
@@ -46605,7 +46615,7 @@ child:
             id: 6169337152266315911
             type: 1
             enabled: true
-            position: [-39.62, -22.35, -80.62]
+            position: [-39.62, -1e+07, -80.62]
             rotation: [0, 0, 0]
             scale: [1.074, 1.098, 1.074]
       - id: 6176356638000236994
@@ -48441,7 +48451,7 @@ child:
         "'_attack_indicator@GameObject*'": 15757914801945072015
         "'_aim_indicator@GameObject*'": 17516732698059743784
         "'_combat_manager@GameObject*'": 8459539939456400839
-        "'_goal@GameObject*'": 18251543931208160398
+        "'_goal@GameObject*'": 7915766907333402918
         "'_player_geometry@GameObject*'": 3990881034475623681
         "'_dash_duration@float'": 0.15
         "'_dash_distance@float'": 6
@@ -53038,17 +53048,6 @@ child:
             intensity: 3
             radius: 3
             draw_sphere: false
-      - id: 18251543931208160398
-        name: Goal
-        enabled: false
-        component:
-          - !<transform>
-            id: 17377555573731563241
-            type: 1
-            enabled: true
-            position: [-86.22, -15.04, -2.59]
-            rotation: [0, 6.75, 0]
-            scale: [1.079, 1.1, 1.079]
       - id: 425311955317215364
         name: Tooltip
         enabled: true
@@ -55604,6 +55603,170 @@ child:
                 rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_size: [true, true, 0, [1, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 1
+                projection: true
+                randomize_tiles: false
+      - id: 6948716864286149478
+        name: Blaster
+        enabled: true
+        component:
+          - !<transform>
+            id: 10183914088849469493
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0]
+            scale: [1, 1, 1]
+        child:
+          - id: 7177990081294315414
+            name: Blaster_VFX
+            enabled: true
+            component:
+              - !<transform>
+                id: 15502990375018083677
+                type: 1
+                enabled: true
+                position: [-79.6, 9.48, -56.25]
+                rotation: [0, 0, 0]
+                scale: [1, 1, 1]
+              - !<billboard>
+                id: 2143526626260453946
+                type: 21
+                enabled: true
+                play_on_awake: false
+                texture_id: 9492710251713022701
+                tiles: [2, 1]
+                flip: [false, false]
+                billboard_lifetime: 0.6
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0.3
+                total_tiles: 2
+                animation_loop: false
+                color_cycles: 1
+                color_gradient: [[0.1618, 1, 0, 0, 0.6426], [0, 0, 0, 0, 0.8905]]
+                animation_section: true
+                color_section: true
+                size_section: false
+                size_over_time: [true, false, 1, [-1, -2.5], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [2, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 1
+                projection: true
+                randomize_tiles: false
+          - id: 9483588689443719349
+            name: Blaster_VFX
+            enabled: true
+            component:
+              - !<transform>
+                id: 13674437867155296292
+                type: 1
+                enabled: true
+                position: [-79.6, 9.48, -56.25]
+                rotation: [0, 0, 0]
+                scale: [1, 1, 1]
+              - !<billboard>
+                id: 11302340949898769513
+                type: 21
+                enabled: true
+                play_on_awake: false
+                texture_id: 9492710251713022701
+                tiles: [2, 1]
+                flip: [false, false]
+                billboard_lifetime: 0.6
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0.3
+                total_tiles: 2
+                animation_loop: false
+                color_cycles: 1
+                color_gradient: [[0.1618, 1, 0, 0, 0.6426], [0, 0, 0, 0, 0.8905]]
+                animation_section: true
+                color_section: true
+                size_section: false
+                size_over_time: [true, false, 1, [-1, -2.5], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [2, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 1
+                projection: true
+                randomize_tiles: false
+          - id: 4198189734889938425
+            name: Blaster_VFX
+            enabled: true
+            component:
+              - !<transform>
+                id: 13399094384761011580
+                type: 1
+                enabled: true
+                position: [-79.6, 9.48, -56.25]
+                rotation: [0, 0, 0]
+                scale: [1, 1, 1]
+              - !<billboard>
+                id: 12060079564137995961
+                type: 21
+                enabled: true
+                play_on_awake: false
+                texture_id: 9492710251713022701
+                tiles: [2, 1]
+                flip: [false, false]
+                billboard_lifetime: 0.6
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0.3
+                total_tiles: 2
+                animation_loop: false
+                color_cycles: 1
+                color_gradient: [[0.1618, 1, 0, 0, 0.6426], [0, 0, 0, 0, 0.8905]]
+                animation_section: true
+                color_section: true
+                size_section: false
+                size_over_time: [true, false, 1, [-1, -2.5], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [2, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 1
+                projection: true
+                randomize_tiles: false
+          - id: 730203805429669047
+            name: Blaster_VFX
+            enabled: true
+            component:
+              - !<transform>
+                id: 504850173266639218
+                type: 1
+                enabled: true
+                position: [-79.6, 9.48, -56.25]
+                rotation: [0, 0, 0]
+                scale: [1, 1, 1]
+              - !<billboard>
+                id: 4570258145322707511
+                type: 21
+                enabled: true
+                play_on_awake: false
+                texture_id: 9492710251713022701
+                tiles: [2, 1]
+                flip: [false, false]
+                billboard_lifetime: 0.6
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0.3
+                total_tiles: 2
+                animation_loop: false
+                color_cycles: 1
+                color_gradient: [[0.1618, 1, 0, 0, 0.6426], [0, 0, 0, 0, 0.8905]]
+                animation_section: true
+                color_section: true
+                size_section: false
+                size_over_time: [true, false, 1, [-1, -2.5], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [2, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 blend_factor: 1
                 projection: true

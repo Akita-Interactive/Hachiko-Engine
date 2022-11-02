@@ -47,6 +47,7 @@ namespace Hachiko
 				CLAW,
 				SWORD,
 				HAMMER,
+				BLASTER,
 				SIZE
 			};
 

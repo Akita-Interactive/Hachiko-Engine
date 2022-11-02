@@ -10,8 +10,8 @@
 #include "constants/Sounds.h"
 #include "constants/Scenes.h"
 
-// TODO: These two includes must go:
-#include <modules/ModuleSceneManager.h>
+#include "entities/player/CombatVisualEffectsPool.h"
+
 
 
 // TODO: Joel make this class delta time scaled as well.
@@ -30,6 +30,7 @@ Hachiko::Scripting::CrystalExplosion::CrystalExplosion(GameObject* game_object)
 	, _seconds_shaking(0.8f)
 	, _should_regen(true)
 	, damage_effect_duration(0.5f)
+	, _for_boss_cocoon(false)
 {
 }
 
@@ -51,6 +52,8 @@ void Hachiko::Scripting::CrystalExplosion::OnAwake()
 	{
 		spawn_billboard = boss_spawn_go->GetComponent<ComponentBillboard>();
 	}
+
+	effects_pool = Scenes::GetCombatVisualEffectsPool()->GetComponent<CombatVisualEffectsPool>();
 }
 
 void Hachiko::Scripting::CrystalExplosion::OnStart()
@@ -115,6 +118,14 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 	if (_explosive_crystal && _stats->IsAlive() && !_is_exploding)
 	{
 		CheckRadiusExplosion();
+	}
+
+	if (_is_dissolving)
+	{
+		_current_dissolving_time -= Time::DeltaTimeScaled();
+		_current_dissolving_time = math::Clamp(_current_dissolving_time, 0.0f, _dissolving_time);
+		float dissolve_progress = _current_dissolving_time / _dissolving_time;
+		game_object->ChangeDissolveProgress(dissolve_progress, true);
 	}
 }
 
@@ -242,13 +253,27 @@ float3 Hachiko::Scripting::CrystalExplosion::GetShakeOffset()
 	}
 }
 
-void Hachiko::Scripting::CrystalExplosion::RegisterHit(int damage)
+void Hachiko::Scripting::CrystalExplosion::RegisterHit(int damage, bool is_from_player, bool is_ranged)
 {
 	if (!_stats) return;
 
 	damage_effect_remaining_time = damage_effect_duration;
 
 	_stats->ReceiveDamage(damage);
+
+	if (is_from_player)
+	{
+		GameObject* player = Scenes::GetPlayer();
+		PlayerController* player_controller = player->GetComponent<PlayerController>();
+
+		// TODO: Trigger this via an event of player, that is subscribed by
+		// combat visual effects pool.
+		PlayerController::WeaponUsed weapon = is_ranged? PlayerController::WeaponUsed::BLASTER : player_controller->GetCurrentWeaponType();
+		effects_pool->PlayPlayerAttackEffect(
+			weapon,
+			player_controller->GetAttackIndex(),
+			game_object->GetTransform()->GetGlobalPosition());
+	}
 
 	if (!_stats->IsAlive() && !_is_destroyed)
 	{
@@ -280,7 +305,7 @@ void Hachiko::Scripting::CrystalExplosion::ResetCrystal()
 	_current_explosion_timer = 0.f;
 	_current_regen_time = 0.f;
 
-	if (crystal_geometry)
+	if (crystal_geometry && !_for_boss_cocoon)
 	{
 		crystal_geometry->SetOutlineType(
 			_explosive_crystal
@@ -294,7 +319,6 @@ void Hachiko::Scripting::CrystalExplosion::ResetCrystal()
 	}
 
 
-	
 	if (spawn_billboard)
 	{
 		spawn_billboard->Stop();
@@ -336,7 +360,7 @@ void Hachiko::Scripting::CrystalExplosion::DestroyCrystal()
 		cp_animation->SendTrigger("isExploding");
 	}
 
-	if (crystal_geometry && _explosive_crystal)
+	if (crystal_geometry && _explosive_crystal && !_for_boss_cocoon)
 	{
 		crystal_geometry->SetOutlineType(Outline::Type::NONE);
 	}
@@ -367,4 +391,21 @@ void Hachiko::Scripting::CrystalExplosion::SpawnEffect()
 		spawn_billboard->Start();
 	}
 	_audio_source->PostEvent(Sounds::PLAY_LASER_HIT);
+}
+
+void Hachiko::Scripting::CrystalExplosion::DissolveCrystal(bool be_dissolved)
+{
+	if (be_dissolved)
+	{
+		crystal_geometry->SetOutlineType(Outline::Type::NONE);
+
+		_is_dissolving = true;
+		_current_dissolving_time = _dissolving_time;
+	}
+	else
+	{
+		_is_dissolving = false;
+		game_object->ChangeDissolveProgress(1.f, true);
+		_current_dissolving_time = _dissolving_time;
+	}
 }

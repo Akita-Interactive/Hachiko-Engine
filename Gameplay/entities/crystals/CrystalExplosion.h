@@ -9,8 +9,12 @@ namespace Hachiko
 	class ComponentTransform;
 	class ComponentBillboard;
 
+
 	namespace Scripting
 	{
+		
+		class CombatVisualEffectsPool;
+		
 		class CrystalExplosion : public Script
 		{
 			SERIALIZATION_METHODS(false)
@@ -33,12 +37,14 @@ namespace Hachiko
 
 			float3 GetShakeOffset();
 
-			void RegisterHit(int damage);
+			void RegisterHit(int damage,  bool is_from_player, bool is_ranged);
 			bool IsAlive() { return _stats->IsAlive(); };
 			bool IsDestroyed() { return _is_destroyed; };
 
 			void DestroyCrystal();
 			void RegenCrystal();
+
+			void DissolveCrystal(bool be_dissolved);
 
 			void SpawnEffect();
 		private:
@@ -64,6 +70,7 @@ namespace Hachiko
 			SERIALIZE_FIELD(bool, _explosive_crystal);
 			SERIALIZE_FIELD(float, _regen_time);
 			SERIALIZE_FIELD(bool, _should_regen);
+			SERIALIZE_FIELD(bool, _for_boss_cocoon);
 
 			SERIALIZE_FIELD(float, damage_effect_duration);
 			GameObject* crystal_geometry = nullptr;
@@ -73,6 +80,9 @@ namespace Hachiko
 			bool _is_destroyed = false;
 			bool _is_exploding = false;
 			bool _visible = false;
+			bool _is_dissolving = false;
+			float _dissolving_time = 1.5f;
+			float _current_dissolving_time = 0.f;
 			float _current_regen_time = 0.f;
 			float _current_explosion_timer = 0.f;
 
@@ -90,6 +100,8 @@ namespace Hachiko
 
 			float regen_elapsed = 0.f;
 			float shake_magnitude = 1.0f;
+
+			CombatVisualEffectsPool* effects_pool = nullptr;
 		};
 	}
 }
