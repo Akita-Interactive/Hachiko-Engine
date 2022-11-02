@@ -4002,6 +4002,11 @@
 												</ModifierInfo>
 											</ModifierList>
 										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-3</Value>
+											</ValueList>
+										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -4013,6 +4018,13 @@
 									</ReferenceList>
 									<ChildrenList>
 										<Sound Name="whoosh" ID="{2A54AE65-23BB-4A75-95A7-4E05324EF04C}" ShortID="713094206">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
@@ -4038,47 +4050,6 @@
 											<ObjectLists/>
 											<ActiveSourceList>
 												<ActiveSource Name="ES_Magic Spell Whoosh 7 - SFX Producer" ID="{F36195E0-72B9-4060-989E-E49873F4C54B}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="ES_PREL Shimmer Swell 18 - SFX Producer" ID="{44C18133-95EE-41EA-AFA6-8915513BCAAA}" ShortID="83517791">
-											<PropertyList>
-												<Property Name="Pitch" Type="int32">
-													<ValueList>
-														<Value>-100</Value>
-													</ValueList>
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{37F36681-7E7F-4959-9938-A53A1323D6A4}"/>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_PREL Shimmer Swell 18 - SFX Producer" ID="{5C5B52BF-FB37-4028-A233-17ADFD49E3F3}">
-													<PropertyList>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.924485549132946"/>
-														<Property Name="FadeOutShape" Type="int16" Value="6"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimEnd" Type="Real64" Value="1.68545664739885"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>ES_PREL Shimmer Swell 18 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="1032651945"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_PREL Shimmer Swell 18 - SFX Producer" ID="{5C5B52BF-FB37-4028-A233-17ADFD49E3F3}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="ES_PREL Shimmer Twinkl 8 - SFX Producer" ID="{EA21D065-BD84-4E67-9FC9-C79990386D5D}" ShortID="282585722">
@@ -4114,6 +4085,57 @@
 											<ObjectLists/>
 											<ActiveSourceList>
 												<ActiveSource Name="ES_PREL Shimmer Twinkl 8 - SFX Producer" ID="{2720FD98-4475-4F37-B884-E83223DCAC0F}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ES_PREL Shimmer Swell 18 - SFX Producer" ID="{44C18133-95EE-41EA-AFA6-8915513BCAAA}" ShortID="83517791">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>150</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{37F36681-7E7F-4959-9938-A53A1323D6A4}"/>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_PREL Shimmer Swell 18 - SFX Producer" ID="{5C5B52BF-FB37-4028-A233-17ADFD49E3F3}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.924485549132946"/>
+														<Property Name="FadeOutShape" Type="int16" Value="6"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.68545664739885"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_PREL Shimmer Swell 18 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1032651945"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_PREL Shimmer Swell 18 - SFX Producer" ID="{5C5B52BF-FB37-4028-A233-17ADFD49E3F3}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>

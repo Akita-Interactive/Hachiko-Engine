@@ -1688,6 +1688,96 @@
 								</ObjectList>
 							</ObjectLists>
 						</MusicSegment>
+						<MusicSegment Name="Explore_Lvl2" ID="{7516AAAF-7DC9-40AB-B62D-5247FDAA7888}" ShortID="792901958">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="101052.625"/>
+								<Property Name="Tempo" Type="Real64" Value="108"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-10</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="ER_Lv2_explore_133bpm" ID="{12B69369-F090-4765-9D1B-616B374A1E53}" ShortID="149476681">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ER_Lv2_explore_133bpm" ID="{1FD5112D-061F-4CAB-BEF7-8F6C90A2BC09}">
+											<Language>SFX</Language>
+											<AudioFile>ER_Lv2_explore_133bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="808930464"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{69A8DC5D-77C2-4B4D-B51C-EE5F187ED105}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{58FAC9CE-EE0F-4356-BF28-C870D648E7CC}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="ER_Lv2_explore_133bpm" ID="{EA7DDBCF-1EEF-4167-9F47-5FEC01023D76}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="101052.625"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="ER_Lv2_explore_133bpm" ID="{1FD5112D-061F-4CAB-BEF7-8F6C90A2BC09}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{45DEC395-C122-4F72-83F9-B713FF323C1C}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{8B69554A-EA35-4A46-9FC2-5FFAFB30BF7F}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="101052.625"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
 					</ChildrenList>
 					<TransitionList>
 						<MusicTransition Name="Root" ID="{10EEBC2A-78A7-40C3-B159-57D955D37432}">
@@ -1971,7 +2061,7 @@
 								<PathElementRef Name="Explore" ID="{B92814EE-2B24-4C85-AE4E-9753BE866E50}"/>
 							</Path>
 							<AudioNodeInfo>
-								<AudioNodeRef Name="Explore_Lvl1" ID="{5B57C681-1577-4D3C-9AE0-B128CF44FA34}" WorkUnitID="{9B3979AF-6373-40FD-A6FD-C5074B4E0B6D}" Platform="Linked"/>
+								<AudioNodeRef Name="Explore_Lvl2" ID="{7516AAAF-7DC9-40AB-B62D-5247FDAA7888}" WorkUnitID="{9B3979AF-6373-40FD-A6FD-C5074B4E0B6D}" Platform="Linked"/>
 							</AudioNodeInfo>
 						</Entry>
 						<Entry>
