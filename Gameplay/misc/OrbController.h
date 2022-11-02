@@ -30,8 +30,7 @@ namespace Hachiko
 			ComponentAnimation* cp_animation = nullptr;
 
 			float _parasite_dissolve_time = 2.2f;
-			const float _parasite_dissolving = 1 / math::Sqrt(_parasite_dissolve_time);
-			float _parasite_dissolving_time_progress = 0.0f;
+			float _parasite_dissolving_time_progress = 0.f;
 
 			bool picked = false;
 		};

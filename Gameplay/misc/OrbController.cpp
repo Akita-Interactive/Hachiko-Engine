@@ -19,14 +19,15 @@ void Hachiko::Scripting::OrbController::OnAwake()
 void Hachiko::Scripting::OrbController::OnUpdate()
 {
 	if (picked) {
-		float transition = math::Sqrt(_parasite_dissolve_time - _parasite_dissolving_time_progress) * _parasite_dissolving;
-		_orb->ChangeDissolveProgress(transition, true);
 		_parasite_dissolving_time_progress += Time::DeltaTimeScaled();
-	}
+		float transition = (_parasite_dissolve_time - _parasite_dissolving_time_progress) / _parasite_dissolve_time;
+		_orb->ChangeDissolveProgress(transition, true);
+		
 
-	if (cp_animation->IsAnimationStopped() && picked)
-	{
-		_orb->SetActive(false);
+		if (transition < 0.f)
+		{
+			_orb->SetActive(false);
+		}
 	}
 }
 
