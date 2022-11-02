@@ -111,7 +111,11 @@ void Hachiko::Scripting::GauntletManager::OnUpdate()
 void Hachiko::Scripting::GauntletManager::ResetGauntlet(bool complete_reset)
 {
 	CloseDoors();
-	if (_closing_door) _closing_door->SetActive(false);
+	if (_closing_door)
+	{
+		_elapsed_time = 0.0f;
+		_closing_door->SetActive(false);
+	}
 	for (GameObject* enemy_pack : _enemy_packs)
 	{
 		_combat_manager->DeactivateEnemyPack(enemy_pack);

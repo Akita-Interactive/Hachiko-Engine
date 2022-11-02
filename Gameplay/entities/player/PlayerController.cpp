@@ -6,6 +6,7 @@
 #include "entities/player/PlayerController.h"
 
 #include "entities/player/CombatVisualEffectsPool.h"
+#include <misc/OrbController.h>
 
 constexpr int MAX_AMMO = 4;
 constexpr int ATTACK_VFX_POOL_SIZE = 6;
@@ -183,6 +184,7 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 	if (_death_screen != nullptr)
 	{
 		_death_screen->GetComponent(Component::Type::IMAGE)->Disable();
+		_death_screen->SetActive(false);
 	}
 	
 	if (_aim_indicator != nullptr)
@@ -348,6 +350,7 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 				if (_death_screen != nullptr)
 				{
 					_death_screen->GetComponent(Component::Type::IMAGE)->Disable();
+					_death_screen->SetActive(false);
 				}
 				if (_level_manager->_level > 2) {
 					_level_manager->ReloadBossScene();
@@ -383,6 +386,7 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 				if (_death_screen != nullptr)
 				{
 					_death_screen->GetComponent(Component::Type::IMAGE)->Enable();
+					_death_screen->SetActive(true);
 				}
 			}
 		}
@@ -790,6 +794,9 @@ void Hachiko::Scripting::PlayerController::ChangeWeapon(unsigned weapon_idx)
 		_sword_weapon->SetActive(false);
 		_hammer_weapon->SetActive(false);
 
+		_sword_ui_addon->SetActive(false);
+		_claw_ui_addon->SetActive(false);
+		_maze_ui_addon->SetActive(false);
 		_sword_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 		_claw_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 		_maze_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
@@ -801,6 +808,9 @@ void Hachiko::Scripting::PlayerController::ChangeWeapon(unsigned weapon_idx)
 		_sword_weapon->SetActive(false);
 		_hammer_weapon->SetActive(false);
 
+		_sword_ui_addon->SetActive(false);
+		_claw_ui_addon->SetActive(true);
+		_maze_ui_addon->SetActive(false);
 		_sword_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 		_claw_ui_addon->GetComponent(Component::Type::IMAGE)->Enable();
 		_maze_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
@@ -812,6 +822,9 @@ void Hachiko::Scripting::PlayerController::ChangeWeapon(unsigned weapon_idx)
 		_sword_weapon->SetActive(true);
 		_hammer_weapon->SetActive(false);
 
+		_sword_ui_addon->SetActive(true);
+		_claw_ui_addon->SetActive(false);
+		_maze_ui_addon->SetActive(false);
 		_sword_ui_addon->GetComponent(Component::Type::IMAGE)->Enable();
 		_claw_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 		_maze_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
@@ -823,6 +836,9 @@ void Hachiko::Scripting::PlayerController::ChangeWeapon(unsigned weapon_idx)
 		_sword_weapon->SetActive(false);
 		_hammer_weapon->SetActive(true);
 
+		_sword_ui_addon->SetActive(false);
+		_claw_ui_addon->SetActive(false);
+		_maze_ui_addon->SetActive(true);
 		_sword_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 		_claw_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 		_maze_ui_addon->GetComponent(Component::Type::IMAGE)->Enable();
@@ -1335,7 +1351,10 @@ void Hachiko::Scripting::PlayerController::CheckNearbyParasytes(const float3& cu
 
 		if (_magic_parasyte && _magic_parasyte->IsActive())
 		{
-			if (parasyte_pickup_distance >= _player_transform->GetGlobalPosition().Distance(_magic_parasyte->GetTransform()->GetGlobalPosition()))
+			GameObject* go_orb = _magic_parasyte->GetFirstChildWithName("MagicParasyte"); // Needed to avoid create offset for tooltip parasite
+
+			if (parasyte_pickup_distance >= _player_transform->GetGlobalPosition().Distance(_magic_parasyte->GetTransform()->GetGlobalPosition()) 
+				&& !go_orb->GetComponent<OrbController>()->IsPicked())
 			{
 				// If there is a nearby parasyte tooltip of the normal parasyte would be the one appearing
 				// This will never happen on our level layout so its fine
@@ -1343,7 +1362,7 @@ void Hachiko::Scripting::PlayerController::CheckNearbyParasytes(const float3& cu
 				if (Input::IsKeyDown(Input::KeyCode::KEY_F) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_B))
 				{
 					PickupParasite(nullptr, true);
-					_magic_parasyte->SetActive(false);
+					go_orb->GetComponent<OrbController>()->DestroyOrb();
 					DeactivateTooltip();
 				}
 				return;

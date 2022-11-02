@@ -9,8 +9,12 @@ namespace Hachiko
 	class ComponentTransform;
 	class ComponentBillboard;
 
+
 	namespace Scripting
 	{
+		
+		class CombatVisualEffectsPool;
+		
 		class CrystalExplosion : public Script
 		{
 			SERIALIZATION_METHODS(false)
@@ -33,7 +37,7 @@ namespace Hachiko
 
 			float3 GetShakeOffset();
 
-			void RegisterHit(int damage);
+			void RegisterHit(int damage,  bool is_from_player, bool is_ranged);
 			bool IsAlive() { return _stats->IsAlive(); };
 			bool IsDestroyed() { return _is_destroyed; };
 
@@ -95,6 +99,8 @@ namespace Hachiko
 
 			float regen_elapsed = 0.f;
 			float shake_magnitude = 1.0f;
+
+			CombatVisualEffectsPool* effects_pool = nullptr;
 		};
 	}
 }

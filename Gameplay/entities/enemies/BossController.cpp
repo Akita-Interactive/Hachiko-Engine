@@ -199,13 +199,11 @@ void Hachiko::Scripting::BossController::RegisterHit(int dmg, bool is_from_playe
 
 		// TODO: Trigger this via an event of player, that is subscribed by
 		// combat visual effects pool.
-		if (!is_ranged)
-		{
-			combat_visual_effects_pool->PlayPlayerAttackEffect(
-                player_controller->GetCurrentWeaponType(),
-                player_controller->GetAttackIndex(),
-                game_object->GetTransform()->GetGlobalPosition());
-		}
+        PlayerController::WeaponUsed weapon = is_ranged? PlayerController::WeaponUsed::BLASTER : player_controller->GetCurrentWeaponType();
+		combat_visual_effects_pool->PlayPlayerAttackEffect(
+			weapon,
+			player_controller->GetAttackIndex(),
+			game_object->GetTransform()->GetGlobalPosition());
 	}
 
     trail_toggle = !trail_toggle;
