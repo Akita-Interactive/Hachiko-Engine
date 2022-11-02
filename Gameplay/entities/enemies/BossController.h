@@ -18,7 +18,6 @@ namespace Hachiko
     class ComponentProgressBar;
     class ComponentObstacle;
     class ComponentAudioSource;
-	class CombatVisualEffectsPool;
 
 	namespace Scripting
 	{

@@ -56,6 +56,14 @@ namespace Hachiko
 				return current->GetComponent<ComponentBillboard>();
 			}
 
+			ComponentBillboard* GetCurrentBlasterVfx()
+			{
+				auto current = ranged_vfxes[current_ranged_vfx_index];
+				current_ranged_vfx_index = (current_ranged_vfx_index + 1) % ranged_vfxes.size();
+
+				return current->GetComponent<ComponentBillboard>();
+			}
+
 			ComponentBillboard* GetCurrentWormVfx()
 			{
 				auto current = worm_vfxes[current_worm_vfx_index];
@@ -98,6 +106,9 @@ namespace Hachiko
 
 			int current_beetle_vfx_index = 0;
 			std::vector<GameObject*> beetle_vfxes;
+			
+			int current_ranged_vfx_index = 0;
+			std::vector<GameObject*> ranged_vfxes;
 
 			int current_ground_vfx_index = 0;
 			std::vector<GameObject*> ground_vfxes;
