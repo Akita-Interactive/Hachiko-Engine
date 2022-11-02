@@ -835,6 +835,7 @@ void Hachiko::Scripting::BossController::ExecuteJumpingState()
 		if (_current_jumping_mode == JumpingMode::STALAGMITE)
 		{
 			animation->SendTrigger("isPreJumpCrystal");
+            _stalagmite_manager->DestroyAllStalagmites(true);
 		}
 		else {
 			animation->SendTrigger("isPreJump");
