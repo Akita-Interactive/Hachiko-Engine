@@ -25,6 +25,7 @@ namespace Hachiko
             FOG,
             TEXTURE_COPY,
             SSAO,
+            OUTLINE,
             COUNT,
         };
 

@@ -39,7 +39,7 @@ Hachiko::Scripting::PlayerController::PlayerController(GameObject* game_object)
 	, tooltip_y_offset(2.f)
 {
 	CombatManager::BulletStats common_bullet;
-	common_bullet.charge_time = .5f;
+	common_bullet.charge_time = .2f;
 	common_bullet.lifetime = 3.f;
 	common_bullet.size = 1.f;
 	common_bullet.speed = 50.f;
@@ -101,6 +101,7 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 	_combat_visual_effects_pool = Scenes::GetCombatVisualEffectsPool()->GetComponent<CombatVisualEffectsPool>();
 
 	_dash_charges = _max_dash_charges;
+	_rotation_duration = .2f;
 
 	if (_attack_indicator)
 	{
@@ -315,6 +316,11 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 		{
 			// Handle player the input
 			HandleInputAndStatus();
+		}
+		else
+		{
+			CancelAttack();
+			_state = PlayerState::IDLE;
 		}
 
 		// Run attack simulation
@@ -861,7 +867,7 @@ bool Hachiko::Scripting::PlayerController::IsFalling() const
 
 bool Hachiko::Scripting::PlayerController::IsPickUp() const
 {
-	return _state == PlayerState::PICK_UP;
+	return _state == PlayerState::PICK_UP && !animation->IsAnimationStopped();
 }
 
 bool Hachiko::Scripting::PlayerController::IsDying() const

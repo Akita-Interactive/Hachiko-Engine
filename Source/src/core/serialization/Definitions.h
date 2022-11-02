@@ -223,6 +223,7 @@
 #define MESH_NAVIGABLE "navigable"
 #define MESH_VISIBLE "visible"
 #define MESH_CASTING_SHADOW "casting_shadow"
+#define MESH_OUTLINE_TYPE "outline_type"
 
 // Component Lights
 #define LIGHT_TYPE "light_type"

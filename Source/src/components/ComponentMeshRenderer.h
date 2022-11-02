@@ -130,6 +130,21 @@ namespace Hachiko
 
         HACHIKO_API void SetCastingShadow(bool value);
 
+        HACHIKO_API [[nodiscard]] bool IsOutlined() const
+        {
+            return outline_type != Outline::Type::NONE;
+        }
+
+        HACHIKO_API [[nodiscard]] Outline::Type GetOutlineType() const
+        {
+            return outline_type;
+        }
+
+        HACHIKO_API void SetOutlineType(Outline::Type type)
+        {
+            outline_type = type;
+        }
+
         void DrawGui() override;
 
         void Save(YAML::Node& node) const override;
@@ -169,6 +184,7 @@ namespace Hachiko
         bool visible = true;
         bool navigable = false;
         bool is_casting_shadow = true;
+        Outline::Type outline_type = Outline::Type::NONE;
 
         AABB aabb;
         OBB obb;

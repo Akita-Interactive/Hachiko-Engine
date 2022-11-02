@@ -685,6 +685,32 @@ void Hachiko::GameObject::SetTimeScaleMode(TimeScaleMode time_scale_mode) const
     }
 }
 
+void Hachiko::GameObject::SetOutlineType(
+    const Outline::Type outline_type, 
+    const bool recursive)
+{
+    ComponentMeshRenderer* mesh_renderer = 
+        GetComponent<ComponentMeshRenderer>();
+
+    if (mesh_renderer)
+    {
+        mesh_renderer->SetOutlineType(outline_type);
+    }
+
+    if (!recursive)
+    {
+        return;
+    }
+
+    std::vector<ComponentMeshRenderer*> mesh_renderers = 
+        GetComponentsInDescendants<ComponentMeshRenderer>();
+
+    for (ComponentMeshRenderer* current : mesh_renderers)
+    {
+        current->SetOutlineType(outline_type);
+    }
+}
+
 Hachiko::GameObject* Hachiko::GameObject::Find(UID id) const
 {
     for (GameObject* child : children)

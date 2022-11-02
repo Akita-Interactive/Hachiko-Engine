@@ -121,7 +121,7 @@ namespace Hachiko
             int ProcessObstaclesCircle(const float3& attack_source_pos, const AttackStats& attack_stats);
             int ProcessPlayerCircle(const float3& attack_source_pos, const AttackStats& attack_stats);
             // Evaluate for boss if exists Note: for now only added the attack the player uses
-            int ProcessBossOBB(const OBB& attack_box, const AttackStats& attack_stats);
+            int ProcessBossOBB(const OBB& attack_box, const AttackStats& attack_stats, bool is_from_player);
 
             // Specifics of the collision check
             bool ConeHitsAgent(GameObject* agent_go, const float3& attack_source_pos, const float3& attack_dir, float min_dot_prod, float hit_distance);
@@ -178,6 +178,7 @@ namespace Hachiko
             SERIALIZE_FIELD(GameObject*, _shot_vfx);
 
             ComponentParticleSystem* _charge_particles;
+            ComponentBillboard* _charge_billboard;
             ComponentParticleSystem* _shot_particles;
         };
     } // namespace Scripting

@@ -1,0 +1,68 @@
+prefab_name: VFX_Crystal_AOE
+name: VFX_Crystal_AOE
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [57.19, 0, -2.063]
+    rotation: [-0, 0, -0]
+    scale: [1, 1, 1]
+  - !<billboard>
+    type: 21
+    enabled: true
+    play_on_awake: false
+    texture_id: 2799728113835491951
+    tiles: [2, 2]
+    flip: [false, false]
+    billboard_lifetime: 1
+    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+    animation_speed: 0.2
+    total_tiles: 4
+    animation_loop: true
+    color_cycles: 1
+    color_gradient: [[0, 0, 0, 0, 0], [1, 1, 1, 0, 0.3814], [1, 0, 0, 0, 0.9619]]
+    animation_section: true
+    color_section: true
+    size_section: false
+    size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+    rotation_section: true
+    rotation_over_time: [true, false, 0, [10, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+    start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+    start_size: [true, true, 0, [1, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+    start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+    blend_factor: 1
+child:
+  - name: VFX_Crystal_AOE_Inner
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0.0018, 0, -0.0042]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+      - !<billboard>
+        type: 21
+        enabled: true
+        play_on_awake: false
+        texture_id: 5146694470806748413
+        tiles: [1, 1]
+        flip: [false, false]
+        billboard_lifetime: 1
+        properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        animation_speed: 0
+        total_tiles: 1
+        animation_loop: true
+        color_cycles: 1
+        color_gradient: [[1, 1, 1, 0, 0.0169], [1, 0.9883, 0.9883, 0, 0.1059], [1, 0, 0, 0, 0.7542]]
+        animation_section: false
+        color_section: true
+        size_section: true
+        size_over_time: [true, false, 0, [4, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        rotation_section: true
+        rotation_over_time: [true, false, 0, [20, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_size: [true, true, 0, [0.7, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        blend_factor: 0

@@ -112,24 +112,40 @@ void Hachiko::BatchManager::BuildBatches()
     }
 }
 
-void Hachiko::BatchManager::DrawOpaqueBatches(const Program* program)
+void Hachiko::BatchManager::DrawOpaqueBatches(
+    const Program* program, 
+    bool override_segment_skip)
 {
     for (GeometryBatch* geometry_batch : geometry_batches_opaque)
     {
         DrawSingleBatch(geometry_batch, program, opaque_buffers_segment);
     }
 
-    opaque_buffers_segment = (opaque_buffers_segment + 1) % BatchingProperties::MAX_SEGMENTS;
+    // We can set override segment skip to true if we are basically gonna draw
+    // same things twice:
+    if (!override_segment_skip)
+    {
+        opaque_buffers_segment = 
+            (opaque_buffers_segment + 1) % BatchingProperties::MAX_SEGMENTS;
+    }
 }
 
-void Hachiko::BatchManager::DrawTransparentBatches(const Program* program) 
+void Hachiko::BatchManager::DrawTransparentBatches(
+    const Program* program, 
+    bool override_segment_skip)
 {
     for (GeometryBatch* geometry_batch : geometry_batches_transparent)
     {
         DrawSingleBatch(geometry_batch, program, transparent_buffers_segment);
     }
 
-    transparent_buffers_segment = (transparent_buffers_segment + 1) % BatchingProperties::MAX_SEGMENTS;
+    // We can set override segment skip to true if we are basically gonna draw
+    // same things twice:
+    if (!override_segment_skip)
+    {
+        transparent_buffers_segment = 
+            (transparent_buffers_segment + 1) % BatchingProperties::MAX_SEGMENTS;
+    }
 }
 
 void Hachiko::BatchManager::ClearOpaqueBatchesDrawList()
@@ -206,6 +222,7 @@ void Hachiko::BatchManager::DrawSingleBatch(GeometryBatch* geometry_batch, const
     }
 
     geometry_batch->BindBatch(segment, program);
+
 
     glMultiDrawElementsIndirect(GL_TRIANGLES, GL_UNSIGNED_INT, (GLvoid*)0, geometry_batch->GetCommandAmount(), 0);
     glBindVertexArray(0);

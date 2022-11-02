@@ -7,6 +7,7 @@ namespace Hachiko
 {
 	class GameObject;
 	class ComponentTransform;
+	class ComponentBillboard;
 
 	namespace Scripting
 	{
@@ -38,6 +39,8 @@ namespace Hachiko
 
 			void DestroyCrystal();
 			void RegenCrystal();
+
+			void SpawnEffect();
 		private:
 			void SetVisible(bool v);
 			void ResetCrystal();
@@ -79,8 +82,9 @@ namespace Hachiko
 			GameObject* enemies;
 			GameObject* boss;
 
-			ComponentAnimation* cp_animation;
-			ComponentObstacle* obstacle;
+			ComponentAnimation* cp_animation = nullptr;
+			ComponentObstacle* obstacle = nullptr;
+			ComponentBillboard* spawn_billboard = nullptr;
 
 			float4x4 _initial_transform = float4x4::identity;
 

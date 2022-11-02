@@ -79,7 +79,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NOMINMAX;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);LOGGING_SUPPORT_DISABLED</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BATCHING_SYNCED;_CRT_SECURE_NO_WARNINGS;NOMINMAX;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);LOGGING_SUPPORT_DISABLED</PreprocessorDefinitions>
       <ConformanceMode>Default</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)vendors\SDL\include;$(ProjectDir)vendors\glew-2.1.0\include\GL;$(ProjectDir)vendors\imgui;$(ProjectDir)vendors\MathGeoLib;$(ProjectDir)vendors\DevIL\include\IL;$(ProjectDir)vendors\DebugDraw;$(ProjectDir)vendors\assimp\include;$(ProjectDir)vendors\ImGuiFileDialog-0.6.3;$(ProjectDir)vendors\ImGuizmo;$(ProjectDir)vendors\rapidjson\include;$(ProjectDir)vendors\optick\include;$(ProjectDir)vendors\PhysicsFS;$(ProjectDir)vendors\yaml-cpp\include;$(ProjectDir)vendors\freetype\include;$(ProjectDir)vendors\GLFont;$(ProjectDir)vendors\freetype\include\freetype;$(ProjectDir)vendors\recast\include\Recast;$(ProjectDir)vendors\recast\include\Detour;$(ProjectDir)vendors\recast\include;$(ProjectDir)vendors\recast\include\DetourCrowd;$(ProjectDir)vendors\recast\include\DetourTileCache;$(ProjectDir)vendors\wwise\include;$(ProjectDir)vendors\wwise\include\AK\Tools\Win32;$(ProjectDir)vendors\wwise\include\AK;$(ProjectDir)vendors\wwise\include\AK\SoundEngine\IO;$(ProjectDir)vendors\xxhash;$(ProjectDir)vendors\libav\include;$(ProjectDir)vendors\imgui-node-editor-0.9\NodeEditor\Include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -106,7 +106,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NOMINMAX;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;NDEBUG;_CONSOLE;LOGGING_SUPPORT_DISABLED;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BATCHING_SYNCED;_CRT_SECURE_NO_WARNINGS;NOMINMAX;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;NDEBUG;_CONSOLE;LOGGING_SUPPORT_DISABLED;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ConformanceMode>Default</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)vendors\SDL\include;$(ProjectDir)vendors\glew-2.1.0\include\GL;$(ProjectDir)vendors\imgui;$(ProjectDir)vendors\MathGeoLib;$(ProjectDir)vendors\DevIL\include\IL;$(ProjectDir)vendors\DebugDraw;$(ProjectDir)vendors\assimp\include;$(ProjectDir)vendors\ImGuiFileDialog-0.6.3;$(ProjectDir)vendors\ImGuizmo;$(ProjectDir)vendors\rapidjson\include;$(ProjectDir)vendors\optick\include;$(ProjectDir)vendors\PhysicsFS;$(ProjectDir)vendors\yaml-cpp\include;$(ProjectDir)vendors\freetype\include;$(ProjectDir)vendors\GLFont;$(ProjectDir)vendors\freetype\include\freetype;$(ProjectDir)vendors\recast\include\Recast;$(ProjectDir)vendors\recast\include\Detour;$(ProjectDir)vendors\recast\include;$(ProjectDir)vendors\recast\include\DetourCrowd;$(ProjectDir)vendors\recast\include\DetourTileCache;$(ProjectDir)vendors\wwise\include;$(ProjectDir)vendors\wwise\include\AK\Tools\Win32;$(ProjectDir)vendors\wwise\include\AK;$(ProjectDir)vendors\wwise\include\AK\SoundEngine\IO;$(ProjectDir)vendors\xxhash;$(ProjectDir)vendors\libav\include;$(ProjectDir)vendors\imgui-node-editor-0.9\NodeEditor\Include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -135,7 +135,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NOMINMAX;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;NDEBUG;_CONSOLE;LOGGING_SUPPORT_DISABLED;PLAY_BUILD;%(PreprocessorDefinitions);LOGGING_SUPPORT_DISABLED;AK_OPTIMIZED</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BATCHING_SYNCED;_CRT_SECURE_NO_WARNINGS;NOMINMAX;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;NDEBUG;_CONSOLE;LOGGING_SUPPORT_DISABLED;PLAY_BUILD;%(PreprocessorDefinitions);LOGGING_SUPPORT_DISABLED;AK_OPTIMIZED</PreprocessorDefinitions>
       <ConformanceMode>Default</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)vendors\SDL\include;$(ProjectDir)vendors\glew-2.1.0\include\GL;$(ProjectDir)vendors\imgui;$(ProjectDir)vendors\MathGeoLib;$(ProjectDir)vendors\DevIL\include\IL;$(ProjectDir)vendors\DebugDraw;$(ProjectDir)vendors\assimp\include;$(ProjectDir)vendors\ImGuiFileDialog-0.6.3;$(ProjectDir)vendors\ImGuizmo;$(ProjectDir)vendors\rapidjson\include;$(ProjectDir)vendors\optick\include;$(ProjectDir)vendors\PhysicsFS;$(ProjectDir)vendors\yaml-cpp\include;$(ProjectDir)vendors\freetype\include;$(ProjectDir)vendors\GLFont;$(ProjectDir)vendors\freetype\include\freetype;$(ProjectDir)vendors\recast\include\Recast;$(ProjectDir)vendors\recast\include\Detour;$(ProjectDir)vendors\recast\include;$(ProjectDir)vendors\recast\include\DetourCrowd;$(ProjectDir)vendors\recast\include\DetourTileCache;$(ProjectDir)vendors\wwise\include;$(ProjectDir)vendors\wwise\include\AK\Tools\Win32;$(ProjectDir)vendors\wwise\include\AK;$(ProjectDir)vendors\wwise\include\AK\SoundEngine\IO;$(ProjectDir)vendors\xxhash;$(ProjectDir)vendors\libav\include;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -709,6 +709,7 @@
   <ItemGroup>
     <ClInclude Include="src\components\TimeScaleMode.h" />
     <ClInclude Include="src\core\rendering\BlurConfig.h" />
+    <ClInclude Include="src\core\rendering\Outline.h" />
     <ClInclude Include="src\events\TimeScaleChangeEventPayload.h" />
     <ClInclude Include="src\resources\ResourceVideo.h" />
     <ClInclude Include="src\components\ComponentVideo.h" />
