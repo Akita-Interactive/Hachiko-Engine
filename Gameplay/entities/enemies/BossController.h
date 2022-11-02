@@ -155,6 +155,7 @@ namespace Hachiko
 			void UpdateAscendingPosition() const;
 			void UpdateDescendingPosition() const;
 			bool ShouldDoAFollowUpJump() const;
+			bool ShoutOnLaserJump();
 
 			// Debug methods:
 			void ChangeStateText(const char* state_string) const;
@@ -307,6 +308,7 @@ namespace Hachiko
             float _laser_wall_current_time = 0.0f;
             const std::array<float, 4> _wall_dir_angles = { 0.f, 90.f, 180.f, 270.f};
             SERIALIZE_FIELD(float, _laser_jump_height);
+			bool shout_made = false;
 
 			ComponentBillboard* _weapon_trail_billboard_right;
 			SERIALIZE_FIELD(GameObject*, _melee_trail_right);

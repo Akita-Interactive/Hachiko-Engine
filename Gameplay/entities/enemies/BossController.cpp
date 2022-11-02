@@ -836,21 +836,31 @@ void Hachiko::Scripting::BossController::ExecuteJumpingState()
 
     if (_jumping_state == JumpingState::NOT_TRIGGERED)
     {
-        _jumping_state = JumpingState::WAITING_TO_JUMP;
-        _jumping_timer = 0.0f;
-
         ChangeStateText((jump_type + "Waiting to jump.").c_str());
 
-		if (_current_jumping_mode == JumpingMode::STALAGMITE)
-		{
-			animation->SendTrigger("isPreJumpCrystal");
+        switch (_current_jumping_mode)
+        {
+        case JumpingMode::STALAGMITE:
+            animation->SendTrigger("isPreJumpCrystal");
             _stalagmite_manager->DestroyAllStalagmites(true);
-		}
-		else {
-			animation->SendTrigger("isPreJump");
-		}
+            break;
+        case JumpingMode::LASER:
+            if (ShoutOnLaserJump() || !animation->IsAnimationStopped())
+            {
+                return;
+            }
+            animation->SendTrigger("isPreJump");
+            shout_made = false;
+            break;
+        default:
+            animation->SendTrigger("isPreJump");
+            break;
+        }
 
         animation->SendTrigger("isPreJump");
+
+        _jumping_state = JumpingState::WAITING_TO_JUMP;
+        _jumping_timer = 0.0f;
 
         // Disable the agent component, gets enabled back when boss lands back:
         agent->RemoveFromCrowd();
@@ -1504,4 +1514,18 @@ bool Hachiko::Scripting::BossController::ControlLasers()
 		}
 		return true;
 	}
+}
+
+bool Hachiko::Scripting::BossController::ShoutOnLaserJump()
+{
+    if (shout_made)
+    {
+        return false;
+    }
+
+    audio_source->PostEvent(Sounds::BOSS_ROAR);
+    animation->SendTrigger("isCacoonComingOut");
+    shout_made = true;
+
+    return true;
 }
