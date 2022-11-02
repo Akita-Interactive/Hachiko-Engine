@@ -259,13 +259,11 @@ void Hachiko::Scripting::CrystalExplosion::RegisterHit(int damage, bool is_from_
 
 		// TODO: Trigger this via an event of player, that is subscribed by
 		// combat visual effects pool.
-		if (!is_ranged)
-		{
-			effects_pool->PlayPlayerAttackEffect(
-				player_controller->GetCurrentWeaponType(),
-				player_controller->GetAttackIndex(),
-				game_object->GetTransform()->GetGlobalPosition());
-		}
+		PlayerController::WeaponUsed weapon = is_ranged? PlayerController::WeaponUsed::BLASTER : player_controller->GetCurrentWeaponType();
+		effects_pool->PlayPlayerAttackEffect(
+			weapon,
+			player_controller->GetAttackIndex(),
+			game_object->GetTransform()->GetGlobalPosition());
 	}
 
 	if (!_stats->IsAlive() && !_is_destroyed)

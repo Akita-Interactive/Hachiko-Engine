@@ -442,13 +442,11 @@ void Hachiko::Scripting::EnemyController::RegisterHit(int damage, float3 directi
 
 		// TODO: Trigger this via an event of player, that is subscribed by
 		// combat visual effects pool.
-		if (!is_ranged)
-		{
-			_combat_visual_effects_pool->PlayPlayerAttackEffect(
-				_player_controller->GetCurrentWeaponType(),
-				_player_controller->GetAttackIndex(),
-				game_object->GetTransform()->GetGlobalPosition());
-		}
+		PlayerController::WeaponUsed weapon = is_ranged? PlayerController::WeaponUsed::BLASTER : _player_controller->GetCurrentWeaponType();
+		_combat_visual_effects_pool->PlayPlayerAttackEffect(
+			weapon,
+			_player_controller->GetAttackIndex(),
+			game_object->GetTransform()->GetGlobalPosition());
 	}
 
 	if (_blood_trail_billboard != nullptr)
