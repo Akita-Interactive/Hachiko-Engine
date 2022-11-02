@@ -183,6 +183,7 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 	if (_death_screen != nullptr)
 	{
 		_death_screen->GetComponent(Component::Type::IMAGE)->Disable();
+		_death_screen->SetActive(false);
 	}
 	
 	if (_aim_indicator != nullptr)
@@ -348,6 +349,7 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 				if (_death_screen != nullptr)
 				{
 					_death_screen->GetComponent(Component::Type::IMAGE)->Disable();
+					_death_screen->SetActive(false);
 				}
 				if (_level_manager->_level > 2) {
 					_level_manager->ReloadBossScene();
@@ -383,6 +385,7 @@ void Hachiko::Scripting::PlayerController::OnUpdate()
 				if (_death_screen != nullptr)
 				{
 					_death_screen->GetComponent(Component::Type::IMAGE)->Enable();
+					_death_screen->SetActive(true);
 				}
 			}
 		}
@@ -790,6 +793,9 @@ void Hachiko::Scripting::PlayerController::ChangeWeapon(unsigned weapon_idx)
 		_sword_weapon->SetActive(false);
 		_hammer_weapon->SetActive(false);
 
+		_sword_ui_addon->SetActive(false);
+		_claw_ui_addon->SetActive(false);
+		_maze_ui_addon->SetActive(false);
 		_sword_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 		_claw_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 		_maze_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
@@ -801,6 +807,9 @@ void Hachiko::Scripting::PlayerController::ChangeWeapon(unsigned weapon_idx)
 		_sword_weapon->SetActive(false);
 		_hammer_weapon->SetActive(false);
 
+		_sword_ui_addon->SetActive(false);
+		_claw_ui_addon->SetActive(true);
+		_maze_ui_addon->SetActive(false);
 		_sword_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 		_claw_ui_addon->GetComponent(Component::Type::IMAGE)->Enable();
 		_maze_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
@@ -812,6 +821,9 @@ void Hachiko::Scripting::PlayerController::ChangeWeapon(unsigned weapon_idx)
 		_sword_weapon->SetActive(true);
 		_hammer_weapon->SetActive(false);
 
+		_sword_ui_addon->SetActive(true);
+		_claw_ui_addon->SetActive(false);
+		_maze_ui_addon->SetActive(false);
 		_sword_ui_addon->GetComponent(Component::Type::IMAGE)->Enable();
 		_claw_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 		_maze_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
@@ -823,6 +835,9 @@ void Hachiko::Scripting::PlayerController::ChangeWeapon(unsigned weapon_idx)
 		_sword_weapon->SetActive(false);
 		_hammer_weapon->SetActive(true);
 
+		_sword_ui_addon->SetActive(false);
+		_claw_ui_addon->SetActive(false);
+		_maze_ui_addon->SetActive(true);
 		_sword_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 		_claw_ui_addon->GetComponent(Component::Type::IMAGE)->Disable();
 		_maze_ui_addon->GetComponent(Component::Type::IMAGE)->Enable();
