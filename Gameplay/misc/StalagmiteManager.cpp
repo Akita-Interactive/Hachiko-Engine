@@ -59,7 +59,7 @@ void Hachiko::Scripting::StalagmiteManager::OnUpdate()
 
 	size_t updated_stalagmites_count = 0;
 
-	if (_stalactites_timer < 0.0f)
+	if (_stalactites_timer < 0.0f && AllStalactitesCollapsed())
 	{
 		DestroyAllStalagmites();
 	}
@@ -112,10 +112,11 @@ void Hachiko::Scripting::StalagmiteManager::OnUpdate()
 			if (_stalagmites[i]->GetState() == StalagmiteState::FALLING)
 			{
 				falling_elapsed += Time::DeltaTimeScaled();
-				if (falling_elapsed >= _falling_time)
-				{
-					FallingStalagmite(_stalagmites[i], 1.0f);
 
+				float fall_progress = falling_elapsed / _falling_time;
+
+				if (falling_elapsed > 0.0f && FallingStalagmite(_stalagmites[i], fall_progress))
+				{
 					// AOE PLAYER DAMAGE
 
 					_player_camera->Shake(1.5f, 2.f);
@@ -137,11 +138,6 @@ void Hachiko::Scripting::StalagmiteManager::OnUpdate()
 				    ++updated_stalagmites_count;
 
 				    falling_elapsed = -1.f;
-				}
-				else if (falling_elapsed > 0.0f)
-				{
-					float fall_progress = falling_elapsed / _falling_time;
-					FallingStalagmite(_stalagmites[i], fall_progress);
 				}
 			}
 
@@ -188,9 +184,9 @@ void Hachiko::Scripting::StalagmiteManager::UpdateStalagmiteState(Stalagmite* st
 	}
 }
 
-void Hachiko::Scripting::StalagmiteManager::FallingStalagmite(Stalagmite* stalagmite, float fall_progress)
+bool Hachiko::Scripting::StalagmiteManager::FallingStalagmite(Stalagmite* stalagmite, float fall_progress)
 {
-	stalagmite->Falling(fall_progress, _player);
+	return stalagmite->Falling(fall_progress, _player);
 }
 
 void Hachiko::Scripting::StalagmiteManager::TriggerStalagmites()
@@ -214,6 +210,11 @@ void Hachiko::Scripting::StalagmiteManager::DestroyAllStalagmites(bool force)
 
 	for (unsigned i = 0; i < _stalagmites.size(); ++i)
 	{
+		if (_stalagmites[i]->GetState() == StalagmiteState::INVALID)
+		{
+			continue;
+		}
+
 		_stalagmites[i]->SetNewState(StalagmiteState::DISSOLVING);
 		// Set a random offset for the dissolving
 		const float offset = force ? 0 : RandomUtil::RandomBetween(0, 3);
@@ -264,7 +265,7 @@ void Hachiko::Scripting::StalagmiteManager::KnockbackOnEnemies(float3 position)
 
 		if (enemy_controller != nullptr)
 		{
-			enemy_controller->RegisterHit(0, relative_dir.Normalized(), 2.0f, false, false);
+			enemy_controller->RegisterHit(1, relative_dir.Normalized(), 2.0f, false, false);
 		}
 	}
 };
