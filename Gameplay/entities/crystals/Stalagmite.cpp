@@ -53,7 +53,7 @@ bool Hachiko::Scripting::Stalagmite::Falling(float fall_progress, const GameObje
 	{
 		float dir_module = (player_pos - stalagmite_pos).Normalize();
 		float3 dir = (player_pos - stalagmite_pos).Normalized() * (2.5f - dir_module);
-		float3 corrected_position = Navigation::GetCorrectedPosition(player_pos + dir, float3(2.5f, 2.5f, 2.5f));
+		float3 corrected_position = Navigation::GetCorrectedPosition(player_pos + dir, float3(10.f, 10.f, 10.f));
 		player->GetTransform()->SetGlobalPosition(corrected_position);
 	}
 
