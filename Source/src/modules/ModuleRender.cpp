@@ -52,6 +52,37 @@ bool Hachiko::ModuleRender::Init()
 
     ssao_manager.SetupSSAO(fb_width, fb_height);
 
+    outline_texture = new StandaloneGLTexture(
+        fb_width, 
+        fb_height, 
+        GL_RGBA, 
+        0, 
+        GL_RGBA, 
+        GL_FLOAT, 
+        GL_NEAREST, 
+        GL_NEAREST, 
+        true);
+    outline_texture_temp = new StandaloneGLTexture(
+        fb_width, 
+        fb_height, 
+        GL_RGBA, 
+        0, 
+        GL_RGBA, 
+        GL_FLOAT, 
+        GL_NEAREST, 
+        GL_NEAREST, 
+        true);
+    pre_post_process_frame_buffer = new StandaloneGLTexture(
+        fb_width, 
+        fb_height, 
+        GL_RGBA, 
+        0, 
+        GL_RGBA, 
+        GL_FLOAT, 
+        GL_LINEAR, 
+        GL_LINEAR, 
+        true);
+
 #ifdef _DEBUG
     glEnable(GL_DEBUG_OUTPUT); // Enable output callback
     glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
@@ -89,6 +120,8 @@ void Hachiko::ModuleRender::GenerateFrameBuffer()
 {
     fb_width = 800;
     fb_height = 600;
+    fb_width_inverse = 1.0f / static_cast<float>(fb_width);
+    fb_height_inverse = 1.0f / static_cast<float>(fb_height);
 
     glGenFramebuffers(1, &frame_buffer);
     glBindFramebuffer(GL_FRAMEBUFFER, frame_buffer);
@@ -103,6 +136,7 @@ void Hachiko::ModuleRender::GenerateFrameBuffer()
 
     //Depth and stencil buffer
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, fb_texture, 0);
+
     glGenRenderbuffers(1, &depth_stencil_buffer);
     glBindRenderbuffer(GL_RENDERBUFFER, depth_stencil_buffer);
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, fb_width, fb_height);
@@ -154,6 +188,10 @@ void Hachiko::ModuleRender::ManageResolution(const ComponentCamera* camera)
     fb_width = res_x;
     fb_height = res_y;
 
+    // Cache inverses of width and height:
+    fb_width_inverse = 1.0f / static_cast<float>(fb_width);
+    fb_height_inverse = 1.0f / static_cast<float>(fb_height);
+
     // Resize textures of g-buffer:
     g_buffer.Resize(fb_width, fb_height);
 
@@ -162,6 +200,13 @@ void Hachiko::ModuleRender::ManageResolution(const ComponentCamera* camera)
 
     // Resize SSAO texture:
     ssao_manager.ResizeSSAO(fb_width, fb_height);
+
+    // Resize outline texture:
+    outline_texture->Resize(fb_width, fb_height);
+    outline_texture_temp->Resize(fb_width, fb_height);
+
+    // Resize pre post process frame buffer texture:
+    pre_post_process_frame_buffer->Resize(fb_width, fb_height);
 }
 
 void Hachiko::ModuleRender::CreateContext()
@@ -237,13 +282,6 @@ UpdateStatus Hachiko::ModuleRender::Update(const float delta)
 
     Draw(App->scene_manager->GetActiveScene(), camera, culling);
 
-    if (draw_navmesh)
-    {
-        EnableBlending();
-        App->navigation->DebugDraw();
-        DisableBlending();
-    }
-
     EnableBlending();
 
     GLint polygonMode[2];
@@ -285,12 +323,46 @@ void Hachiko::ModuleRender::Draw(Scene* scene,
     DrawDeferred(scene, camera, batch_manager);
 }
 
+void Hachiko::ModuleRender::RunFXAA()
+{
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frame_buffer);
+
+    Program* program;
+    if (anti_aliasing_enabled)
+    {
+        program = App->program->GetProgram(Program::Programs::FXAA);
+        program->Activate();
+
+        program->BindUniformFloat(
+            Uniforms::FXAA::TEXTURE_WIDTH_INVERSE, 
+            &fb_width_inverse);
+        program->BindUniformFloat(
+            Uniforms::FXAA::TEXTURE_HEIGHT_INVERSE, 
+            &fb_height_inverse);
+    }
+    else
+    {
+        program = App->program->GetProgram(Program::Programs::TEXTURE_COPY);
+        program->Activate();
+    }
+
+    EnableBlending();
+    pre_post_process_frame_buffer->BindForReading(0);
+    RenderFullScreenQuad();
+    glBindVertexArray(0);
+    DisableBlending();
+
+    Program::Deactivate();
+}
+
 void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
                                          ComponentCamera* camera,
                                          BatchManager* batch_manager)
 {
     Program* program = nullptr;
+    glStencilMask(0x00);
 
+#ifdef _DEBUG
     if (App->input->GetKey(SDL_SCANCODE_F5) == KeyState::KEY_DOWN)
     {
         deferred_mode = (deferred_mode + 1) % 7;
@@ -300,6 +372,7 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
     {
         render_forward_pass = !render_forward_pass;
     }
+#endif
 
     if (shadow_pass_enabled)
     {
@@ -341,6 +414,8 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
     batch_manager->DrawOpaqueBatches(program);
     Program::Deactivate();
 
+    // --------------------------- PRE LIGHT PASS -----------------------------
+
     if (ssao_enabled)
     {
         ssao_manager.DrawSSAO(
@@ -355,9 +430,13 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
     // texture:
     bloom_manager.ApplyBloom(g_buffer.GetEmissiveTexture());
 
+    const bool drew_outlines = DrawOutlines(batch_manager);
+
     // ------------------------------ LIGHT PASS ------------------------------
 
-    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frame_buffer);
+    glBindFramebuffer(
+        GL_DRAW_FRAMEBUFFER, 
+        pre_post_process_frame_buffer->GetFrameBufferId());
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Use Deferred rendering lighting pass program:
@@ -406,7 +485,10 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
 
     // Blit g_buffer depth buffer to frame_buffer to be used for forward
     // rendering pass:
-    g_buffer.BlitDepth(frame_buffer, fb_width, fb_height);
+    g_buffer.BlitDepth(
+        pre_post_process_frame_buffer->GetFrameBufferId(), 
+        fb_width, 
+        fb_height);
 
     // ------------------------------ PRE FORWARD -----------------------------
 
@@ -414,8 +496,7 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
     {
         scene->GetSkybox()->Draw(camera);
     }
-    
-   
+
     // ----------------------------- FOG -----------------------------
 
     // Fog is drawn before forward pass because it doesn't apply its values to
@@ -480,8 +561,35 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
     }
 
     DrawParticles(scene, camera);
+
+    if (draw_navmesh)
+    {
+        EnableBlending();
+        App->navigation->DebugDraw();
+        DisableBlending();
+    }
       
     // ----------------------------- POST PROCCESS ----------------------------
+
+    if (draw_outlines && drew_outlines)
+    {
+        glDisable(GL_DEPTH_TEST);
+        glDepthMask(GL_FALSE);
+        program = App->program->GetProgram(Program::Programs::OUTLINE);
+        program->Activate();
+
+        EnableBlending();
+        outline_texture->BindForReading(11);
+        RenderFullScreenQuad();
+        glBindVertexArray(0);
+        DisableBlending();
+
+        Program::Deactivate();
+        glDepthMask(GL_TRUE);
+        glEnable(GL_DEPTH_TEST);
+    }
+
+    RunFXAA();
 }
 
 void Hachiko::ModuleRender::DrawParticles(Scene* scene, ComponentCamera* camera) const
@@ -515,7 +623,7 @@ void Hachiko::ModuleRender::DrawParticles(Scene* scene, ComponentCamera* camera)
         {
             particle->Draw(camera, particle_program);
         }
-        
+    
         Program::Deactivate();
         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frame_buffer);
         */
@@ -523,6 +631,119 @@ void Hachiko::ModuleRender::DrawParticles(Scene* scene, ComponentCamera* camera)
     
 
     DisableBlending();
+}
+
+bool Hachiko::ModuleRender::DrawOutlines(BatchManager* batch_manager) 
+{
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, outline_texture->GetFrameBufferId());
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClear(GL_STENCIL_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+
+    const bool drew_secondary = 
+        ExecuteFullOutlinePass(Outline::Type::SECONDARY, batch_manager);
+    const bool drew_primary = 
+        ExecuteFullOutlinePass(Outline::Type::PRIMARY, batch_manager);
+
+    if (!drew_primary && !drew_secondary)
+    {
+        return false;
+    }
+
+    // Blur outlines for softer look:
+    ApplyGaussianFilter(
+        outline_texture->GetFrameBufferId(), 
+        outline_texture->GetTextureId(),
+        outline_texture_temp->GetFrameBufferId(),
+        outline_texture_temp->GetTextureId(),
+        outline_blur_config.intensity, 
+        outline_blur_config.sigma, 
+        BlurPixelSize::ToInt(outline_blur_config.size), 
+        fb_width, 
+        fb_height, 
+        App->program->GetProgram(Program::Programs::GAUSSIAN_FILTERING));
+
+    return true;
+}
+
+void Hachiko::ModuleRender::ExecuteSingleOutlinePass(
+    Outline::Config& outline_config,
+    BatchManager* batch_manager, 
+    const bool should_clear_draw_lists_after) const
+{
+    const Program* program = 
+        App->program->GetProgram(Program::Programs::STENCIL);
+
+    program->Activate();
+
+        program->BindUniformFloat4("in_color", outline_config.color.ptr());
+        program->BindUniformFloat(
+            "outline_thickness", 
+            &outline_config.thickness);
+
+        batch_manager->DrawOpaqueBatches(
+            program, 
+            !should_clear_draw_lists_after);
+        EnableBlending();
+        batch_manager->DrawTransparentBatches(
+            program, 
+            !should_clear_draw_lists_after);
+        DisableBlending();
+
+    Program::Deactivate();
+
+    if (should_clear_draw_lists_after)
+    {
+        batch_manager->ClearOpaqueBatchesDrawList();
+        batch_manager->ClearTransparentBatchesDrawList();       
+    }
+}
+
+bool Hachiko::ModuleRender::ExecuteFullOutlinePass(
+    Outline::Type outline_type, 
+    BatchManager* batch_manager)
+{
+    const auto& targets = render_list.GetOutlineTargets(outline_type);
+
+    if (targets.empty())
+    {
+        return false;
+    }
+
+    Outline::Config outline = GetOutlineConfigFromType(outline_type);
+
+    batch_manager->ClearOpaqueBatchesDrawList();
+    batch_manager->ClearTransparentBatchesDrawList();
+
+    for (const RenderTarget& target : targets)
+    {
+        batch_manager->AddDrawComponent(target.mesh_renderer);
+    }
+
+    glDisable(GL_DEPTH_TEST);
+    ExecuteSingleOutlinePass(outline, batch_manager, false);
+    outline.color.w = 0.0f;
+    outline.thickness = 0.0f;
+    ExecuteSingleOutlinePass(outline, batch_manager, true);
+    glEnable(GL_DEPTH_TEST);
+
+    return true;
+}
+
+Hachiko::Outline::Config Hachiko::ModuleRender::GetOutlineConfigFromType(
+    Outline::Type type) const
+{
+    // TODO: Make these (PRIMARY and SECONDARY) configurable or decide on hardcoded values.
+
+    switch (type)
+    {
+        case Outline::Type::PRIMARY:
+            return Outline::Config {0.03f, float4(0.8f, 0.8f, 0.8f, 0.9f)};
+        case Outline::Type::SECONDARY:
+            return Outline::Config {0.03f, float4(1.0f, 0.11f, 0.11f, 1.0f)};
+        default:
+        case Outline::Type::NONE:
+            return Outline::Config {0.0f, float4(0.0f, 0.0f, 0.0f, 0.0f)};
+    }
 }
 
 bool Hachiko::ModuleRender::DrawToShadowMap(
@@ -768,6 +989,18 @@ void Hachiko::ModuleRender::OptionsMenu()
     {
         ssao_manager.ShowInEditorUI();
     }
+
+    ImGui::NewLine();
+    ImGui::TextWrapped("Outline Blur");
+    ImGui::Separator();
+    BlurConfigUtil::ShowInEditorUI(&outline_blur_config);
+    Widgets::Checkbox("Draw outlines", &draw_outlines);
+
+    ImGui::NewLine();
+    ImGui::TextWrapped("Anti-aliasing");
+    ImGui::Separator();
+    ImGui::TextWrapped("This will not be saved, just exists for debug purposes");
+    Widgets::Checkbox("Enable FXAA", &anti_aliasing_enabled);
 }
 
 void Hachiko::ModuleRender::LoadingScreenOptions() const
@@ -1053,6 +1286,13 @@ bool Hachiko::ModuleRender::CleanUp()
 
     App->preferences->GetEditorPreference()->SetDrawSkybox(draw_skybox);
     App->preferences->GetEditorPreference()->SetDrawNavmesh(draw_navmesh);
+
+    // Free outline textures:
+    delete outline_texture;
+    delete outline_texture_temp;
+
+    // Free pre post process frame buffer texture:
+    delete pre_post_process_frame_buffer;
 
     return true;
 }

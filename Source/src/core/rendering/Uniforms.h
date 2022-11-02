@@ -45,4 +45,10 @@ namespace Hachiko::Uniforms
         constexpr const char* KERNEL_SAMPLES_PREFIX = "samples[";
         constexpr const char* KERNEL_SAMPLES_SUFFIX = "]";
     } // namespace SSAO
+
+    namespace FXAA
+    {
+        constexpr const char* TEXTURE_HEIGHT_INVERSE = "texture_height_inverse";
+        constexpr const char* TEXTURE_WIDTH_INVERSE = "texture_width_inverse";
+    } // namespace FXAA
 } // namespace Hachiko::Uniforms

@@ -63,10 +63,10 @@ Hachiko::Scripting::BossController::BossController(GameObject* game_object)
 void Hachiko::Scripting::BossController::OnAwake()
 {
     player = Scenes::GetPlayer();
+    player_controller = player->GetComponent<PlayerController>();
     level_manager = Scenes::GetLevelManager()->GetComponent<LevelManager>();
     player_camera = Scenes::GetMainCamera()->GetComponent<PlayerCamera>();
     combat_manager = Scenes::GetCombatManager()->GetComponent<CombatManager>();
-    combat_visual_effects_pool = Scenes::GetCombatVisualEffectsPool()->GetComponent<CombatVisualEffectsPool>();
     transform = game_object->GetTransform();
     combat_stats = game_object->GetComponent<Stats>();
     agent = game_object->GetComponent<ComponentAgent>();
@@ -126,6 +126,27 @@ void Hachiko::Scripting::BossController::OnAwake()
 
     initial_position = transform->GetGlobalPosition();
     initial_rotation = transform->GetGlobalRotationEuler();
+
+    // VFX
+    combat_visual_effects_pool = Scenes::GetCombatVisualEffectsPool()->GetComponent<CombatVisualEffectsPool>();
+    blood_trail = game_object->FindDescendantWithName("BloodTrail");
+    blood_trail_2 = game_object->FindDescendantWithName("BloodTrail2");
+	
+	if (blood_trail != nullptr)
+	{
+		blood_trail->SetTimeScaleMode(TimeScaleMode::SCALED);
+		blood_trail_billboard = blood_trail->GetComponent<ComponentBillboard>();
+        blood_trail_billboard->Stop();
+		blood_trail_billboard->Disable();
+	}
+
+    if (blood_trail_2 != nullptr)
+	{
+		blood_trail_2->SetTimeScaleMode(TimeScaleMode::SCALED);
+		blood_trail_billboard_2 = blood_trail_2->GetComponent<ComponentBillboard>();
+        blood_trail_billboard_2->Stop();
+		blood_trail_billboard_2->Disable();
+	}
 }
 
 void Hachiko::Scripting::BossController::OnStart()
@@ -141,7 +162,7 @@ void Hachiko::Scripting::BossController::OnUpdate()
 	if (Input::IsKeyDown(Input::KeyCode::KEY_H))
 	{
 		constexpr int player_dmg = 5;
-		RegisterHit(player_dmg);
+		RegisterHit(player_dmg, false, false);
 	}
 
 	if (damage_effect_progress >= 0.0f)
@@ -161,7 +182,7 @@ bool Hachiko::Scripting::BossController::IsAlive() const
 	return combat_stats->IsAlive();
 }
 
-void Hachiko::Scripting::BossController::RegisterHit(int dmg)
+void Hachiko::Scripting::BossController::RegisterHit(int dmg, bool is_from_player, bool is_ranged)
 {
 	if (state == BossState::WAITING_ENCOUNTER)
 	{
@@ -171,6 +192,32 @@ void Hachiko::Scripting::BossController::RegisterHit(int dmg)
 	if (!hitable)
 	{
 		return;
+	}
+
+    if (is_from_player)
+	{
+
+		// TODO: Trigger this via an event of player, that is subscribed by
+		// combat visual effects pool.
+        PlayerController::WeaponUsed weapon = is_ranged? PlayerController::WeaponUsed::BLASTER : player_controller->GetCurrentWeaponType();
+		combat_visual_effects_pool->PlayPlayerAttackEffect(
+			weapon,
+			player_controller->GetAttackIndex(),
+			game_object->GetTransform()->GetGlobalPosition());
+	}
+
+    trail_toggle = !trail_toggle;
+
+    if (trail_toggle && blood_trail_billboard)
+	{
+		blood_trail_billboard->Enable();
+		blood_trail_billboard->Restart();
+	}
+
+    if (!trail_toggle && blood_trail_billboard_2)
+	{
+		blood_trail_billboard_2->Enable();
+		blood_trail_billboard_2->Restart();
 	}
 
 	damage_effect_progress = damage_effect_duration;
@@ -681,7 +728,7 @@ void Hachiko::Scripting::BossController::SpawnCrystals()
 
     _current_index_crystals = _current_index_crystals % _explosive_crystals.size();
 
-    const GameObject* current_crystal_to_spawn =
+    GameObject* current_crystal_to_spawn =
         _explosive_crystals[_current_index_crystals];
 
     if (current_crystal_to_spawn == nullptr)
@@ -700,6 +747,7 @@ void Hachiko::Scripting::BossController::SpawnCrystals()
 
     current_crystal_to_spawn->FindDescendantWithName("ExplosionIndicatorHelper")->SetActive(false);
     current_crystal_to_spawn->GetTransform()->SetGlobalPosition(emitter_position);
+    current_crystal_to_spawn->GetComponent<CrystalExplosion>()->SpawnEffect();
 
     _current_index_crystals = (_current_index_crystals + 1) % _explosive_crystals.size();
 }

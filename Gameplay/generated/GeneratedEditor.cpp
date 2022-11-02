@@ -133,11 +133,10 @@ void Hachiko::Scripting::BossController::OnEditor()
 	Editor::Show("Second Phase", second_phase);
 	Editor::Show("Hp Bar Go", hp_bar_go);
 	Editor::Show("Crystal Target Go", crystal_target_go);
-	Editor::Show("Cocoon Placeholder Go", cocoon_placeholder_go);
+	Editor::Show("Cocoons Parent", cocoons_parent);
 	Editor::Show("Gauntlet Go", gauntlet_go);
 	Editor::Show("Current Index Crystals", _current_index_crystals);
 	Editor::Show("Crystal Pool", crystal_pool);
-	Editor::Show("Start Encounter Range", start_encounter_range);
 	Editor::Show("Attack Delay", attack_delay);
 	Editor::Show("After Attack Wait", after_attack_wait);
 	Editor::Show("Camera Transition Speed", camera_transition_speed);
@@ -156,6 +155,7 @@ void Hachiko::Scripting::BossController::OnEditor()
 	Editor::Show("Jump Post Skill Delay", _jump_post_skill_delay);
 	Editor::Show("Jump Height", _jump_height);
 	Editor::Show("Jump Offset", _jump_offset);
+	Editor::Show("Damage Aoe", _damage_AOE);
 	Editor::Show("Crystal Jump Position", _crystal_jump_position);
 	Editor::Show("Stalagmite Manager Go", _stalagmite_manager_go);
 	Editor::Show<ComponentText>("Boss State Text Ui", "ComponentText*", _boss_state_text_ui);
@@ -168,6 +168,7 @@ void Hachiko::Scripting::BossController::OnEditor()
 	Editor::Show("Laser Wall", _laser_wall);
 	Editor::Show("Laser Wall Duration", _laser_wall_duration);
 	Editor::Show("Laser Jump Height", _laser_jump_height);
+	Editor::Show("Melee Trail Right", _melee_trail_right);
 }
 
 void Hachiko::Scripting::BugAnimationManager::OnEditor()
@@ -192,7 +193,6 @@ void Hachiko::Scripting::EnemyController::OnEditor()
 	Editor::Show("Spawn Pos", _spawn_pos);
 	Editor::Show("Enemy Body", _enemy_body);
 	Editor::Show("Parasite", _parasite);
-	Editor::Show("Blood Trail", _blood_trail);
 	Editor::Show("Small Dust", _small_dust);
 	Editor::Show("Big Dust", _big_dust);
 	Editor::Show("Attack Zone", _attack_zone);
@@ -280,6 +280,8 @@ void Hachiko::Scripting::PlayerController::OnEditor()
 	Editor::Show("Hp Cell 2", _hp_cell_2);
 	Editor::Show("Hp Cell 3", _hp_cell_3);
 	Editor::Show("Hp Cell 4", _hp_cell_4);
+	Editor::Show("Hp Cell Extra", _hp_cell_extra);
+	Editor::Show("Magic Parasyte", _magic_parasyte);
 	Editor::Show("Ammo Cell 1", _ammo_cell_1);
 	Editor::Show("Ammo Cell 2", _ammo_cell_2);
 	Editor::Show("Ammo Cell 3", _ammo_cell_3);
@@ -290,6 +292,7 @@ void Hachiko::Scripting::PlayerController::OnEditor()
 	Editor::Show("Weapon Charge Bar Go", _weapon_charge_bar_go);
 	Editor::Show("Keyboard Tooltip Display", _keyboard_tooltip_display);
 	Editor::Show("Controller Tooltip Display", _controller_tooltip_display);
+	Editor::Show("Tooltip Y Offset", tooltip_y_offset);
 	Editor::Show("Camera", _camera);
 	Editor::Show("Ui Damage", _ui_damage);
 	Editor::Show("Heal Effect Fade Duration", _heal_effect_fade_duration);
@@ -461,6 +464,7 @@ void Hachiko::Scripting::PillarCheckpoint::OnEditor()
 {
 	Editor::Show("Respawn Go", _respawn_go);
 	Editor::Show("Activation Range", _activation_range);
+	Editor::Show("Light Go", _light_go);
 }
 
 void Hachiko::Scripting::Spawner::OnEditor()

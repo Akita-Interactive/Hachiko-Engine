@@ -10,6 +10,7 @@
 #include "utils/UUID.h"
 #include "components/Component.h"
 #include "resources/Resource.h"
+#include "core/rendering/Outline.h"
 
 #if defined(HACHIKO_API)
 // Do Nothing
@@ -98,6 +99,11 @@ namespace Hachiko
 
         void SetTimeScaleMode(TimeScaleMode time_scale_mode) const;
 
+        // Searches all the mesh components on descendants including itself,
+        // and sets all their outline types to specified outline_type. To set
+        // all descendant mesh renderer components' outline differently, use
+        // recursive = false.
+        void SetOutlineType(Outline::Type outline_type, bool recursive = true);
 
         [[nodiscard]] const std::vector<Component*>& GetComponents() const
         {

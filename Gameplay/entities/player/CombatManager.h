@@ -112,16 +112,16 @@ namespace Hachiko
 
             // Evaluate for all level units
             int ProcessAgentsCone(const float3& attack_source_pos, const float3& attack_dir, float min_dot_prod, float hit_distance, const AttackStats& attack_stats, bool is_from_player);
-            int ProcessObstaclesCone(const float3& attack_source_pos, const float3& attack_dir, float min_dot_prod, float hit_distance, const AttackStats& attack_stats);
+            int ProcessObstaclesCone(const float3& attack_source_pos, const float3& attack_dir, float min_dot_prod, float hit_distance, const AttackStats& attack_stats, bool is_from_player);
             int ProcessPlayerCone(const float3& attack_source_pos, const float3& attack_dir, float min_dot_prod, float hit_distance, const AttackStats& attack_stats);
             int ProcessAgentsOBB(const OBB& attack_box, const AttackStats& attack_stats, const float3& attack_source_pos, bool is_from_player);
-            int ProcessObstaclesOBB(const OBB& attack_box, const AttackStats& attack_stats);
+            int ProcessObstaclesOBB(const OBB& attack_box, const AttackStats& attack_stats, bool is_from_player);
             int ProcessPlayerOBB(const OBB& attack_box, const AttackStats& attack_stats, const float3& attack_source_pos);
             int ProcessAgentsCircle(const float3& attack_source_pos, const AttackStats& attack_stats, bool is_from_player);
-            int ProcessObstaclesCircle(const float3& attack_source_pos, const AttackStats& attack_stats);
+            int ProcessObstaclesCircle(const float3& attack_source_pos, const AttackStats& attack_stats, bool is_from_player);
             int ProcessPlayerCircle(const float3& attack_source_pos, const AttackStats& attack_stats);
             // Evaluate for boss if exists Note: for now only added the attack the player uses
-            int ProcessBossOBB(const OBB& attack_box, const AttackStats& attack_stats);
+            int ProcessBossOBB(const OBB& attack_box, const AttackStats& attack_stats, bool is_from_player);
 
             // Specifics of the collision check
             bool ConeHitsAgent(GameObject* agent_go, const float3& attack_source_pos, const float3& attack_dir, float min_dot_prod, float hit_distance);
@@ -135,7 +135,7 @@ namespace Hachiko
             bool CircleHitsPlayer(const float3& attack_source_pos, float radius);
 
             // What to do when system wants to register a hit
-            void HitObstacle(GameObject* obstacle, float damage);
+            void HitObstacle(GameObject* obstacle, float damage, bool is_from_player = false, bool is_ranged = false);
             void HitEnemy(EnemyController* enemy, int damage, float knockback = 0, float3 knockback_dir = float3::zero, bool is_from_player = false, bool is_ranged = false);
             void HitEnemy(BossController* enemy, int damage, float knockback = 0, float3 knockback_dir = float3::zero, bool is_from_player = false, bool is_ranged = false);
             void HitPlayer(int damage, float knockback = 0, float3 knockback_dir = float3::zero);
@@ -178,6 +178,7 @@ namespace Hachiko
             SERIALIZE_FIELD(GameObject*, _shot_vfx);
 
             ComponentParticleSystem* _charge_particles;
+            ComponentBillboard* _charge_billboard;
             ComponentParticleSystem* _shot_particles;
         };
     } // namespace Scripting

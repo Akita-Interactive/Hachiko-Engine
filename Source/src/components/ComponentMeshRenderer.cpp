@@ -178,6 +178,18 @@ void Hachiko::ComponentMeshRenderer::DrawGui()
                 Widgets::Checkbox("Visible", &visible);
                 Widgets::Checkbox("Navigable", &navigable);
                 Widgets::Checkbox("Casts shadows", &is_casting_shadow);
+
+                int current_index = Outline::TypeToInt(outline_type);
+                const bool outline_type_changed = Widgets::Combo(
+                    "Outline type", 
+                    &current_index, 
+                    Outline::all_names, 
+                    Outline::GetAllTypeCount());
+
+                if (outline_type_changed)
+                {
+                    outline_type = Outline::IntToType(current_index);
+                }
             }
             ImGui::TreePop();
         }
@@ -216,6 +228,7 @@ void Hachiko::ComponentMeshRenderer::Save(YAML::Node& node) const
         node[MESH_NAVIGABLE] = navigable;
         node[MESH_VISIBLE] = visible;
         node[MESH_CASTING_SHADOW] = is_casting_shadow;
+        node[MESH_OUTLINE_TYPE] = Outline::TypeToInt(outline_type);
     }
     else
     {
@@ -250,6 +263,10 @@ void Hachiko::ComponentMeshRenderer::Load(const YAML::Node& node)
         is_casting_shadow = node[MESH_CASTING_SHADOW].IsDefined()
             ? node[MESH_CASTING_SHADOW].as<bool>()
             : true;
+
+        outline_type = node[MESH_OUTLINE_TYPE].IsDefined()
+            ? Outline::IntToType(node[MESH_OUTLINE_TYPE].as<int>())
+            : Outline::Type::NONE;
 
         LoadMesh(mesh_id);
     }

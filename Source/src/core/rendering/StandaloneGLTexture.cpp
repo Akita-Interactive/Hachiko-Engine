@@ -40,11 +40,11 @@ Hachiko::StandaloneGLTexture::StandaloneGLTexture(
     _depth_id = 0;
     if (_has_depth)
     {
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _texture_id, 0);
         glGenRenderbuffers(1, &_depth_id);
         glBindRenderbuffer(GL_RENDERBUFFER, _depth_id);
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, _width, _height);
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depth_id);
-        glBindFramebuffer(GL_RENDERBUFFER, 0);
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, _width, _height);
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _depth_id);
     }
 
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
@@ -80,7 +80,7 @@ void Hachiko::StandaloneGLTexture::BindBuffer(bool resize_viewport) const
     glBindTexture(GL_TEXTURE_2D, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, _frame_buffer_id);
     glViewport(0, 0, _width, _height);
-    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
 void Hachiko::StandaloneGLTexture::BindForReading(unsigned int location) const 
@@ -105,9 +105,9 @@ void Hachiko::StandaloneGLTexture::Resize(int width, int height)
 
     if (_has_depth)
     {
-        glBindRenderbuffer(GL_RENDERBUFFER, _depth_id);
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, _width, _height);
         glBindTexture(GL_TEXTURE_2D, 0);
+        glBindRenderbuffer(GL_RENDERBUFFER, _depth_id);
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
     }
 
     glBindTexture(GL_TEXTURE_2D, 0);

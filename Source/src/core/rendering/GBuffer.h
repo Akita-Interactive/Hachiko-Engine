@@ -29,6 +29,7 @@ public:
 
 private:
     unsigned _g_buffer = 0;
+    unsigned _depth_stencil_buffer = 0;
     unsigned _diffuse_texture = 0;
     unsigned _specular_smoothness_texture = 0;
     unsigned _normal_texture = 0;

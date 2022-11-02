@@ -7,9 +7,14 @@ namespace Hachiko
 {
 	class GameObject;
 	class ComponentTransform;
+	class ComponentBillboard;
+
 
 	namespace Scripting
 	{
+		
+		class CombatVisualEffectsPool;
+		
 		class CrystalExplosion : public Script
 		{
 			SERIALIZATION_METHODS(false)
@@ -32,12 +37,14 @@ namespace Hachiko
 
 			float3 GetShakeOffset();
 
-			void RegisterHit(int damage);
+			void RegisterHit(int damage,  bool is_from_player, bool is_ranged);
 			bool IsAlive() { return _stats->IsAlive(); };
 			bool IsDestroyed() { return _is_destroyed; };
 
 			void DestroyCrystal();
 			void RegenCrystal();
+
+			void SpawnEffect();
 		private:
 			void SetVisible(bool v);
 			void ResetCrystal();
@@ -79,13 +86,16 @@ namespace Hachiko
 			GameObject* enemies;
 			GameObject* boss;
 
-			ComponentAnimation* cp_animation;
-			ComponentObstacle* obstacle;
+			ComponentAnimation* cp_animation = nullptr;
+			ComponentObstacle* obstacle = nullptr;
+			ComponentBillboard* spawn_billboard = nullptr;
 
 			float4x4 _initial_transform = float4x4::identity;
 
 			float regen_elapsed = 0.f;
 			float shake_magnitude = 1.0f;
+
+			CombatVisualEffectsPool* effects_pool = nullptr;
 		};
 	}
 }

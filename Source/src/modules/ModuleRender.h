@@ -168,6 +168,7 @@ namespace Hachiko
             Scene* scene, 
             ComponentCamera* camera, 
             ComponentCamera* culling);
+        void RunFXAA();
         void DrawDeferred(
             Scene* scene, 
             ComponentCamera* camera, 
@@ -177,6 +178,16 @@ namespace Hachiko
             Scene* scene, 
             BatchManager* batch_manager, 
             DrawConfig draw_config);
+
+        bool DrawOutlines(BatchManager* batch_manager);
+        void ExecuteSingleOutlinePass(
+            Outline::Config& outline_config,
+            BatchManager* batch_manager, 
+            bool should_clear_draw_lists_after = false) const;
+        bool ExecuteFullOutlinePass(
+            Outline::Type outline_type, 
+            BatchManager* batch_manager);
+        [[nodiscard]] Outline::Config GetOutlineConfigFromType(Outline::Type type) const;
 
         void SetRenderMode(bool is_deferred);
 
@@ -204,6 +215,20 @@ namespace Hachiko
         unsigned fb_texture = 0;
         unsigned fb_height = 0;
         unsigned fb_width = 0;
+        float fb_width_inverse = 1.0f;
+        float fb_height_inverse = 1.0f;
+
+        StandaloneGLTexture* pre_post_process_frame_buffer;
+
+        StandaloneGLTexture* outline_texture;
+        StandaloneGLTexture* outline_texture_temp;
+        // TODO: Save these maybe? Right now these values are used and can be
+        // tweaked through editor, but the tweaked values are not saved.
+        BlurConfig outline_blur_config = {
+            0.65f,
+            1.05f,
+            BlurPixelSize::Type::Gaussian5x5};
+        bool draw_outlines = true;
 
         // Full Screen Quad related:
         unsigned full_screen_quad_vao = 0;
@@ -225,6 +250,8 @@ namespace Hachiko
         bool draw_skybox = false;
         bool draw_navmesh = false;
         bool outline_selection = true;
+
+        bool anti_aliasing_enabled = true;
 
         GpuData gpu{};
         GlVersion gl{};

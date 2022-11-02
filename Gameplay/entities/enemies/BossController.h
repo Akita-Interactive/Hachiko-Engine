@@ -94,7 +94,7 @@ namespace Hachiko
 
 			BossState GetState() const { return state; };
 			bool IsAlive() const;
-			void RegisterHit(int dmg);
+			void RegisterHit(int dmg, bool is_from_player = false, bool is_ranged = false);
 			void UpdateHpBar() const;
 
 
@@ -311,7 +311,13 @@ namespace Hachiko
 			SERIALIZE_FIELD(GameObject*, _melee_trail_right);
 
 			// Visual Effects:
-			CombatVisualEffectsPool* combat_visual_effects_pool;
+			CombatVisualEffectsPool* combat_visual_effects_pool = nullptr;
+			PlayerController* player_controller = nullptr;
+			GameObject* blood_trail = nullptr;
+        	ComponentBillboard* blood_trail_billboard = nullptr;
+			GameObject* blood_trail_2 = nullptr;
+        	ComponentBillboard* blood_trail_billboard_2 = nullptr;
+			bool trail_toggle = false;
         };
     } // namespace Scripting
 } // namespace Hachiko
