@@ -7,7 +7,7 @@ component:
     enabled: true
     position: [0, 0, 0]
     rotation: [0, 0, 0]
-    scale: [1, 1, 1]
+    scale: [2, 2, 2]
 child:
   - name: InnerEffect
     enabled: true
@@ -44,7 +44,7 @@ child:
         blend_factor: 0
         projection: true
         randomize_tiles: false
-  - name: OutterEffect
+  - name: OuterEffect
     enabled: true
     component:
       - !<transform>

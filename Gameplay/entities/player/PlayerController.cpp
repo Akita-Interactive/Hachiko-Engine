@@ -1377,8 +1377,14 @@ void Hachiko::Scripting::PlayerController::CheckNearbyParasytes(const float3& cu
 		{
 			GameObject* go_orb = _magic_parasyte->GetFirstChildWithName("MagicParasyte"); // Needed to avoid create offset for tooltip parasite
 
-			if (parasyte_pickup_distance >= _player_transform->GetGlobalPosition().Distance(_magic_parasyte->GetTransform()->GetGlobalPosition()) 
-				&& !go_orb->GetComponent<OrbController>()->IsPicked())
+			OrbController* orb = nullptr;
+			if (go_orb)
+			{
+				orb = go_orb->GetComponent<OrbController>();
+			}
+
+			if (parasyte_pickup_distance >= _player_transform->GetGlobalPosition().Distance(_magic_parasyte->GetTransform()->GetGlobalPosition())
+				&& orb && !orb->IsPicked())
 			{
 				// If there is a nearby parasyte tooltip of the normal parasyte would be the one appearing
 				// This will never happen on our level layout so its fine
