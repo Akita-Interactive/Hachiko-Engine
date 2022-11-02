@@ -473,7 +473,7 @@ void Hachiko::Scripting::BossController::StartCocoon()
     time_elapse = 0.0;
     SetUpCocoon();
     FocusCameraOnBoss(true);
-    audio_source->PostEvent(Sounds::SET_STATE1_BOSS_FIGHT);
+    audio_source->PostEvent(Sounds::SET_STATE1B_BOSS_FIGHT);
     //Remove all stalactites and enemies
     _stalagmite_manager->DestroyAllStalagmites(true);
     KillEnemies();

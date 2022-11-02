@@ -42,6 +42,9 @@ namespace Hachiko
 
 			// Environment
 			void PlayDoorOpening();
+
+			// Music
+			void StopBackgroundMusic();
 		private:
 			bool updated = false;
 			bool _in_combat = false;

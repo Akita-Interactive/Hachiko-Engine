@@ -359,6 +359,8 @@ void Hachiko::Scripting::CrystalExplosion::RegenCrystal()
 		cp_animation->SendTrigger("isRegenerating");
 	}
 
+	_audio_source->PostEvent(Sounds::CRYSTAL_REGENERATE);
+
 	if (crystal_geometry)
 	{
 		crystal_geometry->SetOutlineType(
@@ -375,5 +377,5 @@ void Hachiko::Scripting::CrystalExplosion::SpawnEffect()
 		spawn_billboard->Enable();
 		spawn_billboard->Start();
 	}
-	_audio_source->PostEvent(Sounds::PLAY_LASER_HIT);
+	_audio_source->PostEvent(Sounds::EXPLOSIVE_CRYSTAL_CHARGE);
 }

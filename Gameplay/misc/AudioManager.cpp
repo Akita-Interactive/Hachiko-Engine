@@ -141,6 +141,11 @@ void Hachiko::Scripting::AudioManager::PlayDoorOpening()
 	_audio_source->PostEvent(Sounds::PLAY_DOOR_OPENING);
 }
 
+void Hachiko::Scripting::AudioManager::StopBackgroundMusic()
+{
+	_audio_source->PostEvent(Sounds::STOP_BACKGROUND_MUSIC);
+}
+
 void Hachiko::Scripting::AudioManager::SetCombat()
 {
 	_audio_source->SetSwitch(GAMEPLAY_SWITCH, GAMEPLAY_COMBAT);

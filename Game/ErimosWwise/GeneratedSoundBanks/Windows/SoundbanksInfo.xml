@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="626769978" Language="SFX" Hash="1669364144">
+		<SoundBank Id="626769978" Language="SFX" Hash="2208307575">
 			<ObjectPath>\SoundBanks\Default Work Unit\BackgroundMusic</ObjectPath>
 			<ShortName>BackgroundMusic</ShortName>
 			<Path>BackgroundMusic.bnk</Path>
@@ -222,6 +222,9 @@
 																</SwitchContainer>
 															</Children>
 														</SwitchContainer>
+														<SwitchContainer SwitchValue="{F78DEA1E-406E-4706-B5BC-D2290B952F54}">
+															<Children/>
+														</SwitchContainer>
 													</Children>
 												</SwitchContainer>
 											</Children>
@@ -311,6 +314,7 @@
 						<State Id="936729722" Name="Stage1" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1" GUID="{1AC76792-AD16-42E6-B27B-0D03BCBF9474}"/>
 						<State Id="936729721" Name="Stage2" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage2" GUID="{B7696B1A-498C-46A0-B1CA-1EFD809FE3AE}"/>
 						<State Id="936729720" Name="Stage3" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage3" GUID="{1B3F4FD0-8F6D-4FE2-81DE-74BCEDF83928}"/>
+						<State Id="1591776364" Name="Stage1b" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1b" GUID="{9E65B438-BF0B-490F-9C58-CDAEC2F7A184}"/>
 					</States>
 				</StateGroup>
 				<StateGroup Id="2791675679" Name="Defeated" ObjectPath="\States\Default Work Unit\Player_Life\Defeated" GUID="{6D9231D6-6EC9-4CBF-8DA7-97EC649CB00E}">
@@ -555,7 +559,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3768541028" Language="SFX" Hash="2302377056">
+		<SoundBank Id="3768541028" Language="SFX" Hash="4261890515">
 			<ObjectPath>\SoundBanks\Default Work Unit\Attacks</ObjectPath>
 			<ShortName>Attacks</ShortName>
 			<Path>Attacks.bnk</Path>
@@ -770,7 +774,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="3909959462" Language="SFX" Hash="3550706842">
+		<SoundBank Id="3909959462" Language="SFX" Hash="3218039668">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enviroment</ObjectPath>
 			<ShortName>Enviroment</ShortName>
 			<Path>Enviroment.bnk</Path>
@@ -787,7 +791,31 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2035174344" Name="Play_Crystal" ObjectPath="\Events\Default Work Unit\Environment\Play_Crystal">
+				<Event Id="2035174344" Name="Play_Crystal" ObjectPath="\Events\Default Work Unit\Environment\Crystals\Play_Crystal">
+					<IncludedMemoryFiles>
+						<File Id="97640651" Language="SFX">
+							<ShortName>Crystal\cristal broken 2.wav</ShortName>
+							<Path>SFX\Crystal\cristal broken 2_10C4C929.wem</Path>
+						</File>
+						<File Id="101284139" Language="SFX">
+							<ShortName>Crystal\cristal broken 1.wav</ShortName>
+							<Path>SFX\Crystal\cristal broken 1_10C4C929.wem</Path>
+						</File>
+						<File Id="706795758" Language="SFX">
+							<ShortName>Crystal\cristal broken 3.wav</ShortName>
+							<Path>SFX\Crystal\cristal broken 3_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2449564938" Name="Play_CrystalRegenerate" ObjectPath="\Events\Default Work Unit\Environment\Crystals\Play_CrystalRegenerate">
+					<IncludedMemoryFiles>
+						<File Id="113467563" Language="SFX">
+							<ShortName>ES_Whoosh Reverse 3 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Whoosh Reverse 3 - SFX Producer_E821E153.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1185403619" Name="Play_ExplosiveCrystal" ObjectPath="\Events\Default Work Unit\Environment\Crystals\Play_ExplosiveCrystal">
 					<IncludedMemoryFiles>
 						<File Id="101284139" Language="SFX">
 							<ShortName>Crystal\cristal broken 1.wav</ShortName>
@@ -796,6 +824,18 @@
 						<File Id="706795758" Language="SFX">
 							<ShortName>Crystal\cristal broken 3.wav</ShortName>
 							<Path>SFX\Crystal\cristal broken 3_10C4C929.wem</Path>
+						</File>
+						<File Id="785410759" Language="SFX">
+							<ShortName>ES_Magic Spell Whoosh 3 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Magic Spell Whoosh 3 - SFX Producer_59710EF2.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4241858839" Name="Play_ExplosiveCrystalCharge" ObjectPath="\Events\Default Work Unit\Environment\Crystals\Play_ExplosiveCrystalCharge">
+					<IncludedMemoryFiles>
+						<File Id="588868501" Language="SFX">
+							<ShortName>ES_Swoosh Thing - Johan Hynynen.wav</ShortName>
+							<Path>SFX\ES_Swoosh Thing - Johan Hynynen_8AE7D39C.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -807,7 +847,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2270376495" Name="Play_Laser" ObjectPath="\Events\Default Work Unit\Environment\Play_Laser">
+				<Event Id="2270376495" Name="Play_Laser" ObjectPath="\Events\Default Work Unit\Environment\Lasers\Play_Laser">
 					<IncludedMemoryFiles>
 						<File Id="1029896715" Language="SFX">
 							<ShortName>ES_Laser Sword Hum - SFX Producer.wav</ShortName>
@@ -815,7 +855,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="4092857357" Name="Play_Laser_Hit" ObjectPath="\Events\Default Work Unit\Environment\Play_Laser_Hit">
+				<Event Id="4092857357" Name="Play_Laser_Hit" ObjectPath="\Events\Default Work Unit\Environment\Lasers\Play_Laser_Hit">
 					<IncludedMemoryFiles>
 						<File Id="971224351" Language="SFX">
 							<ShortName>ES_MM Design Element 43 - SFX Producer.wav</ShortName>

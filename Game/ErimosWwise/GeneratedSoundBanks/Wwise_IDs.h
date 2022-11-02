@@ -26,7 +26,10 @@ namespace AK
         static const AkUniqueID PLAY_BOSSWINS = 1727127580U;
         static const AkUniqueID PLAY_CHECKPOINT = 2962822744U;
         static const AkUniqueID PLAY_CRYSTAL = 2035174344U;
+        static const AkUniqueID PLAY_CRYSTALREGENERATE = 2449564938U;
         static const AkUniqueID PLAY_DASH = 2211787386U;
+        static const AkUniqueID PLAY_EXPLOSIVECRYSTAL = 1185403619U;
+        static const AkUniqueID PLAY_EXPLOSIVECRYSTALCHARGE = 4241858839U;
         static const AkUniqueID PLAY_FOOTSTEP = 1602358412U;
         static const AkUniqueID PLAY_GAUNLETDOOROPENING = 2988819998U;
         static const AkUniqueID PLAY_GAUNLETNEXTROUND = 1126614951U;
@@ -71,6 +74,7 @@ namespace AK
             {
                 static const AkUniqueID NONE = 748895195U;
                 static const AkUniqueID STAGE1 = 936729722U;
+                static const AkUniqueID STAGE1B = 1591776364U;
                 static const AkUniqueID STAGE2 = 936729721U;
                 static const AkUniqueID STAGE3 = 936729720U;
             } // namespace STATE

@@ -42,7 +42,7 @@ namespace Hachiko::Sounds
 	// Enviroment
 	constexpr const wchar_t* CRYSTAL					= L"Play_Crystal";
 	constexpr const wchar_t* EXPLOSIVE_CRYSTAL			= L"Play_ExplosiveCrystal";
-	constexpr const wchar_t* EXPLOSIVE_CHARGE			= L"Play_ExplosiveCrystalCharge";
+	constexpr const wchar_t* EXPLOSIVE_CRYSTAL_CHARGE	= L"Play_ExplosiveCrystalCharge";
 	constexpr const wchar_t* CRYSTAL_REGENERATE			= L"Play_CrystalRegenerate";
 	constexpr const wchar_t* PLAY_WIND					= L"Play_Wind";
 	constexpr const wchar_t* STOP_WIND					= L"Stop_Wind";
@@ -60,6 +60,7 @@ namespace Hachiko::Sounds
 	constexpr const wchar_t* PLAY_BACKGROUND_MUSIC	= L"Play_InteractiveMusic";
 	constexpr const wchar_t* STOP_BACKGROUND_MUSIC	= L"Stop_InteractiveMusic";
 	constexpr const wchar_t* SET_STATE1_BOSS_FIGHT	= L"Set_State1_BossFight";
+	constexpr const wchar_t* SET_STATE1B_BOSS_FIGHT	= L"Set_State1b_BossFight";
 	constexpr const wchar_t* SET_STATE2_BOSS_FIGHT	= L"Set_State2_BossFight";
 	constexpr const wchar_t* SET_STATE3_BOSS_FIGHT	= L"Set_State3_BossFight";
 	constexpr const wchar_t* SET_STATE_DEFEATED		= L"Set_State_Defeated";

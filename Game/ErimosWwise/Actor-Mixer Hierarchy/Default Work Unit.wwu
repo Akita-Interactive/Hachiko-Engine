@@ -243,90 +243,6 @@
 								</RandomSequenceContainer>
 							</ChildrenList>
 						</Folder>
-						<RandomSequenceContainer Name="Crystals" ID="{DF9BB866-7CA0-4C5A-B15B-22BA9A7EE109}" ShortID="280822724">
-							<PropertyList>
-								<Property Name="3DSpatialization" Type="int16" Value="1"/>
-								<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>10</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<Sound Name="cristal broken 1" ID="{2348D097-0388-423C-A76D-22E3FDB9E801}" ShortID="559301771">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="cristal broken 1" ID="{00D40BBD-942C-42A3-BC13-720EF04152D4}">
-											<Language>SFX</Language>
-											<AudioFile>Crystal\cristal broken 1.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="101284139"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="cristal broken 1" ID="{00D40BBD-942C-42A3-BC13-720EF04152D4}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="cristal broken 3" ID="{E11FB8C3-F029-4826-809E-FECBCF9B7995}" ShortID="665297841">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="cristal broken 3" ID="{6E89E97E-EC44-4148-9B78-184A08332CF7}">
-											<Language>SFX</Language>
-											<AudioFile>Crystal\cristal broken 3.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="706795758"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="cristal broken 3" ID="{6E89E97E-EC44-4148-9B78-184A08332CF7}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-							</ChildrenList>
-							<PositioningInfo>
-								<Position Name="" ID="{7E0075B4-C7CC-408E-AA57-9BA608DD7419}">
-									<ChildrenList>
-										<Path2D Name="Crystals_Path" ID="{C2F8559E-818E-4491-81C8-2FECA31DB6FF}">
-											<PointList>
-												<Point>
-													<XPos>-75.63452</XPos>
-													<YPos>-52.82486</YPos>
-													<Flags>12</Flags>
-													<Time>0</Time>
-												</Point>
-											</PointList>
-										</Path2D>
-									</ChildrenList>
-								</Position>
-							</PositioningInfo>
-							<ObjectLists/>
-						</RandomSequenceContainer>
 						<RandomSequenceContainer Name="Pebbles" ID="{217D4A68-FD9D-45A7-BC72-81E275EFC3BD}" ShortID="566197860">
 							<PropertyList>
 								<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
@@ -1011,17 +927,446 @@
 								</BlendContainer>
 							</ChildrenList>
 						</Folder>
-						<BlendContainer Name="ExplosiveCrystal" ID="{15BBAE26-83A9-4103-B023-BB47308572E0}" ShortID="977618785">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-								</Reference>
-							</ReferenceList>
-							<ObjectLists/>
-						</BlendContainer>
+						<Folder Name="Crystals" ID="{E9A85DFF-DD36-4A2E-8242-51D852529BDA}" ShortID="1026481387">
+							<ChildrenList>
+								<RandomSequenceContainer Name="CrystalsBreak" ID="{DF9BB866-7CA0-4C5A-B15B-22BA9A7EE109}" ShortID="280822724">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>10</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="cristal broken 1" ID="{2348D097-0388-423C-A76D-22E3FDB9E801}" ShortID="559301771">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="cristal broken 1" ID="{00D40BBD-942C-42A3-BC13-720EF04152D4}">
+													<Language>SFX</Language>
+													<AudioFile>Crystal\cristal broken 1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="101284139"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="cristal broken 1" ID="{00D40BBD-942C-42A3-BC13-720EF04152D4}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="cristal broken 3" ID="{E11FB8C3-F029-4826-809E-FECBCF9B7995}" ShortID="665297841">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="cristal broken 3" ID="{6E89E97E-EC44-4148-9B78-184A08332CF7}">
+													<Language>SFX</Language>
+													<AudioFile>Crystal\cristal broken 3.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="706795758"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="cristal broken 3" ID="{6E89E97E-EC44-4148-9B78-184A08332CF7}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="cristal broken 2" ID="{57F91398-0036-4AF3-A32D-FEA884006D33}" ShortID="1012591005">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="cristal broken 2" ID="{2549AE32-29C4-4DFD-866B-F2DC1A2BAB08}">
+													<Language>SFX</Language>
+													<AudioFile>Crystal\cristal broken 2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="97640651"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="cristal broken 2" ID="{2549AE32-29C4-4DFD-866B-F2DC1A2BAB08}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<PositioningInfo>
+										<Position Name="" ID="{7E0075B4-C7CC-408E-AA57-9BA608DD7419}">
+											<ChildrenList>
+												<Path2D Name="Crystals_Path" ID="{C2F8559E-818E-4491-81C8-2FECA31DB6FF}">
+													<PointList>
+														<Point>
+															<XPos>-75.63452</XPos>
+															<YPos>-52.82486</YPos>
+															<Flags>12</Flags>
+															<Time>0</Time>
+														</Point>
+													</PointList>
+												</Path2D>
+											</ChildrenList>
+										</Position>
+									</PositioningInfo>
+									<ObjectLists/>
+								</RandomSequenceContainer>
+								<Sound Name="ChargeExplosion" ID="{3690F725-2FFF-4137-AF35-70D45D268118}" ShortID="965086340">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ES_Swoosh Thing - Johan Hynynen" ID="{C67C1C6B-0ED8-464B-9A56-6E8313EF9356}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.947737270642202"/>
+												<Property Name="FadeOutShape" Type="int16" Value="6"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.407886926605505"/>
+												<Property Name="TrimEnd" Type="Real64" Value="3.93490917431193"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ES_Swoosh Thing - Johan Hynynen.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="588868501"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Swoosh Thing - Johan Hynynen" ID="{C67C1C6B-0ED8-464B-9A56-6E8313EF9356}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<BlendContainer Name="ExplosiveCrystal" ID="{15BBAE26-83A9-4103-B023-BB47308572E0}" ShortID="977618785">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="ES_Magic Spell Whoosh 3 - SFX Producer" ID="{96E92763-485B-4AA5-8AE5-651E792214E4}" ShortID="592593129">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Magic Spell Whoosh 3 - SFX Producer" ID="{19933E4E-998F-4F99-B116-C6ABCA2CFA48}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0753516819571865"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.39045871559633"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_Magic Spell Whoosh 3 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="785410759"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Magic Spell Whoosh 3 - SFX Producer" ID="{19933E4E-998F-4F99-B116-C6ABCA2CFA48}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<RandomSequenceContainer Name="Brake" ID="{3899939C-6137-47D1-BAC8-03F002168CDA}" ShortID="812390539">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>10</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="cristal broken 1" ID="{86ED1407-C394-451E-AB85-495ABD08A343}" ShortID="756592380">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="cristal broken 1" ID="{FF9DACA6-CDE8-48F1-8AD4-2E9A0008C103}">
+															<Language>SFX</Language>
+															<AudioFile>Crystal\cristal broken 1.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="101284139"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="cristal broken 1" ID="{FF9DACA6-CDE8-48F1-8AD4-2E9A0008C103}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="cristal broken 3" ID="{EB5132DB-0662-42BF-A449-187553AAF230}" ShortID="976301356">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="cristal broken 3" ID="{709AB529-3AC0-48BA-99AF-C699917319FD}">
+															<Language>SFX</Language>
+															<AudioFile>Crystal\cristal broken 3.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="706795758"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="cristal broken 3" ID="{709AB529-3AC0-48BA-99AF-C699917319FD}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+									</ChildrenList>
+									<ObjectLists/>
+								</BlendContainer>
+								<BlendContainer Name="Regenerate" ID="{3BC05AF4-C8C3-40E8-B454-FA2488B2E372}" ShortID="151077269">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+										<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>6</Value>
+											</ValueList>
+										</Property>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-3</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="ReverseWhoosh" ID="{2D4114C5-275B-4C48-8BEF-19B61FF9387C}" ShortID="654381572">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-3</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Whoosh Reverse 3 - SFX Producer" ID="{66AA49E5-A823-4742-9E80-705A7EF5C182}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0593027522935781"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.65652354740061"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_Whoosh Reverse 3 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="113467563"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Whoosh Reverse 3 - SFX Producer" ID="{66AA49E5-A823-4742-9E80-705A7EF5C182}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="CrystalSfx" ID="{D1B7E6B7-0E43-414E-A2F3-42C13125D450}" ShortID="614824534">
+											<PropertyList>
+												<Property Name="InitialDelay" Type="Real64">
+													<ValueList>
+														<Value>1.2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{D002D97B-9B18-41CA-A2D9-C30733899430}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="200"/>
+																	<Property Name="Min" Type="Real64" Value="-200"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Magical Shimmer - SFX Producer" ID="{E6450D11-35AA-454F-B820-4B2F7611AE58}">
+													<Language>SFX</Language>
+													<AudioFile>ES_Magical Shimmer - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="17948574"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Magical Shimmer - SFX Producer" ID="{E6450D11-35AA-454F-B820-4B2F7611AE58}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="MagicHigh" ID="{0C9E14D3-D61C-4ADD-BAB1-6F2E7425E71E}" ShortID="834385254">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="InitialDelay" Type="Real64">
+													<ValueList>
+														<Value>1.2</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_PREL Whoosh High 18 - SFX Producer" ID="{85673D7E-F18C-4A9F-96B1-EB02BC94FE1E}">
+													<Language>SFX</Language>
+													<AudioFile>ES_PREL Whoosh High 18 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="931073005"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_PREL Whoosh High 18 - SFX Producer" ID="{85673D7E-F18C-4A9F-96B1-EB02BC94FE1E}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="MagicalLow" ID="{ECD2FADE-D375-41D5-8E00-3EDA6417D06F}" ShortID="1045620144">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="InitialDelay" Type="Real64">
+													<ValueList>
+														<Value>1.2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>200</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Horror Whoosh 1 - SFX Producer" ID="{2DF4ABA4-C65E-4B96-B554-8430C6D870C5}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="1.29174311926606"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.87733333333334"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_Horror Whoosh 1 - SFX Producer.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="995211964"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Horror Whoosh 1 - SFX Producer" ID="{2DF4ABA4-C65E-4B96-B554-8430C6D870C5}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</BlendContainer>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{C0368863-E296-4CEF-8414-B7D2D6740F0E}" ShortID="637683217">
@@ -2677,6 +3022,11 @@
 									<ChildrenList>
 										<RandomSequenceContainer Name="Hit" ID="{6008E93E-59FA-480C-916D-9FCD092105D7}" ShortID="307738257">
 											<PropertyList>
+												<Property Name="InitialDelay" Type="Real64">
+													<ValueList>
+														<Value>0.2</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Pitch" Type="int32">
 													<ValueList>
 														<Value>200</Value>
@@ -2684,7 +3034,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-8</Value>
+														<Value>-3</Value>
 													</ValueList>
 													<ModifierList>
 														<ModifierInfo>
@@ -2793,6 +3143,11 @@
 										</RandomSequenceContainer>
 										<RandomSequenceContainer Name="Wings" ID="{5BF07F4F-3653-4117-B3C8-06B2685BA78F}" ShortID="210492422">
 											<PropertyList>
+												<Property Name="InitialDelay" Type="Real64">
+													<ValueList>
+														<Value>0.2</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>10</Value>
