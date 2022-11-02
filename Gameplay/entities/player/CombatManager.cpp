@@ -88,7 +88,7 @@ int Hachiko::Scripting::CombatManager::PlayerConeAttack(const float4x4& origin, 
 	// Take the values after enemies, not obstacles such as crystals:
 	hit_enemies = hit > 0;
 
-	hit += ProcessObstaclesCone(origin.Col3(3), attack_dir, min_dot_product, attack_stats.range, attack_stats);
+	hit += ProcessObstaclesCone(origin.Col3(3), attack_dir, min_dot_product, attack_stats.range, attack_stats, true);
 
 	return hit;
 }
@@ -104,7 +104,7 @@ int Hachiko::Scripting::CombatManager::PlayerRectangleAttack(const float4x4& ori
 	// Take the values after enemies and boss, not obstacles such as crystals:
 	hit_enemies = hit > 0;
 
-    hit += ProcessObstaclesOBB(hitbox, attack_stats);
+    hit += ProcessObstaclesOBB(hitbox, attack_stats, true);
 	
 	return hit;
 }
@@ -118,7 +118,7 @@ int Hachiko::Scripting::CombatManager::PlayerCircleAttack(const float4x4& origin
 	// Take the values after enemies, not obstacles such as crystals:
 	hit_enemies = hit > 0;
 
-	hit +=  ProcessObstaclesCircle(origin.Col3(3), attack_stats);
+	hit +=  ProcessObstaclesCircle(origin.Col3(3), attack_stats, true);
 
 	return hit;
 }
@@ -318,7 +318,7 @@ bool Hachiko::Scripting::CombatManager::CheckBulletCollisions(unsigned bullet_id
 
 	if (hit_obstacle)
 	{
-		HitObstacle(hit_obstacle, stats.damage);
+		HitObstacle(hit_obstacle, stats.damage, true, true);
 		return true;
 	}
 
@@ -686,7 +686,7 @@ int Hachiko::Scripting::CombatManager::ProcessAgentsCone(const float3& attack_so
 	return hit;
 }
 
-int Hachiko::Scripting::CombatManager::ProcessObstaclesCone(const float3& attack_source_pos, const float3& attack_dir, float min_dot_prod, float hit_distance, const AttackStats& attack_stats)
+int Hachiko::Scripting::CombatManager::ProcessObstaclesCone(const float3& attack_source_pos, const float3& attack_dir, float min_dot_prod, float hit_distance, const AttackStats& attack_stats,  bool is_from_player)
 {
 	GameObject* obstacle_container = game_object->scene_owner->GetRoot()->GetFirstChildWithName("Crystals");
 	if (!obstacle_container)
@@ -711,7 +711,7 @@ int Hachiko::Scripting::CombatManager::ProcessObstaclesCone(const float3& attack
 			if (crystal_controller && crystal_controller->IsAlive())
 			{
 				hit++;
-				HitObstacle(obstacle, attack_stats.damage);
+				HitObstacle(obstacle, attack_stats.damage, is_from_player);
 			}
 		}
 	}
@@ -786,7 +786,7 @@ int Hachiko::Scripting::CombatManager::ProcessAgentsOBB(const OBB& attack_box, c
 	return hit;
 }
 
-int Hachiko::Scripting::CombatManager::ProcessObstaclesOBB(const OBB& attack_box, const AttackStats& attack_stats)
+int Hachiko::Scripting::CombatManager::ProcessObstaclesOBB(const OBB& attack_box, const AttackStats& attack_stats, bool is_from_player)
 {
 	GameObject* obstacle_container = game_object->scene_owner->GetRoot()->GetFirstChildWithName("Crystals");
 	if (!obstacle_container)
@@ -811,7 +811,7 @@ int Hachiko::Scripting::CombatManager::ProcessObstaclesOBB(const OBB& attack_box
 			if (crystal_controller && crystal_controller->IsAlive())
 			{
 				hit++;
-				HitObstacle(obstacle, attack_stats.damage);
+				HitObstacle(obstacle, attack_stats.damage, is_from_player);
 			}
 		}
 	}
@@ -888,7 +888,7 @@ int Hachiko::Scripting::CombatManager::ProcessAgentsCircle(const float3& attack_
 	return hit;
 }
 
-int Hachiko::Scripting::CombatManager::ProcessObstaclesCircle(const float3& attack_source_pos, const AttackStats& attack_stats)
+int Hachiko::Scripting::CombatManager::ProcessObstaclesCircle(const float3& attack_source_pos, const AttackStats& attack_stats, bool is_from_player)
 {
 	GameObject* obstacle_container = game_object->scene_owner->GetRoot()->GetFirstChildWithName("Crystals");
 	if (!obstacle_container)
@@ -913,7 +913,7 @@ int Hachiko::Scripting::CombatManager::ProcessObstaclesCircle(const float3& atta
 			if (crystal_controller && crystal_controller->IsAlive())
 			{
 				hit++;
-				HitObstacle(obstacle, attack_stats.damage);
+				HitObstacle(obstacle, attack_stats.damage, is_from_player);
 			}
 		}
 	}
@@ -1096,11 +1096,11 @@ bool Hachiko::Scripting::CombatManager::CircleHitsPlayer(const float3& attack_so
 	return false;
 }
 
-void Hachiko::Scripting::CombatManager::HitObstacle(GameObject* obstacle, float damage)
+void Hachiko::Scripting::CombatManager::HitObstacle(GameObject* obstacle, float damage, bool is_from_player, bool is_ranged)
 {
 	CrystalExplosion* is_crystal_explotion = obstacle->GetComponent<CrystalExplosion>();
 	if (is_crystal_explotion) {
-		is_crystal_explotion->RegisterHit(damage);
+		is_crystal_explotion->RegisterHit(damage, is_from_player, is_ranged);
 	}
 	else // Case is a platform crystal trigger
 	{
