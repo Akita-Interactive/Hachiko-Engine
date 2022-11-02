@@ -40,6 +40,8 @@ namespace Hachiko
 			void DestroyCrystal();
 			void RegenCrystal();
 
+			void DissolveCrystal(bool be_dissolved);
+
 			void SpawnEffect();
 		private:
 			void SetVisible(bool v);
@@ -73,6 +75,9 @@ namespace Hachiko
 			bool _is_destroyed = false;
 			bool _is_exploding = false;
 			bool _visible = false;
+			bool _is_dissolving = false;
+			float _dissolving_time = 1.5f;
+			float _current_dissolving_time = 0.f;
 			float _current_regen_time = 0.f;
 			float _current_explosion_timer = 0.f;
 

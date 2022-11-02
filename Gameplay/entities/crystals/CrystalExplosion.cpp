@@ -116,6 +116,14 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 	{
 		CheckRadiusExplosion();
 	}
+
+	if (_is_dissolving)
+	{
+		_current_dissolving_time -= Time::DeltaTimeScaled();
+		_current_dissolving_time = math::Clamp(_current_dissolving_time, 0.0f, _dissolving_time);
+		float dissolve_progress = _current_dissolving_time / _dissolving_time;
+		game_object->ChangeDissolveProgress(dissolve_progress, true);
+	}
 }
 
 void Hachiko::Scripting::CrystalExplosion::StartExplosion()
@@ -367,4 +375,19 @@ void Hachiko::Scripting::CrystalExplosion::SpawnEffect()
 		spawn_billboard->Start();
 	}
 	_audio_source->PostEvent(Sounds::PLAY_LASER_HIT);
+}
+
+void Hachiko::Scripting::CrystalExplosion::DissolveCrystal(bool be_dissolved)
+{
+	if (be_dissolved)
+	{
+		_is_dissolving = true;
+		_current_dissolving_time = _dissolving_time;
+	}
+	else
+	{
+		_is_dissolving = false;
+		game_object->ChangeDissolveProgress(1.f, true);
+		_current_dissolving_time = _dissolving_time;
+	}
 }

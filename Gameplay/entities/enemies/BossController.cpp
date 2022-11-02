@@ -558,6 +558,10 @@ void Hachiko::Scripting::BossController::CocoonController()
 void Hachiko::Scripting::BossController::SetUpCocoon()
 {
     hitable = false;
+    for (GameObject* crystal : cocoons_parent->children)
+    {
+        crystal->GetComponent<CrystalExplosion>()->DissolveCrystal(false);
+    }
 }
 
 void Hachiko::Scripting::BossController::BreakCocoon()
@@ -565,6 +569,7 @@ void Hachiko::Scripting::BossController::BreakCocoon()
     for (GameObject* crystal: cocoons_parent->children)
     {
         crystal->GetComponent<CrystalExplosion>()->DestroyCrystal();
+        crystal->GetComponent<CrystalExplosion>()->DissolveCrystal(true);
     }
     animation->SendTrigger("isCacoonComingOut");
 }
@@ -615,7 +620,7 @@ void Hachiko::Scripting::BossController::FinishCocoon()
 
     for (GameObject* laser : _rotating_lasers->children)
     {
-        laser->GetComponent<LaserController>()->ChangeState(LaserController::State::INACTIVE);
+        laser->GetComponent<LaserController>()->ChangeState(LaserController::State::DISSOLVING);
         laser->GetComponent<LaserController>()->_toggle_activation = false;
     }
 
