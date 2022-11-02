@@ -341,6 +341,7 @@ RD /S /Q "$(TargetDir)"</Command>
     <ClInclude Include="misc\StalagmiteManager.h" />
     <ClInclude Include="entities\crystals\Stalagmite.h" />
     <ClInclude Include="misc\Tutorial.h" />
+    <ClInclude Include="misc\OrbController.h" />
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="TriggerAnim.h" />
     <ClInclude Include="ui\BackToMainMenu.h" />
@@ -774,6 +775,7 @@ RD /S /Q "$(TargetDir)"</Command>
     <ClCompile Include="misc\StalagmiteManager.cpp" />
     <ClCompile Include="entities\crystals\Stalagmite.cpp" />
     <ClCompile Include="misc\Tutorial.cpp" />
+    <ClCompile Include="misc\OrbController.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="TriggerAnim.cpp" />
     <ClCompile Include="ui\BackToMainMenu.cpp" />

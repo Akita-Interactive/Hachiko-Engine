@@ -6,6 +6,7 @@
 #include "entities/player/PlayerController.h"
 
 #include "entities/player/CombatVisualEffectsPool.h"
+#include <misc/OrbController.h>
 
 constexpr int MAX_AMMO = 4;
 constexpr int ATTACK_VFX_POOL_SIZE = 6;
@@ -1335,7 +1336,10 @@ void Hachiko::Scripting::PlayerController::CheckNearbyParasytes(const float3& cu
 
 		if (_magic_parasyte && _magic_parasyte->IsActive())
 		{
-			if (parasyte_pickup_distance >= _player_transform->GetGlobalPosition().Distance(_magic_parasyte->GetTransform()->GetGlobalPosition()))
+			GameObject* go_orb = _magic_parasyte->GetFirstChildWithName("MagicParasyte"); // Needed to avoid create offset for tooltip parasite
+
+			if (parasyte_pickup_distance >= _player_transform->GetGlobalPosition().Distance(_magic_parasyte->GetTransform()->GetGlobalPosition()) 
+				&& !go_orb->GetComponent<OrbController>()->IsPicked())
 			{
 				// If there is a nearby parasyte tooltip of the normal parasyte would be the one appearing
 				// This will never happen on our level layout so its fine
@@ -1343,7 +1347,7 @@ void Hachiko::Scripting::PlayerController::CheckNearbyParasytes(const float3& cu
 				if (Input::IsKeyDown(Input::KeyCode::KEY_F) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_B))
 				{
 					PickupParasite(nullptr, true);
-					_magic_parasyte->SetActive(false);
+					go_orb->GetComponent<OrbController>()->DestroyOrb();
 					DeactivateTooltip();
 				}
 				return;
