@@ -10,8 +10,8 @@
 #include "constants/Sounds.h"
 #include "constants/Scenes.h"
 
-// TODO: These two includes must go:
-#include <modules/ModuleSceneManager.h>
+#include "entities/player/CombatVisualEffectsPool.h"
+
 
 
 // TODO: Joel make this class delta time scaled as well.
@@ -51,6 +51,8 @@ void Hachiko::Scripting::CrystalExplosion::OnAwake()
 	{
 		spawn_billboard = boss_spawn_go->GetComponent<ComponentBillboard>();
 	}
+
+	effects_pool = Scenes::GetCombatVisualEffectsPool()->GetComponent<CombatVisualEffectsPool>();
 }
 
 void Hachiko::Scripting::CrystalExplosion::OnStart()
@@ -242,13 +244,27 @@ float3 Hachiko::Scripting::CrystalExplosion::GetShakeOffset()
 	}
 }
 
-void Hachiko::Scripting::CrystalExplosion::RegisterHit(int damage)
+void Hachiko::Scripting::CrystalExplosion::RegisterHit(int damage, bool is_from_player, bool is_ranged)
 {
 	if (!_stats) return;
 
 	damage_effect_remaining_time = damage_effect_duration;
 
 	_stats->ReceiveDamage(damage);
+
+	if (is_from_player)
+	{
+		GameObject* player = Scenes::GetPlayer();
+		PlayerController* player_controller = player->GetComponent<PlayerController>();
+
+		// TODO: Trigger this via an event of player, that is subscribed by
+		// combat visual effects pool.
+		PlayerController::WeaponUsed weapon = is_ranged? PlayerController::WeaponUsed::BLASTER : player_controller->GetCurrentWeaponType();
+		effects_pool->PlayPlayerAttackEffect(
+			weapon,
+			player_controller->GetAttackIndex(),
+			game_object->GetTransform()->GetGlobalPosition());
+	}
 
 	if (!_stats->IsAlive() && !_is_destroyed)
 	{
@@ -285,7 +301,7 @@ void Hachiko::Scripting::CrystalExplosion::ResetCrystal()
 		crystal_geometry->SetOutlineType(
 			_explosive_crystal
 			? Outline::Type::SECONDARY
-			: Outline::Type::PRIMARY);
+			: Outline::Type::NONE);
 	}
 
 	if (_explosion_indicator_helper)
@@ -336,7 +352,7 @@ void Hachiko::Scripting::CrystalExplosion::DestroyCrystal()
 		cp_animation->SendTrigger("isExploding");
 	}
 
-	if (crystal_geometry)
+	if (crystal_geometry && _explosive_crystal)
 	{
 		crystal_geometry->SetOutlineType(Outline::Type::NONE);
 	}
@@ -355,7 +371,7 @@ void Hachiko::Scripting::CrystalExplosion::RegenCrystal()
 		crystal_geometry->SetOutlineType(
 			_explosive_crystal
 			? Outline::Type::SECONDARY
-			: Outline::Type::PRIMARY);
+			: Outline::Type::NONE);
 	}
 }
 
