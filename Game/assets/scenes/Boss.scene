@@ -48467,6 +48467,7 @@ child:
         "'_heal_effect@GameObject*'": 5908520558165854213
         "'_damage_effect@GameObject*'": 629950022488313243
         "'_parasite_pickup_effect@GameObject*'": 6265388955985568560
+        "'_parasite_selection@GameObject*'": 6360381896949523956
         "'_melee_trail_right@GameObject*'": 12810222476901371171
         "'_melee_trail_left@GameObject*'": 15380304811302110027
         "'_melee_trail_center@GameObject*'": 16140457854876466764
@@ -53048,94 +53049,6 @@ child:
             intensity: 3
             radius: 3
             draw_sphere: false
-      - id: 425311955317215364
-        name: Tooltip
-        enabled: true
-        component:
-          - !<transform>
-            id: 4789327856104354353
-            type: 1
-            enabled: true
-            position: [0, 6, 0]
-            rotation: [0, 79.75, 0]
-            scale: [1, 1, 1]
-        child:
-          - id: 4770722676269138641
-            name: ControllerTooltip
-            enabled: true
-            component:
-              - !<transform>
-                id: 14534657178837895978
-                type: 1
-                enabled: true
-                position: [0, 0, 0]
-                rotation: [0, 0, 0]
-                scale: [1.5, 1.5, 1]
-              - !<billboard>
-                id: 715339862576161552
-                type: 21
-                enabled: true
-                play_on_awake: false
-                texture_id: 16720978303576970519
-                tiles: [1, 1]
-                flip: [false, false]
-                billboard_lifetime: 5
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-                animation_speed: 0
-                total_tiles: 1
-                animation_loop: true
-                color_cycles: 1
-                color_gradient: [[0, 0, 0, 0, 0], [1, 1, 1, 0, 1]]
-                animation_section: false
-                color_section: false
-                size_section: false
-                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                rotation_section: false
-                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [1, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                blend_factor: 0
-                projection: true
-                randomize_tiles: false
-          - id: 3124464908880655752
-            name: KeyboardTooltip
-            enabled: true
-            component:
-              - !<transform>
-                id: 10979666299324415461
-                type: 1
-                enabled: true
-                position: [0.0006, -0.0001, 0.0002]
-                rotation: [0, 0, 0]
-                scale: [1.5, 1.5, 1]
-              - !<billboard>
-                id: 12524703910142459427
-                type: 21
-                enabled: true
-                play_on_awake: false
-                texture_id: 14513640246521420128
-                tiles: [1, 1]
-                flip: [false, false]
-                billboard_lifetime: 5
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-                animation_speed: 0
-                total_tiles: 1
-                animation_loop: true
-                color_cycles: 1
-                color_gradient: [[0, 0, 0, 0, 0], [1, 1, 1, 0, 1]]
-                animation_section: false
-                color_section: false
-                size_section: false
-                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                rotation_section: false
-                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [1, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                blend_factor: 0
-                projection: true
-                randomize_tiles: false
       - id: 2248347991038953828
         name: ChargingParticles
         enabled: true
@@ -63052,3 +62965,179 @@ child:
                 position: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+  - id: 425311955317215364
+    name: Tooltip
+    enabled: true
+    component:
+      - !<transform>
+        id: 4789327856104354353
+        type: 1
+        enabled: true
+        position: [-82.06, 3.979, -34.81]
+        rotation: [-180, 55.25, -180]
+        scale: [0.44, 0.45, 0.44]
+    child:
+      - id: 4770722676269138641
+        name: ControllerTooltip
+        enabled: true
+        component:
+          - !<transform>
+            id: 14534657178837895978
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0]
+            scale: [1.5, 1.5, 1]
+          - !<billboard>
+            id: 715339862576161552
+            type: 21
+            enabled: true
+            play_on_awake: false
+            texture_id: 16720978303576970519
+            tiles: [1, 1]
+            flip: [false, false]
+            billboard_lifetime: 5
+            properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            animation_speed: 0
+            total_tiles: 1
+            animation_loop: true
+            color_cycles: 1
+            color_gradient: [[0, 0, 0, 0, 0], [1, 1, 1, 0, 1]]
+            animation_section: false
+            color_section: false
+            size_section: false
+            size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            rotation_section: false
+            rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_size: [true, true, 0, [1, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            blend_factor: 0
+            projection: true
+            randomize_tiles: false
+      - id: 3124464908880655752
+        name: KeyboardTooltip
+        enabled: true
+        component:
+          - !<transform>
+            id: 10979666299324415461
+            type: 1
+            enabled: true
+            position: [0.0006, -0.0001, 0.0002]
+            rotation: [0, 0, 0]
+            scale: [1.5, 1.5, 1]
+          - !<billboard>
+            id: 12524703910142459427
+            type: 21
+            enabled: true
+            play_on_awake: false
+            texture_id: 14513640246521420128
+            tiles: [1, 1]
+            flip: [false, false]
+            billboard_lifetime: 5
+            properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            animation_speed: 0
+            total_tiles: 1
+            animation_loop: true
+            color_cycles: 1
+            color_gradient: [[0, 0, 0, 0, 0], [1, 1, 1, 0, 1]]
+            animation_section: false
+            color_section: false
+            size_section: false
+            size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            rotation_section: false
+            rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_size: [true, true, 0, [1, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            blend_factor: 0
+            projection: true
+            randomize_tiles: false
+      - id: 6360381896949523956
+        name: ParasiteSelection_VFX
+        enabled: true
+        component:
+          - !<transform>
+            id: 16511834269400020485
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0]
+            scale: [2, 2, 2]
+        child:
+          - id: 3325037103946556451
+            name: InnerEffect
+            enabled: true
+            component:
+              - !<transform>
+                id: 10800162388203117795
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0]
+                scale: [1, 1, 1]
+              - !<billboard>
+                id: 10277652605105609390
+                type: 21
+                enabled: true
+                play_on_awake: true
+                texture_id: 15537058005441777461
+                tiles: [1, 1]
+                flip: [false, false]
+                billboard_lifetime: 2
+                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0
+                total_tiles: 1
+                animation_loop: true
+                color_cycles: 1
+                color_gradient: [[0.6863, 0.8824, 0.3922, 0, 1]]
+                animation_section: false
+                color_section: true
+                size_section: true
+                size_over_time: [true, false, 0, [10, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [0, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 0
+                projection: true
+                randomize_tiles: false
+          - id: 12806437097971007795
+            name: OuterEffect
+            enabled: true
+            component:
+              - !<transform>
+                id: 4502963017159458754
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0]
+                scale: [1, 1, 1]
+              - !<billboard>
+                id: 11477810522667184599
+                type: 21
+                enabled: true
+                play_on_awake: true
+                texture_id: 15537058005441777461
+                tiles: [1, 1]
+                flip: [false, false]
+                billboard_lifetime: 5
+                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0
+                total_tiles: 1
+                animation_loop: true
+                color_cycles: 1
+                color_gradient: [[0.6863, 0.8824, 0.3922, 0, 1]]
+                animation_section: false
+                color_section: true
+                size_section: false
+                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [2, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 0
+                projection: true
+                randomize_tiles: false
