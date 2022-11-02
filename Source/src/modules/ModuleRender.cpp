@@ -282,13 +282,6 @@ UpdateStatus Hachiko::ModuleRender::Update(const float delta)
 
     Draw(App->scene_manager->GetActiveScene(), camera, culling);
 
-    if (draw_navmesh)
-    {
-        EnableBlending();
-        App->navigation->DebugDraw();
-        DisableBlending();
-    }
-
     EnableBlending();
 
     GLint polygonMode[2];
@@ -568,6 +561,13 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
     }
 
     DrawParticles(scene, camera);
+
+    if (draw_navmesh)
+    {
+        EnableBlending();
+        App->navigation->DebugDraw();
+        DisableBlending();
+    }
       
     // ----------------------------- POST PROCCESS ----------------------------
 
