@@ -480,6 +480,10 @@ void Hachiko::Scripting::BossController::StartCocoon()
     moving_to_initial_pos = true;
     initial_position.y = transform->GetGlobalPosition().y;
     transform->LookAtTarget(initial_position);
+
+    agent->Enable();
+    agent->AddToCrowd();
+
     agent->SetTargetPosition(initial_position);
 }
 
