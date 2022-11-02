@@ -168,6 +168,7 @@ namespace Hachiko
             Scene* scene, 
             ComponentCamera* camera, 
             ComponentCamera* culling);
+        void RunFXAA();
         void DrawDeferred(
             Scene* scene, 
             ComponentCamera* camera, 
@@ -214,6 +215,10 @@ namespace Hachiko
         unsigned fb_texture = 0;
         unsigned fb_height = 0;
         unsigned fb_width = 0;
+        float fb_width_inverse = 1.0f;
+        float fb_height_inverse = 1.0f;
+
+        StandaloneGLTexture* pre_post_process_frame_buffer;
 
         StandaloneGLTexture* outline_texture;
         StandaloneGLTexture* outline_texture_temp;
@@ -245,6 +250,8 @@ namespace Hachiko
         bool draw_skybox = false;
         bool draw_navmesh = false;
         bool outline_selection = true;
+
+        bool anti_aliasing_enabled = true;
 
         GpuData gpu{};
         GlVersion gl{};
