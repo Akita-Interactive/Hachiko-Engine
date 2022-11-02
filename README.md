@@ -1,4 +1,5 @@
 **Large Files (Place In Assets/Models/Large)** https://drive.google.com/drive/folders/1Byno0EpZmpJipA2klS0w_CSnN3oMzuFw?usp=sharing
+**Large Files (Place In Game\ErimosWwise\GeneratedSoundBanks\Windows)** https://drive.google.com/file/d/13mWRjcb0uWO1prkVIN5BUrzuk2hhl1a3/view?usp=share_link
 
 # Hachiko Engine 🐕
 Hachiko is a custom built C++ Game Engine developed by Akita Interactive.
