@@ -46605,7 +46605,7 @@ child:
             id: 6169337152266315911
             type: 1
             enabled: true
-            position: [-39.62, -22.35, -80.62]
+            position: [-39.62, -1e+07, -80.62]
             rotation: [0, 0, 0]
             scale: [1.074, 1.098, 1.074]
       - id: 6176356638000236994
@@ -48441,7 +48441,7 @@ child:
         "'_attack_indicator@GameObject*'": 15757914801945072015
         "'_aim_indicator@GameObject*'": 17516732698059743784
         "'_combat_manager@GameObject*'": 8459539939456400839
-        "'_goal@GameObject*'": 18251543931208160398
+        "'_goal@GameObject*'": 7915766907333402918
         "'_player_geometry@GameObject*'": 3990881034475623681
         "'_dash_duration@float'": 0.15
         "'_dash_distance@float'": 6
@@ -53038,17 +53038,6 @@ child:
             intensity: 3
             radius: 3
             draw_sphere: false
-      - id: 18251543931208160398
-        name: Goal
-        enabled: false
-        component:
-          - !<transform>
-            id: 17377555573731563241
-            type: 1
-            enabled: true
-            position: [-86.22, -15.04, -2.59]
-            rotation: [0, 6.75, 0]
-            scale: [1.079, 1.1, 1.079]
       - id: 425311955317215364
         name: Tooltip
         enabled: true
