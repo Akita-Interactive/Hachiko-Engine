@@ -285,7 +285,7 @@ void Hachiko::Scripting::CrystalExplosion::ResetCrystal()
 		crystal_geometry->SetOutlineType(
 			_explosive_crystal
 			? Outline::Type::SECONDARY
-			: Outline::Type::PRIMARY);
+			: Outline::Type::NONE);
 	}
 
 	if (_explosion_indicator_helper)
@@ -336,7 +336,7 @@ void Hachiko::Scripting::CrystalExplosion::DestroyCrystal()
 		cp_animation->SendTrigger("isExploding");
 	}
 
-	if (crystal_geometry)
+	if (crystal_geometry && _explosive_crystal)
 	{
 		crystal_geometry->SetOutlineType(Outline::Type::NONE);
 	}
@@ -355,7 +355,7 @@ void Hachiko::Scripting::CrystalExplosion::RegenCrystal()
 		crystal_geometry->SetOutlineType(
 			_explosive_crystal
 			? Outline::Type::SECONDARY
-			: Outline::Type::PRIMARY);
+			: Outline::Type::NONE);
 	}
 }
 
