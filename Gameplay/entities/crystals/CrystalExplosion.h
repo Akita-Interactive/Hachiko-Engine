@@ -70,6 +70,7 @@ namespace Hachiko
 			SERIALIZE_FIELD(bool, _explosive_crystal);
 			SERIALIZE_FIELD(float, _regen_time);
 			SERIALIZE_FIELD(bool, _should_regen);
+			SERIALIZE_FIELD(bool, _for_boss_cocoon);
 
 			SERIALIZE_FIELD(float, damage_effect_duration);
 			GameObject* crystal_geometry = nullptr;

@@ -30,6 +30,7 @@ Hachiko::Scripting::CrystalExplosion::CrystalExplosion(GameObject* game_object)
 	, _seconds_shaking(0.8f)
 	, _should_regen(true)
 	, damage_effect_duration(0.5f)
+	, _for_boss_cocoon(false)
 {
 }
 
@@ -304,7 +305,7 @@ void Hachiko::Scripting::CrystalExplosion::ResetCrystal()
 	_current_explosion_timer = 0.f;
 	_current_regen_time = 0.f;
 
-	if (crystal_geometry)
+	if (crystal_geometry && !_for_boss_cocoon)
 	{
 		crystal_geometry->SetOutlineType(
 			_explosive_crystal
@@ -318,7 +319,6 @@ void Hachiko::Scripting::CrystalExplosion::ResetCrystal()
 	}
 
 
-	
 	if (spawn_billboard)
 	{
 		spawn_billboard->Stop();
@@ -360,7 +360,7 @@ void Hachiko::Scripting::CrystalExplosion::DestroyCrystal()
 		cp_animation->SendTrigger("isExploding");
 	}
 
-	if (crystal_geometry && _explosive_crystal)
+	if (crystal_geometry && _explosive_crystal && !_for_boss_cocoon)
 	{
 		crystal_geometry->SetOutlineType(Outline::Type::NONE);
 	}
@@ -397,6 +397,8 @@ void Hachiko::Scripting::CrystalExplosion::DissolveCrystal(bool be_dissolved)
 {
 	if (be_dissolved)
 	{
+		crystal_geometry->SetOutlineType(Outline::Type::NONE);
+
 		_is_dissolving = true;
 		_current_dissolving_time = _dissolving_time;
 	}
