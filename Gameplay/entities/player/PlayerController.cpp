@@ -180,6 +180,10 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 	{
 		_parasite_pickup_billboard = _parasite_pickup_effect->GetComponent<ComponentBillboard>();
 	}
+	if (_parasite_selection != nullptr)
+	{
+		_parasite_selection->SetActive(false);
+	}
 	if (_death_screen != nullptr)
 	{
 		_death_screen->GetComponent(Component::Type::IMAGE)->Disable();
@@ -433,7 +437,7 @@ math::float3 Hachiko::Scripting::PlayerController::GetRaycastPosition(
 	return plane.ClosestPoint(ray);
 }
 
-void Hachiko::Scripting::PlayerController::ActivateTooltip(const float3& position)
+void Hachiko::Scripting::PlayerController::ActivateTooltip(const float3& position, const int enemy_counter)
 {
 	float3 final_position = position;
 	final_position.y += tooltip_y_offset;
@@ -448,12 +452,32 @@ void Hachiko::Scripting::PlayerController::ActivateTooltip(const float3& positio
 		_keyboard_tooltip_display->GetTransform()->SetGlobalPosition(final_position);
 		_keyboard_tooltip_display->GetComponent(Component::Type::BILLBOARD)->Start();
 	}
+	
+	_parasite_selection->GetTransform()->SetGlobalPosition(position);
+	if (!_parasite_selection->IsActive())
+	{
+		_parasite_selection->SetActive(true);
+		_parasite_selection->GetFirstChildWithName("InnerEffect")->GetComponent(Component::Type::BILLBOARD)->Start();
+		_parasite_selection->GetFirstChildWithName("OuterEffect")->GetComponent(Component::Type::BILLBOARD)->Start();
+		last_enemy_counter = enemy_counter;
+	}
+	else if (enemy_counter != last_enemy_counter)
+	{
+		_parasite_selection->GetFirstChildWithName("InnerEffect")->GetComponent(Component::Type::BILLBOARD)->Stop();
+		_parasite_selection->GetFirstChildWithName("OuterEffect")->GetComponent(Component::Type::BILLBOARD)->Stop();
+		_parasite_selection->SetActive(false);
+	}
+	
 }
 
 void Hachiko::Scripting::PlayerController::DeactivateTooltip()
 {
 	_controller_tooltip_display->GetComponent(Component::Type::BILLBOARD)->Stop();
 	_keyboard_tooltip_display->GetComponent(Component::Type::BILLBOARD)->Stop();
+	_parasite_selection->GetFirstChildWithName("InnerEffect")->GetComponent(Component::Type::BILLBOARD)->Stop();
+	_parasite_selection->GetFirstChildWithName("OuterEffect")->GetComponent(Component::Type::BILLBOARD)->Stop();
+	last_enemy_counter = -1;
+	_parasite_selection->SetActive(false);
 }
 
 float3 Hachiko::Scripting::PlayerController::GetCorrectedPosition(const float3& target_pos, bool fps_relative) const
@@ -1354,7 +1378,7 @@ void Hachiko::Scripting::PlayerController::CheckNearbyParasytes(const float3& cu
 			{
 				// If there is a nearby parasyte tooltip of the normal parasyte would be the one appearing
 				// This will never happen on our level layout so its fine
-				ActivateTooltip(_magic_parasyte->GetTransform()->GetGlobalPosition());
+				ActivateTooltip(_magic_parasyte->GetTransform()->GetGlobalPosition(),  i);
 				if (Input::IsKeyDown(Input::KeyCode::KEY_F) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_B))
 				{
 					PickupParasite(nullptr, true);
@@ -1387,8 +1411,7 @@ void Hachiko::Scripting::PlayerController::CheckNearbyParasytes(const float3& cu
 						}
 					}
 					
-					
-					ActivateTooltip(closest_parasyte_in_range->GetTransform()->GetGlobalPosition());
+					ActivateTooltip(closest_parasyte_in_range->GetTransform()->GetGlobalPosition(), i);
 
 					if (Input::IsKeyDown(Input::KeyCode::KEY_F) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_B))
 					{
