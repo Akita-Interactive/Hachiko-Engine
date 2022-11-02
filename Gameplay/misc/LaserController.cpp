@@ -107,6 +107,7 @@ void Hachiko::Scripting::LaserController::OnUpdate()
 			if (_elapsed_time >= _toggle_active_time)
 			{
 				ChangeState(DISSOLVING);
+				if (_beam_particles) _beam_particles->Restart();
 			}
 		}
 		break;
