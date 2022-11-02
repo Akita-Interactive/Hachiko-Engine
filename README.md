@@ -3,12 +3,12 @@
 </h1>
 
 <p align="center">
-<a href="https://github.com/abhisheknaiidu/awesome-github-profile-readme/stargazers"><img src="https://img.shields.io/github/stars/AkitaInteractive/Hachiko-Engine" alt="Stars Badge"/></a>
-<a href="https://github.com/abhisheknaiidu/awesome-github-profile-readme/network/members"><img src="https://img.shields.io/github/forks/AkitaInteractive/Hachiko-Engine" alt="Forks Badge"/></a>
-<a href="https://github.com/abhisheknaiidu/awesome-github-profile-readme/pulls"><img src="https://img.shields.io/github/issues-pr/AkitaInteractive/Hachiko-Engine" alt="Pull Requests Badge"/></a>
-<a href="https://github.com/abhisheknaiidu/awesome-github-profile-readme/issues"><img src="https://img.shields.io/github/issues/AkitaInteractive/Hachiko-Engine" alt="Issues Badge"/></a>
-<a href="https://github.com/abhisheknaiidu/awesome-github-profile-readme/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/AkitaInteractive/Hachiko-Engine?color=2b9348"></a>
-<a href="https://github.com/abhisheknaiidu/awesome-github-profile-readme/blob/master/LICENSE"><img src="https://img.shields.io/github/license/AkitaInteractive/Hachiko-Engine?color=2b9348" alt="License Badge"/></a>
+<a href="https://github.com/AkitaInteractive/Hachiko-Engine/stargazers"><img src="https://img.shields.io/github/stars/AkitaInteractive/Hachiko-Engine" alt="Stars Badge"/></a>
+<a href="https://github.com/AkitaInteractive/Hachiko-Engine/network/members"><img src="https://img.shields.io/github/forks/AkitaInteractive/Hachiko-Engine" alt="Forks Badge"/></a>
+<a href="https://github.com/AkitaInteractive/Hachiko-Engine/pulls"><img src="https://img.shields.io/github/issues-pr/AkitaInteractive/Hachiko-Engine" alt="Pull Requests Badge"/></a>
+<a href="https://github.com/AkitaInteractive/Hachiko-Engine/issues"><img src="https://img.shields.io/github/issues/AkitaInteractive/Hachiko-Engine" alt="Issues Badge"/></a>
+<a href="https://github.com/AkitaInteractive/Hachiko-Engine/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/AkitaInteractive/Hachiko-Engine?color=2b9348"></a>
+<a href="https://github.com/AkitaInteractive/Hachiko-Engine/blob/master/LICENSE"><img src="https://img.shields.io/github/license/AkitaInteractive/Hachiko-Engine?color=2b9348" alt="License Badge"/></a>
 </p>
 
 Hachiko is a custom built C++ Game Engine developed by Akita Interactive.
