@@ -14759,7 +14759,7 @@ child:
             type: 15
             enabled: true
             class_name: Stats
-            "'_attack_power@int'": 2
+            "'_attack_power@int'": 1
             "'_attack_cd@float'": 2
             "'_attack_range@float'": 3.5
             "'_move_speed@float'": 0
@@ -15346,7 +15346,7 @@ child:
             type: 15
             enabled: true
             class_name: Stats
-            "'_attack_power@int'": 2
+            "'_attack_power@int'": 1
             "'_attack_cd@float'": 2
             "'_attack_range@float'": 3.5
             "'_move_speed@float'": 0
@@ -15933,7 +15933,7 @@ child:
             type: 15
             enabled: true
             class_name: Stats
-            "'_attack_power@int'": 2
+            "'_attack_power@int'": 1
             "'_attack_cd@float'": 2
             "'_attack_range@float'": 3.5
             "'_move_speed@float'": 0
@@ -16520,7 +16520,7 @@ child:
             type: 15
             enabled: true
             class_name: Stats
-            "'_attack_power@int'": 2
+            "'_attack_power@int'": 1
             "'_attack_cd@float'": 2
             "'_attack_range@float'": 3.5
             "'_move_speed@float'": 0
@@ -17107,7 +17107,7 @@ child:
             type: 15
             enabled: true
             class_name: Stats
-            "'_attack_power@int'": 2
+            "'_attack_power@int'": 1
             "'_attack_cd@float'": 2
             "'_attack_range@float'": 3.5
             "'_move_speed@float'": 0
@@ -48468,17 +48468,17 @@ child:
         "'_damage_effect@GameObject*'": 629950022488313243
         "'_parasite_pickup_effect@GameObject*'": 6265388955985568560
         "'_parasite_selection@GameObject*'": 6360381896949523956
-        "'_melee_trail_right@GameObject*'": 12810222476901371171
-        "'_melee_trail_left@GameObject*'": 15380304811302110027
-        "'_melee_trail_center@GameObject*'": 16140457854876466764
-        "'_claws_trail_right@GameObject*'": 6631805727051990751
-        "'_claws_trail_left@GameObject*'": 2069516667997086958
+        "'_melee_trail_right@GameObject*'": 8254825480557744114
+        "'_melee_trail_left@GameObject*'": 12620132728014223837
+        "'_melee_trail_center@GameObject*'": 9339723624063164021
+        "'_claws_trail_right@GameObject*'": 8777869990720655118
+        "'_claws_trail_left@GameObject*'": 4315778144283723422
         "'_claws_trail_center@GameObject*'": 0
-        "'_sword_trail_right@GameObject*'": 10108100384860166713
-        "'_sword_trail_left@GameObject*'": 121552669141903828
+        "'_sword_trail_right@GameObject*'": 15483906292757850381
+        "'_sword_trail_left@GameObject*'": 12260100211764850097
         "'_sword_trail_center@GameObject*'": 0
-        "'_hammer_trail_right@GameObject*'": 13976993400268413904
-        "'_hammer_trail_left@GameObject*'": 14594961384242295722
+        "'_hammer_trail_right@GameObject*'": 9823357239506865427
+        "'_hammer_trail_left@GameObject*'": 2086554178010050487
         "'_hammer_trail_center@GameObject*'": 0
         "'_rotation_duration@float'": 0.08
         "'_death_screen@GameObject*'": 11202079066295190323
@@ -52628,43 +52628,43 @@ child:
                 image_y_tiles: 1
                 image_tiles_per_second: 1
                 fill_window: false
-      - id: 10204738145512183684
+      - id: 125100524586433547
         name: WeaponTrails
         enabled: true
         component:
           - !<transform>
-            id: 4514694842757157795
+            id: 12012334469570425259
             type: 1
             enabled: true
             position: [0, 0, 0]
             rotation: [0, 0, 0]
             scale: [1, 1, 1]
         child:
-          - id: 15604274696336895325
+          - id: 12409891729058009570
             name: MeleeTrail
             enabled: true
             component:
               - !<transform>
-                id: 2292172659714381040
+                id: 6809620573978930448
                 type: 1
                 enabled: true
                 position: [0, 0, 0]
                 rotation: [0, 0, 0]
                 scale: [1, 1, 1]
             child:
-              - id: 12810222476901371171
+              - id: 8254825480557744114
                 name: MeleeTrailRight
                 enabled: true
                 component:
                   - !<transform>
-                    id: 7566560201456903949
+                    id: 14744941984847455399
                     type: 1
                     enabled: true
                     position: [-0.79, 2.3, 3]
                     rotation: [0, 56.3, 0]
                     scale: [1, 0.9999, 1]
                   - !<billboard>
-                    id: 11493022051687247736
+                    id: 2438392543607240679
                     type: 21
                     enabled: true
                     play_on_awake: false
@@ -52677,7 +52677,7 @@ child:
                     total_tiles: 9
                     animation_loop: false
                     color_cycles: 1
-                    color_gradient: [[1, 0, 0, 0, 1]]
+                    color_gradient: [[1, 0.0058, 0.0058, 0, 1]]
                     animation_section: true
                     color_section: true
                     size_section: false
@@ -52690,19 +52690,19 @@ child:
                     blend_factor: 0.1
                     projection: true
                     randomize_tiles: false
-              - id: 15380304811302110027
+              - id: 12620132728014223837
                 name: MeleeTrailLeft
                 enabled: true
                 component:
                   - !<transform>
-                    id: 4200302194768670453
+                    id: 15196731690319691413
                     type: 1
                     enabled: true
                     position: [0.5, 2.3, 3]
                     rotation: [0, -80, 0]
                     scale: [1, 0.9999, 1]
                   - !<billboard>
-                    id: 17535591740245661898
+                    id: 5429954988988832043
                     type: 21
                     enabled: true
                     play_on_awake: false
@@ -52728,19 +52728,19 @@ child:
                     blend_factor: 0.1
                     projection: true
                     randomize_tiles: false
-              - id: 16140457854876466764
+              - id: 9339723624063164021
                 name: MeleeTrailCenter
                 enabled: true
                 component:
                   - !<transform>
-                    id: 13171385454128436910
+                    id: 13184983128909544462
                     type: 1
                     enabled: true
                     position: [-0.4282, 2.3, 4.81]
                     rotation: [0, 17.5, 0]
                     scale: [1, 0.5, 0.6]
                   - !<billboard>
-                    id: 3490075168692946426
+                    id: 9073877009503067436
                     type: 21
                     enabled: true
                     play_on_awake: false
@@ -52766,31 +52766,31 @@ child:
                     blend_factor: 0.1
                     projection: true
                     randomize_tiles: false
-          - id: 16643307722864021063
+          - id: 5725473883406286305
             name: ClawsTrail
             enabled: true
             component:
               - !<transform>
-                id: 9088645105955926073
+                id: 381280500397541199
                 type: 1
                 enabled: true
                 position: [0, 0, 0]
                 rotation: [0, 0, 0]
                 scale: [1, 1, 1]
             child:
-              - id: 6631805727051990751
+              - id: 8777869990720655118
                 name: ClawsTrailR
                 enabled: true
                 component:
                   - !<transform>
-                    id: 11503459168456045305
+                    id: 9262673668326742831
                     type: 1
                     enabled: true
                     position: [-0.29, 2.3, 3]
                     rotation: [0, 71.9, 0]
                     scale: [1, 0.9999, 1]
                   - !<billboard>
-                    id: 2308850258428628396
+                    id: 11131382277718810091
                     type: 21
                     enabled: true
                     play_on_awake: false
@@ -52803,7 +52803,7 @@ child:
                     total_tiles: 9
                     animation_loop: false
                     color_cycles: 1
-                    color_gradient: [[0.3931, 1, 0.3931, 0, 1]]
+                    color_gradient: [[0.7861, 0, 1, 0, 1]]
                     animation_section: true
                     color_section: true
                     size_section: false
@@ -52816,19 +52816,19 @@ child:
                     blend_factor: 0.1
                     projection: true
                     randomize_tiles: false
-              - id: 2069516667997086958
+              - id: 4315778144283723422
                 name: ClawsTrailL
                 enabled: true
                 component:
                   - !<transform>
-                    id: 561404359813383337
+                    id: 9353102258178567072
                     type: 1
                     enabled: true
                     position: [0.293, 2.3, 3]
                     rotation: [0, -81.4, 0]
                     scale: [1, 0.9999, 1]
                   - !<billboard>
-                    id: 16484514822589459617
+                    id: 2365342371929497708
                     type: 21
                     enabled: true
                     play_on_awake: false
@@ -52841,7 +52841,7 @@ child:
                     total_tiles: 9
                     animation_loop: false
                     color_cycles: 1
-                    color_gradient: [[0.3922, 1, 0.3922, 0, 1]]
+                    color_gradient: [[0.7843, 0, 1, 0, 1]]
                     animation_section: true
                     color_section: true
                     size_section: false
@@ -52854,31 +52854,31 @@ child:
                     blend_factor: 0.1
                     projection: true
                     randomize_tiles: false
-          - id: 5221758188675578716
+          - id: 17153509159087112345
             name: SwordTrail
             enabled: true
             component:
               - !<transform>
-                id: 15679451171273573130
+                id: 16023561130620298492
                 type: 1
                 enabled: true
                 position: [0, 0, 0]
                 rotation: [0, 0, 0]
                 scale: [1, 1, 1]
             child:
-              - id: 10108100384860166713
+              - id: 15483906292757850381
                 name: SwordTrailR
                 enabled: true
                 component:
                   - !<transform>
-                    id: 15724575410775897236
+                    id: 12112797002977824496
                     type: 1
                     enabled: true
                     position: [-0.6, 2.3, 4.5]
                     rotation: [0, 70, 0]
                     scale: [1, 0.9999, 1]
                   - !<billboard>
-                    id: 6966025021629391968
+                    id: 4894715489773090227
                     type: 21
                     enabled: true
                     play_on_awake: false
@@ -52891,7 +52891,7 @@ child:
                     total_tiles: 9
                     animation_loop: false
                     color_cycles: 1
-                    color_gradient: [[0, 1, 1, 0, 1]]
+                    color_gradient: [[0, 0.4277, 1, 0, 1]]
                     animation_section: true
                     color_section: true
                     size_section: false
@@ -52904,19 +52904,19 @@ child:
                     blend_factor: 0.1
                     projection: true
                     randomize_tiles: false
-              - id: 121552669141903828
+              - id: 12260100211764850097
                 name: SwordTrailL
                 enabled: true
                 component:
                   - !<transform>
-                    id: 14053760818204017373
+                    id: 4300745618134489340
                     type: 1
                     enabled: true
                     position: [-0.13, 2.3, 4.5]
                     rotation: [0, -88.6, 0]
                     scale: [1, 0.9999, 1]
                   - !<billboard>
-                    id: 4390493515521356618
+                    id: 6722016368370502727
                     type: 21
                     enabled: true
                     play_on_awake: false
@@ -52929,7 +52929,7 @@ child:
                     total_tiles: 9
                     animation_loop: false
                     color_cycles: 1
-                    color_gradient: [[0, 1, 1, 0, 1]]
+                    color_gradient: [[0, 0.4275, 1, 0, 1]]
                     animation_section: true
                     color_section: true
                     size_section: false
@@ -52942,31 +52942,31 @@ child:
                     blend_factor: 0.1
                     projection: true
                     randomize_tiles: false
-          - id: 12302164256981663162
+          - id: 11176244507975070293
             name: HammerTrail
             enabled: true
             component:
               - !<transform>
-                id: 1604941903419182533
+                id: 670266580667810439
                 type: 1
                 enabled: true
                 position: [0, 0, 0]
                 rotation: [0, 0, 0]
                 scale: [1, 1, 1]
             child:
-              - id: 13976993400268413904
+              - id: 9823357239506865427
                 name: HammerTrailR
                 enabled: true
                 component:
                   - !<transform>
-                    id: 1888464364269143797
+                    id: 11202384608211140938
                     type: 1
                     enabled: true
                     position: [-0.74, 2.3, 4.5]
                     rotation: [0, 70, 0]
                     scale: [1.1, 1, 1]
                   - !<billboard>
-                    id: 2730258500013957447
+                    id: 9701219246021401042
                     type: 21
                     enabled: true
                     play_on_awake: false
@@ -52979,7 +52979,7 @@ child:
                     total_tiles: 9
                     animation_loop: false
                     color_cycles: 1
-                    color_gradient: [[1, 1, 0, 0, 1]]
+                    color_gradient: [[0.9961, 0, 0.7255, 0, 1]]
                     animation_section: true
                     color_section: true
                     size_section: false
@@ -52992,19 +52992,19 @@ child:
                     blend_factor: 0.1
                     projection: true
                     randomize_tiles: false
-              - id: 14594961384242295722
+              - id: 2086554178010050487
                 name: HammerTrailL
                 enabled: true
                 component:
                   - !<transform>
-                    id: 8075616564087441556
+                    id: 1504809555306440778
                     type: 1
                     enabled: true
                     position: [-0.11, 2.3, 4.502]
-                    rotation: [-0, -90, 0]
+                    rotation: [180, -89.98, 180]
                     scale: [1.1, 0.9999, 1]
                   - !<billboard>
-                    id: 5742757836322586524
+                    id: 14092417553744146449
                     type: 21
                     enabled: true
                     play_on_awake: false
@@ -53017,7 +53017,7 @@ child:
                     total_tiles: 9
                     animation_loop: false
                     color_cycles: 1
-                    color_gradient: [[0.9942, 0.9942, 0, 0, 1]]
+                    color_gradient: [[0.9942, 0, 0.7241, 0, 1]]
                     animation_section: true
                     color_section: true
                     size_section: false
@@ -60821,7 +60821,7 @@ child:
         enabled: true
         position: [-81.53, 1.31, -61.36]
         rotation: [0, 0, 0]
-        scale: [1, 1, 1]
+        scale: [100, 100, 100]
       - !<animation>
         id: 4506388023559899451
         type: 14
@@ -60913,7 +60913,7 @@ child:
             enabled: true
             position: [0, 0, 0]
             rotation: [0, 0, 0]
-            scale: [100, 100, 100]
+            scale: [1, 1, 1]
         child:
           - id: 12358670269111023055
             name: Root
