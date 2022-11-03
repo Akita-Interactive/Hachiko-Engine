@@ -19,12 +19,18 @@
 Hachiko::Scripting::CrystalExplosion::CrystalExplosion(GameObject* game_object)
 	: Script(game_object, "CrystalExplosion")
 	, _stats()
-	, _explosion_radius(10.0f)
+	, _explosion_radius(10.f)
 	, _detecting_radius(1.0f)
 	, _explosive_crystal(false)
 	, _explosion_indicator_helper(nullptr)
-	, _timer_explosion(0.0f)
-	, _explosion_effect(nullptr)
+	, _timer_explosion(0.f)
+	, _explosion_indicator(nullptr)
+	, _explosion_vfx(nullptr)
+	, _explosion_particles(nullptr)
+	, _explosion_dome(nullptr)
+	, _dome_vfx_duration(0.4f)
+	, _dome_vfx_size(2.f)
+	, _dome_dissolving_time(0.2f)
 	, _regen_time(5.f)
 	, _shake_intensity(0.1f)
 	, _seconds_shaking(0.8f)
@@ -52,7 +58,10 @@ void Hachiko::Scripting::CrystalExplosion::OnAwake()
 	{
 		spawn_billboard = boss_spawn_go->GetComponent<ComponentBillboard>();
 	}
-
+	if(_explosion_dome)
+	{
+		_explosion_dome->SetActive(false);
+	}
 	effects_pool = Scenes::GetCombatVisualEffectsPool()->GetComponent<CombatVisualEffectsPool>();
 }
 
@@ -106,12 +115,58 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 		{
 			ExplodeCrystal();
 			DestroyCrystal();
-			return;
+			if (_explosion_vfx)
+			{
+				for (GameObject* child : _explosion_vfx->children)
+				{
+					child->SetActive(true);
+					child->GetComponent<ComponentBillboard>()->Start();
+				}
+				if (_explosion_particles)
+				{
+					_explosion_particles->GetComponent<ComponentParticleSystem>()->Start();
+				}
+			}
+			if (_explosion_dome)
+			{
+				_casting_dome_vfx = true;
+				_explosion_dome->SetActive(true);
+				explosion_progression = 0.f;
+			}
+
 		}
 		else
 		{
 			_current_explosion_timer += Time::DeltaTime();
 			return;
+		}
+	}
+
+	if (_casting_dome_vfx)
+	{
+		explosion_progression += Time::DeltaTime() / _dome_vfx_duration;
+		explosion_progression = explosion_progression > 1.0f ? 1.0f : explosion_progression;
+		StartDomeVFX(explosion_progression);
+		if (explosion_progression == 1.0f)
+		{
+			_is_dome_dissolving = true;
+			_casting_dome_vfx = false;
+
+		}
+	}
+
+	if (_is_dome_dissolving)
+	{
+		_dome_current_dissolving_time -= Time::DeltaTimeScaled();
+		_dome_current_dissolving_time = math::Clamp(_dome_current_dissolving_time, 0.0f, _dome_dissolving_time);
+		float dissolve_progress = _dome_current_dissolving_time / _dome_dissolving_time;
+		_explosion_dome->ChangeDissolveProgress(dissolve_progress, true);
+		if (dissolve_progress <= 0)
+		{
+			_is_dome_dissolving = false;
+			_explosion_dome->ChangeDissolveProgress(1.f, true);
+			_dome_current_dissolving_time = _dome_dissolving_time;
+			_explosion_dome->SetActive(false);
 		}
 	}
 
@@ -133,7 +188,7 @@ void Hachiko::Scripting::CrystalExplosion::StartExplosion()
 {
 	_is_exploding = true;
 
-	for (GameObject* child : _explosion_effect->children)
+	for (GameObject* child : _explosion_indicator->children)
 	{
 		child->SetActive(true);
 		child->GetComponent<ComponentBillboard>()->Restart();
@@ -159,9 +214,9 @@ void Hachiko::Scripting::CrystalExplosion::ExplodeCrystal()
 	_stats->ReceiveDamage(_stats->_max_hp);
 
 	// Desable billboards
-	for (GameObject* child : _explosion_effect->children)
+	for (GameObject* child : _explosion_indicator->children)
 	{
-		child->SetActive(false);
+		//child->SetActive(false);
 	}
 
 	std::vector<GameObject*> check_hit = {};
@@ -282,6 +337,24 @@ void Hachiko::Scripting::CrystalExplosion::RegisterHit(int damage, bool is_from_
 			//StartExplosion();
 			ExplodeCrystal();
 			DestroyCrystal();
+			if (_explosion_vfx)
+			{
+				for (GameObject* child : _explosion_vfx->children)
+				{
+					child->SetActive(true);
+					child->GetComponent<ComponentBillboard>()->Start();
+				}
+				if (_explosion_particles)
+				{
+					_explosion_particles->GetComponent<ComponentParticleSystem>()->Start();
+				}
+			}
+			if (_explosion_dome)
+			{
+				_casting_dome_vfx = true;
+				_explosion_dome->SetActive(true);
+				explosion_progression = 0.f;
+			}
 		}
 		else
 		{
@@ -344,6 +417,12 @@ void Hachiko::Scripting::CrystalExplosion::ResetCrystal()
 		float3 move_away = _transform->GetGlobalPosition() + front * 50;
 		_transform->SetGlobalPosition(move_away);
 	}
+}
+
+void Hachiko::Scripting::CrystalExplosion::StartDomeVFX(float _explosion_dome_progress)
+{
+	_explosion_dome->GetTransform()->SetLocalScale(math::float3::Lerp(float3(0.f,0.f,0.f), float3(2.f, 2.f , 2.f)
+		,_explosion_dome_progress));
 }
 
 void Hachiko::Scripting::CrystalExplosion::DestroyCrystal()

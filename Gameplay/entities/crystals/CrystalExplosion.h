@@ -50,7 +50,7 @@ namespace Hachiko
 		private:
 			void SetVisible(bool v);
 			void ResetCrystal();
-
+			void StartDomeVFX(float progress);
 
 		public:
 			Stats* _stats;
@@ -59,7 +59,13 @@ namespace Hachiko
 			ComponentTransform* _transform;
 
 			SERIALIZE_FIELD(GameObject*, _explosion_indicator_helper);
-			SERIALIZE_FIELD(GameObject*, _explosion_effect);
+			SERIALIZE_FIELD(GameObject*, _explosion_indicator);
+			SERIALIZE_FIELD(GameObject*, _explosion_vfx);
+			SERIALIZE_FIELD(GameObject*, _explosion_particles);
+			SERIALIZE_FIELD(GameObject*, _explosion_dome);
+			SERIALIZE_FIELD(float, _dome_vfx_duration);
+			SERIALIZE_FIELD(float, _dome_vfx_size);
+			SERIALIZE_FIELD(float, _dome_dissolving_time);
 			SERIALIZE_FIELD(float, _shake_intensity);
 			SERIALIZE_FIELD(float, _seconds_shaking);
 
@@ -79,12 +85,19 @@ namespace Hachiko
 			ComponentAudioSource* _audio_source;
 			bool _is_destroyed = false;
 			bool _is_exploding = false;
+			bool _casting_dome_vfx = false;
 			bool _visible = false;
+
 			bool _is_dissolving = false;
 			float _dissolving_time = 1.5f;
 			float _current_dissolving_time = 0.f;
 			float _current_regen_time = 0.f;
+
+			bool _is_dome_dissolving = false;
+			float _dome_current_dissolving_time = 0.f;
+
 			float _current_explosion_timer = 0.f;
+			float explosion_progression = 0.f;
 
 			math::float3 _player_pos;
 			
