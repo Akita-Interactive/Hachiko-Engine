@@ -10,12 +10,12 @@ fog:
   height_falloff: 0.084
 ibl: true
 skybox:
-  right_cube_id: 12034993674592777806
-  left_cube_id: 5321809955552754345
-  top_cube_id: 4225253153499969280
-  bottom_cube_id: 18352018718219191396
-  center_cube_id: 6607636220288941914
-  back_cube_id: 7637068036763390564
+  right_cube_id: 1271033452188696253
+  left_cube_id: 1271033452188696253
+  top_cube_id: 5885657173918925997
+  bottom_cube_id: 5613872699101062338
+  center_cube_id: 1271033452188696253
+  back_cube_id: 1271033452188696253
 root_id: 13281471486265763413
 child:
   - id: 2223877946256215970
@@ -144,7 +144,7 @@ child:
         scale: [1, 1, 1]
       - id: 313397859708969773
         type: 5
-        enabled: false
+        enabled: true
         light_type: 5
         color: [0, 0.4838, 0.4959, 1]
         intensity: 0.1
