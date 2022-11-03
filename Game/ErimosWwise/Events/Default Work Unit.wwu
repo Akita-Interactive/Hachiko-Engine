@@ -746,6 +746,20 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Set_State_Victory" ID="{ABFEE299-33AC-4954-B755-0FB5414A8C44}">
+					<ChildrenList>
+						<Action Name="" ID="{A5A8AA49-1404-43AB-B277-499E48AACDA0}" ShortID="1012882585">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Victory" ID="{4218ECB3-FF93-4574-883F-453CD6E8D154}" WorkUnitID="{58D3A6EC-B8FF-4FD8-B774-6F4619FF9B9B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

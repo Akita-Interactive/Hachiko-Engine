@@ -139,6 +139,7 @@ void Hachiko::Scripting::CrystalExplosion::CheckRadiusExplosion()
 	if (_detecting_radius >= position.Distance(player->GetTransform()->GetGlobalPosition())
 		&& player->GetComponent<PlayerController>()->IsAlive())
 	{
+		_audio_source->PostEvent(Sounds::EXPLOSIVE_CRYSTAL_CHARGE);
 		StartExplosion();
 	}
 }

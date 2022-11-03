@@ -57,9 +57,11 @@ namespace AK
         static const AkUniqueID PLAY_WORMROAR = 4242710327U;
         static const AkUniqueID PLAY_WORMSPAWN = 3126715392U;
         static const AkUniqueID SET_STATE1_BOSSFIGHT = 3129492764U;
+        static const AkUniqueID SET_STATE1B_BOSSFIGHT = 1956163010U;
         static const AkUniqueID SET_STATE2_BOSSFIGHT = 422367531U;
         static const AkUniqueID SET_STATE3_BOSSFIGHT = 129783526U;
         static const AkUniqueID SET_STATE_DEFEATED = 1482465818U;
+        static const AkUniqueID SET_STATE_VICTORY = 3974925374U;
         static const AkUniqueID STOP_BOSSFOOTSTEPS = 2499789540U;
         static const AkUniqueID STOP_INTERACTIVEMUSIC = 3266617285U;
         static const AkUniqueID STOP_PEBBLE = 707649828U;

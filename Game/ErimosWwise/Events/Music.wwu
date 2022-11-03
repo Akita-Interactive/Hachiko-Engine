@@ -81,6 +81,16 @@
 								</Reference>
 							</ReferenceList>
 						</Action>
+						<Action Name="" ID="{C96B3BD7-BE82-412A-A425-C59F514A5B4D}" ShortID="962023015">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Stage1" ID="{1AC76792-AD16-42E6-B27B-0D03BCBF9474}" WorkUnitID="{58D3A6EC-B8FF-4FD8-B774-6F4619FF9B9B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
 						<Action Name="" ID="{A3B2606C-ED37-4330-90F7-FBE0C1EEFDC8}" ShortID="1058564306">
 							<ReferenceList>
 								<Reference Name="Target">

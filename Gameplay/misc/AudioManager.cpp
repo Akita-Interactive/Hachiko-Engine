@@ -108,10 +108,6 @@ void Hachiko::Scripting::AudioManager::PlayGaunletComplete()
 
 void Hachiko::Scripting::AudioManager::PlayGaunletStart()
 {
-	if (_level == BOSS_LEVEL)
-	{
-		_audio_source->PostEvent(Sounds::SET_STATE3_BOSS_FIGHT);
-	}
 }
 
 void Hachiko::Scripting::AudioManager::PlayGaunletNextRound()
