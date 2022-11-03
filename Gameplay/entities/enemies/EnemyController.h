@@ -292,6 +292,8 @@ namespace Hachiko
             SERIALIZE_FIELD(float, damage_effect_duration);
             float damage_effect_progress = 0.0f;
 
+            bool _attacking = false;
+
             bool _valid_path = false;
             float _timer_check_path = 0.0f;
 
