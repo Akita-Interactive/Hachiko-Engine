@@ -86,14 +86,14 @@ child:
               size: [true, true, 1, [0.1, 0.05], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 1, [0, 100], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 0, 1, false, [false, false, 1, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: false
             emitter_shape:
               type: 2
-              properties: [360, 0, [0, 0, 0], 1, 0.001, [0, 0, 0], [1, 1, 1], 1]
+              properties: [360, 0, [0, 0, 0], 1, 0.001, [0, 0, 0], [1, 1, 1], 1, false]
             texture:
               texture_id: 12298412047290009961
               tiles: [7, 7]
@@ -1418,7 +1418,7 @@ child:
                     tiles: [4, 1]
                     flip: [false, false]
                     billboard_lifetime: 0.3
-                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.073
                     total_tiles: 4
                     animation_loop: false
@@ -2673,7 +2673,7 @@ child:
                     tiles: [4, 1]
                     flip: [false, false]
                     billboard_lifetime: 0.3
-                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.073
                     total_tiles: 4
                     animation_loop: false
@@ -3928,7 +3928,7 @@ child:
                     tiles: [4, 1]
                     flip: [false, false]
                     billboard_lifetime: 0.3
-                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.073
                     total_tiles: 4
                     animation_loop: false
@@ -5183,7 +5183,7 @@ child:
                     tiles: [4, 1]
                     flip: [false, false]
                     billboard_lifetime: 0.3
-                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.073
                     total_tiles: 4
                     animation_loop: false
@@ -6438,7 +6438,7 @@ child:
                     tiles: [4, 1]
                     flip: [false, false]
                     billboard_lifetime: 0.3
-                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.073
                     total_tiles: 4
                     animation_loop: false
@@ -7091,14 +7091,14 @@ child:
                       size: [true, true, 0, [1.7, 0.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                      properties: [0.5, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                      properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     emission:
                       rate: [true, true, 0, [100, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       burst: false
                     emitter_shape:
                       type: 4
-                      properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [1.2, 1, 1.2], 1]
+                      properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [1.2, 1, 1.2], 1, false]
                     texture:
                       texture_id: 11026875507602932596
                       tiles: [3, 2]
@@ -7166,14 +7166,14 @@ child:
                       size: [true, true, 1, [0.5, 1.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                      properties: [0.4, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                      properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     emission:
                       rate: [true, true, 0, [200, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       rate_burst: [true, true, 0, [200, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       burst: true
                     emitter_shape:
                       type: 0
-                      properties: [360, 0, [0, 0, 0], 0.98, 1, [0, 0, 0], [1, 1, 1], 2.68]
+                      properties: [360, 0, [0, 0, 0], 0.98, 1, [0, 0, 0], [1, 1, 1], 2.68, false]
                     texture:
                       texture_id: 11026875507602932596
                       tiles: [3, 2]
@@ -7287,14 +7287,14 @@ child:
                           size: [true, true, 0, [2.5, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                          properties: [1, 1, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                         emission:
                           rate: [true, true, 0, [60, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           rate_burst: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           burst: false
                         emitter_shape:
                           type: 3
-                          properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 1]
+                          properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 1, false]
                         texture:
                           texture_id: 3291545039621372658
                           tiles: [2, 1]
@@ -7362,14 +7362,14 @@ child:
                           size: [true, true, 0, [2.5, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                         emission:
                           rate: [true, true, 0, [600, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           burst: false
                         emitter_shape:
                           type: 3
-                          properties: [360, 0, [0, 0, 0], 1, 1, [0, 0, 0], [2, 2, 2], 1]
+                          properties: [360, 0, [0, 0, 0], 1, 1, [0, 0, 0], [2, 2, 2], 1, false]
                         texture:
                           texture_id: 3291545039621372658
                           tiles: [2, 1]
@@ -7439,7 +7439,7 @@ child:
                         tiles: [1, 1]
                         flip: [false, false]
                         billboard_lifetime: 1
-                        properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                        properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                         animation_speed: 0
                         total_tiles: 1
                         animation_loop: false
@@ -7477,7 +7477,7 @@ child:
                         tiles: [5, 1]
                         flip: [false, false]
                         billboard_lifetime: 1
-                        properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                        properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                         animation_speed: 0.07
                         total_tiles: 5
                         animation_loop: false
@@ -7515,7 +7515,7 @@ child:
                     tiles: [4, 1]
                     flip: [false, false]
                     billboard_lifetime: 0.3
-                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.073
                     total_tiles: 4
                     animation_loop: false
@@ -8168,14 +8168,14 @@ child:
                       size: [true, true, 0, [1.7, 0.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                      properties: [0.5, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                      properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     emission:
                       rate: [true, true, 0, [100, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       burst: false
                     emitter_shape:
                       type: 4
-                      properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [1.2, 1, 1.2], 1]
+                      properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [1.2, 1, 1.2], 1, false]
                     texture:
                       texture_id: 11026875507602932596
                       tiles: [3, 2]
@@ -8243,14 +8243,14 @@ child:
                       size: [true, true, 1, [0.5, 1.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                      properties: [0.4, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                      properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     emission:
                       rate: [true, true, 0, [200, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       rate_burst: [true, true, 0, [200, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                       burst: true
                     emitter_shape:
                       type: 0
-                      properties: [360, 0, [0, 0, 0], 0.98, 1, [0, 0, 0], [1, 1, 1], 2.68]
+                      properties: [360, 0, [0, 0, 0], 0.98, 1, [0, 0, 0], [1, 1, 1], 2.68, false]
                     texture:
                       texture_id: 11026875507602932596
                       tiles: [3, 2]
@@ -8364,14 +8364,14 @@ child:
                           size: [true, true, 0, [2.5, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                          properties: [1, 1, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                         emission:
                           rate: [true, true, 0, [60, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           rate_burst: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           burst: false
                         emitter_shape:
                           type: 3
-                          properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 1]
+                          properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 1, false]
                         texture:
                           texture_id: 3291545039621372658
                           tiles: [2, 1]
@@ -8439,14 +8439,14 @@ child:
                           size: [true, true, 0, [2.5, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                         emission:
                           rate: [true, true, 0, [600, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                           burst: false
                         emitter_shape:
                           type: 3
-                          properties: [360, 0, [0, 0, 0], 1, 1, [0, 0, 0], [2, 2, 2], 1]
+                          properties: [360, 0, [0, 0, 0], 1, 1, [0, 0, 0], [2, 2, 2], 1, false]
                         texture:
                           texture_id: 3291545039621372658
                           tiles: [2, 1]
@@ -8516,7 +8516,7 @@ child:
                         tiles: [1, 1]
                         flip: [false, false]
                         billboard_lifetime: 1
-                        properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                        properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                         animation_speed: 0
                         total_tiles: 1
                         animation_loop: false
@@ -8554,7 +8554,7 @@ child:
                         tiles: [5, 1]
                         flip: [false, false]
                         billboard_lifetime: 1
-                        properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                        properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                         animation_speed: 0.07
                         total_tiles: 5
                         animation_loop: false
@@ -8592,7 +8592,7 @@ child:
                     tiles: [4, 1]
                     flip: [false, false]
                     billboard_lifetime: 0.3
-                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.073
                     total_tiles: 4
                     animation_loop: false
@@ -9859,7 +9859,7 @@ child:
                     tiles: [4, 1]
                     flip: [false, false]
                     billboard_lifetime: 0.3
-                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.073
                     total_tiles: 4
                     animation_loop: false
@@ -11114,7 +11114,7 @@ child:
                     tiles: [4, 1]
                     flip: [false, false]
                     billboard_lifetime: 0.3
-                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.073
                     total_tiles: 4
                     animation_loop: false
@@ -14409,7 +14409,7 @@ child:
             tiles: [1, 1]
             flip: [false, false]
             billboard_lifetime: 5
-            properties: [1, 0, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            properties: [1, 0, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             animation_speed: 0
             total_tiles: 1
             animation_loop: true
@@ -14447,7 +14447,7 @@ child:
             tiles: [1, 1]
             flip: [false, false]
             billboard_lifetime: 5
-            properties: [1, 0, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            properties: [1, 0, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             animation_speed: 0
             total_tiles: 1
             animation_loop: true
@@ -14485,7 +14485,7 @@ child:
             tiles: [1, 1]
             flip: [false, false]
             billboard_lifetime: 5
-            properties: [1, 0, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            properties: [1, 0, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             animation_speed: 0
             total_tiles: 1
             animation_loop: true
@@ -14523,7 +14523,7 @@ child:
             tiles: [1, 1]
             flip: [false, false]
             billboard_lifetime: 5
-            properties: [1, 0, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            properties: [1, 0, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             animation_speed: 0
             total_tiles: 1
             animation_loop: true
@@ -14561,7 +14561,7 @@ child:
             tiles: [1, 1]
             flip: [false, false]
             billboard_lifetime: 5
-            properties: [1, 0, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            properties: [1, 0, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             animation_speed: 0
             total_tiles: 1
             animation_loop: true
@@ -15222,7 +15222,7 @@ child:
                     tiles: [2, 2]
                     flip: [false, false]
                     billboard_lifetime: 1
-                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.2
                     total_tiles: 4
                     animation_loop: false
@@ -15260,7 +15260,7 @@ child:
                     tiles: [1, 1]
                     flip: [false, false]
                     billboard_lifetime: 1
-                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0
                     total_tiles: 1
                     animation_loop: false
@@ -15298,7 +15298,7 @@ child:
                 tiles: [9, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.13
                 total_tiles: 9
                 animation_loop: false
@@ -15809,7 +15809,7 @@ child:
                     tiles: [2, 2]
                     flip: [false, false]
                     billboard_lifetime: 1
-                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.2
                     total_tiles: 4
                     animation_loop: false
@@ -15847,7 +15847,7 @@ child:
                     tiles: [1, 1]
                     flip: [false, false]
                     billboard_lifetime: 1
-                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0
                     total_tiles: 1
                     animation_loop: false
@@ -15885,7 +15885,7 @@ child:
                 tiles: [9, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.13
                 total_tiles: 9
                 animation_loop: false
@@ -16396,7 +16396,7 @@ child:
                     tiles: [2, 2]
                     flip: [false, false]
                     billboard_lifetime: 1
-                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.2
                     total_tiles: 4
                     animation_loop: false
@@ -16434,7 +16434,7 @@ child:
                     tiles: [1, 1]
                     flip: [false, false]
                     billboard_lifetime: 1
-                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0
                     total_tiles: 1
                     animation_loop: false
@@ -16472,7 +16472,7 @@ child:
                 tiles: [9, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.13
                 total_tiles: 9
                 animation_loop: false
@@ -16983,7 +16983,7 @@ child:
                     tiles: [2, 2]
                     flip: [false, false]
                     billboard_lifetime: 1
-                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.2
                     total_tiles: 4
                     animation_loop: false
@@ -17021,7 +17021,7 @@ child:
                     tiles: [1, 1]
                     flip: [false, false]
                     billboard_lifetime: 1
-                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0
                     total_tiles: 1
                     animation_loop: false
@@ -17059,7 +17059,7 @@ child:
                 tiles: [9, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.13
                 total_tiles: 9
                 animation_loop: false
@@ -17570,7 +17570,7 @@ child:
                     tiles: [2, 2]
                     flip: [false, false]
                     billboard_lifetime: 1
-                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.2
                     total_tiles: 4
                     animation_loop: false
@@ -17608,7 +17608,7 @@ child:
                     tiles: [1, 1]
                     flip: [false, false]
                     billboard_lifetime: 1
-                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0
                     total_tiles: 1
                     animation_loop: false
@@ -17646,7 +17646,7 @@ child:
                 tiles: [9, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.13
                 total_tiles: 9
                 animation_loop: false
@@ -17838,7 +17838,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0
                 total_tiles: 1
                 animation_loop: false
@@ -18012,7 +18012,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0
                 total_tiles: 1
                 animation_loop: false
@@ -18186,7 +18186,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0
                 total_tiles: 1
                 animation_loop: false
@@ -18360,7 +18360,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0
                 total_tiles: 1
                 animation_loop: false
@@ -45327,14 +45327,14 @@ child:
               size: [true, true, 0, [46.6, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 0, [0.3, 0.3], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 1, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 0, [4.1, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [7, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: false
             emitter_shape:
               type: 0
-              properties: [360, 0, [0, 0, 0], 2.87, 0.001, [0, 0, 0], [5, 1, 5], 7.17]
+              properties: [360, 0, [0, 0, 0], 2.87, 0.001, [0, 0, 0], [5, 1, 5], 7.17, false]
             texture:
               texture_id: 2271880893120579335
               tiles: [1, 1]
@@ -45520,7 +45520,7 @@ child:
                 tiles: [10, 6]
                 flip: [false, true]
                 billboard_lifetime: 1.2
-                properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.02
                 total_tiles: 60
                 animation_loop: true
@@ -45558,7 +45558,7 @@ child:
                 tiles: [8, 8]
                 flip: [false, true]
                 billboard_lifetime: 2
-                properties: [0.5, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [0.5, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.06
                 total_tiles: 64
                 animation_loop: true
@@ -45606,14 +45606,14 @@ child:
                   size: [true, true, 1, [0.03, 0.05], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [0.5, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [3, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.2, 0, [0, 0, 0], [1, 1, 1], 1]
+                  properties: [360, 0, [0, 0, 0], 0.2, 0, [0, 0, 0], [1, 1, 1], 1, false]
                 texture:
                   tiles: [1, 1]
                   flip: [false, false]
@@ -45798,7 +45798,7 @@ child:
                 tiles: [10, 6]
                 flip: [false, true]
                 billboard_lifetime: 1.2
-                properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.02
                 total_tiles: 60
                 animation_loop: true
@@ -45836,7 +45836,7 @@ child:
                 tiles: [8, 8]
                 flip: [false, true]
                 billboard_lifetime: 2
-                properties: [0.5, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [0.5, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.06
                 total_tiles: 64
                 animation_loop: true
@@ -45884,14 +45884,14 @@ child:
                   size: [true, true, 1, [0.03, 0.05], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [0.5, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [3, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.2, 0, [0, 0, 0], [1, 1, 1], 1]
+                  properties: [360, 0, [0, 0, 0], 0.2, 0, [0, 0, 0], [1, 1, 1], 1, false]
                 texture:
                   tiles: [1, 1]
                   flip: [false, false]
@@ -45970,14 +45970,14 @@ child:
               size: [true, true, 0, [5, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 0, [0.3, 0.3], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 1, 0, false, [false, false, 1, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 0, [2.2, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [76.6, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: false
             emitter_shape:
               type: 0
-              properties: [360, 0, [0, 0, 0], 0.8, 0.001, [0, 0, 0], [5, 1, 5], 2]
+              properties: [360, 0, [0, 0, 0], 0.8, 0.001, [0, 0, 0], [5, 1, 5], 2, false]
             texture:
               texture_id: 2271880893120579335
               tiles: [1, 1]
@@ -46045,14 +46045,14 @@ child:
               size: [true, true, 0, [5, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 0, [0.3, 0.3], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 1, 0, false, [false, false, 1, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 0, [2.2, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [76.6, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: false
             emitter_shape:
               type: 0
-              properties: [360, 0, [0, 0, 0], 0.8, 0.001, [0, 0, 0], [5, 1, 5], 2]
+              properties: [360, 0, [0, 0, 0], 0.8, 0.001, [0, 0, 0], [5, 1, 5], 2, false]
             texture:
               texture_id: 2271880893120579335
               tiles: [1, 1]
@@ -46120,14 +46120,14 @@ child:
               size: [true, true, 0, [5, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 0, [0.3, 0.3], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 1, 0, false, [false, false, 1, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 0, [2.2, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [76.6, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: false
             emitter_shape:
               type: 0
-              properties: [360, 0, [0, 0, 0], 0.8, 0.001, [0, 0, 0], [5, 1, 5], 2]
+              properties: [360, 0, [0, 0, 0], 0.8, 0.001, [0, 0, 0], [5, 1, 5], 2, false]
             texture:
               texture_id: 2271880893120579335
               tiles: [1, 1]
@@ -46195,14 +46195,14 @@ child:
               size: [true, true, 0, [5, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 0, [0.3, 0.3], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 1, 0, false, [false, false, 1, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 0, [2.2, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [76.6, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: false
             emitter_shape:
               type: 0
-              properties: [360, 0, [0, 0, 0], 0.8, 0.001, [0, 0, 0], [5, 1, 5], 2]
+              properties: [360, 0, [0, 0, 0], 0.8, 0.001, [0, 0, 0], [5, 1, 5], 2, false]
             texture:
               texture_id: 2271880893120579335
               tiles: [1, 1]
@@ -46270,14 +46270,14 @@ child:
               size: [true, true, 0, [5, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 0, [0.3, 0.3], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 1, 0, false, [false, false, 1, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 0, [2.2, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [76.6, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: false
             emitter_shape:
               type: 0
-              properties: [360, 0, [0, 0, 0], 0.8, 0.001, [0, 0, 0], [5, 1, 5], 2]
+              properties: [360, 0, [0, 0, 0], 0.8, 0.001, [0, 0, 0], [5, 1, 5], 2, false]
             texture:
               texture_id: 2271880893120579335
               tiles: [1, 1]
@@ -46345,14 +46345,14 @@ child:
               size: [true, true, 0, [5, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 0, [0.3, 0.3], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 1, 0, false, [false, false, 1, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 0, [2.2, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [76.6, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: false
             emitter_shape:
               type: 0
-              properties: [360, 0, [0, 0, 0], 0.8, 0.001, [0, 0, 0], [5, 1, 5], 2]
+              properties: [360, 0, [0, 0, 0], 0.8, 0.001, [0, 0, 0], [5, 1, 5], 2, false]
             texture:
               texture_id: 2271880893120579335
               tiles: [1, 1]
@@ -46420,14 +46420,14 @@ child:
               size: [true, true, 0, [5, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 0, [0.3, 0.3], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 1, 0, false, [false, false, 1, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 0, [2.2, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [76.6, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: false
             emitter_shape:
               type: 0
-              properties: [360, 0, [0, 0, 0], 0.8, 0.001, [0, 0, 0], [5, 1, 5], 2]
+              properties: [360, 0, [0, 0, 0], 0.8, 0.001, [0, 0, 0], [5, 1, 5], 2, false]
             texture:
               texture_id: 2271880893120579335
               tiles: [1, 1]
@@ -50883,7 +50883,7 @@ child:
                                                                                                                         tiles: [3, 3]
                                                                                                                         flip: [false, false]
                                                                                                                         billboard_lifetime: 0.5
-                                                                                                                        properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                                                                                                                        properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                                                                                                                         animation_speed: 0.05
                                                                                                                         total_tiles: 9
                                                                                                                         animation_loop: false
@@ -51212,14 +51212,14 @@ child:
               size: [true, true, 1, [1, 2.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 1, [0, 360], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 1, [10, 20], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: false
             emitter_shape:
               type: 0
-              properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [1, 1, 1], 1]
+              properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [1, 1, 1], 1, false]
             texture:
               texture_id: 11026875507602932596
               tiles: [3, 2]
@@ -51287,14 +51287,14 @@ child:
               size: [true, true, 1, [1.5, 3], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 1, [0, 360], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 1, [100, 200], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: false
             emitter_shape:
               type: 0
-              properties: [360, 0, [0, 0, 0], 0.75, 0, [0, 0, 0], [1, 1, 1], 1]
+              properties: [360, 0, [0, 0, 0], 0.75, 0, [0, 0, 0], [1, 1, 1], 1, false]
             texture:
               texture_id: 11026875507602932596
               tiles: [3, 2]
@@ -51362,14 +51362,14 @@ child:
               size: [true, true, 1, [0.5, 1.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 3, 0, false, [false, false, 1, [0.05, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 0, [100, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: true
             emitter_shape:
               type: 0
-              properties: [360, 0, [0, 0, 0], 2, 0, [0, 0, 0], [1, 1, 1], 2]
+              properties: [360, 0, [0, 0, 0], 2, 0, [0, 0, 0], [1, 1, 1], 2, false]
             texture:
               texture_id: 1636758906346670233
               tiles: [1, 1]
@@ -51438,14 +51438,14 @@ child:
                   size: [true, true, 1, [0.2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0.2, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 3, 0, false, [false, false, 1, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [80, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [20, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: true
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 2, 0, [0, 0, 0], [1, 1, 1], 2]
+                  properties: [360, 0, [0, 0, 0], 2, 0, [0, 0, 0], [1, 1, 1], 2, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -51513,14 +51513,14 @@ child:
               size: [true, true, 0, [0.35, 0.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 0, 0, false, [false, false, 1, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 0, [0, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [20, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: true
             emitter_shape:
               type: 0
-              properties: [360, 0, [0, 0, 0], 0.5, 0.001, [0, 0, 0], [1, 1, 1], 3]
+              properties: [360, 0, [0, 0, 0], 0.5, 0.001, [0, 0, 0], [1, 1, 1], 3, false]
             texture:
               texture_id: 3291545039621372658
               tiles: [2, 1]
@@ -51577,7 +51577,7 @@ child:
             tiles: [1, 1]
             flip: [false, false]
             billboard_lifetime: 0.5
-            properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             animation_speed: 0
             total_tiles: 1
             animation_loop: false
@@ -51615,7 +51615,7 @@ child:
             tiles: [1, 1]
             flip: [false, true]
             billboard_lifetime: 5
-            properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             animation_speed: 0
             total_tiles: 1
             animation_loop: true
@@ -51663,14 +51663,14 @@ child:
               size: [true, true, 1, [0.1, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 2, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 0, [70.8, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [0, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: false
             emitter_shape:
               type: 4
-              properties: [360, 0, [0, 0, 0], 0.3, 0, [0, -90, 0], [2.5, 1, 1.5], 0.3]
+              properties: [360, 0, [0, 0, 0], 0.3, 0, [0, -90, 0], [2.5, 1, 1.5], 0.3, false]
             texture:
               texture_id: 3291545039621372658
               tiles: [2, 1]
@@ -52672,7 +52672,7 @@ child:
                     tiles: [3, 3]
                     flip: [false, false]
                     billboard_lifetime: 0.35
-                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.05
                     total_tiles: 9
                     animation_loop: false
@@ -52710,7 +52710,7 @@ child:
                     tiles: [3, 3]
                     flip: [false, true]
                     billboard_lifetime: 0.55
-                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.05
                     total_tiles: 9
                     animation_loop: false
@@ -52748,7 +52748,7 @@ child:
                     tiles: [3, 3]
                     flip: [false, false]
                     billboard_lifetime: 0.5
-                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.05
                     total_tiles: 9
                     animation_loop: false
@@ -52798,7 +52798,7 @@ child:
                     tiles: [3, 3]
                     flip: [false, false]
                     billboard_lifetime: 0.35
-                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.05
                     total_tiles: 9
                     animation_loop: false
@@ -52836,7 +52836,7 @@ child:
                     tiles: [3, 3]
                     flip: [false, true]
                     billboard_lifetime: 0.35
-                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.05
                     total_tiles: 9
                     animation_loop: false
@@ -52886,7 +52886,7 @@ child:
                     tiles: [3, 3]
                     flip: [false, false]
                     billboard_lifetime: 0.5
-                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.05
                     total_tiles: 9
                     animation_loop: false
@@ -52924,7 +52924,7 @@ child:
                     tiles: [3, 3]
                     flip: [false, true]
                     billboard_lifetime: 0.65
-                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.05
                     total_tiles: 9
                     animation_loop: false
@@ -52974,7 +52974,7 @@ child:
                     tiles: [3, 3]
                     flip: [false, false]
                     billboard_lifetime: 0.4
-                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.05
                     total_tiles: 9
                     animation_loop: false
@@ -53001,7 +53001,7 @@ child:
                     type: 1
                     enabled: true
                     position: [-0.11, 2.3, 4.502]
-                    rotation: [-0, -90, 0]
+                    rotation: [180, -89.98, 180]
                     scale: [1.1, 0.9999, 1]
                   - !<billboard>
                     id: 14092417553744146449
@@ -53012,7 +53012,7 @@ child:
                     tiles: [3, 3]
                     flip: [false, true]
                     billboard_lifetime: 0.55
-                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 0.05
                     total_tiles: 9
                     animation_loop: false
@@ -53079,14 +53079,14 @@ child:
               size: [true, true, 0, [1.3, 0.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 0, [55.5, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [22.4, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: true
             emitter_shape:
               type: 2
-              properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [3, 3, 3], 0.5]
+              properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [3, 3, 3], 0.5, false]
             texture:
               texture_id: 3291545039621372658
               tiles: [2, 1]
@@ -53133,7 +53133,7 @@ child:
             tiles: [1, 1]
             flip: [false, false]
             billboard_lifetime: 600
-            properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             animation_speed: 0
             total_tiles: 1
             animation_loop: true
@@ -53200,7 +53200,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.1
                 total_tiles: 4
                 animation_loop: false
@@ -53238,7 +53238,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.1
                 total_tiles: 4
                 animation_loop: false
@@ -53276,7 +53276,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.1
                 total_tiles: 4
                 animation_loop: false
@@ -53314,7 +53314,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.1
                 total_tiles: 4
                 animation_loop: false
@@ -53352,7 +53352,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.1
                 total_tiles: 4
                 animation_loop: false
@@ -53390,7 +53390,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.1
                 total_tiles: 4
                 animation_loop: false
@@ -53428,7 +53428,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.1
                 total_tiles: 4
                 animation_loop: false
@@ -53466,7 +53466,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.1
                 total_tiles: 4
                 animation_loop: false
@@ -53504,7 +53504,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.1
                 total_tiles: 4
                 animation_loop: false
@@ -53542,7 +53542,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.1
                 total_tiles: 4
                 animation_loop: false
@@ -53592,7 +53592,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.15
                 total_tiles: 1
                 animation_loop: false
@@ -53630,7 +53630,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.15
                 total_tiles: 1
                 animation_loop: false
@@ -53668,7 +53668,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.15
                 total_tiles: 1
                 animation_loop: false
@@ -53706,7 +53706,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.15
                 total_tiles: 1
                 animation_loop: false
@@ -53744,7 +53744,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.15
                 total_tiles: 1
                 animation_loop: false
@@ -53782,7 +53782,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.15
                 total_tiles: 1
                 animation_loop: false
@@ -53820,7 +53820,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.15
                 total_tiles: 1
                 animation_loop: false
@@ -53858,7 +53858,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.15
                 total_tiles: 1
                 animation_loop: false
@@ -53896,7 +53896,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.15
                 total_tiles: 1
                 animation_loop: false
@@ -53934,7 +53934,7 @@ child:
                 tiles: [4, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.4
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.15
                 total_tiles: 1
                 animation_loop: false
@@ -53984,7 +53984,7 @@ child:
                 tiles: [2, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.3
                 total_tiles: 2
                 animation_loop: false
@@ -54022,7 +54022,7 @@ child:
                 tiles: [2, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.3
                 total_tiles: 2
                 animation_loop: false
@@ -54060,7 +54060,7 @@ child:
                 tiles: [2, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.3
                 total_tiles: 2
                 animation_loop: false
@@ -54098,7 +54098,7 @@ child:
                 tiles: [2, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.3
                 total_tiles: 2
                 animation_loop: false
@@ -54136,7 +54136,7 @@ child:
                 tiles: [2, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.3
                 total_tiles: 2
                 animation_loop: false
@@ -54174,7 +54174,7 @@ child:
                 tiles: [2, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.3
                 total_tiles: 2
                 animation_loop: false
@@ -54212,7 +54212,7 @@ child:
                 tiles: [2, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.3
                 total_tiles: 2
                 animation_loop: false
@@ -54250,7 +54250,7 @@ child:
                 tiles: [2, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.3
                 total_tiles: 2
                 animation_loop: false
@@ -54288,7 +54288,7 @@ child:
                 tiles: [2, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.3
                 total_tiles: 2
                 animation_loop: false
@@ -54326,7 +54326,7 @@ child:
                 tiles: [2, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.3
                 total_tiles: 2
                 animation_loop: false
@@ -54376,7 +54376,7 @@ child:
                 tiles: [3, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.2
                 total_tiles: 3
                 animation_loop: false
@@ -54414,7 +54414,7 @@ child:
                 tiles: [3, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.2
                 total_tiles: 3
                 animation_loop: false
@@ -54452,7 +54452,7 @@ child:
                 tiles: [3, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.2
                 total_tiles: 3
                 animation_loop: false
@@ -54490,7 +54490,7 @@ child:
                 tiles: [3, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.2
                 total_tiles: 3
                 animation_loop: false
@@ -54528,7 +54528,7 @@ child:
                 tiles: [3, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.2
                 total_tiles: 3
                 animation_loop: false
@@ -54566,7 +54566,7 @@ child:
                 tiles: [3, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.2
                 total_tiles: 3
                 animation_loop: false
@@ -54604,7 +54604,7 @@ child:
                 tiles: [3, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.2
                 total_tiles: 3
                 animation_loop: false
@@ -54642,7 +54642,7 @@ child:
                 tiles: [3, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.2
                 total_tiles: 3
                 animation_loop: false
@@ -54680,7 +54680,7 @@ child:
                 tiles: [3, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.2
                 total_tiles: 3
                 animation_loop: false
@@ -54718,7 +54718,7 @@ child:
                 tiles: [3, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.2
                 total_tiles: 3
                 animation_loop: false
@@ -54768,7 +54768,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -54806,7 +54806,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -54844,7 +54844,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -54882,7 +54882,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -54920,7 +54920,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -54958,7 +54958,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -54996,7 +54996,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -55034,7 +55034,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -55072,7 +55072,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -55110,7 +55110,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -55160,7 +55160,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -55198,7 +55198,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -55236,7 +55236,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -55274,7 +55274,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -55312,7 +55312,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -55350,7 +55350,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -55388,7 +55388,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -55426,7 +55426,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -55464,7 +55464,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -55502,7 +55502,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 1
                 total_tiles: 1
                 animation_loop: false
@@ -55552,7 +55552,7 @@ child:
                 tiles: [2, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.3
                 total_tiles: 2
                 animation_loop: false
@@ -55590,7 +55590,7 @@ child:
                 tiles: [2, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.3
                 total_tiles: 2
                 animation_loop: false
@@ -55628,7 +55628,7 @@ child:
                 tiles: [2, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.3
                 total_tiles: 2
                 animation_loop: false
@@ -55666,7 +55666,7 @@ child:
                 tiles: [2, 1]
                 flip: [false, false]
                 billboard_lifetime: 0.6
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0.3
                 total_tiles: 2
                 animation_loop: false
@@ -55716,7 +55716,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 5
-                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0
                 total_tiles: 1
                 animation_loop: false
@@ -55754,7 +55754,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 5
-                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0
                 total_tiles: 1
                 animation_loop: false
@@ -55792,7 +55792,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 5
-                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0
                 total_tiles: 1
                 animation_loop: false
@@ -55830,7 +55830,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 5
-                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0
                 total_tiles: 1
                 animation_loop: false
@@ -55894,6 +55894,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 7427803076804571997
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 527932050809180731
             name: Box
@@ -55969,14 +55972,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -56048,6 +56051,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 7379635545190957769
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 4262789701365828002
             name: Box
@@ -56123,14 +56129,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -56202,6 +56208,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 7140661194058774460
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 13369949339723290206
             name: Box
@@ -56277,14 +56286,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -56356,6 +56365,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 8809237143667395520
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 5801379699202485634
             name: Box
@@ -56431,14 +56443,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -56510,6 +56522,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 8258781275841770161
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 12313063774030132409
             name: Box
@@ -56585,14 +56600,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -56664,6 +56679,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 2797313645477106811
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 15468667018699128150
             name: Box
@@ -56739,14 +56757,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -56818,6 +56836,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 6200879195146821769
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 3754689419976573781
             name: Box
@@ -56893,14 +56914,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -56972,6 +56993,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 9075503966408723259
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 17943684563639633919
             name: Box
@@ -57047,14 +57071,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -57126,6 +57150,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 14627832170806509771
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 10013534351840683534
             name: Box
@@ -57201,14 +57228,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -57280,6 +57307,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 2163336030950755970
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 16276030541572028634
             name: Box
@@ -57355,14 +57385,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -57434,6 +57464,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 10692673738451106259
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 6621246844329816266
             name: Box
@@ -57509,14 +57542,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -57588,6 +57621,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 1179758597162611912
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 10503750580562293117
             name: Box
@@ -57663,14 +57699,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -57742,6 +57778,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 5867318510825402767
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 13910577703636579007
             name: Box
@@ -57817,14 +57856,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -57896,6 +57935,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 16413233912516658751
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 8363847660349628643
             name: Box
@@ -57971,14 +58013,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -58050,6 +58092,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 18034647421964726182
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 18132958148687221379
             name: Box
@@ -58125,14 +58170,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -58204,6 +58249,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 5686483005053884106
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 15758933880818572856
             name: Box
@@ -58279,14 +58327,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -58358,6 +58406,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 11825838482735630477
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 15543273417146643345
             name: Box
@@ -58433,14 +58484,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -58512,6 +58563,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 17436701828482132083
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 17879538324498220560
             name: Box
@@ -58587,14 +58641,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -58666,6 +58720,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 17560775930163594749
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 16849841645090648358
             name: Box
@@ -58741,14 +58798,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -58820,6 +58877,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 348047852830263895
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 15777481941158824294
             name: Box
@@ -58895,14 +58955,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -58974,6 +59034,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 13348795501287516695
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 12799976362819489400
             name: Box
@@ -59049,14 +59112,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -59128,6 +59191,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 7293556333611120941
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 10708683505656968527
             name: Box
@@ -59203,14 +59269,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -59282,6 +59348,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 3024035854504826189
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 14234090932023926618
             name: Box
@@ -59357,14 +59426,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -59436,6 +59505,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 6716104770601621541
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 12342775850028240444
             name: Box
@@ -59511,14 +59583,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -59590,6 +59662,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 1319326332180089871
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 16231624631010653534
             name: Box
@@ -59665,14 +59740,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -59744,6 +59819,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 8025632900718773535
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 14513845363551131856
             name: Box
@@ -59819,14 +59897,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -59898,6 +59976,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 11123523558265447149
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 12612485579988257313
             name: Box
@@ -59973,14 +60054,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -60052,6 +60133,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 13784442255140030981
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 9012424915696523243
             name: Box
@@ -60127,14 +60211,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -60206,6 +60290,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 10041194218208000559
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 1429380699403744768
             name: Box
@@ -60281,14 +60368,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -60360,6 +60447,9 @@ child:
             "'_toggle_inactive_time@float'": 5
             "'_dissolving_time@float'": 0.5
             "'_sparks@GameObject*'": 16022550221833295728
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 4593233835937376196
             name: Box
@@ -60435,14 +60525,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -60526,6 +60616,9 @@ child:
             "'_toggle_inactive_time@float'": 2
             "'_dissolving_time@float'": 0.2
             "'_sparks@GameObject*'": 13169163323298812895
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 11050768873943199329
             name: laser_geo001
@@ -60601,14 +60694,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -60680,6 +60773,9 @@ child:
             "'_toggle_inactive_time@float'": 2
             "'_dissolving_time@float'": 0.2
             "'_sparks@GameObject*'": 14141636218908800392
+            "'_beam@GameObject*'": 0
+            "'_beam_reduced@GameObject*'": 0
+            "'_beam_crystals@GameObject*'": 0
         child:
           - id: 16250345460582548562
             name: laser_geo001
@@ -60755,14 +60851,14 @@ child:
                   size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                  properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 emission:
                   rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                   burst: false
                 emitter_shape:
                   type: 0
-                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+                  properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10, false]
                 texture:
                   texture_id: 3291545039621372658
                   tiles: [2, 1]
@@ -62721,7 +62817,7 @@ child:
                     tiles: [3, 3]
                     flip: [false, false]
                     billboard_lifetime: 0.5
-                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                    properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                     animation_speed: 1
                     total_tiles: 9
                     animation_loop: false
@@ -62759,7 +62855,7 @@ child:
             tiles: [4, 1]
             flip: [false, false]
             billboard_lifetime: 0.3
-            properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             animation_speed: 0.073
             total_tiles: 4
             animation_loop: false
@@ -62797,7 +62893,7 @@ child:
             tiles: [4, 1]
             flip: [true, true]
             billboard_lifetime: 0.3
-            properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             animation_speed: 0.073
             total_tiles: 4
             animation_loop: false
@@ -62845,14 +62941,14 @@ child:
           size: [true, true, 1, [3, 6], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          properties: [1, 3, 0, false, [false, false, 1, [0.2, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
         emission:
           rate: [true, true, 0, [100, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           burst: false
         emitter_shape:
           type: 0
-          properties: [360, 0, [0, 0, 0], 2, 0, [0, 0, 0], [1, 1, 1], 2]
+          properties: [360, 0, [0, 0, 0], 2, 0, [0, 0, 0], [1, 1, 1], 2, false]
         texture:
           tiles: [1, 0]
           flip: [false, false]
@@ -62920,14 +63016,14 @@ child:
               size: [true, true, 1, [3, 6], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               delay: [true, false, 0, [0.2, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              properties: [1, 3, 0, false, [false, false, 1, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             emission:
               rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               burst: false
             emitter_shape:
               type: 0
-              properties: [360, 0, [0, 0, 0], 2, 0, [0, 0, 0], [1, 1, 1], 2]
+              properties: [360, 0, [0, 0, 0], 2, 0, [0, 0, 0], [1, 1, 1], 2, false]
             texture:
               texture_id: 3291545039621372658
               tiles: [2, 1]
@@ -62997,7 +63093,7 @@ child:
             tiles: [1, 1]
             flip: [false, false]
             billboard_lifetime: 5
-            properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             animation_speed: 0
             total_tiles: 1
             animation_loop: true
@@ -63035,7 +63131,7 @@ child:
             tiles: [1, 1]
             flip: [false, false]
             billboard_lifetime: 5
-            properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
             animation_speed: 0
             total_tiles: 1
             animation_loop: true
@@ -63085,7 +63181,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 2
-                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0
                 total_tiles: 1
                 animation_loop: true
@@ -63123,7 +63219,7 @@ child:
                 tiles: [1, 1]
                 flip: [false, false]
                 billboard_lifetime: 5
-                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                properties: [1, 2, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]], true]
                 animation_speed: 0
                 total_tiles: 1
                 animation_loop: true
