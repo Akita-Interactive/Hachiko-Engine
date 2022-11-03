@@ -200,13 +200,11 @@ void Hachiko::Scripting::BossController::RegisterHit(int dmg, bool is_from_playe
 
 		// TODO: Trigger this via an event of player, that is subscribed by
 		// combat visual effects pool.
-		if (!is_ranged)
-		{
-			combat_visual_effects_pool->PlayPlayerAttackEffect(
-                player_controller->GetCurrentWeaponType(),
-                player_controller->GetAttackIndex(),
-                game_object->GetTransform()->GetGlobalPosition());
-		}
+        PlayerController::WeaponUsed weapon = is_ranged? PlayerController::WeaponUsed::BLASTER : player_controller->GetCurrentWeaponType();
+		combat_visual_effects_pool->PlayPlayerAttackEffect(
+			weapon,
+			player_controller->GetAttackIndex(),
+			game_object->GetTransform()->GetGlobalPosition());
 	}
 
     trail_toggle = !trail_toggle;
@@ -482,6 +480,10 @@ void Hachiko::Scripting::BossController::StartCocoon()
     moving_to_initial_pos = true;
     initial_position.y = transform->GetGlobalPosition().y;
     transform->LookAtTarget(initial_position);
+
+    agent->Enable();
+    agent->AddToCrowd();
+
     agent->SetTargetPosition(initial_position);
 }
 
@@ -556,6 +558,10 @@ void Hachiko::Scripting::BossController::CocoonController()
 void Hachiko::Scripting::BossController::SetUpCocoon()
 {
     hitable = false;
+    for (GameObject* crystal : cocoons_parent->children)
+    {
+        crystal->GetComponent<CrystalExplosion>()->DissolveCrystal(false);
+    }
 }
 
 void Hachiko::Scripting::BossController::BreakCocoon()
@@ -564,6 +570,7 @@ void Hachiko::Scripting::BossController::BreakCocoon()
     for (GameObject* crystal: cocoons_parent->children)
     {
         crystal->GetComponent<CrystalExplosion>()->DestroyCrystal();
+        crystal->GetComponent<CrystalExplosion>()->DissolveCrystal(true);
     }
     animation->SendTrigger("isCacoonComingOut");
 }
@@ -613,7 +620,7 @@ void Hachiko::Scripting::BossController::FinishCocoon()
 
     for (GameObject* laser : _rotating_lasers->children)
     {
-        laser->GetComponent<LaserController>()->ChangeState(LaserController::State::INACTIVE);
+        laser->GetComponent<LaserController>()->ChangeState(LaserController::State::DISSOLVING);
         laser->GetComponent<LaserController>()->_toggle_activation = false;
     }
 
@@ -829,20 +836,31 @@ void Hachiko::Scripting::BossController::ExecuteJumpingState()
 
     if (_jumping_state == JumpingState::NOT_TRIGGERED)
     {
-        _jumping_state = JumpingState::WAITING_TO_JUMP;
-        _jumping_timer = 0.0f;
-
         ChangeStateText((jump_type + "Waiting to jump.").c_str());
 
-		if (_current_jumping_mode == JumpingMode::STALAGMITE)
-		{
-			animation->SendTrigger("isPreJumpCrystal");
-		}
-		else {
-			animation->SendTrigger("isPreJump");
-		}
+        switch (_current_jumping_mode)
+        {
+        case JumpingMode::STALAGMITE:
+            animation->SendTrigger("isPreJumpCrystal");
+            _stalagmite_manager->DestroyAllStalagmites(true);
+            break;
+        case JumpingMode::LASER:
+            if (ShoutOnLaserJump() || !animation->IsAnimationStopped())
+            {
+                return;
+            }
+            animation->SendTrigger("isPreJump");
+            shout_made = false;
+            break;
+        default:
+            animation->SendTrigger("isPreJump");
+            break;
+        }
 
         animation->SendTrigger("isPreJump");
+
+        _jumping_state = JumpingState::WAITING_TO_JUMP;
+        _jumping_timer = 0.0f;
 
         // Disable the agent component, gets enabled back when boss lands back:
         agent->RemoveFromCrowd();
@@ -1496,4 +1514,18 @@ bool Hachiko::Scripting::BossController::ControlLasers()
 		}
 		return true;
 	}
+}
+
+bool Hachiko::Scripting::BossController::ShoutOnLaserJump()
+{
+    if (shout_made)
+    {
+        return false;
+    }
+
+    audio_source->PostEvent(Sounds::BOSS_ROAR);
+    animation->SendTrigger("isCacoonComingOut");
+    shout_made = true;
+
+    return true;
 }

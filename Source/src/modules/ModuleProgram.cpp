@@ -209,6 +209,7 @@ void Hachiko::ModuleProgram::CreatePrograms()
     programs[static_cast<int>(Program::Programs::TEXTURE_COPY)] = CreateProgram(SHADERS_FOLDER "vertex_texture_copy.glsl", SHADERS_FOLDER "fragment_texture_copy.glsl");
     programs[static_cast<int>(Program::Programs::SSAO)] = CreateProgram(SHADERS_FOLDER "vertex_ssao.glsl", SHADERS_FOLDER "fragment_ssao.glsl");
     programs[static_cast<int>(Program::Programs::OUTLINE)] = CreateProgram(SHADERS_FOLDER "vertex_outline.glsl", SHADERS_FOLDER "fragment_outline.glsl");
+    programs[static_cast<int>(Program::Programs::FXAA)] = CreateProgram(SHADERS_FOLDER "vertex_fxaa_filter.glsl", SHADERS_FOLDER "fragment_fxaa_filter.glsl");
 }
 
 void Hachiko::ModuleProgram::DeletePrograms()

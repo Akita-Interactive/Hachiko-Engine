@@ -55,12 +55,18 @@ void Hachiko::Scripting::CombatVisualEffectsPool::OnAwake()
 	beetle_vfxes = game_object->children[5]->children;
 	all_vfxes.insert(all_vfxes.end(), beetle_vfxes.begin(), beetle_vfxes.end());
 
-	// 6 - Ground
-	if (game_object->children.size() > 6)
+	// 6 - Blaster 
+	ranged_vfxes.clear();
+	ranged_vfxes.reserve(10);
+	ranged_vfxes = game_object->children[6]->children;
+	all_vfxes.insert(all_vfxes.end(), ranged_vfxes.begin(), ranged_vfxes.end());
+
+	// 7 - Ground
+	if (game_object->children.size() > 7)
 	{
 		ground_vfxes.clear();
 		ground_vfxes.reserve(10);
-		ground_vfxes = game_object->children[6]->children;
+		ground_vfxes = game_object->children[7]->children;
 		all_vfxes.insert(
 			all_vfxes.end(), 
 			ground_vfxes.begin(), 
@@ -97,6 +103,11 @@ void Hachiko::Scripting::CombatVisualEffectsPool::PlayPlayerAttackEffect(PlayerC
 	case PlayerController::WeaponUsed::HAMMER:
 	{
 		current_attack_billboard = GetCurrentHammerVfx();
+		break;
+	}
+		case PlayerController::WeaponUsed::BLASTER:
+	{
+		current_attack_billboard = GetCurrentBlasterVfx();
 		break;
 	}
 	default:
