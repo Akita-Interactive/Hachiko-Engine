@@ -433,7 +433,7 @@
 										<Action Name="" ID="{FE999945-18A1-4AE3-A364-9B009A638FF0}" ShortID="76633500">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="CrystalsBreak" ID="{DF9BB866-7CA0-4C5A-B15B-22BA9A7EE109}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
+													<ObjectRef Name="CrystalBasic" ID="{2647489C-E9AF-4DA8-8200-7A0B079D61B0}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -450,12 +450,12 @@
 										</Action>
 									</ChildrenList>
 								</Event>
-								<Event Name="Play_ExplosiveCrystalCharge" ID="{28D43A6F-3DBA-4CCC-9B1F-05F10944653F}">
+								<Event Name="Play_ExplosiveCrystalSpawn" ID="{28D43A6F-3DBA-4CCC-9B1F-05F10944653F}">
 									<ChildrenList>
 										<Action Name="" ID="{932A7AC7-1682-4F3B-A0FD-8923B4939DE8}" ShortID="1060852574">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="ChargeExplosion" ID="{3690F725-2FFF-4137-AF35-70D45D268118}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
+													<ObjectRef Name="SpawnCrystal" ID="{3690F725-2FFF-4137-AF35-70D45D268118}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -719,6 +719,28 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Stage1b" ID="{9E65B438-BF0B-490F-9C58-CDAEC2F7A184}" WorkUnitID="{58D3A6EC-B8FF-4FD8-B774-6F4619FF9B9B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_ExplosiveCrystalCharge" ID="{17450F3D-AE12-45C2-9641-D3F6296026D7}">
+					<ChildrenList>
+						<Action Name="" ID="{D69E8F28-538D-472E-A6D2-D313B61E1D7E}" ShortID="666266231">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="ChargeExplotion" ID="{209C80E4-8273-4735-8615-DEB5CDD732AD}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_CrystalShake" ID="{F76F6E17-58A1-4F38-A0EA-06DE6512A296}">
+					<ChildrenList>
+						<Action Name="" ID="{5C7E5E56-A779-49A6-B17E-C13382F5081D}" ShortID="183750997">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Shake" ID="{296E103A-9E54-4084-8DEC-126C1931D017}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

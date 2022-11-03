@@ -559,7 +559,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3768541028" Language="SFX" Hash="4261890515">
+		<SoundBank Id="3768541028" Language="SFX" Hash="1515130796">
 			<ObjectPath>\SoundBanks\Default Work Unit\Attacks</ObjectPath>
 			<ShortName>Attacks</ShortName>
 			<Path>Attacks.bnk</Path>
@@ -577,6 +577,10 @@
 						<File Id="170332924" Language="SFX">
 							<ShortName>ES_Insect Wings Fly 4 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Insect Wings Fly 4 - SFX Producer_C6DECE43.wem</Path>
+						</File>
+						<File Id="341564447" Language="SFX">
+							<ShortName>ES_Punch Face 2 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Punch Face 2 - SFX Producer_10C4C929.wem</Path>
 						</File>
 						<File Id="364841447" Language="SFX">
 							<ShortName>ES_Alien Chirp Critter 2 - SFX Producer.wav</ShortName>
@@ -774,7 +778,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="3909959462" Language="SFX" Hash="3218039668">
+		<SoundBank Id="3909959462" Language="SFX" Hash="2309895366">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enviroment</ObjectPath>
 			<ShortName>Enviroment</ShortName>
 			<Path>Enviroment.bnk</Path>
@@ -797,13 +801,21 @@
 							<ShortName>Crystal\cristal broken 2.wav</ShortName>
 							<Path>SFX\Crystal\cristal broken 2_10C4C929.wem</Path>
 						</File>
-						<File Id="101284139" Language="SFX">
-							<ShortName>Crystal\cristal broken 1.wav</ShortName>
-							<Path>SFX\Crystal\cristal broken 1_10C4C929.wem</Path>
+						<File Id="110329395" Language="SFX">
+							<ShortName>ES_Crash Rock Patio 2 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Crash Rock Patio 2 - SFX Producer_10C4C929.wem</Path>
 						</File>
-						<File Id="706795758" Language="SFX">
-							<ShortName>Crystal\cristal broken 3.wav</ShortName>
-							<Path>SFX\Crystal\cristal broken 3_10C4C929.wem</Path>
+						<File Id="368911579" Language="SFX">
+							<ShortName>ES_Crash Rock Patio 1 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Crash Rock Patio 1 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="931073005" Language="SFX">
+							<ShortName>ES_PREL Whoosh High 18 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_PREL Whoosh High 18 - SFX Producer_742DD9AF.wem</Path>
+						</File>
+						<File Id="1017764981" Language="SFX">
+							<ShortName>ES_Impact Rock Smash 3 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Impact Rock Smash 3 - SFX Producer_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -811,27 +823,48 @@
 					<IncludedMemoryFiles>
 						<File Id="113467563" Language="SFX">
 							<ShortName>ES_Whoosh Reverse 3 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Whoosh Reverse 3 - SFX Producer_E821E153.wem</Path>
+							<Path>SFX\ES_Whoosh Reverse 3 - SFX Producer_627A35A5.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1800475802" Name="Play_CrystalShake" ObjectPath="\Events\Default Work Unit\Play_CrystalShake">
+					<IncludedMemoryFiles>
+						<File Id="135588950" Language="SFX">
+							<ShortName>ES_Crash Rock Patio 2 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Crash Rock Patio 2 - SFX Producer_8E10623B.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="1185403619" Name="Play_ExplosiveCrystal" ObjectPath="\Events\Default Work Unit\Environment\Crystals\Play_ExplosiveCrystal">
 					<IncludedMemoryFiles>
-						<File Id="101284139" Language="SFX">
-							<ShortName>Crystal\cristal broken 1.wav</ShortName>
-							<Path>SFX\Crystal\cristal broken 1_10C4C929.wem</Path>
+						<File Id="47600978" Language="SFX">
+							<ShortName>ES_Impact Rock Crash - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Impact Rock Crash - SFX Producer_10C4C929.wem</Path>
 						</File>
-						<File Id="706795758" Language="SFX">
-							<ShortName>Crystal\cristal broken 3.wav</ShortName>
-							<Path>SFX\Crystal\cristal broken 3_10C4C929.wem</Path>
+						<File Id="228170797" Language="SFX">
+							<ShortName>ES_Horror Whoosh 1 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Horror Whoosh 1 - SFX Producer_3155AC5B.wem</Path>
+						</File>
+						<File Id="235054626" Language="SFX">
+							<ShortName>ES_Locker Punch 1 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Locker Punch 1 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="282455160" Language="SFX">
+							<ShortName>ES_Locker Punch 2 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Locker Punch 2 - SFX Producer_10C4C929.wem</Path>
 						</File>
 						<File Id="785410759" Language="SFX">
 							<ShortName>ES_Magic Spell Whoosh 3 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Magic Spell Whoosh 3 - SFX Producer_59710EF2.wem</Path>
 						</File>
+						<File Id="1018074857" Language="SFX">
+							<ShortName>ES_Locker Punch 3 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Locker Punch 3 - SFX Producer_10C4C929.wem</Path>
+						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="4241858839" Name="Play_ExplosiveCrystalCharge" ObjectPath="\Events\Default Work Unit\Environment\Crystals\Play_ExplosiveCrystalCharge">
+				<Event Id="4241858839" Name="Play_ExplosiveCrystalCharge" ObjectPath="\Events\Default Work Unit\Play_ExplosiveCrystalCharge"/>
+				<Event Id="749885692" Name="Play_ExplosiveCrystalSpawn" ObjectPath="\Events\Default Work Unit\Environment\Crystals\Play_ExplosiveCrystalSpawn">
 					<IncludedMemoryFiles>
 						<File Id="588868501" Language="SFX">
 							<ShortName>ES_Swoosh Thing - Johan Hynynen.wav</ShortName>

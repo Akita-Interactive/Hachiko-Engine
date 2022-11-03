@@ -27,9 +27,11 @@ namespace AK
         static const AkUniqueID PLAY_CHECKPOINT = 2962822744U;
         static const AkUniqueID PLAY_CRYSTAL = 2035174344U;
         static const AkUniqueID PLAY_CRYSTALREGENERATE = 2449564938U;
+        static const AkUniqueID PLAY_CRYSTALSHAKE = 1800475802U;
         static const AkUniqueID PLAY_DASH = 2211787386U;
         static const AkUniqueID PLAY_EXPLOSIVECRYSTAL = 1185403619U;
         static const AkUniqueID PLAY_EXPLOSIVECRYSTALCHARGE = 4241858839U;
+        static const AkUniqueID PLAY_EXPLOSIVECRYSTALSPAWN = 749885692U;
         static const AkUniqueID PLAY_FOOTSTEP = 1602358412U;
         static const AkUniqueID PLAY_GAUNLETDOOROPENING = 2988819998U;
         static const AkUniqueID PLAY_GAUNLETNEXTROUND = 1126614951U;

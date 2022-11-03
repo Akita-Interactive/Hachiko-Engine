@@ -43,7 +43,9 @@ namespace Hachiko::Sounds
 	constexpr const wchar_t* CRYSTAL					= L"Play_Crystal";
 	constexpr const wchar_t* EXPLOSIVE_CRYSTAL			= L"Play_ExplosiveCrystal";
 	constexpr const wchar_t* EXPLOSIVE_CRYSTAL_CHARGE	= L"Play_ExplosiveCrystalCharge";
+	constexpr const wchar_t* EXPLOSIVE_CRYSTAL_SPAWN	= L"Play_ExplosiveCrystalSpawn";
 	constexpr const wchar_t* CRYSTAL_REGENERATE			= L"Play_CrystalRegenerate";
+	constexpr const wchar_t* CRYSTAL_SHAKE				= L"Play_CrystalShake";
 	constexpr const wchar_t* PLAY_WIND					= L"Play_Wind";
 	constexpr const wchar_t* STOP_WIND					= L"Stop_Wind";
 	constexpr const wchar_t* PLAY_PEBBLE				= L"Play_Pebble";

@@ -54,6 +54,7 @@
 					</PropertyList>
 					<ObjectInclusionList>
 						<ObjectRef Name="Play_ExplosiveCrystal" ID="{E2CB2EA0-F1F2-439D-959E-E6D4F7856857}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_ExplosiveCrystalCharge" ID="{17450F3D-AE12-45C2-9641-D3F6296026D7}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_StalagmiteGroundImpact" ID="{39EDCACC-115D-460B-A4BC-3491A724BFF6}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_CrystalRegenerate" ID="{3C6A93B5-A3B1-4618-8826-D9FCDCB010CF}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_StalagmiteCeilingCrack" ID="{C0EB5CD0-421F-466E-895F-80AE7B542994}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
@@ -62,12 +63,13 @@
 						<ObjectRef Name="Play_GaunletDoorOpening" ID="{09669178-5F77-470B-BFFB-70F04C2CB080}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_SplashLittleWorm" ID="{8AB68101-D4D2-4994-8516-F54362626C04}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Laser_Hit" ID="{A0BD3D63-D265-4CA9-B88D-C6E42632F4E3}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_ExplosiveCrystalCharge" ID="{28D43A6F-3DBA-4CCC-9B1F-05F10944653F}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_ExplosiveCrystalSpawn" ID="{28D43A6F-3DBA-4CCC-9B1F-05F10944653F}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Pebble" ID="{7E7451A2-4336-4CCF-BE28-99A6CF205E0D}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Checkpoint" ID="{B28BAE08-CDD5-4CD0-84F8-CF5D4D8C0144}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Laser" ID="{944F2DC9-1865-4DE5-A41F-7D847F3A9945}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Crystal" ID="{422E26F2-F986-4E14-B6FC-38411475A3E4}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Stop_Pebble" ID="{3C2F1626-380B-4EF3-9CB2-4CA76FA289C8}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_CrystalShake" ID="{F76F6E17-58A1-4F38-A0EA-06DE6512A296}" WorkUnitID="{0F9B892C-59E7-4D8D-A2DF-CB89FD4D78A1}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
