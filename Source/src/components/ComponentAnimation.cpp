@@ -112,7 +112,7 @@ std::string Hachiko::ComponentAnimation::GetActiveNode() const
 
 void Hachiko::ComponentAnimation::Update()
 {
-    controller->Update(EngineTimer::delta_time * 1000, reverse);
+    controller->Update(EngineTimer::delta_time * 1000 * speed, reverse);
 
     if (game_object != nullptr)
     {
