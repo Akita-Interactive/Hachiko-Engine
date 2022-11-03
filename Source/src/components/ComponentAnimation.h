@@ -36,6 +36,10 @@ namespace Hachiko
             return controller->GetCurrentState() == AnimationController::State::STOPPED;
         }
 
+        HACHIKO_API void SetSpeed(float new_speed)
+        {
+            speed = new_speed;
+        }
 
         // TEST
         bool reverse = false;
@@ -53,6 +57,8 @@ namespace Hachiko
     private:
         AnimationController* controller = nullptr;
         unsigned int active_node = 0;
+
+        float speed = 1.0f;
 
         // SM CONTROL
         WindowStateMachine* windowStateMachine = nullptr;
