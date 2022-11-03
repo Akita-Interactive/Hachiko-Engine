@@ -1529,83 +1529,6 @@
 									</ChildrenList>
 									<ObjectLists/>
 								</BlendContainer>
-								<BlendContainer Name="ChargeExplotion" ID="{209C80E4-8273-4735-8615-DEB5CDD732AD}" ShortID="675077041">
-									<PropertyList>
-										<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
-										<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
-										<Property Name="MaxSoundPerInstance" Type="int16">
-											<ValueList>
-												<Value>1</Value>
-											</ValueList>
-										</Property>
-										<Property Name="Pitch" Type="int32">
-											<ModifierList>
-												<ModifierInfo>
-													<Modifier Name="" ID="{4D0DC8A8-48F9-4394-9477-896F5B3291CA}">
-														<PropertyList>
-															<Property Name="Enabled" Type="bool" Value="True"/>
-															<Property Name="Max" Type="Real64" Value="400"/>
-														</PropertyList>
-													</Modifier>
-												</ModifierInfo>
-											</ModifierList>
-										</Property>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>-2</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<Sound Name="ES_Swoosh Thing - Johan Hynynen" ID="{4D77F302-B1BD-4263-8AC3-EE5F9E53293C}" ShortID="779249042">
-											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>-2</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Swoosh Thing - Johan Hynynen" ID="{26F23299-F2EE-4555-B34B-E0984D4D67E6}">
-													<PropertyList>
-														<Property Name="FadeOutDuration" Type="Real64" Value="1.55992102356406"/>
-														<Property Name="FadeOutShape" Type="int16" Value="1"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.46219882179676"/>
-														<Property Name="TrimEnd" Type="Real64" Value="2.77319293078056"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>ES_Swoosh Thing - Johan Hynynen.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="596719593"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Swoosh Thing - Johan Hynynen" ID="{26F23299-F2EE-4555-B34B-E0984D4D67E6}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-									</ChildrenList>
-									<ObjectLists/>
-								</BlendContainer>
 								<BlendContainer Name="CrystalBasic" ID="{2647489C-E9AF-4DA8-8200-7A0B079D61B0}" ShortID="211972311">
 									<PropertyList>
 										<Property Name="3DSpatialization" Type="int16" Value="1"/>
@@ -2054,6 +1977,44 @@
 									<ObjectLists/>
 									<ActiveSourceList>
 										<ActiveSource Name="ES_Crash Rock Patio 2 - SFX Producer" ID="{09A4A5C7-35BD-4F8C-A067-4C92E8E7790A}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="ChargeCrystalExplotion" ID="{4D77F302-B1BD-4263-8AC3-EE5F9E53293C}" ShortID="779249042">
+									<PropertyList>
+										<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-2</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ES_Swoosh Thing - Johan Hynynen" ID="{26F23299-F2EE-4555-B34B-E0984D4D67E6}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="1.55992102356406"/>
+												<Property Name="FadeOutShape" Type="int16" Value="1"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.46219882179676"/>
+												<Property Name="TrimEnd" Type="Real64" Value="2.77319293078056"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ES_Swoosh Thing - Johan Hynynen.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="596719593"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Swoosh Thing - Johan Hynynen" ID="{26F23299-F2EE-4555-B34B-E0984D4D67E6}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
@@ -3827,29 +3788,6 @@
 													<ObjectLists/>
 													<ActiveSourceList>
 														<ActiveSource Name="ES_Punch 44 - SFX Producer" ID="{725306A9-8FA5-4A36-813B-058CA39B3CFD}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="ES_Punch Face 2 - SFX Producer" ID="{A5AA3230-B3A9-4C54-98E7-9629D24EE3F3}" ShortID="882211840">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="ES_Punch Face 2 - SFX Producer" ID="{2F9CD8D1-7196-4240-B2F9-2E4707B01688}">
-															<Language>SFX</Language>
-															<AudioFile>ES_Punch Face 2 - SFX Producer.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="341564447"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="ES_Punch Face 2 - SFX Producer" ID="{2F9CD8D1-7196-4240-B2F9-2E4707B01688}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
 											</ChildrenList>
