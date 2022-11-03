@@ -21,11 +21,20 @@ Hachiko::Scripting::BloomAnimator::BloomAnimator(GameObject* game_object)
 
 void Hachiko::Scripting::BloomAnimator::OnAwake()
 {
+	if (_bloom_target)
+	{
+		return;
+	}
+
+	if (game_object->GetComponent(Component::Type::MESH_RENDERER))
+	{
+		_bloom_target = game_object;
+	}
 }
 
 void Hachiko::Scripting::BloomAnimator::OnUpdate()
 {
-	if (!_should_animate)
+	if (!_should_animate || !_bloom_target)
 	{
 		return;
 	}
