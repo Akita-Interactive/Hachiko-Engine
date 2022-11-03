@@ -24,30 +24,40 @@ void Hachiko::Scripting::Stalagmite::ActiveEffects()
 	_audio_source->PostEvent(Sounds::STALAGMITE_CEILING_CRACK);
 }
 
-void Hachiko::Scripting::Stalagmite::Falling(float fall_progress, const GameObject* player)
+
+/**
+* returns true if it hits the ground
+*/
+bool Hachiko::Scripting::Stalagmite::Falling(float fall_progress, const GameObject* player)
 {
+	fall_progress = math::Clamp(fall_progress, 0.f, 1.f);
 	float3 _stalagmite_position = GEO->GetTransform()->GetLocalPosition();
 	_stalagmite_position.y = Lerp(50.f, 0.f, fall_progress);
 	_explosion_effect->SetActive(true);
 	_explosion_effect->ChangeTintColor(float4(1.0f, 0.0f, 0.0f, Lerp(1.0f, 0.0f, fall_progress)), true);
 	GEO->GetTransform()->SetLocalPosition(_stalagmite_position);
 
-	if (fall_progress == 1.f)
+	if (fall_progress < 1.f)
 	{
-		_audio_source->PostEvent(Sounds::STALAGMITE_GROUND_IMPACT);
-		_obstacle_comp->AddObstacle();
-		_explosion_effect->SetActive(false);
-		float3 player_pos = player->GetTransform()->GetGlobalPosition();
-		float3 stalagmite_pos = _obstacle_comp->GetGameObject()->GetTransform()->GetGlobalPosition();
-		stalagmite_pos.y = player_pos.y;
-		if (Distance(player_pos, stalagmite_pos) <= 2.0f)
-		{
-			float dir_module = (player_pos - stalagmite_pos).Normalize();
-			float3 dir = (player_pos - stalagmite_pos).Normalized() * (2.0f - dir_module);
-			float3 corrected_position = Navigation::GetCorrectedPosition(player_pos + dir, float3(2.0f, 2.0f, 2.0f));
-			player->GetTransform()->SetGlobalPosition(corrected_position);
-		}
+		return false;
 	}
+
+	_audio_source->PostEvent(Sounds::STALAGMITE_GROUND_IMPACT);
+	_obstacle_comp->AddObstacle();
+	_explosion_effect->SetActive(false);
+	float3 player_pos = player->GetTransform()->GetGlobalPosition();
+	float3 stalagmite_pos = _obstacle_comp->GetGameObject()->GetTransform()->GetGlobalPosition();
+	stalagmite_pos.y = player_pos.y;
+
+	if (Distance(player_pos, stalagmite_pos) <= 2.5f)
+	{
+		float dir_module = (player_pos - stalagmite_pos).Normalize();
+		float3 dir = (player_pos - stalagmite_pos).Normalized() * (2.5f - dir_module);
+		float3 corrected_position = Navigation::GetCorrectedPosition(player_pos + dir, float3(10.f, 10.f, 10.f));
+		player->GetTransform()->SetGlobalPosition(corrected_position);
+	}
+
+	return true;
 }
 
 void Hachiko::Scripting::Stalagmite::Dissolved()

@@ -55,7 +55,7 @@ namespace Hachiko
 
 			void ActiveStalagmite();
 			void ActiveEffects();
-			void Falling(float fall_progress, const GameObject* player);
+			bool Falling(float fall_progress, const GameObject* player);
 
 			bool IsStalagmiteCollapsed() 
 			{

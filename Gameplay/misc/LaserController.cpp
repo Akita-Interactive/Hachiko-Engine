@@ -180,7 +180,6 @@ void Hachiko::Scripting::LaserController::ChangeState(State new_state)
 		{
 			_sparks_particles->Stop();
 			_laser->ChangeEmissiveColor(float4(1.0f, 1.0f, 1.0f, 0.0f), true);
-			_laser->SetActive(false);
 		}
 		break;
 	}

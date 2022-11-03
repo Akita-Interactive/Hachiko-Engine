@@ -24,7 +24,7 @@ namespace Hachiko
 
 			void UpdateStalagmiteState(Stalagmite* stalagmite);
 
-			void FallingStalagmite(Stalagmite* stalagmite, float fall_progress);
+			bool FallingStalagmite(Stalagmite* stalagmite, float fall_progress);
 
 			void TriggerStalagmites();
 

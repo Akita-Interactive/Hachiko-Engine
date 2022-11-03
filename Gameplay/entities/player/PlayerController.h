@@ -145,7 +145,7 @@ namespace Hachiko
 				return ret_value;
 			}
 
-			void ActivateTooltip(const float3& position);
+			void ActivateTooltip(const float3& position, const int enemy_count);
 			void DeactivateTooltip();
 
 
@@ -260,6 +260,7 @@ namespace Hachiko
 			SERIALIZE_FIELD(GameObject*, _heal_effect);
 			SERIALIZE_FIELD(GameObject*, _damage_effect);
 			SERIALIZE_FIELD(GameObject*, _parasite_pickup_effect);
+			SERIALIZE_FIELD(GameObject*, _parasite_selection);
 			SERIALIZE_FIELD(GameObject*, _melee_trail_right);
 			SERIALIZE_FIELD(GameObject*, _melee_trail_left);
 			SERIALIZE_FIELD(GameObject*, _melee_trail_center);
@@ -305,6 +306,7 @@ namespace Hachiko
 
 			SERIALIZE_FIELD(GameObject*, _keyboard_tooltip_display);
 			SERIALIZE_FIELD(GameObject*, _controller_tooltip_display);
+
 			SERIALIZE_FIELD(float, tooltip_y_offset);
 
 			SERIALIZE_FIELD(GameObject*, _camera);
@@ -321,6 +323,7 @@ namespace Hachiko
 			ComponentBillboard* _weapon_trails_billboard_right[static_cast<int>(WeaponUsed::SIZE)];
 			ComponentBillboard* _weapon_trails_billboard_left[static_cast<int>(WeaponUsed::SIZE)];
 			ComponentBillboard* _weapon_trails_billboard_center[static_cast<int>(WeaponUsed::SIZE)];
+
 
 			ComponentBillboard* _aim_indicator_billboard = nullptr;
 			ComponentParticleSystem* _dash_particles = nullptr;
@@ -384,6 +387,7 @@ namespace Hachiko
 			SERIALIZE_FIELD(float, _heal_effect_fade_duration);
 			SERIALIZE_FIELD(float, damage_effect_duration);
 			float damage_effect_progress = 0.0f;
+			int last_enemy_counter = -1;
 
 			// Camera management
 			int _current_cam_setting = 0;
