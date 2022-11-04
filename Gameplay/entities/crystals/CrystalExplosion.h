@@ -50,7 +50,6 @@ namespace Hachiko
 		private:
 			void SetVisible(bool v);
 			void ResetCrystal();
-			void StartDomeVFX(float progress);
 
 		public:
 			Stats* _stats;
@@ -62,9 +61,7 @@ namespace Hachiko
 			SERIALIZE_FIELD(GameObject*, _explosion_indicator);
 			SERIALIZE_FIELD(GameObject*, _explosion_vfx);
 			SERIALIZE_FIELD(GameObject*, _explosion_particles);
-			SERIALIZE_FIELD(GameObject*, _explosion_dome);
-			SERIALIZE_FIELD(float, _dome_vfx_duration);
-			SERIALIZE_FIELD(float, _dome_vfx_size);
+
 			SERIALIZE_FIELD(float, _shake_intensity);
 			SERIALIZE_FIELD(float, _seconds_shaking);
 
@@ -84,7 +81,6 @@ namespace Hachiko
 			ComponentAudioSource* _audio_source;
 			bool _is_destroyed = false;
 			bool _is_exploding = false;
-			bool _casting_dome_vfx = false;
 			bool _visible = false;
 
 			bool _is_dissolving = false;
