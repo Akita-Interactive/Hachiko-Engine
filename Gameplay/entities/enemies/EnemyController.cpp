@@ -1102,12 +1102,12 @@ void Hachiko::Scripting::EnemyController::StartDeadState()
 	if (_already_in_combat)
 	{
 		_audio_manager->UnregisterCombat();
+		_audio_manager->PlayEnemyDeath(_enemy_type);
 		_already_in_combat = false;
 	}
 
 	_component_agent->RemoveFromCrowd();
 	_enemy_dissolving_time_progress = 0;
-	_audio_manager->PlayEnemyDeath(_enemy_type);
 	animation->SendTrigger("isDead");
 
 	if (_enemy_body)
