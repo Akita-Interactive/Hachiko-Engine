@@ -42,7 +42,7 @@ private:
 	float _current_frequency;
 	float _damage_timer;
 	float _dmg_cool_down;
-
+	PlayerController::WeaponUsed previous_weapon_type;
 	void SetGroundEffect();
 	void SetWeaponEffect(PlayerController::WeaponUsed weapon_type);
 };

@@ -168,6 +168,13 @@ void Hachiko::Scripting::PlayerSoundManager::SetGroundEffect()
 
 void Hachiko::Scripting::PlayerSoundManager::SetWeaponEffect(PlayerController::WeaponUsed weapon_type)
 {
+	if (previous_weapon_type == weapon_type)
+	{
+		return;
+	}
+
+	previous_weapon_type = weapon_type;
+
 	switch (weapon_type)
 	{
 	case PlayerController::WeaponUsed::MELEE:

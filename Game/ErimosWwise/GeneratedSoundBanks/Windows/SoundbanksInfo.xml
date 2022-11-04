@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="626769978" Language="SFX" Hash="4066671493">
+		<SoundBank Id="626769978" Language="SFX" Hash="3412456539">
 			<ObjectPath>\SoundBanks\Default Work Unit\BackgroundMusic</ObjectPath>
 			<ShortName>BackgroundMusic</ShortName>
 			<Path>BackgroundMusic.bnk</Path>
@@ -607,7 +607,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3768541028" Language="SFX" Hash="497637397">
+		<SoundBank Id="3768541028" Language="SFX" Hash="4210946152">
 			<ObjectPath>\SoundBanks\Default Work Unit\Attacks</ObjectPath>
 			<ShortName>Attacks</ShortName>
 			<Path>Attacks.bnk</Path>
@@ -702,9 +702,13 @@
 							<ShortName>ES_Bone Break 8 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Bone Break 8 - SFX Producer_10C4C929.wem</Path>
 						</File>
-						<File Id="31405960" Language="SFX">
-							<ShortName>ES_Flesh Stab 4 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Flesh Stab 4 - SFX Producer_10C4C929.wem</Path>
+						<File Id="23203309" Language="SFX">
+							<ShortName>ESM_Ancient_Game_Weapon_Swing_Blood_Hit_8_Kill_Murder_Fantasy_Weapon_Wet.wav</ShortName>
+							<Path>SFX\ESM_Ancient_Game_Weapon_Swing_Blood_Hit_8_Kill_Murder_Fantasy_Weapon_Wet_15CF9114.wem</Path>
+						</File>
+						<File Id="92270191" Language="SFX">
+							<ShortName>ESM_Fighting_Game_One_Shot_Designed_Weapons_Mace_04_Short_Bloody_Swing_Hit_No_Whoosh.wav</ShortName>
+							<Path>SFX\ESM_Fighting_Game_One_Shot_Designed_Weapons_Mace_04_Short_Bloody_Swing_Hit_No_Whoosh_10C4C929.wem</Path>
 						</File>
 						<File Id="132361843" Language="SFX">
 							<ShortName>ES_Punch Face 5 - SFX Producer.wav</ShortName>
@@ -714,9 +718,9 @@
 							<ShortName>ES_Flesh Carcass Rip 3 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Flesh Carcass Rip 3 - SFX Producer_10C4C929.wem</Path>
 						</File>
-						<File Id="162448814" Language="SFX">
-							<ShortName>ES_Punch 41 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Punch 41 - SFX Producer_10C4C929.wem</Path>
+						<File Id="155558576" Language="SFX">
+							<ShortName>ESM_Ancient_Game_Weapon_Swing_Blood_Hit_4_Kill_Murder_Fantasy_Weapon_Wet.wav</ShortName>
+							<Path>SFX\ESM_Ancient_Game_Weapon_Swing_Blood_Hit_4_Kill_Murder_Fantasy_Weapon_Wet_FCD2323C.wem</Path>
 						</File>
 						<File Id="180713998" Language="SFX">
 							<ShortName>ES_Whip Whoosh Swoosh 2 - SFX Producer.wav</ShortName>
@@ -725,14 +729,6 @@
 						<File Id="222735703" Language="SFX">
 							<ShortName>ES_Whip Whoosh Swoosh 4 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Whip Whoosh Swoosh 4 - SFX Producer_10C4C929.wem</Path>
-						</File>
-						<File Id="251764794" Language="SFX">
-							<ShortName>ES_Flesh Rip Heavy - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Flesh Rip Heavy - SFX Producer_10C4C929.wem</Path>
-						</File>
-						<File Id="288297667" Language="SFX">
-							<ShortName>ES_Tongue Ripped Out - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Tongue Ripped Out - SFX Producer_EFC3A4DA.wem</Path>
 						</File>
 						<File Id="300128220" Language="SFX">
 							<ShortName>ES_Sword Scrape Court Sword 2 - SFX Producer.wav</ShortName>
@@ -746,25 +742,17 @@
 							<ShortName>ES_Punch Face 3 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Punch Face 3 - SFX Producer_10C4C929.wem</Path>
 						</File>
-						<File Id="515539414" Language="SFX">
-							<ShortName>ES_Flesh Stab 1 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Flesh Stab 1 - SFX Producer_10C4C929.wem</Path>
-						</File>
 						<File Id="549338720" Language="SFX">
 							<ShortName>ES_Bone Break 7 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Bone Break 7 - SFX Producer_10C4C929.wem</Path>
 						</File>
-						<File Id="588192664" Language="SFX">
-							<ShortName>ES_Punch 34 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Punch 34 - SFX Producer_10C4C929.wem</Path>
-						</File>
-						<File Id="609161163" Language="SFX">
-							<ShortName>ES_Flesh Rip 35 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Flesh Rip 35 - SFX Producer_10C4C929.wem</Path>
-						</File>
 						<File Id="610680920" Language="SFX">
 							<ShortName>ES_Whip Whoosh Swoosh 5 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Whip Whoosh Swoosh 5 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="682079368" Language="SFX">
+							<ShortName>ESM_Fighting_Game_One_Shot_Designed_Combat_Hits_Punch_Bone_Break_Impact_02.wav</ShortName>
+							<Path>SFX\ESM_Fighting_Game_One_Shot_Designed_Combat_Hits_Punch_Bone_Break_Impact_02_10C4C929.wem</Path>
 						</File>
 						<File Id="685447288" Language="SFX">
 							<ShortName>ES_Sword Scrape Court Sword 3 - SFX Producer.wav</ShortName>
@@ -774,17 +762,21 @@
 							<ShortName>ES_Sword Scrape Court Sword 1 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Sword Scrape Court Sword 1 - SFX Producer_10C4C929.wem</Path>
 						</File>
-						<File Id="718851377" Language="SFX">
-							<ShortName>ES_Punch 6 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Punch 6 - SFX Producer_10C4C929.wem</Path>
-						</File>
 						<File Id="744609273" Language="SFX">
 							<ShortName>ES_Whip Whoosh Swoosh 1 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Whip Whoosh Swoosh 1 - SFX Producer_10C4C929.wem</Path>
 						</File>
+						<File Id="744999179" Language="SFX">
+							<ShortName>ESM_Ancient_Game_Weapon_Swing_Blood_Hit_10_Kill_Murder_Fantasy_Weapon_Wet.wav</ShortName>
+							<Path>SFX\ESM_Ancient_Game_Weapon_Swing_Blood_Hit_10_Kill_Murder_Fantasy_Weapon_Wet_03E10CEE.wem</Path>
+						</File>
 						<File Id="767016526" Language="SFX">
 							<ShortName>ES_Guts Rip Out 3 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Guts Rip Out 3 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="1008819851" Language="SFX">
+							<ShortName>ESM_Fighting_Game_One_Shot_Designed_Combat_Hits_Deep_Bone_Break_Gore_Blood_Crunch_Snap_Skull_Crush.wav</ShortName>
+							<Path>SFX\ESM_Fighting_Game_One_Shot_Designed_Combat_Hits_Deep_Bone_Break_Gore_Blood_Crunch_Snap_Skull_Crush_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 					<DefaultSwitchValue>{8742CF14-04A5-4224-8CAB-E0C57D44C5EA}</DefaultSwitchValue>
@@ -798,21 +790,18 @@
 						<SwitchContainer SwitchValue="{64FCE35B-8883-479E-8CF7-5E2B22B1F4A1}">
 							<Media>
 								<File Id="15157738"/>
-								<File Id="162448814"/>
+								<File Id="92270191"/>
 								<File Id="329744407"/>
 								<File Id="549338720"/>
-								<File Id="588192664"/>
-								<File Id="610680920"/>
-								<File Id="718851377"/>
+								<File Id="682079368"/>
+								<File Id="1008819851"/>
 							</Media>
 						</SwitchContainer>
 						<SwitchContainer SwitchValue="{566F626C-BEC1-45DC-9527-637B30E27D52}">
 							<Media>
-								<File Id="31405960"/>
-								<File Id="251764794"/>
-								<File Id="288297667"/>
-								<File Id="515539414"/>
-								<File Id="609161163"/>
+								<File Id="23203309"/>
+								<File Id="155558576"/>
+								<File Id="744999179"/>
 							</Media>
 						</SwitchContainer>
 						<SwitchContainer SwitchValue="{EA4FC07B-DF8D-4A33-B9E6-C200FB993E16}">
@@ -950,7 +939,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3909959462" Language="SFX" Hash="1208837190">
+		<SoundBank Id="3909959462" Language="SFX" Hash="950313974">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enviroment</ObjectPath>
 			<ShortName>Enviroment</ShortName>
 			<Path>Enviroment.bnk</Path>
@@ -1045,9 +1034,17 @@
 				</Event>
 				<Event Id="749885692" Name="Play_ExplosiveCrystalSpawn" ObjectPath="\Events\Default Work Unit\Environment\Crystals\Play_ExplosiveCrystalSpawn">
 					<IncludedMemoryFiles>
+						<File Id="470278955" Language="SFX">
+							<ShortName>CrackCrunch_S011TX.6.wav</ShortName>
+							<Path>SFX\CrackCrunch_S011TX.6_10C4C929.wem</Path>
+						</File>
 						<File Id="588868501" Language="SFX">
 							<ShortName>ES_Swoosh Thing - Johan Hynynen.wav</ShortName>
 							<Path>SFX\ES_Swoosh Thing - Johan Hynynen_19C85BBC.wem</Path>
+						</File>
+						<File Id="723293033" Language="SFX">
+							<ShortName>Crystal_Materialize.wav</ShortName>
+							<Path>SFX\Crystal_Materialize_8F02184A.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

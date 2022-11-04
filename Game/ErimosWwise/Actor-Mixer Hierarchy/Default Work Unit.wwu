@@ -953,51 +953,6 @@
 						</Folder>
 						<Folder Name="Crystals" ID="{E9A85DFF-DD36-4A2E-8242-51D852529BDA}" ShortID="1026481387">
 							<ChildrenList>
-								<Sound Name="SpawnCrystal" ID="{3690F725-2FFF-4137-AF35-70D45D268118}" ShortID="965086340">
-									<PropertyList>
-										<Property Name="3DSpatialization" Type="int16" Value="1"/>
-										<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
-										<Property Name="MaxSoundPerInstance" Type="int16">
-											<ValueList>
-												<Value>1</Value>
-											</ValueList>
-										</Property>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>5</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="ES_Swoosh Thing - Johan Hynynen" ID="{C67C1C6B-0ED8-464B-9A56-6E8313EF9356}">
-											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="0.414392165492958"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.786584761839385"/>
-												<Property Name="FadeOutShape" Type="int16" Value="1"/>
-												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimBegin" Type="Real64" Value="1.1445841097041"/>
-												<Property Name="TrimEnd" Type="Real64" Value="3.35936450001616"/>
-											</PropertyList>
-											<Language>SFX</Language>
-											<AudioFile>ES_Swoosh Thing - Johan Hynynen.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="588868501"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="ES_Swoosh Thing - Johan Hynynen" ID="{C67C1C6B-0ED8-464B-9A56-6E8313EF9356}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
 								<BlendContainer Name="ExplosiveCrystal" ID="{15BBAE26-83A9-4103-B023-BB47308572E0}" ShortID="977618785">
 									<PropertyList>
 										<Property Name="3DSpatialization" Type="int16" Value="1"/>
@@ -2035,6 +1990,162 @@
 										<ActiveSource Name="ES_Swoosh Thing - Johan Hynynen" ID="{26F23299-F2EE-4555-B34B-E0984D4D67E6}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<BlendContainer Name="SpawnCrystal" ID="{9DCB9861-262C-4816-884D-E28E58359FAD}" ShortID="394517928">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Magical" ID="{3690F725-2FFF-4137-AF35-70D45D268118}" ShortID="965086340">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ES_Swoosh Thing - Johan Hynynen" ID="{C67C1C6B-0ED8-464B-9A56-6E8313EF9356}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.414392165492958"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.786584761839385"/>
+														<Property Name="FadeOutShape" Type="int16" Value="1"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.1445841097041"/>
+														<Property Name="TrimEnd" Type="Real64" Value="3.35936450001616"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ES_Swoosh Thing - Johan Hynynen.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="588868501"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ES_Swoosh Thing - Johan Hynynen" ID="{C67C1C6B-0ED8-464B-9A56-6E8313EF9356}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Materialize" ID="{2470CDE0-0AD1-4946-90E7-6BB28DB9CC74}" ShortID="93878069">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{44A8B46A-30A4-4D84-B1FD-FE651E03ABE1}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="200"/>
+																	<Property Name="Min" Type="Real64" Value="-200"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{F13864A6-1163-4C34-BD8B-C96D9B2F864B}">
+																<PropertyList>
+																	<Property Name="Max" Type="Real64" Value="200"/>
+																	<Property Name="Min" Type="Real64" Value="-200"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Crystal_Materialize" ID="{393B8817-EC13-42F2-AF8D-704240340560}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="1.78559758435583"/>
+														<Property Name="FadeOutShape" Type="int16" Value="1"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.8982028374233"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>Crystal_Materialize.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="723293033"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="Crystal_Materialize" ID="{393B8817-EC13-42F2-AF8D-704240340560}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Crack" ID="{50E8CB3E-1AFE-43BC-AD30-05D67AE5D8AF}" ShortID="200279467">
+											<PropertyList>
+												<Property Name="InitialDelay" Type="Real64">
+													<ValueList>
+														<Value>0.3</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{824A19DE-15A7-4789-B40E-92703F3D08D1}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Min" Type="Real64" Value="-500"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="CrackCrunch_S011TX_6" ID="{CE0838C0-830C-4581-9EDF-465014424319}">
+													<Language>SFX</Language>
+													<AudioFile>CrackCrunch_S011TX.6.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="470278955"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="CrackCrunch_S011TX_6" ID="{CE0838C0-830C-4581-9EDF-465014424319}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</BlendContainer>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>
@@ -5100,47 +5211,6 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="Punch - Pop" ID="{013914D9-F6AB-4363-BADF-E1C0EB0BE837}" ShortID="1011426614">
-											<PropertyList>
-												<Property Name="Inclusion" Type="bool">
-													<ValueList>
-														<Value>False</Value>
-													</ValueList>
-												</Property>
-												<Property Name="Weight" Type="Real64">
-													<ValueList>
-														<Value>20</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="Punch - Pop" ID="{A833DEA7-2925-45AC-9531-8BA854B2B162}">
-													<PropertyList>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.0783270345175107"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.0607709750566894"/>
-														<Property Name="TrimEnd" Type="Real64" Value="0.599606953892668"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>Player\Melee attack\Punch - Pop.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="944417870"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="Punch - Pop" ID="{A833DEA7-2925-45AC-9531-8BA854B2B162}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
 										<Sound Name="ES_Punch Face 5 - SFX Producer" ID="{49E94D6D-5DED-4A10-86B4-298FE3BE08BB}" ShortID="978875251">
 											<PropertyList>
 												<Property Name="Pitch" Type="int32">
@@ -5212,70 +5282,11 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<RandomSequenceContainer Name="Hit" ID="{12DBC92F-11FB-44CA-AD33-2EA6A6814DB7}" ShortID="616924389">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<Sound Name="ES_Flesh Stab 1 - SFX Producer" ID="{DAC0C5C2-7BD8-45A0-855F-FA43D5DEE0C1}" ShortID="556253830">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="ES_Flesh Stab 1 - SFX Producer" ID="{0C99056C-81B1-4889-B8A8-E5CBF5406EAD}">
-															<Language>SFX</Language>
-															<AudioFile>ES_Flesh Stab 1 - SFX Producer.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="515539414"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="ES_Flesh Stab 1 - SFX Producer" ID="{0C99056C-81B1-4889-B8A8-E5CBF5406EAD}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="ES_Flesh Stab 4 - SFX Producer" ID="{FA981EBC-4F81-40D2-A5F3-E1EC9139F060}" ShortID="160781911">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="ES_Flesh Stab 4 - SFX Producer" ID="{4CFAE00C-A864-4913-AA05-3604717ADE14}">
-															<Language>SFX</Language>
-															<AudioFile>ES_Flesh Stab 4 - SFX Producer.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="31405960"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="ES_Flesh Stab 4 - SFX Producer" ID="{4CFAE00C-A864-4913-AA05-3604717ADE14}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-											</ChildrenList>
-											<ObjectLists/>
-										</RandomSequenceContainer>
-										<RandomSequenceContainer Name="Flesh" ID="{27AC65BB-2BE5-444E-BA1B-B1480D2A7CF0}" ShortID="1009215203">
+										<RandomSequenceContainer Name="Full" ID="{68383C84-AB14-490E-8588-210150A30D47}" ShortID="499562671">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-5</Value>
+														<Value>-3</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -5288,14 +5299,7 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<Sound Name="ES_Tongue Ripped Out - SFX Producer" ID="{C003862C-7506-48EB-AE1B-39AF790EA0D6}" ShortID="1061948562">
-													<PropertyList>
-														<Property Name="Weight" Type="Real64">
-															<ValueList>
-																<Value>20</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
+												<Sound Name="ESM_Ancient_Game_Weapon_Swing_Blood_Hit_4_Kill_Murder_Fantasy_Weapon_Wet" ID="{6C5253A1-DECF-4956-9B26-74C9179211F1}" ShortID="145978710">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
@@ -5305,25 +5309,24 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="ES_Tongue Ripped Out - SFX Producer" ID="{1B870141-B394-4F07-B4F8-FBA94CC89DEE}">
+														<AudioFileSource Name="ESM_Ancient_Game_Weapon_Swing_Blood_Hit_4_Kill_Murder_Fantasy_Weapon_Wet" ID="{F5CC6526-5ACF-49E9-8DDA-CA8845148237}">
 															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="0.111403921568627"/>
 																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.393066666666667"/>
+																<Property Name="TrimEnd" Type="Real64" Value="0.565567484662577"/>
 															</PropertyList>
 															<Language>SFX</Language>
-															<AudioFile>ES_Tongue Ripped Out - SFX Producer.wav</AudioFile>
+															<AudioFile>ESM_Ancient_Game_Weapon_Swing_Blood_Hit_4_Kill_Murder_Fantasy_Weapon_Wet.wav</AudioFile>
 															<MediaIDList>
-																<MediaID ID="288297667"/>
+																<MediaID ID="155558576"/>
 															</MediaIDList>
 														</AudioFileSource>
 													</ChildrenList>
 													<ObjectLists/>
 													<ActiveSourceList>
-														<ActiveSource Name="ES_Tongue Ripped Out - SFX Producer" ID="{1B870141-B394-4F07-B4F8-FBA94CC89DEE}" Platform="Linked"/>
+														<ActiveSource Name="ESM_Ancient_Game_Weapon_Swing_Blood_Hit_4_Kill_Murder_Fantasy_Weapon_Wet" ID="{F5CC6526-5ACF-49E9-8DDA-CA8845148237}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="ES_Flesh Rip 35 - SFX Producer" ID="{06021EF1-ACD8-4036-B918-9BB48E46BB48}" ShortID="460846405">
+												<Sound Name="ESM_Ancient_Game_Weapon_Swing_Blood_Hit_8_Kill_Murder_Fantasy_Weapon_Wet" ID="{44B85B56-12FD-4A4C-B6BF-C6BCCDD1C747}" ShortID="150881026">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
@@ -5333,20 +5336,27 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="ES_Flesh Rip 35 - SFX Producer" ID="{2D433A8C-9D7C-4ED7-99B6-30DC36A10F8A}">
+														<AudioFileSource Name="ESM_Ancient_Game_Weapon_Swing_Blood_Hit_8_Kill_Murder_Fantasy_Weapon_Wet" ID="{A7F7AC05-7686-408A-B57E-0DCDAE90A467}">
+															<PropertyList>
+																<Property Name="CrossfadeShape" Type="int16" Value="3"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.607873210633946"/>
+																<Property Name="FadeOutShape" Type="int16" Value="1"/>
+																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																<Property Name="TrimEnd" Type="Real64" Value="0.607873210633946"/>
+															</PropertyList>
 															<Language>SFX</Language>
-															<AudioFile>ES_Flesh Rip 35 - SFX Producer.wav</AudioFile>
+															<AudioFile>ESM_Ancient_Game_Weapon_Swing_Blood_Hit_8_Kill_Murder_Fantasy_Weapon_Wet.wav</AudioFile>
 															<MediaIDList>
-																<MediaID ID="609161163"/>
+																<MediaID ID="23203309"/>
 															</MediaIDList>
 														</AudioFileSource>
 													</ChildrenList>
 													<ObjectLists/>
 													<ActiveSourceList>
-														<ActiveSource Name="ES_Flesh Rip 35 - SFX Producer" ID="{2D433A8C-9D7C-4ED7-99B6-30DC36A10F8A}" Platform="Linked"/>
+														<ActiveSource Name="ESM_Ancient_Game_Weapon_Swing_Blood_Hit_8_Kill_Murder_Fantasy_Weapon_Wet" ID="{A7F7AC05-7686-408A-B57E-0DCDAE90A467}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="ES_Flesh Rip Heavy - SFX Producer" ID="{B454560B-862B-4A25-B249-7D63F6152E7D}" ShortID="991699438">
+												<Sound Name="ESM_Ancient_Game_Weapon_Swing_Blood_Hit_10_Kill_Murder_Fantasy_Weapon_Wet" ID="{C1FEBDDE-55E6-4AA2-915D-1A2F6A18EDB5}" ShortID="605018107">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
@@ -5356,17 +5366,22 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="ES_Flesh Rip Heavy - SFX Producer" ID="{D1230E43-21F7-4CA6-AB3D-57A45929474B}">
+														<AudioFileSource Name="ESM_Ancient_Game_Weapon_Swing_Blood_Hit_10_Kill_Murder_Fantasy_Weapon_Wet" ID="{9F1F7610-68E5-46B7-A3A2-0EA7BE8CCE33}">
+															<PropertyList>
+																<Property Name="LoopBegin" Type="Real64" Value="0"/>
+																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																<Property Name="TrimEnd" Type="Real64" Value="0.865030674846626"/>
+															</PropertyList>
 															<Language>SFX</Language>
-															<AudioFile>ES_Flesh Rip Heavy - SFX Producer.wav</AudioFile>
+															<AudioFile>ESM_Ancient_Game_Weapon_Swing_Blood_Hit_10_Kill_Murder_Fantasy_Weapon_Wet.wav</AudioFile>
 															<MediaIDList>
-																<MediaID ID="251764794"/>
+																<MediaID ID="744999179"/>
 															</MediaIDList>
 														</AudioFileSource>
 													</ChildrenList>
 													<ObjectLists/>
 													<ActiveSourceList>
-														<ActiveSource Name="ES_Flesh Rip Heavy - SFX Producer" ID="{D1230E43-21F7-4CA6-AB3D-57A45929474B}" Platform="Linked"/>
+														<ActiveSource Name="ESM_Ancient_Game_Weapon_Swing_Blood_Hit_10_Kill_Murder_Fantasy_Weapon_Wet" ID="{9F1F7610-68E5-46B7-A3A2-0EA7BE8CCE33}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
 											</ChildrenList>
@@ -5710,12 +5725,17 @@
 													<Modifier Name="" ID="{C039A83A-CB26-40B5-852F-11CDD0DBD194}">
 														<PropertyList>
 															<Property Name="Enabled" Type="bool" Value="True"/>
-															<Property Name="Max" Type="Real64" Value="200"/>
-															<Property Name="Min" Type="Real64" Value="-200"/>
+															<Property Name="Max" Type="Real64" Value="100"/>
+															<Property Name="Min" Type="Real64" Value="-400"/>
 														</PropertyList>
 													</Modifier>
 												</ModifierInfo>
 											</ModifierList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-2</Value>
+											</ValueList>
 										</Property>
 									</PropertyList>
 									<ReferenceList>
@@ -5727,137 +5747,16 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<RandomSequenceContainer Name="Hit" ID="{28194B2F-466D-42BB-9DD6-41386BE2B482}" ShortID="207388792">
-											<PropertyList>
-												<Property Name="InitialDelay" Type="Real64">
-													<ValueList>
-														<Value>0.2</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<Sound Name="ES_Punch 34 - SFX Producer" ID="{CD3B7828-94B1-465D-B485-B6902791E8DF}" ShortID="286328646">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="ES_Punch 34 - SFX Producer" ID="{010F9598-240A-46A7-86C1-3500B2371F2C}">
-															<Language>SFX</Language>
-															<AudioFile>ES_Punch 34 - SFX Producer.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="588192664"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="ES_Punch 34 - SFX Producer" ID="{010F9598-240A-46A7-86C1-3500B2371F2C}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="ES_Punch 6 - SFX Producer" ID="{0145C34E-B3C5-4AD4-A7F5-57870D880773}" ShortID="305897478">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="ES_Punch 6 - SFX Producer" ID="{DDDFBD47-C67D-4AD9-806C-1E27D067B98B}">
-															<Language>SFX</Language>
-															<AudioFile>ES_Punch 6 - SFX Producer.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="718851377"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="ES_Punch 6 - SFX Producer" ID="{DDDFBD47-C67D-4AD9-806C-1E27D067B98B}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="ES_Punch 41 - SFX Producer" ID="{C7C58200-DF8F-411F-95FD-B911F91D0BE6}" ShortID="592031657">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="ES_Punch 41 - SFX Producer" ID="{C8A25468-FC70-4665-94DF-2D8955F2B2D8}">
-															<Language>SFX</Language>
-															<AudioFile>ES_Punch 41 - SFX Producer.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="162448814"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="ES_Punch 41 - SFX Producer" ID="{C8A25468-FC70-4665-94DF-2D8955F2B2D8}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-											</ChildrenList>
-											<ObjectLists/>
-										</RandomSequenceContainer>
-										<Sound Name="Swoosh" ID="{8B99DB39-2145-46B4-96F7-D14DC90609F7}" ShortID="430416542">
-											<PropertyList>
-												<Property Name="Pitch" Type="int32">
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{E2EA9213-76F1-4FB6-8698-0B4B567DC979}">
-																<PropertyList>
-																	<Property Name="Enabled" Type="bool" Value="True"/>
-																	<Property Name="Min" Type="Real64" Value="-1000"/>
-																</PropertyList>
-															</Modifier>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Whip Whoosh Swoosh 5 - SFX Producer" ID="{2CBF1C4E-EEC2-43F8-A32A-E4059C39F4A0}">
-													<Language>SFX</Language>
-													<AudioFile>ES_Whip Whoosh Swoosh 5 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="610680920"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Whip Whoosh Swoosh 5 - SFX Producer" ID="{2CBF1C4E-EEC2-43F8-A32A-E4059C39F4A0}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
 										<RandomSequenceContainer Name="BonesBreak" ID="{5DCB502C-DF62-48C2-93F8-2247B8D44275}" ShortID="771015794">
 											<PropertyList>
 												<Property Name="InitialDelay" Type="Real64">
 													<ValueList>
-														<Value>0.2</Value>
+														<Value>0.1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -5944,6 +5843,88 @@
 													<ObjectLists/>
 													<ActiveSourceList>
 														<ActiveSource Name="ES_Bone Break 7 - SFX Producer" ID="{10B51F54-6C93-413F-931B-2A0D32D4091B}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="HitLow" ID="{010DE2EE-EF2C-4997-AB16-6C395459AFB2}" ShortID="820830698">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="ESM_Fighting_Game_One_Shot_Designed_Combat_Hits_Deep_Bone_Break_Gore_Blood_Crunch_Snap_Skull_Crush" ID="{31886B05-C821-4266-ACFB-BF4496B4DC9A}" ShortID="706654466">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ESM_Fighting_Game_One_Shot_Designed_Combat_Hits_Deep_Bone_Break_Gore_Blood_Crunch_Snap_Skull_Crush" ID="{0C49AA0D-B930-4B18-9DD5-AE7BA38344D1}">
+															<Language>SFX</Language>
+															<AudioFile>ESM_Fighting_Game_One_Shot_Designed_Combat_Hits_Deep_Bone_Break_Gore_Blood_Crunch_Snap_Skull_Crush.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1008819851"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ESM_Fighting_Game_One_Shot_Designed_Combat_Hits_Deep_Bone_Break_Gore_Blood_Crunch_Snap_Skull_Crush" ID="{0C49AA0D-B930-4B18-9DD5-AE7BA38344D1}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="ESM_Fighting_Game_One_Shot_Designed_Combat_Hits_Punch_Bone_Break_Impact_02" ID="{2AE04A89-8362-417A-A27A-E86D8CBA8ADC}" ShortID="97080422">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ESM_Fighting_Game_One_Shot_Designed_Combat_Hits_Punch_Bone_Break_Impact_02" ID="{ABE095EB-4F06-426C-BA9D-34DE7EACC2AD}">
+															<Language>SFX</Language>
+															<AudioFile>ESM_Fighting_Game_One_Shot_Designed_Combat_Hits_Punch_Bone_Break_Impact_02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="682079368"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ESM_Fighting_Game_One_Shot_Designed_Combat_Hits_Punch_Bone_Break_Impact_02" ID="{ABE095EB-4F06-426C-BA9D-34DE7EACC2AD}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="ESM_Fighting_Game_One_Shot_Designed_Weapons_Mace_04_Short_Bloody_Swing_Hit_No_Whoosh" ID="{0D1B1881-E94A-4037-9B18-7D12DED5244F}" ShortID="1030701134">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ESM_Fighting_Game_One_Shot_Designed_Weapons_Mace_04_Short_Bloody_Swing_Hit_No_Whoosh" ID="{DDCC6C0B-37B8-49C4-BE1E-DA38DE0A3BC2}">
+															<Language>SFX</Language>
+															<AudioFile>ESM_Fighting_Game_One_Shot_Designed_Weapons_Mace_04_Short_Bloody_Swing_Hit_No_Whoosh.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="92270191"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ESM_Fighting_Game_One_Shot_Designed_Weapons_Mace_04_Short_Bloody_Swing_Hit_No_Whoosh" ID="{DDCC6C0B-37B8-49C4-BE1E-DA38DE0A3BC2}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
 											</ChildrenList>
