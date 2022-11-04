@@ -463,6 +463,15 @@ void Hachiko::Scripting::Stalagmite::OnSave(YAML::Node& node) const
 		node["'_explosion_effect@GameObject*'"] = 0;
 	}
 
+	if (_area_indicator != nullptr)
+	{
+		node["'_area_indicator@GameObject*'"] = _area_indicator->GetID();
+	}
+	else
+	{
+		node["'_area_indicator@GameObject*'"] = 0;
+	}
+
 	if (GEO != nullptr)
 	{
 		node["'GEO@GameObject*'"] = GEO->GetID();
@@ -487,6 +496,11 @@ void Hachiko::Scripting::Stalagmite::OnLoad()
 	if (load_node["'_explosion_effect@GameObject*'"].IsDefined())
 	{
 		_explosion_effect = SceneManagement::FindInCurrentScene(load_node["'_explosion_effect@GameObject*'"].as<unsigned long long>());
+	}
+
+	if (load_node["'_area_indicator@GameObject*'"].IsDefined())
+	{
+		_area_indicator = SceneManagement::FindInCurrentScene(load_node["'_area_indicator@GameObject*'"].as<unsigned long long>());
 	}
 
 	if (load_node["'GEO@GameObject*'"].IsDefined())

@@ -11,33 +11,24 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="626769978" Language="SFX" Hash="77595426">
+		<SoundBank Id="626769978" Language="SFX" Hash="992608440">
 			<ObjectPath>\SoundBanks\Default Work Unit\BackgroundMusic</ObjectPath>
 			<ShortName>BackgroundMusic</ShortName>
 			<Path>BackgroundMusic.bnk</Path>
 			<IncludedEvents>
-				<Event Id="513571230" Name="Play_Combat" ObjectPath="\Events\Music\Play_Combat"/>
-				<Event Id="2953314807" Name="Play_IntroCinematic" ObjectPath="\Events\Default Work Unit\Play_IntroCinematic">
-					<IncludedMemoryFiles>
-						<File Id="203035445" Language="SFX">
-							<ShortName>Cutscene_effects.wav</ShortName>
-							<Path>SFX\Cutscene_effects_10C4C929.wem</Path>
-						</File>
-						<File Id="267500250" Language="SFX">
-							<ShortName>ES_Sci Fi Voice Clip 663 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Sci Fi Voice Clip 663 - SFX Producer_10C4C929.wem</Path>
-						</File>
-						<File Id="1003919086" Language="SFX">
-							<ShortName>ER_cinematica_masterv2.wav</ShortName>
-							<Path>SFX\ER_cinematica_masterv2_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3849525492" Name="Play_Navigation" ObjectPath="\Events\Music\Play_Navigation">
+				<Event Id="2346973959" Name="Play_InteractiveMusic" ObjectPath="\Events\Music\Play_InteractiveMusic">
 					<IncludedMemoryFiles>
 						<File Id="31154168" Language="SFX">
 							<ShortName>Defeated-138bpm4-4_L4M-P0.wav</ShortName>
 							<Path>SFX\Defeated-138bpm4-4_L4M-P0_D79FB2B7.wem</Path>
+						</File>
+						<File Id="44178588" Language="SFX">
+							<ShortName>ER_Boss_Step 1B.wav</ShortName>
+							<Path>SFX\ER_Boss_Step 1B_D79FB2B7.wem</Path>
+						</File>
+						<File Id="101484339" Language="SFX">
+							<ShortName>Boss_Stage3_155bpm.wav</ShortName>
+							<Path>SFX\Boss_Stage3_155bpm_D79FB2B7.wem</Path>
 						</File>
 						<File Id="126846833" Language="SFX">
 							<ShortName>Exp_b_108bpm.wav</ShortName>
@@ -59,9 +50,21 @@
 							<ShortName>Exp_a_108bpm.wav</ShortName>
 							<Path>SFX\Exp_a_108bpm_D79FB2B7.wem</Path>
 						</File>
+						<File Id="400071183" Language="SFX">
+							<ShortName>ER_Lv2_combate_v2_133bpm.wav</ShortName>
+							<Path>SFX\ER_Lv2_combate_v2_133bpm_D79FB2B7.wem</Path>
+						</File>
+						<File Id="482588252" Language="SFX">
+							<ShortName>Boss_Stage2_155bpm.wav</ShortName>
+							<Path>SFX\Boss_Stage2_155bpm_D79FB2B7.wem</Path>
+						</File>
 						<File Id="503682454" Language="SFX">
 							<ShortName>Com_a_108bpm.wav</ShortName>
 							<Path>SFX\Com_a_108bpm_D79FB2B7.wem</Path>
+						</File>
+						<File Id="713946810" Language="SFX">
+							<ShortName>ER_Victory_v2_155bpm.wav</ShortName>
+							<Path>SFX\ER_Victory_v2_155bpm_D79FB2B7.wem</Path>
 						</File>
 						<File Id="715960795" Language="SFX">
 							<ShortName>Com_c_108bpm.wav</ShortName>
@@ -71,9 +74,17 @@
 							<ShortName>Exp_d_108bpm.wav</ShortName>
 							<Path>SFX\Exp_d_108bpm_D79FB2B7.wem</Path>
 						</File>
+						<File Id="742142085" Language="SFX">
+							<ShortName>ER_Boss_Step 1.wav</ShortName>
+							<Path>SFX\ER_Boss_Step 1_D79FB2B7.wem</Path>
+						</File>
 						<File Id="759444810" Language="SFX">
 							<ShortName>Com_108bpm_full.wav</ShortName>
 							<Path>SFX\Com_108bpm_full_D79FB2B7.wem</Path>
+						</File>
+						<File Id="808930464" Language="SFX">
+							<ShortName>ER_Lv2_explore_133bpm.wav</ShortName>
+							<Path>SFX\ER_Lv2_explore_133bpm_D79FB2B7.wem</Path>
 						</File>
 						<File Id="854415901" Language="SFX">
 							<ShortName>Exp_c_108bpm.wav</ShortName>
@@ -93,10 +104,14 @@
 							<Children>
 								<SwitchContainer SwitchValue="{78E4EDC4-7307-43E3-B46B-D9454B2DF4BD}">
 									<Children>
-										<SwitchContainer SwitchValue="{7441A8D7-1473-42C8-84AC-E7692335FD53}">
-											<Media>
-												<File Id="31154168"/>
-											</Media>
+										<SwitchContainer SwitchValue="{94969645-2F42-4E42-8B77-A48DD66B20AE}">
+											<Children>
+												<SwitchContainer SwitchValue="{7441A8D7-1473-42C8-84AC-E7692335FD53}">
+													<Media>
+														<File Id="31154168"/>
+													</Media>
+												</SwitchContainer>
+											</Children>
 										</SwitchContainer>
 									</Children>
 								</SwitchContainer>
@@ -106,15 +121,14 @@
 							<Children>
 								<SwitchContainer SwitchValue="{130FBCEE-8CBF-4113-B45E-A257238567D1}">
 									<Children>
-										<SwitchContainer SwitchValue="{B9D34D9B-4164-4F24-B1C3-D91B169DA95F}">
-											<Media>
-												<File Id="181335723"/>
-												<File Id="220998542"/>
-												<File Id="283120831"/>
-												<File Id="503682454"/>
-												<File Id="715960795"/>
-												<File Id="759444810"/>
-											</Media>
+										<SwitchContainer SwitchValue="{334BD31E-A4C0-49AD-AEA7-88D6C14893B3}">
+											<Children>
+												<SwitchContainer SwitchValue="{B9D34D9B-4164-4F24-B1C3-D91B169DA95F}">
+													<Media>
+														<File Id="400071183"/>
+													</Media>
+												</SwitchContainer>
+											</Children>
 										</SwitchContainer>
 									</Children>
 								</SwitchContainer>
@@ -124,15 +138,127 @@
 							<Children>
 								<SwitchContainer SwitchValue="{130FBCEE-8CBF-4113-B45E-A257238567D1}">
 									<Children>
-										<SwitchContainer SwitchValue="{B92814EE-2B24-4C85-AE4E-9753BE866E50}">
-											<Media>
-												<File Id="126846833"/>
-												<File Id="341546302"/>
-												<File Id="718840818"/>
-												<File Id="854415901"/>
-												<File Id="903340460"/>
-												<File Id="988655692"/>
-											</Media>
+										<SwitchContainer SwitchValue="{515CEDA8-F918-4759-B94C-91D4B24419F7}">
+											<Children>
+												<SwitchContainer SwitchValue="{B9D34D9B-4164-4F24-B1C3-D91B169DA95F}">
+													<Media>
+														<File Id="181335723"/>
+														<File Id="220998542"/>
+														<File Id="283120831"/>
+														<File Id="503682454"/>
+														<File Id="715960795"/>
+														<File Id="759444810"/>
+													</Media>
+												</SwitchContainer>
+											</Children>
+										</SwitchContainer>
+									</Children>
+								</SwitchContainer>
+							</Children>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{F78DEA1E-406E-4706-B5BC-D2290B952F54}">
+							<Children>
+								<SwitchContainer SwitchValue="{130FBCEE-8CBF-4113-B45E-A257238567D1}">
+									<Children>
+										<SwitchContainer SwitchValue="{515CEDA8-F918-4759-B94C-91D4B24419F7}">
+											<Children>
+												<SwitchContainer SwitchValue="{B92814EE-2B24-4C85-AE4E-9753BE866E50}">
+													<Media>
+														<File Id="126846833"/>
+														<File Id="341546302"/>
+														<File Id="718840818"/>
+														<File Id="854415901"/>
+														<File Id="903340460"/>
+														<File Id="988655692"/>
+													</Media>
+												</SwitchContainer>
+											</Children>
+										</SwitchContainer>
+									</Children>
+								</SwitchContainer>
+							</Children>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{F78DEA1E-406E-4706-B5BC-D2290B952F54}">
+							<Children>
+								<SwitchContainer SwitchValue="{130FBCEE-8CBF-4113-B45E-A257238567D1}">
+									<Children>
+										<SwitchContainer SwitchValue="{334BD31E-A4C0-49AD-AEA7-88D6C14893B3}">
+											<Children>
+												<SwitchContainer SwitchValue="{B92814EE-2B24-4C85-AE4E-9753BE866E50}">
+													<Media>
+														<File Id="808930464"/>
+													</Media>
+												</SwitchContainer>
+											</Children>
+										</SwitchContainer>
+									</Children>
+								</SwitchContainer>
+							</Children>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{F78DEA1E-406E-4706-B5BC-D2290B952F54}">
+							<Children>
+								<SwitchContainer SwitchValue="{130FBCEE-8CBF-4113-B45E-A257238567D1}">
+									<Children>
+										<SwitchContainer SwitchValue="{9F83A140-E38E-4E26-93DB-368ADC2626DE}">
+											<Children>
+												<SwitchContainer SwitchValue="{7441A8D7-1473-42C8-84AC-E7692335FD53}">
+													<Children>
+														<SwitchContainer SwitchValue="{F78DEA1E-406E-4706-B5BC-D2290B952F54}">
+															<Children>
+																<SwitchContainer SwitchValue="{1AC76792-AD16-42E6-B27B-0D03BCBF9474}">
+																	<Media>
+																		<File Id="742142085"/>
+																	</Media>
+																</SwitchContainer>
+															</Children>
+														</SwitchContainer>
+														<SwitchContainer SwitchValue="{F78DEA1E-406E-4706-B5BC-D2290B952F54}">
+															<Children>
+																<SwitchContainer SwitchValue="{B7696B1A-498C-46A0-B1CA-1EFD809FE3AE}">
+																	<Media>
+																		<File Id="482588252"/>
+																	</Media>
+																</SwitchContainer>
+															</Children>
+														</SwitchContainer>
+														<SwitchContainer SwitchValue="{F78DEA1E-406E-4706-B5BC-D2290B952F54}">
+															<Children>
+																<SwitchContainer SwitchValue="{1B3F4FD0-8F6D-4FE2-81DE-74BCEDF83928}">
+																	<Media>
+																		<File Id="101484339"/>
+																	</Media>
+																</SwitchContainer>
+															</Children>
+														</SwitchContainer>
+														<SwitchContainer SwitchValue="{F78DEA1E-406E-4706-B5BC-D2290B952F54}">
+															<Children>
+																<SwitchContainer SwitchValue="{9E65B438-BF0B-490F-9C58-CDAEC2F7A184}">
+																	<Media>
+																		<File Id="44178588"/>
+																	</Media>
+																</SwitchContainer>
+															</Children>
+														</SwitchContainer>
+													</Children>
+												</SwitchContainer>
+											</Children>
+										</SwitchContainer>
+									</Children>
+								</SwitchContainer>
+							</Children>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{F78DEA1E-406E-4706-B5BC-D2290B952F54}">
+							<Children>
+								<SwitchContainer SwitchValue="{4218ECB3-FF93-4574-883F-453CD6E8D154}">
+									<Children>
+										<SwitchContainer SwitchValue="{94969645-2F42-4E42-8B77-A48DD66B20AE}">
+											<Children>
+												<SwitchContainer SwitchValue="{7441A8D7-1473-42C8-84AC-E7692335FD53}">
+													<Media>
+														<File Id="713946810"/>
+													</Media>
+												</SwitchContainer>
+											</Children>
 										</SwitchContainer>
 									</Children>
 								</SwitchContainer>
@@ -142,14 +268,65 @@
 					<ActionSetState>
 						<ActionSetStateEntry Id="89505537" Name="Gameplay" ObjectPath="\States\Default Work Unit\Music_States\Gameplay"/>
 						<ActionSetStateEntry Id="655265632" Name="Alive" ObjectPath="\States\Default Work Unit\Player_Life\Alive"/>
+						<ActionSetStateEntry Id="936729722" Name="Stage1" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1"/>
+					</ActionSetState>
+					<ActionSetSwitch>
+						<ActionSetSwitchEntry Id="579523862" Name="Explore" ObjectPath="\Switches\Music\Gameplay_Switch\Explore"/>
+					</ActionSetSwitch>
+				</Event>
+				<Event Id="2953314807" Name="Play_IntroCinematic" ObjectPath="\Events\Default Work Unit\UI\Play_IntroCinematic">
+					<IncludedMemoryFiles>
+						<File Id="203035445" Language="SFX">
+							<ShortName>Cutscene_effects.wav</ShortName>
+							<Path>SFX\Cutscene_effects_10C4C929.wem</Path>
+						</File>
+						<File Id="267500250" Language="SFX">
+							<ShortName>ES_Sci Fi Voice Clip 663 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Sci Fi Voice Clip 663 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="1003919086" Language="SFX">
+							<ShortName>ER_cinematica_masterv2.wav</ShortName>
+							<Path>SFX\ER_cinematica_masterv2_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3129492764" Name="Set_State1_BossFight" ObjectPath="\Events\Default Work Unit\Set\Set_State1_BossFight">
+					<ActionSetState>
+						<ActionSetStateEntry Id="936729722" Name="Stage1" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1"/>
 					</ActionSetState>
 				</Event>
-				<Event Id="913896232" Name="Stop_Combat" ObjectPath="\Events\Music\Stop_Combat"/>
-				<Event Id="445689598" Name="Stop_Navigation" ObjectPath="\Events\Music\Stop_Navigation"/>
+				<Event Id="1956163010" Name="Set_State1b_BossFight" ObjectPath="\Events\Default Work Unit\Set_State1b_BossFight">
+					<ActionSetState>
+						<ActionSetStateEntry Id="1591776364" Name="Stage1b" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1b"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="422367531" Name="Set_State2_BossFight" ObjectPath="\Events\Default Work Unit\Set\Set_State2_BossFight">
+					<ActionSetState>
+						<ActionSetStateEntry Id="936729721" Name="Stage2" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage2"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="129783526" Name="Set_State3_BossFight" ObjectPath="\Events\Default Work Unit\Set\Set_State3_BossFight">
+					<ActionSetState>
+						<ActionSetStateEntry Id="936729720" Name="Stage3" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage3"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="1482465818" Name="Set_State_Defeated" ObjectPath="\Events\Default Work Unit\Set\Set_State_Defeated">
+					<ActionSetState>
+						<ActionSetStateEntry Id="89505537" Name="Gameplay" ObjectPath="\States\Default Work Unit\Music_States\Gameplay"/>
+						<ActionSetStateEntry Id="936729722" Name="Stage1" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1"/>
+						<ActionSetStateEntry Id="2791675679" Name="Defeated" ObjectPath="\States\Default Work Unit\Player_Life\Defeated"/>
+					</ActionSetState>
+					<ActionSetSwitch>
+						<ActionSetSwitchEntry Id="579523862" Name="Explore" ObjectPath="\Switches\Music\Gameplay_Switch\Explore"/>
+					</ActionSetSwitch>
+				</Event>
+				<Event Id="3974925374" Name="Set_State_Victory" ObjectPath="\Events\Default Work Unit\Set_State_Victory">
+					<ActionSetState>
+						<ActionSetStateEntry Id="2716678721" Name="Victory" ObjectPath="\States\Default Work Unit\Music_States\Victory"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3266617285" Name="Stop_InteractiveMusic" ObjectPath="\Events\Music\Stop_InteractiveMusic"/>
 			</IncludedEvents>
-			<GameParameters>
-				<GameParameter Id="3963624107" Name="EnemyAware" ObjectPath="\Game Parameters\Music\EnemyAware"/>
-			</GameParameters>
 			<StateGroups>
 				<StateGroup Id="89505537" Name="Gameplay" ObjectPath="\States\Default Work Unit\Music_States\Gameplay" GUID="{130FBCEE-8CBF-4113-B45E-A257238567D1}">
 					<States/>
@@ -157,13 +334,39 @@
 				<StateGroup Id="655265632" Name="Alive" ObjectPath="\States\Default Work Unit\Player_Life\Alive" GUID="{F78DEA1E-406E-4706-B5BC-D2290B952F54}">
 					<States/>
 				</StateGroup>
+				<StateGroup Id="936729720" Name="Stage3" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage3" GUID="{1B3F4FD0-8F6D-4FE2-81DE-74BCEDF83928}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="936729721" Name="Stage2" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage2" GUID="{B7696B1A-498C-46A0-B1CA-1EFD809FE3AE}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="936729722" Name="Stage1" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1" GUID="{1AC76792-AD16-42E6-B27B-0D03BCBF9474}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="1591776364" Name="Stage1b" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1b" GUID="{9E65B438-BF0B-490F-9C58-CDAEC2F7A184}">
+					<States/>
+				</StateGroup>
 				<StateGroup Id="1690668539" Name="Music_States" ObjectPath="\States\Default Work Unit\Music_States" GUID="{78E4EDC4-7307-43E3-B46B-D9454B2DF4BD}">
 					<States>
 						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Music_States\None" GUID="{F4E7D95B-60DE-4AD8-9D64-569149B9E444}"/>
 						<State Id="89505537" Name="Gameplay" ObjectPath="\States\Default Work Unit\Music_States\Gameplay" GUID="{130FBCEE-8CBF-4113-B45E-A257238567D1}"/>
-						<State Id="1560169506" Name="Boss" ObjectPath="\States\Default Work Unit\Music_States\Boss" GUID="{E24A9ED8-8BD2-4861-BCA8-61FD9CE536E5}"/>
 						<State Id="2716678721" Name="Victory" ObjectPath="\States\Default Work Unit\Music_States\Victory" GUID="{4218ECB3-FF93-4574-883F-453CD6E8D154}"/>
 					</States>
+				</StateGroup>
+				<StateGroup Id="2716678721" Name="Victory" ObjectPath="\States\Default Work Unit\Music_States\Victory" GUID="{4218ECB3-FF93-4574-883F-453CD6E8D154}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="2746189348" Name="Boss_battle_states" ObjectPath="\States\Default Work Unit\Boss_battle_states" GUID="{0E9BFD09-6921-4435-A7C0-6A8BD48A118D}">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Boss_battle_states\None" GUID="{71A1CF18-27A5-411F-A124-A11DDA8B758C}"/>
+						<State Id="936729722" Name="Stage1" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1" GUID="{1AC76792-AD16-42E6-B27B-0D03BCBF9474}"/>
+						<State Id="936729721" Name="Stage2" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage2" GUID="{B7696B1A-498C-46A0-B1CA-1EFD809FE3AE}"/>
+						<State Id="936729720" Name="Stage3" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage3" GUID="{1B3F4FD0-8F6D-4FE2-81DE-74BCEDF83928}"/>
+						<State Id="1591776364" Name="Stage1b" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1b" GUID="{9E65B438-BF0B-490F-9C58-CDAEC2F7A184}"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="2791675679" Name="Defeated" ObjectPath="\States\Default Work Unit\Player_Life\Defeated" GUID="{6D9231D6-6EC9-4CBF-8DA7-97EC649CB00E}">
+					<States/>
 				</StateGroup>
 				<StateGroup Id="3762137787" Name="Player_Life" ObjectPath="\States\Default Work Unit\Player_Life" GUID="{DEB1DF95-2877-494B-8D4B-E6FC5AF08A62}">
 					<States>
@@ -174,6 +377,16 @@
 				</StateGroup>
 			</StateGroups>
 			<SwitchGroups>
+				<SwitchGroup Id="579523862" Name="Explore" ObjectPath="\Switches\Music\Gameplay_Switch\Explore" GUID="{B92814EE-2B24-4C85-AE4E-9753BE866E50}">
+					<Switches/>
+				</SwitchGroup>
+				<SwitchGroup Id="1296152836" Name="Level_Switch" ObjectPath="\Switches\Music\Level_Switch" GUID="{94969645-2F42-4E42-8B77-A48DD66B20AE}">
+					<Switches>
+						<Switch Id="2678230382" Name="Level1" ObjectPath="\Switches\Music\Level_Switch\Level1" GUID="{515CEDA8-F918-4759-B94C-91D4B24419F7}"/>
+						<Switch Id="2678230381" Name="Level2" ObjectPath="\Switches\Music\Level_Switch\Level2" GUID="{334BD31E-A4C0-49AD-AEA7-88D6C14893B3}"/>
+						<Switch Id="1560169506" Name="Boss" ObjectPath="\Switches\Music\Level_Switch\Boss" GUID="{9F83A140-E38E-4E26-93DB-368ADC2626DE}"/>
+					</Switches>
+				</SwitchGroup>
 				<SwitchGroup Id="2702523344" Name="Gameplay_Switch" ObjectPath="\Switches\Music\Gameplay_Switch" GUID="{7441A8D7-1473-42C8-84AC-E7692335FD53}">
 					<Switches>
 						<Switch Id="579523862" Name="Explore" ObjectPath="\Switches\Music\Gameplay_Switch\Explore" GUID="{B92814EE-2B24-4C85-AE4E-9753BE866E50}"/>
@@ -182,7 +395,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="252012875">
+		<SoundBank Id="1355168291" Language="SFX" Hash="1122897426">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -192,7 +405,7 @@
 			<ShortName>UI</ShortName>
 			<Path>UI.bnk</Path>
 			<IncludedEvents>
-				<Event Id="1615720664" Name="Play_UIClick" ObjectPath="\Events\Default Work Unit\Play_UIClick">
+				<Event Id="1615720664" Name="Play_UIClick" ObjectPath="\Events\Default Work Unit\UI\Play_UIClick">
 					<IncludedMemoryFiles>
 						<File Id="702924850" Language="SFX">
 							<ShortName>UI\ui-confirmation.wav</ShortName>
@@ -200,7 +413,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2502251926" Name="Play_UIHover" ObjectPath="\Events\Default Work Unit\Play_UIHover">
+				<Event Id="2502251926" Name="Play_UIHover" ObjectPath="\Events\Default Work Unit\UI\Play_UIHover">
 					<IncludedMemoryFiles>
 						<File Id="1007111854" Language="SFX">
 							<ShortName>UI\ui-hover.wav</ShortName>
@@ -210,12 +423,12 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1560169506" Language="SFX" Hash="3218273179">
+		<SoundBank Id="1560169506" Language="SFX" Hash="1729567830">
 			<ObjectPath>\SoundBanks\Default Work Unit\Boss</ObjectPath>
 			<ShortName>Boss</ShortName>
 			<Path>Boss.bnk</Path>
 			<IncludedEvents>
-				<Event Id="1064356868" Name="Play_BossBreathe" ObjectPath="\Events\Default Work Unit\Play_BossBreathe">
+				<Event Id="1064356868" Name="Play_BossBreathe" ObjectPath="\Events\Default Work Unit\Enemies\Boss\Play_BossBreathe">
 					<IncludedMemoryFiles>
 						<File Id="97924898" Language="SFX">
 							<ShortName>ES_Creature Growl - SFX Producer.wav</ShortName>
@@ -223,7 +436,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="694925737" Name="Play_BossDeath" ObjectPath="\Events\Default Work Unit\Play_BossDeath">
+				<Event Id="694925737" Name="Play_BossDeath" ObjectPath="\Events\Default Work Unit\Enemies\Boss\Play_BossDeath">
 					<IncludedMemoryFiles>
 						<File Id="416633218" Language="SFX">
 							<ShortName>ES_Monster Groan 6 - SFX Producer.wav</ShortName>
@@ -235,10 +448,10 @@
 						</File>
 					</IncludedMemoryFiles>
 					<ActionSetState>
-						<ActionSetStateEntry Id="2716678721" Name="Victory" ObjectPath="\States\Default Work Unit\Boss_battle_states\Victory"/>
+						<ActionSetStateEntry Id="2716678721" Name="Victory" ObjectPath="\States\Default Work Unit\Music_States\Victory"/>
 					</ActionSetState>
 				</Event>
-				<Event Id="993878670" Name="Play_BossFootsteps" ObjectPath="\Events\Default Work Unit\Play_BossFootsteps">
+				<Event Id="993878670" Name="Play_BossFootsteps" ObjectPath="\Events\Default Work Unit\Enemies\Boss\Play_BossFootsteps">
 					<IncludedMemoryFiles>
 						<File Id="921763871" Language="SFX">
 							<ShortName>ES_Earthquake Tremor 3 - SFX Producer.wav</ShortName>
@@ -250,7 +463,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2570105658" Name="Play_BossHitFloor" ObjectPath="\Events\Default Work Unit\Play_BossHitFloor">
+				<Event Id="2570105658" Name="Play_BossHitFloor" ObjectPath="\Events\Default Work Unit\Enemies\Boss\Play_BossHitFloor">
 					<IncludedMemoryFiles>
 						<File Id="91551775" Language="SFX">
 							<ShortName>ES_Glass Boom - SFX Producer.wav</ShortName>
@@ -266,7 +479,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="4292759136" Name="Play_BossLaugh" ObjectPath="\Events\Default Work Unit\Play_BossLaugh">
+				<Event Id="4292759136" Name="Play_BossLaugh" ObjectPath="\Events\Default Work Unit\Enemies\Boss\Play_BossLaugh">
 					<IncludedMemoryFiles>
 						<File Id="376674477" Language="SFX">
 							<ShortName>ES_Devil Laugh 2 - SFX Producer.wav</ShortName>
@@ -274,7 +487,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="866952685" Name="Play_BossMeleeStand" ObjectPath="\Events\Default Work Unit\Play_BossMeleeStand">
+				<Event Id="866952685" Name="Play_BossMeleeStand" ObjectPath="\Events\Default Work Unit\Enemies\Boss\Play_BossMeleeStand">
 					<IncludedMemoryFiles>
 						<File Id="144556513" Language="SFX">
 							<ShortName>ES_Monster Growl 11 - SFX Producer.wav</ShortName>
@@ -282,43 +495,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3463024606" Name="Play_BossMusic" ObjectPath="\Events\Default Work Unit\Play_BossMusic">
-					<IncludedMemoryFiles>
-						<File Id="101484339" Language="SFX">
-							<ShortName>Boss_Stage3_155bpm.wav</ShortName>
-							<Path>SFX\Boss_Stage3_155bpm_D79FB2B7.wem</Path>
-						</File>
-						<File Id="482588252" Language="SFX">
-							<ShortName>Boss_Stage2_155bpm.wav</ShortName>
-							<Path>SFX\Boss_Stage2_155bpm_D79FB2B7.wem</Path>
-						</File>
-						<File Id="742142085" Language="SFX">
-							<ShortName>ER_Boss_Step 1.wav</ShortName>
-							<Path>SFX\ER_Boss_Step 1_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-					<SwitchContainers>
-						<SwitchContainer SwitchValue="{1AC76792-AD16-42E6-B27B-0D03BCBF9474}">
-							<Media>
-								<File Id="742142085"/>
-							</Media>
-						</SwitchContainer>
-						<SwitchContainer SwitchValue="{B7696B1A-498C-46A0-B1CA-1EFD809FE3AE}">
-							<Media>
-								<File Id="482588252"/>
-							</Media>
-						</SwitchContainer>
-						<SwitchContainer SwitchValue="{1B3F4FD0-8F6D-4FE2-81DE-74BCEDF83928}">
-							<Media>
-								<File Id="101484339"/>
-							</Media>
-						</SwitchContainer>
-					</SwitchContainers>
-					<ActionSetState>
-						<ActionSetStateEntry Id="936729722" Name="Stage1" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1"/>
-					</ActionSetState>
-				</Event>
-				<Event Id="3957245444" Name="Play_BossPreJump" ObjectPath="\Events\Default Work Unit\Play_BossPreJump">
+				<Event Id="3957245444" Name="Play_BossPreJump" ObjectPath="\Events\Default Work Unit\Enemies\Boss\Play_BossPreJump">
 					<IncludedMemoryFiles>
 						<File Id="955556891" Language="SFX">
 							<ShortName>ES_Monster Growl 3 - SFX Producer.wav</ShortName>
@@ -326,74 +503,27 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1490429921" Name="Play_BossRoar" ObjectPath="\Events\Default Work Unit\Play_BossRoar">
+				<Event Id="1490429921" Name="Play_BossRoar" ObjectPath="\Events\Default Work Unit\Enemies\Boss\Play_BossRoar">
 					<IncludedMemoryFiles>
 						<File Id="929986589" Language="SFX">
 							<ShortName>249686__cylon8472__cthulhu-growl.wav</ShortName>
-							<Path>SFX\249686__cylon8472__cthulhu-growl_F4F8EAAA.wem</Path>
+							<Path>SFX\249686__cylon8472__cthulhu-growl_99C8B55C.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3129492764" Name="Set_State1_BossFight" ObjectPath="\Events\Default Work Unit\Set_State1_BossFight">
-					<ActionSetState>
-						<ActionSetStateEntry Id="936729722" Name="Stage1" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1"/>
-					</ActionSetState>
-				</Event>
-				<Event Id="422367531" Name="Set_State2_BossFight" ObjectPath="\Events\Default Work Unit\Set_State2_BossFight">
-					<ActionSetState>
-						<ActionSetStateEntry Id="936729721" Name="Stage2" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage2"/>
-					</ActionSetState>
-				</Event>
-				<Event Id="129783526" Name="Set_State3_BossFight" ObjectPath="\Events\Default Work Unit\Set_State3_BossFight">
-					<ActionSetState>
-						<ActionSetStateEntry Id="936729720" Name="Stage3" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage3"/>
-					</ActionSetState>
-				</Event>
-				<Event Id="1482465818" Name="Set_State_Defeated" ObjectPath="\Events\Default Work Unit\Set_State_Defeated">
+				<Event Id="1727127580" Name="Play_BossWins" ObjectPath="\Events\Default Work Unit\Enemies\Boss\Play_BossWins">
 					<IncludedMemoryFiles>
-						<File Id="31154168" Language="SFX">
-							<ShortName>Defeated-138bpm4-4_L4M-P0.wav</ShortName>
-							<Path>SFX\Defeated-138bpm4-4_L4M-P0_D79FB2B7.wem</Path>
-						</File>
 						<File Id="421868321" Language="SFX">
 							<ShortName>ES_Devil Laugh 1 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Devil Laugh 1 - SFX Producer_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
-					<ActionSetState>
-						<ActionSetStateEntry Id="2044049779" Name="Dead" ObjectPath="\States\Default Work Unit\Boss_battle_states\Dead"/>
-					</ActionSetState>
 				</Event>
-				<Event Id="2499789540" Name="Stop_BossFootsteps" ObjectPath="\Events\Default Work Unit\Stop_BossFootsteps"/>
+				<Event Id="2499789540" Name="Stop_BossFootsteps" ObjectPath="\Events\Default Work Unit\Enemies\Boss\Stop_BossFootsteps"/>
 			</IncludedEvents>
-			<GameParameters>
-				<GameParameter Id="3963624107" Name="EnemyAware" ObjectPath="\Game Parameters\Music\EnemyAware"/>
-			</GameParameters>
 			<StateGroups>
-				<StateGroup Id="936729720" Name="Stage3" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage3" GUID="{1B3F4FD0-8F6D-4FE2-81DE-74BCEDF83928}">
+				<StateGroup Id="2716678721" Name="Victory" ObjectPath="\States\Default Work Unit\Music_States\Victory" GUID="{4218ECB3-FF93-4574-883F-453CD6E8D154}">
 					<States/>
-				</StateGroup>
-				<StateGroup Id="936729721" Name="Stage2" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage2" GUID="{B7696B1A-498C-46A0-B1CA-1EFD809FE3AE}">
-					<States/>
-				</StateGroup>
-				<StateGroup Id="936729722" Name="Stage1" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1" GUID="{1AC76792-AD16-42E6-B27B-0D03BCBF9474}">
-					<States/>
-				</StateGroup>
-				<StateGroup Id="2044049779" Name="Dead" ObjectPath="\States\Default Work Unit\Boss_battle_states\Dead" GUID="{21CCAE23-5F45-4988-8F8A-80974A2F86EB}">
-					<States/>
-				</StateGroup>
-				<StateGroup Id="2716678721" Name="Victory" ObjectPath="\States\Default Work Unit\Boss_battle_states\Victory" GUID="{5FA91604-4C94-44AD-98BB-54A312B158B5}">
-					<States/>
-				</StateGroup>
-				<StateGroup Id="2746189348" Name="Boss_battle_states" ObjectPath="\States\Default Work Unit\Boss_battle_states" GUID="{0E9BFD09-6921-4435-A7C0-6A8BD48A118D}">
-					<States>
-						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Boss_battle_states\None" GUID="{71A1CF18-27A5-411F-A124-A11DDA8B758C}"/>
-						<State Id="936729722" Name="Stage1" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1" GUID="{1AC76792-AD16-42E6-B27B-0D03BCBF9474}"/>
-						<State Id="936729721" Name="Stage2" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage2" GUID="{B7696B1A-498C-46A0-B1CA-1EFD809FE3AE}"/>
-						<State Id="936729720" Name="Stage3" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage3" GUID="{1B3F4FD0-8F6D-4FE2-81DE-74BCEDF83928}"/>
-						<State Id="2044049779" Name="Dead" ObjectPath="\States\Default Work Unit\Boss_battle_states\Dead" GUID="{21CCAE23-5F45-4988-8F8A-80974A2F86EB}"/>
-						<State Id="2716678721" Name="Victory" ObjectPath="\States\Default Work Unit\Boss_battle_states\Victory" GUID="{5FA91604-4C94-44AD-98BB-54A312B158B5}"/>
-					</States>
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
@@ -402,7 +532,7 @@
 			<ShortName>Footsteps</ShortName>
 			<Path>Footsteps.bnk</Path>
 			<IncludedEvents>
-				<Event Id="1602358412" Name="Play_Footstep" ObjectPath="\Events\Default Work Unit\Play_Footstep">
+				<Event Id="1602358412" Name="Play_Footstep" ObjectPath="\Events\Default Work Unit\Player\Play_Footstep">
 					<IncludedMemoryFiles>
 						<File Id="83818322" Language="SFX">
 							<ShortName>Steps\Gravel\Step_31Gravel.wav</ShortName>
@@ -477,12 +607,12 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3768541028" Language="SFX" Hash="808937707">
+		<SoundBank Id="3768541028" Language="SFX" Hash="4261890515">
 			<ObjectPath>\SoundBanks\Default Work Unit\Attacks</ObjectPath>
 			<ShortName>Attacks</ShortName>
 			<Path>Attacks.bnk</Path>
 			<IncludedEvents>
-				<Event Id="4275867775" Name="Play_BeetleAttack" ObjectPath="\Events\Default Work Unit\Play_BeetleAttack">
+				<Event Id="4275867775" Name="Play_BeetleAttack" ObjectPath="\Events\Default Work Unit\Enemies\Beetle\Play_BeetleAttack">
 					<IncludedMemoryFiles>
 						<File Id="53399867" Language="SFX">
 							<ShortName>ES_Punch 44 - SFX Producer.wav</ShortName>
@@ -510,7 +640,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3318027631" Name="Play_BeetleDeath" ObjectPath="\Events\Default Work Unit\Play_BeetleDeath">
+				<Event Id="3318027631" Name="Play_BeetleDeath" ObjectPath="\Events\Default Work Unit\Enemies\Beetle\Play_BeetleDeath">
 					<IncludedMemoryFiles>
 						<File Id="236324433" Language="SFX">
 							<ShortName>ES_Alien Chirp Critter 1 - SFX Producer.wav</ShortName>
@@ -542,7 +672,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2211787386" Name="Play_Dash" ObjectPath="\Events\Default Work Unit\Play_Dash">
+				<Event Id="2211787386" Name="Play_Dash" ObjectPath="\Events\Default Work Unit\Player\Play_Dash">
 					<IncludedMemoryFiles>
 						<File Id="977051301" Language="SFX">
 							<ShortName>Player\Dash\Impact - Cease Fire.wav</ShortName>
@@ -550,12 +680,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3174629258" Name="Play_GameOver" ObjectPath="\Events\Default Work Unit\Play_GameOver">
-					<ActionSetState>
-						<ActionSetStateEntry Id="2791675679" Name="Defeated" ObjectPath="\States\Default Work Unit\Player_Life\Defeated"/>
-					</ActionSetState>
-				</Event>
-				<Event Id="1126614951" Name="Play_GaunletNextRound" ObjectPath="\Events\Default Work Unit\Play_GaunletNextRound">
+				<Event Id="1126614951" Name="Play_GaunletNextRound" ObjectPath="\Events\Default Work Unit\Environment\Play_GaunletNextRound">
 					<IncludedMemoryFiles>
 						<File Id="298947520" Language="SFX">
 							<ShortName>ES_Gong Hit Cymbal - SFX Producer.wav</ShortName>
@@ -563,7 +688,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="998505444" Name="Play_LoadingAmmo" ObjectPath="\Events\Default Work Unit\Play_LoadingAmmo">
+				<Event Id="998505444" Name="Play_LoadingAmmo" ObjectPath="\Events\Default Work Unit\Player\Play_LoadingAmmo">
 					<IncludedMemoryFiles>
 						<File Id="562576200" Language="SFX">
 							<ShortName>Player\Ranged attack\Impact - Lightweight.wav</ShortName>
@@ -571,7 +696,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2988676654" Name="Play_MeleeAttack" ObjectPath="\Events\Default Work Unit\Play_MeleeAttack">
+				<Event Id="2988676654" Name="Play_MeleeAttack" ObjectPath="\Events\Default Work Unit\Player\Play_MeleeAttack">
 					<IncludedMemoryFiles>
 						<File Id="132361843" Language="SFX">
 							<ShortName>ES_Punch Face 5 - SFX Producer.wav</ShortName>
@@ -587,23 +712,35 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3772493585" Name="Play_ParasitePickUp" ObjectPath="\Events\Default Work Unit\Play_ParasitePickUp">
+				<Event Id="3772493585" Name="Play_ParasitePickUp" ObjectPath="\Events\Default Work Unit\Player\Play_ParasitePickUp">
 					<IncludedMemoryFiles>
 						<File Id="184664915" Language="SFX">
 							<ShortName>Player\Parasite pick up\Parasite pick up 2.wav</ShortName>
-							<Path>SFX\Player\Parasite pick up\Parasite pick up 2_10C4C929.wem</Path>
+							<Path>SFX\Player\Parasite pick up\Parasite pick up 2_C0B9E4C5.wem</Path>
+						</File>
+						<File Id="354854720" Language="SFX">
+							<ShortName>ES_Magic Spell Whoosh 7 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Magic Spell Whoosh 7 - SFX Producer_67BE83C3.wem</Path>
+						</File>
+						<File Id="555268996" Language="SFX">
+							<ShortName>ES_PREL Shimmer Twinkl 8 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_PREL Shimmer Twinkl 8 - SFX Producer_11996305.wem</Path>
 						</File>
 						<File Id="609605835" Language="SFX">
 							<ShortName>Player\Parasite pick up\Parasite pick up 3.wav</ShortName>
-							<Path>SFX\Player\Parasite pick up\Parasite pick up 3_10C4C929.wem</Path>
+							<Path>SFX\Player\Parasite pick up\Parasite pick up 3_CC6DCB8C.wem</Path>
 						</File>
 						<File Id="658527925" Language="SFX">
 							<ShortName>Player\Parasite pick up\Parasite pick up 4.wav</ShortName>
-							<Path>SFX\Player\Parasite pick up\Parasite pick up 4_10C4C929.wem</Path>
+							<Path>SFX\Player\Parasite pick up\Parasite pick up 4_7CF9570C.wem</Path>
+						</File>
+						<File Id="1032651945" Language="SFX">
+							<ShortName>ES_PREL Shimmer Swell 18 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_PREL Shimmer Swell 18 - SFX Producer_B80F5780.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3766948527" Name="Play_RangedAttack" ObjectPath="\Events\Default Work Unit\Play_RangedAttack">
+				<Event Id="3766948527" Name="Play_RangedAttack" ObjectPath="\Events\Default Work Unit\Player\Play_RangedAttack">
 					<IncludedMemoryFiles>
 						<File Id="154933663" Language="SFX">
 							<ShortName>Player\Ranged attack\Impact - Lightweight.wav</ShortName>
@@ -615,7 +752,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3438014598" Name="Play_ReceiveDamage" ObjectPath="\Events\Default Work Unit\Play_ReceiveDamage">
+				<Event Id="3438014598" Name="Play_ReceiveDamage" ObjectPath="\Events\Default Work Unit\Player\Play_ReceiveDamage">
 					<IncludedMemoryFiles>
 						<File Id="132796318" Language="SFX">
 							<ShortName>Player\Damage\Damage 7.wav</ShortName>
@@ -639,15 +776,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1388583332" Name="Play_ShootNoAmmo" ObjectPath="\Events\Default Work Unit\Play_ShootNoAmmo">
-					<IncludedMemoryFiles>
-						<File Id="415761682" Language="SFX">
-							<ShortName>Player\Ranged attack\No ammo.wav</ShortName>
-							<Path>SFX\Player\Ranged attack\No ammo_29610A08.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1678827735" Name="Play_WormAttack" ObjectPath="\Events\Default Work Unit\Play_WormAttack">
+				<Event Id="1678827735" Name="Play_WormAttack" ObjectPath="\Events\Default Work Unit\Enemies\Worm\Play_WormAttack">
 					<IncludedMemoryFiles>
 						<File Id="199242398" Language="SFX">
 							<ShortName>Dragon fire.wav</ShortName>
@@ -655,7 +784,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1996518743" Name="Play_WormDeath" ObjectPath="\Events\Default Work Unit\Play_WormDeath">
+				<Event Id="1996518743" Name="Play_WormDeath" ObjectPath="\Events\Default Work Unit\Enemies\Worm\Play_WormDeath">
 					<IncludedMemoryFiles>
 						<File Id="745835708" Language="SFX">
 							<ShortName>ES_Dinosaur Bleat 4 - SFX Producer.wav</ShortName>
@@ -663,7 +792,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3900269399" Name="Play_WormHide" ObjectPath="\Events\Default Work Unit\Play_WormHide">
+				<Event Id="3900269399" Name="Play_WormHide" ObjectPath="\Events\Default Work Unit\Enemies\Worm\Play_WormHide">
 					<IncludedMemoryFiles>
 						<File Id="416633218" Language="SFX">
 							<ShortName>ES_Monster Groan 6 - SFX Producer.wav</ShortName>
@@ -675,7 +804,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="4242710327" Name="Play_WormRoar" ObjectPath="\Events\Default Work Unit\Play_WormRoar">
+				<Event Id="4242710327" Name="Play_WormRoar" ObjectPath="\Events\Default Work Unit\Enemies\Worm\Play_WormRoar">
 					<IncludedMemoryFiles>
 						<File Id="358856772" Language="SFX">
 							<ShortName>ES_Dinosaur Groan 3 - SFX Producer.wav</ShortName>
@@ -683,7 +812,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3126715392" Name="Play_WormSpawn" ObjectPath="\Events\Default Work Unit\Play_WormSpawn">
+				<Event Id="3126715392" Name="Play_WormSpawn" ObjectPath="\Events\Default Work Unit\Enemies\Worm\Play_WormSpawn">
 					<IncludedMemoryFiles>
 						<File Id="678769752" Language="SFX">
 							<ShortName>quake-and-break-99034.wav</ShortName>
@@ -692,18 +821,13 @@
 					</IncludedMemoryFiles>
 				</Event>
 			</IncludedEvents>
-			<StateGroups>
-				<StateGroup Id="2791675679" Name="Defeated" ObjectPath="\States\Default Work Unit\Player_Life\Defeated" GUID="{6D9231D6-6EC9-4CBF-8DA7-97EC649CB00E}">
-					<States/>
-				</StateGroup>
-			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3909959462" Language="SFX" Hash="1619773446">
+		<SoundBank Id="3909959462" Language="SFX" Hash="3324059426">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enviroment</ObjectPath>
 			<ShortName>Enviroment</ShortName>
 			<Path>Enviroment.bnk</Path>
 			<IncludedEvents>
-				<Event Id="2962822744" Name="Play_Checkpoint" ObjectPath="\Events\Default Work Unit\Play_Checkpoint">
+				<Event Id="2962822744" Name="Play_Checkpoint" ObjectPath="\Events\Default Work Unit\Environment\Play_Checkpoint">
 					<IncludedMemoryFiles>
 						<File Id="223665965" Language="SFX">
 							<ShortName>ES_Swoosh 02 Short - Jon Bjork.wav</ShortName>
@@ -715,23 +839,91 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2035174344" Name="Play_Crystal" ObjectPath="\Events\Default Work Unit\Play_Crystal">
+				<Event Id="2035174344" Name="Play_Crystal" ObjectPath="\Events\Default Work Unit\Environment\Crystals\Play_Crystal">
 					<IncludedMemoryFiles>
-						<File Id="101284139" Language="SFX">
-							<ShortName>Crystal\cristal broken 1.wav</ShortName>
-							<Path>SFX\Crystal\cristal broken 1_10C4C929.wem</Path>
-						</File>
-						<File Id="202657829" Language="SFX">
+						<File Id="97640651" Language="SFX">
 							<ShortName>Crystal\cristal broken 2.wav</ShortName>
 							<Path>SFX\Crystal\cristal broken 2_10C4C929.wem</Path>
 						</File>
-						<File Id="706795758" Language="SFX">
-							<ShortName>Crystal\cristal broken 3.wav</ShortName>
-							<Path>SFX\Crystal\cristal broken 3_10C4C929.wem</Path>
+						<File Id="110329395" Language="SFX">
+							<ShortName>ES_Crash Rock Patio 2 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Crash Rock Patio 2 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="368911579" Language="SFX">
+							<ShortName>ES_Crash Rock Patio 1 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Crash Rock Patio 1 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="931073005" Language="SFX">
+							<ShortName>ES_PREL Whoosh High 18 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_PREL Whoosh High 18 - SFX Producer_742DD9AF.wem</Path>
+						</File>
+						<File Id="1017764981" Language="SFX">
+							<ShortName>ES_Impact Rock Smash 3 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Impact Rock Smash 3 - SFX Producer_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2988819998" Name="Play_GaunletDoorOpening" ObjectPath="\Events\Default Work Unit\Play_GaunletDoorOpening">
+				<Event Id="2449564938" Name="Play_CrystalRegenerate" ObjectPath="\Events\Default Work Unit\Environment\Crystals\Play_CrystalRegenerate">
+					<IncludedMemoryFiles>
+						<File Id="113467563" Language="SFX">
+							<ShortName>ES_Whoosh Reverse 3 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Whoosh Reverse 3 - SFX Producer_627A35A5.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1800475802" Name="Play_CrystalShake" ObjectPath="\Events\Default Work Unit\Play_CrystalShake">
+					<IncludedMemoryFiles>
+						<File Id="135588950" Language="SFX">
+							<ShortName>ES_Crash Rock Patio 2 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Crash Rock Patio 2 - SFX Producer_8E10623B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1185403619" Name="Play_ExplosiveCrystal" ObjectPath="\Events\Default Work Unit\Environment\Crystals\Play_ExplosiveCrystal">
+					<IncludedMemoryFiles>
+						<File Id="47600978" Language="SFX">
+							<ShortName>ES_Impact Rock Crash - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Impact Rock Crash - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="228170797" Language="SFX">
+							<ShortName>ES_Horror Whoosh 1 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Horror Whoosh 1 - SFX Producer_3155AC5B.wem</Path>
+						</File>
+						<File Id="235054626" Language="SFX">
+							<ShortName>ES_Locker Punch 1 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Locker Punch 1 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="282455160" Language="SFX">
+							<ShortName>ES_Locker Punch 2 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Locker Punch 2 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="785410759" Language="SFX">
+							<ShortName>ES_Magic Spell Whoosh 3 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Magic Spell Whoosh 3 - SFX Producer_59710EF2.wem</Path>
+						</File>
+						<File Id="1018074857" Language="SFX">
+							<ShortName>ES_Locker Punch 3 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Locker Punch 3 - SFX Producer_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4241858839" Name="Play_ExplosiveCrystalCharge" ObjectPath="\Events\Default Work Unit\Play_ExplosiveCrystalCharge">
+					<IncludedMemoryFiles>
+						<File Id="596719593" Language="SFX">
+							<ShortName>ES_Swoosh Thing - Johan Hynynen.wav</ShortName>
+							<Path>SFX\ES_Swoosh Thing - Johan Hynynen_F349A28A.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="749885692" Name="Play_ExplosiveCrystalSpawn" ObjectPath="\Events\Default Work Unit\Environment\Crystals\Play_ExplosiveCrystalSpawn">
+					<IncludedMemoryFiles>
+						<File Id="588868501" Language="SFX">
+							<ShortName>ES_Swoosh Thing - Johan Hynynen.wav</ShortName>
+							<Path>SFX\ES_Swoosh Thing - Johan Hynynen_6E3CB8C4.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2988819998" Name="Play_GaunletDoorOpening" ObjectPath="\Events\Default Work Unit\Environment\Play_GaunletDoorOpening">
 					<IncludedMemoryFiles>
 						<File Id="557030509" Language="SFX">
 							<ShortName>ES_Sci Fi Spaceship 36 - SFX Producer.wav</ShortName>
@@ -739,7 +931,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2270376495" Name="Play_Laser" ObjectPath="\Events\Default Work Unit\Play_Laser">
+				<Event Id="2270376495" Name="Play_Laser" ObjectPath="\Events\Default Work Unit\Environment\Lasers\Play_Laser">
 					<IncludedMemoryFiles>
 						<File Id="1029896715" Language="SFX">
 							<ShortName>ES_Laser Sword Hum - SFX Producer.wav</ShortName>
@@ -747,7 +939,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="4092857357" Name="Play_Laser_Hit" ObjectPath="\Events\Default Work Unit\Play_Laser_Hit">
+				<Event Id="4092857357" Name="Play_Laser_Hit" ObjectPath="\Events\Default Work Unit\Environment\Lasers\Play_Laser_Hit">
 					<IncludedMemoryFiles>
 						<File Id="971224351" Language="SFX">
 							<ShortName>ES_MM Design Element 43 - SFX Producer.wav</ShortName>
@@ -759,7 +951,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1157125118" Name="Play_Pebble" ObjectPath="\Events\Default Work Unit\Play_Pebble">
+				<Event Id="1157125118" Name="Play_Pebble" ObjectPath="\Events\Default Work Unit\Environment\Play_Pebble">
 					<IncludedMemoryFiles>
 						<File Id="11692854" Language="SFX">
 							<ShortName>Ambient\Pebbles 3.wav</ShortName>
@@ -779,7 +971,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3948925255" Name="Play_Splash" ObjectPath="\Events\Default Work Unit\Play_Splash">
+				<Event Id="3683553682" Name="Play_SplashLittleWorm" ObjectPath="\Events\Default Work Unit\Environment\Play_SplashLittleWorm">
 					<IncludedMemoryFiles>
 						<File Id="293397634" Language="SFX">
 							<ShortName>Splash-centipede.wav</ShortName>
@@ -787,7 +979,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3250624050" Name="Play_StalagmiteCeilingCrack" ObjectPath="\Events\Default Work Unit\Play_StalagmiteCeilingCrack">
+				<Event Id="3250624050" Name="Play_StalagmiteCeilingCrack" ObjectPath="\Events\Default Work Unit\Environment\Play_StalagmiteCeilingCrack">
 					<IncludedMemoryFiles>
 						<File Id="124169010" Language="SFX">
 							<ShortName>ES_Ceiling Crack Wood - SFX Producer.wav</ShortName>
@@ -803,7 +995,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2603336188" Name="Play_StalagmiteGroundImpact" ObjectPath="\Events\Default Work Unit\Play_StalagmiteGroundImpact">
+				<Event Id="2603336188" Name="Play_StalagmiteGroundImpact" ObjectPath="\Events\Default Work Unit\Environment\Play_StalagmiteGroundImpact">
 					<IncludedMemoryFiles>
 						<File Id="223048066" Language="SFX">
 							<ShortName>ES_Sonic Boom 4 - SFX Producer.wav</ShortName>
@@ -819,7 +1011,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1020223172" Name="Play_Wind" ObjectPath="\Events\Default Work Unit\Play_Wind">
+				<Event Id="1020223172" Name="Play_Wind" ObjectPath="\Events\Default Work Unit\Environment\Play_Wind">
 					<IncludedMemoryFiles>
 						<File Id="244703648" Language="SFX">
 							<ShortName>Ambient\Desert.wav</ShortName>
@@ -827,8 +1019,8 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="707649828" Name="Stop_Pebble" ObjectPath="\Events\Default Work Unit\Stop_Pebble"/>
-				<Event Id="3173136834" Name="Stop_Wind" ObjectPath="\Events\Default Work Unit\Stop_Wind"/>
+				<Event Id="707649828" Name="Stop_Pebble" ObjectPath="\Events\Default Work Unit\Environment\Stop_Pebble"/>
+				<Event Id="3173136834" Name="Stop_Wind" ObjectPath="\Events\Default Work Unit\Environment\Stop_Wind"/>
 			</IncludedEvents>
 		</SoundBank>
 	</SoundBanks>

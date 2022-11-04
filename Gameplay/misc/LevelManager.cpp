@@ -113,6 +113,8 @@ void Hachiko::Scripting::LevelManager::ReloadBossScene() const {
 
 void Hachiko::Scripting::LevelManager::GoalReached() 
 {
+	_audio_manager->StopBackgroundMusic();
+
 	if (_level == 1)
 	{
 		SceneManagement::SwitchScene(Scenes::LEVEL2);

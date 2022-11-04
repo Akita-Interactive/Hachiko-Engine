@@ -122,6 +122,7 @@ void Hachiko::Scripting::CrystalExplosion::OnEditor()
 void Hachiko::Scripting::Stalagmite::OnEditor()
 {
 	Editor::Show("Explosion Effect", _explosion_effect);
+	Editor::Show("Area Indicator", _area_indicator);
 	Editor::Show("G E O", GEO);
 	Editor::Show("Obstacle", _obstacle);
 }

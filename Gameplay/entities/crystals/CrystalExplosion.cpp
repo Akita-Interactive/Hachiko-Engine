@@ -93,6 +93,7 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 
 			if (_current_regen_time >= _regen_time)
 			{
+				_audio_source->PostEvent(Sounds::CRYSTAL_REGENERATE);
 				ResetCrystal();
 			}
 
@@ -161,6 +162,7 @@ void Hachiko::Scripting::CrystalExplosion::CheckRadiusExplosion()
 	if (_detecting_radius >= position.Distance(player->GetTransform()->GetGlobalPosition())
 		&& player->GetComponent<PlayerController>()->IsAlive())
 	{
+		_audio_source->PostEvent(Sounds::EXPLOSIVE_CRYSTAL_CHARGE);
 		StartExplosion();
 	}
 }
@@ -241,6 +243,7 @@ void Hachiko::Scripting::CrystalExplosion::ShakeCrystal()
 
 	if (_should_regen)
 	{
+		_audio_source->PostEvent(Sounds::CRYSTAL_SHAKE);
 		// We are not doing this on Boss level because it causes moving the crystal to strange positions
 		transform->SetGlobalPosition(_initial_transform.Col3(3) + shake_offset);
 	}
@@ -372,7 +375,16 @@ void Hachiko::Scripting::CrystalExplosion::ResetCrystal()
 
 void Hachiko::Scripting::CrystalExplosion::DestroyCrystal()
 {
-	_audio_source->PostEvent(Sounds::CRYSTAL);
+	if (!_explosive_crystal)
+	{
+		_audio_source->PostEvent(Sounds::CRYSTAL);
+	}
+	else
+	{
+		_audio_source->PostEvent(Sounds::EXPLOSIVE_CRYSTAL);
+	}
+	
+	
 	if (obstacle)
 	{
 		obstacle->RemoveObstacle();
@@ -409,12 +421,12 @@ void Hachiko::Scripting::CrystalExplosion::RegenCrystal()
 
 void Hachiko::Scripting::CrystalExplosion::SpawnEffect()
 {
-	if(spawn_billboard)
+	if(spawn_billboard) // Boss spawns crystal
 	{
+		_audio_source->PostEvent(Sounds::EXPLOSIVE_CRYSTAL_SPAWN);
 		spawn_billboard->Enable();
 		spawn_billboard->Start();
 	}
-	_audio_source->PostEvent(Sounds::PLAY_LASER_HIT);
 }
 
 void Hachiko::Scripting::CrystalExplosion::DissolveCrystal(bool be_dissolved)

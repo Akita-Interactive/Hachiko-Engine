@@ -1,0 +1,51 @@
+Event	ID	Name			Wwise Object Path	Notes
+	445689598	Stop_Navigation			\Music\Stop_Navigation	
+	2953314807	Play_IntroCinematic			\Default Work Unit\Play_IntroCinematic	
+	3849525492	Play_Navigation			\Music\Play_Navigation	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	1296152836	Level_Switch			\Music\Level_Switch	
+	2702523344	Gameplay_Switch			\Music\Gameplay_Switch	
+
+Switch	ID	Name	Switch Group			Notes
+	1560169506	Boss	Level_Switch			
+	2678230381	Level2	Level_Switch			
+	2678230382	Level1	Level_Switch			
+	579523862	Explore	Gameplay_Switch			
+	2764240573	Combat	Gameplay_Switch			
+
+State Group	ID	Name			Wwise Object Path	Notes
+	1690668539	Music_States			\Default Work Unit\Music_States	
+	3762137787	Player_Life			\Default Work Unit\Player_Life	
+
+State	ID	Name	State Group			Notes
+	89505537	Gameplay	Music_States			
+	748895195	None	Music_States			
+	1560169506	Boss	Music_States			
+	2716678721	Victory	Music_States			
+	655265632	Alive	Player_Life			
+	748895195	None	Player_Life			
+	2791675679	Defeated	Player_Life			
+
+Effect plug-ins	ID	Name	Type				Notes
+	661152191	Church_Small_Wood (Custom)	Wwise RoomVerb			
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	31154168	Defeated-138bpm4-4_L4M-P0	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Defeated-138bpm4-4_L4M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Defeated\Defeated-138bpm4-4_L4M-P0\Defeated-138bpm4-4_L4M-P0		1502676
+	126846833	Exp_b_108bpm	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Exp_b_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Exploracion A\Exp_b_108bpm\Exp_b_108bpm		3840256
+	181335723	Com_b_108bpm	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Com_b_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Combat 1\Com_b_108bpm\Com_b_108bpm		3840240
+	203035445	Cutscene_effects	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Cutscene_effects_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Cinematics\IntroCinematic\Cutscene_effects		3264144
+	220998542	Com_e_108bpm	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Com_e_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Combat 1\Com_e_108bpm\Com_e_108bpm		3840240
+	267500250	VoiceEffect	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Sci Fi Voice Clip 663 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Cinematics\IntroCinematic\VoiceEffect		342080
+	283120831	Com_d_108bpm	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Com_d_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Combat 1\Com_d_108bpm\Com_d_108bpm		3840240
+	341546302	Exp_a_108bpm	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Exp_a_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Exploracion A\Exp_a_108bpm\Exp_a_108bpm		3840256
+	400071183	ER_Lv2_combate_v2_133bpm	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ER_Lv2_combate_v2_133bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\ER_Lv2_combate_v2_133bpm\ER_Lv2_combate_v2_133bpm		26331684
+	503682454	Com_a_108bpm	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Com_a_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Combat 1\Com_a_108bpm\Com_a_108bpm		3840240
+	715960795	Com_c_108bpm	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Com_c_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Combat 1\Com_c_108bpm\Com_c_108bpm		3840240
+	718840818	Exp_d_108bpm	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Exp_d_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Exploracion A\Exp_d_108bpm\Exp_d_108bpm		3840256
+	759444810	Com_108bpm_full	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Com_108bpm_full_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Combat 1\Com_108bpm_full\Com_108bpm_full		19200240
+	854415901	Exp_c_108bpm	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Exp_c_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Exploracion A\Exp_c_108bpm\Exp_c_108bpm		3840256
+	903340460	Exp_108bpm_full	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Exp_108bpm_full_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Exploracion A\Exp_108bpm_full\Exp_108bpm_full		19200256
+	988655692	Exp_e_108bpm	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Exp_e_108bpm_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Erimos Music Switch Container\Exploracion A\Exp_e_108bpm\Exp_e_108bpm		3840256
+	1003919086	Intro	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ER_cinematica_masterv2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Cinematics\IntroCinematic\Intro		3635564
+
