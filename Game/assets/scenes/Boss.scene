@@ -11183,10 +11183,6 @@ child:
             "'_explosion_indicator@GameObject*'": 0
             "'_explosion_vfx@GameObject*'": 0
             "'_explosion_particles@GameObject*'": 0
-            "'_explosion_dome@GameObject*'": 0
-            "'_dome_vfx_duration@float'": 0.4
-            "'_dome_vfx_size@float'": 2
-            "'_dome_dissolving_time@float'": 0.2
             "'_shake_intensity@float'": 0.2
             "'_seconds_shaking@float'": 5
             "'_crashing_index@unsigned'": 0
@@ -11598,10 +11594,6 @@ child:
             "'_explosion_indicator@GameObject*'": 0
             "'_explosion_vfx@GameObject*'": 0
             "'_explosion_particles@GameObject*'": 0
-            "'_explosion_dome@GameObject*'": 0
-            "'_dome_vfx_duration@float'": 0.4
-            "'_dome_vfx_size@float'": 2
-            "'_dome_dissolving_time@float'": 0.2
             "'_shake_intensity@float'": 0.2
             "'_seconds_shaking@float'": 5
             "'_crashing_index@unsigned'": 0
@@ -12013,10 +12005,6 @@ child:
             "'_explosion_indicator@GameObject*'": 0
             "'_explosion_vfx@GameObject*'": 0
             "'_explosion_particles@GameObject*'": 0
-            "'_explosion_dome@GameObject*'": 0
-            "'_dome_vfx_duration@float'": 0.4
-            "'_dome_vfx_size@float'": 2
-            "'_dome_dissolving_time@float'": 0.2
             "'_shake_intensity@float'": 0.2
             "'_seconds_shaking@float'": 5
             "'_crashing_index@unsigned'": 0
@@ -12428,10 +12416,6 @@ child:
             "'_explosion_indicator@GameObject*'": 0
             "'_explosion_vfx@GameObject*'": 0
             "'_explosion_particles@GameObject*'": 0
-            "'_explosion_dome@GameObject*'": 0
-            "'_dome_vfx_duration@float'": 0.4
-            "'_dome_vfx_size@float'": 2
-            "'_dome_dissolving_time@float'": 0.2
             "'_shake_intensity@float'": 0.2
             "'_seconds_shaking@float'": 5
             "'_crashing_index@unsigned'": 0
@@ -12843,10 +12827,6 @@ child:
             "'_explosion_indicator@GameObject*'": 0
             "'_explosion_vfx@GameObject*'": 0
             "'_explosion_particles@GameObject*'": 0
-            "'_explosion_dome@GameObject*'": 0
-            "'_dome_vfx_duration@float'": 0.4
-            "'_dome_vfx_size@float'": 2
-            "'_dome_dissolving_time@float'": 0.2
             "'_shake_intensity@float'": 0.2
             "'_seconds_shaking@float'": 5
             "'_crashing_index@unsigned'": 0
@@ -14804,10 +14784,6 @@ child:
             "'_explosion_indicator@GameObject*'": 11999007642276688732
             "'_explosion_vfx@GameObject*'": 1946917276036687678
             "'_explosion_particles@GameObject*'": 17973276568786178475
-            "'_explosion_dome@GameObject*'": 0
-            "'_dome_vfx_duration@float'": 0.4
-            "'_dome_vfx_size@float'": 2
-            "'_dome_dissolving_time@float'": 0.2
             "'_shake_intensity@float'": 0.2
             "'_seconds_shaking@float'": 5
             "'_crashing_index@unsigned'": 0
@@ -15560,10 +15536,6 @@ child:
             "'_explosion_indicator@GameObject*'": 9382309494878982263
             "'_explosion_vfx@GameObject*'": 10774911344704264233
             "'_explosion_particles@GameObject*'": 11670016694426486322
-            "'_explosion_dome@GameObject*'": 0
-            "'_dome_vfx_duration@float'": 0.4
-            "'_dome_vfx_size@float'": 2
-            "'_dome_dissolving_time@float'": 0.2
             "'_shake_intensity@float'": 0.2
             "'_seconds_shaking@float'": 5
             "'_crashing_index@unsigned'": 0
@@ -16316,10 +16288,6 @@ child:
             "'_explosion_indicator@GameObject*'": 10215425898459530422
             "'_explosion_vfx@GameObject*'": 52560712638854528
             "'_explosion_particles@GameObject*'": 9798332711163249307
-            "'_explosion_dome@GameObject*'": 0
-            "'_dome_vfx_duration@float'": 0.4
-            "'_dome_vfx_size@float'": 2
-            "'_dome_dissolving_time@float'": 0.2
             "'_shake_intensity@float'": 0.2
             "'_seconds_shaking@float'": 5
             "'_crashing_index@unsigned'": 0
@@ -17072,10 +17040,6 @@ child:
             "'_explosion_indicator@GameObject*'": 13706510085068151825
             "'_explosion_vfx@GameObject*'": 4616672181393166880
             "'_explosion_particles@GameObject*'": 4518778105595949594
-            "'_explosion_dome@GameObject*'": 0
-            "'_dome_vfx_duration@float'": 0.4
-            "'_dome_vfx_size@float'": 2
-            "'_dome_dissolving_time@float'": 0.2
             "'_shake_intensity@float'": 0.2
             "'_seconds_shaking@float'": 5
             "'_crashing_index@unsigned'": 0
@@ -17828,10 +17792,6 @@ child:
             "'_explosion_indicator@GameObject*'": 9484467923914692576
             "'_explosion_vfx@GameObject*'": 1673527488544451043
             "'_explosion_particles@GameObject*'": 16414742278559034001
-            "'_explosion_dome@GameObject*'": 0
-            "'_dome_vfx_duration@float'": 0.4
-            "'_dome_vfx_size@float'": 2
-            "'_dome_dissolving_time@float'": 0.2
             "'_shake_intensity@float'": 0.2
             "'_seconds_shaking@float'": 5
             "'_crashing_index@unsigned'": 0
@@ -18540,7 +18500,7 @@ child:
                     projection: true
                     randomize_tiles: false
   - id: 8216337757247596693
-    name: Level
+    name: LaserColliders
     enabled: true
     component:
       - !<transform>
@@ -19304,6 +19264,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 11571377648433478730
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 38721475039945512
             name: ClumnArc_mesh027
             enabled: true
@@ -19326,6 +19298,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 10815756436706880866
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 10466521791117769635
             name: ClumnArc_mesh028
             enabled: true
@@ -19348,6 +19332,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 7811763240388794465
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 13514478590609214314
             name: ClumnArc_mesh029
             enabled: true
@@ -19370,6 +19366,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 17502903082232462376
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 13597662323211974230
             name: ClumnArc_mesh030
             enabled: true
@@ -19392,6 +19400,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 500243698276619671
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 10333897396893483913
             name: ClumnArc_mesh026
             enabled: true
@@ -19414,6 +19434,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 6694791542328490957
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 4558937186786275645
             name: ClumnArc_mesh032
             enabled: true
@@ -19436,6 +19468,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 15507884277956226366
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 1142910469230294229
             name: ClumnArc_mesh025
             enabled: true
@@ -19458,6 +19502,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 2907111984436011336
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
       - id: 890616121121507597
         name: arches inner001
         enabled: true
@@ -19492,6 +19548,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 5776532520728374209
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 2402162701507332080
             name: ClumnArc_mesh037
             enabled: true
@@ -19514,6 +19582,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 6810061584018478730
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 2465703397973263225
             name: ClumnArc_mesh038
             enabled: true
@@ -19536,6 +19616,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 2105179875282349310
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 9378723406111382
             name: ClumnArc_mesh039
             enabled: true
@@ -19558,6 +19650,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 2582366832271099859
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 296560723394846499
             name: ClumnArc_mesh040
             enabled: true
@@ -19580,6 +19684,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 975660196666241151
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 14027720624721059856
             name: ClumnArc_mesh041
             enabled: true
@@ -19602,6 +19718,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 3454454921557822943
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 9285809034372168323
             name: ClumnArc_mesh042
             enabled: true
@@ -19624,6 +19752,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 7613384915233572699
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 11793947733406726740
             name: ClumnArc_mesh043
             enabled: true
@@ -19646,6 +19786,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 3551443410419666706
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
       - id: 16069944068839131202
         name: crystal cluster001
         enabled: true
@@ -19657,6 +19809,18 @@ child:
             position: [-21.85, -21.58, -27.84]
             rotation: [-90, 0, 161.6]
             scale: [0.7683, 0.7683, 0.7683]
+          - !<script>
+            id: 862665215242569931
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 16069944068839131202
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 17458769192760710320
             name: "crystalTall_mesh\t036"
@@ -20439,6 +20603,18 @@ child:
             position: [-22.35, -20.03, -34.47]
             rotation: [-78.25, 5.74, -25.44]
             scale: [0.4888, 0.4888, 0.4888]
+          - !<script>
+            id: 8271832474608810742
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 15930189629191469214
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 14797333537320200194
             name: "crystalTall_mesh\t071"
@@ -21221,6 +21397,18 @@ child:
             position: [-12.92, -21.76, -34.06]
             rotation: [-90, -0, -55.85]
             scale: [0.785, 0.785, 0.785]
+          - !<script>
+            id: 255395680805635790
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 7832296857348692997
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 9332556197457940335
             name: "crystalTall_mesh\t106"
@@ -22003,6 +22191,18 @@ child:
             position: [-22.27, -21.35, -19.42]
             rotation: [-90, 0, -108]
             scale: [0.6953, 0.6953, 0.6953]
+          - !<script>
+            id: 3340805267948045911
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 12356620661621682238
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 16413503095170992811
             name: "crystalTall_mesh\t141"
@@ -22785,6 +22985,18 @@ child:
             position: [7.216, -21.58, -29.38]
             rotation: [-90, 0, -23.73]
             scale: [0.7683, 0.7683, 0.7683]
+          - !<script>
+            id: 17054392405562559353
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 18410975891660598542
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 16448786265840652699
             name: "crystalTall_mesh\t176"
@@ -23567,6 +23779,18 @@ child:
             position: [-6.328, -22.79, -39.11]
             rotation: [-90, 0, -127.8]
             scale: [0.574, 0.574, 0.574]
+          - !<script>
+            id: 5198800392649194440
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 15546223012049171050
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 9851653382529452996
             name: "crystalTall_mesh\t211"
@@ -24349,6 +24573,18 @@ child:
             position: [12.97, -21.76, -18.3]
             rotation: [-90, -0, -14.9]
             scale: [0.785, 0.785, 0.785]
+          - !<script>
+            id: 8366832376282837619
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 4145687187562924597
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 14219836792146872143
             name: "crystalTall_mesh\t246"
@@ -25131,6 +25367,18 @@ child:
             position: [-1.197, -21.35, -32.83]
             rotation: [-90, 0, 146.5]
             scale: [0.6953, 0.6953, 0.6953]
+          - !<script>
+            id: 12284756299511120553
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 437047416339519841
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 10272643613665043340
             name: "crystalTall_mesh\t281"
@@ -25913,6 +26161,18 @@ child:
             position: [8.426, -22.79, -22.79]
             rotation: [-90, 0, -127.8]
             scale: [0.574, 0.574, 0.574]
+          - !<script>
+            id: 15519951893882929509
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 1844767809007241549
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 1985966786480468555
             name: "crystalTall_mesh\t316"
@@ -26695,6 +26955,18 @@ child:
             position: [-14.26, -22.79, -26.15]
             rotation: [-90, 0, -29.86]
             scale: [0.574, 0.574, 0.574]
+          - !<script>
+            id: 3487806609804935263
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 9622043889113997944
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 13264768999761068085
             name: "crystalTall_mesh\t351"
@@ -27477,6 +27749,18 @@ child:
             position: [8.656, -21.58, 6.558]
             rotation: [-90, 0, -22.56]
             scale: [0.7683, 0.7683, 0.7683]
+          - !<script>
+            id: 2260925698836748994
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 11164933832727198037
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 4065527247187998192
             name: "crystalTall_mesh\t386"
@@ -28259,6 +28543,18 @@ child:
             position: [7.802, -18.11, 13.66]
             rotation: [-90, 0, 145.9]
             scale: [0.574, 0.574, 0.574]
+          - !<script>
+            id: 4429671129910984315
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 11859162067655598444
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 14103996379823289791
             name: "crystalTall_mesh\t421"
@@ -29041,6 +29337,18 @@ child:
             position: [-0.7101, -21.76, 12.11]
             rotation: [-90, -0, 119.9]
             scale: [0.785, 0.785, 0.785]
+          - !<script>
+            id: 10054913564758754805
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 14991373722418525205
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 256733298005478963
             name: "crystalTall_mesh\t456"
@@ -29823,6 +30131,18 @@ child:
             position: [9.687, -21.35, -1.804]
             rotation: [-90, 0, 67.75]
             scale: [0.6953, 0.6953, 0.6953]
+          - !<script>
+            id: 6512026165875102777
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 7079196441881167037
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 964127787017666002
             name: "crystalTall_mesh\t491"
@@ -30605,6 +30925,18 @@ child:
             position: [-20.45, -21.58, 5.964]
             rotation: [-90, 0, 152.1]
             scale: [0.7683, 0.7683, 0.7683]
+          - !<script>
+            id: 3851702531431035208
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 18133645106854510958
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 125630354083664776
             name: "crystalTall_mesh\t526"
@@ -31387,6 +31719,18 @@ child:
             position: [-25.37, -21.76, -5.508]
             rotation: [-90, 0, 160.9]
             scale: [0.785, 0.785, 0.785]
+          - !<script>
+            id: 5662562444419602379
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 16182484048807551956
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 4961598144353283385
             name: "crystalTall_mesh\t596"
@@ -32169,6 +32513,18 @@ child:
             position: [-12.31, -21.35, 10.02]
             rotation: [-90, 0, -37.73]
             scale: [0.6953, 0.6953, 0.6953]
+          - !<script>
+            id: 4255296432849686940
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 6523267643216606420
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 11263442608201302782
             name: "crystalTall_mesh\t631"
@@ -32951,6 +33307,18 @@ child:
             position: [-21.17, -22.79, -0.6992]
             rotation: [-90, 0, 47.97]
             scale: [0.574, 0.574, 0.574]
+          - !<script>
+            id: 5491746362164960911
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 17101793484087175380
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 10485052237374957819
             name: "crystalTall_mesh\t666"
@@ -33733,6 +34101,18 @@ child:
             position: [1.21, -22.79, 4.317]
             rotation: [-90, 0, 145.9]
             scale: [0.574, 0.574, 0.574]
+          - !<script>
+            id: 11747842815340640101
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 4138366543602099239
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 12220210232051978880
             name: "crystalTall_mesh\t701"
@@ -34515,6 +34895,18 @@ child:
             position: [18.85, -21.58, -2.137]
             rotation: [-90, 0, 10.2]
             scale: [0.7683, 0.7683, 0.7683]
+          - !<script>
+            id: 15602380203953425702
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 3539443062968946943
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 8755486582464281835
             name: "crystalTall_mesh\t736"
@@ -35297,6 +35689,18 @@ child:
             position: [15.19, -21.35, -9.727]
             rotation: [-90, 0, 100.5]
             scale: [0.6953, 0.6953, 0.6953]
+          - !<script>
+            id: 12781740219587493430
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 18443573532574348731
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 16571377304733728419
             name: "crystalTall_mesh\t771"
@@ -36079,6 +36483,18 @@ child:
             position: [-33.68, -8.805, -17.11]
             rotation: [-109.4, 10.14, 102]
             scale: [0.5776, 0.5776, 0.5776]
+          - !<script>
+            id: 14395198307437491941
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 6299308209601688101
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 5279906408746816624
             name: "crystalTall_mesh\t806"
@@ -36839,6 +37255,18 @@ child:
             position: [-30.81, -12.27, -5.215]
             rotation: [-66.17, -7.488, 179.3]
             scale: [0.6577, 0.6577, 0.6577]
+          - !<script>
+            id: 16213372926860259787
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 5160364589312004440
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 15007020557338687135
             name: "crystalTall_mesh\t841"
@@ -37610,216 +38038,6 @@ child:
                 outline_type: 2
                 material_id: 8362424531972036853
                 tint_color: [1, 1, 1, 1]
-      - id: 13117087557593011952
-        name: crystal chunk back001
-        enabled: true
-        component:
-          - !<transform>
-            id: 6936739577691613623
-            type: 1
-            enabled: true
-            position: [9.828, -16.17, -34.72]
-            rotation: [-90, 0, 0]
-            scale: [0.7424, 0.7424, 0.8856]
-        child:
-          - id: 7013122437786461233
-            name: "crystalTall_mesh\t892"
-            enabled: true
-            component:
-              - !<transform>
-                id: 13575647028525505082
-                type: 1
-                enabled: true
-                position: [-0.4703, -0.3456, -12.39]
-                rotation: [0, 0, -180]
-                scale: [0.2357, 0.2357, 0.432]
-              - !<mesh_renderer>
-                id: 1060025518361775512
-                type: 2
-                enabled: true
-                mesh_id: 1339341851625920746
-                navigable: false
-                visible: true
-                casting_shadow: true
-                outline_type: 2
-                material_id: 8362424531972036853
-                tint_color: [1, 1, 1, 1]
-          - id: 14237136406531394650
-            name: "crystalTall_mesh\t893"
-            enabled: true
-            component:
-              - !<transform>
-                id: 11028906185973420597
-                type: 1
-                enabled: true
-                position: [-1.151, -2.799, -13.84]
-                rotation: [-20, 0.8915, -84.68]
-                scale: [0.14, 0.14, 0.396]
-              - !<mesh_renderer>
-                id: 12011962573133493050
-                type: 2
-                enabled: true
-                mesh_id: 3646839401353568421
-                navigable: false
-                visible: true
-                casting_shadow: true
-                outline_type: 2
-                material_id: 8362424531972036853
-                tint_color: [1, 1, 1, 1]
-          - id: 1890773752004294188
-            name: "crystalTall_mesh\t894"
-            enabled: true
-            component:
-              - !<transform>
-                id: 12787058034282061323
-                type: 1
-                enabled: true
-                position: [0.2495, -0.293, -10.9]
-                rotation: [-16.47, -19.54, -149.7]
-                scale: [0.14, 0.14, 0.275]
-              - !<mesh_renderer>
-                id: 15085137700794532967
-                type: 2
-                enabled: true
-                mesh_id: 1738536974844181621
-                navigable: false
-                visible: true
-                casting_shadow: true
-                outline_type: 2
-                material_id: 8362424531972036853
-                tint_color: [1, 1, 1, 1]
-          - id: 13387119917612488810
-            name: "crystalTall_mesh\t895"
-            enabled: true
-            component:
-              - !<transform>
-                id: 1857057468132356478
-                type: 1
-                enabled: true
-                position: [-1.927, -0.0706, -3.668]
-                rotation: [27.05, 3.02, 123.5]
-                scale: [0.1558, 0.1558, 0.1918]
-              - !<mesh_renderer>
-                id: 11972951711127466821
-                type: 2
-                enabled: true
-                mesh_id: 5493521826477469462
-                navigable: false
-                visible: true
-                casting_shadow: true
-                outline_type: 2
-                material_id: 8362424531972036853
-                tint_color: [1, 1, 1, 1]
-          - id: 8560983551530234600
-            name: "crystalTall_mesh\t896"
-            enabled: true
-            component:
-              - !<transform>
-                id: 9808988723886171474
-                type: 1
-                enabled: true
-                position: [0.8022, 0.2513, -7.307]
-                rotation: [7.324, -26.52, 73.08]
-                scale: [0.1965, 0.1965, 0.2419]
-              - !<mesh_renderer>
-                id: 4732062724582361917
-                type: 2
-                enabled: true
-                mesh_id: 10906869962352465905
-                navigable: false
-                visible: true
-                casting_shadow: true
-                outline_type: 2
-                material_id: 8362424531972036853
-                tint_color: [1, 1, 1, 1]
-          - id: 12609738392012442055
-            name: "crystalTall_mesh\t897"
-            enabled: true
-            component:
-              - !<transform>
-                id: 2635643722404412412
-                type: 1
-                enabled: true
-                position: [-1.792, 0.1003, -12.05]
-                rotation: [15.3, 12.14, 114.9]
-                scale: [0.1254, 0.1254, 0.3548]
-              - !<mesh_renderer>
-                id: 2097555938603741309
-                type: 2
-                enabled: true
-                mesh_id: 5403886952877134775
-                navigable: false
-                visible: true
-                casting_shadow: true
-                outline_type: 2
-                material_id: 8362424531972036853
-                tint_color: [1, 1, 1, 1]
-          - id: 14160671087002916102
-            name: "crystalTall_mesh\t898"
-            enabled: true
-            component:
-              - !<transform>
-                id: 3858960265349577087
-                type: 1
-                enabled: true
-                position: [-3.923, -1.645, -8.748]
-                rotation: [-20.14, 27.11, 33.14]
-                scale: [0.1373, 0.1517, 0.3043]
-              - !<mesh_renderer>
-                id: 7990814447482347481
-                type: 2
-                enabled: true
-                mesh_id: 10631611771818861522
-                navigable: false
-                visible: true
-                casting_shadow: true
-                outline_type: 2
-                material_id: 8362424531972036853
-                tint_color: [1, 1, 1, 1]
-          - id: 11028884066973687006
-            name: "crystalTall_mesh\t899"
-            enabled: true
-            component:
-              - !<transform>
-                id: 13090174368542856241
-                type: 1
-                enabled: true
-                position: [0.6593, -0.473, -7.674]
-                rotation: [13.41, 21.71, 38.98]
-                scale: [0.1077, 0.1077, 0.2116]
-              - !<mesh_renderer>
-                id: 6890945154144316753
-                type: 2
-                enabled: true
-                mesh_id: 13859013716051018749
-                navigable: false
-                visible: true
-                casting_shadow: true
-                outline_type: 2
-                material_id: 8362424531972036853
-                tint_color: [1, 1, 1, 1]
-          - id: 10075904823629328137
-            name: "crystalTall_mesh\t900"
-            enabled: true
-            component:
-              - !<transform>
-                id: 880403446215855157
-                type: 1
-                enabled: true
-                position: [-1.273, -0.6755, -8.234]
-                rotation: [-0.4107, 23.07, 120.4]
-                scale: [0.1384, 0.153, 0.3067]
-              - !<mesh_renderer>
-                id: 17999095675783334554
-                type: 2
-                enabled: true
-                mesh_id: 4941018639482985890
-                navigable: false
-                visible: true
-                casting_shadow: true
-                outline_type: 2
-                material_id: 8362424531972036853
-                tint_color: [1, 1, 1, 1]
       - id: 5512361319788664003
         name: crystal chunk back002
         enabled: true
@@ -37831,6 +38049,18 @@ child:
             position: [17.96, -15.28, -21.88]
             rotation: [-90, -0, 66.91]
             scale: [0.5073, 0.5073, 0.6052]
+          - !<script>
+            id: 6808751360783140762
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 5512361319788664003
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 3801151077943719209
             name: "crystalTall_mesh\t901"
@@ -38041,6 +38271,18 @@ child:
             position: [20.35, -13.94, -17.73]
             rotation: [-90, -0, -143.4]
             scale: [0.5417, 0.5417, 1.045]
+          - !<script>
+            id: 9294297908632890405
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 8125402525618273568
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 12085362220889642627
             name: "crystalTall_mesh\t910"
@@ -38251,6 +38493,18 @@ child:
             position: [-9.072, -15.28, 17.51]
             rotation: [-90, 0, 141.8]
             scale: [0.5073, 0.5073, 0.6052]
+          - !<script>
+            id: 7310479169624201899
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 16641764386354305389
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 6707275453889597714
             name: "crystalTall_mesh\t919"
@@ -38461,6 +38715,18 @@ child:
             position: [-4.443, -13.94, 16.28]
             rotation: [-90, -0, -68.46]
             scale: [0.5416, 0.5417, 1.045]
+          - !<script>
+            id: 3446800178015861995
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 5485154951032199768
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 17018278157667220676
             name: "crystalTall_mesh\t928"
@@ -38671,6 +38937,18 @@ child:
             position: [-26.11, -15.28, 12]
             rotation: [-90, 0, 141.8]
             scale: [0.5073, 0.5073, 0.6052]
+          - !<script>
+            id: 12669901554882466835
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 13906379652428819211
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 4381450973944957582
             name: "crystalTall_mesh\t937"
@@ -38881,6 +39159,18 @@ child:
             position: [-21.48, -13.94, 10.77]
             rotation: [-90, -0, -68.46]
             scale: [0.5416, 0.5417, 1.045]
+          - !<script>
+            id: 15766391360811341079
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 1041856119989818350
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 16611829078513144341
             name: "crystalTall_mesh\t946"
@@ -39091,6 +39381,18 @@ child:
             position: [7.711, -13.83, -42.77]
             rotation: [-90, -0, -68.46]
             scale: [0.6098, 0.6098, 1.176]
+          - !<script>
+            id: 10812990465533804991
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 13392948854492324890
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 9591260597282497891
             name: "crystalTall_mesh\t955"
@@ -39301,6 +39603,18 @@ child:
             position: [1.585, -14.21, -43.03]
             rotation: [-90, 0, 49.63]
             scale: [0.4691, 0.4691, 0.7217]
+          - !<script>
+            id: 9719066633435997835
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 2792485183700282904
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 7460524090746389298
             name: "crystalTall_mesh\t964"
@@ -39511,6 +39825,18 @@ child:
             position: [-15.1, -13.83, -43.69]
             rotation: [-90, 0, -42.03]
             scale: [0.6098, 0.6098, 1.176]
+          - !<script>
+            id: 4432967228514936182
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 3922155209679401850
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 1905757965721429363
             name: "crystalTall_mesh\t973"
@@ -39721,6 +40047,18 @@ child:
             position: [-20.7, -14.21, -41.19]
             rotation: [-90, 0, 76.06]
             scale: [0.4691, 0.4691, 0.7217]
+          - !<script>
+            id: 12323644478433530332
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 13472314066663492191
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 3466630076495572928
             name: "crystalTall_mesh\t982"
@@ -39931,6 +40269,18 @@ child:
             position: [7.623, -13.57, 20.67]
             rotation: [-90, 0, -54.46]
             scale: [0.775, 0.775, 1.495]
+          - !<script>
+            id: 1728811578034376540
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 14579312359224185332
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 16680309932287704721
             name: "crystalTall_mesh\t991"
@@ -40141,6 +40491,18 @@ child:
             position: [-0.011, -14.05, 22.23]
             rotation: [-90, 0, 63.63]
             scale: [0.5962, 0.5962, 0.9172]
+          - !<script>
+            id: 6237736102080845431
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 8312766708302205938
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 14659004653975852122
             name: "crystalTall_mesh\t1000"
@@ -40351,6 +40713,18 @@ child:
             position: [1.617, -22.54, -55.22]
             rotation: [-90, 0, -54.46]
             scale: [0.775, 0.775, 1.495]
+          - !<script>
+            id: 18105289244008630773
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 15307736594984883870
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 13067232309320246245
             name: "crystalTall_mesh\t1018"
@@ -40561,6 +40935,18 @@ child:
             position: [-6.016, -23.01, -53.65]
             rotation: [-90, 0, 63.63]
             scale: [0.5962, 0.5962, 0.9172]
+          - !<script>
+            id: 11193408566644394428
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 14556793812377549113
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 17652235213838672303
             name: "crystalTall_mesh\t1009"
@@ -40771,6 +41157,18 @@ child:
             position: [-20.07, -15.42, 19.33]
             rotation: [-90, 0, 39.81]
             scale: [0.3736, 0.3736, 0.4457]
+          - !<script>
+            id: 4368444090197310517
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 8324029828714205869
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [1, 0, 1, 1]
         child:
           - id: 12541614861944344316
             name: "crystalTall_mesh\t1027"
@@ -42147,6 +42545,18 @@ child:
             position: [-34.4, -15.68, -17.77]
             rotation: [-81.38, -20.12, -117.7]
             scale: [0.5776, 0.5776, 0.5776]
+          - !<script>
+            id: 1760199427816022306
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 10415535457281545965
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
         child:
           - id: 13760004493786272824
             name: "crystalTall_mesh\t1036"
@@ -44684,6 +45094,26 @@ child:
                     outline_type: 2
                     material_id: 16436970272944095470
                     tint_color: [1, 1, 1, 1]
+                  - !<script>
+                    id: 7417745843559291743
+                    type: 15
+                    enabled: true
+                    class_name: BloomAnimator
+                    "'_bloom_target@GameObject*'": 0
+                    "'_is_automatic@bool'": true
+                    "'_is_randomized@bool'": true
+                    "'_randomized_duration_min@float'": 0.2
+                    "'_randomized_duration_max@float'": 3
+                    "'_automatic_lerp_duration@float'": 1
+                    "'_initial_emissive_color@float4'": [1, 0, 1, 1]
+                  - !<script>
+                    id: 9091619788480967705
+                    type: 15
+                    enabled: true
+                    class_name: HoverEffect
+                    "'_altitude@float'": 0.2
+                    "'_magnitude@float'": 0.5
+                    "'_speed@float'": 2
               - id: 18109497125232346524
                 name: Plane.012
                 enabled: true
@@ -44762,6 +45192,26 @@ child:
                     outline_type: 2
                     material_id: 16436970272944095470
                     tint_color: [1, 1, 1, 1]
+                  - !<script>
+                    id: 6826973634416202637
+                    type: 15
+                    enabled: true
+                    class_name: BloomAnimator
+                    "'_bloom_target@GameObject*'": 0
+                    "'_is_automatic@bool'": true
+                    "'_is_randomized@bool'": true
+                    "'_randomized_duration_min@float'": 0.2
+                    "'_randomized_duration_max@float'": 3
+                    "'_automatic_lerp_duration@float'": 1
+                    "'_initial_emissive_color@float4'": [1, 0, 1, 1]
+                  - !<script>
+                    id: 9738962298797622281
+                    type: 15
+                    enabled: true
+                    class_name: HoverEffect
+                    "'_altitude@float'": 0.2
+                    "'_magnitude@float'": 0.5
+                    "'_speed@float'": 2
           - id: 13863976963494336325
             name: Group059
             enabled: true
@@ -44796,6 +45246,26 @@ child:
                     outline_type: 2
                     material_id: 16436970272944095470
                     tint_color: [1, 1, 1, 1]
+                  - !<script>
+                    id: 9834039605381518662
+                    type: 15
+                    enabled: true
+                    class_name: BloomAnimator
+                    "'_bloom_target@GameObject*'": 0
+                    "'_is_automatic@bool'": true
+                    "'_is_randomized@bool'": true
+                    "'_randomized_duration_min@float'": 0.2
+                    "'_randomized_duration_max@float'": 3
+                    "'_automatic_lerp_duration@float'": 1
+                    "'_initial_emissive_color@float4'": [1, 0, 1, 1]
+                  - !<script>
+                    id: 13248675120406204413
+                    type: 15
+                    enabled: true
+                    class_name: HoverEffect
+                    "'_altitude@float'": 0.2
+                    "'_magnitude@float'": 0.5
+                    "'_speed@float'": 2
               - id: 17223291856186634522
                 name: Plane.005
                 enabled: true
@@ -44852,6 +45322,26 @@ child:
                     outline_type: 2
                     material_id: 16436970272944095470
                     tint_color: [1, 1, 1, 1]
+                  - !<script>
+                    id: 9525711789503706115
+                    type: 15
+                    enabled: true
+                    class_name: BloomAnimator
+                    "'_bloom_target@GameObject*'": 0
+                    "'_is_automatic@bool'": true
+                    "'_is_randomized@bool'": true
+                    "'_randomized_duration_min@float'": 0.2
+                    "'_randomized_duration_max@float'": 3
+                    "'_automatic_lerp_duration@float'": 1
+                    "'_initial_emissive_color@float4'": [1, 0, 1, 1]
+                  - !<script>
+                    id: 12546695283278922210
+                    type: 15
+                    enabled: true
+                    class_name: HoverEffect
+                    "'_altitude@float'": 0.2
+                    "'_magnitude@float'": 0.5
+                    "'_speed@float'": 2
               - id: 16911945940745508441
                 name: Plane.006
                 enabled: true
@@ -44908,6 +45398,26 @@ child:
                     outline_type: 2
                     material_id: 16436970272944095470
                     tint_color: [1, 1, 1, 1]
+                  - !<script>
+                    id: 7441737318517206676
+                    type: 15
+                    enabled: true
+                    class_name: BloomAnimator
+                    "'_bloom_target@GameObject*'": 0
+                    "'_is_automatic@bool'": true
+                    "'_is_randomized@bool'": true
+                    "'_randomized_duration_min@float'": 0.2
+                    "'_randomized_duration_max@float'": 3
+                    "'_automatic_lerp_duration@float'": 1
+                    "'_initial_emissive_color@float4'": [1, 0, 1, 1]
+                  - !<script>
+                    id: 12227701284012606641
+                    type: 15
+                    enabled: true
+                    class_name: HoverEffect
+                    "'_altitude@float'": 0.2
+                    "'_magnitude@float'": 0.5
+                    "'_speed@float'": 2
               - id: 230727238426146526
                 name: Plane.008
                 enabled: true
@@ -44930,40 +45440,6 @@ child:
                     outline_type: 2
                     material_id: 6911409046407957402
                     tint_color: [1, 1, 1, 1]
-      - id: 18222993031780339595
-        name: bossPlatformCircle
-        enabled: true
-        component:
-          - !<transform>
-            id: 5046329718537123422
-            type: 1
-            enabled: true
-            position: [-6.828, -6.254, -11.02]
-            rotation: [-90, -0, -10]
-            scale: [1, 1, 1]
-          - !<mesh_renderer>
-            id: 14155701772124340193
-            type: 2
-            enabled: true
-            mesh_id: 12639135304856286803
-            navigable: false
-            visible: true
-            casting_shadow: true
-            outline_type: 2
-            material_id: 3164312813149675218
-            tint_color: [1, 1, 1, 1]
-          - !<script>
-            id: 17128616870044416707
-            type: 15
-            enabled: true
-            class_name: BloomAnimator
-            "'_bloom_target@GameObject*'": 18222993031780339595
-            "'_is_automatic@bool'": true
-            "'_is_randomized@bool'": true
-            "'_randomized_duration_min@float'": 0.2
-            "'_randomized_duration_max@float'": 3
-            "'_automatic_lerp_duration@float'": 1
-            "'_initial_emissive_color@float4'": [0.304, 0, 1, 0]
       - id: 7642381795486415529
         name: arches inner002
         enabled: true
@@ -44998,6 +45474,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 4106866919600583583
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 2508784414831874520
             name: ClumnArc_mesh045
             enabled: true
@@ -45020,6 +45508,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 14076062625996744679
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 16607485149551748456
             name: ClumnArc_mesh046
             enabled: true
@@ -45042,6 +45542,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 1057227838783003410
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 11753152676532556645
             name: ClumnArc_mesh047
             enabled: true
@@ -45064,6 +45576,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 6096906358906638663
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 13271439263402910308
             name: ClumnArc_mesh048
             enabled: true
@@ -45086,6 +45610,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 17878701674967027646
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 2335905100738484468
             name: ClumnArc_mesh049
             enabled: true
@@ -45108,6 +45644,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 186741281934260462
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 5887984225854743789
             name: ClumnArc_mesh050
             enabled: true
@@ -45130,6 +45678,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 12516059261036517426
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
           - id: 14424029733986353695
             name: ClumnArc_mesh051
             enabled: true
@@ -45152,6 +45712,18 @@ child:
                 outline_type: 2
                 material_id: 13905282772193698380
                 tint_color: [1, 1, 1, 1]
+              - !<script>
+                id: 5846332706509513342
+                type: 15
+                enabled: true
+                class_name: BloomAnimator
+                "'_bloom_target@GameObject*'": 0
+                "'_is_automatic@bool'": true
+                "'_is_randomized@bool'": true
+                "'_randomized_duration_min@float'": 0.2
+                "'_randomized_duration_max@float'": 3
+                "'_automatic_lerp_duration@float'": 1
+                "'_initial_emissive_color@float4'": [1, 1, 1, 1]
       - id: 10568473202304889552
         name: FLOOR full
         enabled: true
@@ -45816,6 +46388,262 @@ child:
             outline_type: 2
             material_id: 6750369022920963075
             tint_color: [1, 1, 1, 1]
+      - id: 13117087557593011952
+        name: crystal chunk back001
+        enabled: true
+        component:
+          - !<transform>
+            id: 6936739577691613623
+            type: 1
+            enabled: true
+            position: [9.83, -16.17, -34.72]
+            rotation: [-90, 0, 0]
+            scale: [0.7422, 0.7422, 0.8854]
+          - !<script>
+            id: 5313581202132009225
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 13117087557593011952
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0, 1, 0, 1]
+        child:
+          - id: 7013122437786461233
+            name: "crystalTall_mesh\t892"
+            enabled: true
+            component:
+              - !<transform>
+                id: 13575647028525505082
+                type: 1
+                enabled: true
+                position: [-0.4703, -0.3456, -12.39]
+                rotation: [0, 0, -180]
+                scale: [0.2357, 0.2357, 0.432]
+              - !<mesh_renderer>
+                id: 1060025518361775512
+                type: 2
+                enabled: true
+                mesh_id: 1339341851625920746
+                navigable: false
+                visible: true
+                casting_shadow: true
+                outline_type: 2
+                material_id: 8362424531972036853
+                tint_color: [1, 1, 1, 1]
+          - id: 14237136406531394650
+            name: "crystalTall_mesh\t893"
+            enabled: true
+            component:
+              - !<transform>
+                id: 11028906185973420597
+                type: 1
+                enabled: true
+                position: [-1.151, -2.799, -13.84]
+                rotation: [-20, 0.8915, -84.68]
+                scale: [0.14, 0.14, 0.396]
+              - !<mesh_renderer>
+                id: 12011962573133493050
+                type: 2
+                enabled: true
+                mesh_id: 3646839401353568421
+                navigable: false
+                visible: true
+                casting_shadow: true
+                outline_type: 2
+                material_id: 8362424531972036853
+                tint_color: [1, 1, 1, 1]
+          - id: 1890773752004294188
+            name: "crystalTall_mesh\t894"
+            enabled: true
+            component:
+              - !<transform>
+                id: 12787058034282061323
+                type: 1
+                enabled: true
+                position: [0.2495, -0.293, -10.9]
+                rotation: [-16.47, -19.54, -149.7]
+                scale: [0.14, 0.14, 0.275]
+              - !<mesh_renderer>
+                id: 15085137700794532967
+                type: 2
+                enabled: true
+                mesh_id: 1738536974844181621
+                navigable: false
+                visible: true
+                casting_shadow: true
+                outline_type: 2
+                material_id: 8362424531972036853
+                tint_color: [1, 1, 1, 1]
+          - id: 13387119917612488810
+            name: "crystalTall_mesh\t895"
+            enabled: true
+            component:
+              - !<transform>
+                id: 1857057468132356478
+                type: 1
+                enabled: true
+                position: [-1.927, -0.0706, -3.668]
+                rotation: [27.05, 3.02, 123.5]
+                scale: [0.1558, 0.1558, 0.1918]
+              - !<mesh_renderer>
+                id: 11972951711127466821
+                type: 2
+                enabled: true
+                mesh_id: 5493521826477469462
+                navigable: false
+                visible: true
+                casting_shadow: true
+                outline_type: 2
+                material_id: 8362424531972036853
+                tint_color: [1, 1, 1, 1]
+          - id: 8560983551530234600
+            name: "crystalTall_mesh\t896"
+            enabled: true
+            component:
+              - !<transform>
+                id: 9808988723886171474
+                type: 1
+                enabled: true
+                position: [0.8022, 0.2513, -7.307]
+                rotation: [7.324, -26.52, 73.08]
+                scale: [0.1965, 0.1965, 0.2419]
+              - !<mesh_renderer>
+                id: 4732062724582361917
+                type: 2
+                enabled: true
+                mesh_id: 10906869962352465905
+                navigable: false
+                visible: true
+                casting_shadow: true
+                outline_type: 2
+                material_id: 8362424531972036853
+                tint_color: [1, 1, 1, 1]
+          - id: 12609738392012442055
+            name: "crystalTall_mesh\t897"
+            enabled: true
+            component:
+              - !<transform>
+                id: 2635643722404412412
+                type: 1
+                enabled: true
+                position: [-1.792, 0.1003, -12.05]
+                rotation: [15.3, 12.14, 114.9]
+                scale: [0.1254, 0.1254, 0.3548]
+              - !<mesh_renderer>
+                id: 2097555938603741309
+                type: 2
+                enabled: true
+                mesh_id: 5403886952877134775
+                navigable: false
+                visible: true
+                casting_shadow: true
+                outline_type: 2
+                material_id: 8362424531972036853
+                tint_color: [1, 1, 1, 1]
+          - id: 14160671087002916102
+            name: "crystalTall_mesh\t898"
+            enabled: true
+            component:
+              - !<transform>
+                id: 3858960265349577087
+                type: 1
+                enabled: true
+                position: [-3.923, -1.645, -8.748]
+                rotation: [-20.14, 27.11, 33.14]
+                scale: [0.1373, 0.1517, 0.3043]
+              - !<mesh_renderer>
+                id: 7990814447482347481
+                type: 2
+                enabled: true
+                mesh_id: 10631611771818861522
+                navigable: false
+                visible: true
+                casting_shadow: true
+                outline_type: 2
+                material_id: 8362424531972036853
+                tint_color: [1, 1, 1, 1]
+          - id: 11028884066973687006
+            name: "crystalTall_mesh\t899"
+            enabled: true
+            component:
+              - !<transform>
+                id: 13090174368542856241
+                type: 1
+                enabled: true
+                position: [0.6593, -0.473, -7.674]
+                rotation: [13.41, 21.71, 38.98]
+                scale: [0.1077, 0.1077, 0.2116]
+              - !<mesh_renderer>
+                id: 6890945154144316753
+                type: 2
+                enabled: true
+                mesh_id: 13859013716051018749
+                navigable: false
+                visible: true
+                casting_shadow: true
+                outline_type: 2
+                material_id: 8362424531972036853
+                tint_color: [1, 1, 1, 1]
+          - id: 10075904823629328137
+            name: "crystalTall_mesh\t900"
+            enabled: true
+            component:
+              - !<transform>
+                id: 880403446215855157
+                type: 1
+                enabled: true
+                position: [-1.273, -0.6755, -8.234]
+                rotation: [-0.4107, 23.07, 120.4]
+                scale: [0.1384, 0.153, 0.3067]
+              - !<mesh_renderer>
+                id: 17999095675783334554
+                type: 2
+                enabled: true
+                mesh_id: 4941018639482985890
+                navigable: false
+                visible: true
+                casting_shadow: true
+                outline_type: 2
+                material_id: 8362424531972036853
+                tint_color: [1, 1, 1, 1]
+      - id: 18222993031780339595
+        name: bossPlatformCircle
+        enabled: true
+        component:
+          - !<transform>
+            id: 5046329718537123422
+            type: 1
+            enabled: true
+            position: [-6.826, -6.254, -11.02]
+            rotation: [-90, -0, -10]
+            scale: [1, 1, 1]
+          - !<mesh_renderer>
+            id: 14155701772124340193
+            type: 2
+            enabled: true
+            mesh_id: 12639135304856286803
+            navigable: false
+            visible: true
+            casting_shadow: true
+            outline_type: 2
+            material_id: 3164312813149675218
+            tint_color: [1, 1, 1, 1]
+          - !<script>
+            id: 17128616870044416707
+            type: 15
+            enabled: true
+            class_name: BloomAnimator
+            "'_bloom_target@GameObject*'": 18222993031780339595
+            "'_is_automatic@bool'": true
+            "'_is_randomized@bool'": true
+            "'_randomized_duration_min@float'": 0.2
+            "'_randomized_duration_max@float'": 3
+            "'_automatic_lerp_duration@float'": 1
+            "'_initial_emissive_color@float4'": [0.304, 0, 1, 0]
   - id: 15222269550862272189
     name: Lights
     enabled: true
@@ -63412,7 +64240,7 @@ child:
                     fill_window: false
           - id: 7823786570758291485
             name: Boss state text
-            enabled: true
+            enabled: false
             component:
               - !<transform>
                 id: 12145337567693125150
