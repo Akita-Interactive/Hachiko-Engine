@@ -12,6 +12,7 @@ namespace Hachiko::Sounds
 	constexpr const wchar_t* SHOOT_NO_AMMO		= L"Play_ShootNoAmmo";
 	constexpr const wchar_t* RECEIVE_DAMAGE		= L"Play_ReceiveDamage";
 	constexpr const wchar_t* PARASITE_PICKUP	= L"Play_ParasitePickUp";
+	constexpr const wchar_t* PARASITE_FALLING	= L"Play_Fall";
 
 	// Enemy
 	constexpr const wchar_t* BEETLE_ATTACK	= L"Play_BeetleAttack";
@@ -78,6 +79,14 @@ namespace Hachiko::Sounds
 	constexpr const wchar_t* SWITCH_GROUP_FOOTSTEPS				= L"Footsteps";
 	constexpr const wchar_t* SWITCH_STATE_FOOTSTEPS_GRAVEL		= L"Gravel";
 	constexpr const wchar_t* SWITCH_STATE_FOOTSTEPS_STANDARD	= L"Standard";
+
+	// Weapons
+	constexpr const wchar_t* SWITCH_WEAPONS			= L"PlayerWeapons";
+	constexpr const wchar_t* SWITCH_WEAPONS_BASIC	= L"Basic";
+	constexpr const wchar_t* SWITCH_WEAPONS_HAMMER	= L"Hammer";
+	constexpr const wchar_t* SWITCH_WEAPONS_SWORD	= L"Sword";
+	constexpr const wchar_t* SWITCH_WEAPONS_CLAW	= L"Claw";
+
 
 	// Levels
 	constexpr const wchar_t* SWITCH_LEVELS		= L"Level_Switch";

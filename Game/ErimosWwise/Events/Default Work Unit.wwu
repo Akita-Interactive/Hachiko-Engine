@@ -542,7 +542,7 @@
 								<Action Name="" ID="{C564AAD7-CB5C-42B1-913F-5CF554419D23}" ShortID="303566824">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="MeleeAttack" ID="{3D78327C-F61C-4EDF-90CD-41BC8B4183A3}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
+											<ObjectRef Name="Basic" ID="{3D78327C-F61C-4EDF-90CD-41BC8B4183A3}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -755,6 +755,17 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Victory" ID="{4218ECB3-FF93-4574-883F-453CD6E8D154}" WorkUnitID="{58D3A6EC-B8FF-4FD8-B774-6F4619FF9B9B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Fall" ID="{05AF587B-39D6-4848-B1D0-7D8717B38E9A}">
+					<ChildrenList>
+						<Action Name="" ID="{A5199D6C-BC8C-4C45-8E28-EF95B76B8A97}" ShortID="328589011">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Fall" ID="{7BCA1225-8DE2-40AA-A867-4CC9F8D50861}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

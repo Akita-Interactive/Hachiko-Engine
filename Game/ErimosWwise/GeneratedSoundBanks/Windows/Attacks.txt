@@ -14,6 +14,15 @@ Event	ID	Name			Wwise Object Path	Notes
 	4242710327	Play_WormRoar			\Default Work Unit\Enemies\Worm\Play_WormRoar	
 	4275867775	Play_BeetleAttack			\Default Work Unit\Enemies\Beetle\Play_BeetleAttack	
 
+Switch Group	ID	Name			Wwise Object Path	Notes
+	986618877	PlayerWeapons			\Default Work Unit\PlayerWeapons	
+
+Switch	ID	Name	Switch Group			Notes
+	703486095	Hammer	PlayerWeapons			
+	2454616260	Sword	PlayerWeapons			
+	3340296461	Basic	PlayerWeapons			
+	3737052860	Claw	PlayerWeapons			
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	53399867	ES_Punch 44 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Punch 44 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Beetle\BeetleAttack\Hit\ES_Punch 44 - SFX Producer		108608
 	132361843	ES_Punch Face 5 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Punch Face 5 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Beetle\BeetleAttack\Hit\ES_Punch Face 5 - SFX Producer		67648
@@ -30,7 +39,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	364841447	ES_Alien Chirp Critter 2 - SFX Producer_01	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Alien Chirp Critter 2 - SFX Producer_801B1EBA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Beetle\BeetleAttack\Voice\ES_Alien Chirp Critter 2 - SFX Producer_01		59332
 	392689559	Damage 6	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Damage\Damage 6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\ReceiveDamage\Damage 6		37996
 	416633218	WormBleat	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Monster Groan 6 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Worm\HideAndSand\WormBleat		249920
-	433395220	ES_Punch Face 3 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Punch Face 3 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\MeleeAttack\ES_Punch Face 3 - SFX Producer		71744
+	433395220	ES_Punch Face 3 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Punch Face 3 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\WeaponsSwitch\Basic\ES_Punch Face 3 - SFX Producer		71744
 	519900430	ES_Alien Chirp Critter 1 - SFX Producer_01	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Alien Chirp Critter 1 - SFX Producer_4F1280FD.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Beetle\BeetleAttack\Voice\ES_Alien Chirp Critter 1 - SFX Producer_01		39084
 	532585285	Low	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Monster Snarl Growl 8 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Beetle\BeetleDie\BeetleVoice\Low		127040
 	555268996	ES_PREL Shimmer Twinkl 8 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_PREL Shimmer Twinkl 8 - SFX Producer_11996305.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Parasites\Health\ES_PREL Shimmer Twinkl 8 - SFX Producer		343984
@@ -47,7 +56,6 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	825601952	Damage 8	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Damage\Damage 8_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\ReceiveDamage\Damage 8		67856
 	839850156	ES_Insect Squish 24 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Insect Squish 24 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Beetle\BeetleDie\Body\ES_Insect Squish 24 - SFX Producer		77888
 	908863149	ES_Insect Squish 25 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_Insect Squish 25 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Beetle\BeetleDie\Body\ES_Insect Squish 25 - SFX Producer		272448
-	944417870	Punch - Pop	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Melee attack\Punch - Pop_2CBD9A18.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\MeleeAttack\Punch - Pop		95116
 	977051301	Dash	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Dash\Impact - Cease Fire_04610725.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Dash		116408
 	1016931998	Impact - Robot Punch	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Player\Ranged attack\Impact - Robot Punch_E2E3A2D3.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Ranged\Impact - Robot Punch		222548
 	1032651945	ES_PREL Shimmer Swell 18 - SFX Producer	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\ES_PREL Shimmer Swell 18 - SFX Producer_B80F5780.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Parasites\Health\ES_PREL Shimmer Swell 18 - SFX Producer		323672

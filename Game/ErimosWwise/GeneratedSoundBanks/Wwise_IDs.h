@@ -32,6 +32,7 @@ namespace AK
         static const AkUniqueID PLAY_EXPLOSIVECRYSTAL = 1185403619U;
         static const AkUniqueID PLAY_EXPLOSIVECRYSTALCHARGE = 4241858839U;
         static const AkUniqueID PLAY_EXPLOSIVECRYSTALSPAWN = 749885692U;
+        static const AkUniqueID PLAY_FALL = 2712047697U;
         static const AkUniqueID PLAY_FOOTSTEP = 1602358412U;
         static const AkUniqueID PLAY_GAUNLETDOOROPENING = 2988819998U;
         static const AkUniqueID PLAY_GAUNLETNEXTROUND = 1126614951U;
@@ -175,6 +176,19 @@ namespace AK
                 static const AkUniqueID LEVEL2 = 2678230381U;
             } // namespace SWITCH
         } // namespace LEVEL_SWITCH
+
+        namespace PLAYERWEAPONS
+        {
+            static const AkUniqueID GROUP = 986618877U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID BASIC = 3340296461U;
+                static const AkUniqueID CLAW = 3737052860U;
+                static const AkUniqueID HAMMER = 703486095U;
+                static const AkUniqueID SWORD = 2454616260U;
+            } // namespace SWITCH
+        } // namespace PLAYERWEAPONS
 
     } // namespace SWITCHES
 

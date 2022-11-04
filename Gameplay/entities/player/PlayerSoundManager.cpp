@@ -37,6 +37,8 @@ void Hachiko::Scripting::PlayerSoundManager::OnUpdate()
 	bool state_changed = _previous_state != state;
 	_previous_state = state;
 
+	SetWeaponEffect(_player_controller->GetCurrentWeaponType());
+	
 	float delta_time = Time::DeltaTime();
 
 	if (state_changed)
@@ -115,7 +117,13 @@ void Hachiko::Scripting::PlayerSoundManager::OnUpdate()
 		}
 		_timer = 0.0f;
 		break;
-	case PlayerState::INVALID:
+	case PlayerState::FALLING:
+		if (state_changed)
+		{
+			_audio_source->PostEvent(Sounds::PLAYER_FALLING);
+		}
+		_timer = 0.0f;
+	case PlayerState::INVALID:		
 	default:
 		_timer = 0.0f;
 		break;
@@ -155,5 +163,27 @@ void Hachiko::Scripting::PlayerSoundManager::SetGroundEffect()
 	else
 	{
 		_audio_source->SetSwitch(Sounds::SWITCH_GROUP_FOOTSTEPS, Sounds::SWITCH_STATE_FOOTSTEPS_STANDARD);
+	}
+}
+
+void Hachiko::Scripting::PlayerSoundManager::SetWeaponEffect(PlayerController::WeaponUsed weapon_type)
+{
+	switch (weapon_type)
+	{
+	case PlayerController::WeaponUsed::MELEE:
+		_audio_source->SetSwitch(Sounds::SWITCH_WEAPONS, Sounds::SWITCH_WEAPONS_BASIC);
+		break;
+	case PlayerController::WeaponUsed::CLAW:
+		_audio_source->SetSwitch(Sounds::SWITCH_WEAPONS, Sounds::SWITCH_WEAPONS_CLAW);
+		break;
+	case PlayerController::WeaponUsed::SWORD:
+		_audio_source->SetSwitch(Sounds::SWITCH_WEAPONS, Sounds::SWITCH_WEAPONS_SWORD);
+		break;
+	case PlayerController::WeaponUsed::HAMMER:
+		_audio_source->SetSwitch(Sounds::SWITCH_WEAPONS, Sounds::SWITCH_WEAPONS_HAMMER);
+		break;
+	default:
+		_audio_source->SetSwitch(Sounds::SWITCH_WEAPONS, Sounds::SWITCH_WEAPONS_BASIC);
+		break;
 	}
 }

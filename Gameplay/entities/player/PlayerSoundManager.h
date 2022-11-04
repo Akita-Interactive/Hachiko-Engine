@@ -44,6 +44,7 @@ private:
 	float _dmg_cool_down;
 
 	void SetGroundEffect();
+	void SetWeaponEffect(PlayerController::WeaponUsed weapon_type);
 };
 } // namespace Scripting
 } // namespace Hachiko

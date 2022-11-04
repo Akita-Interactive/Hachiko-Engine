@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="626769978" Language="SFX" Hash="992608440">
+		<SoundBank Id="626769978" Language="SFX" Hash="4066671493">
 			<ObjectPath>\SoundBanks\Default Work Unit\BackgroundMusic</ObjectPath>
 			<ShortName>BackgroundMusic</ShortName>
 			<Path>BackgroundMusic.bnk</Path>
@@ -607,7 +607,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3768541028" Language="SFX" Hash="4261890515">
+		<SoundBank Id="3768541028" Language="SFX" Hash="981985268">
 			<ObjectPath>\SoundBanks\Default Work Unit\Attacks</ObjectPath>
 			<ShortName>Attacks</ShortName>
 			<Path>Attacks.bnk</Path>
@@ -705,10 +705,6 @@
 						<File Id="433395220" Language="SFX">
 							<ShortName>ES_Punch Face 3 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Punch Face 3 - SFX Producer_10C4C929.wem</Path>
-						</File>
-						<File Id="944417870" Language="SFX">
-							<ShortName>Player\Melee attack\Punch - Pop.wav</ShortName>
-							<Path>SFX\Player\Melee attack\Punch - Pop_2CBD9A18.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -821,8 +817,18 @@
 					</IncludedMemoryFiles>
 				</Event>
 			</IncludedEvents>
+			<SwitchGroups>
+				<SwitchGroup Id="986618877" Name="PlayerWeapons" ObjectPath="\Switches\Default Work Unit\PlayerWeapons" GUID="{08CED1C6-3FE8-41FD-B010-C703623FA985}">
+					<Switches>
+						<Switch Id="3340296461" Name="Basic" ObjectPath="\Switches\Default Work Unit\PlayerWeapons\Basic" GUID="{8742CF14-04A5-4224-8CAB-E0C57D44C5EA}"/>
+						<Switch Id="3737052860" Name="Claw" ObjectPath="\Switches\Default Work Unit\PlayerWeapons\Claw" GUID="{566F626C-BEC1-45DC-9527-637B30E27D52}"/>
+						<Switch Id="2454616260" Name="Sword" ObjectPath="\Switches\Default Work Unit\PlayerWeapons\Sword" GUID="{EA4FC07B-DF8D-4A33-B9E6-C200FB993E16}"/>
+						<Switch Id="703486095" Name="Hammer" ObjectPath="\Switches\Default Work Unit\PlayerWeapons\Hammer" GUID="{64FCE35B-8883-479E-8CF7-5E2B22B1F4A1}"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3909959462" Language="SFX" Hash="3324059426">
+		<SoundBank Id="3909959462" Language="SFX" Hash="3031810218">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enviroment</ObjectPath>
 			<ShortName>Enviroment</ShortName>
 			<Path>Enviroment.bnk</Path>
@@ -855,7 +861,7 @@
 						</File>
 						<File Id="931073005" Language="SFX">
 							<ShortName>ES_PREL Whoosh High 18 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_PREL Whoosh High 18 - SFX Producer_742DD9AF.wem</Path>
+							<Path>SFX\ES_PREL Whoosh High 18 - SFX Producer_11D2BAFF.wem</Path>
 						</File>
 						<File Id="1017764981" Language="SFX">
 							<ShortName>ES_Impact Rock Smash 3 - SFX Producer.wav</ShortName>
@@ -867,7 +873,7 @@
 					<IncludedMemoryFiles>
 						<File Id="113467563" Language="SFX">
 							<ShortName>ES_Whoosh Reverse 3 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Whoosh Reverse 3 - SFX Producer_627A35A5.wem</Path>
+							<Path>SFX\ES_Whoosh Reverse 3 - SFX Producer_87FC6217.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -875,7 +881,7 @@
 					<IncludedMemoryFiles>
 						<File Id="135588950" Language="SFX">
 							<ShortName>ES_Crash Rock Patio 2 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Crash Rock Patio 2 - SFX Producer_8E10623B.wem</Path>
+							<Path>SFX\ES_Crash Rock Patio 2 - SFX Producer_1B7286AF.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -911,7 +917,7 @@
 					<IncludedMemoryFiles>
 						<File Id="596719593" Language="SFX">
 							<ShortName>ES_Swoosh Thing - Johan Hynynen.wav</ShortName>
-							<Path>SFX\ES_Swoosh Thing - Johan Hynynen_F349A28A.wem</Path>
+							<Path>SFX\ES_Swoosh Thing - Johan Hynynen_5D49944A.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -919,7 +925,19 @@
 					<IncludedMemoryFiles>
 						<File Id="588868501" Language="SFX">
 							<ShortName>ES_Swoosh Thing - Johan Hynynen.wav</ShortName>
-							<Path>SFX\ES_Swoosh Thing - Johan Hynynen_6E3CB8C4.wem</Path>
+							<Path>SFX\ES_Swoosh Thing - Johan Hynynen_19C85BBC.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2712047697" Name="Play_Fall" ObjectPath="\Events\Default Work Unit\Play_Fall">
+					<IncludedMemoryFiles>
+						<File Id="760620926" Language="SFX">
+							<ShortName>ES_Whoosh To Hit 28 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Whoosh To Hit 28 - SFX Producer_E6ED915D.wem</Path>
+						</File>
+						<File Id="918177923" Language="SFX">
+							<ShortName>ES_Horror Whoosh 1 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Horror Whoosh 1 - SFX Producer_EB66D2E2.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
