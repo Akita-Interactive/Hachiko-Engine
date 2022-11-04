@@ -1348,90 +1348,6 @@
 										</ObjectList>
 									</ObjectLists>
 								</MusicSegment>
-								<MusicSegment Name="Stage1" ID="{6E99ECF3-3916-47A2-B94B-1E3489E091F4}" ShortID="1000974028">
-									<PropertyList>
-										<Property Name="EndPosition" Type="Real64" Value="52659.4791666667"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<MusicTrack Name="ER_Boss_Step 1" ID="{BB4ED258-CF39-4831-9B7B-0B4C8AB4397E}" ShortID="690752985">
-											<ReferenceList>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ER_Boss_Step 1" ID="{1A2CE1AB-C99E-44AA-A2C7-17CF6372A6CE}">
-													<Language>SFX</Language>
-													<AudioFile>ER_Boss_Step 1.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="742142085"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<TransitionList>
-												<MusicTransition Name="Root" ID="{3D55FA5A-19B9-4637-9AEB-AE1941B81740}">
-													<PropertyList>
-														<Property Name="IsFolder" Type="bool" Value="True"/>
-													</PropertyList>
-													<TransitionInfo/>
-												</MusicTransition>
-											</TransitionList>
-											<ObjectLists>
-												<ObjectList Name="Sequences">
-													<Reference>
-														<Local>
-															<MusicTrackSequence Name="" ID="{9731FAB3-52DA-49BF-BDCC-36827E4C59C7}">
-																<ObjectLists>
-																	<ObjectList Name="Clips">
-																		<Reference>
-																			<Local>
-																				<MusicClip Name="ER_Boss_Step 1" ID="{A73AABB4-983D-4EAE-B754-BC010C898930}">
-																					<PropertyList>
-																						<Property Name="EndTrimOffset" Type="Real64" Value="52659.4791666667"/>
-																						<Property Name="FadeInMode" Type="int16" Value="0"/>
-																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
-																					</PropertyList>
-																					<AudioSourceRef Name="ER_Boss_Step 1" ID="{1A2CE1AB-C99E-44AA-A2C7-17CF6372A6CE}"/>
-																				</MusicClip>
-																			</Local>
-																		</Reference>
-																	</ObjectList>
-																</ObjectLists>
-															</MusicTrackSequence>
-														</Local>
-													</Reference>
-												</ObjectList>
-											</ObjectLists>
-										</MusicTrack>
-									</ChildrenList>
-									<ObjectLists>
-										<ObjectList Name="Cues">
-											<Reference>
-												<Local>
-													<MusicCue Name="Entry Cue" ID="{AD5CE3CF-64BF-442E-A854-24A2D307F6FA}"/>
-												</Local>
-											</Reference>
-											<Reference>
-												<Local>
-													<MusicCue Name="Exit Cue" ID="{AB9CE010-DE89-4EFB-BA57-6B01110F46F4}">
-														<PropertyList>
-															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="1000"/>
-														</PropertyList>
-													</MusicCue>
-												</Local>
-											</Reference>
-										</ObjectList>
-									</ObjectLists>
-								</MusicSegment>
 								<MusicSegment Name="Stage3" ID="{E64F0F2D-D4D6-4BC1-A953-F5B0268F44DD}" ShortID="708643465">
 									<PropertyList>
 										<Property Name="EndPosition" Type="Real64" Value="160653.323464912"/>
@@ -1600,6 +1516,133 @@
 										</ObjectList>
 									</ObjectLists>
 								</MusicSegment>
+								<MusicPlaylistContainer Name="Combat1" ID="{6E383FB8-0B89-4FAD-8425-E66C84A42121}" ShortID="66601797">
+									<PropertyList>
+										<Property Name="Tempo" Type="Real64" Value="108"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-8</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicSegment Name="Stage1" ID="{6E99ECF3-3916-47A2-B94B-1E3489E091F4}" ShortID="1000974028">
+											<PropertyList>
+												<Property Name="EndPosition" Type="Real64" Value="52659.4791666667"/>
+												<Property Name="Tempo" Type="Real64" Value="108"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<MusicTrack Name="ER_Boss_Step 1" ID="{BB4ED258-CF39-4831-9B7B-0B4C8AB4397E}" ShortID="690752985">
+													<ReferenceList>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ER_Boss_Step 1" ID="{1A2CE1AB-C99E-44AA-A2C7-17CF6372A6CE}">
+															<Language>SFX</Language>
+															<AudioFile>ER_Boss_Step 1.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="742142085"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<TransitionList>
+														<MusicTransition Name="Root" ID="{3D55FA5A-19B9-4637-9AEB-AE1941B81740}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<ReferenceList/>
+															<TransitionInfo/>
+														</MusicTransition>
+													</TransitionList>
+													<ObjectLists>
+														<ObjectList Name="Sequences">
+															<Reference>
+																<Local>
+																	<MusicTrackSequence Name="" ID="{9731FAB3-52DA-49BF-BDCC-36827E4C59C7}">
+																		<ObjectLists>
+																			<ObjectList Name="Clips">
+																				<Reference>
+																					<Local>
+																						<MusicClip Name="ER_Boss_Step 1" ID="{A73AABB4-983D-4EAE-B754-BC010C898930}">
+																							<PropertyList>
+																								<Property Name="EndTrimOffset" Type="Real64" Value="52659.4791666667"/>
+																								<Property Name="FadeInMode" Type="int16" Value="0"/>
+																								<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																							</PropertyList>
+																							<AudioSourceRef Name="ER_Boss_Step 1" ID="{1A2CE1AB-C99E-44AA-A2C7-17CF6372A6CE}"/>
+																						</MusicClip>
+																					</Local>
+																				</Reference>
+																			</ObjectList>
+																		</ObjectLists>
+																	</MusicTrackSequence>
+																</Local>
+															</Reference>
+														</ObjectList>
+													</ObjectLists>
+												</MusicTrack>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="Cues">
+													<Reference>
+														<Local>
+															<MusicCue Name="Entry Cue" ID="{AD5CE3CF-64BF-442E-A854-24A2D307F6FA}"/>
+														</Local>
+													</Reference>
+													<Reference>
+														<Local>
+															<MusicCue Name="Exit Cue" ID="{AB9CE010-DE89-4EFB-BA57-6B01110F46F4}">
+																<PropertyList>
+																	<Property Name="CueType" Type="int16" Value="1"/>
+																	<Property Name="TimeMs" Type="Real64" Value="1000"/>
+																</PropertyList>
+															</MusicCue>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+										</MusicSegment>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{DF1B042A-6258-4223-89FC-160D98AB765E}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<MusicTransition Name="Transition" ID="{07E7B80A-655F-4B19-AC2A-A25FBFF5B2EB}">
+													<TransitionInfo/>
+												</MusicTransition>
+											</ChildrenList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists/>
+									<Playlist>
+										<MusicPlaylistItem Name="" ID="{DD916FBB-24B2-4AAB-80C6-204E7CAE7789}" ShortID="433064591">
+											<PropertyList>
+												<Property Name="LoopCount" Type="int16" Value="0"/>
+											</PropertyList>
+										</MusicPlaylistItem>
+									</Playlist>
+								</MusicPlaylistContainer>
 							</ChildrenList>
 							<TransitionList>
 								<MusicTransition Name="Root" ID="{D5C52ECD-FAC4-4759-A27D-CD35D0A67DFD}">
@@ -1630,7 +1673,7 @@
 										<PathElementRef Name="Stage1" ID="{1AC76792-AD16-42E6-B27B-0D03BCBF9474}"/>
 									</Path>
 									<AudioNodeInfo>
-										<AudioNodeRef Name="Stage1" ID="{6E99ECF3-3916-47A2-B94B-1E3489E091F4}" WorkUnitID="{9B3979AF-6373-40FD-A6FD-C5074B4E0B6D}" Platform="Linked"/>
+										<AudioNodeRef Name="Combat1" ID="{6E383FB8-0B89-4FAD-8425-E66C84A42121}" WorkUnitID="{9B3979AF-6373-40FD-A6FD-C5074B4E0B6D}" Platform="Linked"/>
 									</AudioNodeInfo>
 								</Entry>
 								<Entry>
