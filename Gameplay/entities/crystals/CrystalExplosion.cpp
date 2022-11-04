@@ -19,12 +19,14 @@
 Hachiko::Scripting::CrystalExplosion::CrystalExplosion(GameObject* game_object)
 	: Script(game_object, "CrystalExplosion")
 	, _stats()
-	, _explosion_radius(10.0f)
+	, _explosion_radius(10.f)
 	, _detecting_radius(1.0f)
 	, _explosive_crystal(false)
 	, _explosion_indicator_helper(nullptr)
-	, _timer_explosion(0.0f)
-	, _explosion_effect(nullptr)
+	, _timer_explosion(0.f)
+	, _explosion_indicator(nullptr)
+	, _explosion_vfx(nullptr)
+	, _explosion_particles(nullptr)
 	, _regen_time(5.f)
 	, _shake_intensity(0.1f)
 	, _seconds_shaking(0.8f)
@@ -52,7 +54,6 @@ void Hachiko::Scripting::CrystalExplosion::OnAwake()
 	{
 		spawn_billboard = boss_spawn_go->GetComponent<ComponentBillboard>();
 	}
-
 	effects_pool = Scenes::GetCombatVisualEffectsPool()->GetComponent<CombatVisualEffectsPool>();
 }
 
@@ -106,7 +107,18 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 		{
 			ExplodeCrystal();
 			DestroyCrystal();
-			return;
+			if (_explosion_vfx)
+			{
+				for (GameObject* child : _explosion_vfx->children)
+				{
+					child->SetActive(true);
+					child->GetComponent<ComponentBillboard>()->Start();
+				}
+				if (_explosion_particles)
+				{
+					_explosion_particles->GetComponent<ComponentParticleSystem>()->Start();
+				}
+			}
 		}
 		else
 		{
@@ -133,7 +145,7 @@ void Hachiko::Scripting::CrystalExplosion::StartExplosion()
 {
 	_is_exploding = true;
 
-	for (GameObject* child : _explosion_effect->children)
+	for (GameObject* child : _explosion_indicator->children)
 	{
 		child->SetActive(true);
 		child->GetComponent<ComponentBillboard>()->Restart();
@@ -159,9 +171,9 @@ void Hachiko::Scripting::CrystalExplosion::ExplodeCrystal()
 	_stats->ReceiveDamage(_stats->_max_hp);
 
 	// Desable billboards
-	for (GameObject* child : _explosion_effect->children)
+	for (GameObject* child : _explosion_indicator->children)
 	{
-		child->SetActive(false);
+		//child->SetActive(false);
 	}
 
 	std::vector<GameObject*> check_hit = {};
@@ -282,6 +294,18 @@ void Hachiko::Scripting::CrystalExplosion::RegisterHit(int damage, bool is_from_
 			//StartExplosion();
 			ExplodeCrystal();
 			DestroyCrystal();
+			if (_explosion_vfx)
+			{
+				for (GameObject* child : _explosion_vfx->children)
+				{
+					child->SetActive(true);
+					child->GetComponent<ComponentBillboard>()->Start();
+				}
+				if (_explosion_particles)
+				{
+					_explosion_particles->GetComponent<ComponentParticleSystem>()->Start();
+				}
+			}
 		}
 		else
 		{

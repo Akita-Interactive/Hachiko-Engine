@@ -66,7 +66,7 @@ namespace Hachiko
             float activate_effect_duration = 0.1f;
             float activate_effect_progress = 1.0f;
 
-            GameObject* _terrain = nullptr;
+            GameObject* _laser_colliders = nullptr;
             GameObject* _player = nullptr;
             ComponentAudioSource* _audio_source;
             ComponentParticleSystem* _sparks_particles = nullptr;
