@@ -47406,7 +47406,7 @@ child:
         child:
           - id: 9510859117516296478
             name: Icon
-            enabled: true
+            enabled: false
             component:
               - !<transform>
                 id: 9961602768418088305
@@ -47448,7 +47448,7 @@ child:
                 fill_window: false
           - id: 3781971181584712536
             name: Counter
-            enabled: true
+            enabled: false
             component:
               - !<transform>
                 id: 5898834434809718043
@@ -47462,7 +47462,7 @@ child:
                 type: 10
                 enabled: true
                 position: [-430, 255.8, 0]
-                size: [10, 40]
+                size: [500, 500]
                 scale: [1, 1]
                 rotation: [0, 0, 0, 1]
                 pivot: [0.5, 0.5]
@@ -56003,31 +56003,31 @@ child:
                 blend_factor: 1
                 projection: true
                 randomize_tiles: false
-      - id: 10390344998171057550
+      - id: 9703702718340936692
         name: Beetle
         enabled: true
         component:
           - !<transform>
-            id: 3008026854541982351
+            id: 16304211312759640238
             type: 1
             enabled: true
             position: [0, 0, 0]
             rotation: [0, 0, 0]
             scale: [1, 1, 1]
         child:
-          - id: 15842706049838223933
+          - id: 13132097097155742249
             name: Beetle_VFX
             enabled: true
             component:
               - !<transform>
-                id: 1605783766964528186
+                id: 12319098724715845103
                 type: 1
                 enabled: true
                 position: [-79.6, 9.48, -56.25]
                 rotation: [0, 0, 0]
                 scale: [1, 1, 1]
               - !<billboard>
-                id: 4645408061894266063
+                id: 13652434140482905634
                 type: 21
                 enabled: true
                 play_on_awake: false
@@ -56040,7 +56040,7 @@ child:
                 total_tiles: 1
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[0.9884, 0.9884, 0.9884, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
+                color_gradient: [[0.8324, 0, 0, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -56048,24 +56048,24 @@ child:
                 rotation_section: false
                 rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [1, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [2, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 blend_factor: 1
                 projection: true
                 randomize_tiles: false
-          - id: 7715296026558961182
+          - id: 825561919319951207
             name: Beetle_VFX
             enabled: true
             component:
               - !<transform>
-                id: 10456637772724925904
+                id: 3367494905155693206
                 type: 1
                 enabled: true
                 position: [-79.6, 9.48, -56.25]
                 rotation: [0, 0, 0]
                 scale: [1, 1, 1]
               - !<billboard>
-                id: 9341571716011173815
+                id: 8761540189431198943
                 type: 21
                 enabled: true
                 play_on_awake: false
@@ -56078,7 +56078,7 @@ child:
                 total_tiles: 1
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[0.9884, 0.9884, 0.9884, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
+                color_gradient: [[0.8324, 0, 0, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -56086,24 +56086,24 @@ child:
                 rotation_section: false
                 rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [1, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [2, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 blend_factor: 1
                 projection: true
                 randomize_tiles: false
-          - id: 8357496664495844483
+          - id: 10186288091591014243
             name: Beetle_VFX
             enabled: true
             component:
               - !<transform>
-                id: 705874865615302046
+                id: 5605961991981595740
                 type: 1
                 enabled: true
                 position: [-79.6, 9.48, -56.25]
                 rotation: [0, 0, 0]
                 scale: [1, 1, 1]
               - !<billboard>
-                id: 12144260640923177128
+                id: 7267453991963550886
                 type: 21
                 enabled: true
                 play_on_awake: false
@@ -56116,7 +56116,7 @@ child:
                 total_tiles: 1
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[0.9884, 0.9884, 0.9884, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
+                color_gradient: [[0.8324, 0, 0, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -56124,24 +56124,24 @@ child:
                 rotation_section: false
                 rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [1, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [2, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 blend_factor: 1
                 projection: true
                 randomize_tiles: false
-          - id: 7701925914567977440
+          - id: 8980059622455589518
             name: Beetle_VFX
             enabled: true
             component:
               - !<transform>
-                id: 8166876358628548492
+                id: 3838034663817087036
                 type: 1
                 enabled: true
                 position: [-79.6, 9.48, -56.25]
                 rotation: [0, 0, 0]
                 scale: [1, 1, 1]
               - !<billboard>
-                id: 1581494482431554752
+                id: 10221918959061832889
                 type: 21
                 enabled: true
                 play_on_awake: false
@@ -56154,7 +56154,7 @@ child:
                 total_tiles: 1
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[0.9884, 0.9884, 0.9884, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
+                color_gradient: [[0.8324, 0, 0, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -56162,24 +56162,24 @@ child:
                 rotation_section: false
                 rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [1, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [2, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 blend_factor: 1
                 projection: true
                 randomize_tiles: false
-          - id: 400426013382864771
+          - id: 7614968362774503077
             name: Beetle_VFX
             enabled: true
             component:
               - !<transform>
-                id: 16853508805850787165
+                id: 14909456217635556843
                 type: 1
                 enabled: true
                 position: [-79.6, 9.48, -56.25]
                 rotation: [0, 0, 0]
                 scale: [1, 1, 1]
               - !<billboard>
-                id: 1109204793623755711
+                id: 1238928890901050966
                 type: 21
                 enabled: true
                 play_on_awake: false
@@ -56192,7 +56192,7 @@ child:
                 total_tiles: 1
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[0.9884, 0.9884, 0.9884, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
+                color_gradient: [[0.8324, 0, 0, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -56200,24 +56200,24 @@ child:
                 rotation_section: false
                 rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [1, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [2, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 blend_factor: 1
                 projection: true
                 randomize_tiles: false
-          - id: 8857761498995333995
+          - id: 7744690292914901537
             name: Beetle_VFX
             enabled: true
             component:
               - !<transform>
-                id: 18336279737639691081
+                id: 1511999530689665439
                 type: 1
                 enabled: true
                 position: [-79.6, 9.48, -56.25]
                 rotation: [0, 0, 0]
                 scale: [1, 1, 1]
               - !<billboard>
-                id: 3649766916636819530
+                id: 9928434795016359279
                 type: 21
                 enabled: true
                 play_on_awake: false
@@ -56230,7 +56230,7 @@ child:
                 total_tiles: 1
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[0.9884, 0.9884, 0.9884, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
+                color_gradient: [[0.8324, 0, 0, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -56238,24 +56238,24 @@ child:
                 rotation_section: false
                 rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [1, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [2, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 blend_factor: 1
                 projection: true
                 randomize_tiles: false
-          - id: 5129420683246056960
+          - id: 14100736450951620016
             name: Beetle_VFX
             enabled: true
             component:
               - !<transform>
-                id: 9150495645494121729
+                id: 4436414339847206016
                 type: 1
                 enabled: true
                 position: [-79.6, 9.48, -56.25]
                 rotation: [0, 0, 0]
                 scale: [1, 1, 1]
               - !<billboard>
-                id: 9802429099138771755
+                id: 3737103702450536602
                 type: 21
                 enabled: true
                 play_on_awake: false
@@ -56268,7 +56268,7 @@ child:
                 total_tiles: 1
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[0.9884, 0.9884, 0.9884, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
+                color_gradient: [[0.8324, 0, 0, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -56276,24 +56276,24 @@ child:
                 rotation_section: false
                 rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [1, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [2, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 blend_factor: 1
                 projection: true
                 randomize_tiles: false
-          - id: 9904510364466771752
+          - id: 14059307237726892787
             name: Beetle_VFX
             enabled: true
             component:
               - !<transform>
-                id: 4182686390086201289
+                id: 8068057003280621820
                 type: 1
                 enabled: true
                 position: [-79.6, 9.48, -56.25]
                 rotation: [0, 0, 0]
                 scale: [1, 1, 1]
               - !<billboard>
-                id: 94987194856671751
+                id: 5587641098860414177
                 type: 21
                 enabled: true
                 play_on_awake: false
@@ -56306,7 +56306,7 @@ child:
                 total_tiles: 1
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[0.9884, 0.9884, 0.9884, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
+                color_gradient: [[0.8324, 0, 0, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -56314,83 +56314,7 @@ child:
                 rotation_section: false
                 rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [1, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                blend_factor: 1
-                projection: true
-                randomize_tiles: false
-          - id: 1982221806185674068
-            name: Beetle_VFX
-            enabled: true
-            component:
-              - !<transform>
-                id: 9074442964339948302
-                type: 1
-                enabled: true
-                position: [-79.6, 9.48, -56.25]
-                rotation: [0, 0, 0]
-                scale: [1, 1, 1]
-              - !<billboard>
-                id: 16624318926425610345
-                type: 21
-                enabled: true
-                play_on_awake: false
-                texture_id: 8665573601895073415
-                tiles: [1, 1]
-                flip: [false, false]
-                billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-                animation_speed: 1
-                total_tiles: 1
-                animation_loop: false
-                color_cycles: 1
-                color_gradient: [[0.9884, 0.9884, 0.9884, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
-                animation_section: true
-                color_section: true
-                size_section: false
-                size_over_time: [true, false, 1, [-1, -2.5], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                rotation_section: false
-                rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [1, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                blend_factor: 1
-                projection: true
-                randomize_tiles: false
-          - id: 11460002538920605605
-            name: Beetle_VFX
-            enabled: true
-            component:
-              - !<transform>
-                id: 13166061332784843787
-                type: 1
-                enabled: true
-                position: [-79.6, 9.48, -56.25]
-                rotation: [0, 0, 0]
-                scale: [1, 1, 1]
-              - !<billboard>
-                id: 8209065509376624593
-                type: 21
-                enabled: true
-                play_on_awake: false
-                texture_id: 8665573601895073415
-                tiles: [1, 1]
-                flip: [false, false]
-                billboard_lifetime: 1
-                properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-                animation_speed: 1
-                total_tiles: 1
-                animation_loop: false
-                color_cycles: 1
-                color_gradient: [[0.9884, 0.9884, 0.9884, 0, 0.7562], [0, 0, 0, 0, 0.9256]]
-                animation_section: true
-                color_section: true
-                size_section: false
-                size_over_time: [true, false, 1, [-1, -2.5], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                rotation_section: false
-                rotation_over_time: [true, false, 1, [1, 2], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [1, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [2, 2.5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 start_rotation: [true, true, 1, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
                 blend_factor: 1
                 projection: true
