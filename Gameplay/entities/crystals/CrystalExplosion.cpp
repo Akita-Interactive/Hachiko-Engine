@@ -30,7 +30,6 @@ Hachiko::Scripting::CrystalExplosion::CrystalExplosion(GameObject* game_object)
 	, _explosion_dome(nullptr)
 	, _dome_vfx_duration(0.4f)
 	, _dome_vfx_size(2.f)
-	, _dome_dissolving_time(0.2f)
 	, _regen_time(5.f)
 	, _shake_intensity(0.1f)
 	, _seconds_shaking(0.8f)
@@ -149,26 +148,11 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 		StartDomeVFX(explosion_progression);
 		if (explosion_progression == 1.0f)
 		{
-			_is_dome_dissolving = true;
 			_casting_dome_vfx = false;
-
-		}
-	}
-
-	if (_is_dome_dissolving)
-	{
-		_dome_current_dissolving_time -= Time::DeltaTimeScaled();
-		_dome_current_dissolving_time = math::Clamp(_dome_current_dissolving_time, 0.0f, _dome_dissolving_time);
-		float dissolve_progress = _dome_current_dissolving_time / _dome_dissolving_time;
-		_explosion_dome->ChangeDissolveProgress(dissolve_progress, true);
-		if (dissolve_progress <= 0)
-		{
-			_is_dome_dissolving = false;
-			_explosion_dome->ChangeDissolveProgress(1.f, true);
-			_dome_current_dissolving_time = _dome_dissolving_time;
 			_explosion_dome->SetActive(false);
 		}
 	}
+
 
 	if (_explosive_crystal && _stats->IsAlive() && !_is_exploding)
 	{
