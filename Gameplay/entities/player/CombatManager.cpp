@@ -626,6 +626,7 @@ void Hachiko::Scripting::CombatManager::ResetEnemyPack(GameObject* pack, bool is
 			enemy_controller->SetIsFromGauntlet(is_gauntlet);
 			enemy_controller->ResetEnemy();
 			enemy_controller->ResetEnemyPosition();
+			enemy_controller->ResetEnemyAgent();
 			enemy_controller->OnStart();
 		}
 	}

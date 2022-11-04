@@ -155,6 +155,9 @@ void Hachiko::Scripting::GauntletManager::StartGauntlet()
 		_closing_door->SetActive(true);
 		_closing_door->ChangeDissolveProgress(0.0f, true);
 	}
+
+	unsigned alive_count = _combat_manager->GetPackAliveCount(_enemy_packs[current_round]);
+	_level_manager->SetEnemyCount(alive_count);
 }
 
 bool Hachiko::Scripting::GauntletManager::IsFinished() const
@@ -164,7 +167,8 @@ bool Hachiko::Scripting::GauntletManager::IsFinished() const
 
 void Hachiko::Scripting::GauntletManager::CheckRoundStatus()
 {
-	if (current_round >= _enemy_packs.size()) {
+	if (current_round >= _enemy_packs.size()) 
+	{
 		completed = true;
 		_elapsed_time = 0.0f;
 		OpenDoors();
@@ -178,7 +182,7 @@ void Hachiko::Scripting::GauntletManager::CheckRoundStatus()
 
 	_level_manager->SetEnemyCount(alive_count);
 
-	if(alive_count > 0) return;
+	if (alive_count > 0) return;
 
 	if (!changing_rounds)
 	{
