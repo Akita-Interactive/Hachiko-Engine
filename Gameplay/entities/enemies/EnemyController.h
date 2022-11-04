@@ -72,6 +72,7 @@ namespace Hachiko
 
             void ResetEnemy();
             void ResetEnemyPosition();
+            void ResetEnemyAgent();
 
         private:
             void GetComponents();
