@@ -607,7 +607,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3768541028" Language="SFX" Hash="981985268">
+		<SoundBank Id="3768541028" Language="SFX" Hash="497637397">
 			<ObjectPath>\SoundBanks\Default Work Unit\Attacks</ObjectPath>
 			<ShortName>Attacks</ShortName>
 			<Path>Attacks.bnk</Path>
@@ -698,15 +698,137 @@
 				</Event>
 				<Event Id="2988676654" Name="Play_MeleeAttack" ObjectPath="\Events\Default Work Unit\Player\Play_MeleeAttack">
 					<IncludedMemoryFiles>
+						<File Id="15157738" Language="SFX">
+							<ShortName>ES_Bone Break 8 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Bone Break 8 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="31405960" Language="SFX">
+							<ShortName>ES_Flesh Stab 4 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Flesh Stab 4 - SFX Producer_10C4C929.wem</Path>
+						</File>
 						<File Id="132361843" Language="SFX">
 							<ShortName>ES_Punch Face 5 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Punch Face 5 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="137874401" Language="SFX">
+							<ShortName>ES_Flesh Carcass Rip 3 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Flesh Carcass Rip 3 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="162448814" Language="SFX">
+							<ShortName>ES_Punch 41 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Punch 41 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="180713998" Language="SFX">
+							<ShortName>ES_Whip Whoosh Swoosh 2 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Whip Whoosh Swoosh 2 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="222735703" Language="SFX">
+							<ShortName>ES_Whip Whoosh Swoosh 4 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Whip Whoosh Swoosh 4 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="251764794" Language="SFX">
+							<ShortName>ES_Flesh Rip Heavy - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Flesh Rip Heavy - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="288297667" Language="SFX">
+							<ShortName>ES_Tongue Ripped Out - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Tongue Ripped Out - SFX Producer_EFC3A4DA.wem</Path>
+						</File>
+						<File Id="300128220" Language="SFX">
+							<ShortName>ES_Sword Scrape Court Sword 2 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Sword Scrape Court Sword 2 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="329744407" Language="SFX">
+							<ShortName>ES_Bone Break 6 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Bone Break 6 - SFX Producer_10C4C929.wem</Path>
 						</File>
 						<File Id="433395220" Language="SFX">
 							<ShortName>ES_Punch Face 3 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Punch Face 3 - SFX Producer_10C4C929.wem</Path>
 						</File>
+						<File Id="515539414" Language="SFX">
+							<ShortName>ES_Flesh Stab 1 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Flesh Stab 1 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="549338720" Language="SFX">
+							<ShortName>ES_Bone Break 7 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Bone Break 7 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="588192664" Language="SFX">
+							<ShortName>ES_Punch 34 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Punch 34 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="609161163" Language="SFX">
+							<ShortName>ES_Flesh Rip 35 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Flesh Rip 35 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="610680920" Language="SFX">
+							<ShortName>ES_Whip Whoosh Swoosh 5 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Whip Whoosh Swoosh 5 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="685447288" Language="SFX">
+							<ShortName>ES_Sword Scrape Court Sword 3 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Sword Scrape Court Sword 3 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="702984856" Language="SFX">
+							<ShortName>ES_Sword Scrape Court Sword 1 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Sword Scrape Court Sword 1 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="718851377" Language="SFX">
+							<ShortName>ES_Punch 6 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Punch 6 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="744609273" Language="SFX">
+							<ShortName>ES_Whip Whoosh Swoosh 1 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Whip Whoosh Swoosh 1 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="767016526" Language="SFX">
+							<ShortName>ES_Guts Rip Out 3 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Guts Rip Out 3 - SFX Producer_10C4C929.wem</Path>
+						</File>
 					</IncludedMemoryFiles>
+					<DefaultSwitchValue>{8742CF14-04A5-4224-8CAB-E0C57D44C5EA}</DefaultSwitchValue>
+					<SwitchContainers>
+						<SwitchContainer SwitchValue="{8742CF14-04A5-4224-8CAB-E0C57D44C5EA}">
+							<Media>
+								<File Id="132361843"/>
+								<File Id="433395220"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{64FCE35B-8883-479E-8CF7-5E2B22B1F4A1}">
+							<Media>
+								<File Id="15157738"/>
+								<File Id="162448814"/>
+								<File Id="329744407"/>
+								<File Id="549338720"/>
+								<File Id="588192664"/>
+								<File Id="610680920"/>
+								<File Id="718851377"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{566F626C-BEC1-45DC-9527-637B30E27D52}">
+							<Media>
+								<File Id="31405960"/>
+								<File Id="251764794"/>
+								<File Id="288297667"/>
+								<File Id="515539414"/>
+								<File Id="609161163"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{EA4FC07B-DF8D-4A33-B9E6-C200FB993E16}">
+							<Media>
+								<File Id="137874401"/>
+								<File Id="180713998"/>
+								<File Id="222735703"/>
+								<File Id="300128220"/>
+								<File Id="610680920"/>
+								<File Id="685447288"/>
+								<File Id="702984856"/>
+								<File Id="744609273"/>
+								<File Id="767016526"/>
+							</Media>
+						</SwitchContainer>
+					</SwitchContainers>
 				</Event>
 				<Event Id="3772493585" Name="Play_ParasitePickUp" ObjectPath="\Events\Default Work Unit\Player\Play_ParasitePickUp">
 					<IncludedMemoryFiles>
