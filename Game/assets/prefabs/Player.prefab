@@ -5,7 +5,7 @@ component:
   - !<transform>
     type: 1
     enabled: true
-    position: [-82.06, 1.279, -34.81]
+    position: [-84.74, 1.21, 10.57]
     rotation: [0, 45, 0]
     scale: [0.44, 0.45, 0.44]
   - !<animation>
@@ -50,39 +50,39 @@ component:
     "'_damage_effect@GameObject*'": 222
     "'_parasite_pickup_effect@GameObject*'": 193
     "'_parasite_selection@GameObject*'": 0
-    "'_melee_trail_right@GameObject*'": 255
-    "'_melee_trail_left@GameObject*'": 256
-    "'_melee_trail_center@GameObject*'": 257
-    "'_claws_trail_right@GameObject*'": 259
-    "'_claws_trail_left@GameObject*'": 260
+    "'_melee_trail_right@GameObject*'": 228
+    "'_melee_trail_left@GameObject*'": 229
+    "'_melee_trail_center@GameObject*'": 230
+    "'_claws_trail_right@GameObject*'": 232
+    "'_claws_trail_left@GameObject*'": 233
     "'_claws_trail_center@GameObject*'": 0
-    "'_sword_trail_right@GameObject*'": 262
-    "'_sword_trail_left@GameObject*'": 263
+    "'_sword_trail_right@GameObject*'": 235
+    "'_sword_trail_left@GameObject*'": 236
     "'_sword_trail_center@GameObject*'": 0
-    "'_hammer_trail_right@GameObject*'": 265
-    "'_hammer_trail_left@GameObject*'": 266
+    "'_hammer_trail_right@GameObject*'": 238
+    "'_hammer_trail_left@GameObject*'": 239
     "'_hammer_trail_center@GameObject*'": 0
     "'_rotation_duration@float'": 0.08
-    "'_death_screen@GameObject*'": 252
-    "'_hp_cell_1@GameObject*'": 240
-    "'_hp_cell_2@GameObject*'": 241
-    "'_hp_cell_3@GameObject*'": 242
-    "'_hp_cell_4@GameObject*'": 243
-    "'_hp_cell_extra@GameObject*'": 244
+    "'_death_screen@GameObject*'": 262
+    "'_hp_cell_1@GameObject*'": 250
+    "'_hp_cell_2@GameObject*'": 251
+    "'_hp_cell_3@GameObject*'": 252
+    "'_hp_cell_4@GameObject*'": 253
+    "'_hp_cell_extra@GameObject*'": 254
     "'_magic_parasyte@GameObject*'": 0
-    "'_ammo_cell_1@GameObject*'": 230
-    "'_ammo_cell_2@GameObject*'": 231
-    "'_ammo_cell_3@GameObject*'": 232
-    "'_ammo_cell_4@GameObject*'": 233
-    "'_sword_ui_addon@GameObject*'": 250
-    "'_maze_ui_addon@GameObject*'": 248
-    "'_claw_ui_addon@GameObject*'": 249
-    "'_weapon_charge_bar_go@GameObject*'": 245
+    "'_ammo_cell_1@GameObject*'": 245
+    "'_ammo_cell_2@GameObject*'": 246
+    "'_ammo_cell_3@GameObject*'": 247
+    "'_ammo_cell_4@GameObject*'": 248
+    "'_sword_ui_addon@GameObject*'": 260
+    "'_maze_ui_addon@GameObject*'": 258
+    "'_claw_ui_addon@GameObject*'": 259
+    "'_weapon_charge_bar_go@GameObject*'": 255
     "'_keyboard_tooltip_display@GameObject*'": 0
     "'_controller_tooltip_display@GameObject*'": 0
     "'tooltip_y_offset@float'": 2
     "'_camera@GameObject*'": 0
-    "'_ui_damage@GameObject*'": 251
+    "'_ui_damage@GameObject*'": 261
     "'_heal_effect_fade_duration@float'": 0.3
     "'damage_effect_duration@float'": 1
   - !<script>
@@ -182,7 +182,7 @@ child:
                                     type: 1
                                     enabled: true
                                     position: [0, 1.081, -1.753]
-                                    rotation: [180, 0, 0]
+                                    rotation: [-180, 0, 0]
                                     scale: [2.54, 2.54, 2.54]
                                 child:
                                   - name: mainCharacterEye_mesh_$AssimpFbx$_RotationPivot
@@ -1390,7 +1390,7 @@ child:
                                                                                                                         type: 1
                                                                                                                         enabled: true
                                                                                                                         position: [0, 0, 0]
-                                                                                                                        rotation: [-180, 0, 0]
+                                                                                                                        rotation: [180, 0, 0]
                                                                                                                         scale: [1, 1, 1]
                                                                                                                     child:
                                                                                                                       - name: MouthUp_$AssimpFbx$_Rotation
@@ -1439,7 +1439,7 @@ child:
                                                                                                                         type: 1
                                                                                                                         enabled: true
                                                                                                                         position: [0, 0, 0]
-                                                                                                                        rotation: [-180, 0, 0]
+                                                                                                                        rotation: [180, 0, 0]
                                                                                                                         scale: [1, 1, 1]
                                                                                                                     child:
                                                                                                                       - name: MouthDown_$AssimpFbx$_Rotation
@@ -1478,7 +1478,7 @@ child:
                                                                                                                         type: 1
                                                                                                                         enabled: true
                                                                                                                         position: [0, 0, 0]
-                                                                                                                        rotation: [-180, 0, 0]
+                                                                                                                        rotation: [180, 0, 0]
                                                                                                                         scale: [1, 1, 1]
                                                                                                                     child:
                                                                                                                       - name: Weapon
@@ -1508,7 +1508,7 @@ child:
                                                                                                                                     type: 1
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
-                                                                                                                                    rotation: [-180, 1.356, -180]
+                                                                                                                                    rotation: [180, 1.356, 180]
                                                                                                                                     scale: [1, 1, 1]
                                                                                                                                 child:
                                                                                                                                   - name: Claw_Jnt
@@ -1538,7 +1538,7 @@ child:
                                                                                                                                                 type: 1
                                                                                                                                                 enabled: true
                                                                                                                                                 position: [0, 0, 0]
-                                                                                                                                                rotation: [-180, -1.356, -180]
+                                                                                                                                                rotation: [180, -1.356, 180]
                                                                                                                                                 scale: [1, 1, 1]
                                                                                                                                             child:
                                                                                                                                               - name: Claw_Mid_Jnt
@@ -1568,7 +1568,7 @@ child:
                                                                                                                                                             type: 1
                                                                                                                                                             enabled: true
                                                                                                                                                             position: [0, 0, 0]
-                                                                                                                                                            rotation: [180, -85.75, 180]
+                                                                                                                                                            rotation: [-180, -85.75, -180]
                                                                                                                                                             scale: [1, 1, 1]
                                                                                                                                                         child:
                                                                                                                                                           - name: Thumb_Start_$AssimpFbx$_Rotation
@@ -1608,7 +1608,7 @@ child:
                                                                                                                                                                             type: 1
                                                                                                                                                                             enabled: true
                                                                                                                                                                             position: [0, 0, 0]
-                                                                                                                                                                            rotation: [180, -85.64, 180]
+                                                                                                                                                                            rotation: [-180, -85.64, -180]
                                                                                                                                                                             scale: [1, 1, 1]
                                                                                                                                                                         child:
                                                                                                                                                                           - name: Thumb_Mid
@@ -1678,7 +1678,7 @@ child:
                                                                                                                                                                                                         type: 1
                                                                                                                                                                                                         enabled: true
                                                                                                                                                                                                         position: [0, 0, 0]
-                                                                                                                                                                                                        rotation: [-180, -11.85, -180]
+                                                                                                                                                                                                        rotation: [180, -11.85, 180]
                                                                                                                                                                                                         scale: [1, 1, 1]
                                                                                                                                                                                                     child:
                                                                                                                                                                                                       - name: Thumb_zero_$AssimpFbx$_Rotation
@@ -1717,7 +1717,7 @@ child:
                                                                                                                                                             type: 1
                                                                                                                                                             enabled: true
                                                                                                                                                             position: [0, 0, 0]
-                                                                                                                                                            rotation: [-180, -6.71, -180]
+                                                                                                                                                            rotation: [180, -6.71, 180]
                                                                                                                                                             scale: [1, 1, 1]
                                                                                                                                                         child:
                                                                                                                                                           - name: Middle_Start_$AssimpFbx$_Rotation
@@ -1757,7 +1757,7 @@ child:
                                                                                                                                                                             type: 1
                                                                                                                                                                             enabled: true
                                                                                                                                                                             position: [0, 0, 0]
-                                                                                                                                                                            rotation: [-180, 6.71, -180]
+                                                                                                                                                                            rotation: [180, 6.71, 180]
                                                                                                                                                                             scale: [1, 1, 1]
                                                                                                                                                                         child:
                                                                                                                                                                           - name: Middle_Finish_$AssimpFbx$_Rotation
@@ -1796,7 +1796,7 @@ child:
                                                                                                                                                             type: 1
                                                                                                                                                             enabled: true
                                                                                                                                                             position: [0, 0, 0]
-                                                                                                                                                            rotation: [-180, 7.352, -180]
+                                                                                                                                                            rotation: [180, 7.352, 180]
                                                                                                                                                             scale: [1, 1, 1]
                                                                                                                                                         child:
                                                                                                                                                           - name: Index_start_$AssimpFbx$_Rotation
@@ -1836,7 +1836,7 @@ child:
                                                                                                                                                                             type: 1
                                                                                                                                                                             enabled: true
                                                                                                                                                                             position: [0, 0, 0]
-                                                                                                                                                                            rotation: [-180, -7.352, -180]
+                                                                                                                                                                            rotation: [180, -7.352, 180]
                                                                                                                                                                             scale: [1, 1, 1]
                                                                                                                                                                         child:
                                                                                                                                                                           - name: Index_finish_$AssimpFbx$_Rotation
@@ -1875,7 +1875,7 @@ child:
                                                                                                                                                             type: 1
                                                                                                                                                             enabled: true
                                                                                                                                                             position: [0, 0, 0]
-                                                                                                                                                            rotation: [-180, 37.69, -180]
+                                                                                                                                                            rotation: [180, 37.69, 180]
                                                                                                                                                             scale: [1, 1, 1]
                                                                                                                                                         child:
                                                                                                                                                           - name: Pinky_start_$AssimpFbx$_Rotation
@@ -1915,7 +1915,7 @@ child:
                                                                                                                                                                             type: 1
                                                                                                                                                                             enabled: true
                                                                                                                                                                             position: [0, 0, 0]
-                                                                                                                                                                            rotation: [-180, -37.69, -180]
+                                                                                                                                                                            rotation: [180, -37.69, 180]
                                                                                                                                                                             scale: [1, 1, 1]
                                                                                                                                                                         child:
                                                                                                                                                                           - name: Pinky_finish_$AssimpFbx$_Rotation
@@ -1954,7 +1954,7 @@ child:
                                                                                                                                     type: 1
                                                                                                                                     enabled: true
                                                                                                                                     position: [0, 0, 0]
-                                                                                                                                    rotation: [-180, -0.4737, -180]
+                                                                                                                                    rotation: [180, -0.4737, 180]
                                                                                                                                     scale: [1, 1, 1]
                                                                                                                                 child:
                                                                                                                                   - name: Sword_start
@@ -1984,7 +1984,7 @@ child:
                                                                                                                                                 type: 1
                                                                                                                                                 enabled: true
                                                                                                                                                 position: [0, 0, 0]
-                                                                                                                                                rotation: [-180, 0.4737, -180]
+                                                                                                                                                rotation: [180, 0.4737, 180]
                                                                                                                                                 scale: [1, 1, 1]
                                                                                                                                             child:
                                                                                                                                               - name: Sword_finish_$AssimpFbx$_Rotation
@@ -2302,7 +2302,7 @@ child:
         type: 1
         enabled: true
         position: [0, 3.815, -0.75]
-        rotation: [180, 89.98, 180]
+        rotation: [0, 90, 0]
         scale: [2, 0.4164, 2.178]
     child:
       - name: Plane001
@@ -2726,7 +2726,7 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 7]
-        rotation: [-180, 89.98, -180]
+        rotation: [180, 89.98, 180]
         scale: [5, 5, 5]
       - !<billboard>
         type: 21
@@ -2842,15 +2842,478 @@ child:
         intensity: 3
         radius: 3
         draw_sphere: false
+  - name: WeaponTrails
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+    child:
+      - name: MeleeTrail
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0]
+            scale: [1, 1, 1]
+        child:
+          - name: MeleeTrailRight
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.79, 2.3, 3]
+                rotation: [0, 56.3, 0]
+                scale: [1, 0.9999, 1]
+              - !<billboard>
+                type: 21
+                enabled: true
+                play_on_awake: false
+                texture_id: 15300208463688155448
+                tiles: [3, 3]
+                flip: [false, false]
+                billboard_lifetime: 0.35
+                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0.05
+                total_tiles: 9
+                animation_loop: false
+                color_cycles: 1
+                color_gradient: [[1, 0.0058, 0.0058, 0, 1]]
+                animation_section: true
+                color_section: true
+                size_section: false
+                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 0.1
+                projection: true
+                randomize_tiles: false
+          - name: MeleeTrailLeft
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0.5, 2.3, 3]
+                rotation: [0, -80, 0]
+                scale: [1, 0.9999, 1]
+              - !<billboard>
+                type: 21
+                enabled: true
+                play_on_awake: false
+                texture_id: 15300208463688155448
+                tiles: [3, 3]
+                flip: [false, true]
+                billboard_lifetime: 0.55
+                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0.05
+                total_tiles: 9
+                animation_loop: false
+                color_cycles: 1
+                color_gradient: [[1, 0, 0, 0, 0.9712]]
+                animation_section: true
+                color_section: true
+                size_section: false
+                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0.2, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 0.1
+                projection: true
+                randomize_tiles: false
+          - name: MeleeTrailCenter
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.4282, 2.3, 4.81]
+                rotation: [0, 17.5, 0]
+                scale: [1, 0.5, 0.6]
+              - !<billboard>
+                type: 21
+                enabled: true
+                play_on_awake: false
+                texture_id: 15300208463688155448
+                tiles: [3, 3]
+                flip: [false, false]
+                billboard_lifetime: 0.5
+                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0.05
+                total_tiles: 9
+                animation_loop: false
+                color_cycles: 1
+                color_gradient: [[1, 0, 0, 0, 1]]
+                animation_section: true
+                color_section: true
+                size_section: false
+                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0.15, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 0.1
+                projection: true
+                randomize_tiles: false
+      - name: ClawsTrail
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0]
+            scale: [1, 1, 1]
+        child:
+          - name: ClawsTrailR
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.29, 2.3, 3]
+                rotation: [0, 71.9, 0]
+                scale: [1, 0.9999, 1]
+              - !<billboard>
+                type: 21
+                enabled: true
+                play_on_awake: false
+                texture_id: 15300208463688155448
+                tiles: [3, 3]
+                flip: [false, false]
+                billboard_lifetime: 0.35
+                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0.05
+                total_tiles: 9
+                animation_loop: false
+                color_cycles: 1
+                color_gradient: [[0.7861, 0, 1, 0, 1]]
+                animation_section: true
+                color_section: true
+                size_section: false
+                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 0.1
+                projection: true
+                randomize_tiles: false
+          - name: ClawsTrailL
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0.293, 2.3, 3]
+                rotation: [0, -81.4, 0]
+                scale: [1, 0.9999, 1]
+              - !<billboard>
+                type: 21
+                enabled: true
+                play_on_awake: false
+                texture_id: 15300208463688155448
+                tiles: [3, 3]
+                flip: [false, true]
+                billboard_lifetime: 0.35
+                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0.05
+                total_tiles: 9
+                animation_loop: false
+                color_cycles: 1
+                color_gradient: [[0.7843, 0, 1, 0, 1]]
+                animation_section: true
+                color_section: true
+                size_section: false
+                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 0.1
+                projection: true
+                randomize_tiles: false
+      - name: SwordTrail
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0]
+            scale: [1, 1, 1]
+        child:
+          - name: SwordTrailR
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.6, 2.3, 4.5]
+                rotation: [0, 70, 0]
+                scale: [1, 0.9999, 1]
+              - !<billboard>
+                type: 21
+                enabled: true
+                play_on_awake: false
+                texture_id: 15300208463688155448
+                tiles: [3, 3]
+                flip: [false, false]
+                billboard_lifetime: 0.5
+                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0.05
+                total_tiles: 9
+                animation_loop: false
+                color_cycles: 1
+                color_gradient: [[0, 0.4277, 1, 0, 1]]
+                animation_section: true
+                color_section: true
+                size_section: false
+                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0.15, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [6.5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 0.1
+                projection: true
+                randomize_tiles: false
+          - name: SwordTrailL
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.13, 2.3, 4.5]
+                rotation: [0, -88.6, 0]
+                scale: [1, 0.9999, 1]
+              - !<billboard>
+                type: 21
+                enabled: true
+                play_on_awake: false
+                texture_id: 15300208463688155448
+                tiles: [3, 3]
+                flip: [false, true]
+                billboard_lifetime: 0.65
+                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0.05
+                total_tiles: 9
+                animation_loop: false
+                color_cycles: 1
+                color_gradient: [[0, 0.4275, 1, 0, 1]]
+                animation_section: true
+                color_section: true
+                size_section: false
+                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0.3, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [6.5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 0.1
+                projection: true
+                randomize_tiles: false
+      - name: HammerTrail
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0]
+            scale: [1, 1, 1]
+        child:
+          - name: HammerTrailR
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.74, 2.3, 4.5]
+                rotation: [0, 70, 0]
+                scale: [1.1, 1, 1]
+              - !<billboard>
+                type: 21
+                enabled: true
+                play_on_awake: false
+                texture_id: 15300208463688155448
+                tiles: [3, 3]
+                flip: [false, false]
+                billboard_lifetime: 0.4
+                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0.05
+                total_tiles: 9
+                animation_loop: false
+                color_cycles: 1
+                color_gradient: [[0.9961, 0, 0.7255, 0, 1]]
+                animation_section: true
+                color_section: true
+                size_section: false
+                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0.05, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [6.5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 0.1
+                projection: true
+                randomize_tiles: false
+          - name: HammerTrailL
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.11, 2.3, 4.502]
+                rotation: [180, -89.98, 180]
+                scale: [1.1, 0.9999, 1]
+              - !<billboard>
+                type: 21
+                enabled: true
+                play_on_awake: false
+                texture_id: 15300208463688155448
+                tiles: [3, 3]
+                flip: [false, true]
+                billboard_lifetime: 0.55
+                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+                animation_speed: 0.05
+                total_tiles: 9
+                animation_loop: false
+                color_cycles: 1
+                color_gradient: [[0.9942, 0, 0.7241, 0, 1]]
+                animation_section: true
+                color_section: true
+                size_section: false
+                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation_section: false
+                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_delay: [true, false, 0, [0.2, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_size: [true, true, 0, [6.5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                blend_factor: 0.1
+                projection: true
+                randomize_tiles: false
+  - name: ChargingParticles
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-0.65, 3.19, 4.78]
+        rotation: [-90, -0.0002, -145.2]
+        scale: [2, 2, 2]
+      - !<particle_system>
+        type: 22
+        enabled: true
+        sections:
+          parameters: true
+          emission: true
+          shape: true
+          lights: false
+          renderer: true
+          texture: true
+        parameters:
+          duration: 1
+          loop: true
+          life: [true, true, 0, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          speed: [true, true, 0, [-5, 5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 0, [1.3, 0.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        emission:
+          rate: [true, true, 0, [55.5, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rate_burst: [true, true, 0, [22.4, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          burst: true
+        emitter_shape:
+          type: 2
+          properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [3, 3, 3], 0.5]
+        texture:
+          texture_id: 3291545039621372658
+          tiles: [2, 1]
+          flip: [false, false]
+          total_tiles: 2
+        modifiers:
+          velocity:
+            active: false
+            speed: [true, true, 0, [-40, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size:
+            active: false
+            size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          color:
+            active: true
+            color_gradient: [[0.5434, 0, 1, 0, 0.0303], [0.2212, 0.9569, 0, 0, 0.8551], [0, 0, 0, 0, 1]]
+            color_cycles: 1
+          force:
+            active: false
+            rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            x_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            y_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            z_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          animation:
+            active: true
+            animation_speed: 0.1
+            blend_factor: 0
+            fit_to_lifetime: true
+          noise:
+            active: true
+            separate_axes: false
+            strength:
+              x: [true, true, 0, [4.5, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              y: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              z: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            position: [true, true, 0, [5, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+      - !<billboard>
+        type: 21
+        enabled: true
+        play_on_awake: false
+        texture_id: 10440603901550816228
+        tiles: [1, 1]
+        flip: [false, false]
+        billboard_lifetime: 600
+        properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        animation_speed: 0
+        total_tiles: 1
+        animation_loop: true
+        color_cycles: 1
+        color_gradient: [[0.0759, 0.9538, 0.0221, 0, 0.9895]]
+        animation_section: false
+        color_section: true
+        size_section: false
+        size_over_time: [true, false, 0, [5, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        rotation_section: true
+        rotation_over_time: [true, false, 0, [300, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_delay: [true, false, 0, [0.3, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_size: [true, true, 0, [1, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+        blend_factor: 0
+        projection: true
+        randomize_tiles: false
   - name: HUD_v2
     enabled: true
     component:
       - !<transform>
         type: 1
         enabled: true
-        position: [-658, -57.87, -448.2]
-        rotation: [180, -24.5, 180]
-        scale: [11.69, 10.97, 11.69]
+        position: [-184, -131.3, -1659]
+        rotation: [180, 20.5, -180]
+        scale: [26.57, 24.38, 26.57]
       - !<transform_2d>
         type: 10
         enabled: true
@@ -3164,191 +3627,6 @@ child:
                     image_tiles_per_second: 1
                     fill_window: false
                 child:
-                  - name: Health_capsule_1
-                    enabled: true
-                    component:
-                      - !<transform>
-                        type: 1
-                        enabled: true
-                        position: [0, 0, 0]
-                        rotation: [0, 0, 0]
-                        scale: [0.001, 0.001, 0.001]
-                      - !<transform_2d>
-                        type: 10
-                        enabled: true
-                        position: [0, -2.6, 0]
-                        size: [1, 1]
-                        scale: [7, 7]
-                        rotation: [0, 0, 0, 1]
-                        pivot: [0.5, 0.5]
-                        anchor: [0.5, 0.5]
-                      - !<canvas_renderer>
-                        type: 9
-                        enabled: true
-                        scale_ui: false
-                        original_size_x: 0
-                        original_size_y: 0
-                      - !<image>
-                        type: 11
-                        enabled: true
-                        image_id: 11795946502567355654
-                        hover_image_id: 0
-                        image_color: [1, 1, 1, 1]
-                        hover_image_color: [1, 1, 1, 1]
-                        image_is_tiled: false
-                        image_randomize_initial_frame: false
-                        image_x_tiles: 7
-                        image_y_tiles: 2
-                        image_tiles_per_second: 14
-                        fill_window: false
-                  - name: Health_capsule_2
-                    enabled: true
-                    component:
-                      - !<transform>
-                        type: 1
-                        enabled: true
-                        position: [0, 0, 0]
-                        rotation: [0, 0, 0]
-                        scale: [1, 1, 1]
-                      - !<transform_2d>
-                        type: 10
-                        enabled: true
-                        position: [0, -2.6, 0]
-                        size: [1, 1]
-                        scale: [7, 7]
-                        rotation: [0, 0, 0, 1]
-                        pivot: [0.5, 0.5]
-                        anchor: [0.5, 0.5]
-                      - !<canvas_renderer>
-                        type: 9
-                        enabled: true
-                        scale_ui: false
-                        original_size_x: 0
-                        original_size_y: 0
-                      - !<image>
-                        type: 11
-                        enabled: true
-                        image_id: 13450631525059124743
-                        hover_image_id: 0
-                        image_color: [1, 1, 1, 1]
-                        hover_image_color: [1, 1, 1, 1]
-                        image_is_tiled: false
-                        image_randomize_initial_frame: false
-                        image_x_tiles: 7
-                        image_y_tiles: 2
-                        image_tiles_per_second: 14
-                        fill_window: false
-                  - name: Health_capsule_3
-                    enabled: true
-                    component:
-                      - !<transform>
-                        type: 1
-                        enabled: true
-                        position: [0, 0, 0]
-                        rotation: [0, 0, 0]
-                        scale: [1, 1, 1]
-                      - !<transform_2d>
-                        type: 10
-                        enabled: true
-                        position: [0, -2.6, 0]
-                        size: [1, 1]
-                        scale: [7, 7]
-                        rotation: [0, 0, 0, 1]
-                        pivot: [0.5, 0.5]
-                        anchor: [0.5, 0.5]
-                      - !<canvas_renderer>
-                        type: 9
-                        enabled: true
-                        scale_ui: false
-                        original_size_x: 0
-                        original_size_y: 0
-                      - !<image>
-                        type: 11
-                        enabled: true
-                        image_id: 11546650782690063204
-                        hover_image_id: 0
-                        image_color: [1, 1, 1, 1]
-                        hover_image_color: [1, 1, 1, 1]
-                        image_is_tiled: false
-                        image_randomize_initial_frame: false
-                        image_x_tiles: 7
-                        image_y_tiles: 2
-                        image_tiles_per_second: 14
-                        fill_window: false
-                  - name: Health_capsule_4
-                    enabled: true
-                    component:
-                      - !<transform>
-                        type: 1
-                        enabled: true
-                        position: [0, 0, 0]
-                        rotation: [0, 0, 0]
-                        scale: [1, 1, 1]
-                      - !<transform_2d>
-                        type: 10
-                        enabled: true
-                        position: [0, -2.6, 0]
-                        size: [1, 1]
-                        scale: [7, 7]
-                        rotation: [0, 0, 0, 1]
-                        pivot: [0.5, 0.5]
-                        anchor: [0.5, 0.5]
-                      - !<canvas_renderer>
-                        type: 9
-                        enabled: true
-                        scale_ui: false
-                        original_size_x: 0
-                        original_size_y: 0
-                      - !<image>
-                        type: 11
-                        enabled: true
-                        image_id: 17554097052806070663
-                        hover_image_id: 0
-                        image_color: [1, 1, 1, 1]
-                        hover_image_color: [1, 1, 1, 1]
-                        image_is_tiled: false
-                        image_randomize_initial_frame: false
-                        image_x_tiles: 7
-                        image_y_tiles: 2
-                        image_tiles_per_second: 14
-                        fill_window: false
-                  - name: Health_capsule_extra
-                    enabled: true
-                    component:
-                      - !<transform>
-                        type: 1
-                        enabled: true
-                        position: [-76.35, 3.454, -58.97]
-                        rotation: [0, 0, 0]
-                        scale: [0.4418, 0.4502, 0.4418]
-                      - !<transform_2d>
-                        type: 10
-                        enabled: true
-                        position: [-3.1, 1.6, 0]
-                        size: [1, 1]
-                        scale: [7, 7]
-                        rotation: [0, 0, 1, -0]
-                        pivot: [0.5, 0.5]
-                        anchor: [0.5, 0.5]
-                      - !<canvas_renderer>
-                        type: 9
-                        enabled: true
-                        scale_ui: false
-                        original_size_x: 0
-                        original_size_y: 0
-                      - !<image>
-                        type: 11
-                        enabled: true
-                        image_id: 17554097052806070663
-                        hover_image_id: 0
-                        image_color: [0.8354, 0, 1, 1]
-                        hover_image_color: [1, 1, 1, 1]
-                        image_is_tiled: false
-                        image_randomize_initial_frame: false
-                        image_x_tiles: 7
-                        image_y_tiles: 2
-                        image_tiles_per_second: 14
-                        fill_window: false
                   - name: HP_1
                     enabled: true
                     component:
@@ -3820,482 +4098,3 @@ child:
             image_y_tiles: 1
             image_tiles_per_second: 1
             fill_window: false
-  - name: WeaponTrails
-    enabled: true
-    component:
-      - !<transform>
-        type: 1
-        enabled: true
-        position: [0, 0, 0]
-        rotation: [0, 0, 0]
-        scale: [1, 1, 1]
-    child:
-      - name: MeleeTrail
-        enabled: true
-        component:
-          - !<transform>
-            type: 1
-            enabled: true
-            position: [0, 0, 0]
-            rotation: [0, 0, 0]
-            scale: [1, 1, 1]
-        child:
-          - name: MeleeTrailRight
-            enabled: true
-            component:
-              - !<transform>
-                type: 1
-                enabled: true
-                position: [-0.79, 2.3, 3]
-                rotation: [0, 56.3, 0]
-                scale: [1, 0.9999, 1]
-              - !<billboard>
-                type: 21
-                enabled: true
-                play_on_awake: false
-                texture_id: 15300208463688155448
-                tiles: [3, 3]
-                flip: [false, false]
-                billboard_lifetime: 0.35
-                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-                animation_speed: 0.05
-                total_tiles: 9
-                animation_loop: false
-                color_cycles: 1
-                color_gradient: [[1, 0.0058, 0.0058, 0, 1]]
-                animation_section: true
-                color_section: true
-                size_section: false
-                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                rotation_section: false
-                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                blend_factor: 0.1
-                projection: true
-                randomize_tiles: false
-          - name: MeleeTrailLeft
-            enabled: true
-            component:
-              - !<transform>
-                type: 1
-                enabled: true
-                position: [0.5, 2.3, 3]
-                rotation: [0, -80, 0]
-                scale: [1, 0.9999, 1]
-              - !<billboard>
-                type: 21
-                enabled: true
-                play_on_awake: false
-                texture_id: 15300208463688155448
-                tiles: [3, 3]
-                flip: [false, true]
-                billboard_lifetime: 0.55
-                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-                animation_speed: 0.05
-                total_tiles: 9
-                animation_loop: false
-                color_cycles: 1
-                color_gradient: [[1, 0, 0, 0, 0.9712]]
-                animation_section: true
-                color_section: true
-                size_section: false
-                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                rotation_section: false
-                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_delay: [true, false, 0, [0.2, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                blend_factor: 0.1
-                projection: true
-                randomize_tiles: false
-          - name: MeleeTrailCenter
-            enabled: true
-            component:
-              - !<transform>
-                type: 1
-                enabled: true
-                position: [-0.4282, 2.3, 4.81]
-                rotation: [0, 17.5, 0]
-                scale: [1, 0.5, 0.6]
-              - !<billboard>
-                type: 21
-                enabled: true
-                play_on_awake: false
-                texture_id: 15300208463688155448
-                tiles: [3, 3]
-                flip: [false, false]
-                billboard_lifetime: 0.5
-                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-                animation_speed: 0.05
-                total_tiles: 9
-                animation_loop: false
-                color_cycles: 1
-                color_gradient: [[1, 0, 0, 0, 1]]
-                animation_section: true
-                color_section: true
-                size_section: false
-                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                rotation_section: false
-                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_delay: [true, false, 0, [0.15, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                blend_factor: 0.1
-                projection: true
-                randomize_tiles: false
-      - name: ClawsTrail
-        enabled: true
-        component:
-          - !<transform>
-            type: 1
-            enabled: true
-            position: [0, 0, 0]
-            rotation: [0, 0, 0]
-            scale: [1, 1, 1]
-        child:
-          - name: ClawsTrailR
-            enabled: true
-            component:
-              - !<transform>
-                type: 1
-                enabled: true
-                position: [-0.29, 2.3, 3]
-                rotation: [0, 71.9, 0]
-                scale: [1, 0.9999, 1]
-              - !<billboard>
-                type: 21
-                enabled: true
-                play_on_awake: false
-                texture_id: 15300208463688155448
-                tiles: [3, 3]
-                flip: [false, false]
-                billboard_lifetime: 0.35
-                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-                animation_speed: 0.05
-                total_tiles: 9
-                animation_loop: false
-                color_cycles: 1
-                color_gradient: [[0.7861, 0, 1, 0, 1]]
-                animation_section: true
-                color_section: true
-                size_section: false
-                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                rotation_section: false
-                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                blend_factor: 0.1
-                projection: true
-                randomize_tiles: false
-          - name: ClawsTrailL
-            enabled: true
-            component:
-              - !<transform>
-                type: 1
-                enabled: true
-                position: [0.293, 2.3, 3]
-                rotation: [0, -81.4, 0]
-                scale: [1, 0.9999, 1]
-              - !<billboard>
-                type: 21
-                enabled: true
-                play_on_awake: false
-                texture_id: 15300208463688155448
-                tiles: [3, 3]
-                flip: [false, true]
-                billboard_lifetime: 0.35
-                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-                animation_speed: 0.05
-                total_tiles: 9
-                animation_loop: false
-                color_cycles: 1
-                color_gradient: [[0.7843, 0, 1, 0, 1]]
-                animation_section: true
-                color_section: true
-                size_section: false
-                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                rotation_section: false
-                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                blend_factor: 0.1
-                projection: true
-                randomize_tiles: false
-      - name: SwordTrail
-        enabled: true
-        component:
-          - !<transform>
-            type: 1
-            enabled: true
-            position: [0, 0, 0]
-            rotation: [0, 0, 0]
-            scale: [1, 1, 1]
-        child:
-          - name: SwordTrailR
-            enabled: true
-            component:
-              - !<transform>
-                type: 1
-                enabled: true
-                position: [-0.6, 2.3, 4.5]
-                rotation: [0, 70, 0]
-                scale: [1, 0.9999, 1]
-              - !<billboard>
-                type: 21
-                enabled: true
-                play_on_awake: false
-                texture_id: 15300208463688155448
-                tiles: [3, 3]
-                flip: [false, false]
-                billboard_lifetime: 0.5
-                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-                animation_speed: 0.05
-                total_tiles: 9
-                animation_loop: false
-                color_cycles: 1
-                color_gradient: [[0, 0.4277, 1, 0, 1]]
-                animation_section: true
-                color_section: true
-                size_section: false
-                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                rotation_section: false
-                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_delay: [true, false, 0, [0.15, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [6.5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                blend_factor: 0.1
-                projection: true
-                randomize_tiles: false
-          - name: SwordTrailL
-            enabled: true
-            component:
-              - !<transform>
-                type: 1
-                enabled: true
-                position: [-0.13, 2.3, 4.5]
-                rotation: [0, -88.6, 0]
-                scale: [1, 0.9999, 1]
-              - !<billboard>
-                type: 21
-                enabled: true
-                play_on_awake: false
-                texture_id: 15300208463688155448
-                tiles: [3, 3]
-                flip: [false, true]
-                billboard_lifetime: 0.65
-                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-                animation_speed: 0.05
-                total_tiles: 9
-                animation_loop: false
-                color_cycles: 1
-                color_gradient: [[0, 0.4275, 1, 0, 1]]
-                animation_section: true
-                color_section: true
-                size_section: false
-                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                rotation_section: false
-                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_delay: [true, false, 0, [0.3, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [6.5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                blend_factor: 0.1
-                projection: true
-                randomize_tiles: false
-      - name: HammerTrail
-        enabled: true
-        component:
-          - !<transform>
-            type: 1
-            enabled: true
-            position: [0, 0, 0]
-            rotation: [0, 0, 0]
-            scale: [1, 1, 1]
-        child:
-          - name: HammerTrailR
-            enabled: true
-            component:
-              - !<transform>
-                type: 1
-                enabled: true
-                position: [-0.74, 2.3, 4.5]
-                rotation: [0, 70, 0]
-                scale: [1.1, 1, 1]
-              - !<billboard>
-                type: 21
-                enabled: true
-                play_on_awake: false
-                texture_id: 15300208463688155448
-                tiles: [3, 3]
-                flip: [false, false]
-                billboard_lifetime: 0.4
-                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-                animation_speed: 0.05
-                total_tiles: 9
-                animation_loop: false
-                color_cycles: 1
-                color_gradient: [[0.9961, 0, 0.7255, 0, 1]]
-                animation_section: true
-                color_section: true
-                size_section: false
-                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                rotation_section: false
-                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_delay: [true, false, 0, [0.05, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [6.5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                blend_factor: 0.1
-                projection: true
-                randomize_tiles: false
-          - name: HammerTrailL
-            enabled: true
-            component:
-              - !<transform>
-                type: 1
-                enabled: true
-                position: [-0.11, 2.3, 4.502]
-                rotation: [180, -89.98, 180]
-                scale: [1.1, 0.9999, 1]
-              - !<billboard>
-                type: 21
-                enabled: true
-                play_on_awake: false
-                texture_id: 15300208463688155448
-                tiles: [3, 3]
-                flip: [false, true]
-                billboard_lifetime: 0.55
-                properties: [1, 2, 1, true, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-                animation_speed: 0.05
-                total_tiles: 9
-                animation_loop: false
-                color_cycles: 1
-                color_gradient: [[0.9942, 0, 0.7241, 0, 1]]
-                animation_section: true
-                color_section: true
-                size_section: false
-                size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                rotation_section: false
-                rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_delay: [true, false, 0, [0.2, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_size: [true, true, 0, [6.5, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-                blend_factor: 0.1
-                projection: true
-                randomize_tiles: false
-  - name: LightUnder
-    enabled: true
-    component:
-      - !<transform>
-        type: 1
-        enabled: true
-        position: [76.89, 2.198, -67.63]
-        rotation: [0, 86.5, 0]
-        scale: [2.273, 2.222, 2.273]
-      - type: 6
-        enabled: true
-        light_type: 6
-        color: [0.7961, 0.5569, 0.2784, 1]
-        intensity: 3
-        radius: 3
-        draw_sphere: false
-  - name: ChargingParticles
-    enabled: true
-    component:
-      - !<transform>
-        type: 1
-        enabled: true
-        position: [-0.65, 3.19, 4.78]
-        rotation: [-90, -0.0003, -100.2]
-        scale: [2, 2, 2]
-      - !<particle_system>
-        type: 22
-        enabled: true
-        sections:
-          parameters: true
-          emission: true
-          shape: true
-          lights: false
-          renderer: true
-          texture: true
-        parameters:
-          duration: 1
-          loop: true
-          life: [true, true, 0, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          speed: [true, true, 0, [-5, 5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          size: [true, true, 0, [1.3, 0.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-        emission:
-          rate: [true, true, 0, [55.5, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          rate_burst: [true, true, 0, [22.4, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          burst: true
-        emitter_shape:
-          type: 2
-          properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [3, 3, 3], 0.5]
-        texture:
-          texture_id: 3291545039621372658
-          tiles: [2, 1]
-          flip: [false, false]
-          total_tiles: 2
-        modifiers:
-          velocity:
-            active: false
-            speed: [true, true, 0, [-40, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          size:
-            active: false
-            size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          color:
-            active: true
-            color_gradient: [[0.5434, 0, 1, 0, 0.0303], [0.2212, 0.9569, 0, 0, 0.8551], [0, 0, 0, 0, 1]]
-            color_cycles: 1
-          force:
-            active: false
-            rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            x_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            y_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            z_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          animation:
-            active: true
-            animation_speed: 0.1
-            blend_factor: 0
-            fit_to_lifetime: true
-          noise:
-            active: true
-            separate_axes: false
-            strength:
-              x: [true, true, 0, [4.5, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              y: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-              z: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            position: [true, true, 0, [5, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-      - !<billboard>
-        type: 21
-        enabled: true
-        play_on_awake: false
-        texture_id: 10440603901550816228
-        tiles: [1, 1]
-        flip: [false, false]
-        billboard_lifetime: 600
-        properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-        animation_speed: 0
-        total_tiles: 1
-        animation_loop: true
-        color_cycles: 1
-        color_gradient: [[0.0759, 0.9538, 0.0221, 0, 0.9895]]
-        animation_section: false
-        color_section: true
-        size_section: false
-        size_over_time: [true, false, 0, [5, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-        rotation_section: true
-        rotation_over_time: [true, false, 0, [300, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-        start_delay: [true, false, 0, [0.3, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-        start_size: [true, true, 0, [1, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-        start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-        blend_factor: 0
-        projection: true
-        randomize_tiles: false
