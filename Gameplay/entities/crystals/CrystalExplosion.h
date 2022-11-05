@@ -51,7 +51,6 @@ namespace Hachiko
 			void SetVisible(bool v);
 			void ResetCrystal();
 
-
 		public:
 			Stats* _stats;
 
@@ -59,7 +58,10 @@ namespace Hachiko
 			ComponentTransform* _transform;
 
 			SERIALIZE_FIELD(GameObject*, _explosion_indicator_helper);
-			SERIALIZE_FIELD(GameObject*, _explosion_effect);
+			SERIALIZE_FIELD(GameObject*, _explosion_indicator);
+			SERIALIZE_FIELD(GameObject*, _explosion_vfx);
+			SERIALIZE_FIELD(GameObject*, _explosion_particles);
+
 			SERIALIZE_FIELD(float, _shake_intensity);
 			SERIALIZE_FIELD(float, _seconds_shaking);
 
@@ -80,11 +82,14 @@ namespace Hachiko
 			bool _is_destroyed = false;
 			bool _is_exploding = false;
 			bool _visible = false;
+
 			bool _is_dissolving = false;
 			float _dissolving_time = 1.5f;
 			float _current_dissolving_time = 0.f;
 			float _current_regen_time = 0.f;
+
 			float _current_explosion_timer = 0.f;
+			float explosion_progression = 0.f;
 
 			math::float3 _player_pos;
 			

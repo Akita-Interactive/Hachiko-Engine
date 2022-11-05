@@ -17,6 +17,7 @@ namespace Hachiko::Scenes
 	static const char* enemies_go_name = "Enemies";
 	static const char* level_manager_go_name = "LevelManager";
 	static const char* terrain_container_go_name = "Level";
+	static const char* laser_colliders_go_name = "LaserColliders";
 	static const char* audio_manager_go_name = "AudioManager";
 	static const char* combat_manager_go_name = "CombatManager";
 	static const char* combat_visual_effects_pool_go_name = "CombatVisualEffectsPool";
@@ -45,6 +46,11 @@ namespace Hachiko::Scenes
 	static GameObject* GetTerrainContainer()
 	{
 		return SceneManagement::FindInCurrentScene(terrain_container_go_name);
+	}
+
+	static GameObject* GetLaserColliderContainer()
+	{
+		return SceneManagement::FindInCurrentScene(laser_colliders_go_name);
 	}
 
 	static GameObject* GetAudioManager()

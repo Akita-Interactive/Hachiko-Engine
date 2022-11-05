@@ -308,6 +308,7 @@ void Hachiko::Scripting::BossController::StateTransitionController()
 		StartCocoon();
 		break;
 	case BossState::DEAD:
+        SetHpBarActive(false);
 		break;
 	}
 
