@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="626769978" Language="SFX" Hash="3412456539">
+		<SoundBank Id="626769978" Language="SFX" Hash="2708681943">
 			<ObjectPath>\SoundBanks\Default Work Unit\BackgroundMusic</ObjectPath>
 			<ShortName>BackgroundMusic</ShortName>
 			<Path>BackgroundMusic.bnk</Path>
@@ -423,7 +423,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1560169506" Language="SFX" Hash="715640715">
+		<SoundBank Id="1560169506" Language="SFX" Hash="916518214">
 			<ObjectPath>\SoundBanks\Default Work Unit\Boss</ObjectPath>
 			<ShortName>Boss</ShortName>
 			<Path>Boss.bnk</Path>
@@ -607,7 +607,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3768541028" Language="SFX" Hash="4210946152">
+		<SoundBank Id="3768541028" Language="SFX" Hash="2395610272">
 			<ObjectPath>\SoundBanks\Default Work Unit\Attacks</ObjectPath>
 			<ShortName>Attacks</ShortName>
 			<Path>Attacks.bnk</Path>
@@ -704,7 +704,7 @@
 						</File>
 						<File Id="23203309" Language="SFX">
 							<ShortName>ESM_Ancient_Game_Weapon_Swing_Blood_Hit_8_Kill_Murder_Fantasy_Weapon_Wet.wav</ShortName>
-							<Path>SFX\ESM_Ancient_Game_Weapon_Swing_Blood_Hit_8_Kill_Murder_Fantasy_Weapon_Wet_15CF9114.wem</Path>
+							<Path>SFX\ESM_Ancient_Game_Weapon_Swing_Blood_Hit_8_Kill_Murder_Fantasy_Weapon_Wet_EC56202C.wem</Path>
 						</File>
 						<File Id="92270191" Language="SFX">
 							<ShortName>ESM_Fighting_Game_One_Shot_Designed_Weapons_Mace_04_Short_Bloody_Swing_Hit_No_Whoosh.wav</ShortName>
@@ -720,7 +720,7 @@
 						</File>
 						<File Id="155558576" Language="SFX">
 							<ShortName>ESM_Ancient_Game_Weapon_Swing_Blood_Hit_4_Kill_Murder_Fantasy_Weapon_Wet.wav</ShortName>
-							<Path>SFX\ESM_Ancient_Game_Weapon_Swing_Blood_Hit_4_Kill_Murder_Fantasy_Weapon_Wet_FCD2323C.wem</Path>
+							<Path>SFX\ESM_Ancient_Game_Weapon_Swing_Blood_Hit_4_Kill_Murder_Fantasy_Weapon_Wet_F5300AF0.wem</Path>
 						</File>
 						<File Id="180713998" Language="SFX">
 							<ShortName>ES_Whip Whoosh Swoosh 2 - SFX Producer.wav</ShortName>
@@ -737,6 +737,10 @@
 						<File Id="329744407" Language="SFX">
 							<ShortName>ES_Bone Break 6 - SFX Producer.wav</ShortName>
 							<Path>SFX\ES_Bone Break 6 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="374083302" Language="SFX">
+							<ShortName>ES_PREL Hit Drum Deep - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_PREL Hit Drum Deep - SFX Producer_FA61E076.wem</Path>
 						</File>
 						<File Id="433395220" Language="SFX">
 							<ShortName>ES_Punch Face 3 - SFX Producer.wav</ShortName>
@@ -768,7 +772,7 @@
 						</File>
 						<File Id="744999179" Language="SFX">
 							<ShortName>ESM_Ancient_Game_Weapon_Swing_Blood_Hit_10_Kill_Murder_Fantasy_Weapon_Wet.wav</ShortName>
-							<Path>SFX\ESM_Ancient_Game_Weapon_Swing_Blood_Hit_10_Kill_Murder_Fantasy_Weapon_Wet_03E10CEE.wem</Path>
+							<Path>SFX\ESM_Ancient_Game_Weapon_Swing_Blood_Hit_10_Kill_Murder_Fantasy_Weapon_Wet_38E7AE78.wem</Path>
 						</File>
 						<File Id="767016526" Language="SFX">
 							<ShortName>ES_Guts Rip Out 3 - SFX Producer.wav</ShortName>
@@ -777,6 +781,10 @@
 						<File Id="1008819851" Language="SFX">
 							<ShortName>ESM_Fighting_Game_One_Shot_Designed_Combat_Hits_Deep_Bone_Break_Gore_Blood_Crunch_Snap_Skull_Crush.wav</ShortName>
 							<Path>SFX\ESM_Fighting_Game_One_Shot_Designed_Combat_Hits_Deep_Bone_Break_Gore_Blood_Crunch_Snap_Skull_Crush_10C4C929.wem</Path>
+						</File>
+						<File Id="1055461544" Language="SFX">
+							<ShortName>ES_PREL Hit Drum Deep 1 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_PREL Hit Drum Deep 1 - SFX Producer_B37F35FD.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 					<DefaultSwitchValue>{8742CF14-04A5-4224-8CAB-E0C57D44C5EA}</DefaultSwitchValue>
@@ -792,9 +800,11 @@
 								<File Id="15157738"/>
 								<File Id="92270191"/>
 								<File Id="329744407"/>
+								<File Id="374083302"/>
 								<File Id="549338720"/>
 								<File Id="682079368"/>
 								<File Id="1008819851"/>
+								<File Id="1055461544"/>
 							</Media>
 						</SwitchContainer>
 						<SwitchContainer SwitchValue="{566F626C-BEC1-45DC-9527-637B30E27D52}">
@@ -939,7 +949,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3909959462" Language="SFX" Hash="950313974">
+		<SoundBank Id="3909959462" Language="SFX" Hash="3966267333">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enviroment</ObjectPath>
 			<ShortName>Enviroment</ShortName>
 			<Path>Enviroment.bnk</Path>
@@ -1044,7 +1054,7 @@
 						</File>
 						<File Id="723293033" Language="SFX">
 							<ShortName>Crystal_Materialize.wav</ShortName>
-							<Path>SFX\Crystal_Materialize_8F02184A.wem</Path>
+							<Path>SFX\Crystal_Materialize_22CD5ADD.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -1052,7 +1062,11 @@
 					<IncludedMemoryFiles>
 						<File Id="760620926" Language="SFX">
 							<ShortName>ES_Whoosh To Hit 28 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Whoosh To Hit 28 - SFX Producer_1415548A.wem</Path>
+							<Path>SFX\ES_Whoosh To Hit 28 - SFX Producer_A55A17F0.wem</Path>
+						</File>
+						<File Id="918177923" Language="SFX">
+							<ShortName>ES_Horror Whoosh 1 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Horror Whoosh 1 - SFX Producer_5282E072.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -1084,6 +1098,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="4122877295" Name="Play_LasersGroup" ObjectPath="\Events\Default Work Unit\Play_LasersGroup"/>
 				<Event Id="1157125118" Name="Play_Pebble" ObjectPath="\Events\Default Work Unit\Environment\Play_Pebble">
 					<IncludedMemoryFiles>
 						<File Id="11692854" Language="SFX">

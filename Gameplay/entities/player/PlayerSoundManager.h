@@ -44,7 +44,8 @@ private:
 	float _dmg_cool_down;
 	PlayerController::WeaponUsed previous_weapon_type;
 	void SetGroundEffect();
-	void SetWeaponEffect(PlayerController::WeaponUsed weapon_type);
+	void SetWeaponEffect(const PlayerController::WeaponUsed weapon_type);
+	void PlayDamagedEffect(const PlayerState state, const PlayerController::DamageType damage_type);
 };
 } // namespace Scripting
 } // namespace Hachiko

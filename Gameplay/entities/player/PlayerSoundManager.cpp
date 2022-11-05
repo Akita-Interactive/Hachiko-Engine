@@ -117,33 +117,13 @@ void Hachiko::Scripting::PlayerSoundManager::OnUpdate()
 		}
 		_timer = 0.0f;
 		break;
-	case PlayerState::FALLING:
-		if (state_changed)
-		{
-			_audio_source->PostEvent(Sounds::PLAYER_FALLING);
-		}
-		_timer = 0.0f;
 	case PlayerState::INVALID:		
 	default:
 		_timer = 0.0f;
 		break;
 	}
 
-	PlayerController::DamageType damage = _player_controller->ReadDamageState();
-	
-	if (_damage_timer >= _dmg_cool_down &&
-		state != PlayerState::DIE && 
-		state != PlayerState::READY_TO_RESPAWN)
-	{
-		
-		if (damage == PlayerController::DamageType::ENEMY ||
-			damage == PlayerController::DamageType::LASER ||
-			damage == PlayerController::DamageType::CRYSTAL)
-		{
-			_audio_source->PostEvent(Sounds::RECEIVE_DAMAGE);
-			_damage_timer = 0.0f;
-		}
-	}
+	PlayDamagedEffect(state, _player_controller->ReadDamageState());
 
 	_timer += delta_time;
 	_damage_timer += delta_time;
@@ -192,5 +172,25 @@ void Hachiko::Scripting::PlayerSoundManager::SetWeaponEffect(PlayerController::W
 	default:
 		_audio_source->SetSwitch(Sounds::SWITCH_WEAPONS, Sounds::SWITCH_WEAPONS_BASIC);
 		break;
+	}
+}
+
+void Hachiko::Scripting::PlayerSoundManager::PlayDamagedEffect(PlayerState state, PlayerController::DamageType damage_type)
+{
+	if (_damage_timer >= _dmg_cool_down &&
+		state != PlayerState::DIE &&
+		state != PlayerState::READY_TO_RESPAWN)
+	{
+		if (damage_type == PlayerController::DamageType::ENEMY ||
+			damage_type == PlayerController::DamageType::LASER ||
+			damage_type == PlayerController::DamageType::CRYSTAL)
+		{
+			_audio_source->PostEvent(Sounds::RECEIVE_DAMAGE);
+			_damage_timer = 0.0f;
+		}
+		else if (damage_type == PlayerController::DamageType::FALL)
+		{
+			_audio_source->PostEvent(Sounds::PLAYER_FALLING);
+		}
 	}
 }

@@ -765,7 +765,18 @@
 						<Action Name="" ID="{A5199D6C-BC8C-4C45-8E28-EF95B76B8A97}" ShortID="328589011">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Fall" ID="{7BCA1225-8DE2-40AA-A867-4CC9F8D50861}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
+									<ObjectRef Name="Falling" ID="{2807E6C2-83A6-494E-AB96-0D0B19D06966}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_LasersGroup" ID="{62CDF8F4-350B-4C00-A13D-C19DA7982FB0}">
+					<ChildrenList>
+						<Action Name="" ID="{1B050DC1-88B5-43C4-B961-48A1B73A0FD6}" ShortID="125146298">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="LasersGroup" ID="{D911A64B-E7BC-4D79-88BA-013447C4BB93}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

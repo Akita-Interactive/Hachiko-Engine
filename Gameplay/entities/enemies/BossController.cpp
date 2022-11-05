@@ -550,6 +550,7 @@ void Hachiko::Scripting::BossController::CocoonController()
     // Replace with is gauntlet completed
     if (gauntlet->IsFinished() || Input::IsKeyDown(Input::KeyCode::KEY_J))
     {
+        audio_source->PostEvent(Sounds::SET_STATE3_BOSS_FIGHT);
         FinishCocoon();
         BreakCocoon();
     }
@@ -566,7 +567,6 @@ void Hachiko::Scripting::BossController::SetUpCocoon()
 
 void Hachiko::Scripting::BossController::BreakCocoon()
 {
-    audio_source->PostEvent(Sounds::SET_STATE3_BOSS_FIGHT);
     for (GameObject* crystal: cocoons_parent->children)
     {
         crystal->GetComponent<CrystalExplosion>()->DestroyCrystal();
