@@ -5,9 +5,9 @@ component:
   - !<transform>
     type: 1
     enabled: true
-    position: [-184, -131.3, -1659]
-    rotation: [180, 20.5, -180]
-    scale: [26.57, 24.38, 26.57]
+    position: [-658, -57.87, -448.2]
+    rotation: [-180, -24.5, -180]
+    scale: [11.69, 10.97, 11.69]
   - !<transform_2d>
     type: 10
     enabled: true
@@ -148,8 +148,8 @@ child:
                     type: 10
                     enabled: true
                     position: [6, -2.5, 0]
-                    size: [2, 2]
-                    scale: [1, 1]
+                    size: [7.5, 6.8]
+                    scale: [0.3, 0.3]
                     rotation: [0, 0, 0, 1]
                     pivot: [0, 1]
                     anchor: [0, 1]
@@ -185,8 +185,8 @@ child:
                     type: 10
                     enabled: true
                     position: [8, -2.5, 0]
-                    size: [2, 2]
-                    scale: [1, 1]
+                    size: [7.5, 6.8]
+                    scale: [0.3, 0.3]
                     rotation: [0, 0, 0, 1]
                     pivot: [0, 1]
                     anchor: [0, 1]
@@ -222,8 +222,8 @@ child:
                     type: 10
                     enabled: true
                     position: [10, -2.5, 0]
-                    size: [2, 2]
-                    scale: [1, 1]
+                    size: [7.5, 6.8]
+                    scale: [0.3, 0.3]
                     rotation: [0, 0, 0, 1]
                     pivot: [0, 1]
                     anchor: [0, 1]
@@ -259,8 +259,8 @@ child:
                     type: 10
                     enabled: true
                     position: [12, -2.5, 0]
-                    size: [2, 2]
-                    scale: [1, 1]
+                    size: [7.5, 6.8]
+                    scale: [0.3, 0.3]
                     rotation: [0, 0, 0, 1]
                     pivot: [0, 1]
                     anchor: [0, 1]
@@ -321,6 +321,191 @@ child:
                 image_tiles_per_second: 1
                 fill_window: false
             child:
+              - name: Health_capsule_1
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0]
+                    scale: [0.001, 0.001, 0.001]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [0, -2.6, 0]
+                    size: [1, 1]
+                    scale: [7, 7]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 11795946502567355654
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_randomize_initial_frame: false
+                    image_x_tiles: 7
+                    image_y_tiles: 2
+                    image_tiles_per_second: 14
+                    fill_window: false
+              - name: Health_capsule_2
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [0, -2.6, 0]
+                    size: [1, 1]
+                    scale: [7, 7]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 13450631525059124743
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_randomize_initial_frame: false
+                    image_x_tiles: 7
+                    image_y_tiles: 2
+                    image_tiles_per_second: 14
+                    fill_window: false
+              - name: Health_capsule_3
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [0, -2.6, 0]
+                    size: [1, 1]
+                    scale: [7, 7]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 11546650782690063204
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_randomize_initial_frame: false
+                    image_x_tiles: 7
+                    image_y_tiles: 2
+                    image_tiles_per_second: 14
+                    fill_window: false
+              - name: Health_capsule_4
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [0, -2.6, 0]
+                    size: [1, 1]
+                    scale: [7, 7]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 17554097052806070663
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_randomize_initial_frame: false
+                    image_x_tiles: 7
+                    image_y_tiles: 2
+                    image_tiles_per_second: 14
+                    fill_window: false
+              - name: Health_capsule_extra
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [-76.35, 3.454, -58.97]
+                    rotation: [0, 0, 0]
+                    scale: [0.4418, 0.4502, 0.4418]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [-3.1, 1.6, 0]
+                    size: [1, 1]
+                    scale: [7, 7]
+                    rotation: [0, 0, 1, -0]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 17554097052806070663
+                    hover_image_id: 0
+                    image_color: [0.8354, 0, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_randomize_initial_frame: false
+                    image_x_tiles: 7
+                    image_y_tiles: 2
+                    image_tiles_per_second: 14
+                    fill_window: false
               - name: HP_1
                 enabled: true
                 component:
@@ -725,7 +910,7 @@ child:
         type: 1
         enabled: true
         position: [-53.37, 6.049, -60.14]
-        rotation: [180, -41, 180]
+        rotation: [-180, -41, -180]
         scale: [0.0378, 0.041, 0.0378]
       - !<transform_2d>
         type: 10
@@ -762,7 +947,7 @@ child:
         type: 1
         enabled: true
         position: [-34.57, 5.016, -75.54]
-        rotation: [-180, 69.5, 180]
+        rotation: [180, 69.5, -180]
         scale: [0.1944, 0.2026, 0.1944]
       - !<transform_2d>
         type: 10
