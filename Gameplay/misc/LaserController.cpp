@@ -38,15 +38,15 @@ void Hachiko::Scripting::LaserController::OnAwake()
 	_audio_source = game_object->GetComponent<ComponentAudioSource>();
 	_audio_source->PostEvent(Hachiko::Sounds::PLAY_LASER);
 
-	if (_sparks != nullptr)
+	if (_charging != nullptr)
 	{
-		_sparks_particles = _sparks->GetComponent<ComponentParticleSystem>();
-		_sparks_particles->Stop();
+		_charging_particles = _charging->GetComponent<ComponentParticleSystem>();
 	}
 	
 	if (_beam != nullptr)
 	{
 		_beam_particles = _beam->GetComponent<ComponentParticleSystem>();
+		_beam_drawing = true;
 	}
 
 	if (_beam_reduced != nullptr)
@@ -59,6 +59,12 @@ void Hachiko::Scripting::LaserController::OnAwake()
 	{
 		_beam_crystals_particles = _beam_crystals->GetComponent<ComponentParticleSystem>();
 		_beam_crystals_particles->DrawParticles(false);
+	}
+
+	if (_sparks != nullptr)
+	{
+		//_sparks_particles = _sparks->GetComponent<ComponentParticleSystem>();
+		_sparks->SetActive(false);
 	}
 }
 
@@ -101,13 +107,18 @@ void Hachiko::Scripting::LaserController::OnUpdate()
 	case ACTIVE:
 		AdjustLength();
 		CheckPlayerCollision();
+		
+		if (_beam && _beam_drawing)
+		{
+			_beam_particles->DrawParticles(true);
+		}
+
 		if (_toggle_activation)
 		{
 			_elapsed_time += Time::DeltaTime();
 			if (_elapsed_time >= _toggle_active_time)
 			{
 				ChangeState(DISSOLVING);
-				if (_beam_particles) _beam_particles->Restart();
 			}
 		}
 		break;
@@ -125,6 +136,12 @@ void Hachiko::Scripting::LaserController::OnUpdate()
 		{
 			ChangeState(ACTIVE);
 		}
+
+		if (_charging)
+		{
+			_charging_particles->DrawParticles(true);
+		}
+
 		break;
 
 	case INACTIVE:
@@ -136,12 +153,24 @@ void Hachiko::Scripting::LaserController::OnUpdate()
 				ChangeState(ACTIVATING);
 			}
 		}
+
+		if (_charging)
+		{
+			_charging_particles->DrawParticles(false);
+		}
+
 		break;
 		
 	case DISSOLVING:
 		_elapsed_time += Time::DeltaTime();
 		const float dissolve_progress = (_dissolving_time - _elapsed_time) / _dissolving_time;
 		_laser->ChangeDissolveProgress(dissolve_progress, true);
+
+		if (_beam)
+		{
+			_beam_particles->DrawParticles(false);
+		}
+
 		if (_elapsed_time >= _dissolving_time)
 		{
 			ChangeState(INACTIVE);
@@ -176,9 +205,9 @@ void Hachiko::Scripting::LaserController::ChangeState(State new_state)
 
 	case State::DISSOLVING:
 		_elapsed_time = 0.0f;
-		if (_sparks_particles != nullptr)
+		if (_sparks != nullptr)
 		{
-			_sparks_particles->Stop();
+			//_sparks_particles->Stop();
 			_laser->ChangeEmissiveColor(float4(1.0f, 1.0f, 1.0f, 0.0f), true);
 		}
 		break;
@@ -204,9 +233,8 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 	{
 		if (_beam != nullptr && _beam_reduced != nullptr && (_length - new_length) > 0.1f )
 		{
-			//_sparks->GetTransform()->SetLocalPosition(float3(0.0f, 0.0f, -new_length));
-			//_sparks_particles->Restart();
 			_beam_particles->DrawParticles(false);
+			_beam_drawing = false;
 
 			if (_beam_crystals != nullptr && new_length > 10.0f)
 			{
@@ -230,6 +258,7 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 			}
 
 			_beam_particles->DrawParticles(true);
+			_beam_drawing = true;
 		}
 
 		_length = new_length;
@@ -241,11 +270,11 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 		if (new_length != _max_length && _state == ACTIVE)
 		{
 			_sparks->GetTransform()->SetLocalPosition(float3(0.0f, 0.0f, -new_length));
-			_sparks_particles->Play();
+			_sparks->SetActive(true);
 		}
 		else
 		{
-			_sparks_particles->Stop();
+			_sparks->SetActive(false);
 		}
 	}
 }
