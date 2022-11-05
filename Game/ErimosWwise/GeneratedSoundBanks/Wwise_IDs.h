@@ -41,6 +41,7 @@ namespace AK
         static const AkUniqueID PLAY_LASER = 2270376495U;
         static const AkUniqueID PLAY_LASER_HIT = 4092857357U;
         static const AkUniqueID PLAY_LASERSGROUP = 4122877295U;
+        static const AkUniqueID PLAY_LASERSTOP = 2483774879U;
         static const AkUniqueID PLAY_LOADINGAMMO = 998505444U;
         static const AkUniqueID PLAY_MELEEATTACK = 2988676654U;
         static const AkUniqueID PLAY_PARASITEPICKUP = 3772493585U;

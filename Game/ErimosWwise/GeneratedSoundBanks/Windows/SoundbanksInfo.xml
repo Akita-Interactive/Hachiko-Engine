@@ -950,7 +950,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3909959462" Language="SFX" Hash="2934517720">
+		<SoundBank Id="3909959462" Language="SFX" Hash="3794790409">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enviroment</ObjectPath>
 			<ShortName>Enviroment</ShortName>
 			<Path>Enviroment.bnk</Path>
@@ -1101,9 +1101,21 @@
 				</Event>
 				<Event Id="4122877295" Name="Play_LasersGroup" ObjectPath="\Events\Default Work Unit\Play_LasersGroup">
 					<IncludedMemoryFiles>
+						<File Id="581679909" Language="SFX">
+							<ShortName>ES_Force Field Energy 4 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Force Field Energy 4 - SFX Producer_D79FB2B7.wem</Path>
+						</File>
 						<File Id="826135177" Language="SFX">
 							<ShortName>LasersGroup.wav</ShortName>
 							<Path>SFX\LasersGroup_76277525.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2483774879" Name="Play_LaserStop" ObjectPath="\Events\Default Work Unit\Play_LaserStop">
+					<IncludedMemoryFiles>
+						<File Id="563755614" Language="SFX">
+							<ShortName>ES_Laser Sword Hum - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Laser Sword Hum - SFX Producer_9AF52507.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

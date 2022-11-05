@@ -1511,6 +1511,7 @@ bool Hachiko::Scripting::BossController::ControlLasers()
 	{
 		for (GameObject* laser : _laser_wall->children)
 		{
+            audio_source->PostEvent(Sounds::PLAY_LASER_STOP);
 			laser->GetComponent<LaserController>()->ChangeState(LaserController::State::DISSOLVING);
 		}
 		return true;
