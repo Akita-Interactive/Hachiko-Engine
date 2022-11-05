@@ -97,16 +97,15 @@ void Hachiko::Scripting::PlayerSoundManager::OnUpdate()
 	case PlayerState::DIE:
 		if (state_changed)
 		{
-			_audio_source->PostEvent(Sounds::PLAY_DEAD_MUSIC);
+			_audio_source->PostEvent(Sounds::SET_STATE_DEFEATED);
 			_audio_source->PostEvent(Sounds::STOP_PEBBLE);
 			_audio_source->PostEvent(Sounds::STOP_WIND);
 
 			if (_level == 3)
 			{
-				_audio_source->PostEvent(Sounds::SET_STATE_DEFEATED); // Boss fight
+				_audio_source->PostEvent(Sounds::BOSS_WINS); // Boss fight
 			}
 		}
-
 		_timer = 0.0f;
 		break;
 	case PlayerState::PICK_UP:

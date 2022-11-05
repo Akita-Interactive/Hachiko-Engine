@@ -21,29 +21,31 @@ namespace AK
         static const AkUniqueID PLAY_BOSSHITFLOOR = 2570105658U;
         static const AkUniqueID PLAY_BOSSLAUGH = 4292759136U;
         static const AkUniqueID PLAY_BOSSMELEESTAND = 866952685U;
-        static const AkUniqueID PLAY_BOSSMUSIC = 3463024606U;
         static const AkUniqueID PLAY_BOSSPREJUMP = 3957245444U;
         static const AkUniqueID PLAY_BOSSROAR = 1490429921U;
+        static const AkUniqueID PLAY_BOSSWINS = 1727127580U;
         static const AkUniqueID PLAY_CHECKPOINT = 2962822744U;
-        static const AkUniqueID PLAY_COMBAT = 513571230U;
         static const AkUniqueID PLAY_CRYSTAL = 2035174344U;
+        static const AkUniqueID PLAY_CRYSTALREGENERATE = 2449564938U;
+        static const AkUniqueID PLAY_CRYSTALSHAKE = 1800475802U;
         static const AkUniqueID PLAY_DASH = 2211787386U;
+        static const AkUniqueID PLAY_EXPLOSIVECRYSTAL = 1185403619U;
+        static const AkUniqueID PLAY_EXPLOSIVECRYSTALCHARGE = 4241858839U;
+        static const AkUniqueID PLAY_EXPLOSIVECRYSTALSPAWN = 749885692U;
         static const AkUniqueID PLAY_FOOTSTEP = 1602358412U;
-        static const AkUniqueID PLAY_GAMEOVER = 3174629258U;
         static const AkUniqueID PLAY_GAUNLETDOOROPENING = 2988819998U;
         static const AkUniqueID PLAY_GAUNLETNEXTROUND = 1126614951U;
+        static const AkUniqueID PLAY_INTERACTIVEMUSIC = 2346973959U;
         static const AkUniqueID PLAY_INTROCINEMATIC = 2953314807U;
         static const AkUniqueID PLAY_LASER = 2270376495U;
         static const AkUniqueID PLAY_LASER_HIT = 4092857357U;
         static const AkUniqueID PLAY_LOADINGAMMO = 998505444U;
         static const AkUniqueID PLAY_MELEEATTACK = 2988676654U;
-        static const AkUniqueID PLAY_NAVIGATION = 3849525492U;
         static const AkUniqueID PLAY_PARASITEPICKUP = 3772493585U;
         static const AkUniqueID PLAY_PEBBLE = 1157125118U;
         static const AkUniqueID PLAY_RANGEDATTACK = 3766948527U;
         static const AkUniqueID PLAY_RECEIVEDAMAGE = 3438014598U;
-        static const AkUniqueID PLAY_SHOOTNOAMMO = 1388583332U;
-        static const AkUniqueID PLAY_SPLASH = 3948925255U;
+        static const AkUniqueID PLAY_SPLASHLITTLEWORM = 3683553682U;
         static const AkUniqueID PLAY_STALAGMITECEILINGCRACK = 3250624050U;
         static const AkUniqueID PLAY_STALAGMITEGROUNDIMPACT = 2603336188U;
         static const AkUniqueID PLAY_UICLICK = 1615720664U;
@@ -55,12 +57,13 @@ namespace AK
         static const AkUniqueID PLAY_WORMROAR = 4242710327U;
         static const AkUniqueID PLAY_WORMSPAWN = 3126715392U;
         static const AkUniqueID SET_STATE1_BOSSFIGHT = 3129492764U;
+        static const AkUniqueID SET_STATE1B_BOSSFIGHT = 1956163010U;
         static const AkUniqueID SET_STATE2_BOSSFIGHT = 422367531U;
         static const AkUniqueID SET_STATE3_BOSSFIGHT = 129783526U;
         static const AkUniqueID SET_STATE_DEFEATED = 1482465818U;
+        static const AkUniqueID SET_STATE_VICTORY = 3974925374U;
         static const AkUniqueID STOP_BOSSFOOTSTEPS = 2499789540U;
-        static const AkUniqueID STOP_COMBAT = 913896232U;
-        static const AkUniqueID STOP_NAVIGATION = 445689598U;
+        static const AkUniqueID STOP_INTERACTIVEMUSIC = 3266617285U;
         static const AkUniqueID STOP_PEBBLE = 707649828U;
         static const AkUniqueID STOP_WIND = 3173136834U;
     } // namespace EVENTS
@@ -73,12 +76,11 @@ namespace AK
 
             namespace STATE
             {
-                static const AkUniqueID DEAD = 2044049779U;
                 static const AkUniqueID NONE = 748895195U;
                 static const AkUniqueID STAGE1 = 936729722U;
+                static const AkUniqueID STAGE1B = 1591776364U;
                 static const AkUniqueID STAGE2 = 936729721U;
                 static const AkUniqueID STAGE3 = 936729720U;
-                static const AkUniqueID VICTORY = 2716678721U;
             } // namespace STATE
         } // namespace BOSS_BATTLE_STATES
 
@@ -88,7 +90,6 @@ namespace AK
 
             namespace STATE
             {
-                static const AkUniqueID BOSS = 1560169506U;
                 static const AkUniqueID GAMEPLAY = 89505537U;
                 static const AkUniqueID NONE = 748895195U;
                 static const AkUniqueID VICTORY = 2716678721U;
@@ -163,12 +164,19 @@ namespace AK
             } // namespace SWITCH
         } // namespace GAMEPLAY_SWITCH
 
-    } // namespace SWITCHES
+        namespace LEVEL_SWITCH
+        {
+            static const AkUniqueID GROUP = 1296152836U;
 
-    namespace GAME_PARAMETERS
-    {
-        static const AkUniqueID ENEMYAWARE = 3963624107U;
-    } // namespace GAME_PARAMETERS
+            namespace SWITCH
+            {
+                static const AkUniqueID BOSS = 1560169506U;
+                static const AkUniqueID LEVEL1 = 2678230382U;
+                static const AkUniqueID LEVEL2 = 2678230381U;
+            } // namespace SWITCH
+        } // namespace LEVEL_SWITCH
+
+    } // namespace SWITCHES
 
     namespace BANKS
     {
