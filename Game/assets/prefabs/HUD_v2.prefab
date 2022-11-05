@@ -5,8 +5,8 @@ component:
   - !<transform>
     type: 1
     enabled: true
-    position: [692.6, -62.89, 471.5]
-    rotation: [0, 14.25, 0]
+    position: [-658, -57.87, -448.2]
+    rotation: [180, -24.5, 180]
     scale: [11.69, 10.97, 11.69]
   - !<transform_2d>
     type: 10
@@ -33,9 +33,9 @@ child:
       - !<transform_2d>
         type: 10
         enabled: true
-        position: [0, 0, 0]
+        position: [-11.4, 110, 0]
         size: [0, 0]
-        scale: [1, 1]
+        scale: [3, 3]
         rotation: [0, 0, 0, 1]
         pivot: [0, 1]
         anchor: [0, 1]
@@ -59,43 +59,6 @@ child:
         image_tiles_per_second: 1
         fill_window: false
     child:
-      - name: SWORD_ADDON
-        enabled: false
-        component:
-          - !<transform>
-            type: 1
-            enabled: true
-            position: [0, 0, 0]
-            rotation: [0, 0, 0]
-            scale: [1, 1, 1]
-          - !<transform_2d>
-            type: 10
-            enabled: true
-            position: [0, 0, 0]
-            size: [20, 20]
-            scale: [24, 14]
-            rotation: [0, 0, 0, 1]
-            pivot: [0, 1]
-            anchor: [0, 1]
-          - !<canvas_renderer>
-            type: 9
-            enabled: true
-            scale_ui: false
-            original_size_x: 0
-            original_size_y: 0
-          - !<image>
-            type: 11
-            enabled: true
-            image_id: 7250747684639293339
-            hover_image_id: 0
-            image_color: [1, 1, 1, 1]
-            hover_image_color: [1, 1, 1, 1]
-            image_is_tiled: false
-            image_randomize_initial_frame: false
-            image_x_tiles: 1
-            image_y_tiles: 1
-            image_tiles_per_second: 1
-            fill_window: false
       - name: BASE
         enabled: true
         component:
@@ -123,7 +86,7 @@ child:
           - !<image>
             type: 11
             enabled: true
-            image_id: 14728578588781681137
+            image_id: 18282296576105233704
             hover_image_id: 0
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
@@ -146,9 +109,9 @@ child:
               - !<transform_2d>
                 type: 10
                 enabled: true
-                position: [-1.5, 2, 0]
+                position: [1.05, -2.85, 0]
                 size: [0, 0]
-                scale: [1.25, 2.5]
+                scale: [0.3, 0.6]
                 rotation: [0, 0, 0, 1]
                 pivot: [0, 1]
                 anchor: [0, 1]
@@ -199,7 +162,7 @@ child:
                   - !<image>
                     type: 11
                     enabled: true
-                    image_id: 336690227497419917
+                    image_id: 3262789089012486950
                     hover_image_id: 0
                     image_color: [1, 1, 1, 1]
                     hover_image_color: [1, 1, 1, 1]
@@ -236,7 +199,7 @@ child:
                   - !<image>
                     type: 11
                     enabled: true
-                    image_id: 336690227497419917
+                    image_id: 3262789089012486950
                     hover_image_id: 0
                     image_color: [1, 1, 1, 1]
                     hover_image_color: [1, 1, 1, 1]
@@ -273,7 +236,7 @@ child:
                   - !<image>
                     type: 11
                     enabled: true
-                    image_id: 336690227497419917
+                    image_id: 3262789089012486950
                     hover_image_id: 0
                     image_color: [1, 1, 1, 1]
                     hover_image_color: [1, 1, 1, 1]
@@ -310,7 +273,7 @@ child:
                   - !<image>
                     type: 11
                     enabled: true
-                    image_id: 336690227497419917
+                    image_id: 3262789089012486950
                     hover_image_id: 0
                     image_color: [1, 1, 1, 1]
                     hover_image_color: [1, 1, 1, 1]
@@ -332,8 +295,8 @@ child:
               - !<transform_2d>
                 type: 10
                 enabled: true
-                position: [0, 0.5, 0]
-                size: [0, 0]
+                position: [8.87, -1, 0]
+                size: [1, 1]
                 scale: [3, 3]
                 rotation: [0, 0, 0, 1]
                 pivot: [0, 1]
@@ -349,7 +312,7 @@ child:
                 enabled: true
                 image_id: 0
                 hover_image_id: 0
-                image_color: [1, 1, 1, 1]
+                image_color: [1, 1, 1, 0]
                 hover_image_color: [1, 1, 1, 1]
                 image_is_tiled: false
                 image_randomize_initial_frame: false
@@ -366,13 +329,13 @@ child:
                     enabled: true
                     position: [0, 0, 0]
                     rotation: [0, 0, 0]
-                    scale: [1, 1, 1]
+                    scale: [0.001, 0.001, 0.001]
                   - !<transform_2d>
                     type: 10
                     enabled: true
-                    position: [2.8, -1.2, 0]
+                    position: [0, -2.6, 0]
                     size: [1, 1]
-                    scale: [1, 1]
+                    scale: [7, 7]
                     rotation: [0, 0, 0, 1]
                     pivot: [0.5, 0.5]
                     anchor: [0.5, 0.5]
@@ -385,11 +348,11 @@ child:
                   - !<image>
                     type: 11
                     enabled: true
-                    image_id: 15478304056567162071
+                    image_id: 11795946502567355654
                     hover_image_id: 0
                     image_color: [1, 1, 1, 1]
                     hover_image_color: [1, 1, 1, 1]
-                    image_is_tiled: true
+                    image_is_tiled: false
                     image_randomize_initial_frame: false
                     image_x_tiles: 7
                     image_y_tiles: 2
@@ -407,9 +370,9 @@ child:
                   - !<transform_2d>
                     type: 10
                     enabled: true
-                    position: [3.8, -1.2, 0]
+                    position: [0, -2.6, 0]
                     size: [1, 1]
-                    scale: [1, 1]
+                    scale: [7, 7]
                     rotation: [0, 0, 0, 1]
                     pivot: [0.5, 0.5]
                     anchor: [0.5, 0.5]
@@ -422,11 +385,11 @@ child:
                   - !<image>
                     type: 11
                     enabled: true
-                    image_id: 15478304056567162071
+                    image_id: 13450631525059124743
                     hover_image_id: 0
                     image_color: [1, 1, 1, 1]
                     hover_image_color: [1, 1, 1, 1]
-                    image_is_tiled: true
+                    image_is_tiled: false
                     image_randomize_initial_frame: false
                     image_x_tiles: 7
                     image_y_tiles: 2
@@ -444,9 +407,9 @@ child:
                   - !<transform_2d>
                     type: 10
                     enabled: true
-                    position: [4.8, -1.2, 0]
+                    position: [0, -2.6, 0]
                     size: [1, 1]
-                    scale: [1, 1]
+                    scale: [7, 7]
                     rotation: [0, 0, 0, 1]
                     pivot: [0.5, 0.5]
                     anchor: [0.5, 0.5]
@@ -459,11 +422,11 @@ child:
                   - !<image>
                     type: 11
                     enabled: true
-                    image_id: 15478304056567162071
+                    image_id: 11546650782690063204
                     hover_image_id: 0
                     image_color: [1, 1, 1, 1]
                     hover_image_color: [1, 1, 1, 1]
-                    image_is_tiled: true
+                    image_is_tiled: false
                     image_randomize_initial_frame: false
                     image_x_tiles: 7
                     image_y_tiles: 2
@@ -481,9 +444,9 @@ child:
                   - !<transform_2d>
                     type: 10
                     enabled: true
-                    position: [5.8, -1.2, 0]
+                    position: [0, -2.6, 0]
                     size: [1, 1]
-                    scale: [1, 1]
+                    scale: [7, 7]
                     rotation: [0, 0, 0, 1]
                     pivot: [0.5, 0.5]
                     anchor: [0.5, 0.5]
@@ -496,11 +459,11 @@ child:
                   - !<image>
                     type: 11
                     enabled: true
-                    image_id: 15478304056567162071
+                    image_id: 17554097052806070663
                     hover_image_id: 0
                     image_color: [1, 1, 1, 1]
                     hover_image_color: [1, 1, 1, 1]
-                    image_is_tiled: true
+                    image_is_tiled: false
                     image_randomize_initial_frame: false
                     image_x_tiles: 7
                     image_y_tiles: 2
@@ -512,15 +475,52 @@ child:
                   - !<transform>
                     type: 1
                     enabled: true
-                    position: [-43.01, 5.03, -72.94]
-                    rotation: [-180, 69.5, -180]
-                    scale: [0.1944, 0.2026, 0.1944]
+                    position: [-76.35, 3.454, -58.97]
+                    rotation: [0, 0, 0]
+                    scale: [0.4418, 0.4502, 0.4418]
                   - !<transform_2d>
                     type: 10
                     enabled: true
-                    position: [6.8, -1.2, 0]
+                    position: [-3.1, 1.6, 0]
                     size: [1, 1]
-                    scale: [1, 1]
+                    scale: [7, 7]
+                    rotation: [0, 0, 1, -0]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 17554097052806070663
+                    hover_image_id: 0
+                    image_color: [0.8354, 0, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_randomize_initial_frame: false
+                    image_x_tiles: 7
+                    image_y_tiles: 2
+                    image_tiles_per_second: 14
+                    fill_window: false
+              - name: HP_1
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0]
+                    scale: [0.001, 0.001, 0.001]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [0, -2.6, 0]
+                    size: [1, 1]
+                    scale: [7, 7]
                     rotation: [0, 0, 0, 1]
                     pivot: [0.5, 0.5]
                     anchor: [0.5, 0.5]
@@ -533,18 +533,166 @@ child:
                   - !<image>
                     type: 11
                     enabled: true
-                    image_id: 15478304056567162071
+                    image_id: 11795946502567355654
                     hover_image_id: 0
-                    image_color: [1, 0.0211, 0.9628, 1]
+                    image_color: [1, 1, 1, 1]
                     hover_image_color: [1, 1, 1, 1]
-                    image_is_tiled: true
+                    image_is_tiled: false
                     image_randomize_initial_frame: false
-                    image_x_tiles: 7
-                    image_y_tiles: 2
-                    image_tiles_per_second: 14
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
+                    fill_window: false
+              - name: HP_2
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [-0.005, -2.6, 0]
+                    size: [1, 1]
+                    scale: [7, 7]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 13450631525059124743
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_randomize_initial_frame: false
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
+                    fill_window: false
+              - name: HP_3
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [-0.005, -2.6, 0]
+                    size: [1, 1]
+                    scale: [7, 7]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 11546650782690063204
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_randomize_initial_frame: false
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
+                    fill_window: false
+              - name: HP_4
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [-0.03, -2.6, 0]
+                    size: [1, 1]
+                    scale: [7, 7]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 17554097052806070663
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_randomize_initial_frame: false
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
+                    fill_window: false
+              - name: HP_Extra
+                enabled: true
+                component:
+                  - !<transform>
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0]
+                    scale: [0.1944, 0.2026, 0.1944]
+                  - !<transform_2d>
+                    type: 10
+                    enabled: true
+                    position: [-0.07, -2.605, 0]
+                    size: [1, 1]
+                    scale: [7, 7]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0.5, 0.5]
+                    anchor: [0.5, 0.5]
+                  - !<canvas_renderer>
+                    type: 9
+                    enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
+                  - !<image>
+                    type: 11
+                    enabled: true
+                    image_id: 5492546679671049613
+                    hover_image_id: 0
+                    image_color: [0.557, 0, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_randomize_initial_frame: false
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
                     fill_window: false
           - name: Stamina
-            enabled: false
+            enabled: true
             component:
               - !<transform>
                 type: 1
@@ -557,15 +705,15 @@ child:
                 enabled: true
                 params:
                   min: 0
-                  max: 0
+                  max: 1
                   filled: 1
-                  direction: 0
+                  direction: 2
               - !<transform_2d>
                 type: 10
                 enabled: true
-                position: [0, 0, 0]
+                position: [-9.3, 1.98, 0]
                 size: [1, 1]
-                scale: [1, 1]
+                scale: [0.9, 2.1]
                 rotation: [0, 0, 0, 1]
                 pivot: [0.5, 0.5]
                 anchor: [0.5, 0.5]
@@ -582,9 +730,9 @@ child:
                   - !<transform_2d>
                     type: 10
                     enabled: true
-                    position: [1.4, 0.25, 0]
-                    size: [12.5, 0.8]
-                    scale: [1, 1]
+                    position: [1.38, 0.25, 0]
+                    size: [1, 1]
+                    scale: [1, 1.1]
                     rotation: [0, 0, 0, 1]
                     pivot: [0.5, 0.5]
                     anchor: [0.5, 0.5]
@@ -597,9 +745,9 @@ child:
                   - !<image>
                     type: 11
                     enabled: true
-                    image_id: 16846014220398556825
+                    image_id: 15969068747107464568
                     hover_image_id: 0
-                    image_color: [1, 0, 0, 1]
+                    image_color: [1, 0, 0, 0]
                     hover_image_color: [1, 1, 1, 1]
                     image_is_tiled: false
                     image_randomize_initial_frame: false
@@ -619,8 +767,8 @@ child:
                   - !<transform_2d>
                     type: 10
                     enabled: true
-                    position: [1.4, 0.25, 0]
-                    size: [12.5, 0.8]
+                    position: [1.38, 0.25, 0]
+                    size: [1, 1]
                     scale: [1, 1]
                     rotation: [0, 0, 0, 1]
                     pivot: [0.5, 0.5]
@@ -634,7 +782,7 @@ child:
                   - !<image>
                     type: 11
                     enabled: true
-                    image_id: 16846014220398556825
+                    image_id: 15969068747107464568
                     hover_image_id: 0
                     image_color: [1, 1, 1, 1]
                     hover_image_color: [1, 1, 1, 1]
@@ -656,7 +804,7 @@ child:
           - !<transform_2d>
             type: 10
             enabled: true
-            position: [10.8, -4.5, 0]
+            position: [0, 0, 0]
             size: [20, 20]
             scale: [24, 14]
             rotation: [0, 0, 0, 1]
@@ -671,7 +819,7 @@ child:
           - !<image>
             type: 11
             enabled: true
-            image_id: 14023195895871668462
+            image_id: 16535622138009378664
             hover_image_id: 0
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
@@ -708,7 +856,7 @@ child:
           - !<image>
             type: 11
             enabled: true
-            image_id: 17147944466834967470
+            image_id: 7995765443483251736
             hover_image_id: 0
             image_color: [1, 1, 1, 1]
             hover_image_color: [1, 1, 1, 1]
@@ -718,89 +866,52 @@ child:
             image_y_tiles: 1
             image_tiles_per_second: 1
             fill_window: false
-  - name: KeyboardTooltipDisplay
-    enabled: true
-    component:
-      - !<transform>
-        type: 1
-        enabled: true
-        position: [0, 0, 0]
-        rotation: [0, 0, 0]
-        scale: [0.4417, 0.45, 0.4417]
-      - !<transform_2d>
-        type: 10
-        enabled: true
-        position: [0, -150, 1]
-        size: [934, 148]
-        scale: [0.5, 0.5]
-        rotation: [0, 0, 0, 1]
-        pivot: [0.5, 0.5]
-        anchor: [0.5, 0.5]
-      - !<canvas_renderer>
-        type: 9
-        enabled: true
-        scale_ui: false
-        original_size_x: 0
-        original_size_y: 0
-      - !<image>
-        type: 11
-        enabled: true
-        image_id: 18000803453350606936
-        hover_image_id: 0
-        image_color: [1, 1, 1, 1]
-        hover_image_color: [1, 1, 1, 1]
-        image_is_tiled: false
-        image_randomize_initial_frame: false
-        image_x_tiles: 1
-        image_y_tiles: 1
-        image_tiles_per_second: 1
-        fill_window: false
-  - name: GamepadTooltipDisplay
-    enabled: true
-    component:
-      - !<transform>
-        type: 1
-        enabled: true
-        position: [-0.7397, 3.369, -63.07]
-        rotation: [0, 20.48, 0]
-        scale: [0.4417, 0.45, 0.4417]
-      - !<transform_2d>
-        type: 10
-        enabled: true
-        position: [0, -150, 0]
-        size: [934, 148]
-        scale: [0.5, 0.5]
-        rotation: [0, 0, 0, 1]
-        pivot: [0.5, 0.5]
-        anchor: [0.5, 0.5]
-      - !<canvas_renderer>
-        type: 9
-        enabled: true
-        scale_ui: false
-        original_size_x: 0
-        original_size_y: 0
-      - !<image>
-        type: 11
-        enabled: true
-        image_id: 407881782410796713
-        hover_image_id: 0
-        image_color: [1, 1, 1, 1]
-        hover_image_color: [1, 1, 1, 1]
-        image_is_tiled: false
-        image_randomize_initial_frame: false
-        image_x_tiles: 1
-        image_y_tiles: 1
-        image_tiles_per_second: 1
-        fill_window: false
+      - name: SWORD_ADDON
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0]
+            scale: [1, 1, 1]
+          - !<transform_2d>
+            type: 10
+            enabled: true
+            position: [0, 0, 1]
+            size: [20, 20]
+            scale: [24, 14]
+            rotation: [0, 0, 0, 1]
+            pivot: [0, 1]
+            anchor: [0, 1]
+          - !<canvas_renderer>
+            type: 9
+            enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
+          - !<image>
+            type: 11
+            enabled: true
+            image_id: 5681539604318550016
+            hover_image_id: 0
+            image_color: [1, 1, 1, 1]
+            hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_randomize_initial_frame: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
+            fill_window: false
   - name: Vignette
     enabled: false
     component:
       - !<transform>
         type: 1
         enabled: true
-        position: [-43.01, 5.03, -72.94]
-        rotation: [-180, 69.5, 180]
-        scale: [0.1944, 0.2026, 0.1944]
+        position: [-53.37, 6.049, -60.14]
+        rotation: [180, -41, 180]
+        scale: [0.0378, 0.041, 0.0378]
       - !<transform_2d>
         type: 10
         enabled: true
@@ -835,7 +946,7 @@ child:
       - !<transform>
         type: 1
         enabled: true
-        position: [-43.01, 5.03, -72.94]
+        position: [-34.57, 5.016, -75.54]
         rotation: [-180, 69.5, 180]
         scale: [0.1944, 0.2026, 0.1944]
       - !<transform_2d>
