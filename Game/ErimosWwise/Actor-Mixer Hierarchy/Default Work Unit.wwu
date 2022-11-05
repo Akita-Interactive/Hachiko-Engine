@@ -168,24 +168,7 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="Hit1" ID="{6D7E54CD-08B9-4F32-95B3-4FB05B15EB41}" ShortID="313103427">
-											<PropertyList>
-												<Property Name="Lowpass" Type="int16">
-													<ValueList>
-														<Value>15</Value>
-													</ValueList>
-												</Property>
-												<Property Name="Pitch" Type="int32">
-													<ValueList>
-														<Value>200</Value>
-													</ValueList>
-												</Property>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>-5</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
+										<Sound Name="ES_PREL Laser 32 - SFX Producer" ID="{E170B8A4-85D2-41B8-8A50-B51AD8BCA4BA}" ShortID="726188627">
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
@@ -195,46 +178,20 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="Swish - Call And Response" ID="{302EC327-6034-42A5-B493-5042626E2555}">
-													<PropertyList>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.0671995767195767"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimEnd" Type="Real64" Value="1.52319040564374"/>
-													</PropertyList>
+												<AudioFileSource Name="ES_PREL Laser 32 - SFX Producer" ID="{FCCBCA84-7F93-4A3E-8B46-E7F67B9F48AF}">
 													<Language>SFX</Language>
-													<AudioFile>Laser\Swish - Call And Response.wav</AudioFile>
+													<AudioFile>ES_PREL Laser 32 - SFX Producer.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="1053424550"/>
+														<MediaID ID="3112745"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="Swish - Call And Response" ID="{302EC327-6034-42A5-B493-5042626E2555}" Platform="Linked"/>
+												<ActiveSource Name="ES_PREL Laser 32 - SFX Producer" ID="{FCCBCA84-7F93-4A3E-8B46-E7F67B9F48AF}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-										<Sound Name="Hit2" ID="{A70AF5B6-314A-4529-A001-BF2E88FFC119}" ShortID="393610328">
-											<PropertyList>
-												<Property Name="Pitch" Type="int32">
-													<ValueList>
-														<Value>-250</Value>
-													</ValueList>
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{FEE39A6A-E012-442F-80CB-52D961193352}">
-																<PropertyList>
-																	<Property Name="Enabled" Type="bool" Value="True"/>
-																</PropertyList>
-															</Modifier>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>-5</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
+										<Sound Name="ES_Hit Laser Sci Fi - SFX Producer" ID="{01749BF6-0D8D-4ECC-A9E3-ADDB3D98432B}" ShortID="858567234">
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
@@ -244,17 +201,17 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ES_MM Design Element 43 - SFX Producer" ID="{817BF2AA-A345-4DA4-A3A3-E80E88B67861}">
+												<AudioFileSource Name="ES_Hit Laser Sci Fi - SFX Producer" ID="{CE2589D0-51FE-4FD1-906D-E92C35B134C0}">
 													<Language>SFX</Language>
-													<AudioFile>ES_MM Design Element 43 - SFX Producer.wav</AudioFile>
+													<AudioFile>ES_Hit Laser Sci Fi - SFX Producer.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="971224351"/>
+														<MediaID ID="328759760"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ES_MM Design Element 43 - SFX Producer" ID="{817BF2AA-A345-4DA4-A3A3-E80E88B67861}" Platform="Linked"/>
+												<ActiveSource Name="ES_Hit Laser Sci Fi - SFX Producer" ID="{CE2589D0-51FE-4FD1-906D-E92C35B134C0}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
