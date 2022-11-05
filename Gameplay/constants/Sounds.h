@@ -58,6 +58,7 @@ namespace Hachiko::Sounds
 	constexpr const wchar_t* PLAY_CHECKPOINT			= L"Play_Checkpoint";
 	constexpr const wchar_t* STALAGMITE_CEILING_CRACK	= L"Play_StalagmiteCeilingCrack";
 	constexpr const wchar_t* STALAGMITE_GROUND_IMPACT	= L"Play_StalagmiteGroundImpact";
+	constexpr const wchar_t* PLAY_LASERS_GROUP			= L"Play_LasersGroup";
 
 	// Background Music
 	constexpr const wchar_t* PLAY_BACKGROUND_MUSIC	= L"Play_InteractiveMusic";

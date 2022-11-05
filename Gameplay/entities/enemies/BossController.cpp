@@ -998,6 +998,7 @@ void Hachiko::Scripting::BossController::ExecuteJumpingState()
 
             // Kill all enemies before lasers
             KillEnemies();
+            audio_source->PostEvent(Sounds::PLAY_LASERS_GROUP);
 
             for (GameObject* laser : _laser_wall->children)
             {

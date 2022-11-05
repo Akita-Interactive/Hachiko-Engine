@@ -423,7 +423,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1560169506" Language="SFX" Hash="916518214">
+		<SoundBank Id="1560169506" Language="SFX" Hash="3841337237">
 			<ObjectPath>\SoundBanks\Default Work Unit\Boss</ObjectPath>
 			<ShortName>Boss</ShortName>
 			<Path>Boss.bnk</Path>
@@ -949,7 +949,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3909959462" Language="SFX" Hash="3966267333">
+		<SoundBank Id="3909959462" Language="SFX" Hash="3922966392">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enviroment</ObjectPath>
 			<ShortName>Enviroment</ShortName>
 			<Path>Enviroment.bnk</Path>
@@ -1098,7 +1098,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="4122877295" Name="Play_LasersGroup" ObjectPath="\Events\Default Work Unit\Play_LasersGroup"/>
+				<Event Id="4122877295" Name="Play_LasersGroup" ObjectPath="\Events\Default Work Unit\Play_LasersGroup">
+					<IncludedMemoryFiles>
+						<File Id="826135177" Language="SFX">
+							<ShortName>LasersGroup.wav</ShortName>
+							<Path>SFX\LasersGroup_E0842389.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1157125118" Name="Play_Pebble" ObjectPath="\Events\Default Work Unit\Environment\Play_Pebble">
 					<IncludedMemoryFiles>
 						<File Id="11692854" Language="SFX">
