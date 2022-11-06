@@ -6,7 +6,7 @@ component:
     type: 1
     enabled: true
     position: [-74.03, 2.031, 32.67]
-    rotation: [-0, 0, -0]
+    rotation: [0, 0, 0]
     scale: [1.5, 1.5, 1.5]
   - !<obstacle>
     type: 18
@@ -21,7 +21,7 @@ child:
         type: 1
         enabled: true
         position: [0, 2.232, 0]
-        rotation: [-0, 0, -0]
+        rotation: [0, 0, 0]
         scale: [1, 1, 1]
     child:
       - name: Crystal2.002
@@ -31,7 +31,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [100, 100, 100]
           - !<mesh_renderer>
             type: 2
@@ -40,6 +40,7 @@ child:
             navigable: false
             visible: true
             casting_shadow: true
+            outline_type: 2
             material_id: 3205997075502161914
             tint_color: [1, 1, 1, 1]
   - name: Crystal_lamp_02
@@ -49,7 +50,7 @@ child:
         type: 1
         enabled: true
         position: [0, 1.051, -0.0561]
-        rotation: [-0, 0, -0]
+        rotation: [0, 0, 0]
         scale: [1, 1, 1]
     child:
       - name: Plane.001
@@ -59,7 +60,7 @@ child:
             type: 1
             enabled: true
             position: [0.0005, -0.0109, -0.0006]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [100, 140, 100]
           - !<mesh_renderer>
             type: 2
@@ -68,6 +69,7 @@ child:
             navigable: false
             visible: true
             casting_shadow: true
+            outline_type: 2
             material_id: 10282915194250151458
             tint_color: [1, 1, 1, 1]
   - name: Light
@@ -77,13 +79,13 @@ child:
         type: 1
         enabled: true
         position: [0, 4.164, 0]
-        rotation: [-0, 0, -0]
+        rotation: [0, 0, 0]
         scale: [1, 1, 1]
       - type: 6
         enabled: true
         light_type: 6
         color: [0, 0.6341, 1, 1]
-        intensity: 23.98
+        intensity: 100
         radius: 41.97
         draw_sphere: false
       - !<script>
@@ -97,8 +99,8 @@ child:
         "'_min_duration@float'": 0.1
         "'_max_duration@float'": 0.5
         "'_duration_amplitude@float'": 1
-        "'_min_intensity@float'": 20
-        "'_max_intensity@float'": 30
+        "'_min_intensity@float'": 50
+        "'_max_intensity@float'": 100
         "'_intensity_amplitude@float'": 0
         "'_starting_intensity@float'": 23.65
         "'_starting_radius@float'": 41.2
@@ -115,7 +117,7 @@ child:
         type: 1
         enabled: true
         position: [-0.0207, 3.17, -0.2516]
-        rotation: [-0, 0, -0]
+        rotation: [0, 0, 0]
         scale: [0.6667, 0.6667, 0.6667]
       - !<billboard>
         type: 21
@@ -128,7 +130,8 @@ child:
         properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
         animation_speed: 0.02
         total_tiles: 60
-        animation_loop: true
+        animation_loop: false
+        animation_loop_all: true
         color_cycles: 1
         color_gradient: [[0.4277, 0.6924, 1, 0, 1]]
         animation_section: true
@@ -150,7 +153,7 @@ child:
         type: 1
         enabled: true
         position: [-0.0399, 3.617, -0.0528]
-        rotation: [-0, 0, -0]
+        rotation: [0, 0, 0]
         scale: [0.6667, 0.97, 0.6667]
       - !<billboard>
         type: 21
@@ -160,10 +163,11 @@ child:
         tiles: [8, 8]
         flip: [false, true]
         billboard_lifetime: 2
-        properties: [0.5, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        properties: [0.25, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
         animation_speed: 0.06
         total_tiles: 64
-        animation_loop: true
+        animation_loop: false
+        animation_loop_all: true
         color_cycles: 1
         color_gradient: [[0, 0, 0, 0, 0], [1, 1, 1, 0, 1]]
         animation_section: true
@@ -185,7 +189,7 @@ child:
         type: 1
         enabled: true
         position: [-0.0082, 2.932, -0.028]
-        rotation: [-0, 0, -0]
+        rotation: [0, 0, 0]
         scale: [1.07, 1.07, 1.07]
       - !<particle_system>
         type: 22

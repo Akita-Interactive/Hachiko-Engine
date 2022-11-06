@@ -455,7 +455,7 @@
 										<Action Name="" ID="{932A7AC7-1682-4F3B-A0FD-8923B4939DE8}" ShortID="1060852574">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="SpawnCrystal" ID="{3690F725-2FFF-4137-AF35-70D45D268118}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
+													<ObjectRef Name="SpawnCrystal" ID="{9DCB9861-262C-4816-884D-E28E58359FAD}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -542,7 +542,7 @@
 								<Action Name="" ID="{C564AAD7-CB5C-42B1-913F-5CF554419D23}" ShortID="303566824">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="MeleeAttack" ID="{3D78327C-F61C-4EDF-90CD-41BC8B4183A3}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
+											<ObjectRef Name="WeaponsSwitch" ID="{8460735A-F64C-47C4-A301-26C0484BF5EF}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -755,6 +755,49 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Victory" ID="{4218ECB3-FF93-4574-883F-453CD6E8D154}" WorkUnitID="{58D3A6EC-B8FF-4FD8-B774-6F4619FF9B9B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Fall" ID="{05AF587B-39D6-4848-B1D0-7D8717B38E9A}">
+					<ChildrenList>
+						<Action Name="" ID="{A5199D6C-BC8C-4C45-8E28-EF95B76B8A97}" ShortID="328589011">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Falling" ID="{2807E6C2-83A6-494E-AB96-0D0B19D06966}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_LasersGroup" ID="{62CDF8F4-350B-4C00-A13D-C19DA7982FB0}">
+					<ChildrenList>
+						<Action Name="" ID="{1B050DC1-88B5-43C4-B961-48A1B73A0FD6}" ShortID="125146298">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="LasersGroup" ID="{D911A64B-E7BC-4D79-88BA-013447C4BB93}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_LaserStop" ID="{E2A6CA87-AE5B-4A3C-B6B9-F556275D23BC}">
+					<ChildrenList>
+						<Action Name="" ID="{07EE0F5B-9F9C-4A72-A417-44BD50A9D3E6}" ShortID="786737355">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="LasersGroup" ID="{D911A64B-E7BC-4D79-88BA-013447C4BB93}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{732414A6-288D-4A31-B8FE-60E16F3A380B}" ShortID="295185037">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="LaserStop" ID="{805F0ED0-4A18-409A-9DCE-3AFEEFAA3BC1}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
