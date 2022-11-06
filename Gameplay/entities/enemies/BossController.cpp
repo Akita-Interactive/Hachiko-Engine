@@ -551,6 +551,7 @@ void Hachiko::Scripting::BossController::CocoonController()
     // Replace with is gauntlet completed
     if (gauntlet->IsFinished() || Input::IsKeyDown(Input::KeyCode::KEY_J))
     {
+        audio_source->PostEvent(Sounds::SET_STATE3_BOSS_FIGHT);
         FinishCocoon();
         BreakCocoon();
     }
@@ -567,7 +568,6 @@ void Hachiko::Scripting::BossController::SetUpCocoon()
 
 void Hachiko::Scripting::BossController::BreakCocoon()
 {
-    audio_source->PostEvent(Sounds::SET_STATE3_BOSS_FIGHT);
     for (GameObject* crystal: cocoons_parent->children)
     {
         crystal->GetComponent<CrystalExplosion>()->DestroyCrystal();
@@ -999,6 +999,7 @@ void Hachiko::Scripting::BossController::ExecuteJumpingState()
 
             // Kill all enemies before lasers
             KillEnemies();
+            audio_source->PostEvent(Sounds::PLAY_LASERS_GROUP);
 
             for (GameObject* laser : _laser_wall->children)
             {
@@ -1511,6 +1512,7 @@ bool Hachiko::Scripting::BossController::ControlLasers()
 	{
 		for (GameObject* laser : _laser_wall->children)
 		{
+            audio_source->PostEvent(Sounds::PLAY_LASER_STOP);
 			laser->GetComponent<LaserController>()->ChangeState(LaserController::State::DISSOLVING);
 		}
 		return true;
