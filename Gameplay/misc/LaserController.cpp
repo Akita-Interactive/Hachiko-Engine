@@ -63,8 +63,7 @@ void Hachiko::Scripting::LaserController::OnAwake()
 
 	if (_sparks != nullptr)
 	{
-		//_sparks_particles = _sparks->GetComponent<ComponentParticleSystem>();
-		_sparks->SetActive(false);
+		if (!_spin_movement) _sparks->SetActive(true);
 	}
 }
 
@@ -205,11 +204,6 @@ void Hachiko::Scripting::LaserController::ChangeState(State new_state)
 
 	case State::DISSOLVING:
 		_elapsed_time = 0.0f;
-		if (_sparks != nullptr)
-		{
-			//_sparks_particles->Stop();
-			_laser->ChangeEmissiveColor(float4(1.0f, 1.0f, 1.0f, 0.0f), true);
-		}
 		break;
 	}
 	_state = new_state;
@@ -231,7 +225,7 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 
 	if (_length != new_length || _state == ACTIVATING || _state == ACTIVE)
 	{
-		if (_beam != nullptr && _beam_reduced != nullptr && (_length - new_length) > 0.1f )
+		if (_beam != nullptr && _beam_reduced != nullptr && new_length != _max_length)
 		{
 			_beam_particles->DrawParticles(false);
 			_beam_drawing = false;
@@ -246,7 +240,7 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 			}
 		}
 
-		if (_beam != nullptr && _beam_reduced != nullptr && (new_length - _length) > 0.1f)
+		if (_beam != nullptr && _beam_reduced != nullptr && new_length == _max_length)
 		{
 			if (_beam_crystals != nullptr && _length > 10.0f)
 			{
@@ -267,16 +261,19 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 
 	if (_sparks != nullptr)
 	{
-		if (new_length != _max_length && _state == ACTIVE)
+		if (_spin_movement)
 		{
-			float2 sparksXY = _sparks->GetTransform()->GetLocalPosition().xy();
-			_sparks->GetTransform()->SetLocalPosition(float3(float2(sparksXY), -new_length));
-			_sparks->SetActive(true);
+			if (new_length != _max_length && _state == ACTIVE)
+			{
+				_sparks->SetActive(true);
+			}
+			else
+			{
+				_sparks->SetActive(false);
+			}
 		}
-		else
-		{
-			_sparks->SetActive(false);
-		}
+		float2 sparksXY = _sparks->GetTransform()->GetLocalPosition().xy();
+		_sparks->GetTransform()->SetLocalPosition(float3(float2(sparksXY), -new_length));
 	}
 }
 
