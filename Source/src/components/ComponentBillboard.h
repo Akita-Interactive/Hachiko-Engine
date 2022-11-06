@@ -79,6 +79,7 @@ namespace Hachiko
 
         // Parameters
         bool loop = false;
+        bool loop_all = false;
         bool play_on_awake = false;
         float duration = 5.0f;
         ParticleSystem::VariableTypeProperty start_delay {float2::zero, 1.0f, false, true};
