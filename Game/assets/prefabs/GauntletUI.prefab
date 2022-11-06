@@ -33,12 +33,12 @@ child:
       - !<transform_2d>
         type: 10
         enabled: true
-        position: [143.3, 48.4, 0]
+        position: [-400, -260, 0]
         size: [150, 150]
         scale: [0.6, 0.6]
         rotation: [0, 0, 0, 1]
-        pivot: [0, 0]
-        anchor: [0, 0]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
       - !<canvas_renderer>
         type: 9
         enabled: true
@@ -58,38 +58,6 @@ child:
         image_y_tiles: 1
         image_tiles_per_second: 1
         fill_window: false
-    child:
-      - name: Counter
-        enabled: true
-        component:
-          - !<transform>
-            type: 1
-            enabled: true
-            position: [0, 0, 0]
-            rotation: [0, 0, 0]
-            scale: [1, 1, 1]
-          - !<transform_2d>
-            type: 10
-            enabled: true
-            position: [-430.3, 985.1, 0]
-            size: [100, 100]
-            scale: [1, 1]
-            rotation: [0, 0, 0, 1]
-            pivot: [0.5, 0.5]
-            anchor: [0.5, 0.5]
-          - !<canvas_renderer>
-            type: 9
-            enabled: true
-            scale_ui: false
-            original_size_x: 0
-            original_size_y: 0
-          - !<text>
-            type: 16
-            enabled: true
-            font_id: 12804548693605998795
-            color: [1, 0.6907, 0.1545, 1]
-            size: 42
-            label_text: 10
   - name: Icon
     enabled: true
     component:
@@ -102,12 +70,12 @@ child:
       - !<transform_2d>
         type: 10
         enabled: true
-        position: [21.4, 18.75, 0]
+        position: [-489, -260, 0]
         size: [150, 150]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
-        pivot: [0, 0]
-        anchor: [0, 0]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
       - !<canvas_renderer>
         type: 9
         enabled: true
@@ -127,3 +95,34 @@ child:
         image_y_tiles: 1
         image_tiles_per_second: 1
         fill_window: false
+  - name: Counter
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [-400, 236.3, 0]
+        size: [100, 100]
+        scale: [1, 1]
+        rotation: [0, 0, 0, 1]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas_renderer>
+        type: 9
+        enabled: true
+        scale_ui: false
+        original_size_x: 0
+        original_size_y: 0
+      - !<text>
+        type: 16
+        enabled: true
+        font_id: 12804548693605998795
+        color: [1, 0.6907, 0.1545, 1]
+        size: 30
+        label_text: 10
