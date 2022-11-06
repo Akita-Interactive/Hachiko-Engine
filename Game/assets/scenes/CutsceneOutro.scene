@@ -41,6 +41,9 @@ child:
           front: [0, 0, 1]
           up: [0, 1, 0]
           pinned_camera: [0, 0, 0]
+      - id: 2364668136345241028
+        type: 19
+        enabled: true
   - id: 7005677117361676567
     name: Cutscene Outro
     enabled: true
@@ -52,16 +55,17 @@ child:
         position: [0, 0, 0]
         rotation: [0, 0, 0]
         scale: [1, 1, 1]
+      - id: 8117782143782011538
+        type: 20
+        enabled: true
       - !<script>
         id: 6085134909572393609
         type: 15
         enabled: true
         class_name: CutsceneManager
         "'_cutscene@GameObject*'": 10682283412592266760
-        "'_next_level@unsigned'": 1
-      - id: 8117782143782011538
-        type: 20
-        enabled: true
+        "'_next_level@unsigned'": 0
+        "'_type@unsigned'": 1
     child:
       - id: 10682283412592266760
         name: Cutscene Video
@@ -78,7 +82,7 @@ child:
             id: 599618017968874973
             type: 23
             enabled: true
-            video_id: 16972879385539922193
+            video_id: 3458849246542580705
             projected: false
             loop: false
             flip: false
