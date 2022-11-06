@@ -552,6 +552,12 @@ void Hachiko::Scripting::EnemyController::ResetEnemyPosition()
 	transform->SetGlobalRotation(_spawn_rot);
 }
 
+void Hachiko::Scripting::EnemyController::ResetEnemyAgent()
+{
+	_component_agent->SetTargetPosition(_spawn_pos);
+	_component_agent->RemoveFromCrowd();
+}
+
 /*
 	THE BUG IS USING THIS STAE MACHINE SYSTEM WHERE EACH STATE HAS 4 METHODS:
 	- START: EXECUTED WHEN THE STATE IS CHANGED
@@ -1096,12 +1102,12 @@ void Hachiko::Scripting::EnemyController::StartDeadState()
 	if (_already_in_combat)
 	{
 		_audio_manager->UnregisterCombat();
+		_audio_manager->PlayEnemyDeath(_enemy_type);
 		_already_in_combat = false;
 	}
 
 	_component_agent->RemoveFromCrowd();
 	_enemy_dissolving_time_progress = 0;
-	_audio_manager->PlayEnemyDeath(_enemy_type);
 	animation->SendTrigger("isDead");
 
 	if (_enemy_body)

@@ -1,0 +1,30 @@
+prefab_name: Dome
+name: Dome
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [0, 0.001, 0]
+    scale: [1, 1, 1]
+child:
+  - name: Sphere001
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [-94.72, 32.13, 47.9]
+        scale: [1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 9734251747031717595
+        navigable: false
+        visible: true
+        casting_shadow: false
+        outline_type: 2
+        material_id: 6753890285572021589
+        tint_color: [0.6835, 0.0317, 0.6258, 1]

@@ -10,6 +10,9 @@
 static const unsigned LEVEL_1 = 1;
 static const unsigned LEVEL_2 = 2;
 static const unsigned BOSS_LEVEL = 3;
+static constexpr const wchar_t* GAMEPLAY_SWITCH = L"Gameplay_Switch";
+static constexpr const wchar_t* GAMEPLAY_EXPLORE = L"Explore";
+static constexpr const wchar_t* GAMEPLAY_COMBAT = L"Combat";
 
 Hachiko::Scripting::AudioManager::AudioManager(GameObject* game_object)
 	: Script(game_object, "AudioManager")
@@ -30,9 +33,14 @@ void Hachiko::Scripting::AudioManager::OnStart()
 {
 	SetNavigation();
 	SetFootstepEffect();
-	_audio_source->PostEvent(GetPlayMusicEventName(_level));
-	_audio_source->PostEvent(Sounds::PLAY_WIND);
-	_audio_source->PostEvent(Sounds::PLAY_PEBBLE);
+	_audio_source->SetSwitch(Sounds::SWITCH_LEVELS, GetLevelSwitchName(_level));
+	_audio_source->PostEvent(Sounds::PLAY_BACKGROUND_MUSIC);
+	if (_level != BOSS_LEVEL)
+	{
+		_audio_source->PostEvent(Sounds::PLAY_WIND);
+		_audio_source->PostEvent(Sounds::PLAY_PEBBLE);
+	}
+
 	updated = true;
 }
 
@@ -100,10 +108,6 @@ void Hachiko::Scripting::AudioManager::PlayGaunletComplete()
 
 void Hachiko::Scripting::AudioManager::PlayGaunletStart()
 {
-	if (_level == BOSS_LEVEL)
-	{
-		_audio_source->PostEvent(Sounds::SET_STATE3_BOSS_FIGHT);
-	}
 }
 
 void Hachiko::Scripting::AudioManager::PlayGaunletNextRound()
@@ -133,14 +137,19 @@ void Hachiko::Scripting::AudioManager::PlayDoorOpening()
 	_audio_source->PostEvent(Sounds::PLAY_DOOR_OPENING);
 }
 
+void Hachiko::Scripting::AudioManager::StopBackgroundMusic()
+{
+	_audio_source->PostEvent(Sounds::STOP_BACKGROUND_MUSIC);
+}
+
 void Hachiko::Scripting::AudioManager::SetCombat()
 {
-	_audio_source->SetRTPCValue(Sounds::ENEMY_AWARE, 100);
+	_audio_source->SetSwitch(GAMEPLAY_SWITCH, GAMEPLAY_COMBAT);
 }
 
 void Hachiko::Scripting::AudioManager::SetNavigation()
 {
-	_audio_source->SetRTPCValue(Sounds::ENEMY_AWARE, 0);
+	_audio_source->SetSwitch(GAMEPLAY_SWITCH, GAMEPLAY_EXPLORE);
 }
 
 void Hachiko::Scripting::AudioManager::SetFootstepEffect()
@@ -155,39 +164,25 @@ void Hachiko::Scripting::AudioManager::SetFootstepEffect()
 	}
 }
 
-const wchar_t* Hachiko::Scripting::AudioManager::GetPlayMusicEventName(unsigned level)
+const wchar_t* Hachiko::Scripting::AudioManager::GetLevelSwitchName(unsigned level)
 {
 	switch (level)
 	{
 	case LEVEL_1:
-		return Sounds::PLAY_BACKGROUND_MUSIC_LVL1;
+		return Sounds::SWITCH_LEVEL_1;
 
 	case LEVEL_2:
-		return Sounds::PLAY_BACKGROUND_MUSIC_LVL2;
+		return Sounds::SWITCH_LEVEL_2;
 
 	case BOSS_LEVEL:
-		return Sounds::PLAY_BACKGROUND_MUSIC_BOSS;
+		return Sounds::SWITCH_LEVEL_BOSS;
 	}
-}
-
-const wchar_t* Hachiko::Scripting::AudioManager::GetStopMusicEventName(unsigned level)
-{
-	switch (level)
-	{
-	case LEVEL_1:
-		return Sounds::STOP_BACKGROUND_MUSIC_LVL1;
-
-	case LEVEL_2:
-		return Sounds::STOP_BACKGROUND_MUSIC_LVL2;
-
-	case BOSS_LEVEL:
-		return Sounds::STOP_BACKGROUND_MUSIC_BOSS;
-	}
+	return nullptr;
 }
 
 void Hachiko::Scripting::AudioManager::StopMusic()
 {
-	_audio_source->PostEvent(GetStopMusicEventName(_level));
+	_audio_source->PostEvent(Sounds::STOP_BACKGROUND_MUSIC);
 }
 
 void Hachiko::Scripting::AudioManager::PlayEnemyDeath(EnemyType enemy_type)

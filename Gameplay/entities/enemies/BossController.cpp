@@ -153,6 +153,7 @@ void Hachiko::Scripting::BossController::OnStart()
 {
 	animation->StartAnimating();
 	animation->SendTrigger("isCacoonLoop");
+    audio_source->PostEvent(Sounds::SET_STATE1_BOSS_FIGHT);
     audio_source->PostEvent(Sounds::BOSS_BREATHE);
 	OverrideCameraOffset();
 }
@@ -449,6 +450,7 @@ void Hachiko::Scripting::BossController::ResetCombatState()
 void Hachiko::Scripting::BossController::Die()
 {
 	// Start death
+    audio_source->PostEvent(Sounds::SET_STATE_VICTORY);
 }
 
 void Hachiko::Scripting::BossController::DieController()
@@ -470,7 +472,7 @@ void Hachiko::Scripting::BossController::StartCocoon()
     time_elapse = 0.0;
     SetUpCocoon();
     FocusCameraOnBoss(true);
-    audio_source->PostEvent(Sounds::SET_STATE1_BOSS_FIGHT);
+    audio_source->PostEvent(Sounds::SET_STATE1B_BOSS_FIGHT);
     //Remove all stalactites and enemies
     _stalagmite_manager->DestroyAllStalagmites(true);
     KillEnemies();
@@ -565,6 +567,7 @@ void Hachiko::Scripting::BossController::SetUpCocoon()
 
 void Hachiko::Scripting::BossController::BreakCocoon()
 {
+    audio_source->PostEvent(Sounds::SET_STATE3_BOSS_FIGHT);
     for (GameObject* crystal: cocoons_parent->children)
     {
         crystal->GetComponent<CrystalExplosion>()->DestroyCrystal();
@@ -607,7 +610,6 @@ void Hachiko::Scripting::BossController::FinishCocoon()
 	hitable = true;
 	second_phase = true;
 	BreakCocoon();
-    audio_source->PostEvent(Sounds::SET_STATE3_BOSS_FIGHT);
     obstacle->RemoveObstacle();
     agent->AddToCrowd();
 

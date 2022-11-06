@@ -31,7 +31,7 @@ Hachiko::Scripting::LaserController::LaserController(GameObject* game_object)
 
 void Hachiko::Scripting::LaserController::OnAwake()
 {
-	_terrain = Scenes::GetTerrainContainer();
+	_laser_colliders = Scenes::GetLaserColliderContainer();
 	_player = Scenes::GetPlayer();
 
 	_initial_position = game_object->GetTransform()->GetGlobalPosition();
@@ -217,7 +217,7 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 	const float3 start = _laser->GetTransform()->GetGlobalPosition();
 	const float3 end = start + _laser->GetTransform()->GetFront() * _max_length;
 
-	const GameObject* terrain_hit = SceneManagement::RayCast(start, end, &collision_point, _terrain);
+	const GameObject* terrain_hit = SceneManagement::RayCast(start, end, &collision_point, _laser_colliders);
 	if (terrain_hit != nullptr)
 	{
 		new_length = std::min(start.Distance(collision_point), _max_length);

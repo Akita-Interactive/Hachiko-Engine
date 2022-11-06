@@ -19,12 +19,14 @@
 Hachiko::Scripting::CrystalExplosion::CrystalExplosion(GameObject* game_object)
 	: Script(game_object, "CrystalExplosion")
 	, _stats()
-	, _explosion_radius(10.0f)
+	, _explosion_radius(10.f)
 	, _detecting_radius(1.0f)
 	, _explosive_crystal(false)
 	, _explosion_indicator_helper(nullptr)
-	, _timer_explosion(0.0f)
-	, _explosion_effect(nullptr)
+	, _timer_explosion(0.f)
+	, _explosion_indicator(nullptr)
+	, _explosion_vfx(nullptr)
+	, _explosion_particles(nullptr)
 	, _regen_time(5.f)
 	, _shake_intensity(0.1f)
 	, _seconds_shaking(0.8f)
@@ -52,7 +54,6 @@ void Hachiko::Scripting::CrystalExplosion::OnAwake()
 	{
 		spawn_billboard = boss_spawn_go->GetComponent<ComponentBillboard>();
 	}
-
 	effects_pool = Scenes::GetCombatVisualEffectsPool()->GetComponent<CombatVisualEffectsPool>();
 }
 
@@ -92,6 +93,7 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 
 			if (_current_regen_time >= _regen_time)
 			{
+				_audio_source->PostEvent(Sounds::CRYSTAL_REGENERATE);
 				ResetCrystal();
 			}
 
@@ -106,7 +108,18 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 		{
 			ExplodeCrystal();
 			DestroyCrystal();
-			return;
+			if (_explosion_vfx)
+			{
+				for (GameObject* child : _explosion_vfx->children)
+				{
+					child->SetActive(true);
+					child->GetComponent<ComponentBillboard>()->Start();
+				}
+				if (_explosion_particles)
+				{
+					_explosion_particles->GetComponent<ComponentParticleSystem>()->Start();
+				}
+			}
 		}
 		else
 		{
@@ -133,7 +146,7 @@ void Hachiko::Scripting::CrystalExplosion::StartExplosion()
 {
 	_is_exploding = true;
 
-	for (GameObject* child : _explosion_effect->children)
+	for (GameObject* child : _explosion_indicator->children)
 	{
 		child->SetActive(true);
 		child->GetComponent<ComponentBillboard>()->Restart();
@@ -149,6 +162,7 @@ void Hachiko::Scripting::CrystalExplosion::CheckRadiusExplosion()
 	if (_detecting_radius >= position.Distance(player->GetTransform()->GetGlobalPosition())
 		&& player->GetComponent<PlayerController>()->IsAlive())
 	{
+		_audio_source->PostEvent(Sounds::EXPLOSIVE_CRYSTAL_CHARGE);
 		StartExplosion();
 	}
 }
@@ -159,9 +173,9 @@ void Hachiko::Scripting::CrystalExplosion::ExplodeCrystal()
 	_stats->ReceiveDamage(_stats->_max_hp);
 
 	// Desable billboards
-	for (GameObject* child : _explosion_effect->children)
+	for (GameObject* child : _explosion_indicator->children)
 	{
-		child->SetActive(false);
+		//child->SetActive(false);
 	}
 
 	std::vector<GameObject*> check_hit = {};
@@ -229,6 +243,7 @@ void Hachiko::Scripting::CrystalExplosion::ShakeCrystal()
 
 	if (_should_regen)
 	{
+		_audio_source->PostEvent(Sounds::CRYSTAL_SHAKE);
 		// We are not doing this on Boss level because it causes moving the crystal to strange positions
 		transform->SetGlobalPosition(_initial_transform.Col3(3) + shake_offset);
 	}
@@ -282,6 +297,18 @@ void Hachiko::Scripting::CrystalExplosion::RegisterHit(int damage, bool is_from_
 			//StartExplosion();
 			ExplodeCrystal();
 			DestroyCrystal();
+			if (_explosion_vfx)
+			{
+				for (GameObject* child : _explosion_vfx->children)
+				{
+					child->SetActive(true);
+					child->GetComponent<ComponentBillboard>()->Start();
+				}
+				if (_explosion_particles)
+				{
+					_explosion_particles->GetComponent<ComponentParticleSystem>()->Start();
+				}
+			}
 		}
 		else
 		{
@@ -348,7 +375,16 @@ void Hachiko::Scripting::CrystalExplosion::ResetCrystal()
 
 void Hachiko::Scripting::CrystalExplosion::DestroyCrystal()
 {
-	_audio_source->PostEvent(Sounds::CRYSTAL);
+	if (!_explosive_crystal)
+	{
+		_audio_source->PostEvent(Sounds::CRYSTAL);
+	}
+	else
+	{
+		_audio_source->PostEvent(Sounds::EXPLOSIVE_CRYSTAL);
+	}
+	
+	
 	if (obstacle)
 	{
 		obstacle->RemoveObstacle();
@@ -385,12 +421,12 @@ void Hachiko::Scripting::CrystalExplosion::RegenCrystal()
 
 void Hachiko::Scripting::CrystalExplosion::SpawnEffect()
 {
-	if(spawn_billboard)
+	if(spawn_billboard) // Boss spawns crystal
 	{
+		_audio_source->PostEvent(Sounds::EXPLOSIVE_CRYSTAL_SPAWN);
 		spawn_billboard->Enable();
 		spawn_billboard->Start();
 	}
-	_audio_source->PostEvent(Sounds::PLAY_LASER_HIT);
 }
 
 void Hachiko::Scripting::CrystalExplosion::DissolveCrystal(bool be_dissolved)

@@ -65,9 +65,10 @@ void Hachiko::Scripting::LevelManager::OnUpdate()
 		SceneManagement::SetFogGlobalDensity(avg_density + amp_density * (math::Sin(_time * _fog_frequency * math::pi * 2)));
 	}
 
-	if (_last_gauntlet) 
+	if (_last_gauntlet && _last_gauntlet->IsCompleted())
 	{
-		_gauntlet_ui_go->SetActive(_last_gauntlet && !_last_gauntlet->IsCompleted());
+		_gauntlet_ui_go->SetActive(false);
+		_last_gauntlet = nullptr;
 	}
 
 	if (_victory && (Input::IsKeyPressed(Input::KeyCode::KEY_SPACE) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_A)))
@@ -79,6 +80,7 @@ void Hachiko::Scripting::LevelManager::OnUpdate()
 void Hachiko::Scripting::LevelManager::SetGauntlet(GauntletManager* last_gauntlet)
 {
 	_last_gauntlet = last_gauntlet;
+	_gauntlet_ui_go->SetActive(_last_gauntlet && !_last_gauntlet->IsCompleted());
 }
 
 void Hachiko::Scripting::LevelManager::SetEnemyCount(unsigned count)
@@ -100,9 +102,9 @@ float3 Hachiko::Scripting::LevelManager::Respawn()
 		_audio_manager->Restart();
 	}
 
-	return GetRespawnPosition();
+	_gauntlet_ui_go->SetActive(false);
 
-	//Disable gauntlet ui
+	return GetRespawnPosition();
 }
 
 void Hachiko::Scripting::LevelManager::ReloadBossScene() const {
@@ -111,6 +113,8 @@ void Hachiko::Scripting::LevelManager::ReloadBossScene() const {
 
 void Hachiko::Scripting::LevelManager::GoalReached() 
 {
+	_audio_manager->StopBackgroundMusic();
+
 	if (_level == 1)
 	{
 		SceneManagement::SwitchScene(Scenes::LEVEL2);

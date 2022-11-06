@@ -599,6 +599,15 @@ void Hachiko::Scripting::Stalagmite::DeserializeFrom(std::unordered_map<std::str
 		}
 	}
 
+	if(serialized_fields.find("_area_indicator") != serialized_fields.end())
+	{
+		const SerializedField& _area_indicator_sf = serialized_fields["_area_indicator"];
+		if (_area_indicator_sf.type_name == "GameObject*")
+		{
+			_area_indicator = std::any_cast<GameObject*>(_area_indicator_sf.copy);
+		}
+	}
+
 	if(serialized_fields.find("GEO") != serialized_fields.end())
 	{
 		const SerializedField& GEO_sf = serialized_fields["GEO"];
@@ -623,6 +632,8 @@ void Hachiko::Scripting::Stalagmite::SerializeTo(std::unordered_map<std::string,
 	Hachiko::Scripting::Script::SerializeTo(serialized_fields);
 
 	serialized_fields["_explosion_effect"] = SerializedField(std::string("_explosion_effect"), std::make_any<GameObject*>(_explosion_effect), std::string("GameObject*"));
+
+	serialized_fields["_area_indicator"] = SerializedField(std::string("_area_indicator"), std::make_any<GameObject*>(_area_indicator), std::string("GameObject*"));
 
 	serialized_fields["GEO"] = SerializedField(std::string("GEO"), std::make_any<GameObject*>(GEO), std::string("GameObject*"));
 
