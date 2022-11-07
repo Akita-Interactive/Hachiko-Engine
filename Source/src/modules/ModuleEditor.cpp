@@ -57,11 +57,11 @@ void Hachiko::ModuleEditor::UpdateTheme() const
         colors[ImGuiCol_FrameBg] = ImColor(232, 232, 160);
         scene_background = float4(217, 217, 245, 1.0f);
     }
-    else
+    else if (theme == Editor::Theme::Type::DARK)
     {
         ImVec4* colors = ImGui::GetStyle().Colors;
         colors[ImGuiCol_Text] = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
-        colors[ImGuiCol_TextDisabled] = ImVec4(0.50f, 0.50f, 0.50f, 1.00f);
+        colors[ImGuiCol_TextDisabled] = ImVec4(0.70f, 0.70f, 0.70f, 1.00f);
         colors[ImGuiCol_WindowBg] = ImVec4(0.10f, 0.10f, 0.10f, 1.00f);
         colors[ImGuiCol_ChildBg] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
         colors[ImGuiCol_PopupBg] = ImVec4(0.19f, 0.19f, 0.19f, 0.92f);
@@ -117,11 +117,11 @@ void Hachiko::ModuleEditor::UpdateTheme() const
         colors[ImGuiCol_ModalWindowDimBg] = ImVec4(1.00f, 0.00f, 0.00f, 0.35f);
 
         ImGuiStyle& style = ImGui::GetStyle();
-        style.WindowPadding = ImVec2(8.00f, 8.00f);
+        style.WindowPadding = ImVec2(10.00f, 10.00f);
         style.FramePadding = ImVec2(5.00f, 2.00f);
-        style.CellPadding = ImVec2(6.00f, 6.00f);
-        style.ItemSpacing = ImVec2(6.00f, 6.00f);
-        style.ItemInnerSpacing = ImVec2(6.00f, 6.00f);
+        style.CellPadding = ImVec2(8.00f, 8.00f);
+        style.ItemSpacing = ImVec2(8.00f, 8.00f);
+        style.ItemInnerSpacing = ImVec2(8.00f, 8.00f);
         style.TouchExtraPadding = ImVec2(0.00f, 0.00f);
         style.IndentSpacing = 25;
         style.ScrollbarSize = 15;
@@ -141,6 +141,11 @@ void Hachiko::ModuleEditor::UpdateTheme() const
         style.TabRounding = 4;
 
         scene_background = float4(0.10f, 0.10f, 0.10f, 1.00f);
+    }
+    else
+    {
+        ImGui::StyleColorsDark();
+        scene_background = float4(0.1f, 0.1f, 0.1f, 1.0f);
     }
 }
 
@@ -509,6 +514,12 @@ void Hachiko::ModuleEditor::ThemeMenu() const
         {
             HE_LOG("Selecting pink mode");
             App->editor->SetTheme(Editor::Theme::Type::PINK);
+            UpdateTheme();
+        }
+        if (ImGui::MenuItem("Classic", nullptr, &pink_theme))
+        {
+            HE_LOG("Selecting classic mode");
+            App->editor->SetTheme(Editor::Theme::Type::CLASSIC);
             UpdateTheme();
         }
         ImGui::EndMenu();

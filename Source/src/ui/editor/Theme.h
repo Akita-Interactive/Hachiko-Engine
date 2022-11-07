@@ -10,7 +10,8 @@ namespace Hachiko::Editor
         {
             DARK = 0,
             LIGHT,
-            PINK
+            PINK,
+            CLASSIC,
         };
 
         static const char* ToString(Type theme)
@@ -21,8 +22,11 @@ namespace Hachiko::Editor
                 return "light";
             case Type::PINK:
                 return "pink";
-            case Type::DARK: default:
+            case Type::DARK: 
                 return "dark";
+            default:
+            case Type::CLASSIC:
+                return "classic";
             }
         }
 
@@ -36,7 +40,12 @@ namespace Hachiko::Editor
             {
                 return Type::PINK;
             }
-            return Type::DARK;
+            if (theme == "dark")
+            {
+                return Type::DARK;
+            }
+
+            return Type::CLASSIC;
         }
 
         Theme() = delete;
