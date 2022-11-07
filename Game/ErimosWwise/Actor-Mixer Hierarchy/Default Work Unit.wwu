@@ -1202,41 +1202,6 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="ES_Magic Spell Whoosh 3 - SFX Producer" ID="{96E92763-485B-4AA5-8AE5-651E792214E4}" ShortID="592593129">
-											<PropertyList>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>-3</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Magic Spell Whoosh 3 - SFX Producer" ID="{19933E4E-998F-4F99-B116-C6ABCA2CFA48}">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.0753516819571865"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.39045871559633"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>ES_Magic Spell Whoosh 3 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="785410759"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Magic Spell Whoosh 3 - SFX Producer" ID="{19933E4E-998F-4F99-B116-C6ABCA2CFA48}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
 										<Sound Name="MagicalLow" ID="{2502EC16-E251-421E-9009-A708FC1B4EA5}" ShortID="532678107">
 											<PropertyList>
 												<Property Name="3DSpatialization" Type="int16" Value="1"/>
@@ -1288,6 +1253,11 @@
 										<Sound Name="ES_Impact Rock Crash - SFX Producer" ID="{F7EDEC8D-5F11-4B1D-9A4E-F3903117666F}" ShortID="892664053">
 											<PropertyList>
 												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="InitialDelay" Type="Real64">
+													<ValueList>
+														<Value>0.2</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -1412,66 +1382,15 @@
 												<ActiveSource Name="ES_Magic Spell Fire 2 - SFX Producer" ID="{2459E2E8-7D94-4505-A12E-468CA3E6F4ED}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-										<Sound Name="ES_Magic Spell Fire 1 - SFX Producer" ID="{146E30E1-F121-4A4B-82E6-9F5038B215D8}" ShortID="222026555">
+										<Sound Name="ES_PREL Hit Drum Deep 1 - SFX Producer" ID="{7229581E-2265-4B1B-981E-3A865322125D}" ShortID="265761920">
 											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
-												<Property Name="Pitch" Type="int32">
+												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-200</Value>
+														<Value>5</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
 											<ReferenceList>
-												<Reference Name="Attenuation">
-													<Custom CreatedFrom="{EC34A9B4-44ED-4040-89BB-316034AEB7F1}">
-														<Attenuation Name="Obeject_Attenuation (Custom)" ID="{96B8B098-DC26-4C1E-BA19-4B1268A51020}" ShortID="940286894">
-															<PropertyList>
-																<Property Name="RadiusMax" Type="Real64" Value="50"/>
-															</PropertyList>
-															<CurveUsageInfoList>
-																<VolumeDryUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-																		<Curve Name="VolumeDry" ID="{046A579D-0541-44C6-8A45-1D72519E1F7F}">
-																			<PropertyList>
-																				<Property Name="Flags" Type="int32" Value="3"/>
-																			</PropertyList>
-																			<PointList>
-																				<Point>
-																					<XPos>0</XPos>
-																					<YPos>0</YPos>
-																					<Flags>5</Flags>
-																				</Point>
-																				<Point>
-																					<XPos>50</XPos>
-																					<YPos>-200</YPos>
-																					<Flags>37</Flags>
-																				</Point>
-																			</PointList>
-																		</Curve>
-																	</CurveUsageInfo>
-																</VolumeDryUsage>
-																<VolumeWetGameUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																</VolumeWetGameUsage>
-																<VolumeWetUserUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																</VolumeWetUserUsage>
-																<LowPassFilterUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</LowPassFilterUsage>
-																<HighPassFilterUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</HighPassFilterUsage>
-																<SpreadUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</SpreadUsage>
-																<FocusUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</FocusUsage>
-															</CurveUsageInfoList>
-														</Attenuation>
-													</Custom>
-												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
 												</Reference>
@@ -1480,24 +1399,17 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ES_Magic Spell Fire 1 - SFX Producer" ID="{E0F99FC8-60A7-4061-A44E-8E1B97FAB9BE}">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.0635806028833552"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.164249890782001"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.699386631716906"/>
-														<Property Name="TrimEnd" Type="Real64" Value="1.81734556574924"/>
-													</PropertyList>
+												<AudioFileSource Name="ES_PREL Hit Drum Deep 1 - SFX Producer" ID="{3E06EC54-93BA-417B-AC4B-4986868FBFD9}">
 													<Language>SFX</Language>
-													<AudioFile>ES_Magic Spell Fire 1 - SFX Producer.wav</AudioFile>
+													<AudioFile>ES_PREL Hit Drum Deep 1 - SFX Producer.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="391492175"/>
+														<MediaID ID="460296448"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ES_Magic Spell Fire 1 - SFX Producer" ID="{E0F99FC8-60A7-4061-A44E-8E1B97FAB9BE}" Platform="Linked"/>
+												<ActiveSource Name="ES_PREL Hit Drum Deep 1 - SFX Producer" ID="{3E06EC54-93BA-417B-AC4B-4986868FBFD9}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
