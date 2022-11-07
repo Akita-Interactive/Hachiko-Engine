@@ -379,7 +379,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="877642339" Language="SFX" Hash="1230162532">
+		<SoundBank Id="877642339" Language="SFX" Hash="3205935242">
 			<ObjectPath>\SoundBanks\Default Work Unit\Cinematics</ObjectPath>
 			<ShortName>Cinematics</ShortName>
 			<Path>Cinematics.bnk</Path>
@@ -400,7 +400,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1322598858" Name="Play_OutroCinematic" ObjectPath="\Events\Default Work Unit\Play_OutroCinematic"/>
+				<Event Id="1322598858" Name="Play_OutroCinematic" ObjectPath="\Events\Default Work Unit\Play_OutroCinematic">
+					<IncludedMemoryFiles>
+						<File Id="149037775" Language="SFX">
+							<ShortName>ES_Nonetheless (Sting Version) - Rockin' For Decades.wav</ShortName>
+							<Path>SFX\ES_Nonetheless (Sting Version) - Rockin' For Decades_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 			</IncludedEvents>
 		</SoundBank>
 		<SoundBank Id="1355168291" Language="SFX" Hash="1122897426">

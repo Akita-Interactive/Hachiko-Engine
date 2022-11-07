@@ -6604,6 +6604,13 @@
 							<ObjectLists/>
 						</BlendContainer>
 						<BlendContainer Name="OutroCinematic" ID="{95BBA994-1B61-49C4-94AB-1735B490D4C5}" ShortID="94871301">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>10</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
@@ -6612,6 +6619,34 @@
 									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
 								</Reference>
 							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="ES_Nonetheless (Sting Version) - Rockin' For Decades" ID="{55705201-96EE-436F-9DD5-FADAC49B262D}" ShortID="192891400">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ES_Nonetheless (Sting Version) - Rockin' For Decades" ID="{8E6576B8-C664-400D-AA9B-DD4A93EADF93}">
+											<PropertyList>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ES_Nonetheless (Sting Version) - Rockin' For Decades.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="149037775"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Nonetheless (Sting Version) - Rockin' For Decades" ID="{8E6576B8-C664-400D-AA9B-DD4A93EADF93}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
 							<ObjectLists/>
 						</BlendContainer>
 					</ChildrenList>
