@@ -497,6 +497,7 @@ void Hachiko::ModuleEditor::ThemeMenu() const
         bool light_theme = App->editor->GetTheme() == Editor::Theme::Type::LIGHT;
         bool dark_theme = App->editor->GetTheme() == Editor::Theme::Type::DARK;
         bool pink_theme = App->editor->GetTheme() == Editor::Theme::Type::PINK;
+        bool classic_theme = App->editor->GetTheme() == Editor::Theme::Type::CLASSIC;
 
         if (ImGui::MenuItem("Light", nullptr, &light_theme))
         {
@@ -516,7 +517,7 @@ void Hachiko::ModuleEditor::ThemeMenu() const
             App->editor->SetTheme(Editor::Theme::Type::PINK);
             UpdateTheme();
         }
-        if (ImGui::MenuItem("Classic", nullptr, &pink_theme))
+        if (ImGui::MenuItem("Classic", nullptr, &classic_theme))
         {
             HE_LOG("Selecting classic mode");
             App->editor->SetTheme(Editor::Theme::Type::CLASSIC);
