@@ -194,11 +194,11 @@ void Hachiko::Scripting::EnemyController::OnStart()
 	{
 		_state = EnemyState::IDLE;
 		_has_spawned = true;
-		_enemy_body->ChangeDissolveProgress(1, true);
 
 		if (enemy_body_exists)
 		{
 			_enemy_body->SetOutlineType(Outline::Type::SECONDARY);
+			_enemy_body->ChangeDissolveProgress(1, true);
 		}
 	}
 	states_behaviour[static_cast<int>(_state)].Start();
