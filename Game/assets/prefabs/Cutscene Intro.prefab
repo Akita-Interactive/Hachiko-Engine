@@ -1,0 +1,36 @@
+prefab_name: Cutscene Intro
+name: Cutscene Intro
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [0, 0, 0]
+    scale: [1, 1, 1]
+  - !<script>
+    type: 15
+    enabled: true
+    class_name: CutsceneManager
+    "'_cutscene@GameObject*'": 2
+    "'_next_level@unsigned'": 1
+  - type: 20
+    enabled: true
+child:
+  - name: Cutscene Video
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      - !<video>
+        type: 23
+        enabled: true
+        video_id: 16972879385539922193
+        projected: false
+        loop: false
+        flip: false
+        fps: 24

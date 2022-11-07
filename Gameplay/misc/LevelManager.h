@@ -64,7 +64,6 @@ namespace Hachiko
 			SERIALIZE_FIELD(float, _fog_min_density);
 			SERIALIZE_FIELD(GameObject*, _audio_manager_go);
 			SERIALIZE_FIELD(GameObject*, _player_sound_manager_go);
-			SERIALIZE_FIELD(GameObject*, _victory_screen);
 
 			static bool increased_health;
 			
