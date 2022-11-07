@@ -71,10 +71,13 @@ namespace Hachiko::Sounds
 	constexpr const wchar_t* SET_STATE_DEFEATED		= L"Set_State_Defeated";
 	constexpr const wchar_t* SET_STATE_VICTORY		= L"Set_State_Victory";
 
+	//Cinematics
+	constexpr const wchar_t* INTRO_CINEMATIC = L"Play_IntroCinematic";
+	constexpr const wchar_t* OUTRO_CINEMATIC = L"Play_OutroCinematic";
+
 	//UI
 	constexpr const wchar_t* CLICK				= L"Play_UIClick";
 	constexpr const wchar_t* HOVER				= L"Play_UIHover";
-	constexpr const wchar_t* INTRO_CINEMATIC	= L"Play_IntroCinematic";
 
 	// Wwise Switch
 	// Footsteps
@@ -88,7 +91,6 @@ namespace Hachiko::Sounds
 	constexpr const wchar_t* SWITCH_WEAPONS_HAMMER	= L"Hammer";
 	constexpr const wchar_t* SWITCH_WEAPONS_SWORD	= L"Sword";
 	constexpr const wchar_t* SWITCH_WEAPONS_CLAW	= L"Claw";
-
 
 	// Levels
 	constexpr const wchar_t* SWITCH_LEVELS		= L"Level_Switch";

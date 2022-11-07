@@ -803,6 +803,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_OutroCinematic" ID="{6A4D45CB-46EE-424A-8602-392CA9C10ECC}">
+					<ChildrenList>
+						<Action Name="" ID="{7C767347-24BE-4779-B04E-81D7B8CA1167}" ShortID="14319551">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="OutroCinematic" ID="{95BBA994-1B61-49C4-94AB-1735B490D4C5}" WorkUnitID="{15DB735D-2232-4613-91A1-A3EB99D3794E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
