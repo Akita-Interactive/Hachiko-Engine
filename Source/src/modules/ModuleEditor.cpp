@@ -59,32 +59,6 @@ void Hachiko::ModuleEditor::UpdateTheme() const
     }
     else
     {
-        /*ImGuiStyle& style = ImGui::GetStyle();
-        ImGui::StyleColorsDark();
-        ImVec4* colors = style.Colors;
-
-        const ImColor colorDark = ImColor(13, 17, 23);
-        const ImColor colorLight = ImColor(22, 27, 34);
-        const ImColor colorAccent = ImColor(9, 35, 58);
-        const ImColor colorText = ImColor(88, 166, 255);
-
-        colors[ImGuiCol_WindowBg] = colorDark;
-        colors[ImGuiCol_TitleBgActive] = colorAccent;
-        colors[ImGuiCol_TitleBg] = colorLight;
-        colors[ImGuiCol_MenuBarBg] = colorLight;
-        colors[ImGuiCol_PopupBg] = colorDark;
-        colors[ImGuiCol_HeaderHovered] = colorAccent;
-        colors[ImGuiCol_Text] = colorText;
-        colors[ImGuiCol_FrameBg] = colorLight;
-
-        constexpr const float inverse_255 = 1.0f / 255.0f;
-
-        scene_background = float4(
-            colorDark.Value.x * inverse_255, 
-            colorDark.Value.y * inverse_255,
-            colorDark.Value.z * inverse_255,
-            1.0f);*/
-
         ImVec4* colors = ImGui::GetStyle().Colors;
         colors[ImGuiCol_Text] = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
         colors[ImGuiCol_TextDisabled] = ImVec4(0.50f, 0.50f, 0.50f, 1.00f);
