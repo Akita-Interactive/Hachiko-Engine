@@ -33,12 +33,12 @@ child:
       - !<transform_2d>
         type: 10
         enabled: true
-        position: [-400, -260, 0]
+        position: [80, 0, 0]
         size: [150, 150]
         scale: [0.6, 0.6]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
-        anchor: [0.5, 0.5]
+        anchor: [0.08, 0.15]
       - !<canvas_renderer>
         type: 9
         enabled: true
@@ -70,12 +70,12 @@ child:
       - !<transform_2d>
         type: 10
         enabled: true
-        position: [-489, -260, 0]
+        position: [0, 0, 0]
         size: [150, 150]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
-        anchor: [0.5, 0.5]
+        anchor: [0.08, 0.15]
       - !<canvas_renderer>
         type: 9
         enabled: true
@@ -107,12 +107,12 @@ child:
       - !<transform_2d>
         type: 10
         enabled: true
-        position: [-400, 239.9, 0]
+        position: [81.1, -16.8, 0]
         size: [100, 100]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
-        anchor: [0.5, 0.5]
+        anchor: [0.08, 0.85]
       - !<canvas_renderer>
         type: 9
         enabled: true
