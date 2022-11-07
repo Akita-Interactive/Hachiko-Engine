@@ -1698,9 +1698,10 @@
 											<ChildrenList>
 												<AudioFileSource Name="ES_PREL Whoosh High 18 - SFX Producer" ID="{88D943AE-1D87-4BCC-81BC-930DE2A2BDCE}">
 													<PropertyList>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.207601572739187"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.433391046423398"/>
+														<Property Name="FadeOutShape" Type="int16" Value="1"/>
 														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimEnd" Type="Real64" Value="1.02416775884666"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.20016775884666"/>
 													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>ES_PREL Whoosh High 18 - SFX Producer.wav</AudioFile>
