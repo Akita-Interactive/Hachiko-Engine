@@ -54,7 +54,8 @@ void Hachiko::Scripting::CrystalExplosion::OnAwake()
 	{
 		spawn_billboard = boss_spawn_go->GetComponent<ComponentBillboard>();
 	}
-	effects_pool = Scenes::GetCombatVisualEffectsPool()->GetComponent<CombatVisualEffectsPool>();	
+	effects_pool = Scenes::GetCombatVisualEffectsPool()->GetComponent<CombatVisualEffectsPool>();
+	cp_animation->SetTimeScaleMode(TimeScaleMode::SCALED);
 }
 
 void Hachiko::Scripting::CrystalExplosion::OnStart()
