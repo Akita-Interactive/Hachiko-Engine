@@ -65,6 +65,14 @@ void Hachiko::Scripting::LaserController::OnAwake()
 	{
 		if (!_spin_movement) _sparks->SetActive(true);
 	}
+
+	if (_boss_level_wall) 
+	{
+		_state = INACTIVE;
+		_charging_particles->DrawParticles(false);
+		_beam_particles->DrawParticles(false);
+		_sparks->SetActive(false);
+	}
 }
 
 void Hachiko::Scripting::LaserController::OnUpdate()
@@ -99,6 +107,11 @@ void Hachiko::Scripting::LaserController::OnUpdate()
 				_movement_position * _movement_position * (3 - 2 * _movement_position))
 		);
 
+	}
+
+	if (_state != ACTIVE && _beam_crystals_particles != nullptr)
+	{
+		_beam_crystals_particles->DrawParticles(false);
 	}
 
 	switch (_state)
@@ -272,8 +285,38 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 				_sparks->SetActive(false);
 			}
 		}
-		float2 sparksXY = _sparks->GetTransform()->GetLocalPosition().xy();
-		_sparks->GetTransform()->SetLocalPosition(float3(float2(sparksXY), -new_length));
+
+		if (_boss_level1)
+		{
+			float2 sparksYZ = _sparks->GetTransform()->GetLocalPosition().yz();
+			_sparks->GetTransform()->SetLocalPosition(float3(new_length, sparksYZ.x, sparksYZ.y));
+			if (_state == ACTIVE)
+			{
+				_sparks->SetActive(true);
+			}
+			else
+			{
+				_sparks->SetActive(false);
+			}
+		}
+		else if (_boss_level2)
+		{
+			float2 sparksYZ = _sparks->GetTransform()->GetLocalPosition().yz();
+			_sparks->GetTransform()->SetLocalPosition(float3(-new_length, sparksYZ.x, sparksYZ.y));
+			if (_state == ACTIVE)
+			{
+				_sparks->SetActive(true);
+			}
+			else
+			{
+				_sparks->SetActive(false);
+			}
+		}
+		else
+		{
+			float2 sparksXY = _sparks->GetTransform()->GetLocalPosition().xy();
+			_sparks->GetTransform()->SetLocalPosition(float3(float2(sparksXY), -new_length));
+		}
 	}
 }
 

@@ -56,6 +56,9 @@ namespace Hachiko
             SERIALIZE_FIELD(GameObject* , _beam_reduced);
             SERIALIZE_FIELD(GameObject* , _beam_crystals);
             SERIALIZE_FIELD(GameObject* , _sparks);
+            SERIALIZE_FIELD(bool, _boss_level1);
+            SERIALIZE_FIELD(bool, _boss_level2);
+            SERIALIZE_FIELD(bool, _boss_level_wall);
             
         private:
             State _state = ACTIVE;
