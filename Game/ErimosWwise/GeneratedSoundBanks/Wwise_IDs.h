@@ -44,6 +44,7 @@ namespace AK
         static const AkUniqueID PLAY_LASERSTOP = 2483774879U;
         static const AkUniqueID PLAY_LOADINGAMMO = 998505444U;
         static const AkUniqueID PLAY_MELEEATTACK = 2988676654U;
+        static const AkUniqueID PLAY_OUTROCINEMATIC = 1322598858U;
         static const AkUniqueID PLAY_PARASITEPICKUP = 3772493585U;
         static const AkUniqueID PLAY_PEBBLE = 1157125118U;
         static const AkUniqueID PLAY_RANGEDATTACK = 3766948527U;
@@ -200,6 +201,7 @@ namespace AK
         static const AkUniqueID ATTACKS = 3768541028U;
         static const AkUniqueID BACKGROUNDMUSIC = 626769978U;
         static const AkUniqueID BOSS = 1560169506U;
+        static const AkUniqueID CINEMATICS = 877642339U;
         static const AkUniqueID ENVIROMENT = 3909959462U;
         static const AkUniqueID FOOTSTEPS = 2385628198U;
         static const AkUniqueID UI = 1551306167U;

@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="626769978" Language="SFX" Hash="3013064700">
+		<SoundBank Id="626769978" Language="SFX" Hash="2881953739">
 			<ObjectPath>\SoundBanks\Default Work Unit\BackgroundMusic</ObjectPath>
 			<ShortName>BackgroundMusic</ShortName>
 			<Path>BackgroundMusic.bnk</Path>
@@ -274,22 +274,6 @@
 						<ActionSetSwitchEntry Id="579523862" Name="Explore" ObjectPath="\Switches\Music\Gameplay_Switch\Explore"/>
 					</ActionSetSwitch>
 				</Event>
-				<Event Id="2953314807" Name="Play_IntroCinematic" ObjectPath="\Events\Default Work Unit\UI\Play_IntroCinematic">
-					<IncludedMemoryFiles>
-						<File Id="203035445" Language="SFX">
-							<ShortName>Cutscene_effects.wav</ShortName>
-							<Path>SFX\Cutscene_effects_10C4C929.wem</Path>
-						</File>
-						<File Id="267500250" Language="SFX">
-							<ShortName>ES_Sci Fi Voice Clip 663 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Sci Fi Voice Clip 663 - SFX Producer_10C4C929.wem</Path>
-						</File>
-						<File Id="1003919086" Language="SFX">
-							<ShortName>ER_cinematica_masterv2.wav</ShortName>
-							<Path>SFX\ER_cinematica_masterv2_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
 				<Event Id="3129492764" Name="Set_State1_BossFight" ObjectPath="\Events\Default Work Unit\Set\Set_State1_BossFight">
 					<ActionSetState>
 						<ActionSetStateEntry Id="936729722" Name="Stage1" ObjectPath="\States\Default Work Unit\Boss_battle_states\Stage1"/>
@@ -394,6 +378,37 @@
 					</Switches>
 				</SwitchGroup>
 			</SwitchGroups>
+		</SoundBank>
+		<SoundBank Id="877642339" Language="SFX" Hash="3205935242">
+			<ObjectPath>\SoundBanks\Default Work Unit\Cinematics</ObjectPath>
+			<ShortName>Cinematics</ShortName>
+			<Path>Cinematics.bnk</Path>
+			<IncludedEvents>
+				<Event Id="2953314807" Name="Play_IntroCinematic" ObjectPath="\Events\Default Work Unit\UI\Play_IntroCinematic">
+					<IncludedMemoryFiles>
+						<File Id="203035445" Language="SFX">
+							<ShortName>Cutscene_effects.wav</ShortName>
+							<Path>SFX\Cutscene_effects_10C4C929.wem</Path>
+						</File>
+						<File Id="267500250" Language="SFX">
+							<ShortName>ES_Sci Fi Voice Clip 663 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_Sci Fi Voice Clip 663 - SFX Producer_10C4C929.wem</Path>
+						</File>
+						<File Id="1003919086" Language="SFX">
+							<ShortName>ER_cinematica_masterv2.wav</ShortName>
+							<Path>SFX\ER_cinematica_masterv2_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1322598858" Name="Play_OutroCinematic" ObjectPath="\Events\Default Work Unit\Play_OutroCinematic">
+					<IncludedMemoryFiles>
+						<File Id="149037775" Language="SFX">
+							<ShortName>ES_Nonetheless (Sting Version) - Rockin' For Decades.wav</ShortName>
+							<Path>SFX\ES_Nonetheless (Sting Version) - Rockin' For Decades_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
 		</SoundBank>
 		<SoundBank Id="1355168291" Language="SFX" Hash="1122897426">
 			<ObjectPath>Init</ObjectPath>
@@ -607,7 +622,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3768541028" Language="SFX" Hash="3996957250">
+		<SoundBank Id="3768541028" Language="SFX" Hash="1785651102">
 			<ObjectPath>\SoundBanks\Default Work Unit\Attacks</ObjectPath>
 			<ShortName>Attacks</ShortName>
 			<Path>Attacks.bnk</Path>
@@ -950,7 +965,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3909959462" Language="SFX" Hash="716181789">
+		<SoundBank Id="3909959462" Language="SFX" Hash="1316053751">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enviroment</ObjectPath>
 			<ShortName>Enviroment</ShortName>
 			<Path>Enviroment.bnk</Path>
@@ -1015,19 +1030,15 @@
 						</File>
 						<File Id="149679737" Language="SFX">
 							<ShortName>ES_Magic Spell Fire 2 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Magic Spell Fire 2 - SFX Producer_58D2F78B.wem</Path>
+							<Path>SFX\ES_Magic Spell Fire 2 - SFX Producer_020BC721.wem</Path>
 						</File>
 						<File Id="228170797" Language="SFX">
 							<ShortName>ES_Horror Whoosh 1 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Horror Whoosh 1 - SFX Producer_BD509713.wem</Path>
+							<Path>SFX\ES_Horror Whoosh 1 - SFX Producer_96109ACC.wem</Path>
 						</File>
-						<File Id="391492175" Language="SFX">
-							<ShortName>ES_Magic Spell Fire 1 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Magic Spell Fire 1 - SFX Producer_2270476A.wem</Path>
-						</File>
-						<File Id="785410759" Language="SFX">
-							<ShortName>ES_Magic Spell Whoosh 3 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Magic Spell Whoosh 3 - SFX Producer_59710EF2.wem</Path>
+						<File Id="460296448" Language="SFX">
+							<ShortName>ES_PREL Hit Drum Deep 1 - SFX Producer.wav</ShortName>
+							<Path>SFX\ES_PREL Hit Drum Deep 1 - SFX Producer_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

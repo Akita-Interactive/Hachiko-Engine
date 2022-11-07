@@ -36,9 +36,7 @@ void Hachiko::Scripting::CutsceneManager::OnStart()
 			_audio_source->PostEvent(Sounds::INTRO_CINEMATIC);
             break;
 		case CutsceneType::OUTRO:
-            // TODO(Alvaro): Change this to the correct outro event when Marcio sends one.
-            _audio_source->PostEvent(Sounds::PLAY_BACKGROUND_MUSIC);
-            _audio_source->PostEvent(Sounds::SET_STATE_VICTORY);
+            _audio_source->PostEvent(Sounds::OUTRO_CINEMATIC);
             break;
 		default:
             break;

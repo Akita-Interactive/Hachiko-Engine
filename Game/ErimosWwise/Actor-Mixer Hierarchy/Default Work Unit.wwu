@@ -1202,41 +1202,6 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="ES_Magic Spell Whoosh 3 - SFX Producer" ID="{96E92763-485B-4AA5-8AE5-651E792214E4}" ShortID="592593129">
-											<PropertyList>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>-3</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Magic Spell Whoosh 3 - SFX Producer" ID="{19933E4E-998F-4F99-B116-C6ABCA2CFA48}">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.0753516819571865"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.39045871559633"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>ES_Magic Spell Whoosh 3 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="785410759"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Magic Spell Whoosh 3 - SFX Producer" ID="{19933E4E-998F-4F99-B116-C6ABCA2CFA48}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
 										<Sound Name="MagicalLow" ID="{2502EC16-E251-421E-9009-A708FC1B4EA5}" ShortID="532678107">
 											<PropertyList>
 												<Property Name="3DSpatialization" Type="int16" Value="1"/>
@@ -1288,6 +1253,11 @@
 										<Sound Name="ES_Impact Rock Crash - SFX Producer" ID="{F7EDEC8D-5F11-4B1D-9A4E-F3903117666F}" ShortID="892664053">
 											<PropertyList>
 												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="InitialDelay" Type="Real64">
+													<ValueList>
+														<Value>0.2</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -1412,66 +1382,15 @@
 												<ActiveSource Name="ES_Magic Spell Fire 2 - SFX Producer" ID="{2459E2E8-7D94-4505-A12E-468CA3E6F4ED}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-										<Sound Name="ES_Magic Spell Fire 1 - SFX Producer" ID="{146E30E1-F121-4A4B-82E6-9F5038B215D8}" ShortID="222026555">
+										<Sound Name="ES_PREL Hit Drum Deep 1 - SFX Producer" ID="{7229581E-2265-4B1B-981E-3A865322125D}" ShortID="265761920">
 											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
-												<Property Name="Pitch" Type="int32">
+												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-200</Value>
+														<Value>5</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
 											<ReferenceList>
-												<Reference Name="Attenuation">
-													<Custom CreatedFrom="{EC34A9B4-44ED-4040-89BB-316034AEB7F1}">
-														<Attenuation Name="Obeject_Attenuation (Custom)" ID="{96B8B098-DC26-4C1E-BA19-4B1268A51020}" ShortID="940286894">
-															<PropertyList>
-																<Property Name="RadiusMax" Type="Real64" Value="50"/>
-															</PropertyList>
-															<CurveUsageInfoList>
-																<VolumeDryUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-																		<Curve Name="VolumeDry" ID="{046A579D-0541-44C6-8A45-1D72519E1F7F}">
-																			<PropertyList>
-																				<Property Name="Flags" Type="int32" Value="3"/>
-																			</PropertyList>
-																			<PointList>
-																				<Point>
-																					<XPos>0</XPos>
-																					<YPos>0</YPos>
-																					<Flags>5</Flags>
-																				</Point>
-																				<Point>
-																					<XPos>50</XPos>
-																					<YPos>-200</YPos>
-																					<Flags>37</Flags>
-																				</Point>
-																			</PointList>
-																		</Curve>
-																	</CurveUsageInfo>
-																</VolumeDryUsage>
-																<VolumeWetGameUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																</VolumeWetGameUsage>
-																<VolumeWetUserUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																</VolumeWetUserUsage>
-																<LowPassFilterUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</LowPassFilterUsage>
-																<HighPassFilterUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</HighPassFilterUsage>
-																<SpreadUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</SpreadUsage>
-																<FocusUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</FocusUsage>
-															</CurveUsageInfoList>
-														</Attenuation>
-													</Custom>
-												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
 												</Reference>
@@ -1480,24 +1399,17 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ES_Magic Spell Fire 1 - SFX Producer" ID="{E0F99FC8-60A7-4061-A44E-8E1B97FAB9BE}">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.0635806028833552"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.164249890782001"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.699386631716906"/>
-														<Property Name="TrimEnd" Type="Real64" Value="1.81734556574924"/>
-													</PropertyList>
+												<AudioFileSource Name="ES_PREL Hit Drum Deep 1 - SFX Producer" ID="{3E06EC54-93BA-417B-AC4B-4986868FBFD9}">
 													<Language>SFX</Language>
-													<AudioFile>ES_Magic Spell Fire 1 - SFX Producer.wav</AudioFile>
+													<AudioFile>ES_PREL Hit Drum Deep 1 - SFX Producer.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="391492175"/>
+														<MediaID ID="460296448"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ES_Magic Spell Fire 1 - SFX Producer" ID="{E0F99FC8-60A7-4061-A44E-8E1B97FAB9BE}" Platform="Linked"/>
+												<ActiveSource Name="ES_PREL Hit Drum Deep 1 - SFX Producer" ID="{3E06EC54-93BA-417B-AC4B-4986868FBFD9}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
@@ -1516,11 +1428,6 @@
 										<Property Name="UseMaxSoundPerInstance" Type="bool">
 											<ValueList>
 												<Value>True</Value>
-											</ValueList>
-										</Property>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>-4</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -1583,41 +1490,6 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="ReverseWhoosh" ID="{2D4114C5-275B-4C48-8BEF-19B61FF9387C}" ShortID="654381572">
-											<PropertyList>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>3</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="ES_Whoosh Reverse 3 - SFX Producer" ID="{66AA49E5-A823-4742-9E80-705A7EF5C182}">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.17449765258216"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.811793427230046"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>ES_Whoosh Reverse 3 - SFX Producer.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="113467563"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="ES_Whoosh Reverse 3 - SFX Producer" ID="{66AA49E5-A823-4742-9E80-705A7EF5C182}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
 										<Sound Name="CrystalSfx" ID="{D1B7E6B7-0E43-414E-A2F3-42C13125D450}" ShortID="614824534">
 											<PropertyList>
 												<Property Name="InitialDelay" Type="Real64">
@@ -1683,7 +1555,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-5</Value>
+														<Value>-10</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -1698,9 +1570,10 @@
 											<ChildrenList>
 												<AudioFileSource Name="ES_PREL Whoosh High 18 - SFX Producer" ID="{88D943AE-1D87-4BCC-81BC-930DE2A2BDCE}">
 													<PropertyList>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.207601572739187"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.433391046423398"/>
+														<Property Name="FadeOutShape" Type="int16" Value="1"/>
 														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimEnd" Type="Real64" Value="1.02416775884666"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.20016775884666"/>
 													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>ES_PREL Whoosh High 18 - SFX Producer.wav</AudioFile>
@@ -1725,11 +1598,6 @@
 												<Property Name="Pitch" Type="int32">
 													<ValueList>
 														<Value>200</Value>
-													</ValueList>
-												</Property>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>3</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -1758,6 +1626,123 @@
 												<ActiveSource Name="ES_Horror Whoosh 1 - SFX Producer (1)" ID="{1C1518E4-2D9C-4D2F-84E0-089F38951BBD}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
+										<RandomSequenceContainer Name="Whoosh" ID="{5B576DEB-812A-4406-979A-E74BEEBC5CB1}" ShortID="977921722">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="ReverseWhoosh" ID="{2D4114C5-275B-4C48-8BEF-19B61FF9387C}" ShortID="654381572">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Attenuation">
+															<Custom CreatedFrom="{EC34A9B4-44ED-4040-89BB-316034AEB7F1}">
+																<Attenuation Name="Obeject_Attenuation (Custom)" ID="{32F6EF00-E255-433F-BEA8-13D8BF80512C}" ShortID="181317750">
+																	<PropertyList>
+																		<Property Name="RadiusMax" Type="Real64" Value="50"/>
+																	</PropertyList>
+																	<CurveUsageInfoList>
+																		<VolumeDryUsage>
+																			<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
+																				<Curve Name="VolumeDry" ID="{93E01B32-A056-4F3A-A1B1-C9E38E7AAAB5}">
+																					<PropertyList>
+																						<Property Name="Flags" Type="int32" Value="3"/>
+																					</PropertyList>
+																					<PointList>
+																						<Point>
+																							<XPos>0</XPos>
+																							<YPos>0</YPos>
+																							<Flags>5</Flags>
+																						</Point>
+																						<Point>
+																							<XPos>50</XPos>
+																							<YPos>-200</YPos>
+																							<Flags>37</Flags>
+																						</Point>
+																					</PointList>
+																				</Curve>
+																			</CurveUsageInfo>
+																		</VolumeDryUsage>
+																		<VolumeWetGameUsage>
+																			<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+																		</VolumeWetGameUsage>
+																		<VolumeWetUserUsage>
+																			<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+																		</VolumeWetUserUsage>
+																		<LowPassFilterUsage>
+																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+																		</LowPassFilterUsage>
+																		<HighPassFilterUsage>
+																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+																		</HighPassFilterUsage>
+																		<SpreadUsage>
+																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+																		</SpreadUsage>
+																		<FocusUsage>
+																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+																		</FocusUsage>
+																	</CurveUsageInfoList>
+																</Attenuation>
+															</Custom>
+														</Reference>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ES_Whoosh Reverse 3 - SFX Producer" ID="{66AA49E5-A823-4742-9E80-705A7EF5C182}">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.17449765258216"/>
+																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.811793427230046"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>ES_Whoosh Reverse 3 - SFX Producer.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="113467563"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ES_Whoosh Reverse 3 - SFX Producer" ID="{66AA49E5-A823-4742-9E80-705A7EF5C182}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="Magic" ID="{A8CF4C36-EEE1-4BD6-B03E-2A49610EEF22}" ShortID="60346020">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ES_Magic Spell Whoosh 16 - SFX Producer" ID="{28B49EDB-39B6-4F1E-A20B-B4B20C75DBEB}">
+															<Language>SFX</Language>
+															<AudioFile>ES_Magic Spell Whoosh 16 - SFX Producer.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="117863400"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ES_Magic Spell Whoosh 16 - SFX Producer" ID="{28B49EDB-39B6-4F1E-A20B-B4B20C75DBEB}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
 									</ChildrenList>
 									<ObjectLists/>
 								</BlendContainer>
@@ -6598,6 +6583,52 @@
 									<ObjectLists/>
 									<ActiveSourceList>
 										<ActiveSource Name="Cutscene_effects" ID="{D89F40DF-BC41-4951-88A4-961414276400}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<ObjectLists/>
+						</BlendContainer>
+						<BlendContainer Name="OutroCinematic" ID="{95BBA994-1B61-49C4-94AB-1735B490D4C5}" ShortID="94871301">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>10</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="ES_Nonetheless (Sting Version) - Rockin' For Decades" ID="{55705201-96EE-436F-9DD5-FADAC49B262D}" ShortID="192891400">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{01681752-C368-40CF-BF48-D452F37FFBE5}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ES_Nonetheless (Sting Version) - Rockin' For Decades" ID="{8E6576B8-C664-400D-AA9B-DD4A93EADF93}">
+											<PropertyList>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ES_Nonetheless (Sting Version) - Rockin' For Decades.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="149037775"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ES_Nonetheless (Sting Version) - Rockin' For Decades" ID="{8E6576B8-C664-400D-AA9B-DD4A93EADF93}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
