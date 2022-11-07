@@ -22,7 +22,6 @@ Hachiko::Scripting::DebugManager::DebugManager(GameObject* game_object)
 	, _increase_attack_power(nullptr)
 	, _decrease_attack_power(nullptr)
 	, _god_mode(nullptr)
-	, _spawn_enemy(nullptr)
 	, _weapon_claws(nullptr)
 	, _weapon_sword(nullptr)
 	, _weapon_hammer(nullptr)
@@ -230,19 +229,6 @@ void Hachiko::Scripting::DebugManager::HandleButtonInteraction()
 		HE_LOG("GOD MODE pressed");
 		_player_controller->_god_mode_trigger = true;
 	}
-
-	/*
-	if (_spawn_enemy->IsSelected())
-	{
-		// Right now this crashes because enemy script is loaded and fails to initialize the values
-		// because the script is not running the functions OnStart because the game is already started
-		HE_LOG("_spawn_enemy pressed");
-		UID enemy_uid = 743784792695538388;
-		GameObject* enemy = SceneManagement::Instantiate(enemy_uid, game_object->parent->FindDescendantWithName("Enemies"), 1)[0];
-		float3 player_pos = _player->GetTransform()->GetGlobalPosition();
-		enemy->GetTransform()->SetGlobalPosition(player_pos + float3(-3, 0, 0));
-	}
-	*/
 
 	// WEAPON SELECTION //
 

@@ -303,6 +303,7 @@
 #define COLOR_CYCLES "color_cycles"
 #define COLOR_GRADIENT "color_gradient"
 #define ANIMATION_LOOP "animation_loop"
+#define ANIMATION_LOOP_ALL "animation_loop_all"
 
 // Component Particle System
 // sections
