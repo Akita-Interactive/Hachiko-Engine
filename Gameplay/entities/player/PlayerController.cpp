@@ -1141,6 +1141,8 @@ void Hachiko::Scripting::PlayerController::MovementController()
 		// Started falling
 		if (!IsFalling())
 		{
+			CancelAttack();
+
 			_start_fall_pos = _player_position;
 			_state = PlayerState::FALLING;
 		}
