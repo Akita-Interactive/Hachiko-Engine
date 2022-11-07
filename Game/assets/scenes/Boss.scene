@@ -47080,8 +47080,8 @@ child:
         class_name: LevelManager
         "'_level@unsigned'": 3
         "'_respawn_position@float3'": [-81.9, 1.5, -34]
-        "'_gauntlet_ui_go@GameObject*'": 14303009014360775269
-        "'_gauntlet_counter_go@GameObject*'": 3781971181584712536
+        "'_gauntlet_ui_go@GameObject*'": 1026015086005451670
+        "'_gauntlet_counter_go@GameObject*'": 2943540958368998069
         "'_gauntlets_easy_mode@bool'": true
         "'_modify_fog@bool'": false
         "'_fog_frequency@float'": 0.1
@@ -47096,114 +47096,10 @@ child:
         enabled: true
         class_name: PauseMenu
         "'_pause_ui@GameObject*'": 6176356638000236994
-        "'_player_hud@GameObject*'": 13351007835304516731
+        "'_player_hud@GameObject*'": 18301009414673482408
         "'_resume_button@ComponentButton*'": 15539445419105017024
         "'_quit_button@ComponentButton*'": 8547481213687600992
     child:
-      - id: 14303009014360775269
-        name: GauntletUI
-        enabled: false
-        component:
-          - !<transform>
-            id: 8242394393979521800
-            type: 1
-            enabled: true
-            position: [0, 0, 0]
-            rotation: [0, 0, 0]
-            scale: [1, 1, 1]
-          - !<transform_2d>
-            id: 3780027439245263336
-            type: 10
-            enabled: true
-            position: [0, 0, 0]
-            size: [1, 1]
-            scale: [1, 1]
-            rotation: [0, 0, 0, 1]
-            pivot: [0.5, 0.5]
-            anchor: [0.5, 0.5]
-          - !<canvas>
-            id: 2494580568812861327
-            type: 8
-            enabled: true
-        child:
-          - id: 9510859117516296478
-            name: Icon
-            enabled: false
-            component:
-              - !<transform>
-                id: 9961602768418088305
-                type: 1
-                enabled: true
-                position: [0, 0, 0]
-                rotation: [0, 0, 0]
-                scale: [1, 1, 1]
-              - !<transform_2d>
-                id: 13807694574508116366
-                type: 10
-                enabled: true
-                position: [-480, -260, 0]
-                size: [65, 65]
-                scale: [1, 1]
-                rotation: [0, 0, 0, 1]
-                pivot: [0.5, 0.5]
-                anchor: [0.5, 0.5]
-              - !<canvas_renderer>
-                id: 2503446149449488775
-                type: 9
-                enabled: true
-                scale_ui: false
-                original_size_x: 0
-                original_size_y: 0
-              - !<image>
-                id: 1013710468125251010
-                type: 11
-                enabled: true
-                image_id: 15126335777279321710
-                hover_image_id: 0
-                image_color: [1, 1, 1, 1]
-                hover_image_color: [1, 1, 1, 1]
-                image_is_tiled: false
-                image_randomize_initial_frame: false
-                image_x_tiles: 1
-                image_y_tiles: 1
-                image_tiles_per_second: 1
-                fill_window: false
-          - id: 3781971181584712536
-            name: Counter
-            enabled: false
-            component:
-              - !<transform>
-                id: 5898834434809718043
-                type: 1
-                enabled: true
-                position: [0, 0, 0]
-                rotation: [0, 0, 0]
-                scale: [1, 1, 1]
-              - !<transform_2d>
-                id: 15766986257605177539
-                type: 10
-                enabled: true
-                position: [-430, 255.8, 0]
-                size: [500, 500]
-                scale: [1, 1]
-                rotation: [0, 0, 0, 1]
-                pivot: [0.5, 0.5]
-                anchor: [0.5, 0.5]
-              - !<canvas_renderer>
-                id: 1113077335470093692
-                type: 9
-                enabled: true
-                scale_ui: false
-                original_size_x: 0
-                original_size_y: 0
-              - !<text>
-                id: 15642646377254777837
-                type: 16
-                enabled: true
-                font_id: 15852548707070218669
-                color: [0.935, 0.1368, 0.1368, 1]
-                size: 28
-                label_text: 0
       - id: 7915766907333402918
         name: Goal
         enabled: true
@@ -47455,6 +47351,152 @@ child:
                 image_y_tiles: 1
                 image_tiles_per_second: 1
                 fill_window: false
+      - id: 1026015086005451670
+        name: GauntletUI
+        enabled: true
+        component:
+          - !<transform>
+            id: 1015186137041180095
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [0, 0, 0]
+            scale: [1, 1, 1]
+          - !<transform_2d>
+            id: 2322143978757104313
+            type: 10
+            enabled: true
+            position: [0, 0, 0]
+            size: [1, 1]
+            scale: [1, 1]
+            rotation: [0, 0, 0, 1]
+            pivot: [0.5, 0.5]
+            anchor: [0.5, 0.5]
+          - !<canvas>
+            id: 3909917386352954030
+            type: 8
+            enabled: true
+        child:
+          - id: 11090028073706680644
+            name: Background
+            enabled: true
+            component:
+              - !<transform>
+                id: 9762296108485407093
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0]
+                scale: [1, 1, 1]
+              - !<transform_2d>
+                id: 4398111141431438003
+                type: 10
+                enabled: true
+                position: [-400, -260, 0]
+                size: [150, 150]
+                scale: [0.6, 0.6]
+                rotation: [0, 0, 0, 1]
+                pivot: [0.5, 0.5]
+                anchor: [0.5, 0.5]
+              - !<canvas_renderer>
+                id: 16687530590835385564
+                type: 9
+                enabled: true
+                scale_ui: false
+                original_size_x: 0
+                original_size_y: 0
+              - !<image>
+                id: 11448934345517788890
+                type: 11
+                enabled: true
+                image_id: 17328401026909084171
+                hover_image_id: 0
+                image_color: [1, 1, 1, 1]
+                hover_image_color: [1, 1, 1, 1]
+                image_is_tiled: false
+                image_randomize_initial_frame: false
+                image_x_tiles: 1
+                image_y_tiles: 1
+                image_tiles_per_second: 1
+                fill_window: false
+          - id: 9489771956422401632
+            name: Icon
+            enabled: true
+            component:
+              - !<transform>
+                id: 3891261835071014553
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0]
+                scale: [1, 1, 1]
+              - !<transform_2d>
+                id: 10397832700985070335
+                type: 10
+                enabled: true
+                position: [-489, -260, 0]
+                size: [150, 150]
+                scale: [1, 1]
+                rotation: [0, 0, 0, 1]
+                pivot: [0.5, 0.5]
+                anchor: [0.5, 0.5]
+              - !<canvas_renderer>
+                id: 2413187010470206683
+                type: 9
+                enabled: true
+                scale_ui: false
+                original_size_x: 0
+                original_size_y: 0
+              - !<image>
+                id: 8022352963181570006
+                type: 11
+                enabled: true
+                image_id: 12247764264534887405
+                hover_image_id: 0
+                image_color: [1, 1, 1, 1]
+                hover_image_color: [1, 1, 1, 1]
+                image_is_tiled: true
+                image_randomize_initial_frame: false
+                image_x_tiles: 2
+                image_y_tiles: 1
+                image_tiles_per_second: 1
+                fill_window: false
+          - id: 2943540958368998069
+            name: Counter
+            enabled: true
+            component:
+              - !<transform>
+                id: 4984823315776160521
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0]
+                scale: [1, 1, 1]
+              - !<transform_2d>
+                id: 8117190766437466439
+                type: 10
+                enabled: true
+                position: [-400, 239.9, 0]
+                size: [100, 100]
+                scale: [1, 1]
+                rotation: [0, 0, 0, 1]
+                pivot: [0.5, 0.5]
+                anchor: [0.5, 0.5]
+              - !<canvas_renderer>
+                id: 11799232485398659771
+                type: 9
+                enabled: true
+                scale_ui: false
+                original_size_x: 0
+                original_size_y: 0
+              - !<text>
+                id: 4207057885044674479
+                type: 16
+                enabled: true
+                font_id: 15852548707070218669
+                color: [1, 0.6907, 0.1545, 1]
+                size: 30
+                label_text: 10
   - id: 14655840713326627615
     name: Debug
     enabled: true
@@ -49031,26 +49073,27 @@ child:
         "'_hammer_trail_left@GameObject*'": 2086554178010050487
         "'_hammer_trail_center@GameObject*'": 0
         "'_rotation_duration@float'": 0.08
-        "'_death_screen@GameObject*'": 11202079066295190323
-        "'_hp_cell_1@GameObject*'": 8311965773356105014
-        "'_hp_cell_2@GameObject*'": 9196089839530939204
-        "'_hp_cell_3@GameObject*'": 14735494990151413278
-        "'_hp_cell_4@GameObject*'": 16911518319173331391
-        "'_hp_cell_extra@GameObject*'": 16759096942988744517
+        "'_death_screen@GameObject*'": 8514330020764989164
+        "'_hp_cell_1@GameObject*'": 8176152631803141493
+        "'_hp_cell_2@GameObject*'": 11360301832863257960
+        "'_hp_cell_3@GameObject*'": 2362175031694645255
+        "'_hp_cell_4@GameObject*'": 14433846972832430810
+        "'_hp_cell_extra@GameObject*'": 16086675159912329614
+        "'_hp_cell_extra_overlay@GameObject*'": 9039767471626178021
         "'_magic_parasyte@GameObject*'": 0
-        "'_ammo_cell_1@GameObject*'": 2214619198084538374
-        "'_ammo_cell_2@GameObject*'": 4594716080030221334
-        "'_ammo_cell_3@GameObject*'": 10202455732535337411
-        "'_ammo_cell_4@GameObject*'": 17887338658386153536
-        "'_sword_ui_addon@GameObject*'": 1226407982112954699
-        "'_maze_ui_addon@GameObject*'": 15986202083570424923
-        "'_claw_ui_addon@GameObject*'": 5147178988142488214
-        "'_weapon_charge_bar_go@GameObject*'": 17149228842652408817
+        "'_ammo_cell_1@GameObject*'": 6541081033732067414
+        "'_ammo_cell_2@GameObject*'": 9449908302806741545
+        "'_ammo_cell_3@GameObject*'": 1129888370345058332
+        "'_ammo_cell_4@GameObject*'": 11810582140994753071
+        "'_sword_ui_addon@GameObject*'": 2612207080804982533
+        "'_maze_ui_addon@GameObject*'": 9588373666629524207
+        "'_claw_ui_addon@GameObject*'": 10882639145959253748
+        "'_weapon_charge_bar_go@GameObject*'": 12658846164453502754
         "'_keyboard_tooltip_display@GameObject*'": 3124464908880655752
         "'_controller_tooltip_display@GameObject*'": 4770722676269138641
         "'tooltip_y_offset@float'": 2
         "'_camera@GameObject*'": 2223877946256215970
-        "'_ui_damage@GameObject*'": 2534629739215724518
+        "'_ui_damage@GameObject*'": 16068111548293047080
         "'_heal_effect_fade_duration@float'": 0.3
         "'damage_effect_duration@float'": 1
       - !<script>
@@ -52241,907 +52284,6 @@ child:
             intensity: 3
             radius: 3
             draw_sphere: false
-      - id: 13351007835304516731
-        name: HUD_v2
-        enabled: true
-        component:
-          - !<transform>
-            id: 6652167161697616653
-            type: 1
-            enabled: true
-            position: [-658, -57.87, -448.2]
-            rotation: [180, -24.5, 180]
-            scale: [11.69, 10.97, 11.69]
-          - !<transform_2d>
-            id: 15180890351454664139
-            type: 10
-            enabled: true
-            position: [0, 0, 0]
-            size: [1, 1]
-            scale: [1, 1]
-            rotation: [0, 0, 0, 1]
-            pivot: [0.5, 0.5]
-            anchor: [0.5, 0.5]
-          - !<canvas>
-            id: 16393745119886092588
-            type: 8
-            enabled: true
-        child:
-          - id: 10227413128821151036
-            name: HP_Bar
-            enabled: true
-            component:
-              - !<transform>
-                id: 2856190546851640238
-                type: 1
-                enabled: true
-                position: [0, 0, 0]
-                rotation: [0, 0, 0]
-                scale: [1, 1, 1]
-              - !<transform_2d>
-                id: 15156766891394434565
-                type: 10
-                enabled: true
-                position: [0, 0, 0]
-                size: [0, 0]
-                scale: [1, 1]
-                rotation: [0, 0, 0, 1]
-                pivot: [0, 1]
-                anchor: [0, 1]
-              - !<canvas_renderer>
-                id: 1420592621842895894
-                type: 9
-                enabled: true
-                scale_ui: false
-                original_size_x: 0
-                original_size_y: 0
-              - !<image>
-                id: 9819838492183920960
-                type: 11
-                enabled: true
-                image_id: 0
-                hover_image_id: 0
-                image_color: [1, 1, 1, 1]
-                hover_image_color: [1, 1, 1, 1]
-                image_is_tiled: false
-                image_randomize_initial_frame: false
-                image_x_tiles: 1
-                image_y_tiles: 1
-                image_tiles_per_second: 1
-                fill_window: false
-            child:
-              - id: 15986202083570424923
-                name: MAZE_ADDON
-                enabled: false
-                component:
-                  - !<transform>
-                    id: 14757587281944783307
-                    type: 1
-                    enabled: true
-                    position: [0, 0, 0]
-                    rotation: [0, 0, 0]
-                    scale: [1, 1, 1]
-                  - !<transform_2d>
-                    id: 9730972676442017808
-                    type: 10
-                    enabled: true
-                    position: [10.8, -4.5, 0]
-                    size: [20, 20]
-                    scale: [24, 14]
-                    rotation: [0, 0, 0, 1]
-                    pivot: [0, 1]
-                    anchor: [0, 1]
-                  - !<canvas_renderer>
-                    id: 9284737313890557338
-                    type: 9
-                    enabled: true
-                    scale_ui: false
-                    original_size_x: 0
-                    original_size_y: 0
-                  - !<image>
-                    id: 7845220674066481394
-                    type: 11
-                    enabled: true
-                    image_id: 14023195895871668462
-                    hover_image_id: 0
-                    image_color: [1, 1, 1, 1]
-                    hover_image_color: [1, 1, 1, 1]
-                    image_is_tiled: false
-                    image_randomize_initial_frame: false
-                    image_x_tiles: 1
-                    image_y_tiles: 1
-                    image_tiles_per_second: 1
-                    fill_window: false
-              - id: 5147178988142488214
-                name: CLAW_ADDON
-                enabled: false
-                component:
-                  - !<transform>
-                    id: 3480428885883668964
-                    type: 1
-                    enabled: true
-                    position: [0, 0, 0]
-                    rotation: [0, 0, 0]
-                    scale: [1, 1, 1]
-                  - !<transform_2d>
-                    id: 13978676024683838887
-                    type: 10
-                    enabled: true
-                    position: [0, 0, 0]
-                    size: [20, 20]
-                    scale: [24, 14]
-                    rotation: [0, 0, 0, 1]
-                    pivot: [0, 1]
-                    anchor: [0, 1]
-                  - !<canvas_renderer>
-                    id: 14444275048808486534
-                    type: 9
-                    enabled: true
-                    scale_ui: false
-                    original_size_x: 0
-                    original_size_y: 0
-                  - !<image>
-                    id: 5909195906764811891
-                    type: 11
-                    enabled: true
-                    image_id: 17147944466834967470
-                    hover_image_id: 0
-                    image_color: [1, 1, 1, 1]
-                    hover_image_color: [1, 1, 1, 1]
-                    image_is_tiled: false
-                    image_randomize_initial_frame: false
-                    image_x_tiles: 1
-                    image_y_tiles: 1
-                    image_tiles_per_second: 1
-                    fill_window: false
-              - id: 1226407982112954699
-                name: SWORD_ADDON
-                enabled: false
-                component:
-                  - !<transform>
-                    id: 615549313167196471
-                    type: 1
-                    enabled: true
-                    position: [0, 0, 0]
-                    rotation: [0, 0, 0]
-                    scale: [1, 1, 1]
-                  - !<transform_2d>
-                    id: 10204873464528255066
-                    type: 10
-                    enabled: true
-                    position: [0, 0, 0]
-                    size: [20, 20]
-                    scale: [24, 14]
-                    rotation: [0, 0, 0, 1]
-                    pivot: [0, 1]
-                    anchor: [0, 1]
-                  - !<canvas_renderer>
-                    id: 11784880709165171617
-                    type: 9
-                    enabled: true
-                    scale_ui: false
-                    original_size_x: 0
-                    original_size_y: 0
-                  - !<image>
-                    id: 7767478756427898082
-                    type: 11
-                    enabled: true
-                    image_id: 7250747684639293339
-                    hover_image_id: 0
-                    image_color: [1, 1, 1, 1]
-                    hover_image_color: [1, 1, 1, 1]
-                    image_is_tiled: false
-                    image_randomize_initial_frame: false
-                    image_x_tiles: 1
-                    image_y_tiles: 1
-                    image_tiles_per_second: 1
-                    fill_window: false
-              - id: 15642162486509566907
-                name: BASE
-                enabled: true
-                component:
-                  - !<transform>
-                    id: 4413419703744307065
-                    type: 1
-                    enabled: true
-                    position: [0, -0, 0]
-                    rotation: [0, 0, -0]
-                    scale: [1, 1, 1]
-                  - !<transform_2d>
-                    id: 1308227867857126695
-                    type: 10
-                    enabled: true
-                    position: [0, 0, 0]
-                    size: [20, 20]
-                    scale: [24, 14]
-                    rotation: [0, 0, 0, 1]
-                    pivot: [0, 1]
-                    anchor: [0, 1]
-                  - !<canvas_renderer>
-                    id: 11007300739659685652
-                    type: 9
-                    enabled: true
-                    scale_ui: false
-                    original_size_x: 0
-                    original_size_y: 0
-                  - !<image>
-                    id: 17938160862836086352
-                    type: 11
-                    enabled: true
-                    image_id: 14728578588781681137
-                    hover_image_id: 0
-                    image_color: [1, 1, 1, 1]
-                    hover_image_color: [1, 1, 1, 1]
-                    image_is_tiled: false
-                    image_randomize_initial_frame: false
-                    image_x_tiles: 1
-                    image_y_tiles: 1
-                    image_tiles_per_second: 1
-                    fill_window: false
-                child:
-                  - id: 5973503615812750255
-                    name: Bullets
-                    enabled: true
-                    component:
-                      - !<transform>
-                        id: 1856628974302566631
-                        type: 1
-                        enabled: true
-                        position: [0, 0, 0]
-                        rotation: [0, 0, 0]
-                        scale: [1, 1, 1]
-                      - !<transform_2d>
-                        id: 747055668069265596
-                        type: 10
-                        enabled: true
-                        position: [-1.5, 2, 0]
-                        size: [0, 0]
-                        scale: [1.25, 2.5]
-                        rotation: [0, 0, 0, 1]
-                        pivot: [0, 1]
-                        anchor: [0, 1]
-                      - !<canvas_renderer>
-                        id: 6076910239267929072
-                        type: 9
-                        enabled: true
-                        scale_ui: false
-                        original_size_x: 0
-                        original_size_y: 0
-                      - !<image>
-                        id: 9081286522263814356
-                        type: 11
-                        enabled: true
-                        image_id: 0
-                        hover_image_id: 0
-                        image_color: [1, 1, 1, 1]
-                        hover_image_color: [1, 1, 1, 1]
-                        image_is_tiled: false
-                        image_randomize_initial_frame: false
-                        image_x_tiles: 1
-                        image_y_tiles: 1
-                        image_tiles_per_second: 1
-                        fill_window: false
-                    child:
-                      - id: 2214619198084538374
-                        name: BULLET_CELL_1
-                        enabled: true
-                        component:
-                          - !<transform>
-                            id: 12121476251072675882
-                            type: 1
-                            enabled: true
-                            position: [0, 0, 0]
-                            rotation: [0, 0, 0]
-                            scale: [1, 1, 1]
-                          - !<transform_2d>
-                            id: 10829129755633002095
-                            type: 10
-                            enabled: true
-                            position: [6, -2.5, 0]
-                            size: [2, 2]
-                            scale: [1, 1]
-                            rotation: [0, 0, 0, 1]
-                            pivot: [0, 1]
-                            anchor: [0, 1]
-                          - !<canvas_renderer>
-                            id: 16188216390216629258
-                            type: 9
-                            enabled: true
-                            scale_ui: false
-                            original_size_x: 0
-                            original_size_y: 0
-                          - !<image>
-                            id: 957592805270689544
-                            type: 11
-                            enabled: true
-                            image_id: 336690227497419917
-                            hover_image_id: 0
-                            image_color: [1, 1, 1, 1]
-                            hover_image_color: [1, 1, 1, 1]
-                            image_is_tiled: false
-                            image_randomize_initial_frame: false
-                            image_x_tiles: 1
-                            image_y_tiles: 1
-                            image_tiles_per_second: 1
-                            fill_window: false
-                      - id: 4594716080030221334
-                        name: BULLET_CELL_2
-                        enabled: true
-                        component:
-                          - !<transform>
-                            id: 8197554622068292520
-                            type: 1
-                            enabled: true
-                            position: [0, 0, 0]
-                            rotation: [0, 0, 0]
-                            scale: [1, 1, 1]
-                          - !<transform_2d>
-                            id: 3512199015175833687
-                            type: 10
-                            enabled: true
-                            position: [8, -2.5, 0]
-                            size: [2, 2]
-                            scale: [1, 1]
-                            rotation: [0, 0, 0, 1]
-                            pivot: [0, 1]
-                            anchor: [0, 1]
-                          - !<canvas_renderer>
-                            id: 13120494874597152619
-                            type: 9
-                            enabled: true
-                            scale_ui: false
-                            original_size_x: 0
-                            original_size_y: 0
-                          - !<image>
-                            id: 14960902661354926175
-                            type: 11
-                            enabled: true
-                            image_id: 336690227497419917
-                            hover_image_id: 0
-                            image_color: [1, 1, 1, 1]
-                            hover_image_color: [1, 1, 1, 1]
-                            image_is_tiled: false
-                            image_randomize_initial_frame: false
-                            image_x_tiles: 1
-                            image_y_tiles: 1
-                            image_tiles_per_second: 1
-                            fill_window: false
-                      - id: 10202455732535337411
-                        name: BULLET_CELL_3
-                        enabled: true
-                        component:
-                          - !<transform>
-                            id: 15587036566150057515
-                            type: 1
-                            enabled: true
-                            position: [0, 0, 0]
-                            rotation: [0, 0, 0]
-                            scale: [1, 1, 1]
-                          - !<transform_2d>
-                            id: 2511453024708478540
-                            type: 10
-                            enabled: true
-                            position: [10, -2.5, 0]
-                            size: [2, 2]
-                            scale: [1, 1]
-                            rotation: [0, 0, 0, 1]
-                            pivot: [0, 1]
-                            anchor: [0, 1]
-                          - !<canvas_renderer>
-                            id: 2671289940307836256
-                            type: 9
-                            enabled: true
-                            scale_ui: false
-                            original_size_x: 0
-                            original_size_y: 0
-                          - !<image>
-                            id: 16382293642512429412
-                            type: 11
-                            enabled: true
-                            image_id: 336690227497419917
-                            hover_image_id: 0
-                            image_color: [1, 1, 1, 1]
-                            hover_image_color: [1, 1, 1, 1]
-                            image_is_tiled: false
-                            image_randomize_initial_frame: false
-                            image_x_tiles: 1
-                            image_y_tiles: 1
-                            image_tiles_per_second: 1
-                            fill_window: false
-                      - id: 17887338658386153536
-                        name: BULLET_CELL_4
-                        enabled: true
-                        component:
-                          - !<transform>
-                            id: 259069467361632107
-                            type: 1
-                            enabled: true
-                            position: [0, 0, 0]
-                            rotation: [0, 0, 0]
-                            scale: [1, 1, 1]
-                          - !<transform_2d>
-                            id: 10439886345646782458
-                            type: 10
-                            enabled: true
-                            position: [12, -2.5, 0]
-                            size: [2, 2]
-                            scale: [1, 1]
-                            rotation: [0, 0, 0, 1]
-                            pivot: [0, 1]
-                            anchor: [0, 1]
-                          - !<canvas_renderer>
-                            id: 13667805421475109457
-                            type: 9
-                            enabled: true
-                            scale_ui: false
-                            original_size_x: 0
-                            original_size_y: 0
-                          - !<image>
-                            id: 14101016995947007685
-                            type: 11
-                            enabled: true
-                            image_id: 336690227497419917
-                            hover_image_id: 0
-                            image_color: [1, 1, 1, 1]
-                            hover_image_color: [1, 1, 1, 1]
-                            image_is_tiled: false
-                            image_randomize_initial_frame: false
-                            image_x_tiles: 1
-                            image_y_tiles: 1
-                            image_tiles_per_second: 1
-                            fill_window: false
-                  - id: 7542532296554763322
-                    name: Health_capsules
-                    enabled: true
-                    component:
-                      - !<transform>
-                        id: 1793628215652873106
-                        type: 1
-                        enabled: true
-                        position: [0, 0, 0]
-                        rotation: [0, 0, 0]
-                        scale: [1, 1, 1]
-                      - !<transform_2d>
-                        id: 5010626993627665772
-                        type: 10
-                        enabled: true
-                        position: [0, 0.5, 0]
-                        size: [0, 0]
-                        scale: [3, 3]
-                        rotation: [0, 0, 0, 1]
-                        pivot: [0, 1]
-                        anchor: [0, 1]
-                      - !<canvas_renderer>
-                        id: 7616109409230860521
-                        type: 9
-                        enabled: true
-                        scale_ui: false
-                        original_size_x: 0
-                        original_size_y: 0
-                      - !<image>
-                        id: 16986739533979753332
-                        type: 11
-                        enabled: true
-                        image_id: 0
-                        hover_image_id: 0
-                        image_color: [1, 1, 1, 1]
-                        hover_image_color: [1, 1, 1, 1]
-                        image_is_tiled: false
-                        image_randomize_initial_frame: false
-                        image_x_tiles: 1
-                        image_y_tiles: 1
-                        image_tiles_per_second: 1
-                        fill_window: false
-                    child:
-                      - id: 8311965773356105014
-                        name: Health_capsule_1
-                        enabled: true
-                        component:
-                          - !<transform>
-                            id: 4440195681768634469
-                            type: 1
-                            enabled: true
-                            position: [0, 0, 0]
-                            rotation: [0, 0, 0]
-                            scale: [1, 1, 1]
-                          - !<transform_2d>
-                            id: 4173918144031006163
-                            type: 10
-                            enabled: true
-                            position: [2.8, -1.2, 0]
-                            size: [1, 1]
-                            scale: [1, 1]
-                            rotation: [0, 0, 0, 1]
-                            pivot: [0.5, 0.5]
-                            anchor: [0.5, 0.5]
-                          - !<canvas_renderer>
-                            id: 11449292215132286612
-                            type: 9
-                            enabled: true
-                            scale_ui: false
-                            original_size_x: 0
-                            original_size_y: 0
-                          - !<image>
-                            id: 10905725536577180558
-                            type: 11
-                            enabled: true
-                            image_id: 15478304056567162071
-                            hover_image_id: 0
-                            image_color: [1, 1, 1, 1]
-                            hover_image_color: [1, 1, 1, 1]
-                            image_is_tiled: true
-                            image_randomize_initial_frame: false
-                            image_x_tiles: 7
-                            image_y_tiles: 2
-                            image_tiles_per_second: 14
-                            fill_window: false
-                      - id: 9196089839530939204
-                        name: Health_capsule_2
-                        enabled: true
-                        component:
-                          - !<transform>
-                            id: 15220864584831779703
-                            type: 1
-                            enabled: true
-                            position: [0, 0, 0]
-                            rotation: [0, 0, 0]
-                            scale: [1, 1, 1]
-                          - !<transform_2d>
-                            id: 8770161169605254462
-                            type: 10
-                            enabled: true
-                            position: [3.8, -1.2, 0]
-                            size: [1, 1]
-                            scale: [1, 1]
-                            rotation: [0, 0, 0, 1]
-                            pivot: [0.5, 0.5]
-                            anchor: [0.5, 0.5]
-                          - !<canvas_renderer>
-                            id: 18126043344764910320
-                            type: 9
-                            enabled: true
-                            scale_ui: false
-                            original_size_x: 0
-                            original_size_y: 0
-                          - !<image>
-                            id: 6372285013960605368
-                            type: 11
-                            enabled: true
-                            image_id: 15478304056567162071
-                            hover_image_id: 0
-                            image_color: [1, 1, 1, 1]
-                            hover_image_color: [1, 1, 1, 1]
-                            image_is_tiled: true
-                            image_randomize_initial_frame: false
-                            image_x_tiles: 7
-                            image_y_tiles: 2
-                            image_tiles_per_second: 14
-                            fill_window: false
-                      - id: 14735494990151413278
-                        name: Health_capsule_3
-                        enabled: true
-                        component:
-                          - !<transform>
-                            id: 4729846017450896544
-                            type: 1
-                            enabled: true
-                            position: [0, 0, 0]
-                            rotation: [0, 0, 0]
-                            scale: [1, 1, 1]
-                          - !<transform_2d>
-                            id: 10179242082672832938
-                            type: 10
-                            enabled: true
-                            position: [4.8, -1.2, 0]
-                            size: [1, 1]
-                            scale: [1, 1]
-                            rotation: [0, 0, 0, 1]
-                            pivot: [0.5, 0.5]
-                            anchor: [0.5, 0.5]
-                          - !<canvas_renderer>
-                            id: 1315995458967427776
-                            type: 9
-                            enabled: true
-                            scale_ui: false
-                            original_size_x: 0
-                            original_size_y: 0
-                          - !<image>
-                            id: 7912676852922005751
-                            type: 11
-                            enabled: true
-                            image_id: 15478304056567162071
-                            hover_image_id: 0
-                            image_color: [1, 1, 1, 1]
-                            hover_image_color: [1, 1, 1, 1]
-                            image_is_tiled: true
-                            image_randomize_initial_frame: false
-                            image_x_tiles: 7
-                            image_y_tiles: 2
-                            image_tiles_per_second: 14
-                            fill_window: false
-                      - id: 16911518319173331391
-                        name: Health_capsule_4
-                        enabled: true
-                        component:
-                          - !<transform>
-                            id: 12958537114937250398
-                            type: 1
-                            enabled: true
-                            position: [0, 0, 0]
-                            rotation: [0, 0, 0]
-                            scale: [1, 1, 1]
-                          - !<transform_2d>
-                            id: 15802815588319970874
-                            type: 10
-                            enabled: true
-                            position: [5.8, -1.2, 0]
-                            size: [1, 1]
-                            scale: [1, 1]
-                            rotation: [0, 0, 0, 1]
-                            pivot: [0.5, 0.5]
-                            anchor: [0.5, 0.5]
-                          - !<canvas_renderer>
-                            id: 7690689146016420124
-                            type: 9
-                            enabled: true
-                            scale_ui: false
-                            original_size_x: 0
-                            original_size_y: 0
-                          - !<image>
-                            id: 4762518298274787688
-                            type: 11
-                            enabled: true
-                            image_id: 15478304056567162071
-                            hover_image_id: 0
-                            image_color: [1, 1, 1, 1]
-                            hover_image_color: [1, 1, 1, 1]
-                            image_is_tiled: true
-                            image_randomize_initial_frame: false
-                            image_x_tiles: 7
-                            image_y_tiles: 2
-                            image_tiles_per_second: 14
-                            fill_window: false
-                      - id: 16759096942988744517
-                        name: Health_capsule_extra
-                        enabled: true
-                        component:
-                          - !<transform>
-                            id: 9693086005829874778
-                            type: 1
-                            enabled: true
-                            position: [-76.35, 3.454, -58.97]
-                            rotation: [180, -55.25, -180]
-                            scale: [0.4418, 0.4502, 0.4418]
-                          - !<transform_2d>
-                            id: 16053379011558561570
-                            type: 10
-                            enabled: true
-                            position: [6.8, -1.2, 0]
-                            size: [1, 1]
-                            scale: [1, 1]
-                            rotation: [0, 0, 0, 1]
-                            pivot: [0.5, 0.5]
-                            anchor: [0.5, 0.5]
-                          - !<canvas_renderer>
-                            id: 4510595544088990643
-                            type: 9
-                            enabled: true
-                            scale_ui: false
-                            original_size_x: 0
-                            original_size_y: 0
-                          - !<image>
-                            id: 6139605876747512052
-                            type: 11
-                            enabled: true
-                            image_id: 15478304056567162071
-                            hover_image_id: 0
-                            image_color: [1, 0.0211, 0.9628, 1]
-                            hover_image_color: [1, 1, 1, 1]
-                            image_is_tiled: true
-                            image_randomize_initial_frame: false
-                            image_x_tiles: 7
-                            image_y_tiles: 2
-                            image_tiles_per_second: 14
-                            fill_window: false
-                  - id: 17149228842652408817
-                    name: Stamina
-                    enabled: false
-                    component:
-                      - !<transform>
-                        id: 1546803284717651744
-                        type: 1
-                        enabled: true
-                        position: [0, 0, 0]
-                        rotation: [0, 0, 0]
-                        scale: [1, 1, 1]
-                      - !<progress_bar>
-                        id: 3767540093520662810
-                        type: 13
-                        enabled: true
-                        params:
-                          min: 0
-                          max: 0
-                          filled: 1
-                          direction: 0
-                      - !<transform_2d>
-                        id: 10771610473058153317
-                        type: 10
-                        enabled: true
-                        position: [0, 0, 0]
-                        size: [1, 1]
-                        scale: [1, 1]
-                        rotation: [0, 0, 0, 1]
-                        pivot: [0.5, 0.5]
-                        anchor: [0.5, 0.5]
-                    child:
-                      - id: 4458781944730858680
-                        name: Bar Background
-                        enabled: true
-                        component:
-                          - !<transform>
-                            id: 11689968346126233715
-                            type: 1
-                            enabled: true
-                            position: [0, 0, 0]
-                            rotation: [0, 0, 0]
-                            scale: [1, 1, 1]
-                          - !<transform_2d>
-                            id: 16184391805081512327
-                            type: 10
-                            enabled: true
-                            position: [1.4, 0.25, 0]
-                            size: [12.5, 0.8]
-                            scale: [1, 1]
-                            rotation: [0, 0, 0, 1]
-                            pivot: [0.5, 0.5]
-                            anchor: [0.5, 0.5]
-                          - !<canvas_renderer>
-                            id: 11955870394593423907
-                            type: 9
-                            enabled: true
-                            scale_ui: false
-                            original_size_x: 0
-                            original_size_y: 0
-                          - !<image>
-                            id: 13025641462761613106
-                            type: 11
-                            enabled: true
-                            image_id: 16846014220398556825
-                            hover_image_id: 0
-                            image_color: [1, 0, 0, 1]
-                            hover_image_color: [1, 1, 1, 1]
-                            image_is_tiled: false
-                            image_randomize_initial_frame: false
-                            image_x_tiles: 1
-                            image_y_tiles: 1
-                            image_tiles_per_second: 1
-                            fill_window: false
-                      - id: 14455343651451456
-                        name: Bar Fill
-                        enabled: true
-                        component:
-                          - !<transform>
-                            id: 14157315396342305427
-                            type: 1
-                            enabled: true
-                            position: [0, 0, 0]
-                            rotation: [0, 0, 0]
-                            scale: [1, 1, 1]
-                          - !<transform_2d>
-                            id: 12644430725568225082
-                            type: 10
-                            enabled: true
-                            position: [1.4, 0.25, 0]
-                            size: [12.5, 0.8]
-                            scale: [1, 1]
-                            rotation: [0, 0, 0, 1]
-                            pivot: [0.5, 0.5]
-                            anchor: [0.5, 0.5]
-                          - !<canvas_renderer>
-                            id: 6806334929992924437
-                            type: 9
-                            enabled: true
-                            scale_ui: false
-                            original_size_x: 0
-                            original_size_y: 0
-                          - !<image>
-                            id: 18095735472616598099
-                            type: 11
-                            enabled: true
-                            image_id: 16846014220398556825
-                            hover_image_id: 0
-                            image_color: [1, 1, 1, 1]
-                            hover_image_color: [1, 1, 1, 1]
-                            image_is_tiled: false
-                            image_randomize_initial_frame: false
-                            image_x_tiles: 1
-                            image_y_tiles: 1
-                            image_tiles_per_second: 1
-                            fill_window: false
-          - id: 2534629739215724518
-            name: Vignette
-            enabled: false
-            component:
-              - !<transform>
-                id: 3742191334193507624
-                type: 1
-                enabled: true
-                position: [-53.37, 6.049, -60.14]
-                rotation: [180, -41, 180]
-                scale: [0.0378, 0.041, 0.0378]
-              - !<transform_2d>
-                id: 8515791945445124351
-                type: 10
-                enabled: true
-                position: [0, 0, 0]
-                size: [1288, 696]
-                scale: [1, 1]
-                rotation: [0, 0, 0, 1]
-                pivot: [0.5, 0.5]
-                anchor: [0.5, 0.5]
-              - !<canvas_renderer>
-                id: 17527796060964179389
-                type: 9
-                enabled: true
-                scale_ui: false
-                original_size_x: 0
-                original_size_y: 0
-              - !<image>
-                id: 4060711001959562314
-                type: 11
-                enabled: true
-                image_id: 10523760409150182962
-                hover_image_id: 0
-                image_color: [1, 1, 1, 0.6078]
-                hover_image_color: [1, 1, 1, 1]
-                image_is_tiled: false
-                image_randomize_initial_frame: false
-                image_x_tiles: 1
-                image_y_tiles: 1
-                image_tiles_per_second: 1
-                fill_window: true
-          - id: 11202079066295190323
-            name: DeathScreen
-            enabled: false
-            component:
-              - !<transform>
-                id: 15444851320905798948
-                type: 1
-                enabled: true
-                position: [-34.57, 5.016, -75.54]
-                rotation: [-180, 69.5, 180]
-                scale: [0.1944, 0.2026, 0.1944]
-              - !<transform_2d>
-                id: 16429757334983417518
-                type: 10
-                enabled: true
-                position: [0, 0, 0]
-                size: [967, 317]
-                scale: [1, 1]
-                rotation: [0, 0, 0, 1]
-                pivot: [0.5, 0.5]
-                anchor: [0.5, 0.5]
-              - !<canvas_renderer>
-                id: 16338790534478871607
-                type: 9
-                enabled: true
-                scale_ui: true
-                original_size_x: 1133
-                original_size_y: 630
-              - !<image>
-                id: 4708635756836469532
-                type: 11
-                enabled: true
-                image_id: 4375169993337302887
-                hover_image_id: 0
-                image_color: [1, 1, 1, 1]
-                hover_image_color: [1, 1, 1, 1]
-                image_is_tiled: false
-                image_randomize_initial_frame: false
-                image_x_tiles: 1
-                image_y_tiles: 1
-                image_tiles_per_second: 1
-                fill_window: false
       - id: 125100524586433547
         name: WeaponTrails
         enabled: true
@@ -53714,6 +52856,949 @@ child:
             blend_factor: 0.1
             projection: true
             randomize_tiles: false
+      - id: 18301009414673482408
+        name: HUD_v2
+        enabled: true
+        component:
+          - !<transform>
+            id: 8677568595222392111
+            type: 1
+            enabled: true
+            position: [-261.2, -131.4, -1590]
+            rotation: [-180, 20.5, -180]
+            scale: [26.57, 24.38, 26.57]
+          - !<transform_2d>
+            id: 6876945231049533900
+            type: 10
+            enabled: true
+            position: [0, 0, 0]
+            size: [1, 1]
+            scale: [1, 1]
+            rotation: [0, 0, 0, 1]
+            pivot: [0.5, 0.5]
+            anchor: [0.5, 0.5]
+          - !<canvas>
+            id: 10559285678101817764
+            type: 8
+            enabled: true
+        child:
+          - id: 16068111548293047080
+            name: Vignette
+            enabled: false
+            component:
+              - !<transform>
+                id: 9665402575443723846
+                type: 1
+                enabled: true
+                position: [-53.37, 6.049, -60.14]
+                rotation: [-180, -41, -180]
+                scale: [0.0378, 0.041, 0.0378]
+              - !<transform_2d>
+                id: 16098017208686891031
+                type: 10
+                enabled: true
+                position: [0, 0, 0]
+                size: [1288, 696]
+                scale: [1, 1]
+                rotation: [0, 0, 0, 1]
+                pivot: [0.5, 0.5]
+                anchor: [0.5, 0.5]
+              - !<canvas_renderer>
+                id: 12373839283213661499
+                type: 9
+                enabled: true
+                scale_ui: false
+                original_size_x: 0
+                original_size_y: 0
+              - !<image>
+                id: 59162366828137899
+                type: 11
+                enabled: true
+                image_id: 10523760409150182962
+                hover_image_id: 0
+                image_color: [1, 1, 1, 0.6078]
+                hover_image_color: [1, 1, 1, 1]
+                image_is_tiled: false
+                image_randomize_initial_frame: false
+                image_x_tiles: 1
+                image_y_tiles: 1
+                image_tiles_per_second: 1
+                fill_window: true
+          - id: 8514330020764989164
+            name: DeathScreen
+            enabled: false
+            component:
+              - !<transform>
+                id: 14462469622416528622
+                type: 1
+                enabled: true
+                position: [-34.57, 5.016, -75.54]
+                rotation: [180, 69.5, -180]
+                scale: [0.1944, 0.2026, 0.1944]
+              - !<transform_2d>
+                id: 3122185153216024817
+                type: 10
+                enabled: true
+                position: [0, 0, 0]
+                size: [967, 317]
+                scale: [1, 1]
+                rotation: [0, 0, 0, 1]
+                pivot: [0.5, 0.5]
+                anchor: [0.5, 0.5]
+              - !<canvas_renderer>
+                id: 11449012091300238889
+                type: 9
+                enabled: true
+                scale_ui: true
+                original_size_x: 1133
+                original_size_y: 630
+              - !<image>
+                id: 4345068052535779722
+                type: 11
+                enabled: true
+                image_id: 4375169993337302887
+                hover_image_id: 0
+                image_color: [1, 1, 1, 1]
+                hover_image_color: [1, 1, 1, 1]
+                image_is_tiled: false
+                image_randomize_initial_frame: false
+                image_x_tiles: 1
+                image_y_tiles: 1
+                image_tiles_per_second: 1
+                fill_window: false
+          - id: 9039767471626178021
+            name: Extra_hp_overlay
+            enabled: true
+            component:
+              - !<transform>
+                id: 2973215939454449606
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0]
+                scale: [1, 1, 1]
+              - !<transform_2d>
+                id: 10803690095099838140
+                type: 10
+                enabled: true
+                position: [61.65, 0, 0]
+                size: [816, 502]
+                scale: [0.5, 0.5]
+                rotation: [0, 0, 0, 1]
+                pivot: [0, 1]
+                anchor: [0, 1]
+              - !<canvas_renderer>
+                id: 11007634170657867473
+                type: 9
+                enabled: true
+                scale_ui: false
+                original_size_x: 0
+                original_size_y: 0
+              - !<image>
+                id: 13356936952710677562
+                type: 11
+                enabled: true
+                image_id: 2975293684758721447
+                hover_image_id: 0
+                image_color: [1, 1, 1, 1]
+                hover_image_color: [1, 1, 1, 1]
+                image_is_tiled: false
+                image_randomize_initial_frame: false
+                image_x_tiles: 1
+                image_y_tiles: 1
+                image_tiles_per_second: 1
+                fill_window: false
+          - id: 16795799185645199284
+            name: HP_Bar
+            enabled: true
+            component:
+              - !<transform>
+                id: 17144117672109211358
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0]
+                scale: [1, 1, 1]
+              - !<transform_2d>
+                id: 11605989782218290393
+                type: 10
+                enabled: true
+                position: [0, 0, 0]
+                size: [0, 0]
+                scale: [1, 1]
+                rotation: [0, 0, 0, 1]
+                pivot: [0, 1]
+                anchor: [0, 1]
+              - !<canvas_renderer>
+                id: 317070876559858988
+                type: 9
+                enabled: true
+                scale_ui: false
+                original_size_x: 0
+                original_size_y: 0
+              - !<image>
+                id: 3900643158899717963
+                type: 11
+                enabled: true
+                image_id: 0
+                hover_image_id: 0
+                image_color: [1, 1, 1, 1]
+                hover_image_color: [1, 1, 1, 1]
+                image_is_tiled: false
+                image_randomize_initial_frame: false
+                image_x_tiles: 1
+                image_y_tiles: 1
+                image_tiles_per_second: 1
+                fill_window: false
+            child:
+              - id: 4208701766457775442
+                name: BASE
+                enabled: true
+                component:
+                  - !<transform>
+                    id: 6249790495722716532
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    id: 16843770521173791759
+                    type: 10
+                    enabled: true
+                    position: [0, 0, 0]
+                    size: [816, 502]
+                    scale: [0.5, 0.5]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0, 1]
+                    anchor: [0, 1]
+                  - !<canvas_renderer>
+                    id: 12652944655017935962
+                    type: 9
+                    enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
+                  - !<image>
+                    id: 242016571831058157
+                    type: 11
+                    enabled: true
+                    image_id: 11600589801090049383
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_randomize_initial_frame: false
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
+                    fill_window: false
+                child:
+                  - id: 15182585279760370415
+                    name: Bullets
+                    enabled: true
+                    component:
+                      - !<transform>
+                        id: 18444329292752828324
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [0, 0, 0]
+                        scale: [1, 1, 1]
+                      - !<transform_2d>
+                        id: 2836259278160011542
+                        type: 10
+                        enabled: true
+                        position: [300, -134.1, 0]
+                        size: [0, 0]
+                        scale: [1, 1]
+                        rotation: [0, 0, 0, 1]
+                        pivot: [0, 1]
+                        anchor: [0, 1]
+                      - !<canvas_renderer>
+                        id: 10466596123024927829
+                        type: 9
+                        enabled: true
+                        scale_ui: false
+                        original_size_x: 0
+                        original_size_y: 0
+                      - !<image>
+                        id: 2861697195066678758
+                        type: 11
+                        enabled: true
+                        image_id: 0
+                        hover_image_id: 0
+                        image_color: [1, 1, 1, 1]
+                        hover_image_color: [1, 1, 1, 1]
+                        image_is_tiled: false
+                        image_randomize_initial_frame: false
+                        image_x_tiles: 1
+                        image_y_tiles: 1
+                        image_tiles_per_second: 1
+                        fill_window: false
+                    child:
+                      - id: 6541081033732067414
+                        name: BULLET_CELL_1
+                        enabled: true
+                        component:
+                          - !<transform>
+                            id: 4197026557879376592
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [0, 0, 0]
+                            scale: [1, 1, 1]
+                          - !<transform_2d>
+                            id: 6043112438680845530
+                            type: 10
+                            enabled: true
+                            position: [0, 0, 0]
+                            size: [184, 184]
+                            scale: [0.6, 0.6]
+                            rotation: [0, 0, 0, 1]
+                            pivot: [0, 1]
+                            anchor: [0, 1]
+                          - !<canvas_renderer>
+                            id: 5355832615719458406
+                            type: 9
+                            enabled: true
+                            scale_ui: false
+                            original_size_x: 0
+                            original_size_y: 0
+                          - !<image>
+                            id: 9912105416899281478
+                            type: 11
+                            enabled: true
+                            image_id: 14717367299972737989
+                            hover_image_id: 0
+                            image_color: [1, 1, 1, 1]
+                            hover_image_color: [1, 1, 1, 1]
+                            image_is_tiled: false
+                            image_randomize_initial_frame: false
+                            image_x_tiles: 1
+                            image_y_tiles: 1
+                            image_tiles_per_second: 1
+                            fill_window: false
+                      - id: 9449908302806741545
+                        name: BULLET_CELL_2
+                        enabled: true
+                        component:
+                          - !<transform>
+                            id: 5347018302782172126
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [0, 0, 0]
+                            scale: [1, 1, 1]
+                          - !<transform_2d>
+                            id: 3721139585518937887
+                            type: 10
+                            enabled: true
+                            position: [115, 0, 0]
+                            size: [184, 184]
+                            scale: [0.6, 0.6]
+                            rotation: [0, 0, 0, 1]
+                            pivot: [0, 1]
+                            anchor: [0, 1]
+                          - !<canvas_renderer>
+                            id: 11850051166624624182
+                            type: 9
+                            enabled: true
+                            scale_ui: false
+                            original_size_x: 0
+                            original_size_y: 0
+                          - !<image>
+                            id: 10465223548891901127
+                            type: 11
+                            enabled: true
+                            image_id: 14717367299972737989
+                            hover_image_id: 0
+                            image_color: [1, 1, 1, 1]
+                            hover_image_color: [1, 1, 1, 1]
+                            image_is_tiled: false
+                            image_randomize_initial_frame: false
+                            image_x_tiles: 1
+                            image_y_tiles: 1
+                            image_tiles_per_second: 1
+                            fill_window: false
+                      - id: 1129888370345058332
+                        name: BULLET_CELL_3
+                        enabled: true
+                        component:
+                          - !<transform>
+                            id: 13111245535236127405
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [0, 0, 0]
+                            scale: [1, 1, 1]
+                          - !<transform_2d>
+                            id: 16437031962948133342
+                            type: 10
+                            enabled: true
+                            position: [230, 0, 0]
+                            size: [184, 184]
+                            scale: [0.6, 0.6]
+                            rotation: [0, 0, 0, 1]
+                            pivot: [0, 1]
+                            anchor: [0, 1]
+                          - !<canvas_renderer>
+                            id: 8485563056885345875
+                            type: 9
+                            enabled: true
+                            scale_ui: false
+                            original_size_x: 0
+                            original_size_y: 0
+                          - !<image>
+                            id: 17896350212920546453
+                            type: 11
+                            enabled: true
+                            image_id: 14717367299972737989
+                            hover_image_id: 0
+                            image_color: [1, 1, 1, 1]
+                            hover_image_color: [1, 1, 1, 1]
+                            image_is_tiled: false
+                            image_randomize_initial_frame: false
+                            image_x_tiles: 1
+                            image_y_tiles: 1
+                            image_tiles_per_second: 1
+                            fill_window: false
+                      - id: 11810582140994753071
+                        name: BULLET_CELL_4
+                        enabled: true
+                        component:
+                          - !<transform>
+                            id: 3651603322729653165
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [0, 0, 0]
+                            scale: [1, 1, 1]
+                          - !<transform_2d>
+                            id: 5013198099062424783
+                            type: 10
+                            enabled: true
+                            position: [345, 0, 0]
+                            size: [184, 184]
+                            scale: [0.6, 0.6]
+                            rotation: [0, 0, 0, 1]
+                            pivot: [0, 1]
+                            anchor: [0, 1]
+                          - !<canvas_renderer>
+                            id: 7206649065411517206
+                            type: 9
+                            enabled: true
+                            scale_ui: false
+                            original_size_x: 0
+                            original_size_y: 0
+                          - !<image>
+                            id: 5498946080957749283
+                            type: 11
+                            enabled: true
+                            image_id: 14717367299972737989
+                            hover_image_id: 0
+                            image_color: [1, 1, 1, 1]
+                            hover_image_color: [1, 1, 1, 1]
+                            image_is_tiled: false
+                            image_randomize_initial_frame: false
+                            image_x_tiles: 1
+                            image_y_tiles: 1
+                            image_tiles_per_second: 1
+                            fill_window: false
+                  - id: 15823142527338904694
+                    name: Health_capsules
+                    enabled: true
+                    component:
+                      - !<transform>
+                        id: 2861159870884695800
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [0, 0, 0]
+                        scale: [1, 1, 1]
+                      - !<transform_2d>
+                        id: 9343047326978696824
+                        type: 10
+                        enabled: true
+                        position: [351.5, -115.1, 0]
+                        size: [0, 0]
+                        scale: [1, 1]
+                        rotation: [0, 0, 0, 1]
+                        pivot: [0, 1]
+                        anchor: [0, 1]
+                      - !<canvas_renderer>
+                        id: 6305585712053109737
+                        type: 9
+                        enabled: true
+                        scale_ui: false
+                        original_size_x: 0
+                        original_size_y: 0
+                      - !<image>
+                        id: 7606440967819886777
+                        type: 11
+                        enabled: true
+                        image_id: 0
+                        hover_image_id: 0
+                        image_color: [1, 1, 1, 1]
+                        hover_image_color: [1, 1, 1, 1]
+                        image_is_tiled: false
+                        image_randomize_initial_frame: false
+                        image_x_tiles: 1
+                        image_y_tiles: 1
+                        image_tiles_per_second: 1
+                        fill_window: false
+                    child:
+                      - id: 8176152631803141493
+                        name: Health_capsule_1
+                        enabled: true
+                        component:
+                          - !<transform>
+                            id: 9808735530341593127
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [0, 0, 0]
+                            scale: [1, 1, 1]
+                          - !<transform_2d>
+                            id: 1905042503171504461
+                            type: 10
+                            enabled: true
+                            position: [0, 2.85, 0]
+                            size: [200, 121]
+                            scale: [0.6, 0.6]
+                            rotation: [0, 0, 0, 1]
+                            pivot: [0.5, 0.5]
+                            anchor: [0.5, 0.5]
+                          - !<canvas_renderer>
+                            id: 15030254094697682622
+                            type: 9
+                            enabled: true
+                            scale_ui: false
+                            original_size_x: 0
+                            original_size_y: 0
+                          - !<image>
+                            id: 13932785429460074454
+                            type: 11
+                            enabled: true
+                            image_id: 2383187459931856420
+                            hover_image_id: 0
+                            image_color: [1, 1, 1, 1]
+                            hover_image_color: [1, 1, 1, 1]
+                            image_is_tiled: false
+                            image_randomize_initial_frame: false
+                            image_x_tiles: 1
+                            image_y_tiles: 1
+                            image_tiles_per_second: 1
+                            fill_window: false
+                      - id: 11360301832863257960
+                        name: Health_capsule_2
+                        enabled: true
+                        component:
+                          - !<transform>
+                            id: 10004363331147570130
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [0, 0, 0]
+                            scale: [1, 1, 1]
+                          - !<transform_2d>
+                            id: 10028102074319023805
+                            type: 10
+                            enabled: true
+                            position: [111.2, 17.5, 0]
+                            size: [200, 121]
+                            scale: [0.7, 0.6]
+                            rotation: [0, 0, 0, 1]
+                            pivot: [0.5, 0.5]
+                            anchor: [0.5, 0.5]
+                          - !<canvas_renderer>
+                            id: 15886737245802187864
+                            type: 9
+                            enabled: true
+                            scale_ui: false
+                            original_size_x: 0
+                            original_size_y: 0
+                          - !<image>
+                            id: 6812253437233015875
+                            type: 11
+                            enabled: true
+                            image_id: 5041000003159368176
+                            hover_image_id: 0
+                            image_color: [1, 1, 1, 1]
+                            hover_image_color: [1, 1, 1, 1]
+                            image_is_tiled: false
+                            image_randomize_initial_frame: false
+                            image_x_tiles: 1
+                            image_y_tiles: 1
+                            image_tiles_per_second: 1
+                            fill_window: false
+                      - id: 2362175031694645255
+                        name: Health_capsule_3
+                        enabled: true
+                        component:
+                          - !<transform>
+                            id: 1889959307660432693
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [0, 0, 0]
+                            scale: [1, 1, 1]
+                          - !<transform_2d>
+                            id: 2970797974398901292
+                            type: 10
+                            enabled: true
+                            position: [227.3, 17.5, 0]
+                            size: [200, 121]
+                            scale: [0.7, 0.6]
+                            rotation: [0, 0, 0, 1]
+                            pivot: [0.5, 0.5]
+                            anchor: [0.5, 0.5]
+                          - !<canvas_renderer>
+                            id: 17802877329755312771
+                            type: 9
+                            enabled: true
+                            scale_ui: false
+                            original_size_x: 0
+                            original_size_y: 0
+                          - !<image>
+                            id: 7445064876191132695
+                            type: 11
+                            enabled: true
+                            image_id: 5041000003159368176
+                            hover_image_id: 0
+                            image_color: [1, 1, 1, 1]
+                            hover_image_color: [1, 1, 1, 1]
+                            image_is_tiled: false
+                            image_randomize_initial_frame: false
+                            image_x_tiles: 1
+                            image_y_tiles: 1
+                            image_tiles_per_second: 1
+                            fill_window: false
+                      - id: 14433846972832430810
+                        name: Health_capsule_4
+                        enabled: true
+                        component:
+                          - !<transform>
+                            id: 8035888313116266206
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [0, 0, 0]
+                            scale: [1, 1, 1]
+                          - !<transform_2d>
+                            id: 1642247992694096724
+                            type: 10
+                            enabled: true
+                            position: [343.5, 17.5, 0]
+                            size: [200, 121]
+                            scale: [0.7, 0.6]
+                            rotation: [0, 0, 0, 1]
+                            pivot: [0.5, 0.5]
+                            anchor: [0.5, 0.5]
+                          - !<canvas_renderer>
+                            id: 16543247980834853681
+                            type: 9
+                            enabled: true
+                            scale_ui: false
+                            original_size_x: 0
+                            original_size_y: 0
+                          - !<image>
+                            id: 9228001939368811411
+                            type: 11
+                            enabled: true
+                            image_id: 17438909525846003718
+                            hover_image_id: 0
+                            image_color: [1, 1, 1, 1]
+                            hover_image_color: [1, 1, 1, 1]
+                            image_is_tiled: false
+                            image_randomize_initial_frame: false
+                            image_x_tiles: 1
+                            image_y_tiles: 1
+                            image_tiles_per_second: 1
+                            fill_window: false
+                      - id: 16086675159912329614
+                        name: Health_capsule_extra
+                        enabled: true
+                        component:
+                          - !<transform>
+                            id: 13253369214462174496
+                            type: 1
+                            enabled: true
+                            position: [-34.57, 5.016, -75.54]
+                            rotation: [180, 69.5, -180]
+                            scale: [0.1944, 0.2026, 0.1944]
+                          - !<transform_2d>
+                            id: 6553350645529752203
+                            type: 10
+                            enabled: true
+                            position: [476.1, 17.5, 0]
+                            size: [200, 121]
+                            scale: [0.7, 0.6]
+                            rotation: [0, 0, 0, 1]
+                            pivot: [0.5, 0.5]
+                            anchor: [0.5, 0.5]
+                          - !<canvas_renderer>
+                            id: 3392300029750033950
+                            type: 9
+                            enabled: true
+                            scale_ui: false
+                            original_size_x: 0
+                            original_size_y: 0
+                          - !<image>
+                            id: 1077666416598512916
+                            type: 11
+                            enabled: true
+                            image_id: 6407070907583268295
+                            hover_image_id: 0
+                            image_color: [1, 1, 1, 1]
+                            hover_image_color: [1, 1, 1, 1]
+                            image_is_tiled: false
+                            image_randomize_initial_frame: false
+                            image_x_tiles: 1
+                            image_y_tiles: 1
+                            image_tiles_per_second: 1
+                            fill_window: false
+                  - id: 12658846164453502754
+                    name: Stamina
+                    enabled: false
+                    component:
+                      - !<transform>
+                        id: 18370189696214939363
+                        type: 1
+                        enabled: true
+                        position: [0, 0, 0]
+                        rotation: [0, 0, 0]
+                        scale: [1, 1, 1]
+                      - !<progress_bar>
+                        id: 7059148197841748189
+                        type: 13
+                        enabled: true
+                        params:
+                          min: 0
+                          max: 100
+                          filled: 100
+                          direction: 0
+                      - !<transform_2d>
+                        id: 9538437474117511077
+                        type: 10
+                        enabled: true
+                        position: [-183.1, -132.9, 0]
+                        size: [1, 1]
+                        scale: [0.49, 0.49]
+                        rotation: [0, 0, 0, 1]
+                        pivot: [0.5, 0.5]
+                        anchor: [0.5, 0.5]
+                    child:
+                      - id: 12055151188587073253
+                        name: Bar Background
+                        enabled: false
+                        component:
+                          - !<transform>
+                            id: 8199801084944424738
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [0, 0, 0]
+                            scale: [1, 1, 1]
+                          - !<transform_2d>
+                            id: 12725143166246644702
+                            type: 10
+                            enabled: true
+                            position: [1.4, 0.25, 0]
+                            size: [231, 336]
+                            scale: [1, 1]
+                            rotation: [0, 0, 0, 1]
+                            pivot: [0.5, 0.5]
+                            anchor: [0.5, 0.5]
+                          - !<canvas_renderer>
+                            id: 1901502604882506371
+                            type: 9
+                            enabled: true
+                            scale_ui: false
+                            original_size_x: 0
+                            original_size_y: 0
+                          - !<image>
+                            id: 16145267166982150631
+                            type: 11
+                            enabled: true
+                            image_id: 0
+                            hover_image_id: 0
+                            image_color: [1, 0, 0, 0]
+                            hover_image_color: [1, 1, 1, 1]
+                            image_is_tiled: false
+                            image_randomize_initial_frame: false
+                            image_x_tiles: 1
+                            image_y_tiles: 1
+                            image_tiles_per_second: 1
+                            fill_window: false
+                      - id: 17029264760312931531
+                        name: Bar Fill
+                        enabled: false
+                        component:
+                          - !<transform>
+                            id: 15837346076104220029
+                            type: 1
+                            enabled: true
+                            position: [0, 0, 0]
+                            rotation: [0, 0, 0]
+                            scale: [1, 1, 1]
+                          - !<transform_2d>
+                            id: 8931706874473994677
+                            type: 10
+                            enabled: true
+                            position: [1.4, 0.25, 0]
+                            size: [231, 336]
+                            scale: [1, 1]
+                            rotation: [0, 0, 0, 1]
+                            pivot: [0.5, 0.5]
+                            anchor: [0.5, 0.5]
+                          - !<canvas_renderer>
+                            id: 10670629521869529981
+                            type: 9
+                            enabled: true
+                            scale_ui: false
+                            original_size_x: 0
+                            original_size_y: 0
+                          - !<image>
+                            id: 11088258254470885480
+                            type: 11
+                            enabled: true
+                            image_id: 14560330030257644970
+                            hover_image_id: 0
+                            image_color: [1, 1, 1, 1]
+                            hover_image_color: [1, 1, 1, 1]
+                            image_is_tiled: false
+                            image_randomize_initial_frame: false
+                            image_x_tiles: 1
+                            image_y_tiles: 1
+                            image_tiles_per_second: 1
+                            fill_window: false
+              - id: 9588373666629524207
+                name: MAZE_ADDON
+                enabled: true
+                component:
+                  - !<transform>
+                    id: 8810889271122093841
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    id: 533297575589291837
+                    type: 10
+                    enabled: true
+                    position: [18.85, -28.25, 0]
+                    size: [400, 400]
+                    scale: [0.27, 0.27]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0, 1]
+                    anchor: [0, 1]
+                  - !<canvas_renderer>
+                    id: 11240043900973975369
+                    type: 9
+                    enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
+                  - !<image>
+                    id: 1355470030496226954
+                    type: 11
+                    enabled: true
+                    image_id: 9253332694870858684
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_randomize_initial_frame: false
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
+                    fill_window: false
+              - id: 10882639145959253748
+                name: CLAW_ADDON
+                enabled: false
+                component:
+                  - !<transform>
+                    id: 13034342508614628219
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    id: 5744911188717149268
+                    type: 10
+                    enabled: true
+                    position: [19.5, -30.85, 0]
+                    size: [400, 400]
+                    scale: [0.27, 0.27]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0, 1]
+                    anchor: [0, 1]
+                  - !<canvas_renderer>
+                    id: 13441010496063997167
+                    type: 9
+                    enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
+                  - !<image>
+                    id: 17925311922446399993
+                    type: 11
+                    enabled: true
+                    image_id: 12109030042107530871
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_randomize_initial_frame: false
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
+                    fill_window: false
+              - id: 2612207080804982533
+                name: SWORD_ADDON
+                enabled: false
+                component:
+                  - !<transform>
+                    id: 16511044538463725521
+                    type: 1
+                    enabled: true
+                    position: [0, 0, 0]
+                    rotation: [0, 0, 0]
+                    scale: [1, 1, 1]
+                  - !<transform_2d>
+                    id: 9105020380690199853
+                    type: 10
+                    enabled: true
+                    position: [14.6, -30.85, 0]
+                    size: [400, 400]
+                    scale: [0.27, 0.27]
+                    rotation: [0, 0, 0, 1]
+                    pivot: [0, 1]
+                    anchor: [0, 1]
+                  - !<canvas_renderer>
+                    id: 13551102858441089787
+                    type: 9
+                    enabled: true
+                    scale_ui: false
+                    original_size_x: 0
+                    original_size_y: 0
+                  - !<image>
+                    id: 6978916189046469106
+                    type: 11
+                    enabled: true
+                    image_id: 7052929933227613988
+                    hover_image_id: 0
+                    image_color: [1, 1, 1, 1]
+                    hover_image_color: [1, 1, 1, 1]
+                    image_is_tiled: false
+                    image_randomize_initial_frame: false
+                    image_x_tiles: 1
+                    image_y_tiles: 1
+                    image_tiles_per_second: 1
+                    fill_window: false
   - id: 5950535678204865675
     name: CombatVisualEffectsPool
     enabled: true
