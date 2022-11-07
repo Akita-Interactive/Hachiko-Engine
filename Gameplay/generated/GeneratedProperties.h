@@ -2,7 +2,7 @@
 
 #include "scriptingUtil/framework.h"
 
-extern "C" const GAMEPLAY_API size_t __cdecl SCRIPT_COUNT = 41;
+extern "C" const GAMEPLAY_API size_t __cdecl SCRIPT_COUNT = 42;
 
 extern "C" const GAMEPLAY_API char* __cdecl SCRIPT_NAMES[SCRIPT_COUNT] =
 {
@@ -39,6 +39,7 @@ extern "C" const GAMEPLAY_API char* __cdecl SCRIPT_NAMES[SCRIPT_COUNT] =
 	"GauntletManager",
 	"LaserController",
 	"LevelManager",
+	"OrbController",
 	"PillarCheckpoint",
 	"Spawner",
 	"StalagmiteManager",

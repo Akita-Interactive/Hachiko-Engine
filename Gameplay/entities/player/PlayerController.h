@@ -287,6 +287,7 @@ namespace Hachiko
 			SERIALIZE_FIELD(GameObject*, _hp_cell_3);
 			SERIALIZE_FIELD(GameObject*, _hp_cell_4);
 			SERIALIZE_FIELD(GameObject*, _hp_cell_extra);
+			SERIALIZE_FIELD(GameObject*, _hp_cell_extra_overlay);
 			SERIALIZE_FIELD(GameObject*, _magic_parasyte);
 			std::vector<GameObject*> hp_cells;
 

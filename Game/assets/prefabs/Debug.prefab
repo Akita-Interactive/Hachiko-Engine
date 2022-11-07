@@ -6,13 +6,13 @@ component:
     type: 1
     enabled: true
     position: [0, 0, 0]
-    rotation: [-0, 0, -0]
+    rotation: [0, 0, 0]
     scale: [1, 1, 1]
   - !<transform_2d>
     type: 10
     enabled: true
     position: [0, 0, 0]
-    size: [1225, 736]
+    size: [1, 1]
     scale: [1, 1]
     rotation: [0, 0, 0, 1]
     pivot: [0.5, 0.5]
@@ -28,8 +28,20 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [-0, 0, -0]
+        rotation: [0, 0, 0]
         scale: [1, 1, 1]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [-439.7, -88.1, 0]
+        size: [1, 1]
+        scale: [1, 1]
+        rotation: [0, 0, 0, 1]
+        pivot: [-0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas>
+        type: 8
+        enabled: true
       - !<script>
         type: 15
         enabled: true
@@ -46,7 +58,6 @@ child:
         "'_increase_attack_power@ComponentButton*'": 0
         "'_decrease_attack_power@ComponentButton*'": 0
         "'_god_mode@ComponentButton*'": 0
-        "'_spawn_enemy@ComponentButton*'": 0
         "'_weapon_claws@ComponentButton*'": 0
         "'_weapon_sword@ComponentButton*'": 0
         "'_weapon_hammer@ComponentButton*'": 0
@@ -63,20 +74,8 @@ child:
         "'_tp_pos1@GameObject*'": 3
         "'_tp_pos2@GameObject*'": 4
         "'_tp_pos3@GameObject*'": 5
-        "'_performance_menu@GameObject*'": 28
-        "'_player_stats@GameObject*'": 34
-      - !<transform_2d>
-        type: 10
-        enabled: true
-        position: [-439.7, -88.1, 0]
-        size: [1225, 736]
-        scale: [1, 1]
-        rotation: [0, 0, 0, 1]
-        pivot: [-0.5, 0.5]
-        anchor: [0.5, 0.5]
-      - !<canvas>
-        type: 8
-        enabled: true
+        "'_performance_menu@GameObject*'": 27
+        "'_player_stats@GameObject*'": 33
     child:
       - name: tpPos1
         enabled: true
@@ -84,8 +83,8 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [-85, 1, 10]
-            rotation: [-0, 0, -0]
+            position: [-82.22, 1.75, -47.51]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
       - name: tpPos2
         enabled: true
@@ -93,8 +92,8 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [142.3, 1.024, 30.11]
-            rotation: [-0, 0, -0]
+            position: [-67.45, 1.75, -60.34]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
       - name: tpPos3
         enabled: true
@@ -102,8 +101,8 @@ child:
           - !<transform>
             type: 1
             enabled: true
-            position: [179.8, 1.005, -48.25]
-            rotation: [-0, 0, -0]
+            position: [-89.56, 1.75, -69.77]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
       - name: Background
         enabled: true
@@ -112,7 +111,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -149,7 +148,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -186,7 +185,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -226,7 +225,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -266,7 +265,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -306,7 +305,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -346,7 +345,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -386,7 +385,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -419,46 +418,6 @@ child:
           - !<button>
             type: 12
             enabled: true
-      - name: SpawnEnemy
-        enabled: true
-        component:
-          - !<transform>
-            type: 1
-            enabled: true
-            position: [0, 0, 0]
-            rotation: [-0, 0, -0]
-            scale: [1, 1, 1]
-          - !<transform_2d>
-            type: 10
-            enabled: true
-            position: [340, -300, 0]
-            size: [100, 30]
-            scale: [1, 1]
-            rotation: [0, 0, 0, 1]
-            pivot: [0.5, 0.5]
-            anchor: [0, 1]
-          - !<canvas_renderer>
-            type: 9
-            enabled: true
-            scale_ui: false
-            original_size_x: 0
-            original_size_y: 0
-          - !<image>
-            type: 11
-            enabled: true
-            image_id: 1222313871679734493
-            hover_image_id: 0
-            image_color: [1, 1, 1, 1]
-            hover_image_color: [1, 1, 1, 1]
-            image_is_tiled: false
-            image_randomize_initial_frame: false
-            image_x_tiles: 1
-            image_y_tiles: 1
-            image_tiles_per_second: 1
-            fill_window: false
-          - !<button>
-            type: 12
-            enabled: true
       - name: Performance
         enabled: true
         component:
@@ -466,7 +425,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -506,7 +465,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -546,7 +505,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -586,7 +545,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -626,7 +585,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -666,7 +625,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -706,7 +665,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -746,7 +705,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -786,7 +745,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -826,7 +785,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -866,7 +825,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -906,7 +865,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -946,7 +905,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -986,13 +945,13 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [-0, 0, -0]
+        rotation: [0, 0, 0]
         scale: [1, 1, 1]
       - !<transform_2d>
         type: 10
         enabled: true
         position: [0, 0, 0]
-        size: [1225, 736]
+        size: [1, 1]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
@@ -1008,7 +967,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -1039,7 +998,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -1070,7 +1029,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -1101,7 +1060,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -1132,7 +1091,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -1172,13 +1131,13 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [-0, 0, -0]
+        rotation: [0, 0, 0]
         scale: [1, 1, 1]
       - !<transform_2d>
         type: 10
         enabled: true
         position: [0, 0, 0]
-        size: [1225, 736]
+        size: [1, 1]
         scale: [1, 1]
         rotation: [0, 0, 0, 1]
         pivot: [0.5, 0.5]
@@ -1194,7 +1153,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -1231,7 +1190,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -1262,7 +1221,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -1293,7 +1252,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10
@@ -1324,7 +1283,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [-0, 0, -0]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<transform_2d>
             type: 10

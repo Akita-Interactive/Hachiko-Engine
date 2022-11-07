@@ -14,8 +14,8 @@ bool Hachiko::ModuleWindow::Init()
     HE_LOG("INITIALIZING MODULE: WINDOW");
 
     GetMonitorResolution(max_width, max_height);
-    width = static_cast<int>(max_width * WINDOWED_RATIO);
-    height = static_cast<int>(max_height * WINDOWED_RATIO);
+    width = static_cast<int>(max_width * WINDOWED_RATIO * 0.95);
+    height = static_cast<int>(max_height * WINDOWED_RATIO * 0.95);
 
     editor_prefs = App->preferences->GetEditorPreference();
 
@@ -32,7 +32,7 @@ bool Hachiko::ModuleWindow::Init()
     }
     else
     {
-        Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_MAXIMIZED;
+        Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI;
 
         if (fullscreen)
         {

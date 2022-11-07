@@ -32,6 +32,7 @@
 #include "misc/GauntletManager.h"
 #include "misc/LaserController.h"
 #include "misc/LevelManager.h"
+#include "misc/OrbController.h"
 #include "misc/PillarCheckpoint.h"
 #include "misc/Spawner.h"
 #include "misc/StalagmiteManager.h"
@@ -46,6 +47,7 @@ void Hachiko::Scripting::CutsceneManager::OnEditor()
 {
 	Editor::Show("Cutscene", _cutscene);
 	Editor::Show("Next Level", _next_level);
+	Editor::Show("Type", _type);
 }
 
 void Hachiko::Scripting::PauseMenu::OnEditor()
@@ -106,7 +108,9 @@ void Hachiko::Scripting::Stats::OnEditor()
 void Hachiko::Scripting::CrystalExplosion::OnEditor()
 {
 	Editor::Show("Explosion Indicator Helper", _explosion_indicator_helper);
-	Editor::Show("Explosion Effect", _explosion_effect);
+	Editor::Show("Explosion Indicator", _explosion_indicator);
+	Editor::Show("Explosion Vfx", _explosion_vfx);
+	Editor::Show("Explosion Particles", _explosion_particles);
 	Editor::Show("Shake Intensity", _shake_intensity);
 	Editor::Show("Seconds Shaking", _seconds_shaking);
 	Editor::Show("Crashing Index", _crashing_index);
@@ -116,6 +120,7 @@ void Hachiko::Scripting::CrystalExplosion::OnEditor()
 	Editor::Show("Explosive Crystal", _explosive_crystal);
 	Editor::Show("Regen Time", _regen_time);
 	Editor::Show("Should Regen", _should_regen);
+	Editor::Show("For Boss Cocoon", _for_boss_cocoon);
 	Editor::Show("Damage Effect Duration", damage_effect_duration);
 }
 
@@ -263,6 +268,7 @@ void Hachiko::Scripting::PlayerController::OnEditor()
 	Editor::Show("Heal Effect", _heal_effect);
 	Editor::Show("Damage Effect", _damage_effect);
 	Editor::Show("Parasite Pickup Effect", _parasite_pickup_effect);
+	Editor::Show("Parasite Selection", _parasite_selection);
 	Editor::Show("Melee Trail Right", _melee_trail_right);
 	Editor::Show("Melee Trail Left", _melee_trail_left);
 	Editor::Show("Melee Trail Center", _melee_trail_center);
@@ -282,6 +288,7 @@ void Hachiko::Scripting::PlayerController::OnEditor()
 	Editor::Show("Hp Cell 3", _hp_cell_3);
 	Editor::Show("Hp Cell 4", _hp_cell_4);
 	Editor::Show("Hp Cell Extra", _hp_cell_extra);
+	Editor::Show("Hp Cell Extra Overlay", _hp_cell_extra_overlay);
 	Editor::Show("Magic Parasyte", _magic_parasyte);
 	Editor::Show("Ammo Cell 1", _ammo_cell_1);
 	Editor::Show("Ammo Cell 2", _ammo_cell_2);
@@ -458,7 +465,11 @@ void Hachiko::Scripting::LevelManager::OnEditor()
 	Editor::Show("Fog Min Density", _fog_min_density);
 	Editor::Show("Audio Manager Go", _audio_manager_go);
 	Editor::Show("Player Sound Manager Go", _player_sound_manager_go);
-	Editor::Show("Victory Screen", _victory_screen);
+}
+
+void Hachiko::Scripting::OrbController::OnEditor()
+{
+	Editor::Show("Orb", _orb);
 }
 
 void Hachiko::Scripting::PillarCheckpoint::OnEditor()
@@ -513,7 +524,6 @@ void Hachiko::Scripting::DebugManager::OnEditor()
 	Editor::Show<ComponentButton>("Increase Attack Power", "ComponentButton*", _increase_attack_power);
 	Editor::Show<ComponentButton>("Decrease Attack Power", "ComponentButton*", _decrease_attack_power);
 	Editor::Show<ComponentButton>("God Mode", "ComponentButton*", _god_mode);
-	Editor::Show<ComponentButton>("Spawn Enemy", "ComponentButton*", _spawn_enemy);
 	Editor::Show<ComponentButton>("Weapon Claws", "ComponentButton*", _weapon_claws);
 	Editor::Show<ComponentButton>("Weapon Sword", "ComponentButton*", _weapon_sword);
 	Editor::Show<ComponentButton>("Weapon Hammer", "ComponentButton*", _weapon_hammer);

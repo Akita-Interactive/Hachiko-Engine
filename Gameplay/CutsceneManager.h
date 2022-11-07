@@ -9,6 +9,8 @@ namespace Hachiko
 	{
 		class CutsceneManager : public Script
 		{
+
+
 		public:
 			SERIALIZATION_METHODS(false)
 			CutsceneManager(GameObject* game_object);
@@ -19,9 +21,17 @@ namespace Hachiko
 		private:
 			SERIALIZE_FIELD(GameObject*, _cutscene);
 			SERIALIZE_FIELD(unsigned, _next_level);
+			SERIALIZE_FIELD(unsigned, _type);
 			ComponentVideo* _cutscene_video = nullptr;
 			ComponentAudioSource* _audio_source = nullptr;
 		};
+
+
+		namespace CutsceneType
+		{
+			constexpr unsigned INTRO = 0;
+			constexpr unsigned OUTRO = 1;
+		}
 	}
 }
 
