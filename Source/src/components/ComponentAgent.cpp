@@ -150,7 +150,9 @@ void Hachiko::ComponentAgent::SetMaxSpeed(float new_max_speed)
     {
         return;
     }
-
+    agent->vel[0] *= Time::GetTimeScale();
+    agent->vel[0] *= Time::GetTimeScale();
+    agent->vel[0] *= Time::GetTimeScale();
     agent->params.maxSpeed = GetMaxSpeedBasedOnTimeScaleMode();
 }
 
@@ -166,7 +168,7 @@ void Hachiko::ComponentAgent::SetMaxAcceleration(float new_max_acceleration)
         return;
     }
 
-    agent->params.maxAcceleration = GetMaxAccelerationBasedOnTimeScaleMode();
+    agent->params.maxAcceleration = max_acceleration;
 }
 
 void Hachiko::ComponentAgent::SetObstacleAvoidance(bool obstacle_avoidance)
@@ -215,14 +217,14 @@ void Hachiko::ComponentAgent::RefreshSpeedAndAcceleration()
 float Hachiko::ComponentAgent::GetMaxSpeedBasedOnTimeScaleMode() const
 {
     return GetTimeScaleMode() == TimeScaleMode::SCALED
-        ? max_speed_scaled
+        ? max_speed * Time::GetTimeScale()
         : max_speed;
 }
 
 float Hachiko::ComponentAgent::GetMaxAccelerationBasedOnTimeScaleMode() const
 {
     return GetTimeScaleMode() == TimeScaleMode::SCALED
-        ? max_acceleration_scaled
+        ? max_acceleration * Time::GetTimeScale()
         : max_acceleration;
 }
 
