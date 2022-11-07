@@ -33,6 +33,7 @@
 #include "misc/GauntletManager.h"
 #include "misc/LaserController.h"
 #include "misc/LevelManager.h"
+#include "misc/OrbController.h"
 #include "misc/PillarCheckpoint.h"
 #include "misc/Spawner.h"
 #include "misc/StalagmiteManager.h"
@@ -208,6 +209,11 @@ Hachiko::Scripting::Script* InstantiateScript(Hachiko::GameObject* script_owner,
 	if (script_name == "LevelManager")
 	{
 		return new Hachiko::Scripting::LevelManager(script_owner);
+	}
+
+	if (script_name == "OrbController")
+	{
+		return new Hachiko::Scripting::OrbController(script_owner);
 	}
 
 	if (script_name == "PillarCheckpoint")
