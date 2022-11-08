@@ -66,7 +66,7 @@ void Hachiko::Scripting::LaserController::OnAwake()
 		if (!_spin_movement) _sparks->SetActive(true);
 	}
 
-	if (_boss_level_wall) 
+	if (_boss_level_wall)
 	{
 		_state = INACTIVE;
 		_charging_particles->DrawParticles(false);
@@ -77,7 +77,6 @@ void Hachiko::Scripting::LaserController::OnAwake()
 
 void Hachiko::Scripting::LaserController::OnUpdate()
 {
-
 	if (_spin_movement)
 	{
 		float3 euler_rotation = game_object->GetTransform()->GetLocalRotationEuler();
@@ -112,6 +111,17 @@ void Hachiko::Scripting::LaserController::OnUpdate()
 	if (_state != ACTIVE && _beam_crystals_particles != nullptr)
 	{
 		_beam_crystals_particles->DrawParticles(false);
+	}
+
+	if (_sparks != nullptr) {
+		if (_state == ACTIVE)
+		{
+			_sparks->SetActive(true);
+		}
+		else
+		{
+			_sparks->SetActive(false);
+		}
 	}
 
 	switch (_state)
@@ -270,6 +280,12 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 
 		_length = new_length;
 		_laser->GetTransform()->SetLocalScale(float3(_scale, _scale, _length * 0.5f));
+
+		if (_boss_level_wall)
+		{
+			if (_charging != nullptr) _charging_particles->SetParticlesLifetime(_length * 0.21f);
+			if (_beam != nullptr) _beam_particles->SetParticlesLifetime(_length * 0.21f);
+		}
 	}
 
 	if (_sparks != nullptr)
@@ -290,32 +306,17 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 		{
 			float2 sparksYZ = _sparks->GetTransform()->GetLocalPosition().yz();
 			_sparks->GetTransform()->SetLocalPosition(float3(new_length, sparksYZ.x, sparksYZ.y));
-			if (_state == ACTIVE)
-			{
-				_sparks->SetActive(true);
-			}
-			else
-			{
-				_sparks->SetActive(false);
-			}
 		}
 		else if (_boss_level2)
 		{
 			float2 sparksYZ = _sparks->GetTransform()->GetLocalPosition().yz();
 			_sparks->GetTransform()->SetLocalPosition(float3(-new_length, sparksYZ.x, sparksYZ.y));
-			if (_state == ACTIVE)
-			{
-				_sparks->SetActive(true);
-			}
-			else
-			{
-				_sparks->SetActive(false);
-			}
 		}
 		else
 		{
 			float2 sparksXY = _sparks->GetTransform()->GetLocalPosition().xy();
 			_sparks->GetTransform()->SetLocalPosition(float3(float2(sparksXY), -new_length));
+			if (_boss_level_wall) _sparks->GetTransform()->SetLocalPosition(_sparks->GetTransform()->GetLocalPosition() - float3(0,0,0.5f));
 		}
 	}
 }

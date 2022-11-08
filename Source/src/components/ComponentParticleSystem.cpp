@@ -854,6 +854,11 @@ float Hachiko::ComponentParticleSystem::GetParticlesLifetime()
     return GetParticlesLife().GetValue();
 }
 
+void Hachiko::ComponentParticleSystem::SetParticlesLifetime(float new_lifetime)
+{
+    start_life = {float2(new_lifetime)};
+}
+
 void Hachiko::ComponentParticleSystem::DrawParticles(bool draw)
 {
     particle_properties.draw = draw;
