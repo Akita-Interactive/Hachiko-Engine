@@ -30,13 +30,16 @@
 					<CurrentStateList ShowAll="true">
 						<CurrentStateRef Name="None" ID="{093DE04C-2356-40B2-B42A-97E481832213}"/>
 						<CurrentStateRef Name="Gameplay" ID="{130FBCEE-8CBF-4113-B45E-A257238567D1}"/>
+						<CurrentStateRef Name="Stage1" ID="{1AC76792-AD16-42E6-B27B-0D03BCBF9474}"/>
 						<CurrentStateRef Name="None" ID="{8C7FD041-000B-4CF6-90A3-9487DB812AB2}"/>
 						<CurrentStateRef Name="None" ID="{EB21219F-F14F-41E6-98DB-CCC321D31358}"/>
 						<CurrentStateRef Name="Alive" ID="{F78DEA1E-406E-4706-B5BC-D2290B952F54}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true">
-						<CurrentSwitchRef Name="Explore" ID="{B92814EE-2B24-4C85-AE4E-9753BE866E50}"/>
+						<CurrentSwitchRef Name="Basic" ID="{8742CF14-04A5-4224-8CAB-E0C57D44C5EA}"/>
+						<CurrentSwitchRef Name="Combat" ID="{B9D34D9B-4164-4F24-B1C3-D91B169DA95F}"/>
 						<CurrentSwitchRef Name="Gravel" ID="{F7D7D03C-0417-4D3E-9CEC-0FC5F71A0B58}"/>
+						<CurrentSwitchRef Name="Level2" ID="{334BD31E-A4C0-49AD-AEA7-88D6C14893B3}"/>
 					</CurrentSwitchList>
 				</SoundcasterSession>
 			</ChildrenList>
