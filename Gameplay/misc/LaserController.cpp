@@ -285,6 +285,7 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 		{
 			if (_charging != nullptr) _charging_particles->SetParticlesLifetime(_length * 0.21f);
 			if (_beam != nullptr) _beam_particles->SetParticlesLifetime(_length * 0.21f);
+			_laser->GetTransform()->SetLocalScale(float3(_scale, _scale, (_length * 0.5f) - 0.3f));
 		}
 	}
 
