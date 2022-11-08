@@ -90,7 +90,7 @@ void Hachiko::Scripting::PlayerCamera::SetLookAhead()
 	if (_player_ctrl && _player_ctrl->_state == PlayerState::RANGED_CHARGING)
 	{
 		_current_objective = Scenes::GetPlayer();
-		const float look_ahead_time = Time::DeltaTime() / 0.2f;
+		const float look_ahead_time = Time::DeltaTimeScaled() / 0.2f;
 		Clamp<float>(look_ahead_time, 0.0f, 1.0f);
 		_look_ahead = math::float3::Lerp(_look_ahead, _current_objective->GetTransform()->GetFront() * 6, look_ahead_time);
 
@@ -99,7 +99,7 @@ void Hachiko::Scripting::PlayerCamera::SetLookAhead()
 
 	if (_do_look_ahead && _anchor_is_player && _player_ctrl && _player_ctrl->_state == PlayerState::WALKING)
 	{
-		const float look_ahead_time = Time::DeltaTime() / 0.8f;
+		const float look_ahead_time = Time::DeltaTimeScaled() / 0.8f;
 		Clamp<float>(look_ahead_time, 0.0f, 1.0f);
 		_look_ahead = math::float3::Lerp(_look_ahead, _current_objective->GetTransform()->GetFront() * 5, look_ahead_time);
 	}
@@ -135,7 +135,7 @@ void Hachiko::Scripting::PlayerCamera::MoveCamera()
 	ComponentTransform* transform = game_object->GetTransform();
 	float3 current_position = transform->GetGlobalPosition();
 
-	float delayed_time = Time::DeltaTime() / _follow_delay;
+	float delayed_time = Time::DeltaTimeScaled() / _follow_delay;
 	Clamp<float>(delayed_time, 0.0f, 1.0f);
 
 	// Lerp to the position to the player with a delay: 
@@ -214,7 +214,7 @@ float3 Hachiko::Scripting::PlayerCamera::Shake()
 		r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 		float z = (r - 0.5f) * shake_magnitude * shake_intensity;
 
-		shake_elapsed += Time::DeltaTime();
+		shake_elapsed += Time::DeltaTimeScaled();
 		shake_magnitude = (1 - (shake_elapsed / shake_time)) * (1 - (shake_elapsed / shake_time));
 		return float3(x, 0, z);
 	} 
@@ -294,7 +294,7 @@ void Hachiko::Scripting::PlayerCamera::RecalculateRelativePos()
 			_is_in_position = true;
 		}
 		_relative_position_to_player = math::Lerp(_relative_position_to_player, _updated_relative_position, _reposition_progress);
-		_reposition_progress += Time::DeltaTime() / _reposition_time;
+		_reposition_progress += Time::DeltaTimeScaled() / _reposition_time;
 	}
 	else
 	{
@@ -307,7 +307,7 @@ void Hachiko::Scripting::PlayerCamera::RecalculateRelativePos()
 			}
 			else
 			{
-				_position_timer -= Time::DeltaTime();
+				_position_timer -= Time::DeltaTimeScaled();
 			}
 		}
 	}
@@ -361,6 +361,6 @@ void Hachiko::Scripting::PlayerCamera::RecalculateRotation()
 			_is_in_rotation = true;
 		}
 		game_object->GetTransform()->SetLocalRotation(math::Slerp(game_object->GetTransform()->GetLocalRotation(), _updated_rotation, _rotation_progress));
-		_rotation_progress += Time::DeltaTime() / _rotation_time;
+		_rotation_progress += Time::DeltaTimeScaled() / _rotation_time;
 	}
 }
