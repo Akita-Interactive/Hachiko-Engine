@@ -70,6 +70,7 @@ void Hachiko::Scripting::BossController::OnAwake()
     transform = game_object->GetTransform();
     combat_stats = game_object->GetComponent<Stats>();
     agent = game_object->GetComponent<ComponentAgent>();
+    agent->SetTimeScaleMode(TimeScaleMode::SCALED);
     agent->SetMaxSpeed(combat_stats->_move_speed);
     agent->RemoveFromCrowd();
     obstacle = game_object->GetComponent<ComponentObstacle>();
@@ -77,11 +78,13 @@ void Hachiko::Scripting::BossController::OnAwake()
     obstacle->AddObstacle();
 
 	animation = game_object->GetComponent<ComponentAnimation>();
+    animation->SetTimeScaleMode(TimeScaleMode::SCALED);
 
     if (_melee_trail_right != nullptr)
     {
         _melee_trail_right->SetTimeScaleMode(TimeScaleMode::SCALED);
         _weapon_trail_billboard_right = _melee_trail_right->GetComponent<ComponentBillboard>();
+        _weapon_trail_billboard_right->SetTimeScaleMode(TimeScaleMode::SCALED);
     }
 
 	SetUpHpBar();
@@ -168,7 +171,7 @@ void Hachiko::Scripting::BossController::OnUpdate()
 
 	if (damage_effect_progress >= 0.0f)
 	{
-		damage_effect_progress -= Time::DeltaTime() / damage_effect_duration;
+		damage_effect_progress -= Time::DeltaTimeScaled() / damage_effect_duration;
 		float progress = damage_effect_progress / damage_effect_duration;
 		game_object->ChangeEmissiveColor(float4(1.0f, 1.0f, 1.0f, progress), true);
 	}
@@ -417,7 +420,7 @@ void Hachiko::Scripting::BossController::StartEncounterController()
     // Add any effects desired for combat start, for now it only delays while camera is transitioning
     audio_source->PostEvent(Sounds::BOSS_ROAR);
     
-    enemy_timer += Time::DeltaTime();
+    enemy_timer += Time::DeltaTimeScaled();
     if (enemy_timer < encounter_start_duration)
     {
         cocoons_parent->ChangeDissolveProgress(1 - enemy_timer / encounter_start_duration, true);
@@ -531,7 +534,7 @@ void Hachiko::Scripting::BossController::CocoonController()
     // Handle camera focus
     if (camera_focus_on_boss)
     {
-        time_elapse += Time::DeltaTime();
+        time_elapse += Time::DeltaTimeScaled();
 
         if (time_elapse >= 2) // HARDCODED TIME FOR CAMERA FOCUS
         {
@@ -544,7 +547,7 @@ void Hachiko::Scripting::BossController::CocoonController()
     if (_rotating_lasers)
     {
         float3 rot_lasers_rotation = _rotating_lasers->GetTransform()->GetLocalRotationEuler();
-        rot_lasers_rotation.y += Time::DeltaTime() * 25;
+        rot_lasers_rotation.y += Time::DeltaTimeScaled() * 25;
         _rotating_lasers->GetTransform()->SetLocalRotationEuler(rot_lasers_rotation);
     }
 
@@ -695,7 +698,7 @@ void Hachiko::Scripting::BossController::MeleeAttack()
 
 void Hachiko::Scripting::BossController::MeleeAttackController()
 {
-	attack_delay_timer += Time::DeltaTime();
+	attack_delay_timer += Time::DeltaTimeScaled();
 
 	if (attack_delay_timer < attack_delay)
 	{
@@ -718,7 +721,7 @@ void Hachiko::Scripting::BossController::MeleeAttackController()
         attacked = true;
     }
 	
-    after_attack_wait_timer += Time::DeltaTime();
+    after_attack_wait_timer += Time::DeltaTimeScaled();
 
 	if (after_attack_wait_timer < after_attack_wait)
 	{
@@ -874,7 +877,7 @@ void Hachiko::Scripting::BossController::ExecuteJumpingState()
     // It's important that we do the increment here, by this, if the duration
     // of current state is set to < 0.0f, we don't need to have check for
     // zero or negative conditions:
-    _jumping_timer += Time::DeltaTime();
+    _jumping_timer += Time::DeltaTimeScaled();
 
     switch (_jumping_state)
     {
@@ -1435,7 +1438,7 @@ void Hachiko::Scripting::BossController::FocusCameraOnBoss(bool focus_on_boss)
 
 void Hachiko::Scripting::BossController::SpawnEnemy()
 {
-	enemy_timer += Time::DeltaTime();
+	enemy_timer += Time::DeltaTimeScaled();
 	if (enemy_timer < time_between_enemies)
 	{
 		return;
@@ -1505,7 +1508,7 @@ bool Hachiko::Scripting::BossController::ControlLasers()
 {
 	if (_laser_wall_current_time < _laser_wall_duration)
 	{
-		_laser_wall_current_time += Time::DeltaTime();
+		_laser_wall_current_time += Time::DeltaTimeScaled();
 		return false;
 	}
 	else
