@@ -49,15 +49,15 @@ void Hachiko::Scripting::LaserController::OnUpdate()
 	if (_spin_movement)
 	{
 		float3 euler_rotation = game_object->GetTransform()->GetLocalRotationEuler();
-		euler_rotation.y += Time::DeltaTime() * _spin_speed;
+		euler_rotation.y += Time::DeltaTimeScaled() * _spin_speed;
 		game_object->GetTransform()->SetLocalRotationEuler(euler_rotation);
 	}
 
 	if (_horizonal_movement && _movement_target != nullptr)
 	{
 		_movement_position += (_movement_forward_direction)
-			? _movement_speed * Time::DeltaTime()
-			: _movement_speed * Time::DeltaTime() * -1.0f;
+			? _movement_speed * Time::DeltaTimeScaled()
+			: _movement_speed * Time::DeltaTimeScaled() * -1.0f;
 
 		if (_movement_position > 1.0f)
 		{
@@ -84,7 +84,7 @@ void Hachiko::Scripting::LaserController::OnUpdate()
 		CheckPlayerCollision();
 		if (_toggle_activation)
 		{
-			_elapsed_time += Time::DeltaTime();
+			_elapsed_time += Time::DeltaTimeScaled();
 			if (_elapsed_time >= _toggle_active_time)
 			{
 				ChangeState(DISSOLVING);
@@ -99,7 +99,7 @@ void Hachiko::Scripting::LaserController::OnUpdate()
 		}
 
 		AdjustLength();
-		_elapsed_time += Time::DeltaTime();
+		_elapsed_time += Time::DeltaTimeScaled();
 		_scale = (_elapsed_time / _activation_time) * _max_scale;
 		if (_elapsed_time >= _activation_time)
 		{
@@ -110,7 +110,7 @@ void Hachiko::Scripting::LaserController::OnUpdate()
 	case INACTIVE:
 		if (_toggle_activation)
 		{
-			_elapsed_time += Time::DeltaTime();
+			_elapsed_time += Time::DeltaTimeScaled();
 			if (_elapsed_time >= _toggle_inactive_time)
 			{
 				ChangeState(ACTIVATING);
@@ -118,7 +118,7 @@ void Hachiko::Scripting::LaserController::OnUpdate()
 		}
 		break;
 	case DISSOLVING:
-		_elapsed_time += Time::DeltaTime();
+		_elapsed_time += Time::DeltaTimeScaled();
 		const float dissolve_progress = (_dissolving_time - _elapsed_time) / _dissolving_time;
 		_laser->ChangeDissolveProgress(dissolve_progress, true);
 		if (_elapsed_time >= _dissolving_time)
