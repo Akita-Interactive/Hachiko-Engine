@@ -14,8 +14,14 @@ bool Hachiko::ModuleWindow::Init()
     HE_LOG("INITIALIZING MODULE: WINDOW");
 
     GetMonitorResolution(max_width, max_height);
-    width = static_cast<int>(max_width * WINDOWED_RATIO * 0.95);
-    height = static_cast<int>(max_height * WINDOWED_RATIO * 0.95);
+
+#ifndef PLAY_BUILD
+    width = static_cast<int>(max_width * WINDOWED_RATIO);
+    height = static_cast<int>(max_height * WINDOWED_RATIO);
+#else
+    width = static_cast<int>(max_width);
+    height = static_cast<int>(max_height);
+#endif
 
     editor_prefs = App->preferences->GetEditorPreference();
 
@@ -34,6 +40,10 @@ bool Hachiko::ModuleWindow::Init()
     {
         Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI;
 
+
+#ifdef PLAY_BUILD
+        flags |= SDL_WINDOW_FULLSCREEN;
+#else
         if (fullscreen)
         {
             flags |= SDL_WINDOW_FULLSCREEN;
@@ -42,6 +52,7 @@ bool Hachiko::ModuleWindow::Init()
         {
             flags |= SDL_WINDOW_RESIZABLE;
         }
+#endif
 
         App->renderer->SetOpenGLAttributes();
 
