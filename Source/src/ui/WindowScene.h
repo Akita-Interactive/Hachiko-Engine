@@ -62,7 +62,7 @@ namespace Hachiko
     private:
         void GuizmoOptionsController();
         void ToolbarMenu() const;
-        void DrawScene();
+        void DrawScene(const bool is_in_play_mode);
         void Controller() const;
         void UpdatePlayModeBlinker();
 
