@@ -44,7 +44,6 @@ namespace Hachiko
 			SERIALIZE_FIELD(ComponentButton*, _increase_attack_power);
 			SERIALIZE_FIELD(ComponentButton*, _decrease_attack_power);
 			SERIALIZE_FIELD(ComponentButton*, _god_mode);
-			SERIALIZE_FIELD(ComponentButton*, _spawn_enemy);
 			SERIALIZE_FIELD(ComponentButton*, _weapon_claws);
 			SERIALIZE_FIELD(ComponentButton*, _weapon_sword);
 			SERIALIZE_FIELD(ComponentButton*, _weapon_hammer);

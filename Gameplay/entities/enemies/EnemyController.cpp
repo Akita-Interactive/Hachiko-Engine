@@ -33,6 +33,7 @@ Hachiko::Scripting::EnemyController::EnemyController(GameObject* game_object)
 	, _attack_animation_duration(0.0f)
 	, _attack_animation_timer(0.0f)
 	, _audio_manager(nullptr)
+	, _do_not_spawn(false)
 	, _already_in_combat(false)
 	, _is_from_gautlet(false)
 	, _is_from_boss(false)
@@ -185,15 +186,22 @@ void Hachiko::Scripting::EnemyController::OnStart()
 
 	ResetEnemy();
 
-	if (!_has_spawned)
+	if (!_has_spawned && !_do_not_spawn)
 	{
 		_state = EnemyState::SPAWNING;
-		states_behaviour[static_cast<int>(_state)].Start();
 	}
-	else if (enemy_body_exists)
+	else 
 	{
-		_enemy_body->SetOutlineType(Outline::Type::SECONDARY);
+		_state = EnemyState::IDLE;
+		_has_spawned = true;
+
+		if (enemy_body_exists)
+		{
+			_enemy_body->SetOutlineType(Outline::Type::SECONDARY);
+			_enemy_body->ChangeDissolveProgress(1, true);
+		}
 	}
+	states_behaviour[static_cast<int>(_state)].Start();
 }
 
 void Hachiko::Scripting::EnemyController::OnUpdate()

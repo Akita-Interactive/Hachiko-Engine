@@ -33,7 +33,7 @@ component:
     "'_attack_indicator@GameObject*'": 214
     "'_aim_indicator@GameObject*'": 223
     "'_combat_manager@GameObject*'": 0
-    "'_goal@GameObject*'": 263
+    "'_goal@GameObject*'": 0
     "'_player_geometry@GameObject*'": 8
     "'_dash_duration@float'": 0.15
     "'_dash_distance@float'": 6
@@ -49,6 +49,7 @@ component:
     "'_heal_effect@GameObject*'": 219
     "'_damage_effect@GameObject*'": 222
     "'_parasite_pickup_effect@GameObject*'": 193
+    "'_parasite_selection@GameObject*'": 0
     "'_melee_trail_right@GameObject*'": 250
     "'_melee_trail_left@GameObject*'": 251
     "'_melee_trail_center@GameObject*'": 252
@@ -63,22 +64,22 @@ component:
     "'_hammer_trail_center@GameObject*'": 0
     "'_rotation_duration@float'": 0.08
     "'_death_screen@GameObject*'": 247
-    "'_hp_cell_1@GameObject*'": 236
-    "'_hp_cell_2@GameObject*'": 237
-    "'_hp_cell_3@GameObject*'": 238
-    "'_hp_cell_4@GameObject*'": 239
-    "'_hp_cell_extra@GameObject*'": 240
+    "'_hp_cell_1@GameObject*'": 235
+    "'_hp_cell_2@GameObject*'": 236
+    "'_hp_cell_3@GameObject*'": 237
+    "'_hp_cell_4@GameObject*'": 238
+    "'_hp_cell_extra@GameObject*'": 239
     "'_magic_parasyte@GameObject*'": 0
-    "'_ammo_cell_1@GameObject*'": 231
-    "'_ammo_cell_2@GameObject*'": 232
-    "'_ammo_cell_3@GameObject*'": 233
-    "'_ammo_cell_4@GameObject*'": 234
-    "'_sword_ui_addon@GameObject*'": 228
-    "'_maze_ui_addon@GameObject*'": 244
-    "'_claw_ui_addon@GameObject*'": 245
-    "'_weapon_charge_bar_go@GameObject*'": 241
-    "'_keyboard_tooltip_display@GameObject*'": 266
-    "'_controller_tooltip_display@GameObject*'": 265
+    "'_ammo_cell_1@GameObject*'": 230
+    "'_ammo_cell_2@GameObject*'": 231
+    "'_ammo_cell_3@GameObject*'": 232
+    "'_ammo_cell_4@GameObject*'": 233
+    "'_sword_ui_addon@GameObject*'": 245
+    "'_maze_ui_addon@GameObject*'": 243
+    "'_claw_ui_addon@GameObject*'": 244
+    "'_weapon_charge_bar_go@GameObject*'": 240
+    "'_keyboard_tooltip_display@GameObject*'": 0
+    "'_controller_tooltip_display@GameObject*'": 0
     "'tooltip_y_offset@float'": 2
     "'_camera@GameObject*'": 0
     "'_ui_damage@GameObject*'": 246
@@ -2901,43 +2902,6 @@ child:
             image_tiles_per_second: 1
             fill_window: false
         child:
-          - name: SWORD_ADDON
-            enabled: false
-            component:
-              - !<transform>
-                type: 1
-                enabled: true
-                position: [0, 0, 0]
-                rotation: [0, 0, 0]
-                scale: [1, 1, 1]
-              - !<transform_2d>
-                type: 10
-                enabled: true
-                position: [0, 0, 0]
-                size: [20, 20]
-                scale: [24, 14]
-                rotation: [0, 0, 0, 1]
-                pivot: [0, 1]
-                anchor: [0, 1]
-              - !<canvas_renderer>
-                type: 9
-                enabled: true
-                scale_ui: false
-                original_size_x: 0
-                original_size_y: 0
-              - !<image>
-                type: 11
-                enabled: true
-                image_id: 7250747684639293339
-                hover_image_id: 0
-                image_color: [1, 1, 1, 1]
-                hover_image_color: [1, 1, 1, 1]
-                image_is_tiled: false
-                image_randomize_initial_frame: false
-                image_x_tiles: 1
-                image_y_tiles: 1
-                image_tiles_per_second: 1
-                fill_window: false
           - name: BASE
             enabled: true
             component:
@@ -2951,8 +2915,8 @@ child:
                 type: 10
                 enabled: true
                 position: [0, 0, 0]
-                size: [20, 20]
-                scale: [24, 14]
+                size: [816, 502]
+                scale: [0.5, 0.5]
                 rotation: [0, 0, 0, 1]
                 pivot: [0, 1]
                 anchor: [0, 1]
@@ -2965,7 +2929,7 @@ child:
               - !<image>
                 type: 11
                 enabled: true
-                image_id: 14728578588781681137
+                image_id: 11600589801090049383
                 hover_image_id: 0
                 image_color: [1, 1, 1, 1]
                 hover_image_color: [1, 1, 1, 1]
@@ -2988,9 +2952,9 @@ child:
                   - !<transform_2d>
                     type: 10
                     enabled: true
-                    position: [-1.5, 2, 0]
+                    position: [300, -134.1, 0]
                     size: [0, 0]
-                    scale: [1.25, 2.5]
+                    scale: [1, 1]
                     rotation: [0, 0, 0, 1]
                     pivot: [0, 1]
                     anchor: [0, 1]
@@ -3026,9 +2990,9 @@ child:
                       - !<transform_2d>
                         type: 10
                         enabled: true
-                        position: [6, -2.5, 0]
-                        size: [2, 2]
-                        scale: [1, 1]
+                        position: [0, 0, 0]
+                        size: [201, 184]
+                        scale: [0.6, 0.6]
                         rotation: [0, 0, 0, 1]
                         pivot: [0, 1]
                         anchor: [0, 1]
@@ -3041,7 +3005,7 @@ child:
                       - !<image>
                         type: 11
                         enabled: true
-                        image_id: 336690227497419917
+                        image_id: 14717367299972737989
                         hover_image_id: 0
                         image_color: [1, 1, 1, 1]
                         hover_image_color: [1, 1, 1, 1]
@@ -3063,9 +3027,9 @@ child:
                       - !<transform_2d>
                         type: 10
                         enabled: true
-                        position: [8, -2.5, 0]
-                        size: [2, 2]
-                        scale: [1, 1]
+                        position: [115, 0, 0]
+                        size: [201, 184]
+                        scale: [0.6, 0.6]
                         rotation: [0, 0, 0, 1]
                         pivot: [0, 1]
                         anchor: [0, 1]
@@ -3078,7 +3042,7 @@ child:
                       - !<image>
                         type: 11
                         enabled: true
-                        image_id: 336690227497419917
+                        image_id: 14717367299972737989
                         hover_image_id: 0
                         image_color: [1, 1, 1, 1]
                         hover_image_color: [1, 1, 1, 1]
@@ -3100,9 +3064,9 @@ child:
                       - !<transform_2d>
                         type: 10
                         enabled: true
-                        position: [10, -2.5, 0]
-                        size: [2, 2]
-                        scale: [1, 1]
+                        position: [230, 0, 0]
+                        size: [201, 184]
+                        scale: [0.6, 0.6]
                         rotation: [0, 0, 0, 1]
                         pivot: [0, 1]
                         anchor: [0, 1]
@@ -3115,7 +3079,7 @@ child:
                       - !<image>
                         type: 11
                         enabled: true
-                        image_id: 336690227497419917
+                        image_id: 14717367299972737989
                         hover_image_id: 0
                         image_color: [1, 1, 1, 1]
                         hover_image_color: [1, 1, 1, 1]
@@ -3137,9 +3101,9 @@ child:
                       - !<transform_2d>
                         type: 10
                         enabled: true
-                        position: [12, -2.5, 0]
-                        size: [2, 2]
-                        scale: [1, 1]
+                        position: [345, 0, 0]
+                        size: [201, 184]
+                        scale: [0.6, 0.6]
                         rotation: [0, 0, 0, 1]
                         pivot: [0, 1]
                         anchor: [0, 1]
@@ -3152,7 +3116,7 @@ child:
                       - !<image>
                         type: 11
                         enabled: true
-                        image_id: 336690227497419917
+                        image_id: 14717367299972737989
                         hover_image_id: 0
                         image_color: [1, 1, 1, 1]
                         hover_image_color: [1, 1, 1, 1]
@@ -3174,9 +3138,9 @@ child:
                   - !<transform_2d>
                     type: 10
                     enabled: true
-                    position: [0, 0.5, 0]
+                    position: [351.5, -115.1, 0]
                     size: [0, 0]
-                    scale: [3, 3]
+                    scale: [1, 1]
                     rotation: [0, 0, 0, 1]
                     pivot: [0, 1]
                     anchor: [0, 1]
@@ -3212,9 +3176,9 @@ child:
                       - !<transform_2d>
                         type: 10
                         enabled: true
-                        position: [2.8, -1.2, 0]
-                        size: [1, 1]
-                        scale: [1, 1]
+                        position: [0, 0.5, 0]
+                        size: [217, 157]
+                        scale: [0.6, 0.6]
                         rotation: [0, 0, 0, 1]
                         pivot: [0.5, 0.5]
                         anchor: [0.5, 0.5]
@@ -3227,15 +3191,15 @@ child:
                       - !<image>
                         type: 11
                         enabled: true
-                        image_id: 15478304056567162071
+                        image_id: 2383187459931856420
                         hover_image_id: 0
                         image_color: [1, 1, 1, 1]
                         hover_image_color: [1, 1, 1, 1]
-                        image_is_tiled: true
+                        image_is_tiled: false
                         image_randomize_initial_frame: false
-                        image_x_tiles: 7
-                        image_y_tiles: 2
-                        image_tiles_per_second: 14
+                        image_x_tiles: 1
+                        image_y_tiles: 1
+                        image_tiles_per_second: 1
                         fill_window: false
                   - name: Health_capsule_2
                     enabled: true
@@ -3249,9 +3213,9 @@ child:
                       - !<transform_2d>
                         type: 10
                         enabled: true
-                        position: [3.8, -1.2, 0]
-                        size: [1, 1]
-                        scale: [1, 1]
+                        position: [111.2, 17.5, 0]
+                        size: [198, 90]
+                        scale: [0.7, 0.6]
                         rotation: [0, 0, 0, 1]
                         pivot: [0.5, 0.5]
                         anchor: [0.5, 0.5]
@@ -3264,15 +3228,15 @@ child:
                       - !<image>
                         type: 11
                         enabled: true
-                        image_id: 15478304056567162071
+                        image_id: 5041000003159368176
                         hover_image_id: 0
                         image_color: [1, 1, 1, 1]
                         hover_image_color: [1, 1, 1, 1]
-                        image_is_tiled: true
+                        image_is_tiled: false
                         image_randomize_initial_frame: false
-                        image_x_tiles: 7
-                        image_y_tiles: 2
-                        image_tiles_per_second: 14
+                        image_x_tiles: 1
+                        image_y_tiles: 1
+                        image_tiles_per_second: 1
                         fill_window: false
                   - name: Health_capsule_3
                     enabled: true
@@ -3286,9 +3250,9 @@ child:
                       - !<transform_2d>
                         type: 10
                         enabled: true
-                        position: [4.8, -1.2, 0]
-                        size: [1, 1]
-                        scale: [1, 1]
+                        position: [227.3, 17.5, 0]
+                        size: [198, 90]
+                        scale: [0.7, 0.6]
                         rotation: [0, 0, 0, 1]
                         pivot: [0.5, 0.5]
                         anchor: [0.5, 0.5]
@@ -3301,15 +3265,15 @@ child:
                       - !<image>
                         type: 11
                         enabled: true
-                        image_id: 15478304056567162071
+                        image_id: 5041000003159368176
                         hover_image_id: 0
                         image_color: [1, 1, 1, 1]
                         hover_image_color: [1, 1, 1, 1]
-                        image_is_tiled: true
+                        image_is_tiled: false
                         image_randomize_initial_frame: false
-                        image_x_tiles: 7
-                        image_y_tiles: 2
-                        image_tiles_per_second: 14
+                        image_x_tiles: 1
+                        image_y_tiles: 1
+                        image_tiles_per_second: 1
                         fill_window: false
                   - name: Health_capsule_4
                     enabled: true
@@ -3323,9 +3287,9 @@ child:
                       - !<transform_2d>
                         type: 10
                         enabled: true
-                        position: [5.8, -1.2, 0]
-                        size: [1, 1]
-                        scale: [1, 1]
+                        position: [343.5, 19.55, 0]
+                        size: [186, 95]
+                        scale: [0.7, 0.6]
                         rotation: [0, 0, 0, 1]
                         pivot: [0.5, 0.5]
                         anchor: [0.5, 0.5]
@@ -3338,15 +3302,15 @@ child:
                       - !<image>
                         type: 11
                         enabled: true
-                        image_id: 15478304056567162071
+                        image_id: 17438909525846003718
                         hover_image_id: 0
                         image_color: [1, 1, 1, 1]
                         hover_image_color: [1, 1, 1, 1]
-                        image_is_tiled: true
+                        image_is_tiled: false
                         image_randomize_initial_frame: false
-                        image_x_tiles: 7
-                        image_y_tiles: 2
-                        image_tiles_per_second: 14
+                        image_x_tiles: 1
+                        image_y_tiles: 1
+                        image_tiles_per_second: 1
                         fill_window: false
                   - name: Health_capsule_extra
                     enabled: true
@@ -3379,11 +3343,11 @@ child:
                         hover_image_id: 0
                         image_color: [1, 0.0211, 0.9628, 1]
                         hover_image_color: [1, 1, 1, 1]
-                        image_is_tiled: true
+                        image_is_tiled: false
                         image_randomize_initial_frame: false
-                        image_x_tiles: 7
-                        image_y_tiles: 2
-                        image_tiles_per_second: 14
+                        image_x_tiles: 1
+                        image_y_tiles: 1
+                        image_tiles_per_second: 1
                         fill_window: false
               - name: Stamina
                 enabled: false
@@ -3399,21 +3363,21 @@ child:
                     enabled: true
                     params:
                       min: 0
-                      max: 0
-                      filled: 1
-                      direction: 0
+                      max: 100
+                      filled: 100
+                      direction: 2
                   - !<transform_2d>
                     type: 10
                     enabled: true
-                    position: [0, 0, 0]
+                    position: [-183.1, -132.9, 0]
                     size: [1, 1]
-                    scale: [1, 1]
+                    scale: [0.49, 0.49]
                     rotation: [0, 0, 0, 1]
                     pivot: [0.5, 0.5]
                     anchor: [0.5, 0.5]
                 child:
                   - name: Bar Background
-                    enabled: true
+                    enabled: false
                     component:
                       - !<transform>
                         type: 1
@@ -3425,7 +3389,7 @@ child:
                         type: 10
                         enabled: true
                         position: [1.4, 0.25, 0]
-                        size: [12.5, 0.8]
+                        size: [231, 336]
                         scale: [1, 1]
                         rotation: [0, 0, 0, 1]
                         pivot: [0.5, 0.5]
@@ -3439,9 +3403,9 @@ child:
                       - !<image>
                         type: 11
                         enabled: true
-                        image_id: 16846014220398556825
+                        image_id: 0
                         hover_image_id: 0
-                        image_color: [1, 0, 0, 1]
+                        image_color: [1, 0, 0, 0]
                         hover_image_color: [1, 1, 1, 1]
                         image_is_tiled: false
                         image_randomize_initial_frame: false
@@ -3450,7 +3414,7 @@ child:
                         image_tiles_per_second: 1
                         fill_window: false
                   - name: Bar Fill
-                    enabled: true
+                    enabled: false
                     component:
                       - !<transform>
                         type: 1
@@ -3462,7 +3426,7 @@ child:
                         type: 10
                         enabled: true
                         position: [1.4, 0.25, 0]
-                        size: [12.5, 0.8]
+                        size: [231, 336]
                         scale: [1, 1]
                         rotation: [0, 0, 0, 1]
                         pivot: [0.5, 0.5]
@@ -3476,7 +3440,7 @@ child:
                       - !<image>
                         type: 11
                         enabled: true
-                        image_id: 16846014220398556825
+                        image_id: 14560330030257644970
                         hover_image_id: 0
                         image_color: [1, 1, 1, 1]
                         hover_image_color: [1, 1, 1, 1]
@@ -3487,7 +3451,7 @@ child:
                         image_tiles_per_second: 1
                         fill_window: false
           - name: MAZE_ADDON
-            enabled: false
+            enabled: true
             component:
               - !<transform>
                 type: 1
@@ -3498,9 +3462,9 @@ child:
               - !<transform_2d>
                 type: 10
                 enabled: true
-                position: [10.8, -4.5, 0]
-                size: [20, 20]
-                scale: [24, 14]
+                position: [18.85, -28.25, 0]
+                size: [400, 400]
+                scale: [0.27, 0.27]
                 rotation: [0, 0, 0, 1]
                 pivot: [0, 1]
                 anchor: [0, 1]
@@ -3513,7 +3477,7 @@ child:
               - !<image>
                 type: 11
                 enabled: true
-                image_id: 14023195895871668462
+                image_id: 9253332694870858684
                 hover_image_id: 0
                 image_color: [1, 1, 1, 1]
                 hover_image_color: [1, 1, 1, 1]
@@ -3535,9 +3499,9 @@ child:
               - !<transform_2d>
                 type: 10
                 enabled: true
-                position: [0, 0, 0]
-                size: [20, 20]
-                scale: [24, 14]
+                position: [19.5, -30.85, 0]
+                size: [400, 400]
+                scale: [0.27, 0.27]
                 rotation: [0, 0, 0, 1]
                 pivot: [0, 1]
                 anchor: [0, 1]
@@ -3550,7 +3514,44 @@ child:
               - !<image>
                 type: 11
                 enabled: true
-                image_id: 17147944466834967470
+                image_id: 12109030042107530871
+                hover_image_id: 0
+                image_color: [1, 1, 1, 1]
+                hover_image_color: [1, 1, 1, 1]
+                image_is_tiled: false
+                image_randomize_initial_frame: false
+                image_x_tiles: 1
+                image_y_tiles: 1
+                image_tiles_per_second: 1
+                fill_window: false
+          - name: SWORD_ADDON
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [0, 0, 0]
+                scale: [1, 1, 1]
+              - !<transform_2d>
+                type: 10
+                enabled: true
+                position: [14.6, -30.85, 0]
+                size: [400, 400]
+                scale: [0.27, 0.27]
+                rotation: [0, 0, 0, 1]
+                pivot: [0, 1]
+                anchor: [0, 1]
+              - !<canvas_renderer>
+                type: 9
+                enabled: true
+                scale_ui: false
+                original_size_x: 0
+                original_size_y: 0
+              - !<image>
+                type: 11
+                enabled: true
+                image_id: 7052929933227613988
                 hover_image_id: 0
                 image_color: [1, 1, 1, 1]
                 hover_image_color: [1, 1, 1, 1]
@@ -3676,7 +3677,7 @@ child:
                 total_tiles: 9
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[1, 0, 0, 0, 1]]
+                color_gradient: [[1, 0.0058, 0.0058, 0, 1]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -3791,7 +3792,7 @@ child:
                 total_tiles: 9
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[0.3931, 1, 0.3931, 0, 1]]
+                color_gradient: [[0.7861, 0, 1, 0, 1]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -3826,7 +3827,7 @@ child:
                 total_tiles: 9
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[0.3922, 1, 0.3922, 0, 1]]
+                color_gradient: [[0.7843, 0, 1, 0, 1]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -3871,7 +3872,7 @@ child:
                 total_tiles: 9
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[0, 1, 1, 0, 1]]
+                color_gradient: [[0, 0.4277, 1, 0, 1]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -3906,7 +3907,7 @@ child:
                 total_tiles: 9
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[0, 1, 1, 0, 1]]
+                color_gradient: [[0, 0.4275, 1, 0, 1]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -3951,7 +3952,7 @@ child:
                 total_tiles: 9
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[1, 1, 0, 0, 1]]
+                color_gradient: [[0.9961, 0, 0.7255, 0, 1]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -3971,7 +3972,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-0.11, 2.3, 4.502]
-                rotation: [-0, -90, 0]
+                rotation: [180, -89.98, 180]
                 scale: [1.1, 0.9999, 1]
               - !<billboard>
                 type: 21
@@ -3986,7 +3987,7 @@ child:
                 total_tiles: 9
                 animation_loop: false
                 color_cycles: 1
-                color_gradient: [[0.9942, 0.9942, 0, 0, 1]]
+                color_gradient: [[0.9942, 0, 0.7241, 0, 1]]
                 animation_section: true
                 color_section: true
                 size_section: false
@@ -4015,95 +4016,6 @@ child:
         intensity: 3
         radius: 3
         draw_sphere: false
-  - name: Goal
-    enabled: false
-    component:
-      - !<transform>
-        type: 1
-        enabled: true
-        position: [-86.22, -15.04, -2.59]
-        rotation: [0, 6.75, 0]
-        scale: [1.079, 1.1, 1.079]
-  - name: Tooltip
-    enabled: true
-    component:
-      - !<transform>
-        type: 1
-        enabled: true
-        position: [0, 6, 0]
-        rotation: [0, 79.75, 0]
-        scale: [1, 1, 1]
-    child:
-      - name: ControllerTooltip
-        enabled: true
-        component:
-          - !<transform>
-            type: 1
-            enabled: true
-            position: [0, 0, 0]
-            rotation: [0, 0, 0]
-            scale: [1.5, 1.5, 1]
-          - !<billboard>
-            type: 21
-            enabled: true
-            play_on_awake: false
-            texture_id: 16720978303576970519
-            tiles: [1, 1]
-            flip: [false, false]
-            billboard_lifetime: 5
-            properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-            animation_speed: 0
-            total_tiles: 1
-            animation_loop: true
-            color_cycles: 1
-            color_gradient: [[0, 0, 0, 0, 0], [1, 1, 1, 0, 1]]
-            animation_section: false
-            color_section: false
-            size_section: false
-            size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            rotation_section: false
-            rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            start_size: [true, true, 0, [1, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            blend_factor: 0
-            projection: true
-            randomize_tiles: false
-      - name: KeyboardTooltip
-        enabled: true
-        component:
-          - !<transform>
-            type: 1
-            enabled: true
-            position: [0.0006, -0.0001, 0.0002]
-            rotation: [0, 0, 0]
-            scale: [1.5, 1.5, 1]
-          - !<billboard>
-            type: 21
-            enabled: true
-            play_on_awake: false
-            texture_id: 14513640246521420128
-            tiles: [1, 1]
-            flip: [false, false]
-            billboard_lifetime: 5
-            properties: [1, 0, 1, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
-            animation_speed: 0
-            total_tiles: 1
-            animation_loop: true
-            color_cycles: 1
-            color_gradient: [[0, 0, 0, 0, 0], [1, 1, 1, 0, 1]]
-            animation_section: false
-            color_section: false
-            size_section: false
-            size_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            rotation_section: false
-            rotation_over_time: [true, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            start_delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            start_size: [true, true, 0, [1, 1], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            start_rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            blend_factor: 0
-            projection: true
-            randomize_tiles: false
   - name: ChargingParticles
     enabled: true
     component:
@@ -4122,27 +4034,28 @@ child:
           shape: true
           lights: false
           renderer: true
-          texture: false
+          texture: true
         parameters:
-          duration: 0.3
+          duration: 1
           loop: true
-          life: [true, true, 0, [0.3, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          speed: [true, true, 0, [-30, 5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-          size: [true, true, 0, [0.1, 0.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          life: [true, true, 0, [1, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          speed: [true, true, 0, [-5, 5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 0, [1.3, 0.5], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
         emission:
-          rate: [true, true, 0, [71.4, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rate: [true, true, 0, [55.5, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           rate_burst: [true, true, 0, [22.4, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           burst: true
         emitter_shape:
           type: 2
-          properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [10, 10, 10], 0.5]
+          properties: [360, 0, [0, 0, 0], 0.5, 0, [0, 0, 0], [3, 3, 3], 0.5]
         texture:
-          tiles: [1, 1]
+          texture_id: 3291545039621372658
+          tiles: [2, 1]
           flip: [false, false]
-          total_tiles: 1
+          total_tiles: 2
         modifiers:
           velocity:
             active: false
@@ -4161,18 +4074,18 @@ child:
             y_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             z_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
           animation:
-            active: false
-            animation_speed: 0
+            active: true
+            animation_speed: 0.1
             blend_factor: 0
-            fit_to_lifetime: false
+            fit_to_lifetime: true
           noise:
             active: true
             separate_axes: false
             strength:
-              x: [true, true, 0, [11.4, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              x: [true, true, 0, [4.5, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               y: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
               z: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
-            position: [true, true, 0, [18.3, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            position: [true, true, 0, [5, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
             scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
       - !<billboard>

@@ -7,6 +7,7 @@
 #include "Gameplay.h"
 #include "constants/Scenes.h"
 #include "AudioManager.h"
+#include "core/Scene.h"
 #include "entities/player/PlayerSoundManager.h"
 
 bool Hachiko::Scripting::LevelManager::increased_health = false;
@@ -40,11 +41,6 @@ void Hachiko::Scripting::LevelManager::OnAwake()
 
 	_gauntlet_ui_go->SetActive(false);
 
-	if (_victory_screen != nullptr)
-	{
-		_victory_screen->SetActive(false);
-	}
-
 	if (_level == 1)
 	{
 		// Reset player extra health when loading level 1
@@ -69,11 +65,6 @@ void Hachiko::Scripting::LevelManager::OnUpdate()
 	{
 		_gauntlet_ui_go->SetActive(false);
 		_last_gauntlet = nullptr;
-	}
-
-	if (_victory && (Input::IsKeyPressed(Input::KeyCode::KEY_SPACE) || Input::IsGameControllerButtonDown(Input::GameControllerButton::CONTROLLER_BUTTON_A)))
-	{
-		SceneManagement::SwitchScene(Scenes::MAIN_MENU);
 	}
 }
 
@@ -131,9 +122,7 @@ void Hachiko::Scripting::LevelManager::GoalReached()
 
 void Hachiko::Scripting::LevelManager::BossKilled()
 {
-	if (_victory_screen != nullptr)
-	{
-		_victory_screen->SetActive(true);
-	}
 	_victory = true;
+
+	SceneManagement::SwitchScene(Scenes::CUTSCENE_OUTRO);
 }

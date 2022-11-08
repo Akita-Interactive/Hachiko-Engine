@@ -219,6 +219,7 @@ namespace Hachiko
             SERIALIZE_FIELD(GameObject*, _explosion_particles);
 
             
+            SERIALIZE_FIELD(bool, _do_not_spawn);
             SERIALIZE_FIELD(bool, _already_in_combat);
 
             SERIALIZE_FIELD(bool, _is_from_gautlet);

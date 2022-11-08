@@ -7,6 +7,7 @@
 
 Hachiko::Scripting::CutsceneManager::CutsceneManager(GameObject* new_game_object)
     : Script(new_game_object, "CutsceneManager")
+	, _type(CutsceneType::INTRO)
 {}
 
 void Hachiko::Scripting::CutsceneManager::OnAwake()
@@ -28,7 +29,18 @@ void Hachiko::Scripting::CutsceneManager::OnStart()
 
     if (_audio_source != nullptr)
     {
-        _audio_source->PostEvent(Sounds::INTRO_CINEMATIC);
+	    switch (_type)
+	    {
+
+		case CutsceneType::INTRO:
+			_audio_source->PostEvent(Sounds::INTRO_CINEMATIC);
+            break;
+		case CutsceneType::OUTRO:
+            _audio_source->PostEvent(Sounds::OUTRO_CINEMATIC);
+            break;
+		default:
+            break;
+	    }
     }
 }
 
@@ -38,6 +50,9 @@ void Hachiko::Scripting::CutsceneManager::OnUpdate()
     {
         switch (_next_level)
         {
+        case 0:
+            SceneManagement::SwitchScene(Scenes::MAIN_MENU);
+            break;
         case 1:
             SceneManagement::SwitchScene(Scenes::GAME);
             break;
@@ -48,7 +63,5 @@ void Hachiko::Scripting::CutsceneManager::OnUpdate()
             SceneManagement::SwitchScene(Scenes::BOSS_LEVEL);
             break;
         }
-
-        
     }
 }

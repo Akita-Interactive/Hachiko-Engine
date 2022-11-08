@@ -32,6 +32,7 @@ namespace AK
         static const AkUniqueID PLAY_EXPLOSIVECRYSTAL = 1185403619U;
         static const AkUniqueID PLAY_EXPLOSIVECRYSTALCHARGE = 4241858839U;
         static const AkUniqueID PLAY_EXPLOSIVECRYSTALSPAWN = 749885692U;
+        static const AkUniqueID PLAY_FALL = 2712047697U;
         static const AkUniqueID PLAY_FOOTSTEP = 1602358412U;
         static const AkUniqueID PLAY_GAUNLETDOOROPENING = 2988819998U;
         static const AkUniqueID PLAY_GAUNLETNEXTROUND = 1126614951U;
@@ -39,8 +40,11 @@ namespace AK
         static const AkUniqueID PLAY_INTROCINEMATIC = 2953314807U;
         static const AkUniqueID PLAY_LASER = 2270376495U;
         static const AkUniqueID PLAY_LASER_HIT = 4092857357U;
+        static const AkUniqueID PLAY_LASERSGROUP = 4122877295U;
+        static const AkUniqueID PLAY_LASERSTOP = 2483774879U;
         static const AkUniqueID PLAY_LOADINGAMMO = 998505444U;
         static const AkUniqueID PLAY_MELEEATTACK = 2988676654U;
+        static const AkUniqueID PLAY_OUTROCINEMATIC = 1322598858U;
         static const AkUniqueID PLAY_PARASITEPICKUP = 3772493585U;
         static const AkUniqueID PLAY_PEBBLE = 1157125118U;
         static const AkUniqueID PLAY_RANGEDATTACK = 3766948527U;
@@ -176,6 +180,19 @@ namespace AK
             } // namespace SWITCH
         } // namespace LEVEL_SWITCH
 
+        namespace PLAYERWEAPONS
+        {
+            static const AkUniqueID GROUP = 986618877U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID BASIC = 3340296461U;
+                static const AkUniqueID CLAW = 3737052860U;
+                static const AkUniqueID HAMMER = 703486095U;
+                static const AkUniqueID SWORD = 2454616260U;
+            } // namespace SWITCH
+        } // namespace PLAYERWEAPONS
+
     } // namespace SWITCHES
 
     namespace BANKS
@@ -184,6 +201,7 @@ namespace AK
         static const AkUniqueID ATTACKS = 3768541028U;
         static const AkUniqueID BACKGROUNDMUSIC = 626769978U;
         static const AkUniqueID BOSS = 1560169506U;
+        static const AkUniqueID CINEMATICS = 877642339U;
         static const AkUniqueID ENVIROMENT = 3909959462U;
         static const AkUniqueID FOOTSTEPS = 2385628198U;
         static const AkUniqueID UI = 1551306167U;

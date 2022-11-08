@@ -107,6 +107,7 @@ void Hachiko::ComponentBillboard::DrawGui()
 
             DragFloat("Duration", duration, &duration_cfg);
             Widgets::Checkbox("Loop", &loop);
+            Widgets::Checkbox("Loop All", &loop_all);
             Widgets::Checkbox("Play On Awake", &play_on_awake);
             Widgets::MultiTypeSelector("Start delay", start_delay);
 
@@ -365,13 +366,16 @@ void Hachiko::ComponentBillboard::Update()
 
     delayed = false;
     
-    if (!loop && elapsed_time >= duration)
+    if (!loop_all)
     {
-        state = ParticleSystem::Emitter::State::STOPPED;
-    }
-    else if (loop && elapsed_time >= duration)
-    {
-        Reset();
+        if (!loop && elapsed_time >= duration)
+        {
+            state = ParticleSystem::Emitter::State::STOPPED;
+        }
+        else if (loop && elapsed_time >= duration)
+        {
+            Reset();
+        }
     }
     
     UpdateAnimationData(delta_time);
@@ -431,6 +435,7 @@ void Hachiko::ComponentBillboard::Save(YAML::Node& node) const
     node[ANIMATION_SPEED] = animation_speed;
     node[TOTAL_TILES] = total_tiles;
     node[ANIMATION_LOOP] = loop;
+    node[ANIMATION_LOOP_ALL] = loop_all;
     node[COLOR_CYCLES] = color_cycles;
     node[COLOR_GRADIENT] = *gradient;
     node[ANIMATION_SECTION] = animation_section;
@@ -475,6 +480,8 @@ void Hachiko::ComponentBillboard::Load(const YAML::Node& node)
     total_tiles = node[TOTAL_TILES].IsDefined() ? node[TOTAL_TILES].as<float>() : 0;
 
     loop = node[ANIMATION_LOOP].IsDefined() ? node[ANIMATION_LOOP].as<bool>() : false;
+
+    loop_all = node[ANIMATION_LOOP_ALL].IsDefined() ? node[ANIMATION_LOOP_ALL].as<bool>() : loop_all;
     
     projection = node[BILLBOARD_PROJECTION].IsDefined() ? node[BILLBOARD_PROJECTION].as<bool>() : projection;
 

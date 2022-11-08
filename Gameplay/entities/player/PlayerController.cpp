@@ -1141,6 +1141,8 @@ void Hachiko::Scripting::PlayerController::MovementController()
 		// Started falling
 		if (!IsFalling())
 		{
+			CancelAttack();
+
 			_start_fall_pos = _player_position;
 			_state = PlayerState::FALLING;
 		}
@@ -1795,9 +1797,24 @@ void Hachiko::Scripting::PlayerController::UpdateHealthBar()
 		return;
 	}
 
-	if (hp_cells.size() < 5 && _hp_cell_extra)
+	if (hp_cells.size() < 5)
 	{
-		_hp_cell_extra->GetComponent(Component::Type::IMAGE)->Disable();
+		if (_hp_cell_extra)
+		{
+			_hp_cell_extra->GetComponent(Component::Type::IMAGE)->Disable();
+		}
+
+		if (_hp_cell_extra_overlay)
+		{
+			_hp_cell_extra_overlay->GetComponent(Component::Type::IMAGE)->Disable();
+		}
+	}
+	else
+	{
+		if (_hp_cell_extra_overlay)
+		{
+			_hp_cell_extra_overlay->GetComponent(Component::Type::IMAGE)->Enable();
+		}
 	}
 
 	// Disable cells 

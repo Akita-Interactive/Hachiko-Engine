@@ -12,6 +12,7 @@ namespace Hachiko::Sounds
 	constexpr const wchar_t* SHOOT_NO_AMMO		= L"Play_ShootNoAmmo";
 	constexpr const wchar_t* RECEIVE_DAMAGE		= L"Play_ReceiveDamage";
 	constexpr const wchar_t* PARASITE_PICKUP	= L"Play_ParasitePickUp";
+	constexpr const wchar_t* PLAYER_FALLING		= L"Play_Fall";
 
 	// Enemy
 	constexpr const wchar_t* BEETLE_ATTACK	= L"Play_BeetleAttack";
@@ -52,11 +53,13 @@ namespace Hachiko::Sounds
 	constexpr const wchar_t* STOP_PEBBLE				= L"Stop_Pebble";
 	constexpr const wchar_t* PLAY_LASER					= L"Play_Laser";
 	constexpr const wchar_t* PLAY_LASER_HIT				= L"Play_Laser_Hit";
+	constexpr const wchar_t* PLAY_LASER_STOP			= L"Play_LaserStop";
 	constexpr const wchar_t* PLAY_SPLASH				= L"Play_SplashLittleWorm";
 	constexpr const wchar_t* PLAY_DOOR_OPENING			= L"Play_DoorOpening";
 	constexpr const wchar_t* PLAY_CHECKPOINT			= L"Play_Checkpoint";
 	constexpr const wchar_t* STALAGMITE_CEILING_CRACK	= L"Play_StalagmiteCeilingCrack";
 	constexpr const wchar_t* STALAGMITE_GROUND_IMPACT	= L"Play_StalagmiteGroundImpact";
+	constexpr const wchar_t* PLAY_LASERS_GROUP			= L"Play_LasersGroup";
 
 	// Background Music
 	constexpr const wchar_t* PLAY_BACKGROUND_MUSIC	= L"Play_InteractiveMusic";
@@ -68,16 +71,26 @@ namespace Hachiko::Sounds
 	constexpr const wchar_t* SET_STATE_DEFEATED		= L"Set_State_Defeated";
 	constexpr const wchar_t* SET_STATE_VICTORY		= L"Set_State_Victory";
 
+	//Cinematics
+	constexpr const wchar_t* INTRO_CINEMATIC = L"Play_IntroCinematic";
+	constexpr const wchar_t* OUTRO_CINEMATIC = L"Play_OutroCinematic";
+
 	//UI
 	constexpr const wchar_t* CLICK				= L"Play_UIClick";
 	constexpr const wchar_t* HOVER				= L"Play_UIHover";
-	constexpr const wchar_t* INTRO_CINEMATIC	= L"Play_IntroCinematic";
 
 	// Wwise Switch
 	// Footsteps
 	constexpr const wchar_t* SWITCH_GROUP_FOOTSTEPS				= L"Footsteps";
 	constexpr const wchar_t* SWITCH_STATE_FOOTSTEPS_GRAVEL		= L"Gravel";
 	constexpr const wchar_t* SWITCH_STATE_FOOTSTEPS_STANDARD	= L"Standard";
+
+	// Weapons
+	constexpr const wchar_t* SWITCH_WEAPONS			= L"PlayerWeapons";
+	constexpr const wchar_t* SWITCH_WEAPONS_BASIC	= L"Basic";
+	constexpr const wchar_t* SWITCH_WEAPONS_HAMMER	= L"Hammer";
+	constexpr const wchar_t* SWITCH_WEAPONS_SWORD	= L"Sword";
+	constexpr const wchar_t* SWITCH_WEAPONS_CLAW	= L"Claw";
 
 	// Levels
 	constexpr const wchar_t* SWITCH_LEVELS		= L"Level_Switch";
