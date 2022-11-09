@@ -179,6 +179,8 @@ void Hachiko::Scripting::BossController::OnUpdate()
 	StateController();
 	state_value = static_cast<int>(state);
 	combat_state_value = static_cast<int>(combat_state);
+
+    UpdateHpBar();
 }
 
 bool Hachiko::Scripting::BossController::IsAlive() const
@@ -226,14 +228,31 @@ void Hachiko::Scripting::BossController::RegisterHit(int dmg, bool is_from_playe
 
 	damage_effect_progress = damage_effect_duration;
 	combat_stats->_current_hp -= dmg;
-	UpdateHpBar();
 }
 
-void Hachiko::Scripting::BossController::UpdateHpBar() const
+void Hachiko::Scripting::BossController::UpdateHpBar()
 {
-	if (hp_bar)
+    if (!hp_bar)
+    {
+        return;
+    }
+        
+    if (visual_heath_bar > combat_stats->_current_hp)
 	{
-		hp_bar->SetFilledValue(combat_stats->_current_hp);
+        const float health_bar_speed = 10.0f;
+        visual_heath_bar -= Time::DeltaTime() * health_bar_speed;
+
+        if (visual_heath_bar <= combat_stats->_current_hp) 
+        {
+            visual_heath_bar = combat_stats->_current_hp;
+            hp_bar_fill->SetColor(float4(1.0f, 1.0f, 1.0f, 1.0f));
+        }
+        else 
+        {
+            hp_bar_fill->SetColor(float4(1.0f, 0.0f, 0.0f, 1.0f));
+        }
+
+		hp_bar->SetFilledValue(visual_heath_bar);
 	}
 }
 
@@ -242,12 +261,14 @@ void Hachiko::Scripting::BossController::SetUpHpBar()
 	if (hp_bar_go)
 	{
 		hp_bar = hp_bar_go->GetComponent<ComponentProgressBar>();
+        hp_bar_fill = hp_bar->GetFill()->GetComponent<ComponentImage>();
 	}
 	if (hp_bar)
 	{
+        visual_heath_bar = combat_stats->_max_hp;
 		hp_bar->SetMax(combat_stats->_max_hp);
 		hp_bar->SetMin(0);
-		UpdateHpBar();
+        hp_bar->SetFilledValue(combat_stats->_current_hp);
 	}
 }
 
