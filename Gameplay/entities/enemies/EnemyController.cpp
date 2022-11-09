@@ -20,6 +20,7 @@
 
 Hachiko::Scripting::EnemyController::EnemyController(GameObject* game_object)
 	: Script(game_object, "EnemyController")
+	, _drop_rate(50)
 	, _aggro_range(4)
 	, _attack_range(3.0f)
 	, _attack_delay(0.3f)
@@ -1160,6 +1161,14 @@ void Hachiko::Scripting::EnemyController::StartParasiteState()
 	std::cout << "PARASITE" << std::endl;
 	HE_LOG("PARASITE");
 #endif
+
+	bool drop_parasyte =  (rand() % 100) < _drop_rate;
+	if(!drop_parasyte)
+	{
+		// This makes parasyte state end instantly
+		_parasite_dissolving_time_progress = _parasite_dissolve_time;
+		return;
+	}
 
 	if (_parasite)
 	{
