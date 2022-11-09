@@ -125,16 +125,16 @@ You can edit the game objects distribution via the **scene hierarchy** by draggi
 
 ![scene hierarchy](Screenshots/hierarchy.PNG)
 
-To tweak components or create them you can select the desired game object and go to the **inspector**, Each compoentn has its own set of options.
+To tweak components or create them you can select the desired game object and go to the **inspector**, each component has its own set of options.
 
 ![inspector](Screenshots/inspector.PNG)
 
-Alternatively you can modify the transform using the **guizmo**, to change its current mode use the buttons at top left of the scene or the W, E, R keys.
+Alternatively, you can modify the transform using the **guizmo**, to change its current mode use the buttons at top left of the scene or the W, E, R keys.
 
 ![guimzo](Screenshots/guizmo.PNG)
 
 # Project Érimos 🛸🏜️💎
-Game built while developing Hachiko Engine.
+Game built using the Hachiko Engine.
 
 ## Narrative 📜
 Stranded on a mysterious planet during a reconnaissance mission gone astray, the Captain of Space Fleet AKT must find a way to fight through an infected horde of creatures to defeat their leader and return home. Ancient ruins, hellish canyons, and vicious parasites lie waiting for our lone survivor. 
