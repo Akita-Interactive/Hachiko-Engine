@@ -253,7 +253,7 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 			_beam_particles->DrawParticles(false);
 			_beam_drawing = false;
 
-			if (_beam_crystals != nullptr && new_length > 10.0f)
+			if (_beam_crystals != nullptr && new_length > 10.0f && _beam_crystals_particles != nullptr)
 			{
 				_beam_crystals_particles->DrawParticles(true);
 			}
@@ -265,7 +265,7 @@ void Hachiko::Scripting::LaserController::AdjustLength()
 
 		if (_beam != nullptr && _beam_reduced != nullptr && new_length == _max_length)
 		{
-			if (_beam_crystals != nullptr && _length > 10.0f)
+			if (_beam_crystals != nullptr && _length > 10.0f && _beam_crystals_particles != nullptr)
 			{
 				_beam_crystals_particles->DrawParticles(false);
 			}
