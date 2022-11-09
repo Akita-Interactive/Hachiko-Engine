@@ -6,6 +6,7 @@ Hachiko::Scripting::BloomAnimator::BloomAnimator(GameObject* game_object)
 	, _bloom_target(nullptr)
 	, _is_automatic(true)
 	, _is_randomized(false)
+	, _is_recursive(true)
 	, _randomized_duration_min(0.2f)
 	, _randomized_duration_max(3.0f)
 	, _automatic_lerp_duration(1.0f)
@@ -21,20 +22,35 @@ Hachiko::Scripting::BloomAnimator::BloomAnimator(GameObject* game_object)
 
 void Hachiko::Scripting::BloomAnimator::OnAwake()
 {
-	if (_bloom_target)
+	if (!_bloom_target && game_object->GetComponent(Type::MESH_RENDERER))
+	{
+		_bloom_target = game_object;
+	}
+
+	if (!_bloom_target)
 	{
 		return;
 	}
 
-	if (game_object->GetComponent(Component::Type::MESH_RENDERER))
+	_affected_game_objects.push_back(_bloom_target);
+
+	if (!_is_recursive)
 	{
-		_bloom_target = game_object;
+		return;
+	}
+
+	const std::vector<Component*> affected_meshes = 
+		_bloom_target->GetComponentsInDescendants(Type::MESH_RENDERER);
+
+	for (Component* affected_mesh : affected_meshes)
+	{
+		_affected_game_objects.push_back(affected_mesh->GetGameObject());
 	}
 }
 
 void Hachiko::Scripting::BloomAnimator::OnUpdate()
 {
-	if (!_should_animate || !_bloom_target)
+	if (!_should_animate || _affected_game_objects.empty())
 	{
 		return;
 	}
@@ -49,8 +65,11 @@ void Hachiko::Scripting::BloomAnimator::OnUpdate()
 		_initial_emissive_color.xyz(), 
 		_current_intensity);
 
-	_bloom_target->ChangeEmissiveColor(emissive_color, true, true);
-	
+	for (GameObject* bloom_target : _affected_game_objects)
+	{
+		bloom_target->ChangeEmissiveColor(emissive_color, false, true);
+	}
+
 	if (_lerp_progress < 1.0f)
 	{
 		return;

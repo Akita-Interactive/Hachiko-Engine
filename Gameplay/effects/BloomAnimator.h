@@ -31,6 +31,7 @@ namespace Hachiko
             SERIALIZE_FIELD(GameObject*, _bloom_target);
             SERIALIZE_FIELD(bool, _is_automatic);
             SERIALIZE_FIELD(bool, _is_randomized);
+            SERIALIZE_FIELD(bool, _is_recursive);
             SERIALIZE_FIELD(float, _randomized_duration_min);
             SERIALIZE_FIELD(float, _randomized_duration_max);
             SERIALIZE_FIELD(float, _automatic_lerp_duration);
@@ -43,6 +44,8 @@ namespace Hachiko
             float _lerp_progress;
             bool _should_return_to_automatic_mode;
             bool _should_animate;
+
+            std::vector<GameObject*> _affected_game_objects;
         };
     }
 }
