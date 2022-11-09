@@ -20,7 +20,6 @@ void Hachiko::Scripting::PillarCheckpoint::OnAwake()
 	_animation = game_object->GetComponent<ComponentAnimation>();
 	_restart_position = _respawn_go->GetComponent<ComponentTransform>()->GetGlobalPosition();
 	_respawn_go->SetActive(false);
-	_animation = game_object->GetComponent<ComponentAnimation>();
 	_audio_source = game_object->GetComponent<ComponentAudioSource>();
 	_player = Scenes::GetPlayer();
 	_level_manager = Scenes::GetLevelManager()->GetComponent<LevelManager>();
@@ -35,6 +34,8 @@ void Hachiko::Scripting::PillarCheckpoint::OnAwake()
 	{
 		_light_go->SetActive(false);
 	}
+
+	_animation->SetTimeScaleMode(TimeScaleMode::SCALED);
 }
 
 void Hachiko::Scripting::PillarCheckpoint::OnUpdate()

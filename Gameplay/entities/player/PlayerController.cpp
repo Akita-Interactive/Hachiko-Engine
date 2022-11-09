@@ -103,6 +103,7 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 
 	_dash_charges = _max_dash_charges;
 	_rotation_duration = .2f;
+	game_object->SetTimeScaleMode(TimeScaleMode::SCALED);
 
 	if (_attack_indicator)
 	{
@@ -140,46 +141,57 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 	if (_damage_effect != nullptr)
 	{
 		_damage_effect_billboard = _damage_effect->GetComponent<ComponentBillboard>();
+		_damage_effect->GetComponent<ComponentBillboard>()->SetTimeScaleMode(TimeScaleMode::SCALED);
 	}
 	if (_melee_trail_right != nullptr)
 	{
 		_weapon_trails_billboard_right[static_cast<int>(WeaponUsed::MELEE)] = _melee_trail_right->GetComponent<ComponentBillboard>();
+		_melee_trail_right->GetComponent<ComponentBillboard>()->SetTimeScaleMode(TimeScaleMode::SCALED);
 	}
 	if (_melee_trail_left != nullptr)
 	{
 		_weapon_trails_billboard_left[static_cast<int>(WeaponUsed::MELEE)] = _melee_trail_left->GetComponent<ComponentBillboard>();
+		_melee_trail_left->GetComponent<ComponentBillboard>()->SetTimeScaleMode(TimeScaleMode::SCALED);
 	}
 	if (_melee_trail_center != nullptr)
 	{
 		_weapon_trails_billboard_center[static_cast<int>(WeaponUsed::MELEE)] = _melee_trail_center->GetComponent<ComponentBillboard>();
+		_melee_trail_center->GetComponent<ComponentBillboard>()->SetTimeScaleMode(TimeScaleMode::SCALED);
 	}
 	if (_claws_trail_right != nullptr)
 	{
 		_weapon_trails_billboard_right[static_cast<int>(WeaponUsed::CLAW)] = _claws_trail_right->GetComponent<ComponentBillboard>();
+		_claws_trail_right->GetComponent<ComponentBillboard>()->SetTimeScaleMode(TimeScaleMode::SCALED);
 	}
 	if (_claws_trail_left != nullptr)
 	{
 		_weapon_trails_billboard_left[static_cast<int>(WeaponUsed::CLAW)] = _claws_trail_left->GetComponent<ComponentBillboard>();
+		_claws_trail_left->GetComponent<ComponentBillboard>()->SetTimeScaleMode(TimeScaleMode::SCALED);
 	}
 	if (_sword_trail_right != nullptr)
 	{
 		_weapon_trails_billboard_right[static_cast<int>(WeaponUsed::SWORD)] = _sword_trail_right->GetComponent<ComponentBillboard>();
+		_sword_trail_right->GetComponent<ComponentBillboard>()->SetTimeScaleMode(TimeScaleMode::SCALED);
 	}
 	if (_sword_trail_left != nullptr)
 	{
 		_weapon_trails_billboard_left[static_cast<int>(WeaponUsed::SWORD)] = _sword_trail_left->GetComponent<ComponentBillboard>();
+		_sword_trail_left->GetComponent<ComponentBillboard>()->SetTimeScaleMode(TimeScaleMode::SCALED);
 	}
 	if (_hammer_trail_right != nullptr)
 	{
 		_weapon_trails_billboard_right[static_cast<int>(WeaponUsed::HAMMER)] = _hammer_trail_right->GetComponent<ComponentBillboard>();
+		_hammer_trail_right->GetComponent<ComponentBillboard>()->SetTimeScaleMode(TimeScaleMode::SCALED);
 	}
 	if (_hammer_trail_left != nullptr)
 	{
 		_weapon_trails_billboard_left[static_cast<int>(WeaponUsed::HAMMER)] = _hammer_trail_left->GetComponent<ComponentBillboard>();
+		_hammer_trail_left->GetComponent<ComponentBillboard>()->SetTimeScaleMode(TimeScaleMode::SCALED);
 	}
 	if (_parasite_pickup_effect != nullptr)
 	{
 		_parasite_pickup_billboard = _parasite_pickup_effect->GetComponent<ComponentBillboard>();
+		_parasite_pickup_effect->GetComponent<ComponentBillboard>()->SetTimeScaleMode(TimeScaleMode::SCALED);
 	}
 	if (_parasite_selection != nullptr)
 	{
@@ -243,6 +255,7 @@ void Hachiko::Scripting::PlayerController::OnAwake()
 void Hachiko::Scripting::PlayerController::OnStart()
 {
 	animation = game_object->GetComponent<ComponentAnimation>();
+	animation->SetTimeScaleMode(TimeScaleMode::SCALED);
 	animation->StartAnimating();
 	_initial_pos = game_object->GetTransform()->GetGlobalPosition();
 

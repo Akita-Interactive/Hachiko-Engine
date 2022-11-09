@@ -321,6 +321,7 @@ RD /S /Q "$(TargetDir)"</Command>
     <ClInclude Include="effects\BounceEffect.h" />
     <ClInclude Include="effects\RotationEffect.h" />
     <ClInclude Include="entities\enemies\BossController.h" />
+    <ClInclude Include="entities\TimeScaleModeManager.h" />
     <ClInclude Include="misc\AssetsObstacle.h" />
     <ClInclude Include="misc\BossLaserController.h" />
     <ClInclude Include="misc\Centipedes.h" />
@@ -753,6 +754,7 @@ RD /S /Q "$(TargetDir)"</Command>
     </ClCompile>
     <ClCompile Include="effects\BloomAnimator.cpp" />
     <ClCompile Include="CutsceneManager.cpp" />
+    <ClCompile Include="entities\TimeScaleModeManager.cpp" />
     <ClCompile Include="misc\Centipedes.cpp" />
     <ClCompile Include="effects\BounceEffect.cpp" />
     <ClCompile Include="effects\HoverEffect.cpp" />

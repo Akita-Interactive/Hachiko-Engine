@@ -81,6 +81,9 @@ void Hachiko::ComponentParticleSystem::Start()
 
 void Hachiko::ComponentParticleSystem::Update()
 {
+    if (GetTimeScaleMode() == TimeScaleMode::SCALED && Time::GetTimeScale() <= 0.0f)
+        return;
+
 #ifndef PLAY_BUILD
     if (!in_scene)
     {

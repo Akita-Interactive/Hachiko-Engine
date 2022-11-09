@@ -48,8 +48,8 @@ void SetTimeScale(const float new_time_scale)
         return;
     }
 
-    App->event->Publish(Event::Type::TIME_SCALE_CHANGED);   
     Private::time_scale = new_time_scale;
+    App->event->Publish(Event::Type::TIME_SCALE_CHANGED);   
 }
 
 float GetTimeScale()
