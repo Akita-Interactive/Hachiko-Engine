@@ -67,12 +67,20 @@ namespace Hachiko
 
         [[nodiscard]] GameObject* GetBackground() const
         {
-            return background;
+            if (game_object->children.size() < 2)
+            {
+                return nullptr;
+            }
+            return game_object->children[0];
         }
 
         [[nodiscard]] GameObject* GetFill() const
         {
-            return fill;
+            if (game_object->children.size() < 2)
+            {
+                return nullptr;
+            }
+            return game_object->children[1];
         }
 
         void Save(YAML::Node& node) const override;
