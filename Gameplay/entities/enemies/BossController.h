@@ -95,7 +95,7 @@ namespace Hachiko
 			BossState GetState() const { return state; };
 			bool IsAlive() const;
 			void RegisterHit(int dmg, bool is_from_player = false, bool is_ranged = false);
-			void UpdateHpBar() const;
+			void UpdateHpBar();
 
 
 		private:
@@ -181,6 +181,7 @@ namespace Hachiko
             LevelManager* level_manager = nullptr; // It's found on scene based on name
             ComponentTransform* transform = nullptr;
             ComponentProgressBar* hp_bar = nullptr;
+            ComponentImage* hp_bar_fill = nullptr;
             ComponentAgent* agent = nullptr;
             ComponentObstacle* obstacle = nullptr;
             ComponentAnimation* animation = nullptr;
@@ -198,7 +199,9 @@ namespace Hachiko
 
             float3 initial_position = float3::zero;
             float3 initial_rotation = float3::zero;
-            
+			
+			float visual_heath_bar = 0.0f;
+
             // Camera variables
             PlayerCamera* player_camera = nullptr; // It's found on scene based on name
             bool overriden_original_camera_offset = false;
