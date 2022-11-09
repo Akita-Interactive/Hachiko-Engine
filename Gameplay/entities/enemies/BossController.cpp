@@ -240,7 +240,7 @@ void Hachiko::Scripting::BossController::UpdateHpBar()
     if (visual_heath_bar > combat_stats->_current_hp)
 	{
         const float health_bar_speed = 10.0f;
-        visual_heath_bar -= Time::DeltaTime() * health_bar_speed;
+        visual_heath_bar -= Time::DeltaTimeScaled() * health_bar_speed;
 
         if (visual_heath_bar <= combat_stats->_current_hp) 
         {
