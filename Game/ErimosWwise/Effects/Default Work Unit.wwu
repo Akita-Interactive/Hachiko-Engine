@@ -10,6 +10,16 @@
 						<Property Name="TimeStretch" Type="Real32" Value="25"/>
 					</PropertyList>
 				</Effect>
+				<Effect Name="New_Wwise_Parametric_EQ" ID="{D4D78FA5-B674-4511-89C3-BE1837FA2667}" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3"/>
+				<Effect Name="New_Wwise_Peak_Limiter" ID="{02070C58-DB41-45B6-A7E1-3EA9DEF264BA}" PluginName="Wwise Peak Limiter" CompanyID="0" PluginID="110" PluginType="3">
+					<PropertyList>
+						<Property Name="LookAhead" Type="Real32" Value="0.008"/>
+						<Property Name="OutputGain" Type="Real32" Value="4.6"/>
+						<Property Name="Ratio" Type="Real32" Value="50"/>
+						<Property Name="ReleaseTime" Type="Real32" Value="0.16"/>
+						<Property Name="Threshold" Type="Real32" Value="-5.1"/>
+					</PropertyList>
+				</Effect>
 			</ChildrenList>
 		</WorkUnit>
 	</Effects>

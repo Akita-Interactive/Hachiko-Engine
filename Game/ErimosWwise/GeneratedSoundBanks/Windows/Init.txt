@@ -11,21 +11,26 @@ State	ID	Name	State Group			Notes
 	748895195	None	ON			
 	89505537	Gameplay	Music_States			
 	748895195	None	Music_States			
-	1560169506	Boss	Music_States			
 	2716678721	Victory	Music_States			
 	748895195	None	ShuttingDown			
 	748895195	None	Boss_battle_states			
 	936729720	Stage3	Boss_battle_states			
 	936729721	Stage2	Boss_battle_states			
 	936729722	Stage1	Boss_battle_states			
-	2044049779	Dead	Boss_battle_states			
-	2716678721	Victory	Boss_battle_states			
+	1591776364	Stage1b	Boss_battle_states			
 	655265632	Alive	Player_Life			
 	748895195	None	Player_Life			
 	2791675679	Defeated	Player_Life			
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+
+Auxiliary Bus	ID	Name			Wwise Object Path	Notes
+	4168664725	Large_Reverb			\Default Work Unit\Master Audio Bus\Large_Reverb	
+
+Effect plug-ins	ID	Name	Type				Notes
+	602546716	Room_Large	Wwise RoomVerb			
+	3970951098	New_Wwise_Peak_Limiter	Wwise Peak Limiter			
 
 Audio Devices	ID	Name	Type				Notes
 	2317455096	No_Output	No Output			
