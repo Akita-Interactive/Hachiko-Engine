@@ -9,6 +9,8 @@
 #include "constants/Scenes.h"
 #include "components/ComponentObstacle.h"
 #include "components/ComponentAudioSource.h"
+#include "components/ComponentProgressBar.h"
+#include "components/ComponentImage.h"
 #include "constants/Sounds.h"
 
 #include "entities/player/CombatVisualEffectsPool.h"
