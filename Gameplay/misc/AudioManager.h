@@ -9,6 +9,7 @@ namespace Hachiko
 
 	namespace Scripting
 	{
+		enum class EnemyType;
 
 		class AudioManager : public Script
 		{
@@ -26,19 +27,37 @@ namespace Hachiko
 			void RegisterCombat();
 			void UnregisterCombat();
 
+			void RegisterGaunlet();
+			void UnregisterGaunlet();
+			void PlayGaunletComplete();
+			void PlayGaunletStart();
+			void PlayGaunletNextRound();
+
+			void Restart();
+			void SetLevel(unsigned level);
+
+			// Enemies
+			void PlayEnemyDeath(EnemyType enemy_type);
+			void PlaySpawnWorm();
+
+			// Environment
+			void PlayDoorOpening();
+
+			// Music
+			void StopBackgroundMusic();
 		private:
-			ComponentAudioSource* _audio_source;
+			bool updated = false;
+			bool _in_combat = false;
+			bool _in_gaunlet = false;
+			unsigned _level = 0;
+			int _enemies_in_combat = 0;
+			ComponentAudioSource* _audio_source = nullptr;
 
-			SERIALIZE_FIELD(int, _enemies_in_combat);
-			SERIALIZE_FIELD(bool, _previous_in_combat);
-
-			bool isPlayingMoving1 = false;
-			bool isPlayingMoving = false;
-
-			GameObject* enemy_pool;
-
-			SERIALIZE_FIELD(std::vector<GameObject*>, enemics);
-			int cont;
+			void StopMusic();
+			void SetCombat();
+			void SetNavigation();
+			void SetFootstepEffect();
+			const wchar_t* GetLevelSwitchName(unsigned level);
 		};
 	} // namespace Scripting
 } // namespace Hachiko

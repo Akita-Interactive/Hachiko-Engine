@@ -131,6 +131,8 @@
 #define SCENE_AUTOSAVE "scene_autosave"
 #define SHADOW_MAP_GAUSSIAN_BLURRING_ENABLED "shadow_map_gaussian_blurring"
 #define SHADOW_PASS_ENABLED "shadow_pass_enabled"
+#define LOADING_SCREEN_CONFIG "loading_screen_config"
+#define SSAO_ENABLED "ssao_enabled"
 
 // Resources
 #define RESOURCES_NODE "resources"
@@ -183,7 +185,7 @@
 #define AMBIENT_LIGHT "ambient_light"
 #define AMBIENT_LIGHT_INTENSITY "intensity"
 #define AMBIENT_LIGHT_COLOR "color"
-#define FOG "fog"
+#define FOG_PROPERTY "fog"
 #define FOG_ENABLED "enabled"
 #define FOG_COLOR "color"
 #define FOG_GLOBAL_DENSITY "global_density"
@@ -220,6 +222,8 @@
 #define MESH_TEXTURE_TYPE "texture_type"
 #define MESH_NAVIGABLE "navigable"
 #define MESH_VISIBLE "visible"
+#define MESH_CASTING_SHADOW "casting_shadow"
+#define MESH_OUTLINE_TYPE "outline_type"
 
 // Component Lights
 #define LIGHT_TYPE "light_type"
@@ -248,6 +252,7 @@
 #define IMAGE_COLOR "image_color"
 #define IMAGE_HOVER_COLOR "hover_image_color"
 #define IMAGE_TILED "image_is_tiled"
+#define IMAGE_RANDOMIZE_INITIAL_FRAME "image_randomize_initial_frame"
 #define IMAGE_X_TILES "image_x_tiles"
 #define IMAGE_Y_TILES "image_y_tiles"
 #define IMAGE_TILES_PER_SEC "image_tiles_per_second"
@@ -292,10 +297,13 @@
 #define START_SIZE "start_size"
 #define START_ROTATION "start_rotation"
 #define BILLBOARD_PROPERTIES "properties"
+#define BILLBOARD_PROJECTION "projection"
+#define RANDOMIZE_TILE "randomize_tiles"
 
 #define COLOR_CYCLES "color_cycles"
 #define COLOR_GRADIENT "color_gradient"
 #define ANIMATION_LOOP "animation_loop"
+#define ANIMATION_LOOP_ALL "animation_loop_all"
 
 // Component Particle System
 // sections
@@ -305,10 +313,12 @@
 #define SHAPE_SECTION "shape"
 #define LIGHTS_SECTION "lights"
 #define RENDERER_SECTION "renderer"
+#define TEXTURE_SECTION "texture"
 //particle config
 #define PARTICLE_PARAMETERS "parameters"
 #define PARTICLES_DURATION "duration"
 #define PARTICLES_LOOP "loop"
+#define PARTICLES_ATTACHED "attached"
 #define PARTICLES_LIFE "life"
 #define PARTICLES_SPEED "speed"
 #define PARTICLES_SIZE "size"
@@ -373,3 +383,8 @@
 
 // Script
 #define SCRIPT_NAME "class_name"
+
+// Component Canvas Renderer
+#define SCALE_UI "scale_ui"
+#define ORIGINAL_SIZE_X "original_size_x"
+#define ORIGINAL_SIZE_Y "original_size_y"

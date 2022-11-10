@@ -10,7 +10,7 @@ namespace Hachiko
         VelocityParticleModifier(const std::string& name);
         ~VelocityParticleModifier() override = default;
 
-        void Update(std::vector<Particle>&) override;
+        void Update(std::vector<Particle>&, float delta_time) override;
         void DrawGui() override;
 
         void Save(YAML::Node& node) const override;

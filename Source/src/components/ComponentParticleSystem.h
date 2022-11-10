@@ -13,12 +13,14 @@ namespace Hachiko
 
         HACHIKO_API void Start() override;
         void Update() override;
+        void OnDisable() override;
         void Draw(ComponentCamera* camera, Program* program) override;
         void DrawGui() override;
         void DebugDraw() override;
 
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
+        static void CollectResources(const YAML::Node& node, std::map<Resource::Type, std::set<UID>>& resources);
 
         [[nodiscard]] const ParticleSystem::VariableTypeProperty& GetParticlesLife() const;
         [[nodiscard]] const ParticleSystem::VariableTypeProperty& GetParticlesSpeed() const;
@@ -45,8 +47,12 @@ namespace Hachiko
         HACHIKO_API void Pause();
         HACHIKO_API void Restart();
         HACHIKO_API void Stop() override;
+        HACHIKO_API float GetParticlesLifetime();
+        HACHIKO_API void SetParticlesLifetime(float new_lifetime);
+        HACHIKO_API void DrawParticles(bool draw);
 
     private:
+        bool initialized = false;
         ParticleSystem::Emitter::State emitter_state = ParticleSystem::Emitter::State::STOPPED;
 
         //sections
@@ -106,9 +112,9 @@ namespace Hachiko
         void RemoveTexture();
 
         void ActivateParticles();
-        void UpdateActiveParticles();
-        void UpdateModifiers();
-        void UpdateEmitterTimes();
+        void UpdateActiveParticles(float delta_time);
+        void UpdateModifiers(float delta_time);
+        void UpdateEmitterTimes(float delta_time);
         void ResetActiveParticles();
         void Reset();
 

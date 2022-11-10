@@ -5,6 +5,8 @@
 #include "core/preferences/src/ResourcesPreferences.h"
 #include "utils/UUID.h"
 
+#include <set>
+
 namespace Hachiko
 {
     class ResourceMesh;
@@ -24,6 +26,9 @@ namespace Hachiko
 
         Hachiko::Resource::AssetType GetAssetTypeFromPath(const std::filesystem::path& file);
 
+        bool DoesResourceExist(Resource::Type type, UID id);
+        void LoadSceneResources(const YAML::Node& node);
+        void PostLoadSceneResources();
         Resource* GetResource(Resource::Type type, UID id);
         void ReleaseResource(Resource* resource);
         void ReleaseResource(UID id);
@@ -41,6 +46,9 @@ namespace Hachiko
             unsigned n_users = 0;
         };
         std::map<UID, ResourceInstance> loaded_resources;
+
+        std::set<UID> scene_loaded_texures;
+
         unsigned imported_assets = 0;
         unsigned cleaned_resources = 0;
         std::set<UID> managed_uids;
@@ -78,7 +86,6 @@ namespace Hachiko
         void ClearUnusedResources(const std::set<UID>& seen_uids);
         // Process Cleaning on a specific path node
         void ClearLibrary(const PathNode& folder, const std::set<UID>& seen_uids);
-
 
     public:
         // Create a clean initial meta node

@@ -1,0 +1,82 @@
+prefab_name: VFX_AMB_GodRays_v04
+name: VFX_AMB_GodRays_v04
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [0, 0, 0, 1]
+    scale: [1, 1, 1]
+child:
+  - name: Rays
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 1, 0]
+        scale: [1, 1, 1]
+      - !<particle_system>
+        type: 22
+        enabled: true
+        sections:
+          parameters: true
+          emission: true
+          shape: true
+          lights: false
+          renderer: true
+        parameters:
+          duration: 15
+          loop: true
+          life: [true, true, 0, [5, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          speed: [true, true, 0, [0, 0.2], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 0, [50, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rotation: [true, true, 0, [0.3, 0.3], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        emission:
+          rate: [true, true, 0, [30, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rate_burst: [true, true, 0, [7, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          burst: false
+        emitter_shape:
+          type: 0
+          properties: [360, 0, [0, 0, 0], 0.7, 0.3, [0, 0, 0], [5, 1, 5], 2]
+        texture:
+          texture_id: 916514219969545651
+          tiles: [1, 1]
+          flip: [false, false]
+          total_tiles: 1
+        modifiers:
+          velocity:
+            active: false
+            speed: [true, true, 1, [0, 0.3], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size:
+            active: true
+            size: [true, true, 1, [0, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          color:
+            active: true
+            color_gradient: [[0, 0, 0, 0, 0], [0.0983, 0.0864, 0.0602, 0, 0.3186], [0.0578, 0.041, 0.0087, 0, 0.7564], [0, 0, 0, 0, 0.994]]
+            color_cycles: 1
+          force:
+            active: false
+            rotation: [true, true, 0, [0, 0.1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            x_force: [true, true, 0, [50, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            y_force: [true, true, 0, [20, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            z_force: [true, true, 0, [2, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          animation:
+            active: false
+            animation_speed: 0
+            blend_factor: 0
+            fit_to_lifetime: false
+          noise:
+            active: true
+            separate_axes: false
+            strength:
+              x: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              y: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              z: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            position: [true, true, 0, [3, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            scale: [true, true, 1, [1, 5], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]

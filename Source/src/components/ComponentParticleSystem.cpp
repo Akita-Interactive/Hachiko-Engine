@@ -8,6 +8,7 @@
 #include "modules/ModuleResources.h"
 
 #include "debugdraw.h"
+#include "utils/ComponentUtility.h"
 
 Hachiko::ComponentParticleSystem::ComponentParticleSystem(GameObject* container) :
     Component(Type::PARTICLE_SYSTEM, container)
@@ -36,6 +37,7 @@ void Hachiko::ComponentParticleSystem::Start()
         App->scene_manager->GetActiveScene()->AddParticleComponent(this);
         in_scene = true;
     }
+
     for (auto& particle : particles)
     {
         particle.SetEmitter(this);
@@ -60,9 +62,9 @@ void Hachiko::ComponentParticleSystem::Start()
     };
     App->event->Subscribe(Event::Type::CURVE_EDITOR, edit_curve, GetID());
 
-    std::function selection_changed = [&](Event& evt) {
+    /* std::function selection_changed = [&](Event& evt) {
         const auto data = evt.GetEventData<SelectionChangedEventPayload>();
-        if (data.GetSelected() != GetGameObject())
+        if (!data.GetSelected() || data.GetSelected() != GetGameObject())
         {
             Pause();
         }
@@ -71,12 +73,17 @@ void Hachiko::ComponentParticleSystem::Start()
             Play();
         }
     };
-    App->event->Subscribe(Event::Type::SELECTION_CHANGED, selection_changed, GetID());
+    App->event->Subscribe(Event::Type::SELECTION_CHANGED, selection_changed, GetID());*/
     emitter_state = ParticleSystem::Emitter::State::PLAYING;
+
+    initialized = true;
 }
 
 void Hachiko::ComponentParticleSystem::Update()
 {
+    if (GetTimeScaleMode() == TimeScaleMode::SCALED && Time::GetTimeScale() <= 0.0f)
+        return;
+
 #ifndef PLAY_BUILD
     if (!in_scene)
     {
@@ -85,10 +92,23 @@ void Hachiko::ComponentParticleSystem::Update()
 #endif //PLAY_BUILD
     if (emitter_state != ParticleSystem::Emitter::State::PAUSED)
     {
+        const float unscaled = static_cast<float>(EngineTimer::delta_time);
+        const float delta_time = GetTimeScaleMode() == TimeScaleMode::SCALED
+            ? unscaled * Time::GetTimeScale()
+            : unscaled;
+
         ActivateParticles();
-        UpdateEmitterTimes();
-        UpdateActiveParticles();
-        UpdateModifiers();
+        UpdateEmitterTimes(delta_time);
+        UpdateActiveParticles(delta_time);
+        UpdateModifiers(delta_time);
+    }
+}
+
+void Hachiko::ComponentParticleSystem::OnDisable() 
+{
+    if (in_scene)
+    {
+        ResetActiveParticles();
     }
 }
 
@@ -107,7 +127,7 @@ void Hachiko::ComponentParticleSystem::Draw(ComponentCamera* camera, Program* pr
 
 void Hachiko::ComponentParticleSystem::DrawGui()
 {
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Particle system"))
+    if (ImGuiUtils::CollapsingHeader(this, "Particle system"))
     {
         const char* particle_render_modes[] = {"Additive", "Transparent"};
         const char* particle_orientations[] = {"Normal", "Vertical", "Horizontal", "Stretch"};
@@ -121,6 +141,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
 
             DragFloat("Duration", duration, &duration_cfg);
             Widgets::Checkbox("Loop", &loop);
+            Widgets::Checkbox("Attached to emitter", &emitter_properties.attached);
             Widgets::MultiTypeSelector("Start delay", start_delay);
             Widgets::MultiTypeSelector("Start lifetime", start_life);
 
@@ -140,6 +161,7 @@ void Hachiko::ComponentParticleSystem::DrawGui()
 
             MultiTypeSelector("Rate over time", rate_over_time, &rate_cfg);
             Widgets::Checkbox("Burst", &burst);
+            Widgets::Checkbox("Draw Particles", &particle_properties.draw);
 
             if (burst)
             {
@@ -404,6 +426,7 @@ void Hachiko::ComponentParticleSystem::Save(YAML::Node& node) const
     sections[SHAPE_SECTION] = shape_section;
     sections[LIGHTS_SECTION] = lights_section;
     sections[RENDERER_SECTION] = renderer_section;
+    sections[TEXTURE_SECTION] = texture_section;
     node[PARTICLE_SECTIONS] = sections;
 
     // particle config
@@ -454,6 +477,7 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
     shape_section = node[PARTICLE_SECTIONS][SHAPE_SECTION].as<bool>();
     lights_section = node[PARTICLE_SECTIONS][LIGHTS_SECTION].as<bool>();
     renderer_section = node[PARTICLE_SECTIONS][RENDERER_SECTION].as<bool>();
+    texture_section = node[PARTICLE_SECTIONS][TEXTURE_SECTION].IsDefined() ? node[PARTICLE_SECTIONS][TEXTURE_SECTION].as<bool>() : texture_section;
 
     // particle config
     duration = node[PARTICLE_PARAMETERS][PARTICLES_DURATION].as<float>();
@@ -463,7 +487,7 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
     start_size = node[PARTICLE_PARAMETERS][PARTICLES_SIZE].as<ParticleSystem::VariableTypeProperty>();
     start_rotation = node[PARTICLE_PARAMETERS][PARTICLES_ROTATION].as<ParticleSystem::VariableTypeProperty>();
     start_delay = node[PARTICLE_PARAMETERS][PARTICLES_DELAY].as<ParticleSystem::VariableTypeProperty>();
-    particle_properties = node[PARTICLE_PARAMETERS][PARTICLES_PROPERTIES].as<ParticleSystem::ParticleProperties>();
+    particle_properties = node[PARTICLE_PARAMETERS][PARTICLES_PROPERTIES].IsDefined() ? node[PARTICLE_PARAMETERS][PARTICLES_PROPERTIES].as<ParticleSystem::ParticleProperties>() : ParticleSystem::ParticleProperties();
 
     // emission
     rate_over_time = node[PARTICLE_EMISSION][RATE].as<ParticleSystem::VariableTypeProperty>();
@@ -471,8 +495,8 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
     burst = node[PARTICLE_EMISSION][BURST].IsDefined() ? node[PARTICLE_EMISSION][BURST].as<bool>() : burst;
 
     // emitter
-    emitter_type = static_cast<ParticleSystem::Emitter::Type>(node[EMITTER][EMITTER_TYPE].as<int>());
-    emitter_properties = node[EMITTER][EMITTER_PROPERTIES].as<ParticleSystem::Emitter::Properties>();
+    emitter_type = node[EMITTER][EMITTER_TYPE].IsDefined() ? static_cast<ParticleSystem::Emitter::Type>(node[EMITTER][EMITTER_TYPE].as<int>()) : ParticleSystem::Emitter::Type::CONE;
+    emitter_properties = node[EMITTER][EMITTER_PROPERTIES].IsDefined() ? node[EMITTER][EMITTER_PROPERTIES].as<ParticleSystem::Emitter::Properties>() : ParticleSystem::Emitter::Properties();
 
     // texture
     flip_texture = node[PARTICLES_TEXTURE][FLIP].IsDefined() ? node[PARTICLES_TEXTURE][FLIP].as<bool2>() : bool2::False;
@@ -495,6 +519,14 @@ void Hachiko::ComponentParticleSystem::Load(const YAML::Node& node)
     {
         particle_module->Load(node[PARTICLE_MODIFIERS]);
     }
+}
+
+void Hachiko::ComponentParticleSystem::CollectResources(const YAML::Node& node, std::map<Resource::Type, std::set<UID>>& resources)
+{
+    ComponentUtility::CollectResource(
+        Resource::Type::TEXTURE, 
+        node[PARTICLES_TEXTURE][PARTICLES_TEXTURE_ID], 
+        resources);
 }
 
 const Hachiko::ParticleSystem::VariableTypeProperty& Hachiko::ComponentParticleSystem::GetParticlesLife() const
@@ -557,29 +589,32 @@ const float2& Hachiko::ComponentParticleSystem::GetFactor() const
     return factor;
 }
 
-void Hachiko::ComponentParticleSystem::UpdateActiveParticles()
+void Hachiko::ComponentParticleSystem::UpdateActiveParticles(const float delta_time)
 {
     active_particles = 0;
+
     for (auto& particle : particles)
     {
         if (!particle.IsActive())
         {
             continue;
         }
+
         ++active_particles;
-        particle.Update();
+
+        particle.Update(delta_time);
     }
 }
 
-void Hachiko::ComponentParticleSystem::UpdateModifiers()
+void Hachiko::ComponentParticleSystem::UpdateModifiers(const float delta_time)
 {
     for (const auto& particle_module : particle_modifiers)
     {
-        particle_module->Update(particles);
+        particle_module->Update(particles, delta_time);
     }
 }
 
-void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
+void Hachiko::ComponentParticleSystem::UpdateEmitterTimes(const float delta_time)
 {
     if (active_particles == 0 && emitter_state == ParticleSystem::Emitter::State::STOPPED)
     {
@@ -595,8 +630,8 @@ void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
         return;
     }
 
-    time += EngineTimer::delta_time;
-    emitter_elapsed_time += EngineTimer::delta_time;
+    time += delta_time;
+    emitter_elapsed_time += delta_time;
 
     if (emitter_elapsed_time < start_delay.GetValue() ||
         emitter_state != ParticleSystem::Emitter::State::PLAYING)
@@ -607,7 +642,7 @@ void Hachiko::ComponentParticleSystem::UpdateEmitterTimes()
 
     if (burst)
     {
-        burst_time += EngineTimer::delta_time;
+        burst_time += delta_time;
 
         if (burst_time >= start_life.values.x)
         {
@@ -805,13 +840,31 @@ void Hachiko::ComponentParticleSystem::Pause()
 
 void Hachiko::ComponentParticleSystem::Restart()
 {
-    Reset();
+    if (initialized)
+    {
+        Reset();
+    }
     emitter_state = ParticleSystem::Emitter::State::PLAYING;
 }
 
 void Hachiko::ComponentParticleSystem::Stop()
 {
     emitter_state = ParticleSystem::Emitter::State::STOPPED;
+}
+
+float Hachiko::ComponentParticleSystem::GetParticlesLifetime()
+{
+    return GetParticlesLife().GetValue();
+}
+
+void Hachiko::ComponentParticleSystem::SetParticlesLifetime(float new_lifetime)
+{
+    start_life = {float2(new_lifetime)};
+}
+
+void Hachiko::ComponentParticleSystem::DrawParticles(bool draw)
+{
+    particle_properties.draw = draw;
 }
 
 void Hachiko::ComponentParticleSystem::DisplayControls()

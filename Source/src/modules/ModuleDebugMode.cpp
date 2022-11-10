@@ -34,11 +34,6 @@ bool Hachiko::ModuleDebugMode::Init()
 	return true;
 }
 
-UpdateStatus Hachiko::ModuleDebugMode::PreUpdate(const float delta)
-{
-	return UpdateStatus::UPDATE_CONTINUE;
-}
-
 UpdateStatus Hachiko::ModuleDebugMode::Update(const float delta)
 {
 	if (App->input->IsKeyPressed(SDL_SCANCODE_LALT) &&
@@ -52,11 +47,6 @@ UpdateStatus Hachiko::ModuleDebugMode::Update(const float delta)
 		DrawGUI();
 	}
 
-	return UpdateStatus::UPDATE_CONTINUE;
-}
-
-UpdateStatus Hachiko::ModuleDebugMode::PostUpdate(const float delta)
-{
 	return UpdateStatus::UPDATE_CONTINUE;
 }
 

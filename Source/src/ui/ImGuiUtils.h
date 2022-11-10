@@ -4,7 +4,6 @@
 
 namespace Hachiko
 {
-    class GameObject;
     class Component;
 
     namespace ImGuiUtils
@@ -17,11 +16,11 @@ namespace Hachiko
 
         void Rect(float w, float h, ImU32 color);
 
-        bool CompactColorPicker(const char* name, float* color);
+        bool CompactColorPicker(const std::string& name, float* color, float width = 150.0f);
 
-        bool CompactOpaqueColorPicker(const char* name, float* color);
+        bool CompactOpaqueColorPicker(const std::string& name, float* color, float width = 150.0f);
 
-        bool CollapsingHeader(GameObject* game_object, Component* component, const char* header_name);
+        bool CollapsingHeader(Component* component, const char* header_name);
 
         bool ToolbarButton(ImFont* const font, const char* font_icon, bool active, const char* tooltip_desc, const bool enabled = true);
 

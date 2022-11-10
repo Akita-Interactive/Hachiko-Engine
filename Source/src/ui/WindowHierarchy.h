@@ -24,6 +24,8 @@ namespace Hachiko
 
         GameObject* dragged_object = nullptr;
 
+        bool collapse = false;
+
         // Auxiliar variables for opening the hierarchy to see the selected object
         int index = 0;
         std::vector<GameObject*> selected_object_ancestors;

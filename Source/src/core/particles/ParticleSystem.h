@@ -45,6 +45,7 @@ namespace Hachiko
                 float3 position = float3::zero;
                 float3 rotation = float3::zero;
                 float3 scale = float3::one;
+                bool attached = false;
             };
         }
 
@@ -119,6 +120,7 @@ namespace Hachiko
         {
             float alpha = 1.0f;
             bool orientate_to_direction = false;
+            bool draw = true;
             ParticleRenderMode render_mode = ParticleRenderMode::PARTICLE_ADDITIVE;
             ParticleOrientation orientation = ParticleOrientation::NORMAL;
             VariableTypeProperty stretch = {float2::one, 0.1f, false, false};

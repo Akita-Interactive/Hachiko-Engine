@@ -1,6 +1,7 @@
 #include "scriptingUtil/gameplaypch.h"
 #include "entities/player/PlayerCamera.h"
 #include "entities/player/PlayerController.h"
+#include "constants/Scenes.h"
 
 // TODO: Delete this include:
 #include <core/Scene.h>
@@ -9,7 +10,7 @@
 
 Hachiko::Scripting::PlayerCamera::PlayerCamera(GameObject* game_object)
 	: Script(game_object, "PlayerCamera")
-	, _relative_position_to_player(math::float3(0.0f, 24.0f, 16.0f))
+	, _relative_position_to_player(math::float3(0.0f, 26.0f, 17.5f))
 	, _objective(nullptr)
 	, _follow_delay(0.6f)
 {
@@ -20,8 +21,14 @@ void Hachiko::Scripting::PlayerCamera::OnAwake()
 	if (_objective != nullptr)
 	{
 		_current_objective = _objective;
-		_player_ctrl = _objective->GetComponent<PlayerController>();
 	}
+
+	if (_current_objective->GetComponent<PlayerController>() != nullptr)
+	{
+		_anchor_is_player = true;
+	}
+
+	_player_ctrl = Scenes::GetPlayer()->GetComponent<PlayerController>();
 	_look_ahead = float3::zero;
 	_relative_position_aux = _relative_position_to_player;
 	_updated_relative_position = _relative_position_to_player;
@@ -48,25 +55,51 @@ void Hachiko::Scripting::PlayerCamera::OnUpdate()
 }
 
 /// <summary>
-/// Checks if the objective has changed
+/// Checks if the objective has changed, at 1 HP the objective will ALWAYS be the player
 /// </summary>
 void Hachiko::Scripting::PlayerCamera::CheckForObjective()
 {
-	if (_current_objective != _objective)
+	if (_player_ctrl && _player_ctrl->GetCurrentHp() == 1)
 	{
-		_current_objective = _objective;
-		if (_current_objective != nullptr)
+		_current_objective = Scenes::GetPlayer();
+	}
+	else if (_current_objective != _objective)
+	{
+		if (!_is_in_position && _current_objective != nullptr)
 		{
-			_player_ctrl = _current_objective->GetComponent<PlayerController>();
+			_objective_pos = math::Lerp(_current_objective->GetTransform()->GetGlobalPosition(), _objective->GetTransform()->GetGlobalPosition(), _reposition_progress);
+			return;
 		}
+
+		_current_objective = _objective;
+
+		if (_current_objective != nullptr && _current_objective->GetComponent<PlayerController>() != nullptr)
+		{
+			_anchor_is_player = true;
+		}
+	}
+
+	if (_current_objective != nullptr)
+	{
+		_objective_pos = _current_objective->GetTransform()->GetGlobalPosition();
 	}
 }
 
 void Hachiko::Scripting::PlayerCamera::SetLookAhead()
 {
-	if (_do_look_ahead && _player_ctrl && _player_ctrl->_state == PlayerState::WALKING)
+	if (_player_ctrl && _player_ctrl->_state == PlayerState::RANGED_CHARGING)
 	{
-		const float look_ahead_time = Time::DeltaTime() / 0.8f;
+		_current_objective = Scenes::GetPlayer();
+		const float look_ahead_time = Time::DeltaTimeScaled() / 0.2f;
+		Clamp<float>(look_ahead_time, 0.0f, 1.0f);
+		_look_ahead = math::float3::Lerp(_look_ahead, _current_objective->GetTransform()->GetFront() * 6, look_ahead_time);
+
+		return;
+	}
+
+	if (_do_look_ahead && _anchor_is_player && _player_ctrl && _player_ctrl->_state == PlayerState::WALKING)
+	{
+		const float look_ahead_time = Time::DeltaTimeScaled() / 0.8f;
 		Clamp<float>(look_ahead_time, 0.0f, 1.0f);
 		_look_ahead = math::float3::Lerp(_look_ahead, _current_objective->GetTransform()->GetFront() * 5, look_ahead_time);
 	}
@@ -78,31 +111,49 @@ void Hachiko::Scripting::PlayerCamera::SetLookAhead()
 
 void Hachiko::Scripting::PlayerCamera::MoveCamera()
 {
-	const math::float2 mouse_movement_x_z = MoveCameraWithMouse();
-	const math::float3 mouse_movement = float3(mouse_movement_x_z.x, 0.0f, mouse_movement_x_z.y);
-	ScrollWheelZoom(&_relative_position_to_player);
+	math::float3 movement(0.0f);
 
-	const math::float3 final_position = _current_objective->GetTransform()->GetGlobalPosition()
-	 + _look_ahead + mouse_movement + _relative_position_to_player;
+	if (Input::IsGamepadModeOn())
+	{
+		const float2 gamepad_normalized_position =
+			math::float2(Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_RIGHTX),
+				Input::GetAxisNormalized(Input::GameControllerAxis::CONTROLLER_AXIS_RIGHTY));
+		movement = float3(gamepad_normalized_position.x * 4.0f, 0.0f, gamepad_normalized_position.y * 4.0f);
+	}
+	else
+	{
+		const float2 mouse_movement_x_z = MoveCameraWithMouse();
+		movement = float3(mouse_movement_x_z.x, 0.0f, mouse_movement_x_z.y);
+
+		// We only trigger this on mouse mode as it's not gonna be used with
+		// game pad:
+		ScrollWheelZoom(&_relative_position_to_player);
+	}
+
+	const float3 final_position = _objective_pos
+		+ _look_ahead + movement + _relative_position_to_player;
 	ComponentTransform* transform = game_object->GetTransform();
-	math::float3 current_position = transform->GetGlobalPosition();
+	float3 current_position = transform->GetGlobalPosition();
 
-	float delayed_time = _is_in_position ? Time::DeltaTime() / _follow_delay : _reposition_progress;
+	float delayed_time = Time::DeltaTimeScaled() / _follow_delay;
 	Clamp<float>(delayed_time, 0.0f, 1.0f);
 
 	// Lerp to the position to the player with a delay: 
 	current_position = math::float3::Lerp(current_position, final_position,
 		delayed_time);
 
-	float3 shake_offset = float3::zero;
-
-	shake_offset = Shake();
+	const float3 shake_offset = Shake();
 
 	transform->SetGlobalPosition(current_position + shake_offset);
 }
 
 float2 Hachiko::Scripting::PlayerCamera::MoveCameraWithMouse()
 {
+	if (!_anchor_is_player || !_do_mouse_movement)
+	{
+		return float2::zero;
+	}
+
 	float2 added_movement, mouse_pos;
 	mouse_pos = Input::GetMouseNormalizedPosition();
 	mouse_pos = mouse_pos - float2(0.5f, 0.5f);
@@ -163,7 +214,7 @@ float3 Hachiko::Scripting::PlayerCamera::Shake()
 		r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 		float z = (r - 0.5f) * shake_magnitude * shake_intensity;
 
-		shake_elapsed += Time::DeltaTime();
+		shake_elapsed += Time::DeltaTimeScaled();
 		shake_magnitude = (1 - (shake_elapsed / shake_time)) * (1 - (shake_elapsed / shake_time));
 		return float3(x, 0, z);
 	} 
@@ -175,7 +226,7 @@ float3 Hachiko::Scripting::PlayerCamera::Shake()
 	}
 }
 
-void Hachiko::Scripting::PlayerCamera::ChangeRelativePosition(math::float3 new_relative_position, bool do_look_ahead, float speed, float time)
+void Hachiko::Scripting::PlayerCamera::ChangeRelativePosition(math::float3 new_relative_position, bool do_look_ahead, float speed, float time, bool do_mouse_movement)
 {
 	if (time > 0.0f)
 	{
@@ -189,7 +240,7 @@ void Hachiko::Scripting::PlayerCamera::ChangeRelativePosition(math::float3 new_r
 	_is_in_position = false;
 	if (speed > 0.0f)
 	{
-		_reposition_time = 1 / speed;
+		_reposition_time = 1.0f / speed;
 		_reposition_progress = 0.0f;
 	}
 	else
@@ -197,13 +248,18 @@ void Hachiko::Scripting::PlayerCamera::ChangeRelativePosition(math::float3 new_r
 		_reposition_time = 1.0f;
 		_reposition_progress = 1.0f;
 	}
+	_look_ahead_aux = _do_look_ahead;
 	_do_look_ahead = do_look_ahead;
+	_do_mouse_movement = do_mouse_movement;
+
+	_low_health_mode = false;
 }
 
 void Hachiko::Scripting::PlayerCamera::RevertRelativePosition(float speed)
 {
 	_updated_relative_position = _relative_position_aux;
 	_is_in_position = false;
+	_do_look_ahead = _look_ahead_aux;
 	if (speed > 0.0f)
 	{
 		_reposition_time = 1.0f / speed;
@@ -225,7 +281,7 @@ void Hachiko::Scripting::PlayerCamera::SwitchRelativePosition(math::float3 new_r
 	}
 	else
 	{
-		ChangeRelativePosition(new_relative_position, speed);
+		ChangeRelativePosition(new_relative_position, true, speed);
 	}
 }
 
@@ -238,7 +294,7 @@ void Hachiko::Scripting::PlayerCamera::RecalculateRelativePos()
 			_is_in_position = true;
 		}
 		_relative_position_to_player = math::Lerp(_relative_position_to_player, _updated_relative_position, _reposition_progress);
-		_reposition_progress += Time::DeltaTime() / _reposition_time;
+		_reposition_progress += Time::DeltaTimeScaled() / _reposition_time;
 	}
 	else
 	{
@@ -251,9 +307,21 @@ void Hachiko::Scripting::PlayerCamera::RecalculateRelativePos()
 			}
 			else
 			{
-				_position_timer -= Time::DeltaTime();
+				_position_timer -= Time::DeltaTimeScaled();
 			}
 		}
+	}
+
+	// If player has low HP zoom in camera 10%
+	if (_player_ctrl && !_low_health_mode && _player_ctrl->GetCurrentHp() == 1)
+	{
+		_relative_position_to_player *= 0.8f;
+		_low_health_mode = true;
+	}
+	else if (_player_ctrl && _low_health_mode && _player_ctrl->GetCurrentHp() > 1)
+	{
+		_relative_position_to_player *= 1.2f;
+		_low_health_mode = false;
 	}
 }
 
@@ -274,6 +342,16 @@ void Hachiko::Scripting::PlayerCamera::RotateCameraTo(math::float3 new_rotation,
 	}
 }
 
+void Hachiko::Scripting::PlayerCamera::SetObjective(GameObject* objective, bool teleport)
+{
+	_objective = objective;
+	if (teleport)
+	{
+		_current_objective = objective;
+		game_object->GetTransform()->SetGlobalPosition(objective->GetTransform()->GetGlobalPosition());
+	}
+}
+
 void Hachiko::Scripting::PlayerCamera::RecalculateRotation()
 {
 	if (!_is_in_rotation)
@@ -283,6 +361,6 @@ void Hachiko::Scripting::PlayerCamera::RecalculateRotation()
 			_is_in_rotation = true;
 		}
 		game_object->GetTransform()->SetLocalRotation(math::Slerp(game_object->GetTransform()->GetLocalRotation(), _updated_rotation, _rotation_progress));
-		_rotation_progress += Time::DeltaTime() / _rotation_time;
+		_rotation_progress += Time::DeltaTimeScaled() / _rotation_time;
 	}
 }

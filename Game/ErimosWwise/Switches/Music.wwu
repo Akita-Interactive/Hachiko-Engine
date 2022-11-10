@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{A94BAEC2-5A74-4512-AC1B-D584C52DC676}" SchemaVersion="103">
+	<Switches>
+		<WorkUnit Name="Music" ID="{A94BAEC2-5A74-4512-AC1B-D584C52DC676}" PersistMode="Standalone">
+			<ChildrenList>
+				<SwitchGroup Name="Gameplay_Switch" ID="{7441A8D7-1473-42C8-84AC-E7692335FD53}">
+					<ChildrenList>
+						<Switch Name="Explore" ID="{B92814EE-2B24-4C85-AE4E-9753BE866E50}"/>
+						<Switch Name="Combat" ID="{B9D34D9B-4164-4F24-B1C3-D91B169DA95F}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="Level_Switch" ID="{94969645-2F42-4E42-8B77-A48DD66B20AE}">
+					<ChildrenList>
+						<Switch Name="Level1" ID="{515CEDA8-F918-4759-B94C-91D4B24419F7}"/>
+						<Switch Name="Level2" ID="{334BD31E-A4C0-49AD-AEA7-88D6C14893B3}"/>
+						<Switch Name="Boss" ID="{9F83A140-E38E-4E26-93DB-368ADC2626DE}"/>
+					</ChildrenList>
+				</SwitchGroup>
+			</ChildrenList>
+		</WorkUnit>
+	</Switches>
+</WwiseDocument>

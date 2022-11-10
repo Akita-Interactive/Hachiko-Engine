@@ -10,9 +10,12 @@ namespace Hachiko
 
     namespace Scripting
     {
+        class TimeManager;
         class EnemyController;
         class PlayerController;
+        class BossController;
         class CrystalExplosion;
+        class PlayerCamera;
 
         class CombatManager : public Script
         {
@@ -31,6 +34,7 @@ namespace Hachiko
                 bool update_ui = false;
             private:
                 bool alive = false;
+                bool shot = false;
                 float elapsed_lifetime = 0.f;
                 float current_charge = 0.f;
                 float3 direction = float3::zero;
@@ -38,23 +42,32 @@ namespace Hachiko
                 ComponentTransform* emitter_transform = nullptr;
             };
 
-            enum AttackType
+            enum class AttackType
             {
                 CONE,
                 RECTANGLE,
                 CIRCLE
+            };
+            enum class AttackTrail
+            {
+                DEFAULT,
+                RIGHT,
+                LEFT,
+                CENTER
             };
 
             struct AttackStats
             {
                 friend CombatManager;
                 AttackType type = AttackType::RECTANGLE;
-                unsigned damage = 1.f;
+                unsigned damage = 1;
                 float knockback_distance = 0.f;
                 // Width is used as degrees for cone
                 float width = 0.f;
                 float range = 0.f;
                 // Status effect
+                //Trail direction 1 for right, 2 for left and 3 for center
+                AttackTrail attack_trail = AttackTrail::DEFAULT;
             };
             
         public:
@@ -72,7 +85,8 @@ namespace Hachiko
 
             // If the emitter is deleted u are obligated to stop its bullet at that point to be safe
             // Player only system for now
-            int ShootBullet(ComponentTransform* emitter_transform, BulletStats new_stats);
+            int ChargeBullet(ComponentTransform* emitter_transform, BulletStats new_stats);
+            bool ShootBullet(unsigned bullet_index);
             void StopBullet(unsigned bullet_index);
             const BulletStats& GetBulletStats(unsigned bullet_idx) const;
 
@@ -87,24 +101,27 @@ namespace Hachiko
 
         private:
             // Start attack depending on its type
-            int PlayerConeAttack(const float4x4& origin, const AttackStats& attack_stats);
-            int PlayerRectangleAttack(const float4x4& origin, const AttackStats& attack_stats);
-            int PlayerCircleAttack(const float4x4& origin, const AttackStats& attack_stats);
+            // TODO: Make this hit_enemies into a struct return type with int:
+            int PlayerConeAttack(const float4x4& origin, const AttackStats& attack_stats, bool& hit_enemies);
+            int PlayerRectangleAttack(const float4x4& origin, const AttackStats& attack_stats, bool& hit_enemies);
+            int PlayerCircleAttack(const float4x4& origin, const AttackStats& attack_stats, bool& hit_enemies);
 
             int EnemyConeAttack(const float4x4& origin, const AttackStats& attack_stats);
             int EnemyRectangleAttack(const float4x4& origin, const AttackStats& attack_stats);
             int EnemyCircleAttack(const float4x4& origin, const AttackStats& attack_stats);
 
-            // Evaluate for all units
+            // Evaluate for all level units
             int ProcessAgentsCone(const float3& attack_source_pos, const float3& attack_dir, float min_dot_prod, float hit_distance, const AttackStats& attack_stats, bool is_from_player);
-            int ProcessObstaclesCone(const float3& attack_source_pos, const float3& attack_dir, float min_dot_prod, float hit_distance, const AttackStats& attack_stats);
+            int ProcessObstaclesCone(const float3& attack_source_pos, const float3& attack_dir, float min_dot_prod, float hit_distance, const AttackStats& attack_stats, bool is_from_player);
             int ProcessPlayerCone(const float3& attack_source_pos, const float3& attack_dir, float min_dot_prod, float hit_distance, const AttackStats& attack_stats);
             int ProcessAgentsOBB(const OBB& attack_box, const AttackStats& attack_stats, const float3& attack_source_pos, bool is_from_player);
-            int ProcessObstaclesOBB(const OBB& attack_box, const AttackStats& attack_stats);
+            int ProcessObstaclesOBB(const OBB& attack_box, const AttackStats& attack_stats, bool is_from_player);
             int ProcessPlayerOBB(const OBB& attack_box, const AttackStats& attack_stats, const float3& attack_source_pos);
             int ProcessAgentsCircle(const float3& attack_source_pos, const AttackStats& attack_stats, bool is_from_player);
-            int ProcessObstaclesCircle(const float3& attack_source_pos, const AttackStats& attack_stats);
+            int ProcessObstaclesCircle(const float3& attack_source_pos, const AttackStats& attack_stats, bool is_from_player);
             int ProcessPlayerCircle(const float3& attack_source_pos, const AttackStats& attack_stats);
+            // Evaluate for boss if exists Note: for now only added the attack the player uses
+            int ProcessBossOBB(const OBB& attack_box, const AttackStats& attack_stats, bool is_from_player);
 
             // Specifics of the collision check
             bool ConeHitsAgent(GameObject* agent_go, const float3& attack_source_pos, const float3& attack_dir, float min_dot_prod, float hit_distance);
@@ -118,8 +135,9 @@ namespace Hachiko
             bool CircleHitsPlayer(const float3& attack_source_pos, float radius);
 
             // What to do when system wants to register a hit
-            void HitObstacle(GameObject* obstacle, float damage);
+            void HitObstacle(GameObject* obstacle, float damage, bool is_from_player = false, bool is_ranged = false);
             void HitEnemy(EnemyController* enemy, int damage, float knockback = 0, float3 knockback_dir = float3::zero, bool is_from_player = false, bool is_ranged = false);
+            void HitEnemy(BossController* enemy, int damage, float knockback = 0, float3 knockback_dir = float3::zero, bool is_from_player = false, bool is_ranged = false);
             void HitPlayer(int damage, float knockback = 0, float3 knockback_dir = float3::zero);
 
             // Bullet specific management operations
@@ -132,6 +150,7 @@ namespace Hachiko
 
             // Processes hit and returns hit distance to check what to damage
             EnemyController* FindBulletClosestEnemyHit(GameObject* bullet, float bullet_size, LineSegment& trajectory, float& closest_hit);
+            BossController* FindBulletClosestBoss(GameObject* bullet, float bullet_size, LineSegment& trajectory, float& closest_hit);
             GameObject* FindBulletClosestObstacleHit(GameObject* bullet, float bullet_size, LineSegment& trajectory, float& closest_hit);
 
             // Enemy management
@@ -139,6 +158,7 @@ namespace Hachiko
 
         private:
             GameObject* _player = nullptr;
+            GameObject* _boss = nullptr;
             unsigned _max_bullets = 5;
             std::vector<GameObject*> _bullets{};
             std::vector<BulletStats> _bullet_stats;
@@ -150,11 +170,15 @@ namespace Hachiko
             int _damage;
 
             PlayerController* _player_controller;
+            BossController* _boss_controller;
+            TimeManager* _time_manager;
+            PlayerCamera* _camera;
 
             SERIALIZE_FIELD(GameObject*, _charge_vfx);
             SERIALIZE_FIELD(GameObject*, _shot_vfx);
 
             ComponentParticleSystem* _charge_particles;
+            ComponentBillboard* _charge_billboard;
             ComponentParticleSystem* _shot_particles;
         };
     } // namespace Scripting

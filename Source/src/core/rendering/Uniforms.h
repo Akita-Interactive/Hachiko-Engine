@@ -26,16 +26,29 @@ namespace Hachiko::Uniforms
         constexpr const char* GAUSSIAN_BLUR_SIGMA = "blur_sigma";
     } // namespace Filtering
 
-    namespace ImageBasedLighting
-    {
-
-    } // namespace ImageBasedLighting
-
     namespace Fog
     {
         constexpr const char* COLOR = "fog_color";
         constexpr const char* GLOBAL_DENSITY = "fog_global_density";
         constexpr const char* HEIGHT_FALLOFF = "fog_height_falloff";
-    }
+    } // namespace Fog
 
+    namespace SSAO
+    {
+        constexpr const char* FBO_WIDTH = "frame_buffer_width";
+        constexpr const char* FBO_HEIGHT = "frame_buffer_height";
+        constexpr const char* RADIUS = "radius";
+        constexpr const char* BIAS = "bias";
+        constexpr const char* POWER = "power";
+        constexpr const char* CAMERA_VIEW = "camera_view";
+        constexpr const char* CAMERA_PROJ = "camera_proj";
+        constexpr const char* KERNEL_SAMPLES_PREFIX = "samples[";
+        constexpr const char* KERNEL_SAMPLES_SUFFIX = "]";
+    } // namespace SSAO
+
+    namespace FXAA
+    {
+        constexpr const char* TEXTURE_HEIGHT_INVERSE = "texture_height_inverse";
+        constexpr const char* TEXTURE_WIDTH_INVERSE = "texture_width_inverse";
+    } // namespace FXAA
 } // namespace Hachiko::Uniforms

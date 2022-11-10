@@ -11,7 +11,9 @@ namespace Hachiko
 	namespace Scripting
 	{
 		class PlayerController;
-		
+		class AudioManager;
+		class PlayerSoundManager;
+
 		class LevelManager : public Script
 		{
 			SERIALIZATION_METHODS(false)
@@ -37,15 +39,43 @@ namespace Hachiko
 			}
 
 			float3 Respawn();
+			void ReloadBossScene() const;
+			void GoalReached();
 
+			void BlockInputs(bool block)
+			{
+				_inputs_blocked = block;
+			}
+			[[nodiscard]] bool AreInputsBlocked() const
+			{
+				return _inputs_blocked;
+			}
+
+            void BossKilled();
+
+			SERIALIZE_FIELD(unsigned, _level);
 			SERIALIZE_FIELD(float3, _respawn_position);
 			SERIALIZE_FIELD(GameObject*, _gauntlet_ui_go);
 			SERIALIZE_FIELD(GameObject*, _gauntlet_counter_go);
+			SERIALIZE_FIELD(bool, _gauntlets_easy_mode);
+			SERIALIZE_FIELD(bool, _modify_fog);
+			SERIALIZE_FIELD(float, _fog_frequency);
+			SERIALIZE_FIELD(float, _fog_max_density);
+			SERIALIZE_FIELD(float, _fog_min_density);
+			SERIALIZE_FIELD(GameObject*, _audio_manager_go);
+			SERIALIZE_FIELD(GameObject*, _player_sound_manager_go);
 
-
+			static bool increased_health;
+			
 		private:
 			GauntletManager* _last_gauntlet = nullptr;
 			ComponentText* _enemy_counter = nullptr;
+			AudioManager* _audio_manager = nullptr;
+			PlayerSoundManager* _player_sound_manager = nullptr;
+			bool _inputs_blocked = false;
+			bool _victory = false;
+
+			float _time;
 		};
 	}
 

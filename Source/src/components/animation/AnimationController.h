@@ -1,10 +1,7 @@
 #pragma once
 
+#include "components/TimeScaleMode.h"
 #include "resources/ResourceAnimation.h"
-
-#include <Math.h>
-
-#include <vector>
 
 namespace Hachiko
 {
@@ -43,6 +40,11 @@ namespace Hachiko
 
         bool GetTransform(Instance* instance, const std::string& channel_name, math::float3& position, Quat& rotation) const;
 
+        void SetTimeScaleMode(TimeScaleMode new_time_scale_mode)
+        {
+            time_scale_mode = new_time_scale_mode;
+        }
+
         Instance* GetCurrentInstance() 
         {
             return current;
@@ -68,8 +70,9 @@ namespace Hachiko
 
         // MANAGE INSTANCES
         void UpdateInstance(Instance* instance, unsigned elapsed, bool reverse);
-        void ReleaseInstance(Instance* instance);
+        static void ReleaseInstance(Instance* instance);
 
         State current_state = State::UNSET;
+        TimeScaleMode time_scale_mode = TimeScaleMode::UNSCALED;
     };
 } // namespace Hachiko

@@ -4,7 +4,7 @@
 
 namespace Hachiko
 {
-    class ComponentSpotLight : public Component
+    class HACHIKO_API ComponentSpotLight : public Component
     {
     public:
         // TODO: add more light types

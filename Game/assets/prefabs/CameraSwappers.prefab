@@ -1,0 +1,363 @@
+prefab_name: CameraSwappers
+name: CameraSwappers
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [-0, 0, -0]
+    scale: [1, 1, 1]
+child:
+  - name: SecretArea1
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [42.17, -10.17, -6.62]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+    child:
+      - name: ZoomOut
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-0.5052, 0, 0.3607]
+            rotation: [-0, 35.7, -0]
+            scale: [8.022, 1, 0.15]
+          - !<script>
+            type: 15
+            enabled: true
+            class_name: CameraPosChange
+            "'_objective@GameObject*'": 0
+            "'_do_look_ahead@bool'": true
+            "'_speed@float'": 0.2
+            "'_duration@float'": 0
+            "'_relative_position@float3'": [0, 24, 16]
+            "'_rotation@float3'": [125, 0, 180]
+            "'_check_box@bool'": false
+        child:
+          - name: Box001
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-90, 0, 0]
+                scale: [1, 1, 1]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 1654487118907036717
+                navigable: false
+                visible: false
+                casting_shadow: false
+                material_id: 6750369022920963075
+                tint_color: [1, 1, 1, 1]
+      - name: ZoomIn
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-0.901, 0, -0.3044]
+            rotation: [-0, 35.64, -0]
+            scale: [8.022, 1, 0.1503]
+          - !<script>
+            type: 15
+            enabled: true
+            class_name: CameraPosChange
+            "'_objective@GameObject*'": 0
+            "'_do_look_ahead@bool'": true
+            "'_speed@float'": 0.2
+            "'_duration@float'": 0
+            "'_relative_position@float3'": [0, 4, 12]
+            "'_rotation@float3'": [165, 0, 180]
+            "'_check_box@bool'": false
+        child:
+          - name: Box001
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-90, 0, 0]
+                scale: [1, 1, 1]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 1654487118907036717
+                navigable: false
+                visible: false
+                casting_shadow: false
+                material_id: 6750369022920963075
+                tint_color: [1, 1, 1, 1]
+  - name: SecretArea2
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [36.09, -10.17, -39.92]
+        rotation: [-0, 9.809, -0]
+        scale: [1, 1, 1]
+    child:
+      - name: ZoomOut
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-1.425, 0, -0.9201]
+            rotation: [-0, 35.7, -0]
+            scale: [8.022, 1, 0.15]
+          - !<script>
+            type: 15
+            enabled: true
+            class_name: CameraPosChange
+            "'_objective@GameObject*'": 0
+            "'_do_look_ahead@bool'": true
+            "'_speed@float'": 0.2
+            "'_duration@float'": 0
+            "'_relative_position@float3'": [0, 24, 16]
+            "'_rotation@float3'": [125, 0, 180]
+            "'_check_box@bool'": false
+        child:
+          - name: Box001
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-90, 0, 0]
+                scale: [1, 1, 1]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 1654487118907036717
+                navigable: false
+                visible: false
+                casting_shadow: false
+                material_id: 6750369022920963075
+                tint_color: [1, 1, 1, 1]
+      - name: ZoomIn
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-0.687, 0, -0.0061]
+            rotation: [-0, 36.23, -0]
+            scale: [8.022, 1, 1.374]
+          - !<script>
+            type: 15
+            enabled: true
+            class_name: CameraPosChange
+            "'_objective@GameObject*'": 0
+            "'_do_look_ahead@bool'": true
+            "'_speed@float'": 0.6
+            "'_duration@float'": 0
+            "'_relative_position@float3'": [0, 4, 12]
+            "'_rotation@float3'": [165, 0, 180]
+            "'_check_box@bool'": false
+        child:
+          - name: Box001
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-90, 0, 0]
+                scale: [1, 1, 1]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 1654487118907036717
+                navigable: false
+                visible: false
+                casting_shadow: false
+                material_id: 6750369022920963075
+                tint_color: [1, 1, 1, 1]
+  - name: Platforms1
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0.9375, -18.86, 53.71]
+        rotation: [0, -4.081, 0]
+        scale: [1, 1, 1]
+    child:
+      - name: ZoomOut
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-0.5052, 0, 0.3607]
+            rotation: [-0, 35.7, -0]
+            scale: [8.022, 1, 0.15]
+          - !<script>
+            type: 15
+            enabled: true
+            class_name: CameraPosChange
+            "'_objective@GameObject*'": 0
+            "'_do_look_ahead@bool'": true
+            "'_speed@float'": 0.2
+            "'_duration@float'": 0
+            "'_relative_position@float3'": [0, 30, 21]
+            "'_rotation@float3'": [125, 0, 180]
+            "'_check_box@bool'": false
+        child:
+          - name: Box001
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-90, 0, 0]
+                scale: [1, 1, 1]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 1654487118907036717
+                navigable: false
+                visible: false
+                casting_shadow: false
+                material_id: 6750369022920963075
+                tint_color: [1, 1, 1, 1]
+      - name: ZoomIn
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-0.0563, 0, 0.8736]
+            rotation: [-0, 35.64, -0]
+            scale: [8.022, 1, 0.1503]
+          - !<script>
+            type: 15
+            enabled: true
+            class_name: CameraPosChange
+            "'_objective@GameObject*'": 0
+            "'_do_look_ahead@bool'": true
+            "'_speed@float'": 0.2
+            "'_duration@float'": 0
+            "'_relative_position@float3'": [0, 24, 16]
+            "'_rotation@float3'": [125, 0, 180]
+            "'_check_box@bool'": false
+        child:
+          - name: Box001
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0.0001]
+                rotation: [-90, 0.0001, 0.0001]
+                scale: [1, 1, 1]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 1654487118907036717
+                navigable: false
+                visible: false
+                casting_shadow: false
+                material_id: 6750369022920963075
+                tint_color: [1, 1, 1, 1]
+  - name: Platforms2
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-32.04, -18, 55.57]
+        rotation: [-0, 52, -0]
+        scale: [1, 1, 1]
+    child:
+      - name: ZoomOut
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-1.389, 0, -0.8698]
+            rotation: [-0, 35.7, -0]
+            scale: [11.02, 1, 0.15]
+          - !<script>
+            type: 15
+            enabled: true
+            class_name: CameraPosChange
+            "'_objective@GameObject*'": 0
+            "'_do_look_ahead@bool'": true
+            "'_speed@float'": 0.2
+            "'_duration@float'": 0
+            "'_relative_position@float3'": [0, 30, 21]
+            "'_rotation@float3'": [125, 0, 180]
+            "'_check_box@bool'": false
+        child:
+          - name: Box001
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-90, 0, 0]
+                scale: [1, 1, 1]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 1654487118907036717
+                navigable: false
+                visible: false
+                casting_shadow: false
+                material_id: 6750369022920963075
+                tint_color: [1, 1, 1, 1]
+      - name: ZoomIn
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-1.731, 0, -1.461]
+            rotation: [-0, 35.64, -0]
+            scale: [11.22, 1, 0.1503]
+          - !<script>
+            type: 15
+            enabled: true
+            class_name: CameraPosChange
+            "'_objective@GameObject*'": 0
+            "'_do_look_ahead@bool'": true
+            "'_speed@float'": 0.2
+            "'_duration@float'": 0
+            "'_relative_position@float3'": [0, 24, 16]
+            "'_rotation@float3'": [125, 0, 180]
+            "'_check_box@bool'": false
+        child:
+          - name: Box001
+            enabled: true
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-90, 0, 0]
+                scale: [1, 1, 1]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 1654487118907036717
+                navigable: false
+                visible: false
+                casting_shadow: false
+                material_id: 6750369022920963075
+                tint_color: [1, 1, 1, 1]

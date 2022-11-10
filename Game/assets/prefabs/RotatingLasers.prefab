@@ -1,0 +1,289 @@
+prefab_name: RotatingLasers
+name: RotatingLasers
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [-81.63, 0, -61.83]
+    rotation: [-180, 89.98, -180]
+    scale: [1, 1, 1]
+child:
+  - name: Laser
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-0.07, 0, -22.54]
+        rotation: [180, -89.98, 180]
+        scale: [1, 1, 1]
+      - type: 20
+        enabled: true
+      - !<script>
+        type: 15
+        enabled: true
+        class_name: LaserController
+        "'_laser@GameObject*'": 4
+        "'_max_length@float'": 25
+        "'_max_scale@float'": 0.25
+        "'_activation_time@float'": 1
+        "'_damage@float'": 1
+        "'_spin_movement@bool'": false
+        "'_spin_speed@float'": 20
+        "'_horizonal_movement@bool'": false
+        "'_movement_speed@float'": 1
+        "'_movement_target@GameObject*'": 0
+        "'_toggle_activation@bool'": true
+        "'_toggle_active_time@float'": 5
+        "'_toggle_inactive_time@float'": 2
+        "'_dissolving_time@float'": 0.2
+        "'_sparks@GameObject*'": 5
+    child:
+      - name: laser_geo001
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.0037, 0.741, 0.0002]
+            rotation: [0, 0, 0]
+            scale: [0.01, 0.01, 0.01]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 17455600213719587926
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 16971418098135223375
+            tint_color: [1, 1, 1, 1]
+      - name: Cylinder
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.4998, 1.787, -0.0001]
+            rotation: [178.9, 90, 0]
+            scale: [0.2, 0.2, 3.492]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 10210867973034302559
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 5638565975614595118
+            tint_color: [1, 1, 1, 1]
+      - name: LaserSparks
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0.74, 0]
+            rotation: [0, 0, 90]
+            scale: [1, 1, 1]
+          - !<particle_system>
+            type: 22
+            enabled: true
+            sections:
+              parameters: true
+              emission: true
+              shape: true
+              lights: false
+              renderer: true
+              texture: false
+            parameters:
+              duration: 0.5
+              loop: false
+              life: [true, true, 0, [0.25, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              speed: [true, true, 0, [30, 5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            emission:
+              rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              burst: false
+            emitter_shape:
+              type: 0
+              properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+            texture:
+              texture_id: 3291545039621372658
+              tiles: [2, 1]
+              flip: [false, false]
+              total_tiles: 2
+            modifiers:
+              velocity:
+                active: false
+                speed: [true, true, 2, [0, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size:
+                active: false
+                size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              color:
+                active: true
+                color_gradient: [[1, 0, 0, 0, 0.88], [1, 1, 1, 0, 0.9477], [0, 0, 0, 0, 1]]
+                color_cycles: 1
+              force:
+                active: false
+                rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                x_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                y_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                z_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              animation:
+                active: false
+                animation_speed: 0
+                blend_factor: 0
+                fit_to_lifetime: false
+              noise:
+                active: false
+                separate_axes: false
+                strength:
+                  x: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                  y: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                  z: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                position: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+  - name: Laser
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-0.07, 0, 22.61]
+        rotation: [180, -89.98, 180]
+        scale: [1, 1, 1]
+      - type: 20
+        enabled: true
+      - !<script>
+        type: 15
+        enabled: true
+        class_name: LaserController
+        "'_laser@GameObject*'": 8
+        "'_max_length@float'": 25
+        "'_max_scale@float'": 0.25
+        "'_activation_time@float'": 1.5
+        "'_damage@float'": 1
+        "'_spin_movement@bool'": false
+        "'_spin_speed@float'": 20
+        "'_horizonal_movement@bool'": false
+        "'_movement_speed@float'": 1
+        "'_movement_target@GameObject*'": 0
+        "'_toggle_activation@bool'": true
+        "'_toggle_active_time@float'": 5
+        "'_toggle_inactive_time@float'": 3
+        "'_dissolving_time@float'": 0.2
+        "'_sparks@GameObject*'": 9
+    child:
+      - name: laser_geo001
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [-0.0047, 0.741, 0]
+            rotation: [180, 0, -180]
+            scale: [0.01, 0.01, 0.01]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 17455600213719587926
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 16971418098135223375
+            tint_color: [1, 1, 1, 1]
+      - name: Cylinder
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 1.791, 0]
+            rotation: [180, -90, 0]
+            scale: [0.2, 0.2, 3.492]
+          - !<mesh_renderer>
+            type: 2
+            enabled: true
+            mesh_id: 10210867973034302559
+            navigable: false
+            visible: true
+            casting_shadow: true
+            material_id: 5638565975614595118
+            tint_color: [1, 1, 1, 1]
+      - name: LaserSparks
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-180, -0, -135]
+            scale: [1, 1, 1]
+          - !<particle_system>
+            type: 22
+            enabled: true
+            sections:
+              parameters: true
+              emission: true
+              shape: true
+              lights: false
+              renderer: true
+              texture: false
+            parameters:
+              duration: 0.5
+              loop: false
+              life: [true, true, 0, [0.25, 5], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              speed: [true, true, 0, [30, 5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size: [true, true, 0, [2, 1], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              rotation: [true, true, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              properties: [1, 0, 0, false, [false, false, 0, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+            emission:
+              rate: [true, true, 0, [50, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              burst: false
+            emitter_shape:
+              type: 0
+              properties: [360, 0, [0, 0, 0], 0.1, 0, [0, 0, 0], [1, 1, 1], 10]
+            texture:
+              texture_id: 3291545039621372658
+              tiles: [2, 1]
+              flip: [false, false]
+              total_tiles: 2
+            modifiers:
+              velocity:
+                active: false
+                speed: [true, true, 2, [0, 0], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              size:
+                active: false
+                size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              color:
+                active: true
+                color_gradient: [[1, 0, 0, 0, 0.88], [1, 1, 1, 0, 0.9477], [0, 0, 0, 0, 1]]
+                color_cycles: 1
+              force:
+                active: false
+                rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                x_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                y_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                z_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              animation:
+                active: false
+                animation_speed: 0
+                blend_factor: 0
+                fit_to_lifetime: false
+              noise:
+                active: false
+                separate_axes: false
+                strength:
+                  x: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                  y: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                  z: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                position: [true, true, 0, [1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                rotation: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+                scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]

@@ -91,6 +91,18 @@ void EditorPreferences::LoadConfigurationData(const YAML::Node& node)
     }
 
     App->renderer->GetBloomManager().LoadConfig(node);
+
+    if (node[LOADING_SCREEN_CONFIG].IsDefined())
+    {
+        loading_screen_config = node[LOADING_SCREEN_CONFIG];
+    }
+
+    if (node[SSAO_ENABLED].IsDefined())
+    {
+        ssao_enabled = node[SSAO_ENABLED].as<bool>();
+    }
+
+    App->renderer->GetSSAOManager().LoadConfig(node);
 }
 
 void EditorPreferences::SaveConfigurationData(YAML::Node& node)
@@ -110,4 +122,7 @@ void EditorPreferences::SaveConfigurationData(YAML::Node& node)
     node[group_name][SHADOW_PASS_ENABLED] = shadow_pass_enabled;
 
     App->renderer->GetBloomManager().SaveConfig(node[group_name]);
+    App->renderer->GetSSAOManager().SaveConfig(node[group_name]);
+
+    node[group_name][LOADING_SCREEN_CONFIG] = loading_screen_config;
 }

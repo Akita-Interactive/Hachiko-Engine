@@ -27,7 +27,6 @@ bool ModuleResources::Init()
     preferences = App->preferences->GetResourcesPreference();
 
     // create assets & library directory tree
-
     for (auto& lib_path : preferences->GetLibraryPathsMap())
     {
         FileSystem::CreateDir(lib_path.second.c_str());
@@ -55,16 +54,21 @@ bool ModuleResources::Init()
     App->event->Subscribe(Event::Type::FILE_ADDED, handleAddedFile);
 #endif
 
+    App->renderer->LoadLoadingScreen();
+
     return true;
 }
 
 bool ModuleResources::CleanUp()
 {
+    App->renderer->DeleteLoadingScreen();
+
     for (auto& it : loaded_resources)
     {
-        HE_LOG("Removing unreleased resources (fbi coming)");
+        // HE_LOG("Removing unreleased resources %llu %i", it.first, it.second.n_users);
         delete it.second.resource;
     }
+    loaded_resources.clear();
 
     return true;
 }
@@ -129,6 +133,98 @@ Resource::AssetType ModuleResources::GetAssetTypeFromPath(const std::filesystem:
         return it->first;
     }
     return Resource::AssetType::UNKNOWN;
+}
+
+bool Hachiko::ModuleResources::DoesResourceExist(Resource::Type type, UID id) 
+{
+    std::string file_path
+        = StringUtils::Concat(App->preferences->GetResourcesPreference()->GetLibraryPath(type), std::to_string(id));
+    return FileSystem::Exists(file_path.c_str());
+}
+
+void Hachiko::ModuleResources::LoadSceneResources(const YAML::Node& node) 
+{
+    const unsigned amount_resources = static_cast<unsigned>(Resource::Type::COUNT);
+    std::map<Resource::Type, std::set<UID>> scene_loading_resources;
+    for (unsigned i = 1; i < amount_resources; ++i)
+    {
+        scene_loading_resources.insert({static_cast<Resource::Type>(i), std::set<UID>()});
+    }
+
+    Scene::GetResources(node, scene_loading_resources);
+
+    // TODO: IF MATERIAL MARK TEXTURES IN scene_loaded_texures (THIS IS CAUSING THAT THE UI DOES NOT SEE THE IMAGES)
+
+    // Load resources
+    for (unsigned i = 1; i < amount_resources; ++i)
+    {
+        Resource::Type resource_type = static_cast<Resource::Type>(i);
+        for (auto it = scene_loading_resources[resource_type].begin(); it != scene_loading_resources[resource_type].end(); it++)
+        {
+            if (loaded_resources.find(*it) == loaded_resources.end())
+            {
+                auto res = importer_manager.LoadResource(resource_type, *it);
+                if (res != nullptr)
+                {
+                    loaded_resources.emplace(*it, ResourceInstance {res, 0});
+
+                    if (resource_type == Resource::Type::TEXTURE)
+                    {
+                        scene_loaded_texures.insert(*it);
+                    }
+#ifndef PLAY_BUILD
+                    else if (resource_type == Resource::Type::MATERIAL)
+                    {
+                        ResourceMaterial* resource_material = static_cast<ResourceMaterial*>(res);
+
+                        if (resource_material->HasDiffuse())
+                        {
+                            scene_loaded_texures.insert(resource_material->diffuse->GetID());
+                        }
+                        if (resource_material->HasSpecular())
+                        {
+                            scene_loaded_texures.insert(resource_material->specular->GetID());
+                        }
+                        if (resource_material->HasNormal())
+                        {
+                            scene_loaded_texures.insert(resource_material->normal->GetID());
+                        }
+                        if (resource_material->HasMetalness())
+                        {
+                            scene_loaded_texures.insert(resource_material->metalness->GetID());
+                        }
+                        if (resource_material->HasEmissive())
+                        {
+                            scene_loaded_texures.insert(resource_material->emissive->GetID());
+                        }
+                    }
+#endif
+                }
+            }
+        }
+        
+        scene_loading_resources[static_cast<Resource::Type>(i)].clear();
+    }
+    scene_loading_resources.clear();
+}
+
+void Hachiko::ModuleResources::PostLoadSceneResources()
+{
+    // Load textures
+    for (UID texture_uid : scene_loaded_texures)
+    {
+        auto it = loaded_resources.find(texture_uid);
+        if (it != loaded_resources.end())
+        {
+            static_cast<ResourceTexture*>(it->second.resource)->GenerateBuffer();
+        }
+        else
+        {
+            HE_ERROR("[PostLoadSceneResources] Error when generating buffer");
+        }
+    }
+
+    scene_loaded_texures.clear();
 }
 
 Resource* Hachiko::ModuleResources::GetResource(Resource::Type type, UID id)

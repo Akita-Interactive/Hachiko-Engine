@@ -6,7 +6,7 @@ component:
     type: 1
     enabled: true
     position: [0, 0, 0]
-    rotation: [0, 0, 0, 1]
+    rotation: [0, 0, 0]
     scale: [1, 1, 1]
 child:
   - name: Chimney
@@ -16,7 +16,7 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [-0.7071, 0, 0, 0.7071]
+        rotation: [-90, 0, 0]
         scale: [100, 100, 100]
       - !<mesh_renderer>
         type: 2
@@ -24,6 +24,7 @@ child:
         mesh_id: 7544551443759936381
         navigable: false
         visible: true
+        casting_shadow: true
         material_id: 7765775954106249835
         tint_color: [1, 1, 1, 1]
   - name: Baker_house
@@ -33,7 +34,7 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [-0.7071, 0, 0, 0.7071]
+        rotation: [-90, 0, 0]
         scale: [100, 100, 100]
       - !<mesh_renderer>
         type: 2
@@ -41,5 +42,6 @@ child:
         mesh_id: 3581704332068092856
         navigable: false
         visible: true
+        casting_shadow: true
         material_id: 7765775954106249835
         tint_color: [1, 1, 1, 1]

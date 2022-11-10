@@ -1,0 +1,213 @@
+name: Boss_v2
+default_node: 0
+clips:
+  - clip_name: none
+    clips_id: 0
+    clips_loop: false
+  - clip_name: Idle
+    clips_id: 767640600913033404
+    clips_loop: true
+  - clip_name: PreJump
+    clips_id: 17492262643519893637
+    clips_loop: false
+  - clip_name: JumpLoop
+    clips_id: 11761423270617396321
+    clips_loop: true
+  - clip_name: Landing
+    clips_id: 15092448800544752182
+    clips_loop: false
+  - clip_name: PreJumpCrystal
+    clips_id: 17492262643519893637
+    clips_loop: false
+  - clip_name: JumpLoopCrystal
+    clips_id: 9299839480059627585
+    clips_loop: true
+  - clip_name: LandingCrystal
+    clips_id: 18089934624294278593
+    clips_loop: false
+  - clip_name: Summon_Crystal
+    clips_id: 10980884407496095838
+    clips_loop: false
+  - clip_name: Melee
+    clips_id: 7239467492030558950
+    clips_loop: false
+  - clip_name: CacoonLoop
+    clips_id: 15672072251363635959
+    clips_loop: true
+  - clip_name: CacoonComingOut
+    clips_id: 5586961564275297036
+    clips_loop: false
+  - clip_name: Walk
+    clips_id: 1673060140110565685
+    clips_loop: true
+  - clip_name: Death
+    clips_id: 8486996530720590468
+    clips_loop: false
+  - clip_name: GetingUpCrystalJump
+    clips_id: 15337879428432313686
+    clips_loop: false
+  - clip_name: GettingUpJump
+    clips_id: 4140608260917557051
+    clips_loop: false
+nodes:
+  - node_name: Idle
+    node_clip_name: Idle
+  - node_name: ANY
+    node_clip_name: none
+  - node_name: PreJump
+    node_clip_name: PreJump
+  - node_name: JumpLoop
+    node_clip_name: JumpLoop
+  - node_name: Landing
+    node_clip_name: Landing
+  - node_name: PreJumpCrystal
+    node_clip_name: PreJumpCrystal
+  - node_name: JumpLoopCrystal
+    node_clip_name: JumpLoopCrystal
+  - node_name: LandingCrystal
+    node_clip_name: LandingCrystal
+  - node_name: Summon_Crystal
+    node_clip_name: Summon_Crystal
+  - node_name: Melee
+    node_clip_name: Melee
+  - node_name: CacoonLoop
+    node_clip_name: CacoonLoop
+  - node_name: CacoonComingOut
+    node_clip_name: CacoonComingOut
+  - node_name: Walk
+    node_clip_name: Walk
+  - node_name: Death
+    node_clip_name: Death
+  - node_name: GetingUpCrystalJump
+    node_clip_name: GetingUpCrystalJump
+  - node_name: GettingUpJump
+    node_clip_name: GettingUpJump
+transitions:
+  - transition_source: ANY
+    transition_target: Idle
+    transition_trigger: isIdle
+    transition_blend: 300
+  - transition_source: Idle
+    transition_target: PreJump
+    transition_trigger: isPreJump
+    transition_blend: 300
+  - transition_source: Idle
+    transition_target: PreJumpCrystal
+    transition_trigger: isPreJumpCrystal
+    transition_blend: 300
+  - transition_source: Idle
+    transition_target: Summon_Crystal
+    transition_trigger: isSummonCrystal
+    transition_blend: 300
+  - transition_source: PreJump
+    transition_target: JumpLoop
+    transition_trigger: isJumpLoop
+    transition_blend: 300
+  - transition_source: JumpLoop
+    transition_target: Landing
+    transition_trigger: isLanding
+    transition_blend: 300
+  - transition_source: PreJumpCrystal
+    transition_target: JumpLoopCrystal
+    transition_trigger: isJumpLoopCrystal
+    transition_blend: 300
+  - transition_source: JumpLoopCrystal
+    transition_target: LandingCrystal
+    transition_trigger: isLandingCrystal
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: PreJump
+    transition_trigger: isPreJump
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: JumpLoop
+    transition_trigger: isJumpLoop
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: Landing
+    transition_trigger: isLanding
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: Summon_Crystal
+    transition_trigger: isSummonCrystal
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: PreJumpCrystal
+    transition_trigger: isPreJumpCrystal
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: JumpLoopCrystal
+    transition_trigger: isJumpLoopCrystal
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: LandingCrystal
+    transition_trigger: isLandingCrystal
+    transition_blend: 300
+  - transition_source: Idle
+    transition_target: Melee
+    transition_trigger: isMelee
+    transition_blend: 300
+  - transition_source: Idle
+    transition_target: CacoonLoop
+    transition_trigger: isCacoonLoop
+    transition_blend: 300
+  - transition_source: Idle
+    transition_target: CacoonComingOut
+    transition_trigger: isCacoonComingOut
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: Melee
+    transition_trigger: isMelee
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: CacoonComingOut
+    transition_trigger: isCacoonComingOut
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: CacoonLoop
+    transition_trigger: isCacoonLoop
+    transition_blend: 300
+  - transition_source: CacoonLoop
+    transition_target: CacoonComingOut
+    transition_trigger: isCacoonComingOut
+    transition_blend: 300
+  - transition_source: Idle
+    transition_target: Walk
+    transition_trigger: isWalk
+    transition_blend: 300
+  - transition_source: Idle
+    transition_target: Death
+    transition_trigger: isDeath
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: Walk
+    transition_trigger: isWalk
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: Death
+    transition_trigger: isDeath
+    transition_blend: 300
+  - transition_source: LandingCrystal
+    transition_target: GetingUpCrystalJump
+    transition_trigger: isGetingUpCrystalJump
+    transition_blend: 300
+  - transition_source: Landing
+    transition_target: GettingUpJump
+    transition_trigger: isGettingUpJump
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: GetingUpCrystalJump
+    transition_trigger: isGetingUpCrystalJump
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: GettingUpJump
+    transition_trigger: isGettingUpJump
+    transition_blend: 300
+  - transition_source: Melee
+    transition_target: Walk
+    transition_trigger: isWalk
+    transition_blend: 300
+  - transition_source: Summon_Crystal
+    transition_target: Walk
+    transition_trigger: isWalk
+    transition_blend: 300

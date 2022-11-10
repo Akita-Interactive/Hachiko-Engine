@@ -9,7 +9,7 @@ namespace Hachiko
         Particle() = default;
         virtual ~Particle() = default;
 
-        void Update();
+        void Update(float delta_time);
         void Reset();
         void Draw(ComponentCamera* camera, const Program* program);
 

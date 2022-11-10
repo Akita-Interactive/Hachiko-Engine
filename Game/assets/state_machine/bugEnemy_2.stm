@@ -5,17 +5,23 @@ clips:
     clips_id: 0
     clips_loop: false
   - clip_name: idle
-    clips_id: 6536326424371413636
+    clips_id: 6738724609430215781
     clips_loop: true
   - clip_name: attack
-    clips_id: 7969598165910296841
+    clips_id: 13450732686619765918
     clips_loop: false
   - clip_name: move
-    clips_id: 3638796766103889006
+    clips_id: 10051841621143117295
     clips_loop: true
   - clip_name: death
-    clips_id: 4971602105951751992
+    clips_id: 919849364010865646
     clips_loop: false
+  - clip_name: hit
+    clips_id: 11388254957599599559
+    clips_loop: false
+  - clip_name: attackAlt
+    clips_id: 1244824767144887888
+    clips_loop: true
 nodes:
   - node_name: idle
     node_clip_name: idle
@@ -27,6 +33,10 @@ nodes:
     node_clip_name: death
   - node_name: ANY
     node_clip_name: none
+  - node_name: hit
+    node_clip_name: hit
+  - node_name: attackAlt
+    node_clip_name: attackAlt
 transitions:
   - transition_source: idle
     transition_target: attack
@@ -47,4 +57,12 @@ transitions:
   - transition_source: ANY
     transition_target: move
     transition_trigger: isMoving
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: hit
+    transition_trigger: isHit
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: attackAlt
+    transition_trigger: isAttackingAlt
     transition_blend: 300

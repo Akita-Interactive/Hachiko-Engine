@@ -1,12 +1,12 @@
 #include "core/hepch.h"
 #include "TextureBatch.h"
 
-#include "core/GameObject.h"
+#include "Batching/BatchManager.h"
 #include "components/ComponentMeshRenderer.h"
 #include "resources/ResourceMaterial.h"
 
-#include "Modules/ModuleProgram.h"
-#include "Modules/ModuleTexture.h"
+#include "modules/ModuleProgram.h"
+#include "modules/ModuleTexture.h"
 #include "core/rendering/Program.h"
 
 Hachiko::TextureBatch::~TextureBatch()
@@ -235,9 +235,11 @@ void Hachiko::TextureBatch::UpdateBatch(int segment, const std::vector<const Com
 
         if (components[i]->OverrideMaterialActive())
         {
-            materials[i].emissive_flag = 0;
+            materials[i].emissive_flag = components[i]->GetOverrideMaterialFlag() ? 1 : 0;
             materials[i].emissive_color = components[i]->GetOverrideEmissiveColor();
         }
+
+        materials[i].dissolve_progress = components[i]->GetDissolveProgress();
 
         // Copy material to persistent buffer:
         material_buffer_data[offset + i] = materials[i];
@@ -247,12 +249,12 @@ void Hachiko::TextureBatch::UpdateBatch(int segment, const std::vector<const Com
 void Hachiko::TextureBatch::BindBatch(int segment, const Program* program, unsigned component_count)
 {
     // Bind textures
-    const std::vector<int> texture_slots = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
+    const std::vector<int> texture_slots = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
     program->BindUniformInts("allMyTextures", texture_arrays.size(), &texture_slots[0]);
 
     for (unsigned i = 0; i < texture_arrays.size(); ++i)
     {
-        glActiveTexture(GL_TEXTURE10 + i);
+        glActiveTexture(GL_TEXTURE11 + i);
         glBindTexture(GL_TEXTURE_2D_ARRAY, texture_arrays[i]->id);
     }
 
@@ -267,49 +269,38 @@ void Hachiko::TextureBatch::BindBatch(int segment, const Program* program, unsig
 
 void Hachiko::TextureBatch::ImGuiWindow()
 {
-    ImGui::Text("TEXTURE_BATCH");
+    ImGui::TextWrapped("- Amount of texture arrays: %i", texture_arrays.size());
 
-    for (unsigned i = 0; i < texture_arrays.size(); ++i)
+    if (ImGui::TreeNodeEx(&texture_arrays, ImGuiTreeNodeFlags_None, "Texture arrays"))
     {
-        ImGui::BulletText("TextureArray ");
-        ImGui::SameLine();
-        ImGui::Text(std::to_string(i).c_str());
-
-        ImGui::Text("Depth (number of textures): ");
-        ImGui::SameLine();
-        ImGui::Text(std::to_string(texture_arrays[i]->depth).c_str());
-
-        ImGui::Text("Width: ");
-        ImGui::SameLine();
-        ImGui::Text(std::to_string(texture_arrays[i]->width).c_str());
-
-        ImGui::Text("Height: ");
-        ImGui::SameLine();
-        ImGui::Text(std::to_string(texture_arrays[i]->height).c_str());
-
-        ImGui::Text("Format: ");
-        ImGui::SameLine();
-        ImGui::Text(std::to_string(texture_arrays[i]->format).c_str());
-        
-        ImGui::Text("Wrap Mode: ");
-        ImGui::SameLine();
-        ImGui::Text(std::to_string(texture_arrays[i]->wrap_mode).c_str());
-
-        ImGui::Text("Min Filter: ");
-        ImGui::SameLine();
-        ImGui::Text(std::to_string(texture_arrays[i]->min_filter).c_str());
-
-        ImGui::Text("Mag Filter: ");
-        ImGui::SameLine();
-        ImGui::Text(std::to_string(texture_arrays[i]->mag_filter).c_str());
-
-        for (auto& resource : resources)
+        for (unsigned i = 0; i < texture_arrays.size(); ++i)
         {
-            if (EqualLayout(*texture_arrays[i], *resource.first))
+            ImGui::TextWrapped("TextureArray %i", i);
+            ImGui::TextWrapped("- Amount of texture resources: %i", resources.size());
+
+            ImGui::TextWrapped("- Depth (number of textures): %i", texture_arrays[i]->depth);
+            ImGui::TextWrapped("- Width: %i", texture_arrays[i]->width);
+            ImGui::TextWrapped("- Height: %i", texture_arrays[i]->height);
+            ImGui::TextWrapped("- Format: %i", texture_arrays[i]->format);
+            ImGui::TextWrapped("- Wrap Mode: %i", texture_arrays[i]->wrap_mode);
+            ImGui::TextWrapped("- Min Filter: %i", texture_arrays[i]->min_filter);
+            ImGui::TextWrapped("- Mag Filter: %i", texture_arrays[i]->mag_filter);
+
+            if (ImGui::TreeNodeEx(&resources, ImGuiTreeNodeFlags_None, "Textures"))
             {
-                ImGui::Text(resource.first->path.c_str());
+                for (auto& resource : resources)
+                {
+                    if (EqualLayout(*texture_arrays[i], *resource.first))
+                    {
+                        ImGui::Text("%llu ", resource.first->GetID());
+                        ImGui::SameLine();
+                        ImGui::Text(resource.first->path.c_str());
+                    }
+                }
+                ImGui::TreePop();
             }
         }
+        ImGui::TreePop();
     }
 }
 

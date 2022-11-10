@@ -23,6 +23,11 @@ namespace Hachiko
         void DebugDraw() override;
         void Save(YAML::Node& node) const override;
 
+        void GetSize(unsigned& width, unsigned& height) const 
+        {
+            width = size_x;
+            height = size_y;
+        }
         void UpdateSize(bool force = false);
 
         bool HasDependentComponents(GameObject* game_object) const override;

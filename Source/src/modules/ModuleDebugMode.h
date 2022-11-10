@@ -35,9 +35,7 @@ namespace Hachiko
 		~ModuleDebugMode() override = default;
 
 		bool Init() override;
-		UpdateStatus PreUpdate(const float delta) override;
-		UpdateStatus Update(const float delta) override;
-		UpdateStatus PostUpdate(const float delta) override;
+        UpdateStatus Update(const float delta) override;
 		bool CleanUp() override;
 
 		[[nodiscard]] bool IsActive() const { return is_gui_active; }

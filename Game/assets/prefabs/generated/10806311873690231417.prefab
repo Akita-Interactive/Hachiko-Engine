@@ -6,7 +6,7 @@ component:
     type: 1
     enabled: true
     position: [0, 0, 0]
-    rotation: [0, 0, 0, 1]
+    rotation: [0, 0, 0]
     scale: [1, 1, 1]
 child:
   - name: parasiteWallBroken
@@ -16,7 +16,7 @@ child:
         type: 1
         enabled: true
         position: [33.97, -0.4707, -0.3797]
-        rotation: [0, -0.7071, 0, 0.7071]
+        rotation: [104, -89.98, 104]
         scale: [0.3937, 0.3937, 0.3937]
       - !<mesh_renderer>
         type: 2
@@ -24,5 +24,6 @@ child:
         mesh_id: 5883127849286108160
         navigable: false
         visible: true
+        casting_shadow: true
         material_id: 12778734868932773470
         tint_color: [1, 1, 1, 1]

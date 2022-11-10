@@ -22,7 +22,6 @@ namespace Hachiko
             DT_OBSTACLE_ORIENTED_BOX, // OBB
         };
 
-
         ComponentObstacle(GameObject* container);
         ~ComponentObstacle() override;
         

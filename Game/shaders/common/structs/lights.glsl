@@ -1,8 +1,8 @@
 #ifndef _LIGHTS_INCLUDE_
 #define _LIGHTS_INCLUDE_
 
-#define MAX_POINT_LIGHTS 1200
-#define MAX_SPOT_LIGHTS 4
+#define MAX_POINT_LIGHTS 500
+#define MAX_SPOT_LIGHTS 100
 #define PI 3.141597
 
 struct AmbientLight

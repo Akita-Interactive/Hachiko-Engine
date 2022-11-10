@@ -12,6 +12,7 @@
 #include "resources/ResourceTexture.h"
 #include "ComponentTransform.h"
 #include "ComponentCamera.h"
+#include "utils/ComponentUtility.h"
 
 Hachiko::ComponentBillboard::ComponentBillboard(GameObject* container) :
     Component(Component::Type::BILLBOARD, container)
@@ -27,7 +28,7 @@ Hachiko::ComponentBillboard::~ComponentBillboard()
 
 void Hachiko::ComponentBillboard::Draw(ComponentCamera* camera, Program* program)
 {
-    if (state == ParticleSystem::Emitter::State::STOPPED || !game_object->IsActive())
+    if (state == ParticleSystem::Emitter::State::STOPPED || !game_object->IsActive() || delayed)
     {
         return;
     }
@@ -56,8 +57,8 @@ void Hachiko::ComponentBillboard::Draw(ComponentCamera* camera, Program* program
     float4x4 model_matrix;
     GetOrientationMatrix(camera, model_matrix);
     program->BindUniformFloat4x4("model", model_matrix.ptr());
-    program->BindUniformFloat4x4("view", &camera->GetViewMatrix()[0][0]);
-    program->BindUniformFloat4x4("proj", &camera->GetProjectionMatrix()[0][0]);
+    int ignore_camera = projection ? 0 : 1;
+    program->BindUniformInts("ignore_camera", 1, &ignore_camera);
 
     program->BindUniformFloat("x_factor", &texture_properties.GetFactor().x);
     program->BindUniformFloat("y_factor", &texture_properties.GetFactor().y);
@@ -77,7 +78,7 @@ void Hachiko::ComponentBillboard::Draw(ComponentCamera* camera, Program* program
     program->BindUniformInts("flip_x", 1, &flip_x);
     program->BindUniformInts("flip_y", 1, &flip_y);
     program->BindUniformFloat("animation_blend", &blend_factor);
-
+    
     glBindVertexArray(App->renderer->GetFullScreenQuadVAO());
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
@@ -91,7 +92,7 @@ void Hachiko::ComponentBillboard::Draw(ComponentCamera* camera, Program* program
 void Hachiko::ComponentBillboard::DrawGui()
 {
     ImGui::PushID(this);
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Billboard"))
+    if (ImGuiUtils::CollapsingHeader(this, "Billboard"))
     {
         const char* particle_render_modes[] = {"Additive", "Transparent"};
         const char* billboards[] = {"Normal", "Vertical", "Horizontal", "Stretch", "World"};
@@ -106,6 +107,7 @@ void Hachiko::ComponentBillboard::DrawGui()
 
             DragFloat("Duration", duration, &duration_cfg);
             Widgets::Checkbox("Loop", &loop);
+            Widgets::Checkbox("Loop All", &loop_all);
             Widgets::Checkbox("Play On Awake", &play_on_awake);
             Widgets::MultiTypeSelector("Start delay", start_delay);
 
@@ -121,11 +123,18 @@ void Hachiko::ComponentBillboard::DrawGui()
         if (CollapsingHeader("Renderer", &renderer_section, Widgets::CollapsibleHeaderType::Checkbox))
         {
             ImGui::BeginDisabled(!renderer_section);
-            int orientation = static_cast<int>(render_properties.orientation);
-            if (Widgets::Combo("Particle Orientations", &orientation, billboards, IM_ARRAYSIZE(billboards)))
+            if (projection)
             {
-                render_properties.orientation = static_cast<ParticleSystem::ParticleOrientation>(orientation);
-                App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+                int orientation = static_cast<int>(render_properties.orientation);
+                if (Widgets::Combo("Particle Orientations", &orientation, billboards, IM_ARRAYSIZE(billboards)))
+                {
+                    render_properties.orientation = static_cast<ParticleSystem::ParticleOrientation>(orientation);
+                    App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
+                }
+            }
+            else
+            {
+                render_properties.orientation = ParticleSystem::ParticleOrientation::NORMAL;
             }
 
             int render_mode = static_cast<int>(render_properties.render_mode);
@@ -136,6 +145,7 @@ void Hachiko::ComponentBillboard::DrawGui()
             }
 
             Widgets::Checkbox("Orientate to direction", &render_properties.orientate_to_direction);
+            Widgets::Checkbox("Camera projection", &projection);
 
             Widgets::DragFloatConfig alpha_config;
             alpha_config.format = "%.2f";
@@ -185,6 +195,7 @@ void Hachiko::ComponentBillboard::DrawGui()
                 Widgets::Checkbox("Flip X", &flip_texture_editor.x);
                 Widgets::Checkbox("Flip Y", &flip_texture_editor.y);
                 texture_properties.SetFlip(flip_texture_editor);
+                Widgets::Checkbox("Randomize tile selection", &randomize_tiles);
             }
             else
             {
@@ -313,6 +324,8 @@ void Hachiko::ComponentBillboard::Start()
     {
         state = ParticleSystem::Emitter::State::PLAYING;
     }
+    
+    delayed = start_delay.GetValue() <= DBL_EPSILON ? false : true;
 
     Restart();
 }
@@ -331,16 +344,30 @@ void Hachiko::ComponentBillboard::Update()
         Reset();
         return;
     }
-    else if (state == ParticleSystem::Emitter::State::PLAYING)
+
+    if (state != ParticleSystem::Emitter::State::PLAYING)
     {
-        elapsed_time += EngineTimer::delta_time;
+        return;
+    }
 
-        // Delay
-        if (elapsed_time < start_delay.GetValue())
-        {
-            return;
-        }
+    const float unscaled = static_cast<float>(EngineTimer::delta_time);
+    const float delta_time = GetTimeScaleMode() == TimeScaleMode::SCALED
+        ? unscaled * Time::GetTimeScale()
+        : unscaled;
 
+    elapsed_time += delta_time;
+
+    // Delay
+    if (elapsed_time < start_delay.GetValue())
+    {
+        delayed = true;
+        return;
+    }
+
+    delayed = false;
+    
+    if (!loop_all)
+    {
         if (!loop && elapsed_time >= duration)
         {
             state = ParticleSystem::Emitter::State::STOPPED;
@@ -349,12 +376,12 @@ void Hachiko::ComponentBillboard::Update()
         {
             Reset();
         }
-
-        UpdateAnimationData();
-        UpdateColorOverLifetime();
-        UpdateSizeOverLifetime();
-        UpdateRotationOverLifetime();
     }
+    
+    UpdateAnimationData(delta_time);
+    UpdateColorOverLifetime(delta_time);
+    UpdateSizeOverLifetime(delta_time);
+    UpdateRotationOverLifetime(delta_time);
 }
 
 inline void Hachiko::ComponentBillboard::Play()
@@ -377,6 +404,7 @@ void Hachiko::ComponentBillboard::Restart()
 
 inline void Hachiko::ComponentBillboard::Stop()
 {
+    delayed = start_delay.GetValue() <= DBL_EPSILON ? false : true;
     color_frame = 0.0f;
     animation_index = float2(0.0f, 0.0f);
     state = ParticleSystem::Emitter::State::STOPPED;
@@ -384,10 +412,12 @@ inline void Hachiko::ComponentBillboard::Stop()
 
 inline void Hachiko::ComponentBillboard::Reset()
 {
+    delayed = start_delay.GetValue() <= DBL_EPSILON ? false : true;
     elapsed_time = 0.0f;
     current_frame = 0.0f;
-    animation_index = {0.0f, 0.0f};
+    animation_index = randomize_tiles ? GetRandomTile() : float2{0.0f, 0.0f};
     size = start_size.GetValue();
+    rotation = start_rotation.GetValue();
 }
 
 void Hachiko::ComponentBillboard::Save(YAML::Node& node) const
@@ -405,6 +435,7 @@ void Hachiko::ComponentBillboard::Save(YAML::Node& node) const
     node[ANIMATION_SPEED] = animation_speed;
     node[TOTAL_TILES] = total_tiles;
     node[ANIMATION_LOOP] = loop;
+    node[ANIMATION_LOOP_ALL] = loop_all;
     node[COLOR_CYCLES] = color_cycles;
     node[COLOR_GRADIENT] = *gradient;
     node[ANIMATION_SECTION] = animation_section;
@@ -417,6 +448,8 @@ void Hachiko::ComponentBillboard::Save(YAML::Node& node) const
     node[START_SIZE] = start_size;
     node[START_ROTATION] = start_rotation;
     node[BLEND_FACTOR] = blend_factor;
+    node[BILLBOARD_PROJECTION] = projection;
+    node[RANDOMIZE_TILE] = randomize_tiles;
 }
 
 void Hachiko::ComponentBillboard::Load(const YAML::Node& node)
@@ -447,6 +480,10 @@ void Hachiko::ComponentBillboard::Load(const YAML::Node& node)
     total_tiles = node[TOTAL_TILES].IsDefined() ? node[TOTAL_TILES].as<float>() : 0;
 
     loop = node[ANIMATION_LOOP].IsDefined() ? node[ANIMATION_LOOP].as<bool>() : false;
+
+    loop_all = node[ANIMATION_LOOP_ALL].IsDefined() ? node[ANIMATION_LOOP_ALL].as<bool>() : loop_all;
+    
+    projection = node[BILLBOARD_PROJECTION].IsDefined() ? node[BILLBOARD_PROJECTION].as<bool>() : projection;
 
     texture_properties.SetFlip(node[FLIP].IsDefined() ? node[FLIP].as<bool2>() : bool2::False);
 
@@ -480,6 +517,16 @@ void Hachiko::ComponentBillboard::Load(const YAML::Node& node)
     start_rotation = node[START_ROTATION].IsDefined() ? node[START_ROTATION].as<ParticleSystem::VariableTypeProperty>() : start_rotation;
 
     blend_factor = node[BLEND_FACTOR].IsDefined() ? node[BLEND_FACTOR].as<float>() : blend_factor;
+    
+    randomize_tiles = node[RANDOMIZE_TILE].IsDefined() ? node[RANDOMIZE_TILE].as<bool>() : randomize_tiles;
+}
+
+void Hachiko::ComponentBillboard::CollectResources(const YAML::Node& node, std::map<Resource::Type, std::set<UID>>& resources)
+{
+    ComponentUtility::CollectResource(
+        Resource::Type::TEXTURE, 
+        node[BILLBOARD_TEXTURE_ID], 
+        resources);
 }
 
 void Hachiko::ComponentBillboard::AddTexture()
@@ -519,14 +566,14 @@ void Hachiko::ComponentBillboard::RemoveTexture()
     texture_properties.SetTexture(nullptr);
 }
 
-inline void Hachiko::ComponentBillboard::UpdateAnimationData()
+inline void Hachiko::ComponentBillboard::UpdateAnimationData(const float delta_time)
 {
     if (!HasTexture() || !animation_section)
     {
         return;
     }
 
-    animation_time += EngineTimer::delta_time;
+    animation_time += delta_time;
 
     if (animation_time <= animation_speed)
     {
@@ -550,14 +597,14 @@ inline void Hachiko::ComponentBillboard::UpdateAnimationData()
     animation_index = {0.0f, 0.0f};
 }
 
-inline void Hachiko::ComponentBillboard::UpdateColorOverLifetime()
+inline void Hachiko::ComponentBillboard::UpdateColorOverLifetime(const float delta_time)
 {
     if (!color_section)
     {
         return;
     }
 
-    color_time += EngineTimer::delta_time;
+    color_time += delta_time;
     float time_mod = fmod(color_time, duration / color_cycles);
     color_frame = time_mod / duration * color_cycles;
 
@@ -568,24 +615,38 @@ inline void Hachiko::ComponentBillboard::UpdateColorOverLifetime()
     }
 }
 
-void Hachiko::ComponentBillboard::UpdateRotationOverLifetime()
+void Hachiko::ComponentBillboard::UpdateRotationOverLifetime(const float delta_time)
 {
     if (!rotation_section)
     {
         return;
     }
 
-    rotation += rotation_over_time.GetValue() * EngineTimer::delta_time;
+    rotation += rotation_over_time.GetValue() * delta_time;
 }
 
-void Hachiko::ComponentBillboard::UpdateSizeOverLifetime()
+void Hachiko::ComponentBillboard::UpdateSizeOverLifetime(const float delta_time)
 {
     if (!size_section)
     {
         return;
     }
 
-    size += size_over_time.GetValue() * EngineTimer::delta_time;
+    size += size_over_time.GetValue() * delta_time;
+}
+
+float2 Hachiko::ComponentBillboard::GetRandomTile()
+{
+    float2 retVal {0.0f, 0.0f};
+
+    if (!randomize_tiles)
+    {
+        return retVal;
+    }
+
+    retVal.x = RandomUtil::RandomIntBetween(0, texture_properties.GetTiles().x);
+    retVal.y = RandomUtil::RandomIntBetween(0, texture_properties.GetTiles().y);
+    return retVal;
 }
 
 void Hachiko::ComponentBillboard::PublishIntoScene()
@@ -681,20 +742,6 @@ void Hachiko::ComponentBillboard::GetOrientationMatrix(ComponentCamera* camera, 
             break;
         }
     }
-    // TODO: To add
-    //case BillboardType::STRETCH:
-    //{
-    //    float3 camera_direction = (camera_position - position).Normalized();
-    //    float3 up_dir = Cross(direction, camera_direction);
-    //    float3 new_camera_dir = Cross(direction, up_dir);
-
-    //    float3x3 new_rotation;
-    //    new_rotation.SetCol(0, up_dir);
-    //    new_rotation.SetCol(1, direction);
-    //    new_rotation.SetCol(2, new_camera_dir);
-
-    //    model_matrix = float4x4::FromTRS(position, new_rotation * model_stretch, scale);
-    //}
 }
 
 bool Hachiko::ComponentBillboard::HasTexture()

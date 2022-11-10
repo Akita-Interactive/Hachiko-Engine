@@ -10,7 +10,7 @@ Hachiko::VelocityParticleModifier::VelocityParticleModifier(const std::string& n
     cfg.format = "%.2f";
 }
 
-void Hachiko::VelocityParticleModifier::Update(std::vector<Particle>& particles)
+void Hachiko::VelocityParticleModifier::Update(std::vector<Particle>& particles, const float delta_time)
 {
     if (!IsActive())
     {

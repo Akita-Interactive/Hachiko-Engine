@@ -2,6 +2,7 @@
 #include "Module.h"
 
 #include "core/Scene.h"
+#include <thread>
 
 namespace Hachiko
 {
@@ -20,19 +21,18 @@ namespace Hachiko
 
         // --- Life cycle --- //
         bool Init() override;
-        
-        void AttemptScenePause();
-        void AttemptScenePlay();
-        void AttemptSceneStop();
-        bool IsScenePlaying();
-
-        void RebuildBatches();
-        
-        UpdateStatus Update(float delta) override;
-        UpdateStatus PostUpdate(float delta) override;
+        UpdateStatus Update(const float delta) override;
+        UpdateStatus PostUpdate(const float delta) override;
         bool CleanUp() override;
 
-        void RemoveGameObject(GameObject* go);
+        static void AttemptScenePause();
+        void AttemptScenePlay() const;
+        void AttemptSceneStop();
+        static bool IsScenePlaying();
+
+        void RebuildBatches() const;
+
+        void RemoveGameObject(GameObject* game_object);
         void RemovedGameObject(GameObject* go);
 
         GameObject* GetRoot()
@@ -57,35 +57,64 @@ namespace Hachiko
 
         void ChangeSceneById(UID new_scene_id, bool stop_scene = false);
         
-        void SaveScene(const char* file_path = nullptr);
+        void SaveScene(const char* save_name = nullptr);
 
-        GameObject* Raycast(const float3& origin, const float3& destination, float3* closest_hit = nullptr, GameObject* parent_filter = nullptr, bool active_only = false);
-        GameObject* BoundingRaycast(const float3& origin, const float3& destination, GameObject* parent_filter = nullptr, bool active_only = false);
+        GameObject* RayCast(
+            const float3& origin, 
+            const float3& destination, 
+            float3* closest_hit = nullptr, 
+            GameObject* parent_filter = nullptr, 
+            bool active_only = false) const;
+        
+        GameObject* BoundingRayCast(
+            const float3& origin, 
+            const float3& destination, 
+            GameObject* parent_filter = nullptr, 
+            bool active_only = false) const;
 
         void OptionsMenu();
 
+        [[nodiscard]] bool IsLoadingScene() const
+        {
+            return loading_scene;
+        }
+
+        void CheckSceneLoading();
+
     private:
-        void StopScene();
-        void LoadScene(UID new_scene_id);
-        void LoadScene(ResourceScene* scene, bool keep_navmesh = false);
+        void StopScene() const;
+        void LoadScene(UID new_scene_id, bool keep_navigation_mesh = false);
         void ChangeMainScene(Scene* new_scene);
-        void CreateEmptyScene(const char* name = nullptr);
+        void LoadEmptyScene();
+        void PostLoadScene();
         void ReloadScene();
 
-        // Deletes current resource it it doesnt come from resource manager (for now assume it when id 0)
-        void SetSceneResource(ResourceScene* scene);
-        void RefreshSceneResource();
+        void ThreadLoadScene(UID scene_id, bool keep_navmesh);
+
+        // Deletes current resource if it doesn't come from resource manager
+        // (for now assume it when id 0)
+        void SetSceneResource(ResourceScene* new_scene_resource);
+
+        void RefreshSceneResource() const;
         Scene* main_scene = nullptr;
         ResourcesPreferences* preferences = nullptr;
 
-
         bool scene_change_requested = false;
         bool scene_reload_requested = false;
-        UID scene_to_load_id;
+        UID scene_to_load_id = 0;
         std::vector<GameObject*> to_remove;
 
         bool scene_autosave = false;
-        ResourceScene* scene_resource;
-        ResourceNavMesh* navmesh_resource;
+
+        ResourceScene* scene_resource = nullptr;
+        ResourceNavMesh* navmesh_resource = nullptr;
+
+        bool loading_scene = false;
+
+        bool should_trigger_attempt_play = false;
+
+        ResourceScene* tmp_resource_scene = nullptr;
+        Scene* tmp_loading_scene = nullptr;
+        std::thread loading_scene_worker;
     };
 } // namespace Hachiko

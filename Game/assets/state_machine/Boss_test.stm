@@ -1,0 +1,57 @@
+name: Boss_test
+default_node: 0
+clips:
+  - clip_name: none
+    clips_id: 0
+    clips_loop: false
+  - clip_name: Idle
+    clips_id: 2542804215659437742
+    clips_loop: true
+  - clip_name: Appear
+    clips_id: 6009163880440028482
+    clips_loop: true
+  - clip_name: PreJump
+    clips_id: 5146047368326326900
+    clips_loop: false
+  - clip_name: JumpAir
+    clips_id: 11327090246396640958
+    clips_loop: false
+  - clip_name: Landing
+    clips_id: 2302057464772154283
+    clips_loop: false
+nodes:
+  - node_name: Idle
+    node_clip_name: Idle
+  - node_name: Appear
+    node_clip_name: Appear
+  - node_name: PreJump
+    node_clip_name: PreJump
+  - node_name: JumpAir
+    node_clip_name: JumpAir
+  - node_name: Landing
+    node_clip_name: Landing
+transitions:
+  - transition_source: Idle
+    transition_target: PreJump
+    transition_trigger: isPreJump
+    transition_blend: 300
+  - transition_source: PreJump
+    transition_target: JumpAir
+    transition_trigger: isJumpAir
+    transition_blend: 300
+  - transition_source: JumpAir
+    transition_target: Landing
+    transition_trigger: isLanding
+    transition_blend: 300
+  - transition_source: Idle
+    transition_target: Appear
+    transition_trigger: isAppear
+    transition_blend: 300
+  - transition_source: Landing
+    transition_target: Idle
+    transition_trigger: isIdle
+    transition_blend: 300
+  - transition_source: Appear
+    transition_target: Idle
+    transition_trigger: isIdle
+    transition_blend: 300

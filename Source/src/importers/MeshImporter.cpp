@@ -2,7 +2,6 @@
 
 #include "MeshImporter.h"
 #include "resources/ResourceMesh.h"
-#include "core/preferences/src/ResourcesPreferences.h"
 
 void Hachiko::MeshImporter::Save(UID id, const Resource* res)
 {
@@ -168,7 +167,6 @@ Hachiko::Resource* Hachiko::MeshImporter::Load(UID id)
         mesh->num_bones = sizes[static_cast<int>(ResourceMesh::Buffers::BONES)];
     }
 
-    mesh->GenerateBuffers();
     mesh->GenerateAABB();
     mesh->loaded = true;
 
@@ -247,7 +245,6 @@ void Hachiko::MeshImporter::ImportFromAssimp(UID uid, const aiMesh* ai_mesh)
         memcpy(&mesh->indices[i * 3], ai_mesh->mFaces[i].mIndices, 3 * sizeof(unsigned));
     }
 
-    mesh->GenerateBuffers();
     mesh->GenerateAABB();
     mesh->loaded = true;
 

@@ -88,6 +88,11 @@ namespace Hachiko
             return mesh->normals;
         }
 
+        [[nodiscard]] bool GetOverrideMaterialFlag() const
+        {
+            return override_emissive_flag_override;
+        }
+
         [[nodiscard]] const ResourceMesh* GetResourceMesh() const
         {
             return mesh;
@@ -98,35 +103,70 @@ namespace Hachiko
             return material;
         }
 
-        void SetTintColor(float4 color)
+        HACHIKO_API void SetTintColor(const float4& color)
         {
             tint_color = color;
         }
 
-        [[nodiscard]] float4 GetTintColor() const 
+        HACHIKO_API  [[nodiscard]] const float4& GetTintColor() const
         {
             return tint_color;
         }
-        
+
+        HACHIKO_API void SetDissolveProgress(const float progress)
+        {
+            dissolve_progress = progress;
+        }
+
+        HACHIKO_API [[nodiscard]] float GetDissolveProgress() const
+        {
+            return dissolve_progress;
+        }
+
+        HACHIKO_API [[nodiscard]] bool IsCastingShadow() const
+        {
+            return is_casting_shadow;
+        }
+
+        HACHIKO_API void SetCastingShadow(bool value);
+
+        HACHIKO_API [[nodiscard]] bool IsOutlined() const
+        {
+            return outline_type != Outline::Type::NONE;
+        }
+
+        HACHIKO_API [[nodiscard]] Outline::Type GetOutlineType() const
+        {
+            return outline_type;
+        }
+
+        HACHIKO_API void SetOutlineType(Outline::Type type)
+        {
+            outline_type = type;
+        }
+
         void DrawGui() override;
 
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
+        static void CollectResources(const YAML::Node& node, std::map<Resource::Type, std::set<UID>>& resources);
 
         // BONES
-        const std::vector<float4x4>& GetPalette() const
+        [[nodiscard]] const std::vector<float4x4>& GetPalette() const
         {
             return palette;
         }
 
         // Scripting
-        [[nodiscard]] bool OverrideMaterialActive() const
+        HACHIKO_API [[nodiscard]] bool OverrideMaterialActive() const
         {
             return override_material;
         }
-        void OverrideEmissive(float4 color, float time);
 
-        [[nodiscard]] float4 GetOverrideEmissiveColor() const
+        HACHIKO_API void OverrideEmissive(const float4& color, bool override_flag = false);
+        HACHIKO_API void LiftOverrideEmissive();
+
+        HACHIKO_API [[nodiscard]] const float4& GetOverrideEmissiveColor() const
         {
             return override_emissive;
         }
@@ -141,25 +181,28 @@ namespace Hachiko
         void ChangeMaterial();
 
         void UpdateBoundingBoxes();
-        bool visible = true;       
+        bool visible = true;
         bool navigable = false;
+        bool is_casting_shadow = true;
+        Outline::Type outline_type = Outline::Type::NONE;
 
         AABB aabb;
         OBB obb;
-      
+
         // SKINING
         const GameObject** node_cache = nullptr;
-        
+
         std::vector<float4x4> palette{};
 
         ResourceMesh* mesh = nullptr;
         ResourceMaterial* material = nullptr;
         float4 tint_color = float4::one;
+        float dissolve_progress = 1.0f; // Not stored (min 0, max 1)
 
         // Scripting
         bool override_material = false;
         float override_timer = 0;
         float4 override_emissive;
-
+        bool override_emissive_flag_override = false;
     };
 } // namespace Hachiko

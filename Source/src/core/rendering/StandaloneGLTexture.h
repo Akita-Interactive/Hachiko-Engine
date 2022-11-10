@@ -5,16 +5,23 @@ namespace Hachiko
     class StandaloneGLTexture
     {
     public:
-        StandaloneGLTexture(unsigned int width, unsigned int height, 
-            unsigned int internal_format, int border, unsigned int format, 
-            unsigned int type, int min_filter, int mag_filter, bool generate_depth = false);
+        StandaloneGLTexture(
+            int width, 
+            int height, 
+            int internal_format, 
+            int border, 
+            int format, 
+            unsigned int type, 
+            int min_filter, 
+            int mag_filter, 
+            bool generate_depth = false);
         ~StandaloneGLTexture();
 
         void Bind() const;
         void BindBuffer(bool resize_viewport = false) const;
         void BindForReading(unsigned int location = 0) const;
         void Unbind() const;
-        void Resize(unsigned int width, unsigned int height);
+        void Resize(int width, int height);
         
         [[nodiscard]] unsigned int GetTextureId() const;
         [[nodiscard]] unsigned int GetFrameBufferId() const;
@@ -31,10 +38,10 @@ namespace Hachiko
         unsigned int _texture_id;
         unsigned int _depth_id;
         unsigned int _frame_buffer_id;
-        unsigned int _width;
-        unsigned int _height;
-        unsigned int _internal_format;
-        unsigned int _format;
+        int _width;
+        int _height;
+        int _internal_format;
+        int _format;
         unsigned int _type;
         int _border;
         int _min_filter;

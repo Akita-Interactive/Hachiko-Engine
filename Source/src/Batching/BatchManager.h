@@ -10,7 +10,7 @@ namespace Hachiko
 {
     class ComponentMeshRenderer;
     class Program;
-    
+
     class BatchManager
     {
     public:
@@ -23,8 +23,8 @@ namespace Hachiko
         void AddDrawComponent(const ComponentMeshRenderer* mesh);
 
         void BuildBatches();
-        void DrawOpaqueBatches(const Program* program);
-        void DrawTransparentBatches(const Program* program);
+        void DrawOpaqueBatches(const Program* program, bool override_segment_skip = false);
+        void DrawTransparentBatches(const Program* program, bool override_segment_skip = false);
 
         void ClearOpaqueBatchesDrawList();
         void ClearTransparentBatchesDrawList();

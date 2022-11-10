@@ -1,0 +1,19 @@
+name: plantOrb
+default_node: 0
+clips:
+  - clip_name: idle
+    clips_id: 7113536043748359935
+    clips_loop: true
+  - clip_name: takeLife
+    clips_id: 2691552375722027646
+    clips_loop: false
+nodes:
+  - node_name: idle
+    node_clip_name: idle
+  - node_name: takeLife
+    node_clip_name: takeLife
+transitions:
+  - transition_source: idle
+    transition_target: takeLife
+    transition_trigger: isTakeLife
+    transition_blend: 300

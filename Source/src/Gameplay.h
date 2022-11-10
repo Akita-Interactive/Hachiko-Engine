@@ -11,11 +11,16 @@ namespace Hachiko
 class GameObject;
 class Component;
 class ComponentCamera;
+
+HACHIKO_API void Quit();
 }
 
 namespace Hachiko::Time
 {
 HACHIKO_API float DeltaTime();
+HACHIKO_API float DeltaTimeScaled();
+HACHIKO_API float GetTimeScale();
+HACHIKO_API void SetTimeScale(float new_time_scale);
 } // namespace Hachiko::Time
 
 namespace Hachiko::Input
@@ -381,6 +386,7 @@ enum class HACHIKO_API KeyCode
     KEY_AUDIOREWIND = 285,
     KEY_AUDIOFASTFORWARD = 286,
 };
+
 enum class HACHIKO_API MouseButton
 {
     // These are taken from SDL source code.
@@ -440,13 +446,13 @@ HACHIKO_API bool IsMouseButtonPressed(MouseButton mouse_button);
 HACHIKO_API bool IsMouseButtonUp(MouseButton mouse_button);
 HACHIKO_API bool IsMouseButtonDown(MouseButton mouse_button);
 HACHIKO_API int GetScrollWheelDelta();
-HACHIKO_API const float2& GetMouseNormalizedMotion();
+HACHIKO_API float2 GetMouseNormalizedMotion();
 HACHIKO_API const float2& GetMousePixelsMotion();
-HACHIKO_API const float2& GetMousePixelPosition();
-HACHIKO_API const float2& GetMouseNormalizedPosition();
+HACHIKO_API const float2& GetMouseGlobalPixelPosition();
+HACHIKO_API float2 GetMouseNormalizedPosition();
+HACHIKO_API float2 GetMouseOpenGLPosition();
 HACHIKO_API bool IsGamepadModeOn();
 HACHIKO_API bool IsGameControllerButtonUp(GameControllerButton id);
-HACHIKO_API bool IsGameControllerButtonDown(GameControllerButton id);
 HACHIKO_API bool IsGameControllerButtonDown(GameControllerButton id);
 HACHIKO_API float GetAxisNormalized(GameControllerAxis id);
 HACHIKO_API void GoBrr(float strength, float duration);
@@ -457,12 +463,16 @@ namespace Hachiko::SceneManagement
 {
 HACHIKO_API void SwitchScene(unsigned long long scene_uid);
 HACHIKO_API void SetSkyboxActive(bool v);
-HACHIKO_API GameObject* Raycast(const float3& origin, const float3& destination, float3* closest_hit = nullptr, GameObject* parent_filter = nullptr, bool active_only = false);
-HACHIKO_API GameObject* BoundingRaycast(const float3& origin, const float3& destination, GameObject* parent_filter = nullptr, bool active_only = false);
+HACHIKO_API GameObject* RayCast(const float3& origin, const float3& destination, float3* closest_hit = nullptr, GameObject* parent_filter = nullptr, bool active_only = false);
+HACHIKO_API GameObject* BoundingRayCast(const float3& origin, const float3& destination, GameObject* parent_filter = nullptr, bool active_only = false);
 HACHIKO_API GameObject* FindInCurrentScene(unsigned long long id);
 HACHIKO_API GameObject* FindInCurrentScene(const char* name);
 HACHIKO_API std::vector<GameObject*> Instantiate(unsigned long long prefab_uid, GameObject* parent, unsigned n_instances);
 HACHIKO_API void Destroy(GameObject* game_object);
+HACHIKO_API void SetFogActive(bool active);
+HACHIKO_API void SetFogColor(float3 color);
+HACHIKO_API void SetFogGlobalDensity(float density);
+HACHIKO_API void SetFogHeightFalloff(float falloff);
 } // namespace Hachiko::SceneManagement
 
 namespace Hachiko::Debug
@@ -488,46 +498,40 @@ HACHIKO_API void DrawNavmesh(bool is_navmesh);
 
 namespace Hachiko::Editor
 {
-HACHIKO_API void ShowGameObjectDragDropArea(const char* field_name, 
-    const char* field_type, GameObject** game_object, bool& changed);
+    HACHIKO_API bool ShowGameObjectDragDropArea(const char* field_name, const char* field_type, GameObject** game_object);
 
-HACHIKO_API void Show(const char* field_name, int& field);
-HACHIKO_API void Show(const char* field_name, unsigned int& field);
-HACHIKO_API void Show(const char* field_name, float& field);
-HACHIKO_API void Show(const char* field_name, double& field);
-HACHIKO_API void Show(const char* field_name, bool& field);
-HACHIKO_API void Show(const char* field_name, math::float2& field);
-HACHIKO_API void Show(const char* field_name, math::float3& field);
-HACHIKO_API void Show(const char* field_name, math::float4& field);
-HACHIKO_API void Show(const char* field_name, math::Quat& field);
-HACHIKO_API void Show(const char* field_name, std::string& field);
-HACHIKO_API void Show(const char* field_name, GameObject*& field);
+    HACHIKO_API void Show(const char* field_name, int& field);
+    HACHIKO_API void Show(const char* field_name, unsigned int& field);
+    HACHIKO_API void Show(const char* field_name, bool& field);
+    HACHIKO_API void Show(const char* field_name, double& field);
+    HACHIKO_API void Show(const char* field_name, float& field);
+    HACHIKO_API void Show(const char* field_name, float2& field);
+    HACHIKO_API void Show(const char* field_name, float3& field);
+    HACHIKO_API void Show(const char* field_name, float4& field);
+    HACHIKO_API void Show(const char* field_name, Quat& field);
+    HACHIKO_API void Show(const char* field_name, std::string& field);
+    HACHIKO_API void Show(const char* field_name, GameObject*& field);
 
-HACHIKO_API_COMPONENT_VOID Show(const char* field_name, const char* field_type, 
-    COMPONENT_TYPE*& field) 
-{
-    bool changed = false;
-    GameObject* game_object = field != nullptr 
-        ? field->GetGameObject() 
-        : nullptr;
-
-    ShowGameObjectDragDropArea(field_name, field_type, &game_object, changed);
-
-    if (changed)
+    HACHIKO_API_COMPONENT_VOID Show(const char* field_name, const char* field_type, COMPONENT_TYPE*& field)
     {
-        field = nullptr;
+        GameObject* game_object = field != nullptr ? field->GetGameObject() : nullptr;
 
-        if (game_object != nullptr)
+        if (ShowGameObjectDragDropArea(field_name, field_type, &game_object))
         {
-            field = game_object->GetComponent<COMPONENT_TYPE>();
+            field = nullptr;
+
+            if (game_object != nullptr)
+            {
+                field = game_object->GetComponent<COMPONENT_TYPE>();
+            }
         }
     }
-}
 } // namespace Hachiko::Editor
 
 namespace Hachiko::Navigation
 {
     HACHIKO_API float GetHeightFromPosition(const math::float3& position);
+    HACHIKO_API bool ValidPath(const float3& start, const float3& end);
     HACHIKO_API math::float3 GetCorrectedPosition(const math::float3& position, const math::float3& extents);
     HACHIKO_API void CorrectPosition(math::float3& position, const math::float3& extents);
     HACHIKO_API bool Raycast(const float3& start_pos, const float3& end_pos, float3& hit_position);

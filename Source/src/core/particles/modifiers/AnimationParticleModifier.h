@@ -12,7 +12,7 @@ namespace Hachiko
         AnimationParticleModifier(const std::string& name);
         ~AnimationParticleModifier() override = default;
 
-        void Update(std::vector<Particle>&) override;
+        void Update(std::vector<Particle>&, float delta_time) override;
         void DrawGui() override;
 
         void Save(YAML::Node& node) const override;

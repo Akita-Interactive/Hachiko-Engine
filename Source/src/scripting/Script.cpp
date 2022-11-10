@@ -195,7 +195,7 @@ void Hachiko::Scripting::Script::DrawGui()
 {
     ImGui::PushID(this);
     
-    if (ImGuiUtils::CollapsingHeader(game_object, this, name.c_str()))
+    if (ImGuiUtils::CollapsingHeader(this, name.c_str()))
     {
         OnEditor();
     }

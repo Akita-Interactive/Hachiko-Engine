@@ -75,3 +75,8 @@ Hachiko::BlurPixelSize::Type Hachiko::BlurPixelSize::FromIndex(int index)
             return Hachiko::BlurPixelSize::Type::Gaussian11x11;
     }
 }
+
+int Hachiko::BlurPixelSize::ToInt(Hachiko::BlurPixelSize::Type size)
+{
+    return static_cast<int>(size);
+}

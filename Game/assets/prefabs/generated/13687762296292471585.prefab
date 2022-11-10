@@ -6,7 +6,7 @@ component:
     type: 1
     enabled: true
     position: [0, 0, 0]
-    rotation: [0, 0, 0, 1]
+    rotation: [0, 0, 0]
     scale: [1, 1, 1]
 child:
   - name: PM3D_Sphere124
@@ -16,7 +16,7 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [0, 0, 0, 1]
+        rotation: [0, 0, 0]
         scale: [1, 1, 1]
       - !<mesh_renderer>
         type: 2
@@ -24,5 +24,6 @@ child:
         mesh_id: 8953689370358422284
         navigable: false
         visible: true
+        casting_shadow: true
         material_id: 3003390711770185065
         tint_color: [1, 1, 1, 1]

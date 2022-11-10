@@ -528,6 +528,22 @@
     <ClInclude Include="entities\player\CombatVisualEffectsPool.h" />
     <ClInclude Include="TriggerAnim.h" />
     <ClInclude Include="misc\CameraPosChange.h" />
+    <ClInclude Include="entities\enemies\BossController.h" />
+    <ClInclude Include="misc\AssetsObstacle.h" />
+    <ClInclude Include="misc\BossLaserController.h" />
+    <ClInclude Include="misc\TimeManager.h" />
+    <ClInclude Include="misc\StalagmiteManager.h" />
+    <ClInclude Include="entities\crystals\Stalagmite.h" />
+    <ClInclude Include="misc\Tutorial.h" />
+    <ClInclude Include="misc\Centipedes.h" />
+    <ClInclude Include="effects\HoverEffect.h" />
+    <ClInclude Include="effects\RotationEffect.h" />
+    <ClInclude Include="effects\BounceEffect.h" />
+    <ClInclude Include="CutsceneManager.h" />
+    <ClInclude Include="PauseMenu.h" />
+    <ClInclude Include="effects\BloomAnimator.h" />
+    <ClInclude Include="misc\OrbController.h" />
+    <ClInclude Include="entities\TimeScaleModeManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scriptingUtil\gameplaypch.cpp">
@@ -806,6 +822,22 @@
     <ClCompile Include="entities\player\CombatVisualEffectsPool.cpp" />
     <ClCompile Include="TriggerAnim.cpp" />
     <ClCompile Include="misc\CameraPosChange.cpp" />
+    <ClCompile Include="entities\enemies\BossController.cpp" />
+    <ClCompile Include="misc\AssetsObstacle.cpp" />
+    <ClCompile Include="misc\BossLaserController.cpp" />
+    <ClCompile Include="misc\TimeManager.cpp" />
+    <ClCompile Include="misc\StalagmiteManager.cpp" />
+    <ClCompile Include="entities\crystals\Stalagmite.cpp" />
+    <ClCompile Include="misc\Tutorial.cpp" />
+    <ClCompile Include="misc\Centipedes.cpp" />
+    <ClCompile Include="effects\HoverEffect.cpp" />
+    <ClCompile Include="effects\RotationEffect.cpp" />
+    <ClCompile Include="effects\BounceEffect.cpp" />
+    <ClCompile Include="CutsceneManager.cpp" />
+    <ClCompile Include="PauseMenu.cpp" />
+    <ClCompile Include="effects\BloomAnimator.cpp" />
+    <ClCompile Include="misc\OrbController.cpp" />
+    <ClCompile Include="entities\TimeScaleModeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\vendors\MathGeoLib\Math\float2.inl">

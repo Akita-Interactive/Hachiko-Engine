@@ -13,8 +13,16 @@
 #include "ModuleNavigation.h"
 #include "ModuleInput.h"
 
+#include "Batching/BatchManager.h"
+
+#include "core/GameObject.h"
 #include "components/ComponentCamera.h"
+#include "components/ComponentTransform2D.h"
 #include "components/ComponentDirLight.h"
+#include "components/ComponentImage.h"
+#include "components/ComponentTransform.h"
+#include "components/ComponentVideo.h"
+#include "core/rendering/StandaloneGLTexture.h"
 
 #ifdef _DEBUG
 #include "core/ErrorHandler.h"
@@ -42,6 +50,39 @@ bool Hachiko::ModuleRender::Init()
 
     bloom_manager.Initialize();
 
+    ssao_manager.SetupSSAO(fb_width, fb_height);
+
+    outline_texture = new StandaloneGLTexture(
+        fb_width, 
+        fb_height, 
+        GL_RGBA, 
+        0, 
+        GL_RGBA, 
+        GL_FLOAT, 
+        GL_NEAREST, 
+        GL_NEAREST, 
+        true);
+    outline_texture_temp = new StandaloneGLTexture(
+        fb_width, 
+        fb_height, 
+        GL_RGBA, 
+        0, 
+        GL_RGBA, 
+        GL_FLOAT, 
+        GL_NEAREST, 
+        GL_NEAREST, 
+        true);
+    pre_post_process_frame_buffer = new StandaloneGLTexture(
+        fb_width, 
+        fb_height, 
+        GL_RGBA, 
+        0, 
+        GL_RGBA, 
+        GL_FLOAT, 
+        GL_LINEAR, 
+        GL_LINEAR, 
+        true);
+
 #ifdef _DEBUG
     glEnable(GL_DEBUG_OUTPUT); // Enable output callback
     glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
@@ -52,12 +93,20 @@ bool Hachiko::ModuleRender::Init()
     fps_log = std::vector<float>(n_bins);
     ms_log = std::vector<float>(n_bins);
 
-    draw_skybox = App->preferences->GetEditorPreference()->GetDrawSkybox();
-    draw_navmesh = App->preferences->GetEditorPreference()->GetDrawNavmesh();
-    shadow_pass_enabled = App->preferences->GetEditorPreference()->GetShadowPassEnabled();
+    EditorPreferences* __restrict editor_preferences = 
+        App->preferences->GetEditorPreference();
+
+    draw_skybox = editor_preferences->GetDrawSkybox();
+    draw_navmesh = editor_preferences->GetDrawNavmesh();
+    shadow_pass_enabled = editor_preferences->GetShadowPassEnabled();
 
     shadow_manager.SetGaussianBlurringEnabled(
-        App->preferences->GetEditorPreference()->GetShadowMapGaussianBlurringEnabled());
+        editor_preferences->GetShadowMapGaussianBlurringEnabled());
+
+    ssao_enabled = editor_preferences->GetSSAOEnabled();
+
+    // Create noise texture for general use (dissolve effect)
+    CreateNoiseTexture();
 
     return true;
 }
@@ -71,6 +120,8 @@ void Hachiko::ModuleRender::GenerateFrameBuffer()
 {
     fb_width = 800;
     fb_height = 600;
+    fb_width_inverse = 1.0f / static_cast<float>(fb_width);
+    fb_height_inverse = 1.0f / static_cast<float>(fb_height);
 
     glGenFramebuffers(1, &frame_buffer);
     glBindFramebuffer(GL_FRAMEBUFFER, frame_buffer);
@@ -85,6 +136,7 @@ void Hachiko::ModuleRender::GenerateFrameBuffer()
 
     //Depth and stencil buffer
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, fb_texture, 0);
+
     glGenRenderbuffers(1, &depth_stencil_buffer);
     glBindRenderbuffer(GL_RENDERBUFFER, depth_stencil_buffer);
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, fb_width, fb_height);
@@ -100,7 +152,7 @@ void Hachiko::ModuleRender::GenerateFrameBuffer()
         // Generate G-Buffer and associated textures:
         g_buffer.Generate();
     }
-   
+
     glBindRenderbuffer(GL_RENDERBUFFER, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
@@ -136,11 +188,25 @@ void Hachiko::ModuleRender::ManageResolution(const ComponentCamera* camera)
     fb_width = res_x;
     fb_height = res_y;
 
+    // Cache inverses of width and height:
+    fb_width_inverse = 1.0f / static_cast<float>(fb_width);
+    fb_height_inverse = 1.0f / static_cast<float>(fb_height);
+
     // Resize textures of g-buffer:
     g_buffer.Resize(fb_width, fb_height);
 
     // Resize textures of bloom:
     bloom_manager.Resize(fb_width, fb_height);
+
+    // Resize SSAO texture:
+    ssao_manager.ResizeSSAO(fb_width, fb_height);
+
+    // Resize outline texture:
+    outline_texture->Resize(fb_width, fb_height);
+    outline_texture_temp->Resize(fb_width, fb_height);
+
+    // Resize pre post process frame buffer texture:
+    pre_post_process_frame_buffer->Resize(fb_width, fb_height);
 }
 
 void Hachiko::ModuleRender::CreateContext()
@@ -171,7 +237,7 @@ UpdateStatus Hachiko::ModuleRender::PreUpdate(const float delta)
 }
 
 UpdateStatus Hachiko::ModuleRender::Update(const float delta)
-{    
+{
     ComponentCamera* camera = App->camera->GetRenderingCamera();
     Scene* active_scene = App->scene_manager->GetActiveScene();
 
@@ -189,11 +255,11 @@ UpdateStatus Hachiko::ModuleRender::Update(const float delta)
     glBindFramebuffer(GL_FRAMEBUFFER, frame_buffer);
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-      
+
     if (active_scene == nullptr)
     {
         return UpdateStatus::UPDATE_CONTINUE;
-    }    
+    }
 
     active_scene->RebuildBatching();
     App->program->UpdateCamera(camera);
@@ -208,18 +274,13 @@ UpdateStatus Hachiko::ModuleRender::Update(const float delta)
     if (!active_scene->dir_lights.empty())
         dir_light = active_scene->dir_lights[0];
     const Scene::AmbientLightConfig& ambient_light = active_scene->GetAmbientLightConfig();
-    App->program->UpdateLights(ambient_light.intensity, ambient_light.color,
-        dir_light, active_scene->point_lights, active_scene->spot_lights);
+    App->program->UpdateLights(ambient_light.intensity,
+                               ambient_light.color,
+                               dir_light,
+                               active_scene->point_lights,
+                               active_scene->spot_lights);
 
     Draw(App->scene_manager->GetActiveScene(), camera, culling);
-    
-    if (draw_navmesh)
-    {
-        
-        EnableBlending();
-        App->navigation->DebugDraw();
-        DisableBlending();
-    }
 
     EnableBlending();
 
@@ -251,31 +312,57 @@ UpdateStatus Hachiko::ModuleRender::Update(const float delta)
     return UpdateStatus::UPDATE_CONTINUE;
 }
 
-void Hachiko::ModuleRender::Draw(Scene* scene, ComponentCamera* camera, 
-    ComponentCamera* culling)
+void Hachiko::ModuleRender::Draw(Scene* scene,
+                                 ComponentCamera* camera,
+                                 ComponentCamera* culling)
 {
     OPTICK_CATEGORY("Draw", Optick::Category::Rendering);
 
     BatchManager* batch_manager = scene->GetBatchManager();
-    
-    if (draw_deferred)
+
+    DrawDeferred(scene, camera, batch_manager);
+}
+
+void Hachiko::ModuleRender::RunFXAA()
+{
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frame_buffer);
+
+    Program* program;
+    if (anti_aliasing_enabled)
     {
-        DrawDeferred(scene, camera, batch_manager);
+        program = App->program->GetProgram(Program::Programs::FXAA);
+        program->Activate();
+
+        program->BindUniformFloat(
+            Uniforms::FXAA::TEXTURE_WIDTH_INVERSE, 
+            &fb_width_inverse);
+        program->BindUniformFloat(
+            Uniforms::FXAA::TEXTURE_HEIGHT_INVERSE, 
+            &fb_height_inverse);
     }
     else
     {
-        render_list.Update(culling->GetFrustum(), scene->GetQuadtree());
-        DrawPreForwardPass(scene, camera);
-        // TODO: Forward rendering still has that weird stuttering bug, fix this.
-        DrawForward(scene, batch_manager);
+        program = App->program->GetProgram(Program::Programs::TEXTURE_COPY);
+        program->Activate();
     }
+
+    EnableBlending();
+    pre_post_process_frame_buffer->BindForReading(0);
+    RenderFullScreenQuad();
+    glBindVertexArray(0);
+    DisableBlending();
+
+    Program::Deactivate();
 }
 
-void Hachiko::ModuleRender::DrawDeferred(Scene* scene, ComponentCamera* camera, 
-    BatchManager* batch_manager)
+void Hachiko::ModuleRender::DrawDeferred(Scene* scene,
+                                         ComponentCamera* camera,
+                                         BatchManager* batch_manager)
 {
     Program* program = nullptr;
+    glStencilMask(0x00);
 
+#ifdef _DEBUG
     if (App->input->GetKey(SDL_SCANCODE_F5) == KeyState::KEY_DOWN)
     {
         deferred_mode = (deferred_mode + 1) % 7;
@@ -285,15 +372,16 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene, ComponentCamera* camera,
     {
         render_forward_pass = !render_forward_pass;
     }
-    
+#endif
+
     if (shadow_pass_enabled)
     {
         // Generate shadow map from the scene:
-        DrawToShadowMap(scene, camera, batch_manager, DRAW_CONFIG_OPAQUE | DRAW_CONFIG_TRANSPARENT);
+        DrawToShadowMap(scene, batch_manager, DRAW_CONFIG_OPAQUE | DRAW_CONFIG_TRANSPARENT);
     }
-    
+
     render_list.Update(scene->GetCullingCamera()->GetFrustum(), scene->GetQuadtree());
-    
+
     // ----------------------------- GEOMETRY PASS ----------------------------
 
     glViewport(0, 0, fb_width, fb_height);
@@ -315,22 +403,44 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene, ComponentCamera* camera,
         batch_manager->AddDrawComponent(target.mesh_renderer);
     }
 
-    // Draw collected meshes with geometry pass rogram:
-    program = App->program->GetDeferredGeometryProgram();
+    // Draw collected meshes with geometry pass program:
+    program = App->program->GetProgram(Program::Programs::DEFERRED_GEOMETRY);
+
     program->Activate();
+
+    // Binding the noise texture
+    BindNoiseTexture(program);
+
     batch_manager->DrawOpaqueBatches(program);
     Program::Deactivate();
 
-    // Read the emissive texture, copy it and blur it band write to another texture:
+    // --------------------------- PRE LIGHT PASS -----------------------------
+
+    if (ssao_enabled)
+    {
+        ssao_manager.DrawSSAO(
+            g_buffer, 
+            scene->GetCullingCamera()->GetFrustum().ViewMatrix(), 
+            scene->GetCullingCamera()->GetFrustum().ProjectionMatrix(), 
+            fb_width, 
+            fb_height);
+    }
+
+    // Read the emissive texture, copy it and blur it band write to another
+    // texture:
     bloom_manager.ApplyBloom(g_buffer.GetEmissiveTexture());
+
+    const bool drew_outlines = DrawOutlines(batch_manager);
 
     // ------------------------------ LIGHT PASS ------------------------------
 
-    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frame_buffer);
+    glBindFramebuffer(
+        GL_DRAW_FRAMEBUFFER, 
+        pre_post_process_frame_buffer->GetFrameBufferId());
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Use Deferred rendering lighting pass program:
-    program = App->program->GetDeferredLightingProgram();
+    program = App->program->GetProgram(Program::Programs::DEFERRED_LIGHTING);
     program->Activate();
 
     // Bind shadow specific necessary uniforms for lighting pass:
@@ -339,6 +449,9 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene, ComponentCamera* camera,
     // Bind ImageBasedLighting uniforms
     scene->GetSkybox()->BindImageBasedLightingUniforms(program);
 
+    // Bind SSAO flag:
+    program->BindUniformBool("ssao_enabled", ssao_enabled);
+
     // Bind all g-buffer textures:
     g_buffer.BindTextures();
     if (shadow_pass_enabled)
@@ -346,13 +459,19 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene, ComponentCamera* camera,
         // Bind Shadow map texture to texture slot 5:
         shadow_manager.BindShadowMapTexture(5);
     }
-    
+
     // Bind blurred out emissive texture from bloom_manager:
     bloom_manager.BindForReading();
 
+    if (ssao_enabled)
+    {
+        // Bind SSAO texture to texture slot 10:
+        ssao_manager.BindSSAOTexture(10);
+    }
+
     // Bind deferred rendering mode. This can be configured from the editor,
     // and shader sets the fragment color according to this mode:
-    int render_shadows = static_cast<int>(shadow_pass_enabled);
+    const int render_shadows = static_cast<int>(shadow_pass_enabled);
     program->BindUniformInts(Uniforms::ShadowMap::RENDER_MODE, 1, &render_shadows);
     program->BindUniformInts(Uniforms::DeferredRendering::MODE, 1, &deferred_mode);
 
@@ -366,61 +485,33 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene, ComponentCamera* camera,
 
     // Blit g_buffer depth buffer to frame_buffer to be used for forward
     // rendering pass:
-    g_buffer.BlitDepth(frame_buffer, fb_width, fb_height);
+    g_buffer.BlitDepth(
+        pre_post_process_frame_buffer->GetFrameBufferId(), 
+        fb_width, 
+        fb_height);
 
     // ------------------------------ PRE FORWARD -----------------------------
-    
-    DrawPreForwardPass(scene, camera);
 
-    // ----------------------------- FORWARD PASS -----------------------------
-
-    // Clear Transparent Batches:
-    batch_manager->ClearTransparentBatchesDrawList();
-
-    // If forward pass is disabled on the settings, return:
-    if (render_forward_pass)
+    if (draw_skybox)
     {
-        // Get transparent meshes:
-        const std::vector<RenderTarget>& transparent_targets = render_list.GetTransparentTargets();
-
-        if (transparent_targets.size() > 0)
-        {
-            // Get the targets that has transparent materials. These targets will be
-            // rendered with regular forward rendering pass:
-            for (const RenderTarget& target : transparent_targets)
-            {
-                batch_manager->AddDrawComponent(target.mesh_renderer);
-            }
-
-            // Forward rendering pass for transparent game objects:
-            program = App->program->GetForwardProgram();
-            program->Activate();
-
-            EnableBlending();
-            batch_manager->DrawTransparentBatches(program);
-            DisableBlending();
-
-            g_buffer.BindForDrawing();
-            // Forward depth (Used for fog)
-            program = App->program->GetTransparentDepthProgram();
-            program->Activate();
-                
-            batch_manager->DrawTransparentBatches(program);
-            Program::Deactivate();
-            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frame_buffer);
-        }
+        scene->GetSkybox()->Draw(camera);
     }
 
     // ----------------------------- FOG -----------------------------
 
+    // Fog is drawn before forward pass because it doesn't apply its values to
+    // g-buffer and we want to ensure that all the forward rendered objects are
+    // properly visible.
+
     const Scene::FogConfig& fog = scene->GetFogConfig();
     if (fog.enabled)
     {
+        glDepthMask(GL_FALSE);
         // Bind all g-buffer textures:
         g_buffer.BindForReading();
         g_buffer.BindFogTextures();
-        
-        program = App->program->GetFogProgram();
+
+        program = App->program->GetProgram(Program::Programs::FOG);
         program->Activate();
 
         EnableBlending();
@@ -434,121 +525,271 @@ void Hachiko::ModuleRender::DrawDeferred(Scene* scene, ComponentCamera* camera,
 
         g_buffer.UnbindFogTextures();
         DisableBlending();
+        Program::Deactivate();
+        glDepthMask(GL_TRUE);
     }
 
-    // ----------------------------- POST PROCCESS -----------------------------
-    
-    Program::Deactivate();
-}
+    // ----------------------------- FORWARD PASS -----------------------------
 
-void Hachiko::ModuleRender::DrawForward(Scene* scene, BatchManager* batch_manager) 
-{
-    Program* program = App->program->GetForwardProgram();
-    program->Activate();
-
-    // Bind ImageBasedLighting uniforms
-    scene->GetSkybox()->BindImageBasedLightingUniforms(program);
-
-    batch_manager->ClearOpaqueBatchesDrawList();
+    // Clear Transparent Batches:
     batch_manager->ClearTransparentBatchesDrawList();
 
-    // Add opaque targets:
-    for (RenderTarget& target : render_list.GetOpaqueTargets())
+     // If forward pass is disabled on the settings, skip:
+    if (render_forward_pass)
     {
-        batch_manager->AddDrawComponent(target.mesh_renderer);    
+        // Get transparent meshes:
+        const std::vector<RenderTarget>& transparent_targets = 
+            render_list.GetTransparentTargets();
+
+        if (transparent_targets.size() > 0)
+        {
+            // Get the targets that has transparent materials. These targets will be
+            // rendered with regular forward rendering pass:
+            for (const RenderTarget& target : transparent_targets)
+            {
+                batch_manager->AddDrawComponent(target.mesh_renderer);
+            }
+
+            // Forward rendering pass for transparent game objects:
+            program = App->program->GetProgram(Program::Programs::FORWARD);
+            program->Activate();
+
+            EnableBlending();
+            batch_manager->DrawTransparentBatches(program);
+            DisableBlending();
+        }
     }
 
-    // Add transparent targets:
-    for (RenderTarget& target : render_list.GetTransparentTargets())
+    DrawParticles(scene, camera);
+
+    if (draw_navmesh)
     {
-        batch_manager->AddDrawComponent(target.mesh_renderer);  
+        EnableBlending();
+        App->navigation->DebugDraw();
+        DisableBlending();
+    }
+      
+    // ----------------------------- POST PROCCESS ----------------------------
+
+    if (draw_outlines && drew_outlines)
+    {
+        glDisable(GL_DEPTH_TEST);
+        glDepthMask(GL_FALSE);
+        program = App->program->GetProgram(Program::Programs::OUTLINE);
+        program->Activate();
+
+        EnableBlending();
+        outline_texture->BindForReading(11);
+        RenderFullScreenQuad();
+        glBindVertexArray(0);
+        DisableBlending();
+
+        Program::Deactivate();
+        glDepthMask(GL_TRUE);
+        glEnable(GL_DEPTH_TEST);
     }
 
-    batch_manager->DrawOpaqueBatches(program);
-    batch_manager->DrawTransparentBatches(program);
-
-    Program::Deactivate();
+    RunFXAA();
 }
 
-void Hachiko::ModuleRender::DrawPreForwardPass(Scene* scene, ComponentCamera* camera) const
+void Hachiko::ModuleRender::DrawParticles(Scene* scene, ComponentCamera* camera) const
 {
-    // This method is to draw things that needs to be drawn before forward pass 
-    // of deferred rendering or before forward rendering.
-
-    if (draw_skybox)
-    {
-        scene->GetSkybox()->Draw(camera);
-    }
-
     EnableBlending();
 
     // Draw debug draw stuff:
     ModuleDebugDraw::Draw(camera->GetViewMatrix(), camera->GetProjectionMatrix(), fb_height, fb_width);
-    
+
     const auto& scene_particles = scene->GetSceneParticles();
     if (!scene_particles.empty())
     {
-        Program* particle_program = App->program->GetParticleProgram();
+        Program* particle_program = App->program->GetProgram(Program::Programs::PARTICLE);
         particle_program->Activate();
-        for (auto particle : scene_particles)
+        for (auto& particle : scene_particles)
         {
             particle->Draw(camera, particle_program);
         }
+
         Program::Deactivate();
+
+        /*
+        g_buffer.BlitDepth(frame_buffer, fb_width, fb_height);
+        g_buffer.BindForDrawing();
+
+        // Forward depth (Used for fog)
+        particle_program = App->program->GetProgram(Program::PROGRAMS::PARTICLE_DEPTH);
+        particle_program->Activate();
+
+        for (auto& particle : scene_particles)
+        {
+            particle->Draw(camera, particle_program);
+        }
+    
+        Program::Deactivate();
+        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frame_buffer);
+        */
     }
+    
 
     DisableBlending();
-
-    //GameObject* selected_go = App->editor->GetSelectedGameObject();
-    /*if (outline_selection && selected_go)
-    {
-        glStencilFunc(GL_NOTEQUAL, 1, 0XFF);
-        glStencilMask(0X00);
-        glDisable(GL_DEPTH_TEST);
-
-        Program* outline_program = App->program->GetStencilProgram();
-        outline_program->Activate();
-        selected_go->DrawStencil(camera, outline_program);
-        Program::Deactivate();
-
-        glStencilMask(0XFF);
-        glStencilFunc(GL_ALWAYS, 0, 0xFF);
-        glEnable(GL_DEPTH_TEST);
-    }*/
 }
 
-bool Hachiko::ModuleRender::DrawToShadowMap(Scene* scene, ComponentCamera* camera,
+bool Hachiko::ModuleRender::DrawOutlines(BatchManager* batch_manager) 
+{
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, outline_texture->GetFrameBufferId());
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClear(GL_STENCIL_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+
+    const bool drew_secondary = 
+        ExecuteFullOutlinePass(Outline::Type::SECONDARY, batch_manager);
+    const bool drew_primary = 
+        ExecuteFullOutlinePass(Outline::Type::PRIMARY, batch_manager);
+
+    if (!drew_primary && !drew_secondary)
+    {
+        return false;
+    }
+
+    // Blur outlines for softer look:
+    ApplyGaussianFilter(
+        outline_texture->GetFrameBufferId(), 
+        outline_texture->GetTextureId(),
+        outline_texture_temp->GetFrameBufferId(),
+        outline_texture_temp->GetTextureId(),
+        outline_blur_config.intensity, 
+        outline_blur_config.sigma, 
+        BlurPixelSize::ToInt(outline_blur_config.size), 
+        fb_width, 
+        fb_height, 
+        App->program->GetProgram(Program::Programs::GAUSSIAN_FILTERING));
+
+    return true;
+}
+
+void Hachiko::ModuleRender::ExecuteSingleOutlinePass(
+    Outline::Config& outline_config,
+    BatchManager* batch_manager, 
+    const bool should_clear_draw_lists_after) const
+{
+    const Program* program = 
+        App->program->GetProgram(Program::Programs::STENCIL);
+
+    program->Activate();
+
+        program->BindUniformFloat4("in_color", outline_config.color.ptr());
+        program->BindUniformFloat(
+            "outline_thickness", 
+            &outline_config.thickness);
+
+        batch_manager->DrawOpaqueBatches(
+            program, 
+            !should_clear_draw_lists_after);
+        EnableBlending();
+        batch_manager->DrawTransparentBatches(
+            program, 
+            !should_clear_draw_lists_after);
+        DisableBlending();
+
+    Program::Deactivate();
+
+    if (should_clear_draw_lists_after)
+    {
+        batch_manager->ClearOpaqueBatchesDrawList();
+        batch_manager->ClearTransparentBatchesDrawList();       
+    }
+}
+
+bool Hachiko::ModuleRender::ExecuteFullOutlinePass(
+    Outline::Type outline_type, 
+    BatchManager* batch_manager)
+{
+    const auto& targets = render_list.GetOutlineTargets(outline_type);
+
+    if (targets.empty())
+    {
+        return false;
+    }
+
+    Outline::Config outline = GetOutlineConfigFromType(outline_type);
+
+    batch_manager->ClearOpaqueBatchesDrawList();
+    batch_manager->ClearTransparentBatchesDrawList();
+
+    for (const RenderTarget& target : targets)
+    {
+        batch_manager->AddDrawComponent(target.mesh_renderer);
+    }
+
+    glDisable(GL_DEPTH_TEST);
+    ExecuteSingleOutlinePass(outline, batch_manager, false);
+    outline.color.w = 0.0f;
+    outline.thickness = 0.0f;
+    ExecuteSingleOutlinePass(outline, batch_manager, true);
+    glEnable(GL_DEPTH_TEST);
+
+    return true;
+}
+
+Hachiko::Outline::Config Hachiko::ModuleRender::GetOutlineConfigFromType(
+    Outline::Type type) const
+{
+    // TODO: Make these (PRIMARY and SECONDARY) configurable or decide on hardcoded values.
+
+    switch (type)
+    {
+        case Outline::Type::PRIMARY:
+            return Outline::Config {0.03f, float4(0.8f, 0.8f, 0.8f, 0.9f)};
+        case Outline::Type::SECONDARY:
+            return Outline::Config {0.03f, float4(1.0f, 0.11f, 0.11f, 1.0f)};
+        default:
+        case Outline::Type::NONE:
+            return Outline::Config {0.0f, float4(0.0f, 0.0f, 0.0f, 0.0f)};
+    }
+}
+
+bool Hachiko::ModuleRender::DrawToShadowMap(
+    Scene* scene,
     BatchManager* batch_manager,
     DrawConfig draw_config)
 {
-    if (scene->dir_lights.size() < 0)
+    if (scene->dir_lights.empty())
     {
         return false;
     }
 
     // Update directional light frustum if there are any changes:
-    shadow_manager.CalculateLightFrustum();
-    
+    shadow_manager.LazyCalculateLightFrustum();
+
     // Cull the scene with directional light frustum:
-    render_list.Update(shadow_manager.GetDirectionalLightFrustum(), scene->GetQuadtree());
+    render_list.Update(
+        shadow_manager.GetDirectionalLightFrustum(), 
+        scene->GetQuadtree());
 
     // Draw collected meshes with shadow mapping program:
-    Program* program = App->program->GetShadowMappingProgram();
+    const Program* program = 
+        App->program->GetProgram(Program::Programs::SHADOW_MAPPING);
     program->Activate();
-    
+
     // Bind shadow map generation specific necessary uniforms:
     shadow_manager.BindShadowMapGenerationPassUniforms(program);
     // Bind shadow map fbo for drawing and adjust viewport size etc.:
     shadow_manager.BindBufferForDrawing();
+
+    //Disable to cull for both faces
+    glDisable(GL_CULL_FACE);
 
     if ((draw_config & DRAW_CONFIG_OPAQUE) != 0)
     {
         // Collect and draw opaque meshes to shadow map:
 
         batch_manager->ClearOpaqueBatchesDrawList();
-        
+
         for (const RenderTarget& target : render_list.GetOpaqueTargets())
         {
+            if (!target.mesh_renderer->IsCastingShadow())
+            {
+                continue;
+            }
+
             batch_manager->AddDrawComponent(target.mesh_renderer);
         }
 
@@ -560,30 +801,46 @@ bool Hachiko::ModuleRender::DrawToShadowMap(Scene* scene, ComponentCamera* camer
         // Collect and draw transparent meshes to shadow map:
 
         batch_manager->ClearTransparentBatchesDrawList();
-        
+
         for (const RenderTarget& target : render_list.GetTransparentTargets())
         {
+            if (!target.mesh_renderer->IsCastingShadow())
+            {
+                continue;
+            }
+
             batch_manager->AddDrawComponent(target.mesh_renderer);
         }
 
         batch_manager->DrawTransparentBatches(program);
     }
 
+    //Enable back to face culling
+    glEnable(GL_CULL_FACE);
+
     // Unbind shadow map fbo:
-    shadow_manager.UnbindBuffer();
+    ShadowManager::UnbindBuffer();
 
     Program::Deactivate();
 
-    // Smoothen the shadow map by applying gaussian filtering:
-    shadow_manager.ApplyGaussianBlur(App->program->GetGaussianFilteringProgram());
-   
+    // Smooth out the shadow map by applying gaussian filtering:
+    shadow_manager.ApplyGaussianBlur(
+        App->program->GetProgram(Program::Programs::GAUSSIAN_FILTERING));
+
     return true;
 }
 
-void Hachiko::ModuleRender::ApplyGaussianFilter(unsigned source_fbo, 
-    unsigned source_texture, unsigned temp_fbo, unsigned temp_texture, 
-    float blur_scale_amount, float blur_sigma, int blur_size, unsigned width, 
-    unsigned height, const Program* program) const
+void Hachiko::ModuleRender::ApplyGaussianFilter(
+    unsigned source_fbo,
+    unsigned source_texture,
+    unsigned temp_fbo,
+    unsigned temp_texture,
+    float blur_scale_amount,
+    float blur_sigma,
+    int blur_size,
+    unsigned width,
+    unsigned height,
+    const Program* program) const
 {
     // Calculate blur scales:
     float blur_scale_x = blur_scale_amount / static_cast<float>(width);
@@ -627,9 +884,9 @@ void Hachiko::ModuleRender::ApplyGaussianFilter(unsigned source_fbo,
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     Program::Deactivate();
-}   
+}
 
-void Hachiko::ModuleRender::SetRenderMode(bool is_deferred) 
+void Hachiko::ModuleRender::SetRenderMode(bool is_deferred)
 {
     if (is_deferred == draw_deferred)
     {
@@ -671,23 +928,23 @@ void GLOptionCheck(GLenum option, bool enable)
 void Hachiko::ModuleRender::OptionsMenu()
 {
     ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "Draw Options");
-    ImGui::Checkbox("Debug Draw", &App->debug_draw->debug_draw);
-    ImGui::Checkbox("Quadtree", &App->debug_draw->draw_quadtree);
-    ImGui::Checkbox("Skybox", &draw_skybox);
-    ImGui::Checkbox("Navmesh", &draw_navmesh);
+    Widgets::Checkbox("Debug Draw", &App->debug_draw->debug_draw);
+    Widgets::Checkbox("Quadtree", &App->debug_draw->draw_quadtree);
+    Widgets::Checkbox("Skybox", &draw_skybox);
+    Widgets::Checkbox("Navmesh", &draw_navmesh);
 
     ImGui::NewLine();
-    ImGui::Text("Rendering Mode");
+    ImGui::TextWrapped("Rendering mode");
     ImGui::Separator();
     ImGui::TextWrapped("Select whether the engine should use Deferred or Forward rendering.");
     ImGui::PushID("RendererMode");
 
-    if (ImGui::RadioButton("Deferred", draw_deferred == true))
+    if (Widgets::RadioButton("Deferred", draw_deferred == true))
     {
         SetRenderMode(true);
     }
 
-    if (ImGui::RadioButton("Forward", draw_deferred == false))
+    if (Widgets::RadioButton("Forward", draw_deferred == false))
     {
         SetRenderMode(false);
     }
@@ -699,12 +956,12 @@ void Hachiko::ModuleRender::OptionsMenu()
     }
 
     ImGui::NewLine();
-    ImGui::Text("Shadowmap Blurring Mode");
+    ImGui::TextWrapped("Shadowmap blurring mode");
     ImGui::Separator();
     ImGui::TextWrapped("Enable for soft shadows, disable for hard shadows.");
     bool shadow_map_gaussian_blur_enabled = shadow_manager.IsGaussianBlurringEnabled();
 
-    if (ImGui::Checkbox("Apply Gaussian Blur", &shadow_map_gaussian_blur_enabled))
+    if (Widgets::Checkbox("Apply Gaussian blur", &shadow_map_gaussian_blur_enabled))
     {
         shadow_manager.SetGaussianBlurringEnabled(shadow_map_gaussian_blur_enabled);
         App->preferences->GetEditorPreference()->SetShadowMappingGaussianBlurringEnabled(shadow_map_gaussian_blur_enabled);
@@ -712,62 +969,109 @@ void Hachiko::ModuleRender::OptionsMenu()
 
     if (!draw_skybox)
     {
-        ImGuiUtils::CompactColorPicker("Background Color", App->editor->scene_background.ptr());
+        ImGuiUtils::CompactColorPicker("Background color", App->editor->scene_background.ptr());
     }
 
     ImGui::NewLine();
-    ImGui::Text("Bloom");
+    ImGui::TextWrapped("Bloom");
     ImGui::Separator();
     bloom_manager.DrawEditorContent();
+
+    ImGui::NewLine();
+    ImGui::TextWrapped("Ambient Occlusion");
+    ImGui::Separator();
+    bool ssao_mode_changed = Widgets::Checkbox("SSAO enabled", &ssao_enabled);
+    if (ssao_mode_changed)
+    {
+        App->preferences->GetEditorPreference()->SetSSAOEnabled(ssao_enabled);
+    }
+    if (ssao_enabled)
+    {
+        ssao_manager.ShowInEditorUI();
+    }
+
+    ImGui::NewLine();
+    ImGui::TextWrapped("Outline Blur");
+    ImGui::Separator();
+    BlurConfigUtil::ShowInEditorUI(&outline_blur_config);
+    Widgets::Checkbox("Draw outlines", &draw_outlines);
+
+    ImGui::NewLine();
+    ImGui::TextWrapped("Anti-aliasing");
+    ImGui::Separator();
+    ImGui::TextWrapped("This will not be saved, just exists for debug purposes");
+    Widgets::Checkbox("Enable FXAA", &anti_aliasing_enabled);
 }
 
-void Hachiko::ModuleRender::DeferredOptions() 
+void Hachiko::ModuleRender::LoadingScreenOptions() const
 {
     ImGui::NewLine();
 
-    ImGui::Text("Deferred Rendering Options");
+    ImGui::Text("Loading screen");
+    ImGui::Separator();
+
+    if (loading_image != nullptr)
+    {
+        loading_image->DrawGui();
+    }
+    if (loading_video != nullptr)
+    {
+        loading_video->DrawGui();
+    }
+}
+
+void Hachiko::ModuleRender::DeferredOptions()
+{
+    ImGui::NewLine();
+
+    ImGui::TextWrapped("Deferred Rendering Options");
     ImGui::Separator();
 
     ImGui::PushID("Deferred Options");
 
-    if (ImGui::RadioButton("Lighting Pass", deferred_mode == 0))
+    if (Widgets::RadioButton("Lighting Pass", deferred_mode == 0))
     {
         deferred_mode = 0;
     }
 
-    if (ImGui::RadioButton("Diffuse", deferred_mode == 1))
+    if (Widgets::RadioButton("Diffuse", deferred_mode == 1))
     {
         deferred_mode = 1;
     }
 
-    if (ImGui::RadioButton("Specular", deferred_mode == 2))
+    if (Widgets::RadioButton("Specular", deferred_mode == 2))
     {
         deferred_mode = 2;
     }
-    
-    if (ImGui::RadioButton("Smoothness", deferred_mode == 3))
+
+    if (Widgets::RadioButton("Smoothness", deferred_mode == 3))
     {
         deferred_mode = 3;
     }
-    
-    if (ImGui::RadioButton("Normal", deferred_mode == 4))
+
+    if (Widgets::RadioButton("Normal", deferred_mode == 4))
     {
         deferred_mode = 4;
     }
 
-    if (ImGui::RadioButton("Position", deferred_mode == 5))
+    if (Widgets::RadioButton("Position", deferred_mode == 5))
     {
         deferred_mode = 5;
     }
 
-    if (ImGui::RadioButton("Emissive", deferred_mode == 6))
+    if (Widgets::RadioButton("Emissive", deferred_mode == 6))
     {
         deferred_mode = 6;
     }
 
-    ImGui::Checkbox("Forward Rendering Pass", &render_forward_pass);
+    if (Widgets::RadioButton("SSAO Color", deferred_mode == 7))
+    {
+        deferred_mode = 7;
+    }
 
-    if (ImGui::Checkbox("Render Shadows", &shadow_pass_enabled))
+    Widgets::Checkbox("Forward Rendering Pass", &render_forward_pass);
+
+    if (Widgets::Checkbox("Render Shadows", &shadow_pass_enabled))
     {
         App->preferences->GetEditorPreference()->SetShadowPassEnabled(shadow_pass_enabled);
     }
@@ -779,16 +1083,16 @@ void Hachiko::ModuleRender::PerformanceMenu()
 {
     const float vram_free_mb = gpu.vram_free / 1024.0f;
     const float vram_usage_mb = gpu.vram_budget_mb - vram_free_mb;
-    ImGui::Text("VRAM Budget: %.1f Mb", gpu.vram_budget_mb);
-    ImGui::Text("Vram Usage:  %.1f Mb", vram_usage_mb);
-    ImGui::Text("Vram Avaliable:  %.1f Mb", vram_free_mb);
+    Widgets::Label("VRAM budget", StringUtils::Format("%.1f MB", gpu.vram_budget_mb));
+    Widgets::Label("VRAM usage", StringUtils::Format("%.1f MB", vram_usage_mb));
+    Widgets::Label("VRAM avaliable", StringUtils::Format("%.1f MB", vram_free_mb));
     ImGui::Separator();
     FpsGraph();
 }
 
 void Hachiko::ModuleRender::FpsGraph() const
 {
-    ImGui::Text("Fps: %.1f", current_fps);
+    Widgets::Label("Fps", StringUtils::Format("%.1f", current_fps));
 
     char title[25];
     sprintf_s(title, 25, "Framerate %.1f", current_fps);
@@ -830,7 +1134,7 @@ void Hachiko::ModuleRender::AddFrame(const float delta)
     }
 }
 
-void Hachiko::ModuleRender::SetOpenGLAttributes() const 
+void Hachiko::ModuleRender::SetOpenGLAttributes() const
 {
     // Enable hardware acceleration:
     SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
@@ -874,13 +1178,14 @@ void Hachiko::ModuleRender::RetrieveGpuInfo()
     gpu.name = (unsigned char*)glGetString(GL_RENDERER);
     gpu.brand = (unsigned char*)glGetString(GL_VENDOR);
 
-            GLint count;
+    GLint count;
     glGetIntegerv(GL_NUM_EXTENSIONS, &count);
     for (GLint i = 0; i < count; ++i)
     {
         const char* extension = reinterpret_cast<const char*>(glGetStringi(GL_EXTENSIONS, i));
         if (!strcmp(extension, "GL_NVX_gpu_memory_info"))
-        {    glGetIntegerv(GL_GPU_MEMORY_INFO_TOTAL_AVAILABLE_MEMORY_NVX, &gpu.vram_budget_mb);
+        {
+            glGetIntegerv(GL_GPU_MEMORY_INFO_TOTAL_AVAILABLE_MEMORY_NVX, &gpu.vram_budget_mb);
             glGetIntegerv(GL_GPU_MEMORY_INFO_CURRENT_AVAILABLE_VIDMEM_NVX, &gpu.vram_free);
         }
     }
@@ -888,13 +1193,13 @@ void Hachiko::ModuleRender::RetrieveGpuInfo()
     gpu.vram_budget_mb /= 1024;
 }
 
-void Hachiko::ModuleRender::GenerateFullScreenQuad() 
+void Hachiko::ModuleRender::GenerateFullScreenQuad()
 {
     constexpr const float vertices[] = {
-        1.0f,  1.0f,  0.0f, 1.0f, 1.0f, // top right
-        1.0f,  -1.0f, 0.0f, 1.0f, 0.0f, // bottom right
+        1.0f, 1.0f, 0.0f, 1.0f, 1.0f, // top right
+        1.0f, -1.0f, 0.0f, 1.0f, 0.0f, // bottom right
         -1.0f, -1.0f, 0.0f, 0.0f, 0.0f, // bottom left
-        -1.0f, 1.0f,  0.0f, 0.0f, 1.0f // top left
+        -1.0f, 1.0f, 0.0f, 0.0f, 1.0f // top left
     };
     constexpr unsigned int indices[] = {2, 1, 0, 0, 3, 2};
 
@@ -921,7 +1226,7 @@ void Hachiko::ModuleRender::GenerateFullScreenQuad()
     glBindVertexArray(0);
 }
 
-void Hachiko::ModuleRender::RenderFullScreenQuad() const 
+void Hachiko::ModuleRender::RenderFullScreenQuad() const
 {
     glBindVertexArray(full_screen_quad_vao);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -939,6 +1244,36 @@ void Hachiko::ModuleRender::FreeFullScreenQuad() const
     glBindVertexArray(0);
 }
 
+void Hachiko::ModuleRender::CreateNoiseTexture() 
+{
+    const unsigned width = 128;
+    const unsigned height = 128;
+    const double delta = 0.05f;
+
+    OpenSimplex2S os;
+    byte* result = new byte[width * height];
+
+    for (int i = 0; i < width; ++i)
+    {
+        for (int j = 0; j < height; ++j)
+        {
+            result[i * height + j] = static_cast<byte>((os.noise2_XBeforeY((double)i * delta, (double)j * delta) + 1) * 127.0f);
+        }
+    }
+
+    glGenTextures(1, &noise_id);
+    glBindTexture(GL_TEXTURE_2D, noise_id);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, width, height, 0, GL_RED, GL_UNSIGNED_BYTE, result);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    delete result;
+}
+
 bool Hachiko::ModuleRender::CleanUp()
 {
     FreeFullScreenQuad();
@@ -952,5 +1287,117 @@ bool Hachiko::ModuleRender::CleanUp()
     App->preferences->GetEditorPreference()->SetDrawSkybox(draw_skybox);
     App->preferences->GetEditorPreference()->SetDrawNavmesh(draw_navmesh);
 
+    // Free outline textures:
+    delete outline_texture;
+    delete outline_texture_temp;
+
+    // Free pre post process frame buffer texture:
+    delete pre_post_process_frame_buffer;
+
     return true;
+}
+
+void Hachiko::ModuleRender::LoadLoadingScreen() 
+{
+    loading_game_object = new GameObject(nullptr, float4x4::identity, "Loading");
+    loading_transform2d = static_cast<ComponentTransform2D*>(loading_game_object->CreateComponent(Component::Type::TRANSFORM_2D));
+    loading_image = static_cast<ComponentImage*>(loading_game_object->CreateComponent(Component::Type::IMAGE));
+    loading_video = static_cast<ComponentVideo*>(loading_game_object->CreateComponent(Component::Type::VIDEO));
+
+    // For now the loading screen configuration will be hardcoded:
+    {
+        //Image
+        YAML::Node node_image;
+        node_image.SetTag("image");
+        node_image[IMAGE_IMAGE_ID] = 9856915381281154687;
+        node_image[IMAGE_HOVER_IMAGE_ID] = 0;
+        node_image[IMAGE_COLOR] = float4::one;
+        node_image[IMAGE_HOVER_COLOR] = float4::one;
+        node_image[IMAGE_TILED] = true;
+        node_image[IMAGE_RANDOMIZE_INITIAL_FRAME] = false;
+        node_image[IMAGE_X_TILES] = 2;
+        node_image[IMAGE_Y_TILES] = 2;
+        node_image[IMAGE_TILES_PER_SEC] = 2;
+        node_image[IMAGE_FILL_WINDOW] = true;
+
+        loading_image->Load(node_image);
+
+        //Video
+        YAML::Node node_video;
+        node_video.SetTag("video");
+        node_video[VIDEO_ID] = 12654021748852338787;
+        node_video[VIDEO_PROJECTED] = false;
+        node_video[VIDEO_LOOP] = true;
+        node_video[VIDEO_FLIP] = false;
+        node_video[VIDEO_FPS] = 12;
+
+        loading_video->Load(node_video);
+        loading_video->SetAsInScene();
+        loading_video->Start();
+        loading_video->Preload(12 * 4);
+        loading_video->Play();
+    }
+}
+
+void Hachiko::ModuleRender::DeleteLoadingScreen() 
+{
+    delete loading_game_object;
+}
+
+void Hachiko::ModuleRender::DrawLoadingScreen(const float delta)
+{
+    OPTICK_CATEGORY("DrawLoadingScreen", Optick::Category::Rendering);
+
+    Program* img_program = App->program->GetProgram(Program::Programs::UI_IMAGE);
+
+    glDepthFunc(GL_ALWAYS);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, frame_buffer);
+    glClearColor(0, 0, 0, 0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+
+    int res_x, res_y;
+    App->window->GetWindowSize(res_x, res_y);
+    if (res_x != fb_width || res_y != fb_height)
+    {
+        ResizeFrameBuffer(res_x, res_y);
+        fb_width = res_x;
+        fb_height = res_y;
+    }
+    glViewport(0, 0, fb_width, fb_height);
+
+    if (using_image)
+    {
+        loading_transform2d->SetSize(float2(fb_width, fb_height));
+        loading_image->Update();
+
+        ModuleProgram::CameraData camera_data;
+        // position data is unused on the ui program
+        camera_data.pos = float3::zero;
+        camera_data.view = float4x4::identity;
+        camera_data.proj = float4x4::D3DOrthoProjLH(-1, 1, static_cast<float>(fb_width), static_cast<float>(fb_height));
+
+        App->program->UpdateCamera(camera_data);
+
+        loading_image->Draw(loading_transform2d, img_program);
+    }
+    else
+    {
+        loading_video->Update();
+        loading_video->Draw(nullptr, nullptr);
+    }
+
+    glDepthFunc(GL_LESS);
+
+    glBindFramebuffer(GL_READ_FRAMEBUFFER, frame_buffer);
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+    glBlitFramebuffer(0, 0, fb_width, fb_height, 0, 0, fb_width, fb_height, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+}
+
+void Hachiko::ModuleRender::BindNoiseTexture(Program* program)
+{
+    // Binding the noise texture
+    glActiveTexture(GL_TEXTURE10);
+    glBindTexture(GL_TEXTURE_2D, noise_id);
+    program->BindUniformInt("noise", 10);
 }

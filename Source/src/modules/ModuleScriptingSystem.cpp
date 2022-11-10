@@ -270,7 +270,7 @@ void Hachiko::ModuleScriptingSystem::SubscribeToEvents()
 {
     std::function on_mode_changed = [&](Event& evt) 
     { 
-        auto& event_data = evt.GetEventData<GameStateEventPayload>();
+        const auto& event_data = evt.GetEventData<GameStateEventPayload>();
         _waiting_for_scene_load = 
             !App->scene_manager->GetActiveScene()->IsLoaded();
 
@@ -304,7 +304,7 @@ void Hachiko::ModuleScriptingSystem::SubscribeToEvents()
 
     std::function on_scene_loaded = [&](Event& evt) 
     { 
-        auto& event_data = evt.GetEventData<SceneLoadEventPayload>();
+        const auto& event_data = evt.GetEventData<SceneLoadEventPayload>();
 
         _waiting_for_scene_load = 
             event_data.GetState() == SceneLoadEventPayload::State::NOT_LOADED;
@@ -353,7 +353,7 @@ bool Hachiko::ModuleScriptingSystem::LoadFirstTime()
 
     LoadScriptNamesAndCount();
 
-    // Unpause script updates:
+    // Un-pause script updates:
     _scripts_paused = false;
 }
 

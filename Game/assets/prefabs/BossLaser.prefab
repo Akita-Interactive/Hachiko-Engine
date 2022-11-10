@@ -1,0 +1,61 @@
+prefab_name: BossLaser
+name: BossLaser
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [-82.39, 1.38, -43.04]
+    rotation: [-0.015, -45, -0.0062]
+    scale: [1, 1, 1]
+  - type: 20
+    enabled: true
+  - !<script>
+    type: 15
+    enabled: true
+    class_name: BossLaserController
+    "'_laser@GameObject*'": 3
+    "'_max_length@float'": 5
+    "'_max_scale@float'": 0.2
+    "'_activation_time@float'": 1
+    "'_damage@float'": 1
+    "'_track_if_active@bool'": true
+    "'_tracking_speed@float'": 20
+    "'_toggle_activation@bool'": true
+    "'_toggle_active_time@float'": 3
+    "'_toggle_inactive_time@float'": 3
+child:
+  - name: Box
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0.0001, 0, 0.0845]
+        rotation: [-90, 0, 0]
+        scale: [1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 1654487118907036717
+        navigable: false
+        visible: true
+        material_id: 6750369022920963075
+        tint_color: [1, 1, 1, 1]
+  - name: Cylinder
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0.5, -0.5]
+        rotation: [-180, 0, -0]
+        scale: [0.2, 0.2, 3.492]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 10210867973034302559
+        navigable: false
+        visible: true
+        material_id: 5638565975614595118
+        tint_color: [1, 1, 1, 1]

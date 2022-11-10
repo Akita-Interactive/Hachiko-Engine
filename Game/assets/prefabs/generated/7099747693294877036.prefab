@@ -6,7 +6,7 @@ component:
     type: 1
     enabled: true
     position: [0, 0, 0]
-    rotation: [0, 0, 0, 1]
+    rotation: [0, 0, 0]
     scale: [1, 1, 1]
   - !<animation>
     type: 14
@@ -20,7 +20,7 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [0, 0, 0, 1]
+        rotation: [0, 0, 0]
         scale: [1, 1, 1]
     child:
       - name: Root
@@ -30,7 +30,7 @@ child:
             type: 1
             enabled: true
             position: [0.0021, 0, 0.0002]
-            rotation: [0, 0, 0, 1]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
         child:
           - name: LeftLeaf_Start_$AssimpFbx$_Translation
@@ -40,7 +40,7 @@ child:
                 type: 1
                 enabled: true
                 position: [0.0167, 0, -0.0002]
-                rotation: [0, 0, 0, 1]
+                rotation: [0, 0, 0]
                 scale: [1, 1, 1]
             child:
               - name: LeftLeaf_Start_$AssimpFbx$_PreRotation
@@ -50,7 +50,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0, 0, 0]
-                    rotation: [0.56, 0.8285, -0, -0]
+                    rotation: [180, -0, -111.9]
                     scale: [1, 1, 1]
                 child:
                   - name: LeftLeaf_Start_$AssimpFbx$_Rotation
@@ -60,7 +60,7 @@ child:
                         type: 1
                         enabled: true
                         position: [0, 0, 0]
-                        rotation: [0, 0, 0, 1]
+                        rotation: [0, 0, 0]
                         scale: [1, 1, 1]
                     child:
                       - name: LeftLeaf_Start
@@ -70,7 +70,7 @@ child:
                             type: 1
                             enabled: true
                             position: [0, 0, 0]
-                            rotation: [0, 0, 0, 1]
+                            rotation: [0, 0, 0]
                             scale: [1, 1, 1]
                         child:
                           - name: LeftLeaf_mid_$AssimpFbx$_Translation
@@ -80,7 +80,7 @@ child:
                                 type: 1
                                 enabled: true
                                 position: [0.0101, 0.0104, 0.0001]
-                                rotation: [0, 0, 0, 1]
+                                rotation: [0, 0, 0]
                                 scale: [1, 1, 1]
                             child:
                               - name: LeftLeaf_mid_$AssimpFbx$_PreRotation
@@ -90,7 +90,7 @@ child:
                                     type: 1
                                     enabled: true
                                     position: [0, 0, 0]
-                                    rotation: [0, 0, 0.1049, 0.9945]
+                                    rotation: [0, 0, 12.04]
                                     scale: [1, 1, 1]
                                 child:
                                   - name: LeftLeaf_mid_$AssimpFbx$_Rotation
@@ -100,7 +100,7 @@ child:
                                         type: 1
                                         enabled: true
                                         position: [0, 0, 0]
-                                        rotation: [0.003, 0.0004, -0.0789, 0.9969]
+                                        rotation: [0.3437, 0.0154, -9.05]
                                         scale: [1, 1, 1]
                                     child:
                                       - name: LeftLeaf_mid
@@ -110,7 +110,7 @@ child:
                                             type: 1
                                             enabled: true
                                             position: [0, 0, 0]
-                                            rotation: [0, 0, 0, 1]
+                                            rotation: [0, 0, 0]
                                             scale: [1, 1, 1]
                                         child:
                                           - name: LeftLeaf_end_$AssimpFbx$_Translation
@@ -120,7 +120,7 @@ child:
                                                 type: 1
                                                 enabled: true
                                                 position: [0.0222, 0.0055, -0.0001]
-                                                rotation: [0, 0, 0, 1]
+                                                rotation: [0, 0, 0]
                                                 scale: [1, 1, 1]
                                             child:
                                               - name: LeftLeaf_end_$AssimpFbx$_PreRotation
@@ -130,7 +130,7 @@ child:
                                                     type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
-                                                    rotation: [0.6438, 0.7652, -0, -0]
+                                                    rotation: [180, -0, -99.85]
                                                     scale: [1, 1, 1]
                                                 child:
                                                   - name: LeftLeaf_end
@@ -140,7 +140,7 @@ child:
                                                         type: 1
                                                         enabled: true
                                                         position: [0, 0, 0]
-                                                        rotation: [0, 0, 0, 1]
+                                                        rotation: [0, 0, 0]
                                                         scale: [1, 1, 1]
           - name: MidLeaf_start_$AssimpFbx$_Translation
             enabled: true
@@ -149,7 +149,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-0.0067, -0, -0.0125]
-                rotation: [0, 0, 0, 1]
+                rotation: [0, 0, 0]
                 scale: [1, 1, 1]
             child:
               - name: MidLeaf_start_$AssimpFbx$_PreRotation
@@ -159,7 +159,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0, 0, 0]
-                    rotation: [0.56, 0.8285, -0, -0]
+                    rotation: [180, -0, -111.9]
                     scale: [1, 1, 1]
                 child:
                   - name: MidLeaf_start_$AssimpFbx$_Rotation
@@ -169,7 +169,7 @@ child:
                         type: 1
                         enabled: true
                         position: [0, 0, 0]
-                        rotation: [0.0084, -0.0209, -0, 0.9997]
+                        rotation: [0.9647, -2.4, 0.0202]
                         scale: [1, 1, 1]
                     child:
                       - name: MidLeaf_start
@@ -179,7 +179,7 @@ child:
                             type: 1
                             enabled: true
                             position: [0, 0, 0]
-                            rotation: [0, 0, 0, 1]
+                            rotation: [0, 0, 0]
                             scale: [1, 1, 1]
                         child:
                           - name: MidLeaf_mid_$AssimpFbx$_Translation
@@ -189,7 +189,7 @@ child:
                                 type: 1
                                 enabled: true
                                 position: [0.0177, 0.0041, 0.0091]
-                                rotation: [0, 0, 0, 1]
+                                rotation: [0, 0, 0]
                                 scale: [1, 1, 1]
                             child:
                               - name: MidLeaf_mid_$AssimpFbx$_PreRotation
@@ -199,7 +199,7 @@ child:
                                     type: 1
                                     enabled: true
                                     position: [0, 0, 0]
-                                    rotation: [0, 0, 0.1049, 0.9945]
+                                    rotation: [0, 0, 12.04]
                                     scale: [1, 1, 1]
                                 child:
                                   - name: MidLeaf_mid_$AssimpFbx$_Rotation
@@ -209,7 +209,7 @@ child:
                                         type: 1
                                         enabled: true
                                         position: [0, 0, 0]
-                                        rotation: [-0.0053, 0.0855, 0.02, 0.9961]
+                                        rotation: [-0.81, 9.79, 2.369]
                                         scale: [1, 1, 1]
                                     child:
                                       - name: MidLeaf_mid
@@ -219,7 +219,7 @@ child:
                                             type: 1
                                             enabled: true
                                             position: [0, 0, 0]
-                                            rotation: [0, 0, 0, 1]
+                                            rotation: [0, 0, 0]
                                             scale: [1, 1, 1]
                                         child:
                                           - name: MidLeaf_end_$AssimpFbx$_Translation
@@ -229,7 +229,7 @@ child:
                                                 type: 1
                                                 enabled: true
                                                 position: [0.0178, 0.0034, 0.0009]
-                                                rotation: [0, 0, 0, 1]
+                                                rotation: [0, 0, 0]
                                                 scale: [1, 1, 1]
                                             child:
                                               - name: MidLeaf_end_$AssimpFbx$_PreRotation
@@ -239,7 +239,7 @@ child:
                                                     type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
-                                                    rotation: [0.6438, 0.7652, -0, -0]
+                                                    rotation: [180, -0, -99.85]
                                                     scale: [1, 1, 1]
                                                 child:
                                                   - name: MidLeaf_end
@@ -249,7 +249,7 @@ child:
                                                         type: 1
                                                         enabled: true
                                                         position: [0, 0, 0]
-                                                        rotation: [0, 0, 0, 1]
+                                                        rotation: [0, 0, 0]
                                                         scale: [1, 1, 1]
           - name: RigthLeaf_start_$AssimpFbx$_Translation
             enabled: true
@@ -258,7 +258,7 @@ child:
                 type: 1
                 enabled: true
                 position: [-0.0086, -0, 0.0118]
-                rotation: [0, 0, 0, 1]
+                rotation: [0, 0, 0]
                 scale: [1, 1, 1]
             child:
               - name: RigthLeaf_start_$AssimpFbx$_PreRotation
@@ -268,7 +268,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0, 0, 0]
-                    rotation: [0.56, 0.8285, -0, -0]
+                    rotation: [180, -0, -111.9]
                     scale: [1, 1, 1]
                 child:
                   - name: RigthLeaf_start_$AssimpFbx$_Rotation
@@ -278,7 +278,7 @@ child:
                         type: 1
                         enabled: true
                         position: [0, 0, 0]
-                        rotation: [0, 0, 0, 1]
+                        rotation: [0, 0, 0]
                         scale: [1, 1, 1]
                     child:
                       - name: RigthLeaf_start
@@ -288,7 +288,7 @@ child:
                             type: 1
                             enabled: true
                             position: [0, 0, 0]
-                            rotation: [0, 0, 0, 1]
+                            rotation: [0, 0, 0]
                             scale: [1, 1, 1]
                         child:
                           - name: RigthLeaf_mid_$AssimpFbx$_Translation
@@ -298,7 +298,7 @@ child:
                                 type: 1
                                 enabled: true
                                 position: [0.0182, 0.0021, -0.0078]
-                                rotation: [0, 0, 0, 1]
+                                rotation: [0, 0, 0]
                                 scale: [1, 1, 1]
                             child:
                               - name: RigthLeaf_mid_$AssimpFbx$_PreRotation
@@ -308,7 +308,7 @@ child:
                                     type: 1
                                     enabled: true
                                     position: [0, 0, 0]
-                                    rotation: [0, 0, 0.1049, 0.9945]
+                                    rotation: [0, 0, 12.04]
                                     scale: [1, 1, 1]
                                 child:
                                   - name: RigthLeaf_mid_$AssimpFbx$_Rotation
@@ -318,7 +318,7 @@ child:
                                         type: 1
                                         enabled: true
                                         position: [0, 0, 0]
-                                        rotation: [-0.0003, -0.0543, 0.0191, 0.9983]
+                                        rotation: [0.09, -6.221, 2.202]
                                         scale: [1, 1, 1]
                                     child:
                                       - name: RigthLeaf_mid
@@ -328,7 +328,7 @@ child:
                                             type: 1
                                             enabled: true
                                             position: [0, 0, 0]
-                                            rotation: [0, 0, 0, 1]
+                                            rotation: [0, 0, 0]
                                             scale: [1, 1, 1]
                                         child:
                                           - name: RigthLeaf_end_$AssimpFbx$_Translation
@@ -338,7 +338,7 @@ child:
                                                 type: 1
                                                 enabled: true
                                                 position: [0.0178, 0.0035, -0]
-                                                rotation: [0, 0, 0, 1]
+                                                rotation: [0, 0, 0]
                                                 scale: [1, 1, 1]
                                             child:
                                               - name: RigthLeaf_end_$AssimpFbx$_PreRotation
@@ -348,7 +348,7 @@ child:
                                                     type: 1
                                                     enabled: true
                                                     position: [0, 0, 0]
-                                                    rotation: [0.6438, 0.7652, -0, -0]
+                                                    rotation: [180, -0, -99.85]
                                                     scale: [1, 1, 1]
                                                 child:
                                                   - name: RigthLeaf_end_$AssimpFbx$_Rotation
@@ -358,7 +358,7 @@ child:
                                                         type: 1
                                                         enabled: true
                                                         position: [0, 0, 0]
-                                                        rotation: [-0.3354, 0.0074, -0.2585, 0.9059]
+                                                        rotation: [-37.93, 10.76, -28.15]
                                                         scale: [1, 1, 1]
                                                     child:
                                                       - name: RigthLeaf_end
@@ -368,7 +368,7 @@ child:
                                                             type: 1
                                                             enabled: true
                                                             position: [0, 0, 0]
-                                                            rotation: [0, 0, 0, 1]
+                                                            rotation: [0, 0, 0]
                                                             scale: [1, 1, 1]
   - name: Geo
     enabled: true
@@ -377,7 +377,7 @@ child:
         type: 1
         enabled: true
         position: [0, 0, 0]
-        rotation: [0, 0, 0, 1]
+        rotation: [0, 0, 0]
         scale: [1, 1, 1]
     child:
       - name: bulbPlant:bulbPlant_geo_$AssimpFbx$_RotationPivot
@@ -387,7 +387,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0.018, 0.0007]
-            rotation: [0, 0, 0, 1]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
         child:
           - name: bulbPlant:bulbPlant_geo_$AssimpFbx$_RotationPivotInverse
@@ -397,7 +397,7 @@ child:
                 type: 1
                 enabled: true
                 position: [0, -0.018, -0.0007]
-                rotation: [0, 0, 0, 1]
+                rotation: [0, 0, 0]
                 scale: [1, 1, 1]
             child:
               - name: bulbPlant:bulbPlant_geo_$AssimpFbx$_ScalingPivot
@@ -407,7 +407,7 @@ child:
                     type: 1
                     enabled: true
                     position: [0, 0.018, 0.0007]
-                    rotation: [0, 0, 0, 1]
+                    rotation: [0, 0, 0]
                     scale: [1, 1, 1]
                 child:
                   - name: bulbPlant:bulbPlant_geo_$AssimpFbx$_ScalingPivotInverse
@@ -417,7 +417,7 @@ child:
                         type: 1
                         enabled: true
                         position: [0, -0.018, -0.0007]
-                        rotation: [0, 0, 0, 1]
+                        rotation: [0, 0, 0]
                         scale: [1, 1, 1]
                     child:
                       - name: bulbPlant:bulbPlant_geo
@@ -427,7 +427,7 @@ child:
                             type: 1
                             enabled: true
                             position: [0, 0, 0]
-                            rotation: [0, 0, 0, 1]
+                            rotation: [0, 0, 0]
                             scale: [1, 1, 1]
                           - !<mesh_renderer>
                             type: 2
@@ -435,5 +435,6 @@ child:
                             mesh_id: 12740196080614646481
                             navigable: false
                             visible: true
+                            casting_shadow: true
                             material_id: 14608906272623124740
                             tint_color: [1, 1, 1, 1]

@@ -10,7 +10,7 @@ Hachiko::ForceParticleModifier::ForceParticleModifier(const std::string& name) :
     cfg.format = "%.2f";
 }
 
-void Hachiko::ForceParticleModifier::Update(std::vector<Particle>& particles)
+void Hachiko::ForceParticleModifier::Update(std::vector<Particle>& particles, const float delta_time)
 {
     for (auto& particle : particles)
     {
@@ -19,12 +19,12 @@ void Hachiko::ForceParticleModifier::Update(std::vector<Particle>& particles)
             continue;
         }
 
-        UpdatePositionOverTime(particle);
+        UpdatePositionOverTime(particle, delta_time);
 
         if (IsActive())
         {
-            UpdateDirectionOverTime(particle);
-            UpdateRotationOverTime(particle);
+            UpdateDirectionOverTime(particle, delta_time);
+            UpdateRotationOverTime(particle, delta_time);
         }
     }
 }
@@ -56,27 +56,27 @@ void Hachiko::ForceParticleModifier::Load(const YAML::Node& node)
     z_force = node[MODIFIER_FORCE][Z_FORCE].IsDefined() ? node[MODIFIER_FORCE][Z_FORCE].as<ParticleSystem::VariableTypeProperty>() : z_force;
 }
 
-void Hachiko::ForceParticleModifier::UpdatePositionOverTime(Particle& particle) 
+void Hachiko::ForceParticleModifier::UpdatePositionOverTime(Particle& particle, const float delta_time)
 {
     float3 position = particle.GetCurrentPosition();
-    position += particle.GetCurrentDirection() * particle.GetCurrentSpeed() * EngineTimer::delta_time;
+    position += particle.GetCurrentDirection() * particle.GetCurrentSpeed() * delta_time;
     particle.SetCurrentPosition(position);
 }
 
-void Hachiko::ForceParticleModifier::UpdateDirectionOverTime(Particle& particle)
+void Hachiko::ForceParticleModifier::UpdateDirectionOverTime(Particle& particle, const float delta_time) const
 {
     float3 direction = particle.GetCurrentDirection();
-    float particle_life = particle.GetCurrentLifeNormalized();
-    direction.x += x_force.GetValue(particle_life) * EngineTimer::delta_time;
-    direction.y += y_force.GetValue(particle_life) * EngineTimer::delta_time;
-    direction.z += z_force.GetValue(particle_life) * EngineTimer::delta_time;
+    const float particle_life = particle.GetCurrentLifeNormalized();
+    direction.x += x_force.GetValue(particle_life) * delta_time;
+    direction.y += y_force.GetValue(particle_life) * delta_time;
+    direction.z += z_force.GetValue(particle_life) * delta_time;
     direction.Normalize();
     particle.SetCurrentDirection(direction);
 }
 
-void Hachiko::ForceParticleModifier::UpdateRotationOverTime(Particle& particle) 
+void Hachiko::ForceParticleModifier::UpdateRotationOverTime(Particle& particle, const float delta_time) const
 {
     float rotation = particle.GetCurrentRotation();
-    rotation += rotation_delta.GetValue(particle.GetCurrentLifeNormalized()) * EngineTimer::delta_time;
+    rotation += rotation_delta.GetValue(particle.GetCurrentLifeNormalized()) * delta_time;
     particle.SetCurrentRotation(rotation);
 }

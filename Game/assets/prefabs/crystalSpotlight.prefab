@@ -1,0 +1,19 @@
+prefab_name: crystalSpotlight
+name: crystalSpotlight
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [-18.59, 29.66, 1.093]
+    rotation: [101.5, -12.18, 1.966]
+    scale: [1, 1, 1]
+  - type: 7
+    enabled: true
+    light_type: 7
+    color: [0, 0.8824, 1, 1]
+    inner: 5
+    outer: 13.8
+    intensity: 50
+    radius: 248.4
+    draw_cone: true

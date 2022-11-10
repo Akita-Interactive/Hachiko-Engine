@@ -11,6 +11,9 @@
 
 #include <utils/RandomUtil.h>
 
+#include <core/GameObject.h>
+#include <Gameplay.h>
+
 #include <components/Component.h>
 #include <components/ComponentText.h>
 #include <components/ComponentButton.h>
@@ -30,7 +33,5 @@
 #include <components/ComponentParticleSystem.h>
 #include <components/ComponentBillboard.h>
 
-#include <core/GameObject.h>
-#include <Gameplay.h>
 #include <Globals.h>
 #endif //GAMEPLAY_PCH_H

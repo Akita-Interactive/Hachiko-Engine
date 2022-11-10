@@ -14,7 +14,7 @@ namespace Hachiko
         NoiseParticleModifier(const std::string& name);
         ~NoiseParticleModifier() override;
 
-        void Update(std::vector<Particle>&) override;
+        void Update(std::vector<Particle>&, float delta_time) override;
         void DrawGui() override;
 
         void Save(YAML::Node& node) const override;

@@ -6,6 +6,7 @@
 #include "resources/ResourceTexture.h"
 #include "modules/ModuleTexture.h"
 #include "modules/ModuleResources.h"
+#include "modules/ModuleSceneManager.h"
 
 void Hachiko::TextureImporter::Import(const char* path, YAML::Node& meta)
 {
@@ -72,7 +73,10 @@ Hachiko::Resource* Hachiko::TextureImporter::Load(UID id)
     memcpy(texture->data, cursor, size_bytes);
     cursor += size_bytes;
 
-    texture->GenerateBuffer();
+    if (!App->scene_manager->IsLoadingScene())
+    {
+        texture->GenerateBuffer();
+    }
 
     delete[] file_buffer;
 

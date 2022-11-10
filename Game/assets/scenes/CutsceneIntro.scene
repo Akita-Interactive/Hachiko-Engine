@@ -1,0 +1,86 @@
+scene_name: CutsceneIntro
+navmesh_id: 3776086775209439772
+ambient_light:
+  intensity: 0.05
+  color: [1, 1, 1, 1]
+fog:
+  fog: false
+  color: [1, 1, 1]
+  global_density: 0.01
+  height_falloff: 0.01
+ibl: false
+skybox:
+  right_cube_id: 0
+  left_cube_id: 0
+  top_cube_id: 0
+  bottom_cube_id: 0
+  center_cube_id: 0
+  back_cube_id: 0
+root_id: 16364981188418897259
+child:
+  - id: 9732188145100780540
+    name: Main Camera
+    enabled: true
+    component:
+      - !<transform>
+        id: 4509124029076644771
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+      - !<camera>
+        id: 15643349525643254430
+        type: 4
+        enabled: true
+        frustum:
+          near_distance: 1
+          far_distance: 100
+          fov: 65
+          position: [0, 0, 0]
+          front: [0, 0, 1]
+          up: [0, 1, 0]
+          pinned_camera: [0, 0, 0]
+  - id: 8997215151787573221
+    name: Cutscene Intro
+    enabled: true
+    component:
+      - !<transform>
+        id: 13862025692587933338
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+      - !<script>
+        id: 3587639865351527500
+        type: 15
+        enabled: true
+        class_name: CutsceneManager
+        "'_cutscene@GameObject*'": 11284506405159390339
+        "'_audio_manager@GameObject*'": 3624912213330690370
+        "'_next_level@unsigned'": 1
+      - id: 13316652282136130734
+        type: 20
+        enabled: true
+    child:
+      - id: 11284506405159390339
+        name: Cutscene Video
+        enabled: true
+        component:
+          - !<transform>
+            id: 7986791392919309230
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+          - !<video>
+            id: 14473220105854959343
+            type: 23
+            enabled: true
+            video_id: 16972879385539922193
+            projected: false
+            loop: false
+            flip: false
+            fps: 24

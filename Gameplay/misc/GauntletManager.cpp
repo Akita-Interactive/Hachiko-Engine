@@ -2,7 +2,11 @@
 
 #include "GauntletManager.h"
 
+#include "constants/Sounds.h"
 #include "misc/LevelManager.h"
+#include "misc/AudioManager.h"
+#include "entities/player/PlayerCamera.h"
+#include "entities/player/PlayerController.h"
 #include "constants/Scenes.h"
 
 // TODO: Delete this include:
@@ -19,6 +23,9 @@ Hachiko::Scripting::GauntletManager::GauntletManager(GameObject* game_object)
 	, _pack_1(nullptr)
 	, _pack_2(nullptr)
 	, _pack_3(nullptr)
+	, _camera_anchor(nullptr)
+	, _relative_position(float3::zero)
+	, _camera_follows_player(0.4f)
 {}
 
 void Hachiko::Scripting::GauntletManager::OnAwake()
@@ -34,21 +41,48 @@ void Hachiko::Scripting::GauntletManager::OnAwake()
 	if (_pack_3) _enemy_packs.push_back(_pack_3);
 	for (GameObject* _pack : _enemy_packs)
 	{
+		for (GameObject* enemy : _pack->children)
+		{
+			ComponentAgent* agc = enemy->GetComponent<ComponentAgent>();
+			if (agc)
+			{
+				agc->RemoveFromCrowd();
+			}
+		}
 		_pack->SetActive(false);
 	}
+
+	_audio_manager = Scenes::GetAudioManager()->GetComponent<AudioManager>();
 }
 
 void Hachiko::Scripting::GauntletManager::OnStart()
 {
 	_level_manager = Scenes::GetLevelManager()->GetComponent<LevelManager>();
+	_main_camera = Scenes::GetMainCamera()->GetComponent<PlayerCamera>();
 	game_object->SetVisible(false, false);
 
-	ResetGauntlet();
+	ResetGauntlet(true);
 }
 
 void Hachiko::Scripting::GauntletManager::OnUpdate()
 {
-	if (completed) return;
+	if (completed)
+	{
+		if (_closing_door && _closing_door->IsActive())
+		{
+			_elapsed_time += Time::DeltaTimeScaled();
+			if (_elapsed_time < 2.0f)
+			{
+				_closing_door->ChangeDissolveProgress(1 - (_elapsed_time / 2.0f), true);
+			}
+			else
+			{
+				_closing_door->SetActive(false);
+			}
+		}
+		
+		return;
+	}
 	
 	if (!started)
 	{
@@ -60,32 +94,62 @@ void Hachiko::Scripting::GauntletManager::OnUpdate()
 	}
 	else
 	{
-		
+		ControllCameraPos();
 		CheckRoundStatus();
 	}
 
 }
 
-void Hachiko::Scripting::GauntletManager::StartGauntlet()
-{
-	started = true;
-	current_round = 0;
-	SpawnRound(current_round);
-
-	// Notify level manager
-	_level_manager->SetGauntlet(this);
-}
-
-void Hachiko::Scripting::GauntletManager::ResetGauntlet()
+void Hachiko::Scripting::GauntletManager::ResetGauntlet(bool complete_reset)
 {
 	CloseDoors();
+	if (_closing_door)
+	{
+		_elapsed_time = 0.0f;
+		_closing_door->SetActive(false);
+	}
 	for (GameObject* enemy_pack : _enemy_packs)
 	{
 		_combat_manager->DeactivateEnemyPack(enemy_pack);
 	}
 	started = false;
-	current_round = 0;
+	
 	remaining_between_round_time = 0.f;
+
+	if (!complete_reset)
+	{
+		return;
+	}
+	current_round = 0;
+}
+
+void Hachiko::Scripting::GauntletManager::StartGauntlet()
+{
+	started = true;
+	SpawnRound(current_round);
+
+	// Notify level manager
+	_level_manager->SetGauntlet(this);
+
+	// Notify audio manager
+	_audio_manager->RegisterGaunlet();
+	_audio_manager->PlayGaunletStart();
+
+	// Set the camera to its position if there is an anchor set
+	if (_camera_anchor && _central_anchor)
+	{
+		_main_camera->ChangeRelativePosition(_relative_position, false, .2f, 0.0f);
+		_main_camera->SetObjective(_camera_anchor);
+	}
+
+	if (_closing_door)
+	{
+		_closing_door->SetActive(true);
+		_closing_door->ChangeDissolveProgress(0.0f, true);
+	}
+
+	unsigned alive_count = _combat_manager->GetPackAliveCount(_enemy_packs[current_round]);
+	_level_manager->SetEnemyCount(alive_count);
 }
 
 bool Hachiko::Scripting::GauntletManager::IsFinished() const
@@ -95,9 +159,14 @@ bool Hachiko::Scripting::GauntletManager::IsFinished() const
 
 void Hachiko::Scripting::GauntletManager::CheckRoundStatus()
 {
-	if (current_round >= _enemy_packs.size()) {
+	if (current_round >= _enemy_packs.size()) 
+	{
 		completed = true;
+		_elapsed_time = 0.0f;
 		OpenDoors();
+		_audio_manager->UnregisterGaunlet();
+		_main_camera->ChangeRelativePosition(Scenes::GetPlayer()->GetComponent<PlayerController>()->GetCamBasicPos(), false, .2f, 0.0f);
+		_main_camera->SetObjective(Scenes::GetPlayer());
 		return;
 	}
 
@@ -105,7 +174,7 @@ void Hachiko::Scripting::GauntletManager::CheckRoundStatus()
 
 	_level_manager->SetEnemyCount(alive_count);
 
-	if(alive_count > 0) return;
+	if (alive_count > 0) return;
 
 	if (!changing_rounds)
 	{
@@ -131,8 +200,10 @@ void Hachiko::Scripting::GauntletManager::CheckRoundStatus()
 		++current_round;
 		if (IsFinished())
 		{
+			_audio_manager->PlayGaunletComplete();
 			return;
 		}
+		_audio_manager->PlayGaunletNextRound();
 		SpawnRound(current_round);
 	}	
 }
@@ -158,4 +229,16 @@ void Hachiko::Scripting::GauntletManager::SpawnRound(unsigned round)
 	if (round >= _enemy_packs.size()) return;
 	_combat_manager->ActivateEnemyPack(_enemy_packs[round]);
 	_combat_manager->ResetEnemyPack(_enemy_packs[round], true);
+}
+
+void Hachiko::Scripting::GauntletManager::ControllCameraPos()
+{
+	if (_camera_anchor && _central_anchor)
+	{
+		float3 camera_a_pos = _camera_anchor->GetTransform()->GetGlobalPosition();
+		float3 player_pos = Scenes::GetPlayer()->GetTransform()->GetGlobalPosition();
+		float3 center_pos = _central_anchor->GetTransform()->GetGlobalPosition();
+		camera_a_pos = math::Lerp(center_pos, player_pos, _camera_follows_player);
+		_camera_anchor->GetTransform()->SetGlobalPosition(camera_a_pos);
+	}
 }

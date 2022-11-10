@@ -22,8 +22,7 @@ public:
 	};
 
 public:
-	MainMenuManager(GameObject* game_object);
-	~MainMenuManager() override = default;
+	MainMenuManager(GameObject* new_game_object);
 
 	void OnAwake() override;
 	void OnStart() override;
@@ -33,6 +32,9 @@ private:
 	void OnUpdateMain();
 	void OnUpdateSettings();
 	void OnUpdateCredits();
+	// Returns true if quitting that frame, false otherwise.
+	bool OnUpdateQuit();
+	void QuitDelayed();
 
 private:
 	SERIALIZE_FIELD(State, _state);
@@ -59,6 +61,17 @@ private:
 	SERIALIZE_FIELD(ComponentButton*, _button_back);
 
 	ComponentAudioSource* _audio_source;
+
+	// The delay for the quit button to actually quit the application. Used for
+	// playing the button sound.
+	// NOTE: When the button sounds are changed, change the value of this const
+	// member on the ctor initializer list.
+	const float _quit_button_delay_duration;
+	float _remaining_waiting_time_for_quit;
+	bool _started_to_quit;
+
+	int _option_selected;
+	std::vector<ComponentButton*> _buttons_gamepad;
 
 };
 } // namespace Scripting

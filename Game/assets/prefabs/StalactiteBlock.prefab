@@ -1,0 +1,28 @@
+prefab_name: StalactiteBlock
+name: StalactiteBlock
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [-95.47, 1.082, -53.32]
+    rotation: [-0, 0, -0]
+    scale: [3, 3, 3]
+child:
+  - name: Box001
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 1654487118907036717
+        navigable: false
+        visible: true
+        material_id: 6750369022920963075
+        tint_color: [1, 1, 1, 1]

@@ -9,14 +9,18 @@
 
 #include "core/rendering/Program.h"
 #include "modules/ModuleResources.h"
+#include "modules/ModuleSceneManager.h"
 
 #include "modules/ModuleEvent.h"
 
 #include "resources/ResourceFont.h"
 #include "FTLabel.h"
+#include "utils/ComponentUtility.h"
 
-Hachiko::ComponentText::ComponentText(GameObject* container) 
-	: Component(Type::TEXT, container) {}
+Hachiko::ComponentText::ComponentText(GameObject* container) :
+    Component(Type::TEXT, container)
+{
+}
 
 Hachiko::ComponentText::~ComponentText()
 {
@@ -28,46 +32,49 @@ void Hachiko::ComponentText::DrawGui()
     static const ImVec4 warn_color = ImVec4(255, 0, 0, 1);
 
     ImGui::PushID(this);
-    if (ImGui::CollapsingHeader("Text Label", ImGuiTreeNodeFlags_DefaultOpen))
-    {   
+    if (ImGuiUtils::CollapsingHeader(this, "Text label"))
+    {
         if (!font)
         {
-            ImGui::TextColored(warn_color, "No Loaded Font!");
+            ImGui::TextColored(warn_color, "No loaded font!");
         }
         if (!label)
         {
-            ImGui::TextColored(warn_color, "No Generated Label!");
+            ImGui::TextColored(warn_color, "No generated label!");
         }
 
-        if (ImGui::InputText("Text", &label_text, ImGuiInputTextFlags_EnterReturnsTrue))
+        if (Widgets::Input("Text", label_text, ImGuiInputTextFlags_EnterReturnsTrue))
         {
             SetText(label_text.c_str());
-            App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
-        if (ImGui::DragInt("Font Size", &font_size, 2, 0, 1010))
+        float fz = font_size;
+        Widgets::DragFloatConfig cfg;
+        cfg.speed = 2.0f;
+        cfg.format = "%.f";
+        cfg.min = 0.0f;
+        cfg.max = 1010.0f;
+        if (DragFloat("Font size", fz, &cfg))
         {
-            SetFontSize(font_size);
+            SetFontSize(fz);
         }
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
-        if (ImGuiUtils::CompactColorPicker("Font Color", font_color.ptr()))
+        if (ImGuiUtils::CompactColorPicker("Font color", font_color.ptr()))
         {
             SetFontColor(font_color);
         }
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
-        const std::string title = "Select Font";
-        if (ImGui::Button("Change Font"))
+        const std::string title = "Select font";
+        if (ImGui::Button("Change font", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
         {
             ImGuiFileDialog::Instance()->OpenDialog(title,
-                                                    "Select Font",
+                                                    "Select font",
                                                     FONT_EXTENSION,
                                                     ASSETS_FOLDER_FONT,
                                                     1,
                                                     nullptr,
                                                     ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton | ImGuiFileDialogFlags_HideColumnType
-                                                        | ImGuiFileDialogFlags_HideColumnDate);
+                                                    | ImGuiFileDialogFlags_HideColumnDate);
         }
 
         if (ImGuiFileDialog::Instance()->Display(title))
@@ -76,7 +83,7 @@ void Hachiko::ComponentText::DrawGui()
             {
                 std::string font_path = ImGuiFileDialog::Instance()->GetFilePathName();
                 font_path.append(META_EXTENSION);
-                YAML::Node font_node = YAML::LoadFile(font_path);              
+                YAML::Node font_node = YAML::LoadFile(font_path);
                 LoadFont(font_node[RESOURCES][0][RESOURCE_ID].as<UID>());
                 App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
             }
@@ -84,23 +91,35 @@ void Hachiko::ComponentText::DrawGui()
             ImGuiFileDialog::Instance()->Close();
         }
 
-        ImGui::Text("No text = size is too small, nothing can be drawn");
-	}
+        ImGui::TextWrapped("No text = size is too small, nothing can be drawn");
+    }
     ImGui::PopID();
 }
 
 void Hachiko::ComponentText::Draw(ComponentTransform2D* transform, Program* program)
-{   
+{
     OPTICK_CATEGORY("Draw", Optick::Category::Rendering);
 
+    if (build_font && font)
+    {
+        try        
+        {
+            BuildLabel(game_object->GetComponent<ComponentTransform2D>());
+        }
+        catch (std::exception& e)
+        {
+            // Catch exception and return unloaded font if fails
+            HE_LOG("Failed to load font %s", std::to_string(font->GetID()).c_str());
+        }    
+    }
     if (!label)
     {
         return;
     }
-    
+
     RefreshLabel(transform);
-    // Program is activated inside hachikorender
-    label->HachikoRender(program);   
+    // Program is activated inside HachikoRender
+    label->HachikoRender(program);
 }
 
 void Hachiko::ComponentText::Save(YAML::Node& node) const
@@ -121,6 +140,14 @@ void Hachiko::ComponentText::Load(const YAML::Node& node)
     SetText(label_text.c_str());
     SetFontSize(font_size);
     SetFontColor(font_color);
+}
+
+void Hachiko::ComponentText::CollectResources(const YAML::Node& node, std::map<Resource::Type, std::set<UID>>& resources)
+{
+    ComponentUtility::CollectResource(
+        Resource::Type::FONT,
+        node[FONT_ID],
+        resources);
 }
 
 void Hachiko::ComponentText::SetText(const char* new_text)
@@ -156,7 +183,7 @@ void Hachiko::ComponentText::LoadFont(UID id)
     {
         App->resources->ReleaseResource(font);
         font = static_cast<ResourceFont*>(App->resources->GetResource(Resource::Type::FONT, id));
-        if (font)
+        if (font && !App->scene_manager->IsLoadingScene())
         {
             BuildLabel(game_object->GetComponent<ComponentTransform2D>());
         }
@@ -165,37 +192,48 @@ void Hachiko::ComponentText::LoadFont(UID id)
     {
         // Catch exception and return unloaded font if fails
         HE_LOG("Failed to load font %s", std::to_string(id).c_str());
-    }    
+    }
 }
 
 void Hachiko::ComponentText::RefreshLabel(ComponentTransform2D* transform)
 {
     if (dirty)
     {
-        unsigned windowWidth, windowHeight;
-        App->camera->GetRenderingCamera()->GetResolution(windowWidth, windowHeight);
-        label->setWindowSize(windowWidth, windowHeight);
-        const float2& size = transform->GetSize();
-        
-        const float4x4& trf = transform->GetGlobalTransform();
-        const float3& pos = trf.TranslatePart();
-        label->scale(trf.scaleX, trf.scaleY, trf.scaleZ);
-        label->setSize(size.x, size.y);
-        label->setPosition(pos.x + (windowWidth / 2), pos.y + (windowHeight / 2));
-        dirty = false;
+        try
+        {
+            unsigned windowWidth, windowHeight;
+            App->camera->GetRenderingCamera()->GetResolution(windowWidth, windowHeight);
+            label->setWindowSize(windowWidth, windowHeight);
+            const float2& size = transform->GetSize();
+
+            const float4x4& trf = transform->GetGlobalTransform();
+            const float3& pos = trf.TranslatePart();
+            label->scale(trf.scaleX, trf.scaleY, trf.scaleZ);
+            label->setSize(size.x, size.y);
+            label->setPosition(pos.x + (windowWidth / 2), pos.y + (windowHeight / 2));
+            dirty = false;
+        }
+        catch (std::exception& e)
+        {
+            // Catch exception and return unloaded font if fails
+            HE_LOG("Failed to RefreshLabel");
+        }
     }
 }
 
 void Hachiko::ComponentText::BuildLabel(ComponentTransform2D* transform)
 {
+    build_font = false;
+
     unsigned windowWidth, windowHeight;
     App->camera->GetRenderingCamera()->GetResolution(windowWidth, windowHeight);
 
     const float4x4& trf = transform->GetGlobalTransform();
-    label = std::unique_ptr<FTLabel>(new FTLabel(font->gl_font.get(), // Font face handle
+    label = std::unique_ptr<FTLabel>(new FTLabel(font->gl_font.get(),
+                                                 // Font face handle
                                                  windowWidth,
                                                  windowHeight));
-    
+
     label->setText(label_text.c_str()); // Text in constructor seems to not have effect
     label->setColor(font_color.x, font_color.y, font_color.z, font_color.w);
     label->setPixelSize(font_size);

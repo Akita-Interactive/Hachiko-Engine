@@ -61,9 +61,9 @@ namespace Hachiko
 
         void RebuildBatching();
 
-        [[nodiscard]] GameObject* Raycast(const float3& origin, const float3& destination, float3* closest_hit = nullptr, GameObject* parent_filter = nullptr, bool active_only = false) const;
-        [[nodiscard]] GameObject* BoundingRaycast(const float3& origin, const float3& destination, GameObject* parent_filter = nullptr, bool active_only = false) const;
-        [[nodiscard]] GameObject* Raycast(const LineSegment& segment, bool triangle_level = true, float3* closest_hit = nullptr, GameObject* parent_filter = nullptr, bool active_only = false) const;
+        [[nodiscard]] GameObject* RayCast(const float3& origin, const float3& destination, float3* closest_hit = nullptr, GameObject* parent_filter = nullptr, bool active_only = false) const;
+        [[nodiscard]] GameObject* BoundingRayCast(const float3& origin, const float3& destination, GameObject* parent_filter = nullptr, bool active_only = false) const;
+        [[nodiscard]] GameObject* RayCast(const LineSegment& segment, bool triangle_level = true, float3* closest_hit = nullptr, GameObject* parent_filter = nullptr, bool active_only = false) const;
 
         [[nodiscard]] GameObject* GetRoot() const
         {
@@ -145,7 +145,7 @@ namespace Hachiko
         
         void Save(YAML::Node& node);
         void Load(const YAML::Node& node, bool meshes_only = false);
-        
+        static void GetResources(const YAML::Node& node, std::map<Resource::Type, std::set<UID>>& resources);       
 
         void AmbientLightOptionsMenu();
         void FogOptionsMenu();
@@ -165,6 +165,23 @@ namespace Hachiko
             return particles;
         }
         
+        void SetFogActive(bool active) 
+        {
+            fog.enabled = active;
+        }
+        void SetFogColor(float3 color)
+        {
+            fog.color = color;
+        }
+        void SetFogGlobalDensity(float density)
+        {
+            fog.global_density = density;
+        }
+        void SetFogHeightFalloff(float falloff)
+        {
+            fog.height_falloff = falloff;
+        }
+
         std::vector<ComponentDirLight*> dir_lights{};
         std::vector<ComponentPointLight*> point_lights{};
         std::vector<ComponentSpotLight*> spot_lights{};

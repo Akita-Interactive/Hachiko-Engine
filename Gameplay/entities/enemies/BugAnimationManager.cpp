@@ -5,7 +5,7 @@
 Hachiko::Scripting::BugAnimationManager::BugAnimationManager(Hachiko::GameObject* game_object)
 	: Script(game_object, "BugAnimationManager")
 	, _enemy_controller(nullptr)
-	, _previous_state(BugState::INVALID)
+	, _previous_state(EnemyState::INVALID)
 	, _state_string("")
 	, _animator(nullptr)
 	, _idle_index(0)
@@ -25,7 +25,7 @@ void Hachiko::Scripting::BugAnimationManager::OnStart()
 
 void Hachiko::Scripting::BugAnimationManager::OnUpdate()
 {
-	BugState current_state = _enemy_controller->GetState();
+	EnemyState current_state = _enemy_controller->GetState();
 	bool state_changed = current_state != _previous_state;
 
 	if (!state_changed)
@@ -37,17 +37,17 @@ void Hachiko::Scripting::BugAnimationManager::OnUpdate()
 
 	switch (current_state)
 	{
-	case BugState::IDLE:
+	case EnemyState::IDLE:
 		_state_string = "Play Idle Animation.";
 		// _animator->SendTrigger("idle");
 		break;
-	case BugState::ATTACKING:
+	case EnemyState::ATTACKING:
 		_state_string = "Play Melee Attacking Animation.";
 		// _animator->SendTrigger("isAttacking");
 		break;
-	case BugState::DEAD:
+	case EnemyState::DEAD:
 		break;
-	case BugState::INVALID:
+	case EnemyState::INVALID:
 	default:
 		break;
 	}

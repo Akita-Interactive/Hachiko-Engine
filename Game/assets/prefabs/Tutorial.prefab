@@ -1,0 +1,263 @@
+prefab_name: Tutorial
+name: Tutorial
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [-0.0006, 0.0001, -0.0002]
+    rotation: [0, 0, 0]
+    scale: [1, 0.9999, 1]
+  - !<transform_2d>
+    type: 10
+    enabled: true
+    position: [0, 0, 0]
+    size: [1, 1]
+    scale: [1, 1]
+    rotation: [0, 0, 0, 1]
+    pivot: [0.5, 0.5]
+    anchor: [0.5, 0.5]
+  - !<canvas>
+    type: 8
+    enabled: true
+  - !<script>
+    type: 15
+    enabled: true
+    class_name: Tutorial
+    "'_tutorial_keyboard_movement@GameObject*'": 2
+    "'_tutorial_controller_movement@GameObject*'": 3
+    "'_tutorial_keyboard_attacks@GameObject*'": 4
+    "'_tutorial_controller_attacks@GameObject*'": 5
+    "'_tutorial_keyboard_pickup@GameObject*'": 6
+    "'_tutorial_controller_pickup@GameObject*'": 7
+    "'_first_enemy@GameObject*'": 0
+    "'_tutorials_screen_shown@int'": 0
+  - !<script>
+    type: 15
+    enabled: true
+    class_name: TimeManager
+  - type: 20
+    enabled: true
+child:
+  - name: MovementTutorialKeyboard
+    enabled: false
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [0, 0, 0]
+        size: [905, 302]
+        scale: [1, 1]
+        rotation: [0, 0, 0, 1]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas_renderer>
+        type: 9
+        enabled: true
+        scale_ui: false
+        original_size_x: 0
+        original_size_y: 0
+      - !<image>
+        type: 11
+        enabled: true
+        image_id: 9336293581199644598
+        hover_image_id: 0
+        image_color: [1, 1, 1, 1]
+        hover_image_color: [1, 1, 1, 1]
+        image_is_tiled: false
+        image_randomize_initial_frame: false
+        image_x_tiles: 1
+        image_y_tiles: 1
+        image_tiles_per_second: 1
+        fill_window: false
+  - name: MovementTutorialController
+    enabled: false
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [0, 0, 0]
+        size: [905, 302]
+        scale: [1, 1]
+        rotation: [0, 0, 0, 1]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas_renderer>
+        type: 9
+        enabled: true
+        scale_ui: false
+        original_size_x: 0
+        original_size_y: 0
+      - !<image>
+        type: 11
+        enabled: true
+        image_id: 6270659759447213435
+        hover_image_id: 0
+        image_color: [1, 1, 1, 1]
+        hover_image_color: [1, 1, 1, 1]
+        image_is_tiled: false
+        image_randomize_initial_frame: false
+        image_x_tiles: 1
+        image_y_tiles: 1
+        image_tiles_per_second: 1
+        fill_window: false
+  - name: AttackTutorialKeyboard
+    enabled: false
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0.0006, -0.0001, 0.0002]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [0, 0, 0]
+        size: [905, 302]
+        scale: [1, 1]
+        rotation: [0, 0, 0, 1]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas_renderer>
+        type: 9
+        enabled: true
+        scale_ui: false
+        original_size_x: 0
+        original_size_y: 0
+      - !<image>
+        type: 11
+        enabled: true
+        image_id: 18332640762604259921
+        hover_image_id: 0
+        image_color: [1, 1, 1, 1]
+        hover_image_color: [1, 1, 1, 1]
+        image_is_tiled: false
+        image_randomize_initial_frame: false
+        image_x_tiles: 1
+        image_y_tiles: 1
+        image_tiles_per_second: 1
+        fill_window: false
+  - name: AttackTutorialController
+    enabled: false
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0.0006, -0.0001, 0.0002]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [0, 0, 0]
+        size: [905, 302]
+        scale: [1, 1]
+        rotation: [0, 0, 0, 1]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas_renderer>
+        type: 9
+        enabled: true
+        scale_ui: false
+        original_size_x: 0
+        original_size_y: 0
+      - !<image>
+        type: 11
+        enabled: true
+        image_id: 3285228862617989145
+        hover_image_id: 0
+        image_color: [1, 1, 1, 1]
+        hover_image_color: [1, 1, 1, 1]
+        image_is_tiled: false
+        image_randomize_initial_frame: false
+        image_x_tiles: 1
+        image_y_tiles: 1
+        image_tiles_per_second: 1
+        fill_window: false
+  - name: ParasyteTutorialKeyboard
+    enabled: false
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0.0006, -0.0001, 0.0002]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [0, 0, 0]
+        size: [905, 302]
+        scale: [1, 1]
+        rotation: [0, 0, 0, 1]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas_renderer>
+        type: 9
+        enabled: true
+        scale_ui: false
+        original_size_x: 0
+        original_size_y: 0
+      - !<image>
+        type: 11
+        enabled: true
+        image_id: 10171751321313287235
+        hover_image_id: 0
+        image_color: [1, 1, 1, 1]
+        hover_image_color: [1, 1, 1, 1]
+        image_is_tiled: false
+        image_randomize_initial_frame: false
+        image_x_tiles: 1
+        image_y_tiles: 1
+        image_tiles_per_second: 1
+        fill_window: false
+  - name: ParasyteTutorialController
+    enabled: false
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0.0006, -0.0001, 0.0002]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [0, 0, 0]
+        size: [905, 302]
+        scale: [1, 1]
+        rotation: [0, 0, 0, 1]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas_renderer>
+        type: 9
+        enabled: true
+        scale_ui: false
+        original_size_x: 0
+        original_size_y: 0
+      - !<image>
+        type: 11
+        enabled: true
+        image_id: 10544714132483709526
+        hover_image_id: 0
+        image_color: [1, 1, 1, 1]
+        hover_image_color: [1, 1, 1, 1]
+        image_is_tiled: false
+        image_randomize_initial_frame: false
+        image_x_tiles: 1
+        image_y_tiles: 1
+        image_tiles_per_second: 1
+        fill_window: false

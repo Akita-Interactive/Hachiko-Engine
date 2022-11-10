@@ -34,6 +34,12 @@ namespace Hachiko
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
 
+        void Preload(unsigned frame_amount);
+        void SetAsInScene() 
+        {
+            in_scene = true;
+        }
+
         HACHIKO_API void Play();
         HACHIKO_API void Pause();
         HACHIKO_API void Stop();
@@ -50,6 +56,11 @@ namespace Hachiko
         double time = 0.0f;
         float fps = 1.0f;
 
+        bool preloaded = false;
+        unsigned preloaded_frames = 0;
+        unsigned preloaded_frame_idx = 0;
+        unsigned* preloaded_frame_textures = nullptr;
+
         VideoState state = VideoState::PAUSED;
         ResourceVideo* video = nullptr;
 
@@ -60,7 +71,7 @@ namespace Hachiko
         AVPacket* av_packet = nullptr; // Data packet. This is sent to de decoders to obtain a frame of any type (video or audio).
         AVFrame* av_frame = nullptr; // Frame Data. This is what a decoder returns after decoding a packet.
         SwsContext* scaler_ctx = nullptr; // Used for converting the frame data to RGB format.
-        AVRational time_base = {0, 0}; // Used to obtain the FrameTime -> Used to sync video and audio.
+        AVRational* time_base = nullptr; // Used to obtain the FrameTime -> Used to sync video and audio.
 
         // LibAV external Video data
         int video_stream_index = -1; // Video data stream inside file.

@@ -1,0 +1,29 @@
+prefab_name: Crystal_lamp_01
+name: RootNode
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [0, 0, 0]
+    scale: [1, 1, 1]
+child:
+  - name: Crystal2.002
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [100, 100, 100]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 3996608725693908784
+        navigable: false
+        visible: true
+        casting_shadow: true
+        material_id: 3205997075502161914
+        tint_color: [1, 1, 1, 1]

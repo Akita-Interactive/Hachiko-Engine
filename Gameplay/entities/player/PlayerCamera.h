@@ -30,7 +30,7 @@ public:
 	/// <param name="new_relative_position"></param>
 	/// <param name="speed"></param>
 	/// <param name="duration"></param>
-	void ChangeRelativePosition(math::float3 new_relative_position, bool do_look_ahead = true, float speed = 0.0f, float duration = -1.0f);
+	void ChangeRelativePosition(math::float3 new_relative_position, bool do_look_ahead = true, float speed = 0.0f, float duration = -1.0f, bool do_mouse_movement = true);
 
 	/// <summary>
 	/// Reverts Camera relative position to its previous position
@@ -55,7 +55,17 @@ public:
 	/// <param name="speed"></param>
 	void RotateCameraTo(math::float3 new_rotation, float speed = 0.0f);
 
-	void SetObjective(GameObject* objective) { _objective = objective; };
+	/// <summary>
+	/// Sets a gameobject as the camera objective to follow
+	/// </summary>
+	/// <param name="objective"></param>
+	void SetObjective(GameObject* objective, bool teleport = false);
+
+	/// <summary>
+	/// Toggles the camera lookahead functionality
+	/// </summary>
+	/// <param name="objective"></param>
+	void SetDoLookAhead(bool do_look_ahead) { _do_look_ahead = do_look_ahead; };
 
 	float3 GetRelativePosition() { return _relative_position_to_player; };
 
@@ -77,13 +87,16 @@ private:
 	math::float3 _look_ahead = math::float3::zero;
 	PlayerController* _player_ctrl = nullptr;
 	GameObject* _current_objective = nullptr;
+	math::float3 _objective_pos = math::float3::zero;
 	math::float3 _relative_position_aux = math::float3::zero;
 	math::float3 _updated_relative_position;
 	math::Quat _updated_rotation;
+	bool _look_ahead_aux;
 	bool _is_temporary_moved = false;
 	bool _is_in_position = true;
 	bool _is_in_rotation = true;
 	bool _do_look_ahead = true;
+	bool _do_mouse_movement = true;
 	float _position_timer = 0.0f;
 	float _reposition_time = 0.0f;
 	float _rotation_time = 0.0f;
@@ -93,6 +106,9 @@ private:
 	float shake_time = 0.0f;
 	float shake_intensity = 0.0f;
 	float shake_magnitude = 0.0f;
+
+	bool _anchor_is_player = false;
+	bool _low_health_mode = false;
 };
 } // namespace Scripting
 } // namespace Hachiko

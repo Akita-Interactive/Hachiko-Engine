@@ -49,6 +49,7 @@ namespace Hachiko
 
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
+        static void CollectResources(const YAML::Node& node, std::map<Resource::Type, std::set<UID>>& resources);
         
         void DrawGui() override;
         void Draw(ComponentCamera* camera, Program* program) override;
@@ -60,6 +61,7 @@ namespace Hachiko
 
     private:
         bool in_scene = false;
+        bool delayed = true;
         ParticleSystem::Emitter::State state = ParticleSystem::Emitter::State::STOPPED;
         ParticleSystem::Emitter::Properties emitter_properties;
         float elapsed_time = 0.0f;
@@ -77,6 +79,7 @@ namespace Hachiko
 
         // Parameters
         bool loop = false;
+        bool loop_all = false;
         bool play_on_awake = false;
         float duration = 5.0f;
         ParticleSystem::VariableTypeProperty start_delay {float2::zero, 1.0f, false, true};
@@ -85,8 +88,10 @@ namespace Hachiko
 
         // Render
         ParticleSystem::ParticleProperties render_properties;
+        bool projection = true;
 
         // Texture
+        bool randomize_tiles = false;
         TextureProperties texture_properties = {};
 
         // Animation
@@ -119,13 +124,14 @@ namespace Hachiko
         void AddTexture();
         void RemoveTexture();
         
-        void UpdateAnimationData();
-        void UpdateColorOverLifetime();
-        void UpdateRotationOverLifetime();
-        void UpdateSizeOverLifetime();
-
+        void UpdateAnimationData(float delta_time);
+        void UpdateColorOverLifetime(float delta_time);
+        void UpdateRotationOverLifetime(float delta_time);
+        void UpdateSizeOverLifetime(float delta_time);
+        
         void GetOrientationMatrix(ComponentCamera* camera, float4x4& model_matrix);
         void DisplayControls();
+        float2 GetRandomTile();
 
     };
 }

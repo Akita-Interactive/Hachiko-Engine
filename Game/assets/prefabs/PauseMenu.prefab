@@ -1,0 +1,150 @@
+prefab_name: PauseMenu
+name: PauseMenu
+enabled: false
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [-0, 0, -0]
+    scale: [1, 1, 1]
+  - !<transform_2d>
+    type: 10
+    enabled: true
+    position: [0, 0, 0]
+    size: [1180, 637]
+    scale: [1, 1]
+    rotation: [0, 0, 0, 1]
+    pivot: [0, 1]
+    anchor: [0, 1]
+  - !<canvas>
+    type: 8
+    enabled: true
+child:
+  - name: Background
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+      - !<transform_2d>
+        type: 10
+        enabled: true
+        position: [-571.8, 313.9, 0]
+        size: [1180, 637]
+        scale: [1, 1]
+        rotation: [0, 0, 0, 1]
+        pivot: [0.5, 0.5]
+        anchor: [0.5, 0.5]
+      - !<canvas_renderer>
+        type: 9
+        enabled: true
+        scale_ui: true
+        original_size_x: 1157
+        original_size_y: 628
+      - !<image>
+        type: 11
+        enabled: true
+        image_id: 0
+        hover_image_id: 0
+        image_color: [0, 0, 0, 0.8]
+        hover_image_color: [1, 1, 1, 1]
+        image_is_tiled: false
+        image_randomize_initial_frame: false
+        image_x_tiles: 1
+        image_y_tiles: 1
+        image_tiles_per_second: 1
+        fill_window: true
+  - name: Buttons
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0, 0, 0]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+    child:
+      - name: Resume
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+          - !<transform_2d>
+            type: 10
+            enabled: true
+            position: [-100, 100, 0]
+            size: [20, 20]
+            scale: [10, 4]
+            rotation: [0, 0, 0, 1]
+            pivot: [0, 1]
+            anchor: [0, 1]
+          - !<canvas_renderer>
+            type: 9
+            enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
+          - !<button>
+            type: 12
+            enabled: true
+          - !<image>
+            type: 11
+            enabled: true
+            image_id: 14946830610424765549
+            hover_image_id: 1430857250527776094
+            image_color: [1, 1, 1, 1]
+            hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_randomize_initial_frame: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
+            fill_window: false
+      - name: Exit
+        enabled: true
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, 0, 0]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+          - !<transform_2d>
+            type: 10
+            enabled: true
+            position: [-100, 6, 0]
+            size: [20, 20]
+            scale: [10, 4]
+            rotation: [0, 0, 0, 1]
+            pivot: [0, 1]
+            anchor: [0, 1]
+          - !<canvas_renderer>
+            type: 9
+            enabled: true
+            scale_ui: false
+            original_size_x: 0
+            original_size_y: 0
+          - !<button>
+            type: 12
+            enabled: true
+          - !<image>
+            type: 11
+            enabled: true
+            image_id: 10387759699808828896
+            hover_image_id: 3995525956884596057
+            image_color: [1, 1, 1, 1]
+            hover_image_color: [1, 1, 1, 1]
+            image_is_tiled: false
+            image_randomize_initial_frame: false
+            image_x_tiles: 1
+            image_y_tiles: 1
+            image_tiles_per_second: 1
+            fill_window: false

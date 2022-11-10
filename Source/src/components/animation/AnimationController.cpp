@@ -29,10 +29,12 @@ void Hachiko::AnimationController::Play(ResourceAnimation* current_animation, bo
 
 void Hachiko::AnimationController::Update(unsigned elapsed, bool reverse)
 {
-    if (current != nullptr)
+    if (current == nullptr)
     {
-        UpdateInstance(current, elapsed, reverse);
+        return;       
     }
+
+    UpdateInstance(current, elapsed, reverse);
 }
 
 void Hachiko::AnimationController::Stop() 
@@ -47,6 +49,9 @@ void Hachiko::AnimationController::Stop()
 
 void Hachiko::AnimationController::UpdateInstance(Instance* instance, unsigned elapsed, bool reverse)
 {
+    if (time_scale_mode == TimeScaleMode::SCALED && Time::GetTimeScale() == 0.0f)
+        return;
+
     if (reverse)
     {
         if (current->current_animation != nullptr && current->current_animation->GetDuration() > 0)
@@ -72,32 +77,15 @@ void Hachiko::AnimationController::UpdateInstance(Instance* instance, unsigned e
                 SetCurrentState(AnimationController::State::STOPPED);
             }
         }
-
-        /*
-        if (instance->previous != nullptr)
-        {
-            unsigned to_end = instance->fade_duration - instance->fade_time;
-            if (elapsed <= to_end)
-            {
-                instance->fade_time += elapsed;
-                UpdateInstance(instance->previous, elapsed, reverse);
-            }
-            else
-            {
-                ReleaseInstance(instance->previous);
-                instance->previous = nullptr;
-                instance->fade_time = instance->fade_duration = 0;
-            }
-        }
-        */
     }
     else
     {
         if (current->current_animation != nullptr && current->current_animation->GetDuration() > 0)
         {
-            unsigned me_elapsed = unsigned(elapsed * instance->speed);
-            //me_elapsed = me_elapsed % current->current_animation->GetDuration(); // REMOVE
-            unsigned to_end = current->current_animation->GetDuration() - instance->time;
+            const float time_scale = time_scale_mode == TimeScaleMode::SCALED ? Time::GetTimeScale() : 1.0f;
+            const unsigned me_elapsed = static_cast<unsigned>(elapsed * instance->speed * time_scale);
+
+            const unsigned to_end = current->current_animation->GetDuration() - instance->time;
 
             if (me_elapsed <= to_end)
             {
@@ -105,14 +93,12 @@ void Hachiko::AnimationController::UpdateInstance(Instance* instance, unsigned e
             }
             else if (instance->loop)
             {
-                instance->time = (me_elapsed - to_end);
+                instance->time = me_elapsed - to_end;
             }
             else
             {
                 instance->time = current->current_animation->GetDuration();
             }
-
-            //instance->time = instance->time > current->current_animation->GetDuration() ? current->current_animation->GetDuration() : instance->time;
 
             if (to_end == 0)
             {
@@ -191,7 +177,7 @@ bool Hachiko::AnimationController::GetTransform(Instance* instance, const std::s
 
             if (instance->previous != nullptr)
             {
-                assert(instance->fade_duration > 0.0f);
+                assert(instance->fade_duration >= 0.0f);
 
                 float3 next_position;
                 Quat next_rotation;

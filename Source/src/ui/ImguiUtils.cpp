@@ -6,6 +6,7 @@
 
 #include "components/Component.h"
 #include "modules/ModuleEditor.h"
+#include "modules/ModuleEvent.h"
 
 bool Hachiko::ImGuiUtils::IconButton(const char* icon, const char* tooltip)
 {
@@ -50,24 +51,65 @@ void Hachiko::ImGuiUtils::Rect(float w, float h, ImU32 color)
     win->DrawList->AddRectFilled(screen_pos, end_pos, color);
 }
 
-bool Hachiko::ImGuiUtils::CompactColorPicker(const char* name, float* color)
+bool Hachiko::ImGuiUtils::CompactColorPicker(const std::string& label, float* color, float width)
 {
+    ImGui::PushID(label.c_str());
+    ImGui::PushID(color);
+    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0, 2));
+    ImGui::BeginTable("", 2, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoBordersInBody | ImGuiTableFlags_NoSavedSettings);
+    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch, 0.25f);
+    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch, 0.75f);
+    ImGui::TableNextRow();
+    ImGui::TableSetColumnIndex(0);
+
+    ImGui::TextWrapped(label.c_str());
+    ImGui::Spacing();
+
+    ImGui::TableNextColumn();
+    ImGui::PushItemWidth(width);
+
     constexpr ImGuiColorEditFlags flags = ImGuiColorEditFlags_DisplayRGB | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_NoLabel;
-    ImGui::PushItemWidth(150.0f);
-    const bool ret = ImGui::ColorPicker4(name, color, flags);
+    const bool value_changed = ImGui::ColorPicker4(label.c_str(), color, flags);
+    CREATE_HISTORY_ENTRY_AFTER_EDIT()
+
     ImGui::PopItemWidth();
-    return ret;
+    ImGui::EndTable();
+    ImGui::PopStyleVar();
+    ImGui::PopID();
+    ImGui::PopID();
+    return value_changed;
 }
 
-bool Hachiko::ImGuiUtils::CompactOpaqueColorPicker(const char* name, float* color)
+bool Hachiko::ImGuiUtils::CompactOpaqueColorPicker(const std::string& label, float* color, float width)
 {
+    ImGui::PushID(label.c_str());
+    ImGui::PushID(color);
+    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0, 2));
+    ImGui::BeginTable("", 2, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoBordersInBody | ImGuiTableFlags_NoSavedSettings);
+    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch, 0.25f);
+    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch, 0.75f);
+    ImGui::TableNextRow();
+    ImGui::TableSetColumnIndex(0);
+
+    ImGui::TextWrapped(label.c_str());
+    ImGui::Spacing();
+
+    ImGui::TableNextColumn();
+    ImGui::PushItemWidth(width);
+
     constexpr ImGuiColorEditFlags flags = ImGuiColorEditFlags_DisplayRGB | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_NoLabel;
-    ImGui::PushItemWidth(150.0f);
-    const bool ret = ImGui::ColorPicker3(name, color, flags);
+    const bool value_changed = ImGui::ColorPicker3(label.c_str(), color, flags);
+    CREATE_HISTORY_ENTRY_AFTER_EDIT()
+
     ImGui::PopItemWidth();
-    return ret;
+    ImGui::EndTable();
+    ImGui::PopStyleVar();
+    ImGui::PopID();
+    ImGui::PopID();
+    return value_changed;
 }
-bool Hachiko::ImGuiUtils::CollapsingHeader(GameObject* game_object, Component* component, const char* header_name)
+
+bool Hachiko::ImGuiUtils::CollapsingHeader(Component* component, const char* header_name)
 {
     ImGui::PushID(component);
     bool open = ImGui::CollapsingHeader(header_name, ImGuiTreeNodeFlags_AllowItemOverlap | ImGuiTreeNodeFlags_DefaultOpen);
@@ -87,7 +129,7 @@ bool Hachiko::ImGuiUtils::CollapsingHeader(GameObject* game_object, Component* c
     {
         App->editor->to_remove = component;
         App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
-        
+
         ImGui::EndPopup();
         open = false;
     }

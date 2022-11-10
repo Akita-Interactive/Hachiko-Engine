@@ -5,6 +5,7 @@
 #include "components/ComponentCamera.h"
 #include "modules/ModuleResources.h"
 #include "modules/ModuleRender.h"
+#include "modules/ModuleSceneManager.h"
 #include "resources/ResourceTexture.h"
 #include "resources/ResourceSkybox.h"
 
@@ -18,8 +19,11 @@ Hachiko::Skybox::Skybox()
 
 Hachiko::Skybox::Skybox(TextureCube new_cube) : cube(new_cube)
 {
-    cube = ModuleTexture::LoadCubeMap(cube);
-    CreateBuffers();
+    if (!App->scene_manager->IsLoadingScene())
+    {
+        cube = ModuleTexture::LoadCubeMap(cube);
+        CreateBuffers();
+    }
 }
 
 Hachiko::Skybox::~Skybox()
@@ -37,10 +41,15 @@ void Hachiko::Skybox::Draw(ComponentCamera* camera) const
     // Use for optimized version (draw at the end) glDepthFunc(GL_LEQUAL);
     OPTICK_CATEGORY("Draw", Optick::Category::Rendering);
     
+    if (!cube.loaded)
+    {
+        return;
+    }
+
     glDepthFunc(GL_LEQUAL);
     glClearDepth(1.0);
 
-    Program* program = App->program->GetSkyboxProgram();
+    Program* program = App->program->GetProgram(Program::Programs::SKYBOX);
     program->Activate();
     // Draw skybox
     glBindVertexArray(vao);
@@ -53,6 +62,14 @@ void Hachiko::Skybox::Draw(ComponentCamera* camera) const
     Program::Deactivate();
     
     glDepthFunc(GL_LESS);
+}
+
+void Hachiko::Skybox::Reload()
+{
+    cube = ModuleTexture::LoadCubeMap(cube);
+    CreateBuffers();
+
+    ActivateIBL(activate_ibl);
 }
 
 void Hachiko::Skybox::ReleaseCubemap()
@@ -69,7 +86,7 @@ void Hachiko::Skybox::DrawImGui()
 {
     ImGui::PushID(this);
 
-    ImGui::Text("Skybox");
+    ImGui::TextWrapped("Skybox");
 
     ImGui::TextDisabled("Keep in mind that all images \nneed to have the same format!");
 
@@ -83,21 +100,20 @@ void Hachiko::Skybox::DrawImGui()
         SelectSkyboxTexture(TextureCube::Side::BACK);
     }
 
-    ImGui::Checkbox("Activate IBL", &activate_ibl);
-    if (ImGui::Button("Build precomputed IBL"))
+    Widgets::Checkbox("Activate IBL", &activate_ibl);
+    if (ImGui::Button("Build precomputed IBL", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         BuildIBL();
     }
 
     if (default_ibl == 0)
     {
-        if (ImGui::Button("Diffuse (debug)"))
+        if (ImGui::Button("Diffuse (debug)",ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
         {
             default_ibl = cube.id;
             cube.id = diffuse_ibl_id;
         }
-        ImGui::SameLine();
-        if (ImGui::Button("Prefiltered (debug)"))
+        if (ImGui::Button("Prefiltered (debug)",ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
         {
             default_ibl = cube.id;
             cube.id = prefiltered_ibl_id;
@@ -105,7 +121,7 @@ void Hachiko::Skybox::DrawImGui()
     }
     else
     {
-        if (ImGui::Button("Reset (debug)"))
+        if (ImGui::Button("Reset (debug)",ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
         {
             cube.id = default_ibl;
             default_ibl = 0;
@@ -179,22 +195,22 @@ const std::string TextureCubeSideToString(Hachiko::TextureCube::Side cube_side)
 
 void Hachiko::Skybox::SelectSkyboxTexture(TextureCube::Side cube_side)
 {
-    const std::string title = Hachiko::StringUtils::Concat("Select texture ", TextureCubeSideToString(cube_side));
-    const char* filters = "Image files{.png,.tif,.jpg,.tga}";
+    const std::string title = StringUtils::Concat("Select texture ", TextureCubeSideToString(cube_side));
 
-    if (ImGui::Button(Hachiko::StringUtils::Concat(TextureCubeSideToString(cube_side).c_str(), " Texture").c_str()))
+    if (ImGui::Button(StringUtils::Concat(TextureCubeSideToString(cube_side), " Texture").c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
-        ImGuiFileDialog::Instance()->OpenDialog(title.c_str(),
-                                                "Select Texture",
+        const char* filters = "Image files{.png,.tif,.jpg,.tga}";
+        ImGuiFileDialog::Instance()->OpenDialog(title,
+                                                "Select texture",
                                                 filters,
                                                 "./assets/skybox/",
                                                 1,
                                                 nullptr,
                                                 ImGuiFileDialogFlags_DontShowHiddenFiles | ImGuiFileDialogFlags_DisableCreateDirectoryButton | ImGuiFileDialogFlags_HideColumnType
-                                                    | ImGuiFileDialogFlags_HideColumnDate);
+                                                | ImGuiFileDialogFlags_HideColumnDate);
     }
 
-    if (ImGuiFileDialog::Instance()->Display(title.c_str()))
+    if (ImGuiFileDialog::Instance()->Display(title))
     {
         if (ImGuiFileDialog::Instance()->IsOk())
         {
@@ -202,7 +218,7 @@ void Hachiko::Skybox::SelectSkyboxTexture(TextureCube::Side cube_side)
             texture_path.append(META_EXTENSION);
 
             YAML::Node texture_node = YAML::LoadFile(texture_path);
-            Hachiko::UID res = texture_node[RESOURCES][0][RESOURCE_ID].as<Hachiko::UID>();
+            UID res = texture_node[RESOURCES][0][RESOURCE_ID].as<UID>();
 
             if (res)
             {
@@ -290,7 +306,16 @@ void Hachiko::Skybox::ChangeCubeMapSide(UID texture_uid, TextureCube::Side cube_
     cube = ModuleTexture::LoadCubeMap(cube);
 }
 
-void Hachiko::Skybox::BuildIBL() 
+void Hachiko::Skybox::ActivateIBL(bool active)
+{
+    if (!App->scene_manager->IsLoadingScene() && active && !ibl_built)
+    {
+        BuildIBL();
+    }
+    activate_ibl = active;
+}
+
+void Hachiko::Skybox::BuildIBL()
 {
     glDeleteTextures(1, &diffuse_ibl_id);
     glDeleteTextures(1, &prefiltered_ibl_id);
@@ -323,13 +348,13 @@ void Hachiko::Skybox::GenerateDiffuseIBL()
     const float3 up[6] = {-float3::unitY, -float3::unitY, float3::unitZ, -float3::unitZ, -float3::unitY, -float3::unitY};
     Frustum frustum;
     frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
-    frustum.SetPerspective(math::pi / 2.0f, math::pi / 2.0f);
+    frustum.SetPerspective(pi / 2.0f, pi / 2.0f);
     frustum.SetViewPlaneDistances(0.1f, 100.0f);
 
     // Activate shader and deactivate the depth mask
     glDepthFunc(GL_ALWAYS);
     glDepthMask(false);
-    Program* program = App->program->GetDiffuseIBLProgram();
+    Program* program = App->program->GetProgram(Program::Programs::DIFFUSE_IBL);
     program->Activate();
     
     glViewport(0, 0, cube.resources[0]->height, cube.resources[0]->width);
@@ -422,13 +447,13 @@ void Hachiko::Skybox::GeneratePrefilteredIBL()
     const float3 up[6] = {-float3::unitY, -float3::unitY, float3::unitZ, -float3::unitZ, -float3::unitY, -float3::unitY};
     Frustum frustum;
     frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
-    frustum.SetPerspective(math::pi / 2.0f, math::pi / 2.0f);
+    frustum.SetPerspective(pi / 2.0f, pi / 2.0f);
     frustum.SetViewPlaneDistances(0.1f, 100.0f);
 
     // Activate shader and deactivate the depth mask
     glDepthFunc(GL_ALWAYS);
     glDepthMask(false);
-    Program* program = App->program->GetPrefilteredIBLProgram();
+    Program* program = App->program->GetProgram(Program::Programs::PREFILTERED_IBL);
     program->Activate();
 
     unsigned frame_buffer;
@@ -530,7 +555,7 @@ void Hachiko::Skybox::GenerateEnvironmentBRDF()
     // Activate shader and deactivate the depth mask
     glDepthFunc(GL_ALWAYS);
     glDepthMask(false);
-    Program* program = App->program->GetEnvironmentBRDFProgram();
+    Program* program = App->program->GetProgram(Program::Programs::ENVIRONMENT_BRDF);
     program->Activate();
 
     glViewport(0, 0, height, width);

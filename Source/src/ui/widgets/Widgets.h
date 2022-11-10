@@ -7,3 +7,8 @@
 #include "Combo.h"
 #include "MultiTypeSelector.h"
 #include "Checkbox.h"
+#include "Input.h"
+#include "Label.h"
+#include "ColorEdit4.h"
+#include "SliderFloat.h"
+#include "RadioButton.h"

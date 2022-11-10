@@ -2,10 +2,14 @@
 #include "ResourceNavMesh.h"
 
 
-
 struct RasterizationContext
 {
-    RasterizationContext() : solid(0), triareas(0), lset(0), chf(0), ntiles(0)
+    RasterizationContext() :
+        solid(0),
+        triareas(0),
+        lset(0),
+        chf(0),
+        ntiles(0)
     {
         memset(tiles, 0, sizeof(TileCacheData) * Hachiko::ResourceNavMesh::MAX_LAYERS);
     }
@@ -31,7 +35,16 @@ struct RasterizationContext
     int ntiles;
 };
 
-static int RasterizeTileLayers(const int tx, const int ty, float* verts, int nVerts, int nTris, BuildContext* ctx, rcChunkyTriMesh* chunkyMesh, const rcConfig& cfg, TileCacheData* tiles, const int maxTiles)
+static int RasterizeTileLayers(const int tx,
+                               const int ty,
+                               float* verts,
+                               int nVerts,
+                               int nTris,
+                               BuildContext* ctx,
+                               rcChunkyTriMesh* chunkyMesh,
+                               const rcConfig& cfg,
+                               TileCacheData* tiles,
+                               const int maxTiles)
 {
     FastLZCompressor comp;
     RasterizationContext rc;
@@ -200,7 +213,8 @@ static int calcLayerBufferSize(const int gridWidth, const int gridHeight)
 }
 
 
-Hachiko::ResourceNavMesh::ResourceNavMesh(UID uid) : Resource(uid, Type::NAVMESH)
+Hachiko::ResourceNavMesh::ResourceNavMesh(UID uid) :
+    Resource(uid, Type::NAVMESH)
 {
     build_context = new BuildContext();
 }
@@ -234,7 +248,6 @@ bool Hachiko::ResourceNavMesh::Build(Scene* scene)
     int n_triangles = scene_triangles.size() / 3;
     int n_vertices = scene_vertices.size() / 3;
 
-
     // Step 1. Initialize generation config.
     rcConfig cfg;
     memset(&cfg, 0, sizeof(cfg));
@@ -264,7 +277,6 @@ bool Hachiko::ResourceNavMesh::Build(Scene* scene)
     rcCalcGridSize(scene_bounds.minPoint.ptr(), scene_bounds.maxPoint.ptr(), build_params.cell_size, &grid_width, &grid_height);
     const int tile_width = (grid_width + tile_size - 1) / tile_size;
     const int tile_height = (grid_height + tile_size - 1) / tile_size;
-
 
     dtTileCacheParams tcparams;
     memset(&tcparams, 0, sizeof(tcparams));
@@ -392,7 +404,6 @@ bool Hachiko::ResourceNavMesh::Build(Scene* scene)
 
     size_t cache_build_memory_usagge = talloc->high;
 
-
     // Seems to only tack navmesh memory usage, we can comment it out
     const dtNavMesh* nav = navmesh;
     int nav_mesh_memory_usage = 0;
@@ -433,22 +444,21 @@ void drawObstacles(duDebugDraw* dd, const dtTileCache* tc)
 
         switch (ob->type)
         {
-        case DT_OBSTACLE_CYLINDER:
-            // There seems to be no way of debug draw oriented box in detour debug draw
-            duDebugDrawCylinder(dd, bmin[0], bmin[1], bmin[2], bmax[0], bmax[1], bmax[2], col);
-            duDebugDrawCylinderWire(dd, bmin[0], bmin[1], bmin[2], bmax[0], bmax[1], bmax[2], duDarkenCol(col), 2);
-            break;
-        case DT_OBSTACLE_BOX:
-            duDebugDrawBox(dd, bmin[0], bmin[1], bmin[2], bmax[0], bmax[1], bmax[2], &col);
-            duDebugDrawBoxWire(dd, bmin[0], bmin[1], bmin[2], bmax[0], bmax[1], bmax[2], duDarkenCol(col), 2);
-            break;
-        case DT_OBSTACLE_ORIENTED_BOX:
-            // There seems to be no way of debug draw oriented box in detour debug draw
-            duDebugDrawCylinder(dd, bmin[0], bmin[1], bmin[2], bmax[0], bmax[1], bmax[2], col);
-            duDebugDrawCylinderWire(dd, bmin[0], bmin[1], bmin[2], bmax[0], bmax[1], bmax[2], duDarkenCol(col), 2);
-            break;
+            case DT_OBSTACLE_CYLINDER:
+                // There seems to be no way of debug draw oriented box in detour debug draw
+                duDebugDrawCylinder(dd, bmin[0], bmin[1], bmin[2], bmax[0], bmax[1], bmax[2], col);
+                duDebugDrawCylinderWire(dd, bmin[0], bmin[1], bmin[2], bmax[0], bmax[1], bmax[2], duDarkenCol(col), 2);
+                break;
+            case DT_OBSTACLE_BOX:
+                duDebugDrawBox(dd, bmin[0], bmin[1], bmin[2], bmax[0], bmax[1], bmax[2], &col);
+                duDebugDrawBoxWire(dd, bmin[0], bmin[1], bmin[2], bmax[0], bmax[1], bmax[2], duDarkenCol(col), 2);
+                break;
+            case DT_OBSTACLE_ORIENTED_BOX:
+                // There seems to be no way of debug draw oriented box in detour debug draw
+                duDebugDrawCylinder(dd, bmin[0], bmin[1], bmin[2], bmax[0], bmax[1], bmax[2], col);
+                duDebugDrawCylinderWire(dd, bmin[0], bmin[1], bmin[2], bmax[0], bmax[1], bmax[2], duDarkenCol(col), 2);
+                break;
         }
-        
     }
 }
 
@@ -462,44 +472,49 @@ void Hachiko::ResourceNavMesh::DebugDraw(DebugDrawGL& dd)
         // Draw Obstacles
         drawObstacles(&dd, tile_cache);
         //duDebugDrawNavMeshPolysWithFlags(&dd, *navmesh, SAMPLE_POLYFLAGS_DISABLED, duRGBA(0, 0, 0, 128));
-    }   
+    }
 }
-
 
 
 void Hachiko::ResourceNavMesh::DrawOptionsGui()
 {
-    constexpr float speed_f = 0.5f;
-    constexpr int speed_i = 1;
     ImGui::Separator();
-    ImGui::Text("Agent");
-    ImGui::DragFloat("Height", &build_params.agent_height, speed_f);
-    ImGui::DragFloat("Radius", &build_params.agent_radius, speed_f);
-    ImGui::DragFloat("Max Climb", &build_params.agent_max_climb, speed_f);
-    ImGui::DragFloat("Max Slope", &build_params.agent_max_slope, speed_f);
+    Widgets::DragFloatConfig cfg;
+    cfg.speed = 0.5f;
+    Widgets::DragFloatConfig cfgi;
+    cfgi.speed = 1.0f;
+    cfgi.format = "%.f";
+    cfgi.min = std::numeric_limits<int>::lowest();
+    cfgi.max = std::numeric_limits<int>::max();
+
+    ImGui::TextWrapped("Agent");
+    DragFloat("Height", build_params.agent_height, &cfg);
+    DragFloat("Radius", build_params.agent_radius, &cfg);
+    DragFloat("Max Climb", build_params.agent_max_climb, &cfg);
+    DragFloat("Max Slope", build_params.agent_max_slope, &cfg);
 
     ImGui::Separator();
-    ImGui::Text("Rasterization");
-    ImGui::DragFloat("Cell Size", &build_params.cell_size, speed_f);
-    ImGui::DragFloat("Cell Height", &build_params.cell_height, speed_f);
+    ImGui::TextWrapped("Rasterization");
+    DragFloat("Cell Size", build_params.cell_size, &cfg);
+    DragFloat("Cell Height", build_params.cell_height, &cfg);
 
     ImGui::Separator();
-    ImGui::Text("Region");
-    ImGui::DragInt("Region Min Size", &build_params.region_min_size, speed_i);
-    ImGui::DragInt("Region Merge Size", &build_params.region_merge_size, speed_i);
+    ImGui::TextWrapped("Region");
+    DragFloat("Region Min Size", build_params.region_min_size, &cfgi);
+    DragFloat("Region Merge Size", build_params.region_merge_size, &cfgi);
 
     ImGui::Separator();
-    ImGui::Text("Polygonization");
-    ImGui::DragInt("Edge Max Length", &build_params.edge_max_length, speed_i);
-    ImGui::DragInt("Edge Max Error", &build_params.edge_max_error, speed_i);
-    ImGui::DragInt("Max Vertices Per Poly", &build_params.max_vertices_per_poly, speed_i);
+    ImGui::TextWrapped("Polygonization");
+    DragFloat("Edge Max Length", build_params.edge_max_length, &cfgi);
+    DragFloat("Edge Max Error", build_params.edge_max_error, &cfgi);
+    DragFloat("Max Vertices Per Poly", build_params.max_vertices_per_poly, &cfgi);
 
     ImGui::Separator();
-    ImGui::Text("Detail");
-    ImGui::DragInt("Sample Distance", &build_params.detail_sample_distance, speed_i);
-    ImGui::DragInt("Sample Max Error", &build_params.detail_sample_max_error, speed_i);
+    ImGui::TextWrapped("Detail");
+    DragFloat("Sample Distance", build_params.detail_sample_distance, &cfgi);
+    DragFloat("Sample Max Error", build_params.detail_sample_max_error, &cfgi);
 
-    if (ImGui::Button("Reset Params"))
+    if (ImGui::Button("Reset parameters", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         build_params = NavmeshParams();
     }
@@ -507,15 +522,14 @@ void Hachiko::ResourceNavMesh::DrawOptionsGui()
 
 void Hachiko::ResourceNavMesh::CleanUp()
 {
-	dtFreeNavMesh(navmesh);
-	navmesh = nullptr;
+    dtFreeNavMesh(navmesh);
+    navmesh = nullptr;
     dtFreeNavMeshQuery(navigation_query);
     navigation_query = nullptr;
     dtFreeCrowd(crowd);
     crowd = nullptr;
     dtFreeTileCache(tile_cache);
     tile_cache = nullptr;
-
 
     RELEASE(talloc);
     RELEASE(tcomp);
@@ -563,4 +577,3 @@ void Hachiko::ResourceNavMesh::InitCrowd()
 
     crowd->setObstacleAvoidanceParams(3, &avoidance_params);
 }
-

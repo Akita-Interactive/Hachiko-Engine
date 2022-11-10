@@ -1,0 +1,104 @@
+prefab_name: Main Camera
+name: Main Camera
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [-80.89, 25.2, 20.95]
+    rotation: [116.9, -5.443, 169.4]
+    scale: [1, 1, 1]
+  - !<camera>
+    type: 4
+    enabled: true
+    frustum:
+      near_distance: 1
+      far_distance: 100
+      fov: 65
+      position: [-80.89, 25.2, 20.95]
+      front: [-0.0949, -0.8878, -0.4504]
+      up: [-0.1831, 0.4603, -0.8687]
+      pinned_camera: [0, 0, 0]
+  - type: 19
+    enabled: true
+  - !<script>
+    type: 15
+    enabled: true
+    class_name: PlayerCamera
+    "'_relative_position_to_player@math::float3'": [0, 24, 16]
+    "'_objective@GameObject*'": 0
+    "'_follow_delay@float'": 0.6
+  - type: 20
+    enabled: true
+child:
+  - name: DustParticles
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-1.8, -2.607, 5.028]
+        rotation: [-41.72, -44, -1.503]
+        scale: [5, 5, 5]
+      - !<particle_system>
+        type: 22
+        enabled: true
+        sections:
+          parameters: true
+          emission: true
+          shape: true
+          lights: false
+          renderer: true
+        parameters:
+          duration: 16.3
+          loop: true
+          life: [true, true, 1, [10, 15], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          speed: [true, true, 1, [0.25, 5], 0.5, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size: [true, true, 1, [0.1, 0.05], 0.25, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rotation: [true, true, 1, [0, 100], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          delay: [true, false, 0, [0, 0], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          properties: [1, 0, 1, false, [false, false, 1, [1, 1], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]]
+        emission:
+          rate: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          rate_burst: [true, true, 0, [10, 10], 1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          burst: false
+        emitter_shape:
+          type: 2
+          properties: [360, 0, [0, 0, 0], 1, 0.001, [0, 0, 0], [1, 1, 1], 1]
+        texture:
+          texture_id: 6396747817574289449
+          tiles: [7, 7]
+          flip: [false, false]
+          total_tiles: 42
+        modifiers:
+          velocity:
+            active: false
+            speed: [true, true, 1, [0.1, 2], 0.001, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          size:
+            active: false
+            size: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          color:
+            active: true
+            color_gradient: [[0.4902, 1, 1, 0, 1]]
+            color_cycles: 1
+          force:
+            active: false
+            rotation: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            x_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            y_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            z_force: [true, true, 0, [0, 0], 0.1, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+          animation:
+            active: true
+            animation_speed: 0.4
+            blend_factor: 0.1
+            fit_to_lifetime: false
+          noise:
+            active: true
+            separate_axes: true
+            strength:
+              x: [true, true, 0, [0.1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              y: [true, true, 0, [0.1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+              z: [true, true, 0, [0.1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            position: [true, true, 0, [0.1, 1], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            rotation: [true, true, 0, [1, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]
+            scale: [true, true, 0, [0, 0], 0.01, [0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1], [0, 0]]

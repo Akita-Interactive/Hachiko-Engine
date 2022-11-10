@@ -8,23 +8,34 @@
 #include "importers/PrefabImporter.h"
 
 Hachiko::WindowHierarchy::WindowHierarchy() :
-    Window("Hierarchy", true) {}
+    Window("Hierarchy", true)
+{
+}
 
 Hachiko::WindowHierarchy::~WindowHierarchy() = default;
 
 void Hachiko::WindowHierarchy::Update()
 {
+    collapse = false;
     ImGui::SetNextWindowDockID(App->editor->dock_left_id, ImGuiCond_FirstUseEver);
     if (!ImGui::Begin((std::string(ICON_FA_SITEMAP " ") + name).c_str(), &active, ImGuiWindowFlags_NoNavInputs))
     {
         ImGui::End();
         return;
     }
+
+    if (ImGui::Button(std::string(ICON_FA_SQUARE_MINUS " ").c_str(), ImVec2(24, 24)))
+    {
+        collapse = true;
+    }
+    ImGuiUtils::DisplayTooltip("Collapse all");
+
+    ImGui::Separator();
     DrawHierarchyTree(App->scene_manager->GetRoot());
     ImGui::End();
 }
 
-void Hachiko::WindowHierarchy::GOSelected(GameObject* game_object) 
+void Hachiko::WindowHierarchy::GOSelected(GameObject* game_object)
 {
     if (game_object == nullptr)
     {
@@ -45,9 +56,8 @@ void Hachiko::WindowHierarchy::GOSelected(GameObject* game_object)
 
 void Hachiko::WindowHierarchy::DrawHierarchyTree(const GameObject* game_object)
 {
-    for (int i = 0; i < game_object->children.size(); ++i)
+    for (const auto go : game_object->children)
     {
-        auto go = game_object->children[i];
         RecursiveDraw(go);
     }
 
@@ -55,8 +65,8 @@ void Hachiko::WindowHierarchy::DrawHierarchyTree(const GameObject* game_object)
     {
         dragged_object = nullptr;
     }
-    
-    if (selected_object_ancestors.size() > 0)
+
+    if (!selected_object_ancestors.empty())
     {
         index = 0;
         selected_object_ancestors.clear();
@@ -96,7 +106,7 @@ bool Hachiko::WindowHierarchy::DrawGameObject(GameObject* game_object, bool stop
         flags |= ImGuiTreeNodeFlags_Leaf;
     }
 
-    bool is_selected = game_object == App->editor->GetSelectedGameObject();
+    const bool is_selected = game_object == App->editor->GetSelectedGameObject();
     if (is_selected)
     {
         flags |= ImGuiTreeNodeFlags_Selected;
@@ -106,6 +116,11 @@ bool Hachiko::WindowHierarchy::DrawGameObject(GameObject* game_object, bool stop
     {
         index -= 1;
         ImGui::SetNextItemOpen(true);
+    }
+
+    if (collapse)
+    {
+        ImGui::SetNextItemOpen(false);
     }
 
     ImVec4 node_color = ImGui::GetStyle().Colors[ImGuiCol_Text];
@@ -122,7 +137,7 @@ bool Hachiko::WindowHierarchy::DrawGameObject(GameObject* game_object, bool stop
     {
         App->editor->SetSelectedGO(game_object);
     }
-    
+
     DragAndDrop(game_object);
 
     if (dragged_object == nullptr && ImGui::IsItemHovered() && !ImGui::IsItemToggledOpen())
@@ -136,7 +151,7 @@ bool Hachiko::WindowHierarchy::DrawGameObject(GameObject* game_object, bool stop
         {
             ImGui::OpenPopup(game_object->GetName().c_str());
         }
-        
+
         if (ImGui::IsMouseClicked(0) && is_selected)
         {
             App->editor->SetSelectedGO(nullptr);
@@ -180,6 +195,11 @@ bool Hachiko::WindowHierarchy::DrawGameObject(GameObject* game_object, bool stop
             ImGui::CloseCurrentPopup();
             PrefabImporter prefab_importer;
             prefab_importer.CreatePrefabAsset(game_object->GetName().c_str(), game_object);
+        }
+        if (ImGui::MenuItem("Simplify Game Object (WIP)"))
+        {
+            ImGui::CloseCurrentPopup();
+            game_object->SimplifyChildren();
         }
         ImGui::EndPopup();
     }
@@ -230,7 +250,7 @@ bool Hachiko::WindowHierarchy::DragAndDrop(GameObject* game_object)
             if (dragged_object->parent == game_object)
             {
                 // Unparent object
-                payload_n->SetNewParent(game_object->parent); 
+                payload_n->SetNewParent(game_object->parent);
                 game_object->RemoveChild(payload_n);
             }
             else

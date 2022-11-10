@@ -14,6 +14,8 @@ namespace Hachiko
         ~Skybox();
         void Draw(ComponentCamera* camera) const;
 
+        void Reload();
+
         void ChangeCubeMapSide(UID texture_uid, TextureCube::Side cube_side);
         void ReleaseCubemap();
 
@@ -26,14 +28,7 @@ namespace Hachiko
             return cube;
         }
 
-        void ActivateIBL(bool active)
-        {
-            if (active && !ibl_built)
-            {
-                BuildIBL();
-            }
-            activate_ibl = active;
-        }
+        void ActivateIBL(bool active);
         void BuildIBL();
 
         void DrawImGui();

@@ -14,7 +14,7 @@ Hachiko::NoiseParticleModifier::~NoiseParticleModifier()
 {
 }
 
-void Hachiko::NoiseParticleModifier::Update(std::vector<Particle>& particles)
+void Hachiko::NoiseParticleModifier::Update(std::vector<Particle>& particles, const float delta_time)
 {
     if (IsActive())
     {

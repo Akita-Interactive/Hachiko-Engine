@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BlurPixelSize.h"
+#include "BlurConfig.h"
 
 namespace Hachiko::BloomDefaultValues
 {
@@ -34,9 +34,13 @@ public:
 private:
     StandaloneGLTexture* _main_texture = nullptr;
     StandaloneGLTexture* _temp_gaussian_texture = nullptr;
-    float _gaussian_intensity = BloomDefaultValues::INTENSITY;
-    float _gaussian_sigma = BloomDefaultValues::SIGMA;
-    BlurPixelSize::Type _gaussian_blur_pixel_size = BlurPixelSize::Type::Gaussian7x7;
+
+    BlurConfig _blur_config {
+        BloomDefaultValues::INTENSITY,
+        BloomDefaultValues::SIGMA,
+        BloomDefaultValues::PIXEL_SIZE
+    };
+
     bool _initialized = false;
 };
     

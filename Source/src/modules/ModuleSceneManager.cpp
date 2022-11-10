@@ -13,9 +13,9 @@
 #include "core/preferences/src/EditorPreferences.h"
 #include "importers/SceneImporter.h"
 
-#include <iostream>
 #include <iomanip>
 #include <ctime>
+#include <thread>
 
 bool Hachiko::ModuleSceneManager::Init()
 {
@@ -23,14 +23,25 @@ bool Hachiko::ModuleSceneManager::Init()
 
     preferences = App->preferences->GetResourcesPreference();
 
-    // If uid is not found it will load an empty scene
-    LoadScene(preferences->GetSceneUID());
+#ifdef PLAY_BUILD
+    // If the engine is built in play mode, we want to force the game to start
+    // after it loads the scene, on the first update:
+    should_trigger_attempt_play = true;
+#endif
 
-    std::function handleSceneSwapping = [&](Event& evt) {
-        auto scene = evt.GetEventData<EditorHistoryEntryRestore>().GetScene();
+    // If uid is not found this will load an empty scene:
+    LoadScene(preferences->GetSceneUID(), false);
+
+    std::function handle_scene_swapping = [&](Event& evt) {
+        Scene* scene = 
+            evt.GetEventData<EditorHistoryEntryRestore>().GetScene();
+
         ChangeMainScene(scene);
     };
-    App->event->Subscribe(Event::Type::RESTORE_EDITOR_HISTORY_ENTRY, handleSceneSwapping);
+
+    App->event->Subscribe(
+        Event::Type::RESTORE_EDITOR_HISTORY_ENTRY, 
+        handle_scene_swapping);
 
 #ifndef PLAY_BUILD
     EditorPreferences* editor_prefs = App->preferences->GetEditorPreference();
@@ -41,17 +52,19 @@ bool Hachiko::ModuleSceneManager::Init()
 
 void Hachiko::ModuleSceneManager::AttemptScenePause()
 {
-    if (!GameTimer::paused)
+    if (GameTimer::paused)
     {
-        Event game_state(Event::Type::GAME_STATE);
-        game_state.SetEventData<GameStateEventPayload>(GameStateEventPayload::State::PAUSED);
-        App->event->Publish(game_state);
-
-        GameTimer::Pause();
+        return;
     }
+
+    Event game_state(Event::Type::GAME_STATE);
+    game_state.SetEventData<GameStateEventPayload>(GameStateEventPayload::State::PAUSED);
+    App->event->Publish(game_state);
+
+    GameTimer::Pause();
 }
 
-void Hachiko::ModuleSceneManager::AttemptScenePlay()
+void Hachiko::ModuleSceneManager::AttemptScenePlay() const
 {
     ComponentCamera* scene_camera = main_scene->GetMainCamera();
 
@@ -66,21 +79,26 @@ void Hachiko::ModuleSceneManager::AttemptScenePlay()
 
     App->camera->SetRenderingCamera(scene_camera);
 
-    if (!GameTimer::running)
+    if (!GameTimer::running || should_trigger_attempt_play)
     {
         RefreshSceneResource();
 
-        Event game_state(Event::Type::GAME_STATE);
-        game_state.SetEventData<GameStateEventPayload>(GameStateEventPayload::State::STARTED);
-        App->event->Publish(game_state);
         main_scene->Start();
+
+        Event game_state(Event::Type::GAME_STATE);
+        game_state.SetEventData<GameStateEventPayload>(
+            GameStateEventPayload::State::STARTED);
+
+        App->event->Publish(game_state);
 
         GameTimer::Start();
     }
     else if (GameTimer::paused)
     {
         Event game_state(Event::Type::GAME_STATE);
-        game_state.SetEventData<GameStateEventPayload>(GameStateEventPayload::State::RESUMED);
+        game_state.SetEventData<GameStateEventPayload>(
+            GameStateEventPayload::State::RESUMED);
+
         App->event->Publish(game_state);
 
         GameTimer::Resume();
@@ -101,7 +119,7 @@ bool Hachiko::ModuleSceneManager::IsScenePlaying()
     return GameTimer::running && !GameTimer::paused;
 }
 
-void Hachiko::ModuleSceneManager::RebuildBatches()
+void Hachiko::ModuleSceneManager::RebuildBatches() const
 {
     if (main_scene)
     {
@@ -109,9 +127,37 @@ void Hachiko::ModuleSceneManager::RebuildBatches()
     }
 }
 
+void Hachiko::ModuleSceneManager::CheckSceneLoading() 
+{
+    if (loading_scene)
+    {
+        return;
+    }
+
+    HE_LOG("Loading the scene.");
+
+    loading_scene_worker.join();
+
+    App->resources->PostLoadSceneResources();
+    tmp_loading_scene->GetSkybox()->Reload();
+
+    PostLoadScene();
+
+    App->FinishLoading();
+
+    HE_LOG("Scene is loaded.");
+}
+
 UpdateStatus Hachiko::ModuleSceneManager::Update(const float delta)
 {
+    if (should_trigger_attempt_play)
+    {
+        AttemptScenePlay();
+        should_trigger_attempt_play = false;
+    }
+
     main_scene->Update();
+
     return UpdateStatus::UPDATE_CONTINUE;
 }
 
@@ -119,19 +165,26 @@ UpdateStatus Hachiko::ModuleSceneManager::PostUpdate(float delta)
 {
     if (scene_reload_requested)
     {
-        // Use the scene resource refreshed when play is pressed to restore og state
-        // Basically scene serialized in memory
-        // Keeps the currently defined navmesh since the one saved in library is from the last time we saved
+        // Use the scene resource refreshed when play is pressed to restore og
+        // state. Basically scene serialized in memory keeps the currently
+        // defined navmesh since the one saved in library is from the last time
+        // we saved:
+
         scene_reload_requested = false;
-        constexpr bool keep_navmesh = true;
-        LoadScene(scene_resource, keep_navmesh);
+
+        constexpr bool keep_navigation_mesh = true;
+
+        LoadScene(scene_resource->GetID(), keep_navigation_mesh);
+
         return UpdateStatus::UPDATE_CONTINUE;
     }
 
     if (scene_change_requested)
     {
         scene_change_requested = false;
+
         LoadScene(scene_to_load_id);
+
         return UpdateStatus::UPDATE_CONTINUE;
     }
 
@@ -140,10 +193,12 @@ UpdateStatus Hachiko::ModuleSceneManager::PostUpdate(float delta)
         while (!to_remove.empty())
         {
             GameObject* go = to_remove[to_remove.size() - 1];
+
             if (App->editor->GetSelectedGameObject() == go)
             {
                 App->editor->SetSelectedGO(nullptr);
             }
+
             delete go;
         }
     }
@@ -166,32 +221,36 @@ bool Hachiko::ModuleSceneManager::CleanUp()
     EditorPreferences* editor_prefs = App->preferences->GetEditorPreference();
     editor_prefs->SetAutosave(scene_autosave);
 
-    #ifndef PLAY_BUILD
-    // If it was a temporary scene it will set id to 0 which will generate a new temporary scene on load
+#ifndef PLAY_BUILD
+    // If such scene was a temporary one it will set id to 0 which will
+    // generate a new temporary scene on load:
     preferences->SetSceneUID(scene_resource->GetID());
     preferences->SetSceneName(scene_resource->name.c_str());
-    #endif
+#endif
 
     SetSceneResource(nullptr);
 
+    // Release main_scene because it's not owned by the resource manager:
     RELEASE(main_scene);
-    // Release because not owned by RM
 
     return true;
 }
 
-void Hachiko::ModuleSceneManager::RemoveGameObject(GameObject* go)
+void Hachiko::ModuleSceneManager::RemoveGameObject(GameObject* game_object)
 {
-    if (go)
+    if (!game_object)
     {
-        if (!go->scene_owner)
-        {
-            delete go;
-            go = nullptr;
-            return;
-        }
-        to_remove.push_back(go);
+        return;
     }
+
+    if (!game_object->scene_owner)
+    {
+        delete game_object;
+        game_object = nullptr;
+        return;
+    }
+
+    to_remove.push_back(game_object);
 }
 
 void Hachiko::ModuleSceneManager::RemovedGameObject(GameObject* go)
@@ -203,35 +262,44 @@ void Hachiko::ModuleSceneManager::RemovedGameObject(GameObject* go)
     }
 }
 
-void Hachiko::ModuleSceneManager::CreateEmptyScene(const char* name)
+void Hachiko::ModuleSceneManager::LoadEmptyScene()
 {
-    LoadScene(nullptr);
-    if (name)
-    {
-        main_scene->name = name;
-    }
-    else
-    {
-        // Default name with timestamp for new empt unnamed scenes
-        auto t = std::time(nullptr);
-        auto tm = *std::localtime(&t);
-        std::ostringstream oss;
-        oss << "unnamed_scene_" << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
-        main_scene->name = oss.str().c_str();
-    }
+    tmp_loading_scene = new Scene();
 
-    // Since the empty scene is already loaded, it's loaded flag must be set to
-    // true, for systems that need a "loaded" scene to function such as
-    // ModuleScriptingSystem which needs both engine to be in play mode and
-    // current scene to be flagged as "loaded":
-    main_scene->loaded = true;
+    GameObject* camera_go = tmp_loading_scene->CreateNewGameObject(
+        tmp_loading_scene->GetRoot(), // parent
+        "Main Camera"); // name
+
+    camera_go->CreateComponent(Component::Type::CAMERA);
+
+    // Default name with timestamp for new empty untitled scenes
+    auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+    std::ostringstream oss;
+    oss << "untitled_scene_" << std::put_time(&tm, "%d-%m-%Y_%H-%M-%S");
+    tmp_loading_scene->name = oss.str().c_str();
 
     // Create a scene resource not related to an asset to reload the scene as any other
     SceneImporter scene_importer;
-    SetSceneResource(scene_importer.CreateSceneResource(main_scene));
+    tmp_resource_scene = scene_importer.CreateSceneResource(tmp_loading_scene);
+
+    App->navigation->SetNavmesh(nullptr);
+
+    tmp_loading_scene->loaded = true;
+
+    PostLoadScene();
 }
 
-void Hachiko::ModuleSceneManager::StopScene()
+void Hachiko::ModuleSceneManager::PostLoadScene()
+{
+    SetSceneResource(tmp_resource_scene);
+    ChangeMainScene(tmp_loading_scene);
+    
+    tmp_resource_scene = nullptr;
+    tmp_loading_scene = nullptr;
+}
+
+void Hachiko::ModuleSceneManager::StopScene() const
 {
     Event game_state(Event::Type::GAME_STATE);
     game_state.SetEventData<GameStateEventPayload>(GameStateEventPayload::State::STOPPED);
@@ -243,16 +311,46 @@ void Hachiko::ModuleSceneManager::StopScene()
     GameTimer::Stop();
 }
 
-void Hachiko::ModuleSceneManager::LoadScene(UID new_scene_id)
+void Hachiko::ModuleSceneManager::LoadScene(
+    UID new_scene_id, 
+    bool keep_navigation_mesh)
 {
-    ResourceScene* scene_resource = static_cast<ResourceScene*>(App->resources->GetResource(Resource::Type::SCENE, new_scene_id));
-    if (scene_resource)
+    // Stop the scene if it was playing to avoid scripts calling Start:
+    const bool was_scene_playing = IsScenePlaying();
+
+    if (was_scene_playing)
     {
-        LoadScene(scene_resource);
+        StopScene();
+    }
+    
+    // If the scene was playing previously, continue playing. If should trigger
+    // attempt play was marked true in any other functions, let it stay as true.
+    should_trigger_attempt_play = 
+        was_scene_playing || should_trigger_attempt_play;
+
+    const bool does_resource_exist = 
+        App->resources->DoesResourceExist(Resource::Type::SCENE, new_scene_id);
+    const bool is_scene_id_valid = new_scene_id != 0;
+
+    if (is_scene_id_valid && does_resource_exist)
+    {        
+        HE_LOG("START LOADING");
+
+        App->StartLoading();
+
+        loading_scene = true;
+
+        loading_scene_worker = std::thread(
+            &ModuleSceneManager::ThreadLoadScene, // worker function
+            this, // implicit this at the start of ThreadLoadScene method
+            new_scene_id, // scene_id parameter of ThreadLoadScene method
+            keep_navigation_mesh); // keep_navmesh parameter of ThreadLoadScene
+                                   // method
     }
     else
     {
-        CreateEmptyScene();
+        // Load an empty scene
+        LoadEmptyScene();
     }
 }
 
@@ -273,20 +371,37 @@ void Hachiko::ModuleSceneManager::SaveScene(const char* save_name)
     UID saved_scene_uid = scene_importer.CreateSceneAsset(main_scene);
 }
 
-Hachiko::GameObject* Hachiko::ModuleSceneManager::Raycast(const float3& origin, const float3& destination, float3* closest_hit, GameObject* parent_filter, bool active_only)
+Hachiko::GameObject* Hachiko::ModuleSceneManager::RayCast(
+    const float3& origin, 
+    const float3& destination, 
+    float3* closest_hit, 
+    GameObject* parent_filter, 
+    bool active_only) const
 {
-    return main_scene->Raycast(origin, destination, closest_hit, parent_filter, active_only);
+    return main_scene->RayCast(
+        origin, 
+        destination, 
+        closest_hit, 
+        parent_filter, 
+        active_only);
 }
 
-Hachiko::GameObject* Hachiko::ModuleSceneManager::BoundingRaycast(const float3& origin, const float3& destination, GameObject* parent_filter, bool active_only)
+Hachiko::GameObject* Hachiko::ModuleSceneManager::BoundingRayCast(
+    const float3& origin,
+    const float3& destination, 
+    GameObject* parent_filter, 
+    bool active_only) const
 {
-    return main_scene->Raycast(origin, destination, nullptr, parent_filter, active_only);
+    return main_scene->RayCast(origin, destination, nullptr, parent_filter, active_only);
 }
 
-void Hachiko::ModuleSceneManager::ChangeSceneById(UID new_scene_id, bool stop_scene)
+void Hachiko::ModuleSceneManager::ChangeSceneById(
+    UID new_scene_id, 
+    bool stop_scene)
 {
     scene_change_requested = true;
     scene_to_load_id = new_scene_id;
+
     if (stop_scene)
     {
         StopScene();
@@ -301,14 +416,18 @@ void Hachiko::ModuleSceneManager::ReloadScene()
 
 void Hachiko::ModuleSceneManager::OptionsMenu()
 {
-    char scene_name[50];
-    strcpy_s(scene_name, 50, main_scene->GetName());
-    const ImGuiInputTextFlags name_input_flags = ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue;
-    if (ImGui::InputText("###", scene_name, 50, name_input_flags))
+    std::string scene_name =main_scene->GetName();
+
+    constexpr ImGuiInputTextFlags name_input_flags = 
+        ImGuiInputTextFlags_AutoSelectAll | 
+        ImGuiInputTextFlags_EnterReturnsTrue;
+
+    if (Widgets::Input("Scene name", scene_name, name_input_flags))
     {
-        main_scene->SetName(scene_name);
+        main_scene->SetName(scene_name.c_str());
     }
-    ImGui::Checkbox("Autosave Scene", &scene_autosave);
+
+    Widgets::Checkbox("Autosave scene", &scene_autosave);
     ImGui::Separator();
     main_scene->AmbientLightOptionsMenu();
     ImGui::Separator();
@@ -317,48 +436,23 @@ void Hachiko::ModuleSceneManager::OptionsMenu()
     main_scene->SkyboxOptionsMenu();
 }
 
-void Hachiko::ModuleSceneManager::LoadScene(ResourceScene* new_resource, bool keep_navmesh)
+void Hachiko::ModuleSceneManager::ThreadLoadScene(UID scene_id, bool keep_navmesh)
 {
-    // TODO: Refactor this whole load logic and event handling to be as clear 
-    // as possible.
+    // Load the scene
+    tmp_resource_scene = static_cast<ResourceScene*>(
+        App->resources->GetResource(Resource::Type::SCENE, scene_id));
 
-    // Stop the scene if it was playing to avoid scripts calling Start:
-    bool was_scene_playing = IsScenePlaying();
-    if (was_scene_playing)
+    if (!keep_navmesh)
     {
-        StopScene();
+        App->navigation->SetNavmesh(tmp_resource_scene->scene_data[NAVMESH_ID].as<UID>());
     }
 
-    SetSceneResource(new_resource);
+    App->resources->LoadSceneResources(tmp_resource_scene->scene_data);
 
-    Scene* new_scene = new Scene();
-    if (scene_resource)
-    {
-        if (!keep_navmesh)
-        {
-            App->navigation->SetNavmesh(scene_resource->scene_data[NAVMESH_ID].as<UID>());
-        }
+    tmp_loading_scene = new Scene();
+    tmp_loading_scene->Load(tmp_resource_scene->scene_data);
 
-        new_scene->Load(scene_resource->scene_data);
-    }
-    else
-    {
-        if (!keep_navmesh)
-        {
-            App->navigation->SetNavmesh(nullptr);
-        }
-        // This removes current navmesh
-        GameObject* camera_go = new_scene->CreateNewGameObject(new_scene->GetRoot(), "Main Camera");
-        camera_go->CreateComponent(Component::Type::CAMERA);
-    }
-
-    ChangeMainScene(new_scene);
-
-    // If the scene was playing previously, continue playing:
-    if (was_scene_playing)
-    {
-        AttemptScenePlay();
-    }
+    loading_scene = false;
 }
 
 void Hachiko::ModuleSceneManager::ChangeMainScene(Scene* new_scene)
@@ -377,11 +471,13 @@ void Hachiko::ModuleSceneManager::ChangeMainScene(Scene* new_scene)
     App->event->Publish(scene_load);
 }
 
-void Hachiko::ModuleSceneManager::SetSceneResource(ResourceScene* new_scene_resource)
+void Hachiko::ModuleSceneManager::SetSceneResource(
+    ResourceScene* new_scene_resource)
 {
     if (scene_resource != new_scene_resource)
     {
-        // Only delete if it exists, its not the same resource and its not loaded by resource manager (id 0)
+        // Only delete if it exists, its not the same resource and its not
+        // loaded by resource manager (id 0)
         if (scene_resource && scene_resource->GetID() == 0)
         {
             delete scene_resource;
@@ -394,7 +490,7 @@ void Hachiko::ModuleSceneManager::SetSceneResource(ResourceScene* new_scene_reso
     scene_resource = new_scene_resource;
 }
 
-void Hachiko::ModuleSceneManager::RefreshSceneResource()
+void Hachiko::ModuleSceneManager::RefreshSceneResource() const
 {
     SceneImporter scene_importer;
     scene_importer.RefreshSceneResource(scene_resource, main_scene);

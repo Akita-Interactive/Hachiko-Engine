@@ -7,7 +7,14 @@
 					<ChildrenList>
 						<Switch Name="Standard" ID="{2C9ECBF8-7A64-4321-B615-F710DABFDE10}"/>
 						<Switch Name="Gravel" ID="{F7D7D03C-0417-4D3E-9CEC-0FC5F71A0B58}"/>
-						<Switch Name="Wood" ID="{453FD6AC-2658-48CA-9152-F3C1A8A9CC4E}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="PlayerWeapons" ID="{08CED1C6-3FE8-41FD-B010-C703623FA985}">
+					<ChildrenList>
+						<Switch Name="Basic" ID="{8742CF14-04A5-4224-8CAB-E0C57D44C5EA}"/>
+						<Switch Name="Claw" ID="{566F626C-BEC1-45DC-9527-637B30E27D52}"/>
+						<Switch Name="Sword" ID="{EA4FC07B-DF8D-4A33-B9E6-C200FB993E16}"/>
+						<Switch Name="Hammer" ID="{64FCE35B-8883-479E-8CF7-5E2B22B1F4A1}"/>
 					</ChildrenList>
 				</SwitchGroup>
 			</ChildrenList>

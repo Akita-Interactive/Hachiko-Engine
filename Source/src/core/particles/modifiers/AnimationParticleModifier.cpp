@@ -11,14 +11,14 @@ Hachiko::AnimationParticleModifier::AnimationParticleModifier(const std::string&
     cfg.format = "%.2f";
 }
 
-void Hachiko::AnimationParticleModifier::Update(std::vector<Particle>& particles)
+void Hachiko::AnimationParticleModifier::Update(std::vector<Particle>& particles, const float delta_time)
 {
     if (!IsActive())
     {
         return;
     }
 
-    time += EngineTimer::delta_time;
+    time += delta_time;
     if (!fit_to_lifetime && time <= animation_speed)
     {
         return;

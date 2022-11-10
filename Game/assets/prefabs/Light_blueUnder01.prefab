@@ -1,0 +1,17 @@
+prefab_name: Light_blueUnder01
+name: Light_blueUnder01
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [141.3, -11, 3.151]
+    rotation: [-0, 0, -0]
+    scale: [1, 1, 1]
+  - type: 6
+    enabled: true
+    light_type: 6
+    color: [0, 1, 0.878, 1]
+    intensity: 100
+    radius: 250
+    draw_sphere: false

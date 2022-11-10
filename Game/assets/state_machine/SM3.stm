@@ -5,22 +5,25 @@ clips:
     clips_id: 0
     clips_loop: false
   - clip_name: idle
-    clips_id: 18303446198230088858
+    clips_id: 4905526186048550931
     clips_loop: true
   - clip_name: run
     clips_id: 17063392249428625345
     clips_loop: true
   - clip_name: meleeOne
-    clips_id: 12839013068754891223
+    clips_id: 13051286280615158606
     clips_loop: false
   - clip_name: meleeTwo
-    clips_id: 4842440324179260068
+    clips_id: 9670941102450918099
     clips_loop: false
   - clip_name: meleeThree
-    clips_id: 9741971980889188744
+    clips_id: 12903924703506002755
     clips_loop: false
+  - clip_name: charge
+    clips_id: 12182644846570405273
+    clips_loop: true
   - clip_name: shot
-    clips_id: 14680319140328100188
+    clips_id: 53152947715296143
     clips_loop: false
   - clip_name: dash
     clips_id: 786971983245796595
@@ -29,13 +32,13 @@ clips:
     clips_id: 8564100870197687525
     clips_loop: false
   - clip_name: swordOne
-    clips_id: 9740314812815850799
+    clips_id: 1962363980534774792
     clips_loop: false
   - clip_name: swordTwo
-    clips_id: 6590039955794754110
+    clips_id: 3791358448086268976
     clips_loop: false
   - clip_name: swordThree
-    clips_id: 10386541432644636515
+    clips_id: 8013928387579266742
     clips_loop: false
   - clip_name: idleSword
     clips_id: 13909209450348895464
@@ -44,19 +47,31 @@ clips:
     clips_id: 4056876361213600651
     clips_loop: true
   - clip_name: clawOne
-    clips_id: 7241399800701620650
+    clips_id: 6282709936503807176
     clips_loop: false
   - clip_name: clawTwo
-    clips_id: 17728068144856436913
+    clips_id: 2327603597464627208
     clips_loop: false
   - clip_name: clawThree
-    clips_id: 12871651413963507001
+    clips_id: 7705294016027316699
     clips_loop: false
   - clip_name: death
     clips_id: 17554408115023876718
     clips_loop: false
   - clip_name: fall
     clips_id: 18424576933785159401
+    clips_loop: true
+  - clip_name: hammerOne
+    clips_id: 1962363980534774792
+    clips_loop: false
+  - clip_name: hammerTwo
+    clips_id: 3791358448086268976
+    clips_loop: false
+  - clip_name: hammerThree
+    clips_id: 8013928387579266742
+    clips_loop: false
+  - clip_name: Wounded
+    clips_id: 14339518451560539032
     clips_loop: true
 nodes:
   - node_name: idle
@@ -65,8 +80,8 @@ nodes:
     node_clip_name: run
   - node_name: dash
     node_clip_name: dash
-  - node_name: shot
-    node_clip_name: shot
+  - node_name: charge
+    node_clip_name: charge
   - node_name: pickUp
     node_clip_name: pickUp
   - node_name: meleeOne
@@ -93,14 +108,20 @@ nodes:
     node_clip_name: fall
   - node_name: ANY
     node_clip_name: none
+  - node_name: shot
+    node_clip_name: shot
+  - node_name: hammerOne
+    node_clip_name: hammerOne
+  - node_name: hammerTwo
+    node_clip_name: hammerTwo
+  - node_name: hammerThree
+    node_clip_name: hammerThree
+  - node_name: Wounded
+    node_clip_name: Wounded
 transitions:
   - transition_source: idle
     transition_target: dash
     transition_trigger: isDash
-    transition_blend: 300
-  - transition_source: idle
-    transition_target: shot
-    transition_trigger: isShot
     transition_blend: 300
   - transition_source: idle
     transition_target: pickUp
@@ -149,10 +170,6 @@ transitions:
   - transition_source: run
     transition_target: clawOne
     transition_trigger: isClawOne
-    transition_blend: 300
-  - transition_source: clawOne
-    transition_target: clawTwo
-    transition_trigger: isClawTwo
     transition_blend: 300
   - transition_source: idle
     transition_target: clawTwo
@@ -207,8 +224,8 @@ transitions:
     transition_trigger: isSwordThree
     transition_blend: 300
   - transition_source: run
-    transition_target: shot
-    transition_trigger: isShot
+    transition_target: charge
+    transition_trigger: isCharge
     transition_blend: 300
   - transition_source: run
     transition_target: dash
@@ -238,3 +255,63 @@ transitions:
     transition_target: idle
     transition_trigger: isRespawn
     transition_blend: 0
+  - transition_source: charge
+    transition_target: shot
+    transition_trigger: isShot
+    transition_blend: 300
+  - transition_source: hammerOne
+    transition_target: hammerTwo
+    transition_trigger: isHammerTwo
+    transition_blend: 300
+  - transition_source: hammerTwo
+    transition_target: hammerThree
+    transition_trigger: isHammerThree
+    transition_blend: 300
+  - transition_source: run
+    transition_target: hammerTwo
+    transition_trigger: isHammerTwo
+    transition_blend: 300
+  - transition_source: run
+    transition_target: hammerThree
+    transition_trigger: isHammerThree
+    transition_blend: 300
+  - transition_source: idle
+    transition_target: hammerTwo
+    transition_trigger: isHammerTwo
+    transition_blend: 300
+  - transition_source: idle
+    transition_target: hammerThree
+    transition_trigger: isHammerThree
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: meleeOne
+    transition_trigger: isMeleeOne
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: clawOne
+    transition_trigger: isClawOne
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: swordOne
+    transition_trigger: isSwordOne
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: hammerOne
+    transition_trigger: isHammerOne
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: Wounded
+    transition_trigger: isWounded
+    transition_blend: 300
+  - transition_source: idle
+    transition_target: Wounded
+    transition_trigger: isWounded
+    transition_blend: 300
+  - transition_source: ANY
+    transition_target: charge
+    transition_trigger: isCharge
+    transition_blend: 300
+  - transition_source: clawOne
+    transition_target: clawTwo
+    transition_trigger: isClawTwo
+    transition_blend: 300

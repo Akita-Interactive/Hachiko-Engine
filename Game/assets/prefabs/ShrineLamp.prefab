@@ -1,0 +1,74 @@
+prefab_name: ShrineLamp
+name: ShrineLamp
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [-11, 1, -8.785]
+    rotation: [-90, -0, 45]
+    scale: [1, 1, 1]
+  - !<mesh_renderer>
+    type: 2
+    enabled: true
+    mesh_id: 758734310977399032
+    navigable: false
+    visible: true
+    casting_shadow: true
+    material_id: 16007776213478930409
+    tint_color: [1, 1, 1, 1]
+child:
+  - name: TopLight
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-0.3124, -1.38, 2.81]
+        rotation: [-90, -45, 180]
+        scale: [1.5, 1.5, 1.5]
+      - type: 6
+        enabled: true
+        light_type: 6
+        color: [0.9548, 0.3821, 1, 1]
+        intensity: 100
+        radius: 15
+        draw_sphere: false
+      - !<script>
+        type: 15
+        enabled: true
+        class_name: BlinkingLight
+        "'_use_perlin_noise@bool'": false
+        "'_min_radius@float'": 8
+        "'_max_radius@float'": 20
+        "'_radius_amplitude@float'": 1
+        "'_min_duration@float'": 1
+        "'_max_duration@float'": 1
+        "'_duration_amplitude@float'": 1
+        "'_min_intensity@float'": 10
+        "'_max_intensity@float'": 30
+        "'_intensity_amplitude@float'": 1
+        "'_starting_intensity@float'": 14.64
+        "'_starting_radius@float'": 13.75
+        "'_current_intensity@float'": 14.25
+        "'_current_duration@float'": 0.602
+        "'_current_radius@float'": 13.9
+        "'_next_duration@float'": 5
+        "'_next_intensity@float'": 11.44
+        "'_next_radius@float'": 14.97
+  - name: BottomLight
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-0.3125, -1.38, 0.1374]
+        rotation: [-168, -72.85, 102.5]
+        scale: [1, 1, 1]
+      - type: 6
+        enabled: true
+        light_type: 6
+        color: [1, 0.3821, 0.9849, 1]
+        intensity: 100
+        radius: 15
+        draw_sphere: false

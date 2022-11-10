@@ -46,12 +46,12 @@ namespace Hachiko
             return window;
         }
 
-        void GetWindowSize(int& width, int& height) 
+        void GetWindowSize(int& width, int& height) const
         {
             SDL_GetWindowSize(window, &width, &height);
         }
 
-        void GetWindowPosition(int& x, int& y)
+        void GetWindowPosition(int& x, int& y) const
         {
             SDL_GetWindowPosition(window, &x, &y);
         }

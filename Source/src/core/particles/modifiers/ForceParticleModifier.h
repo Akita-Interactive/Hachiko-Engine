@@ -9,10 +9,15 @@ namespace Hachiko
         ForceParticleModifier(const std::string& name);
         ~ForceParticleModifier() override = default;
 
-        void Update(std::vector<Particle>&) override;
+        void Update(std::vector<Particle>&, float delta_time) override;
         void DrawGui() override;
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
+
+    private:
+        static void UpdatePositionOverTime(Particle& particle, float delta_time);
+        void UpdateDirectionOverTime(Particle& particle, float delta_time) const;
+        void UpdateRotationOverTime(Particle& particle, float delta_time) const;
 
     private:
         ParticleSystem::VariableTypeProperty rotation_delta {float2::zero, 0.1f};
@@ -21,8 +26,5 @@ namespace Hachiko
         ParticleSystem::VariableTypeProperty z_force {float2::zero, 0.1f};
         Widgets::DragFloatConfig cfg;
 
-        void UpdatePositionOverTime(Particle& particle);
-        void UpdateDirectionOverTime(Particle& particle);
-        void UpdateRotationOverTime(Particle& particle);
     };
 }

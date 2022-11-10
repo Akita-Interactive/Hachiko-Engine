@@ -5,22 +5,22 @@ clips:
     clips_id: 0
     clips_loop: false
   - clip_name: Appear
-    clips_id: 11790258715251408842
+    clips_id: 8498511424822902175
     clips_loop: false
   - clip_name: Iddle
-    clips_id: 1074444353004095425
+    clips_id: 17029763922072453246
     clips_loop: true
   - clip_name: RangeAttack
-    clips_id: 7582254748141028466
+    clips_id: 4865408811527800896
     clips_loop: false
   - clip_name: Hit
-    clips_id: 9554448594809014923
+    clips_id: 4843381268147761920
     clips_loop: false
   - clip_name: Hide
-    clips_id: 7487789786109346330
+    clips_id: 16645400876097290977
     clips_loop: false
   - clip_name: Dead
-    clips_id: 1447971684747023526
+    clips_id: 14597284382731975142
     clips_loop: false
 nodes:
   - node_name: Appear
@@ -57,7 +57,7 @@ transitions:
   - transition_source: ANY
     transition_target: Iddle
     transition_trigger: idle
-    transition_blend: 300
+    transition_blend: 100
   - transition_source: ANY
     transition_target: Appear
     transition_trigger: isAppear

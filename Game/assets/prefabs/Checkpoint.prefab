@@ -5,8 +5,8 @@ component:
   - !<transform>
     type: 1
     enabled: true
-    position: [-10.16, 2.437, 19.21]
-    rotation: [0, 0, 0, 1]
+    position: [101.7, 2.437, 52.13]
+    rotation: [0, 45, 0]
     scale: [1, 1, 1]
   - !<animation>
     type: 14
@@ -18,6 +18,7 @@ component:
     class_name: PillarCheckpoint
     "'_respawn_go@GameObject*'": 6
     "'_activation_range@float'": 5
+    "'_light_go@GameObject*'": 8
 child:
   - name: Root
     enabled: true
@@ -26,7 +27,7 @@ child:
         type: 1
         enabled: true
         position: [-0.0047, -0.944, 0]
-        rotation: [0, 0, 0, 1]
+        rotation: [0, 0, 0]
         scale: [1, 1, 1]
     child:
       - name: MainJoint
@@ -36,7 +37,7 @@ child:
             type: 1
             enabled: true
             position: [0.0047, 1.002, 0]
-            rotation: [0, 0, 0, 1]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
   - name: Floating_pilarGRP
     enabled: true
@@ -44,9 +45,9 @@ child:
       - !<transform>
         type: 1
         enabled: true
-        position: [0, 0, 0]
-        rotation: [0, 0, 0, 1]
-        scale: [1, 1, 1]
+        position: [0.0002, 0.4969, 0.0002]
+        rotation: [0, 0, 0]
+        scale: [2, 2, 2]
     child:
       - name: floatingPilar_2
         enabled: true
@@ -55,7 +56,7 @@ child:
             type: 1
             enabled: true
             position: [0, 0, 0]
-            rotation: [0, 0, 0, 1]
+            rotation: [0, 0, 0]
             scale: [1, 1, 1]
           - !<mesh_renderer>
             type: 2
@@ -63,6 +64,7 @@ child:
             mesh_id: 5306447057776503981
             navigable: false
             visible: true
+            casting_shadow: true
             material_id: 7555422350562069233
             tint_color: [1, 1, 1, 1]
   - name: SpawnPos
@@ -71,8 +73,8 @@ child:
       - !<transform>
         type: 1
         enabled: true
-        position: [11.25, -2.437, -0.9206]
-        rotation: [-0.7071, 0, 0, 0.7071]
+        position: [5.421, -1.413, 0.2614]
+        rotation: [-90, -0.0004, 0]
         scale: [0.39, 0.39, 0.39]
       - !<mesh_renderer>
         type: 2
@@ -80,5 +82,38 @@ child:
         mesh_id: 10210867973034302559
         navigable: false
         visible: true
+        casting_shadow: true
         material_id: 6750369022920963075
         tint_color: [1, 1, 1, 1]
+  - name: Obstacle
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0.0003, -1.845, 0.0002]
+        rotation: [0, -45, 0]
+        scale: [1, 1, 1]
+      - !<obstacle>
+        type: 18
+        enabled: true
+        obstacle_type: 0
+        obstacle_size: [1, 2, 1]
+  - name: Light
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [0.0032, 3.574, 0.0021]
+        rotation: [90, 0, 0]
+        scale: [1, 1, 1]
+      - type: 7
+        enabled: true
+        light_type: 7
+        color: [0.9756, 0, 1, 1]
+        inner: 12
+        outer: 20
+        intensity: 40
+        radius: 250
+        draw_cone: false

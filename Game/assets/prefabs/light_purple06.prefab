@@ -1,0 +1,17 @@
+prefab_name: light_purple06
+name: light_purple06
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [-48.44, 14.21, 52.98]
+    rotation: [-0, 0, -0]
+    scale: [1, 1, 1]
+  - type: 6
+    enabled: true
+    light_type: 6
+    color: [1, 0, 1, 1]
+    intensity: 5
+    radius: 250
+    draw_sphere: false

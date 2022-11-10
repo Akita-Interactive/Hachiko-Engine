@@ -6,6 +6,31 @@ namespace Hachiko
     class Program
     {
     public:
+        enum class Programs
+        {
+            FORWARD = 0,
+            GAUSSIAN_FILTERING,
+            DEFERRED_GEOMETRY,
+            DEFERRED_LIGHTING,
+            SHADOW_MAPPING,
+            SKYBOX,
+            DIFFUSE_IBL,
+            PREFILTERED_IBL,
+            ENVIRONMENT_BRDF,
+            STENCIL,
+            UI_IMAGE,
+            UI_TEXT,
+            PARTICLE,
+            VIDEO,
+            FOG,
+            TEXTURE_COPY,
+            SSAO,
+            OUTLINE,
+            FXAA,
+            COUNT,
+        };
+
+    public:
         Program(unsigned vtx_shader, unsigned frg_shader);
 
         void Activate() const;

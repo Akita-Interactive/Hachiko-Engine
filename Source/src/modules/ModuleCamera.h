@@ -16,7 +16,7 @@ namespace Hachiko
         ~ModuleCamera() override;
 
         bool Init() override;
-        UpdateStatus Update(float delta) override;
+        UpdateStatus Update(const float delta) override;
         bool CleanUp() override;
 
         void OnResize(unsigned int screen_width, unsigned int screen_height);

@@ -7,8 +7,8 @@
 
 Hachiko::Scripting::Spawner::Spawner(GameObject* game_object)
 	: Script(game_object, "Spawner")
-	, _enemy_pack(nullptr)
 	, _player(nullptr)
+    , _enemy_pack(nullptr)
 {
 }
 

@@ -59,13 +59,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)..\Game\gameplayBin</OutDir>
+    <OutDir>$(SolutionDir)..\Game\gameplayBin\</OutDir>
     <IntDir>$(SolutionDir)bin\build\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)vendors;</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\Game\gameplayBin</OutDir>
+    <OutDir>$(SolutionDir)..\Game\gameplayBin\</OutDir>
     <IntDir>$(SolutionDir)bin\build\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)vendors;</ExternalIncludePath>
   </PropertyGroup>
@@ -85,6 +85,7 @@
       <PrecompiledHeaderFile>scriptingUtil/gameplaypch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)src;$(SolutionDir)vendors\SDL\include;$(SolutionDir)vendors\glew-2.1.0\include\GL;$(SolutionDir)vendors\imgui;$(SolutionDir)vendors\MathGeoLib;$(SolutionDir)vendors\DevIL\include\IL;$(SolutionDir)vendors\DebugDraw;$(SolutionDir)vendors\assimp\include;$(SolutionDir)vendors\ImGuiFileDialog-0.6.3;$(SolutionDir)vendors\ImGuizmo;$(SolutionDir)vendors\rapidjson\include;$(SolutionDir)vendors\optick\include;$(SolutionDir)vendors\PhysicsFS;$(SolutionDir)vendors\yaml-cpp\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -116,6 +117,7 @@ RD /S /Q "$(TargetDir)"</Command>
       <PrecompiledHeaderFile>scriptingUtil/gameplaypch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)src;$(SolutionDir)vendors\SDL\include;$(SolutionDir)vendors\glew-2.1.0\include\GL;$(SolutionDir)vendors\imgui;$(SolutionDir)vendors\MathGeoLib;$(SolutionDir)vendors\DevIL\include\IL;$(SolutionDir)vendors\DebugDraw;$(SolutionDir)vendors\assimp\include;$(SolutionDir)vendors\ImGuiFileDialog-0.6.3;$(SolutionDir)vendors\ImGuizmo;$(SolutionDir)vendors\rapidjson\include;$(SolutionDir)vendors\optick\include;$(SolutionDir)vendors\PhysicsFS;$(SolutionDir)vendors\yaml-cpp\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -149,6 +151,7 @@ RD /S /Q "$(TargetDir)"</Command>
       <PrecompiledHeaderFile>scriptingUtil/gameplaypch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)src;$(SolutionDir)vendors\SDL\include;$(SolutionDir)vendors\glew-2.1.0\include\GL;$(SolutionDir)vendors\imgui;$(SolutionDir)vendors\MathGeoLib;$(SolutionDir)vendors\DevIL\include\IL;$(SolutionDir)vendors\DebugDraw;$(SolutionDir)vendors\assimp\include;$(SolutionDir)vendors\ImGuiFileDialog-0.6.3;$(SolutionDir)vendors\ImGuizmo;$(SolutionDir)vendors\rapidjson\include;$(SolutionDir)vendors\optick\include;$(SolutionDir)vendors\PhysicsFS;$(SolutionDir)vendors\yaml-cpp\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -313,11 +316,21 @@ RD /S /Q "$(TargetDir)"</Command>
     <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\stlemitter.h" />
     <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\traits.h" />
     <ClInclude Include="..\Source\vendors\yaml-cpp\include\yaml-cpp\yaml.h" />
+    <ClInclude Include="effects\BloomAnimator.h" />
+    <ClInclude Include="CutsceneManager.h" />
+    <ClInclude Include="effects\BounceEffect.h" />
+    <ClInclude Include="effects\RotationEffect.h" />
+    <ClInclude Include="entities\enemies\BossController.h" />
+    <ClInclude Include="entities\TimeScaleModeManager.h" />
+    <ClInclude Include="misc\AssetsObstacle.h" />
+    <ClInclude Include="misc\BossLaserController.h" />
+    <ClInclude Include="misc\Centipedes.h" />
     <ClInclude Include="misc\CrystalPlatform.h" />
     <ClInclude Include="generated\GeneratedProperties.h" />
     <ClInclude Include="misc\AudioManager.h" />
     <ClInclude Include="misc\BlinkingLight.h" />
     <ClInclude Include="misc\CameraPosChange.h" />
+    <ClInclude Include="effects\HoverEffect.h" />
     <ClInclude Include="misc\Spawner.h" />
     <ClInclude Include="misc\DoorController.h" />
     <ClInclude Include="misc\GauntletManager.h" />
@@ -325,6 +338,12 @@ RD /S /Q "$(TargetDir)"</Command>
     <ClInclude Include="misc\LevelManager.h" />
     <ClInclude Include="misc\PillarCheckpoint.h" />
     <ClInclude Include="entities\player\CombatVisualEffectsPool.h" />
+    <ClInclude Include="misc\TimeManager.h" />
+    <ClInclude Include="misc\StalagmiteManager.h" />
+    <ClInclude Include="entities\crystals\Stalagmite.h" />
+    <ClInclude Include="misc\Tutorial.h" />
+    <ClInclude Include="misc\OrbController.h" />
+    <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="TriggerAnim.h" />
     <ClInclude Include="ui\BackToMainMenu.h" />
     <ClInclude Include="entities\player\CombatManager.h" />
@@ -733,6 +752,16 @@ RD /S /Q "$(TargetDir)"</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Play|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="effects\BloomAnimator.cpp" />
+    <ClCompile Include="CutsceneManager.cpp" />
+    <ClCompile Include="entities\TimeScaleModeManager.cpp" />
+    <ClCompile Include="misc\Centipedes.cpp" />
+    <ClCompile Include="effects\BounceEffect.cpp" />
+    <ClCompile Include="effects\HoverEffect.cpp" />
+    <ClCompile Include="effects\RotationEffect.cpp" />
+    <ClCompile Include="entities\enemies\BossController.cpp" />
+    <ClCompile Include="misc\AssetsObstacle.cpp" />
+    <ClCompile Include="misc\BossLaserController.cpp" />
     <ClCompile Include="misc\CrystalPlatform.cpp" />
     <ClCompile Include="misc\AudioManager.cpp" />
     <ClCompile Include="misc\BlinkingLight.cpp" />
@@ -744,6 +773,12 @@ RD /S /Q "$(TargetDir)"</Command>
     <ClCompile Include="misc\LevelManager.cpp" />
     <ClCompile Include="misc\PillarCheckpoint.cpp" />
     <ClCompile Include="entities\player\CombatVisualEffectsPool.cpp" />
+    <ClCompile Include="misc\TimeManager.cpp" />
+    <ClCompile Include="misc\StalagmiteManager.cpp" />
+    <ClCompile Include="entities\crystals\Stalagmite.cpp" />
+    <ClCompile Include="misc\Tutorial.cpp" />
+    <ClCompile Include="misc\OrbController.cpp" />
+    <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="TriggerAnim.cpp" />
     <ClCompile Include="ui\BackToMainMenu.cpp" />
     <ClCompile Include="entities\player\CombatManager.cpp" />

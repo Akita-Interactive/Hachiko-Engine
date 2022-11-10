@@ -1,0 +1,29 @@
+prefab_name: rockSpike_01
+name: RootNode
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [0, 0, 0]
+    scale: [1, 1, 1]
+child:
+  - name: rockSpike_01
+    enabled: true
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-6.351, 3.787, -8.84]
+        rotation: [-90, 0, 0]
+        scale: [13.97, 13.97, 13.97]
+      - !<mesh_renderer>
+        type: 2
+        enabled: true
+        mesh_id: 5123642657171642590
+        navigable: false
+        visible: true
+        casting_shadow: true
+        material_id: 3759531071522823328
+        tint_color: [1, 1, 1, 1]

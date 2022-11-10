@@ -9,74 +9,6 @@ Hachiko::ResourceMesh::~ResourceMesh()
     CleanUp();
 }
 
-void Hachiko::ResourceMesh::GenerateBuffers()
-{
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
-
-    // Positions (3 values per coord)
-    glGenBuffers(1, &buffer_ids[static_cast<int>(Buffers::VERTICES)]);
-    glBindBuffer(GL_ARRAY_BUFFER, buffer_ids[static_cast<int>(Buffers::VERTICES)]);
-    glBufferData(GL_ARRAY_BUFFER, buffer_sizes[static_cast<int>(Buffers::VERTICES)] * sizeof(float), vertices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), static_cast<void*>(nullptr));
-    glEnableVertexAttribArray(0);
-
-    // Normals (3 values per coord)
-    if (buffer_sizes[static_cast<int>(Buffers::NORMALS)] > 0)
-    {
-        glGenBuffers(1, &buffer_ids[static_cast<int>(Buffers::NORMALS)]);
-        glBindBuffer(GL_ARRAY_BUFFER, buffer_ids[static_cast<int>(Buffers::NORMALS)]);
-        glBufferData(GL_ARRAY_BUFFER, buffer_sizes[static_cast<int>(Buffers::NORMALS)] * sizeof(float), normals, GL_STATIC_DRAW);
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), static_cast<void*>(nullptr));
-        glEnableVertexAttribArray(1);
-    }
-
-    // Texture Coords (2 values per coord)
-    if (buffer_sizes[static_cast<int>(Buffers::TEX_COORDS)] > 0)
-    {
-        glGenBuffers(1, &buffer_ids[static_cast<int>(Buffers::TEX_COORDS)]);
-        glBindBuffer(GL_ARRAY_BUFFER, buffer_ids[static_cast<int>(Buffers::TEX_COORDS)]);
-        glBufferData(GL_ARRAY_BUFFER, buffer_sizes[static_cast<int>(Buffers::TEX_COORDS)] * sizeof(float), tex_coords, GL_STATIC_DRAW);
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), static_cast<void*>(nullptr));
-        glEnableVertexAttribArray(2);
-    }
-
-    // Tangents (3 values per coord)
-    if (buffer_sizes[static_cast<int>(Buffers::TANGENTS)] > 0)
-    {
-        glGenBuffers(1, &buffer_ids[static_cast<int>(Buffers::TANGENTS)]);
-        glBindBuffer(GL_ARRAY_BUFFER, buffer_ids[static_cast<int>(Buffers::TANGENTS)]);
-        glBufferData(GL_ARRAY_BUFFER, buffer_sizes[static_cast<int>(Buffers::TANGENTS)] * sizeof(float), tangents, GL_STATIC_DRAW);
-        glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), static_cast<void*>(nullptr));
-        glEnableVertexAttribArray(3);
-    }
-
-    if (buffer_sizes[static_cast<int>(Buffers::BONES)] > 0)
-    {
-        // SRC_BONES_WEIGHTS
-        glGenBuffers(1, &buffer_ids[static_cast<int>(Buffers::BONES_INDICES)]);
-        glBindBuffer(GL_ARRAY_BUFFER, buffer_ids[static_cast<int>(Buffers::BONES_INDICES)]);
-        glBufferData(GL_ARRAY_BUFFER, buffer_sizes[static_cast<int>(Buffers::BONES_INDICES)] * sizeof(unsigned), src_bone_indices.get(), GL_STATIC_DRAW);
-        glVertexAttribIPointer(4, 4, GL_UNSIGNED_INT, sizeof(unsigned) * 4, static_cast<void*>(nullptr));
-        glEnableVertexAttribArray(4);
-
-        // SRC_BONES_INEX
-        glGenBuffers(1, &buffer_ids[static_cast<int>(Buffers::BONES_WEIGHTS)]);
-        glBindBuffer(GL_ARRAY_BUFFER, buffer_ids[static_cast<int>(Buffers::BONES_WEIGHTS)]);
-        glBufferData(GL_ARRAY_BUFFER, buffer_sizes[static_cast<int>(Buffers::BONES_WEIGHTS)] * sizeof(float4), src_bone_weights.get(), GL_STATIC_DRAW);
-        glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 4, static_cast<void*>(nullptr));
-        glEnableVertexAttribArray(5);
-    }
-
-    // Indices (1 value)
-    glGenBuffers(1, &buffer_ids[static_cast<int>(Buffers::INDICES)]);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffer_ids[static_cast<int>(Buffers::INDICES)]);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, buffer_sizes[static_cast<int>(Buffers::INDICES)] * sizeof(unsigned), indices, GL_STATIC_DRAW);
-
-    glBindVertexArray(0);
-    loaded = true;
-}
-
 void Hachiko::ResourceMesh::GenerateAABB()
 {
     bounding_box.SetFrom((float3*)vertices, buffer_sizes[static_cast<int>(Buffers::VERTICES)] / 3);
@@ -121,9 +53,6 @@ void Hachiko::ResourceMesh::GenerateBoneData(const aiMesh* mesh, float scale) {
 
             unsigned* bone_idx = &bone_indices[index * 4];
             float* bone_weight = &bone_weights[index * 4];
-
-            // TODO: Ask Eric if this should stay.
-            //assert(bone_weight[3] == 0.0f);
 
             for (unsigned l = 0; l < 4; ++l)
             {

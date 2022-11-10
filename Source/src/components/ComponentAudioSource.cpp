@@ -44,13 +44,23 @@ void Hachiko::ComponentAudioSource::PostEvent(const wchar_t* name_event) const
     AK::SoundEngine::PostEvent(name_event, source_id);
 }
 
+void Hachiko::ComponentAudioSource::SetRTPCValue(const wchar_t* rtpc_name, const float value)
+{
+    AK::SoundEngine::SetRTPCValue(rtpc_name, value);
+}
+
+void Hachiko::ComponentAudioSource::SetSwitch(const wchar_t* switch_group, const wchar_t* switch_state)
+{
+    AK::SoundEngine::SetSwitch(switch_group, switch_state, source_id);
+}
+
 void Hachiko::ComponentAudioSource::DrawGui()
 {
     ImGui::PushID(this);
 
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Audio Source"))
+    if (ImGuiUtils::CollapsingHeader(this, "Audio source"))
     {
-        ImGui::Text("Now you can call events to be played ^-^");
+        ImGui::TextWrapped("Now you can call events to be played ^-^");
     }
 
     ImGui::PopID();

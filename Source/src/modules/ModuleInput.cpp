@@ -1,10 +1,11 @@
 #include "core/hepch.h"
-#include "ModuleInput.h"
 
 #include "Application.h"
-#include "ModuleWindow.h"
-#include "ModuleSceneManager.h"
-#include "ModuleEvent.h"
+
+#include "modules/ModuleInput.h"
+#include "modules/ModuleWindow.h"
+#include "modules/ModuleEvent.h"
+
 #include "events/Event.h"
 
 Hachiko::ModuleInput::ModuleInput() :
@@ -69,7 +70,7 @@ UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
 
                     // Update the cached inverses of window size so that we have a
                     // sensitive MousePositionDelta and MousePosition.
-                    UpdateWindowSizeInversedCaches(sdl_event.window.data1, sdl_event.window.data2);
+                    UpdateWindowSizeInvertedCaches(sdl_event.window.data1, sdl_event.window.data2);
                 }
                 if (sdl_event.window.event == SDL_WINDOWEVENT_CLOSE)
                 {
@@ -86,7 +87,7 @@ UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
             
             if (sdl_event.button.button == SDL_BUTTON_LEFT)
             {
-                NotifyMouseAction(float2(mouse_pixel_position.x, mouse_pixel_position.y), MouseEventPayload::Action::CLICK);
+                NotifyMouseAction(MouseEventPayload::Action::CLICK);
             }
 
             break;
@@ -94,31 +95,47 @@ UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
             mouse[sdl_event.button.button - 1] = KeyState::KEY_UP;
             if (sdl_event.button.button == SDL_BUTTON_LEFT)
             {
-                NotifyMouseAction(float2(mouse_pixel_position.x, mouse_pixel_position.y), MouseEventPayload::Action::RELEASE);
+                NotifyMouseAction(MouseEventPayload::Action::RELEASE);
             }
             break;
         case SDL_MOUSEMOTION:   
         {
-            mouse_normalized_motion.x = sdl_event.motion.xrel * _window_width_inverse;
-            mouse_normalized_motion.y = sdl_event.motion.yrel * _window_height_inverse;
-
             mouse_pixels_motion.x = sdl_event.motion.xrel;
             mouse_pixels_motion.y = sdl_event.motion.yrel;
 
+            mouse_normalized_motion.x = mouse_pixels_motion.x * _window_width_inverse;
+            mouse_normalized_motion.y = mouse_pixels_motion.y * _window_height_inverse;
+
+            // Get monitor-global pixel position of mouse:
+            int mouse_global_x = 0;
+            int mouse_global_y = 0;
+            
+            SDL_GetGlobalMouseState(&mouse_global_x, &mouse_global_y);
+            mouse_global_pixel_position.x = static_cast<float>(mouse_global_x);
+            mouse_global_pixel_position.y = static_cast<float>(mouse_global_y);
+
             // Normalized mouse position of SDL:
+            // NOTE: Contrary to the pixel position, normalized position does
+            // not get updated by the changes when the mouse is outside the
+            // window:
             mouse_normalized_position.x = static_cast<float>(sdl_event.motion.x) * _window_width_inverse;
             mouse_normalized_position.y = static_cast<float>(sdl_event.motion.y) * _window_height_inverse;
 
-            // Turn it to the same convention with ImGui and UI Components, and store it like that
-            // to not have multiple coordinate systems:
-            float2 in_imgui_coords(-1.0f + mouse_normalized_position.x * 2, -(-1.0f + mouse_normalized_position.y * 2));
-
-            int height, width;
+            // Get OpenGL position of mouse:
+            int height = 0;
+            int width = 0;
             App->window->GetWindowSize(width, height);
+            int window_x = 0;
+            int window_y = 0;
+            App->window->GetWindowPosition(
+                window_x, 
+                window_y);
 
-            // Store pixel based position in the same coordinate system as well:
-            mouse_pixel_position.x = static_cast<float>(width) * 0.5f * in_imgui_coords.x;
-            mouse_pixel_position.y = static_cast<float>(height) * 0.5f * in_imgui_coords.y;
+            mouse_opengl_position = ConvertGlobalPixelToOpenGLPosition(
+                float2(static_cast<float>(width), static_cast<float>(height)), 
+                float2(static_cast<float>(window_x), static_cast<float>(window_y)), 
+                mouse_global_pixel_position
+            );
         }
         break;
         
@@ -212,6 +229,19 @@ UpdateStatus Hachiko::ModuleInput::PreUpdate(const float delta)
     return UpdateStatus::UPDATE_CONTINUE;
 }
 
+float2 Hachiko::ModuleInput::ConvertGlobalPixelToOpenGLPosition(
+    const float2& viewport_size, 
+    const float2& viewport_position, 
+    const float2& position_to_convert)
+{
+    float2 converted_position = position_to_convert - viewport_position;
+
+    converted_position.x -= viewport_size.x * 0.5f;
+    converted_position.y = -converted_position.y + viewport_size.y * 0.5f;
+
+    return converted_position;
+}
+
 void Hachiko::ModuleInput::UpdateInputMaps()
 {
     mouse_normalized_motion = {0, 0};
@@ -244,43 +274,41 @@ void Hachiko::ModuleInput::UpdateInputMaps()
         }
     }
 
-    for (auto& mouse_button : mouse)
+    for (KeyState& mouse_button : mouse)
     {
         if (mouse_button == KeyState::KEY_DOWN)
         {
             mouse_button = KeyState::KEY_REPEAT;
         }
-
-        if (mouse_button == KeyState::KEY_UP)
+        else if (mouse_button == KeyState::KEY_UP)
         {
             mouse_button = KeyState::KEY_IDLE;
         }
     }
 
-    for (int i = 0; i < SDL_CONTROLLER_BUTTON_MAX; ++i) {
-        if (game_controller[i] == KeyState::KEY_DOWN) 
+    for (KeyState& controller_button : game_controller)
+    {
+        if (controller_button == KeyState::KEY_DOWN) 
         {
-            game_controller[i] = KeyState::KEY_REPEAT;
+            controller_button = KeyState::KEY_REPEAT;
         }
-
-        if (game_controller[i] == KeyState::KEY_UP)
+        else if (controller_button == KeyState::KEY_UP)
         {
-            game_controller[i] = KeyState::KEY_IDLE;
+            controller_button = KeyState::KEY_IDLE;
         }
     }
 }
 
-void Hachiko::ModuleInput::UpdateWindowSizeInversedCaches(int width,
-                                                          int height)
+void Hachiko::ModuleInput::UpdateWindowSizeInvertedCaches(int width, int height)
 {
-    _window_width_inverse = 1.0f / width;
-    _window_height_inverse = 1.0f / height;
+    _window_width_inverse = 1.0f / static_cast<float>(width);
+    _window_height_inverse = 1.0f / static_cast<float>(height);
 }
 
-void Hachiko::ModuleInput::NotifyMouseAction(const float2& position, MouseEventPayload::Action action)
+void Hachiko::ModuleInput::NotifyMouseAction(MouseEventPayload::Action action)
 {
     Event mouse_action(Event::Type::MOUSE_ACTION);
-    mouse_action.SetEventData<MouseEventPayload>(action, position);
+    mouse_action.SetEventData<MouseEventPayload>(action);
     App->event->Publish(mouse_action);
 }
 

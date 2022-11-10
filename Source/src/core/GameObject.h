@@ -2,11 +2,15 @@
 
 #include <MathGeoLib.h>
 #include <vector>
+#include <map>
+#include <set>
 #include <string>
 #include <typeinfo>
 
 #include "utils/UUID.h"
 #include "components/Component.h"
+#include "resources/Resource.h"
+#include "core/rendering/Outline.h"
 
 #if defined(HACHIKO_API)
 // Do Nothing
@@ -25,6 +29,7 @@ namespace Hachiko
     {
         friend class Component;
         friend class Scene;
+        friend class ModuleRender;
         friend class ModuleSceneManager;
 
     public:
@@ -74,6 +79,7 @@ namespace Hachiko
         void DrawStencil(ComponentCamera* camera, Program* program);
 
         void SetActive(bool set_active);
+        void SetActiveNonRecursive(bool set_active);
 
         [[nodiscard]] GameObject* Find(UID id) const;
 
@@ -86,10 +92,18 @@ namespace Hachiko
         void Save(YAML::Node& node, bool as_prefab = false) const;
         void CollectObjectsAndComponents(std::vector<const GameObject*>& object_collector, std::vector<const Component*>& component_collector);
         void Load(const YAML::Node& node, bool as_prefab = false, bool meshes_only = false);
+        static void CollectResources(const YAML::Node& node, std::map<Resource::Type, std::set<UID>>& resources);
 
         void SavePrefabReferences(YAML::Node& node, std::vector<const GameObject*>& object_collection, std::vector<const Component*>& component_collection) const;
         void LoadPrefabReferences(std::vector<const GameObject*>& object_collection, std::vector<const Component*>& component_collection);
 
+        void SetTimeScaleMode(TimeScaleMode time_scale_mode) const;
+
+        // Searches all the mesh components on descendants including itself,
+        // and sets all their outline types to specified outline_type. To set
+        // all descendant mesh renderer components' outline differently, use
+        // recursive = false.
+        void SetOutlineType(Outline::Type outline_type, bool recursive = true);
 
         [[nodiscard]] const std::vector<Component*>& GetComponents() const
         {
@@ -213,11 +227,18 @@ namespace Hachiko
         [[nodiscard]] GameObject* GetFirstChildWithName(const std::string& child_name) const;
         [[nodiscard]] GameObject* FindDescendantWithName(const std::string& child_name) const;
 
-        void ChangeEmissiveColor(float4 color, float time, bool include_children = false);
+        void ChangeEmissiveColor(float4 color, bool include_children = false, bool override_flag = false);
+        std::vector<float4> GetEmissiveColors() const;
+        void ResetEmissive(bool include_children = false);
         void ChangeTintColor(float4 color, bool include_children = false);
+        void ChangeDissolveProgress(float progress, bool include_children = false);
         void SetVisible(bool v, bool include_children = false);
 
         const OBB* GetFirstMeshRendererOBB() const;
+
+        void SimplifyChildren();
+    private:
+        void Simplify(GameObject* target);
 
     public:
         std::string name;

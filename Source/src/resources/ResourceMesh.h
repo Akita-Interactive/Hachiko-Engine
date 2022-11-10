@@ -40,7 +40,6 @@ namespace Hachiko
         ResourceMesh(UID id);
         ~ResourceMesh() override;
 
-        void GenerateBuffers();
         void GenerateAABB();
 
         void GenerateBoneData(const aiMesh* mesh, float scale);

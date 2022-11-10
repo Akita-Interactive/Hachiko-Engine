@@ -1,29 +1,67 @@
 Event	ID	Name			Wwise Object Path	Notes
-	707649828	Stop_Pebble			\Default Work Unit\Stop_Pebble	
-	738066393	Stop_Laser			\Default Work Unit\Stop_Laser	
-	1020223172	Play_Wind			\Default Work Unit\Play_Wind	
-	1157125118	Play_Pebble			\Default Work Unit\Play_Pebble	
-	1196441153	Play_DoorOpens			\Default Work Unit\Play_DoorOpens	
-	2035174344	Play_Crystal			\Default Work Unit\Play_Crystal	
-	2270376495	Play_Laser			\Default Work Unit\Play_Laser	
-	3173136834	Stop_Wind			\Default Work Unit\Stop_Wind	
-	4092857357	Play_Laser_Hit			\Default Work Unit\Play_Laser_Hit	
+	707649828	Stop_Pebble			\Default Work Unit\Environment\Stop_Pebble	
+	749885692	Play_ExplosiveCrystalSpawn			\Default Work Unit\Environment\Crystals\Play_ExplosiveCrystalSpawn	
+	1020223172	Play_Wind			\Default Work Unit\Environment\Play_Wind	
+	1157125118	Play_Pebble			\Default Work Unit\Environment\Play_Pebble	
+	1185403619	Play_ExplosiveCrystal			\Default Work Unit\Environment\Crystals\Play_ExplosiveCrystal	
+	1800475802	Play_CrystalShake			\Default Work Unit\Play_CrystalShake	
+	2035174344	Play_Crystal			\Default Work Unit\Environment\Crystals\Play_Crystal	
+	2270376495	Play_Laser			\Default Work Unit\Environment\Lasers\Play_Laser	
+	2449564938	Play_CrystalRegenerate			\Default Work Unit\Environment\Crystals\Play_CrystalRegenerate	
+	2483774879	Play_LaserStop			\Default Work Unit\Play_LaserStop	
+	2603336188	Play_StalagmiteGroundImpact			\Default Work Unit\Environment\Play_StalagmiteGroundImpact	
+	2712047697	Play_Fall			\Default Work Unit\Play_Fall	
+	2962822744	Play_Checkpoint			\Default Work Unit\Environment\Play_Checkpoint	
+	2988819998	Play_GaunletDoorOpening			\Default Work Unit\Environment\Play_GaunletDoorOpening	
+	3173136834	Stop_Wind			\Default Work Unit\Environment\Stop_Wind	
+	3250624050	Play_StalagmiteCeilingCrack			\Default Work Unit\Environment\Play_StalagmiteCeilingCrack	
+	3683553682	Play_SplashLittleWorm			\Default Work Unit\Environment\Play_SplashLittleWorm	
+	4092857357	Play_Laser_Hit			\Default Work Unit\Environment\Lasers\Play_Laser_Hit	
+	4122877295	Play_LasersGroup			\Default Work Unit\Play_LasersGroup	
+	4241858839	Play_ExplosiveCrystalCharge			\Default Work Unit\Play_ExplosiveCrystalCharge	
 
 Effect plug-ins	ID	Name	Type				Notes
 	48620415	Have_U_Ever_Been_Outside	Wwise RoomVerb			
+	3604890626	High_Pass_60Hz	Wwise Parametric EQ			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	11692854	Pebbles 3	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 3		551392
-	23504808	Pebbles 2	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 2		797616
-	101284139	cristal broken 1	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Crystal\cristal broken 1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\cristal broken 1		374996
-	202657829	cristal broken 2	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Crystal\cristal broken 2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\cristal broken 2		374996
-	244703648	Wind	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Desert_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Wind		22579344
-	291347773	DoorOpenSlime	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\DoorOpenSlime_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\DoorOpenSlime		81664
-	376669262	Pebbles 1	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 1		1146744
-	706795758	cristal broken 3	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Crystal\cristal broken 3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\cristal broken 3		330896
-	781381782	LaserStart	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Laser\Noise - Swirly Spinner_86AE19BA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LaserStart		378516
-	786404871	LaserLoop	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Laser\Sub - Sub Bees_AA994B59.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LaserLoop		851804
-	857441310	Pebbles 4	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 4		661644
-	985470147	LaserLoop2	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Laser\Sub - Subtle Meanie_CAC3EAAE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LaserLoop2		840876
-	1053424550	Laser_Hit	C:\Users\SoppelsA\OneDrive - HP Inc\Documents\Personal Folder\Master UPC\Hachiko-Engine\Game\ErimosWwise\.cache\Windows\SFX\Laser\Swish - Call And Response_EB955B5F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\Laser_Hit		268756
+	3112745	ES_PREL Laser 32 - SFX Producer	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_PREL Laser 32 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LaserHit\ES_PREL Laser 32 - SFX Producer		206912
+	11692854	Pebbles 3	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 3		551392
+	23504808	Pebbles 2	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 2		797616
+	47600978	ES_Impact Rock Crash - SFX Producer	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Impact Rock Crash - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\ExplosiveCrystal\ES_Impact Rock Crash - SFX Producer		596032
+	97640651	cristal broken 2	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\Crystal\cristal broken 2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\CrystalBasic\CrystalsBreak\cristal broken 2		374996
+	110329395	ES_Crash Rock Patio 2 - SFX Producer	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Crash Rock Patio 2 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\CrystalBasic\RockBreak\ES_Crash Rock Patio 2 - SFX Producer		493632
+	113467563	ReverseWhoosh	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Whoosh Reverse 3 - SFX Producer_87FC6217.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\Regenerate\Reverse\ReverseWhoosh		257896
+	124169010	ES_Ceiling Crack Wood - SFX Producer	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Ceiling Crack Wood - SFX Producer_945D8CFD.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Stalagmites\Ceiling Crack\ES_Ceiling Crack Wood - SFX Producer		213016
+	135588950	Shake	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Crash Rock Patio 2 - SFX Producer_1B7286AF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\Shake		238160
+	223048066	ES_Sonic Boom 4 - SFX Producer	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Sonic Boom 4 - SFX Producer_0B87E41F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Stalagmites\Ground Impact\ES_Sonic Boom 4 - SFX Producer		212204
+	228170797	MagicalLow	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Horror Whoosh 1 - SFX Producer_3155AC5B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\ExplosiveCrystal\MagicalLow		907576
+	244703648	Wind	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Desert_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Wind		22579344
+	293397634	SplashCentipede	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\Splash-centipede_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\SplashCentipede		97780
+	328759760	ES_Hit Laser Sci Fi - SFX Producer	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Hit Laser Sci Fi - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LaserHit\ES_Hit Laser Sci Fi - SFX Producer		581696
+	368911579	ES_Crash Rock Patio 1 - SFX Producer	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Crash Rock Patio 1 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\CrystalBasic\RockBreak\ES_Crash Rock Patio 1 - SFX Producer		311360
+	376669262	Pebbles 1	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 1		1146744
+	416998960	ES_Swoosh 09 Short - Jon Bjork	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Swoosh 09 Short - Jon Bjork_2F2D746B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Stalagmites\Ceiling Crack\ES_Swoosh 09 Short - Jon Bjork		414464
+	470278955	Crack	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\CrackCrunch_S011TX.6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\SpawnCrystal\Crack		114752
+	478553311	ES_Magic Spell Fire 2 - SFX Producer	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Magic Spell Fire 2 - SFX Producer_4BF7B05F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\ExplosiveCrystal\Boom\ES_Magic Spell Fire 2 - SFX Producer		266888
+	557030509	End	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Sci Fi Spaceship 36 - SFX Producer_CBF79404.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Gaunlet\End		573224
+	563755614	LaserStop	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Laser Sword Hum - SFX Producer_4BD1D915.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LaserStop		116468
+	581679909	LaserLoop	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Force Field Energy 4 - SFX Producer_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LasersGroup\LaserLoop		29356096
+	588868501	Magical	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Swoosh Thing - Johan Hynynen_19C85BBC.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\SpawnCrystal\Magical		425300
+	596719593	ChargeCrystalExplotion	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Swoosh Thing - Johan Hynynen_5D49944A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\ChargeCrystalExplotion		443772
+	723293033	Materialize	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\Crystal_Materialize_22CD5ADD.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\SpawnCrystal\Materialize		364516
+	760620926	Fall	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Whoosh To Hit 28 - SFX Producer_C2B4EBD2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Falling\Fall		253496
+	785410759	ES_Magic Spell Whoosh 3 - SFX Producer	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Magic Spell Whoosh 3 - SFX Producer_59710EF2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\ExplosiveCrystal\ES_Magic Spell Whoosh 3 - SFX Producer		641896
+	803151951	ES_Rock Debris Spill 2 - SFX Producer	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Rock Debris Spill 2 - SFX Producer_89472BDF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Stalagmites\Ground Impact\ES_Rock Debris Spill 2 - SFX Producer		236664
+	826135177	LasersGroup	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\LasersGroup_76277525.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LasersGroup\LasersGroup		744388
+	836889846	ES_Avalanche Rock Cracks 2 - SFX Producer	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Avalanche Rock Cracks 2 - SFX Producer_E42CCB30.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Stalagmites\Ceiling Crack\ES_Avalanche Rock Cracks 2 - SFX Producer		203540
+	857441310	Pebbles 4	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\Ambient\Pebbles 4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Pebbles\Pebbles 4		661644
+	861789060	ESM_Ocean_Game_One_Shot_Achievement_Discover_Hidden_Treasure_01	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ESM_Ocean_Game_One_Shot_Achievement_Discover_Hidden_Treasure_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Checkpoint\ESM_Ocean_Game_One_Shot_Achievement_Discover_Hidden_Treasure_01		1023840
+	918177923	Whoosh	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Horror Whoosh 1 - SFX Producer_F48542A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Falling\Whoosh		241436
+	924759275	ES_Magic Spell Fire 1 - SFX Producer	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Magic Spell Fire 1 - SFX Producer_1921F7F8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\ExplosiveCrystal\Boom\ES_Magic Spell Fire 1 - SFX Producer		254596
+	931073005	MagicHigh	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_PREL Whoosh High 18 - SFX Producer_11D2BAFF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\CrystalBasic\MagicHigh		371300
+	968779647	ESM_Ocean_Game_One_Shot_Achievement_Discover_Hidden_Treasure_03	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ESM_Ocean_Game_One_Shot_Achievement_Discover_Hidden_Treasure_03_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Checkpoint\ESM_Ocean_Game_One_Shot_Achievement_Discover_Hidden_Treasure_03		808604
+	1017764981	ES_Impact Rock Smash 3 - SFX Producer	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Impact Rock Smash 3 - SFX Producer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Crystals\CrystalBasic\RockBreak\ES_Impact Rock Smash 3 - SFX Producer		354368
+	1018062011	ES_Earthquake Tremor Rocks 2 - SFX Producer	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Earthquake Tremor Rocks 2 - SFX Producer_8B7E2A2E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Stalagmites\Ground Impact\ES_Earthquake Tremor Rocks 2 - SFX Producer		161716
+	1029896715	LaserStart	D:\Erimos\Game\ErimosWwise\.cache\Windows\SFX\ES_Laser Sword Hum - SFX Producer_BC4D7C4F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Lasers\LaserStart		598080
 

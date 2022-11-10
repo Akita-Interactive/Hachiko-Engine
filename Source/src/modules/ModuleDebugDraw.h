@@ -14,7 +14,7 @@ namespace Hachiko
         ~ModuleDebugDraw() override;
 
         bool Init() override;
-        UpdateStatus Update(float delta) override;
+        UpdateStatus Update(const float delta) override;
         bool CleanUp() override;
 
         static void Draw(const float4x4& view, const float4x4& proj, unsigned width, unsigned height);

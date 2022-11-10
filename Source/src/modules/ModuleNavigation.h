@@ -9,7 +9,7 @@ class dtTileCache;
 
 namespace Hachiko
 {
-    
+
     class ModuleNavigation : public Module
     {
     public:
@@ -38,6 +38,7 @@ namespace Hachiko
         void DebugDraw();
         void DrawOptionsGui();
         
+        bool ValidPath(const math::float3& start, const math::float3& end) const;
         math::float3 GetCorrectedPosition(const math::float3& position, const math::float3& extents) const;
         void CorrectPosition(math::float3& position, const math::float3& extents) const;
         float GetYFromPosition(const math::float3& position) const;

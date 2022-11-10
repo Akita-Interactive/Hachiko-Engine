@@ -12,7 +12,7 @@ Hachiko::ColorParticleModifier::~ColorParticleModifier()
     delete gradient;
 }
 
-void Hachiko::ColorParticleModifier::Update(std::vector<Particle>& particles)
+void Hachiko::ColorParticleModifier::Update(std::vector<Particle>& particles, const float delta_time)
 {
     for (auto& particle : particles)
     {

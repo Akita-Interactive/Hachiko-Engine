@@ -8,7 +8,20 @@
 						<Reference Name="AudioDevice">
 							<ObjectRef Name="System" ID="{3CB8BCCE-E9E0-4C76-BFE2-E121F5DB87D0}" WorkUnitID="{E189EE73-0211-491E-87D4-BEC5777FF04C}"/>
 						</Reference>
+						<Reference Name="Effect0" PluginName="Wwise Peak Limiter" CompanyID="0" PluginID="110" PluginType="3">
+							<ObjectRef Name="New_Wwise_Peak_Limiter" ID="{02070C58-DB41-45B6-A7E1-3EA9DEF264BA}" WorkUnitID="{F5B9E60A-7CAC-415A-A4E8-98F4FC01C032}"/>
+						</Reference>
 					</ReferenceList>
+					<ChildrenList>
+						<AuxBus Name="Large_Reverb" ID="{5D9A934C-9933-4A5E-8121-BA0449551418}">
+							<ReferenceList>
+								<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+									<ObjectRef Name="Room_Large" ID="{AD8EFAFC-7121-4D5F-BE4D-B13FBD6CEBAE}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+								</Reference>
+							</ReferenceList>
+							<ObjectLists/>
+						</AuxBus>
+					</ChildrenList>
 					<ObjectLists/>
 				</Bus>
 			</ChildrenList>

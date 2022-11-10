@@ -17,6 +17,7 @@ void Hachiko::Scripting::CrystalPlatform::OnStart()
 {
 	player = Scenes::GetPlayer();
 	exploding_platform = _crystal_platform->GetComponent<ComponentAnimation>();
+	exploding_platform->SetTimeScaleMode(TimeScaleMode::SCALED);
 	obstacle = _invisible_obstacle->GetComponent<ComponentObstacle>();
 	
 	ResetTimers();
@@ -48,7 +49,7 @@ void Hachiko::Scripting::CrystalPlatform::OnUpdate()
 	}
 	else if (GetState() == PlatformState::TRIGGERED)
 	{
-		before_shake_elapsed += Time::DeltaTime();
+		before_shake_elapsed += Time::DeltaTimeScaled();
 		if (before_shake_elapsed >= _seconds_before_shaking)
 		{
 			_state = PlatformState::SHAKING;
@@ -57,7 +58,7 @@ void Hachiko::Scripting::CrystalPlatform::OnUpdate()
 	else if (GetState() == PlatformState::SHAKING) 
 	{
 		// Is platform shaking
-		shake_elapsed += Time::DeltaTime();
+		shake_elapsed += Time::DeltaTimeScaled();
 		if (shake_elapsed >= _seconds_shaking)
 		// Add this line in case shaking is animation = && exploding_platform->AnimationIsStopped()))
 		{
@@ -67,7 +68,7 @@ void Hachiko::Scripting::CrystalPlatform::OnUpdate()
 	}
 	else if (GetState() == PlatformState::HIDDEN)
 	{
-		regen_elapsed += Time::DeltaTime();
+		regen_elapsed += Time::DeltaTimeScaled();
 		if (regen_elapsed >= _seconds_to_regen)
 		{
 			_state = PlatformState::PLATFORM;
@@ -177,7 +178,7 @@ float3 Hachiko::Scripting::CrystalPlatform::GetShakeOffset()
 		r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 		float z = (r - 0.5f) * shake_magnitude * _shake_intensity;
 
-		shake_elapsed += Time::DeltaTime();
+		shake_elapsed += Time::DeltaTimeScaled();
 		shake_magnitude = (1 - (shake_elapsed / _seconds_shaking)) * (1 - (shake_elapsed / _seconds_shaking));
 		return float3(x, 0, z);
 	}

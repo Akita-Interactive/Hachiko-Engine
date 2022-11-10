@@ -6,6 +6,7 @@
 
 #include <Algorithm/Random/LCG.h>
 
+constexpr int MAX_AMMO = 4;
 
 Hachiko::Scripting::DebugManager::DebugManager(GameObject* game_object)
 	: Script(game_object, "DebugManager")
@@ -16,19 +17,18 @@ Hachiko::Scripting::DebugManager::DebugManager(GameObject* game_object)
 	, _teleport_add_pos(nullptr)
 	, _add_health(nullptr)
 	, _remove_health(nullptr)
-	, _increase_max_hp(nullptr)
-	, _decrease_max_hp(nullptr)
 	, _increase_move_speed(nullptr)
 	, _decrease_move_speed(nullptr)
-	, _increase_attack_cd(nullptr)
-	, _decrease_attack_cd(nullptr)
 	, _increase_attack_power(nullptr)
 	, _decrease_attack_power(nullptr)
 	, _god_mode(nullptr)
-	, _spawn_enemy(nullptr)
-	, _unlock_skills(nullptr)
+	, _weapon_claws(nullptr)
+	, _weapon_sword(nullptr)
+	, _weapon_hammer(nullptr)
+	, _reload_ammo(nullptr)
 	, _toggle_performance_output(nullptr)
 	, _performance_menu(nullptr)
+	, _player_stats(nullptr)
 	, _toggle_vsync(nullptr)
 	, _text_fps(nullptr)
 	, _text_ms(nullptr)
@@ -47,6 +47,7 @@ void Hachiko::Scripting::DebugManager::OnAwake()
 	is_wireframe = false;
 	is_performance = false;
 	is_navmesh = false;
+	show_player_stats = false;
 
 	if (_tp_pos1)
 	{
@@ -68,6 +69,7 @@ void Hachiko::Scripting::DebugManager::OnStart()
 	_player_controller = _player->GetComponent<PlayerController>();
 	is_vsync = Debug::GetVsync();
 	_performance_menu->SetActive(is_performance);
+	_player_stats->SetActive(show_player_stats);
 
 	for (GameObject* child : game_object->children)
 	{
@@ -75,7 +77,7 @@ void Hachiko::Scripting::DebugManager::OnStart()
 	}
 	if (_button_back == nullptr)
 	{
-		HE_LOG("MAAAAL TODO MAL");
+		HE_LOG("button back is NULL");
 	}
 
 }
@@ -91,6 +93,8 @@ void Hachiko::Scripting::DebugManager::OnUpdate()
 		{
 			child->SetActive(is_active);
 		}
+		show_player_stats = !show_player_stats;
+		_player_stats->SetActive(show_player_stats);
 	}
 
 	if (is_performance)
@@ -100,6 +104,15 @@ void Hachiko::Scripting::DebugManager::OnUpdate()
 
 		_text_fps->SetText(fps.c_str());
 		_text_ms->SetText(ms.c_str());
+	}
+
+	if (show_player_stats)
+	{
+		std::string attack = std::to_string(int(_player_controller->_combat_stats->_attack_power));
+		std::string mvspeed = std::to_string(int(_player_controller->_combat_stats->_move_speed));
+
+		_text_atck->SetText(attack.c_str());
+		_text_mvspd->SetText(mvspeed.c_str());
 	}
 
 	if (!is_active)
@@ -182,76 +195,66 @@ void Hachiko::Scripting::DebugManager::HandleButtonInteraction()
 		HE_LOG("Health now %i", _player_controller->_combat_stats->_current_hp);
 		_player_controller->UpdateHealthBar();
 	}
-	/*
-	if (_increase_max_hp->IsSelected())
-	{
-		_player_controller->_stats._max_hp += 1;
-		HE_LOG("Max health now %d", _player_controller->_stats._max_hp);
-	}
-	if (_decrease_max_hp->IsSelected())
-	{
-		_player_controller->_stats._max_hp -= 1;
-		HE_LOG("Max health now %d", _player_controller->_stats._max_hp);
-	}
-	*/
 
 	if (_increase_move_speed->IsSelected())
 	{
 		_player_controller->_combat_stats->_move_speed += 1.0f;
 		HE_LOG("Move speed now %f", _player_controller->_combat_stats->_move_speed);
 	}
-	if (_decrease_move_speed->IsSelected())
+	if (_decrease_move_speed->IsSelected() && _player_controller->_combat_stats->_move_speed > 1)
 	{
 		_player_controller->_combat_stats->_move_speed -= 1.0f;
 		HE_LOG("Move speed now %f", _player_controller->_combat_stats->_move_speed);
 	}
-	/*
-	if (_increase_attack_cd->IsSelected())
-	{
-		_player_controller->_stats._attack_cd += 0.1f;
-		HE_LOG("Attack speed now %f", _player_controller->_stats._attack_cd);
-	}
 
-	if (_decrease_attack_cd->IsSelected())
-	{
-		_player_controller->_stats._attack_cd -= 0.1f;
-		HE_LOG("Attack speed now %f", _player_controller->_stats._attack_cd);
-	}
-	*/
 	if (_increase_attack_power->IsSelected())
 	{
 		_player_controller->_combat_stats->_attack_power += 1;
 		HE_LOG("Attack power now %d", _player_controller->_combat_stats->_attack_power);
 	}
-	if (_decrease_attack_power->IsSelected())
+	if (_decrease_attack_power->IsSelected() && _player_controller->_combat_stats->_attack_power > 1)
 	{
 		_player_controller->_combat_stats->_attack_power -= 1;
 		HE_LOG("Attack power now %d", _player_controller->_combat_stats->_attack_power);
 	}
 
-	// Player States
+	if (_reload_ammo->IsSelected())
+	{
+		_player_controller->ReloadAmmo(MAX_AMMO);
+	}
+
+	// GOD MODE //
 	if (_god_mode->IsSelected())
 	{
 		HE_LOG("GOD MODE pressed");
 		_player_controller->_god_mode_trigger = true;
 	}
 
-	/*
+	// WEAPON SELECTION //
 
-	if (_unlock_skills->IsSelected())
+	if (_weapon_claws->IsSelected())
 	{
-		HE_LOG("_toggle_invulnerable pressed");
-	}
-	*/
+		HE_LOG("_weapon_claws pressed");
+		unsigned int weapon_idx = 1;
+		_player_controller->ChangeWeapon(weapon_idx);
 
-	if (_spawn_enemy->IsSelected())
-	{
-		HE_LOG("_spawn_enemy pressed");
-		UID enemy_uid = 11363594999076676195;
-		GameObject* enemy = SceneManagement::Instantiate(enemy_uid, game_object->parent->FindDescendantWithName("Enemies"), 1)[0];
-		float3 player_pos = _player->GetTransform()->GetGlobalPosition();
-		enemy->GetTransform()->SetGlobalPosition(player_pos + float3(-3, 0, 0));
 	}
+
+	if (_weapon_sword->IsSelected())
+	{
+		HE_LOG("_weapon_sword pressed");
+		unsigned int weapon_idx = 2;
+		_player_controller->ChangeWeapon(weapon_idx);
+	}
+
+	if (_weapon_hammer->IsSelected())
+	{
+		HE_LOG("_weapon_hammer pressed");
+		unsigned int weapon_idx = 3;
+		_player_controller->ChangeWeapon(weapon_idx);
+	}
+
+	// PERFORMANCE //
 
 	if (_toggle_performance_output->IsSelected())
 	{
@@ -278,6 +281,9 @@ void Hachiko::Scripting::DebugManager::HandleButtonInteraction()
 		Debug::SetPolygonMode(!is_wireframe);
 	}
 
+
+
+
 	if (_exit_debug->IsSelected())
 	{
 		is_active = !is_active;
@@ -286,5 +292,7 @@ void Hachiko::Scripting::DebugManager::HandleButtonInteraction()
 			_player_controller->_isInDebug = !_player_controller->_isInDebug;
 			child->SetActive(is_active);
 		}
+		show_player_stats = !show_player_stats;
+		_player_stats->SetActive(show_player_stats);
 	}
 }

@@ -5,7 +5,6 @@
 
 #include <SDL.h>
 
-
 namespace Hachiko
 {
     constexpr int MAX_KEYS = 300;
@@ -29,7 +28,7 @@ namespace Hachiko
         ~ModuleInput() override;
 
         bool Init() override;
-        UpdateStatus PreUpdate(float delta) override;
+        UpdateStatus PreUpdate(const float delta) override;
         bool CleanUp() override;
 
         //general function to get the state of a key
@@ -84,9 +83,14 @@ namespace Hachiko
             return scroll_delta;
         }
 
-        [[nodiscard]] const float2& GetMousePixelPosition() const
+        [[nodiscard]] const float2& GetMouseGlobalPixelPosition() const
         {
-            return mouse_pixel_position;
+            return mouse_global_pixel_position;
+        }
+
+        [[nodiscard]] const float2& GetMouseOpenGLPosition() const
+        {
+            return mouse_opengl_position;
         }
 
         [[nodiscard]] const float2& GetMouseNormalizedPosition() const
@@ -139,22 +143,33 @@ namespace Hachiko
             SDL_HapticRumblePlay(sdl_haptic, strength, duration);
         }
 
+        // Gets viewport_size, viewport_position and position_to_convert in
+        // monitor-global pixels.
+        // viewport_position must be the position of the viewport in global-
+        // monitor space and should be the top-left corner of the rectangle
+        // defining the viewport.
+        [[nodiscard]] static float2 ConvertGlobalPixelToOpenGLPosition(
+            const float2& viewport_size, 
+            const float2& viewport_position, 
+            const float2& position_to_convert);
+
     private:
         void UpdateInputMaps();
         // TODO: Make ModuleWindow store window size instead of monitor
         // size. And get width and height from there.
-        void UpdateWindowSizeInversedCaches(int width, int height);
-        void NotifyMouseAction(const float2& position, MouseEventPayload::Action action);
+        void UpdateWindowSizeInvertedCaches(int width, int height);
+        static void NotifyMouseAction(MouseEventPayload::Action action);
 
         // Gamepad Controller
-        const char* GetControllerTypeAsString(SDL_GameControllerType type);
+        static const char* GetControllerTypeAsString(SDL_GameControllerType type);
 
     private:
         KeyState* keyboard = nullptr;
         KeyState mouse[NUM_MOUSE_BUTTONS]{};
         KeyState game_controller[SDL_CONTROLLER_BUTTON_MAX]{};
         float game_controller_axis[SDL_CONTROLLER_AXIS_MAX]{};
-        float2 mouse_pixel_position = float2::zero;
+        float2 mouse_global_pixel_position = float2::zero;
+        float2 mouse_opengl_position = float2::zero;
         float2 mouse_normalized_position = float2::zero;
         float2 mouse_normalized_motion = float2::zero;
         float2 mouse_pixels_motion = float2::zero;

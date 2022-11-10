@@ -68,27 +68,24 @@ void Hachiko::ComponentDirLight::Load(const YAML::Node& node)
 void Hachiko::ComponentDirLight::DrawGui()
 {
     ImGui::PushID(this);
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Directional Light"))
+    if (ImGuiUtils::CollapsingHeader(this, "Directional light"))
     {
-        if (ImGui::Checkbox("Active", &active))
+        if (Widgets::Checkbox("Active", &active))
         {
             App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
-        if (ImGui::Checkbox("Draw Direction", &draw_direction))
+        if (Widgets::Checkbox("Draw direction", &draw_direction))
         {
             App->event->Publish(Event::Type::CREATE_EDITOR_HISTORY_ENTRY);
         }
 
-        ImGui::PushItemWidth(100.0f);
-        ImGui::InputFloat("Intensity", &intensity);
-        CREATE_HISTORY_ENTRY_AFTER_EDIT()
-        ImGui::PopItemWidth();
+        Widgets::DragFloat("Intensity", intensity);
         ImGuiUtils::CompactColorPicker("Color", &color[0]);
         CREATE_HISTORY_ENTRY_AFTER_EDIT()
 
         ImGui::NewLine();
 
-        ImGui::Text("Shadow Properties");
+        ImGui::Text("Shadow properties");
         ImGui::Separator();
         ImGui::NewLine();
 

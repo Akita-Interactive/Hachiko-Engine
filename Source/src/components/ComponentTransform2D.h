@@ -20,28 +20,28 @@ namespace Hachiko
         void DrawGui() override;
         void DebugDraw() override;
 
-        void SetPosition(float3 position);
+        void SetPosition(float3& position);
 
-        void SetSize(float2 size);
-        void SetScale(float2 scale);
+        void SetSize(float2& size);
+        void SetScale(float2& scale);
 
-        void SetRotation(Quat rotation);
-        void SetRotation(float3 rotation);
+        void SetRotation(Quat& rotation);
+        void SetRotation(float3& rotation);
 
-        void SetPivot(float2 pivot_position);
-        void SetAnchor(float2 anchor_position);
+        void SetPivot(float2& pivot_position);
+        void SetAnchor(float2& anchor_position);
 
-        [[nodiscard]] float3 GetPosition() const
+        [[nodiscard]] const float3& GetPosition() const
         {
             return position;
         }
 
-        [[nodiscard]] float2 GetSize() const
+        [[nodiscard]] const float2& GetSize() const
         {
             return size;
         }
 
-        [[nodiscard]] float3 GetScale() const
+        [[nodiscard]] const float3& GetScale() const
         {
             return scale;
         }

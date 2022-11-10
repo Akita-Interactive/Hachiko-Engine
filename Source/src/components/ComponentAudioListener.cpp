@@ -44,9 +44,9 @@ void Hachiko::ComponentAudioListener::DrawGui()
 {
     ImGui::PushID(this);
 
-    if (ImGuiUtils::CollapsingHeader(game_object, this, "Audio Listener"))
+    if (ImGuiUtils::CollapsingHeader(this, "Audio listener"))
     {
-        ImGui::Text("Now you can listen your game ^-^");
+        ImGui::TextWrapped("Now you can listen your game ^-^");
     }
     ImGui::PopID();
 }

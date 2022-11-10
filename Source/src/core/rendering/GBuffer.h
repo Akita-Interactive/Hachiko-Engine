@@ -18,6 +18,8 @@ public:
     void BindForDrawing() const;
     void BindFogTextures() const;
     void UnbindFogTextures() const;
+    void BindSSAOTextures() const;
+    void UnbindSSAOTextures() const;
     [[nodiscard]] bool IsGenerated() const;
 
     [[nodiscard]] unsigned int GetEmissiveTexture() const;
@@ -27,6 +29,7 @@ public:
 
 private:
     unsigned _g_buffer = 0;
+    unsigned _depth_stencil_buffer = 0;
     unsigned _diffuse_texture = 0;
     unsigned _specular_smoothness_texture = 0;
     unsigned _normal_texture = 0;

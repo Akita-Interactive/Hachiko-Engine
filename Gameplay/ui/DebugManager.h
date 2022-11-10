@@ -39,17 +39,15 @@ namespace Hachiko
 			SERIALIZE_FIELD(ComponentButton*, _teleport_add_pos);
 			SERIALIZE_FIELD(ComponentButton*, _add_health);
 			SERIALIZE_FIELD(ComponentButton*, _remove_health);
-			SERIALIZE_FIELD(ComponentButton*, _increase_max_hp);
-			SERIALIZE_FIELD(ComponentButton*, _decrease_max_hp);
 			SERIALIZE_FIELD(ComponentButton*, _increase_move_speed);
 			SERIALIZE_FIELD(ComponentButton*, _decrease_move_speed);
-			SERIALIZE_FIELD(ComponentButton*, _increase_attack_cd);
-			SERIALIZE_FIELD(ComponentButton*, _decrease_attack_cd);
 			SERIALIZE_FIELD(ComponentButton*, _increase_attack_power);
 			SERIALIZE_FIELD(ComponentButton*, _decrease_attack_power);
 			SERIALIZE_FIELD(ComponentButton*, _god_mode);
-			SERIALIZE_FIELD(ComponentButton*, _spawn_enemy);
-			SERIALIZE_FIELD(ComponentButton*, _unlock_skills);
+			SERIALIZE_FIELD(ComponentButton*, _weapon_claws);
+			SERIALIZE_FIELD(ComponentButton*, _weapon_sword);
+			SERIALIZE_FIELD(ComponentButton*, _weapon_hammer);
+			SERIALIZE_FIELD(ComponentButton*, _reload_ammo);
 			SERIALIZE_FIELD(ComponentButton*, _toggle_performance_output);
 			SERIALIZE_FIELD(ComponentButton*, _toggle_vsync);
 			SERIALIZE_FIELD(ComponentButton*, _toggle_wireframe);
@@ -59,6 +57,8 @@ namespace Hachiko
 			// TEXT
 			SERIALIZE_FIELD(ComponentText*, _text_fps);
 			SERIALIZE_FIELD(ComponentText*, _text_ms);
+			SERIALIZE_FIELD(ComponentText*, _text_atck);
+			SERIALIZE_FIELD(ComponentText*, _text_mvspd);
 
 			// DEFAULT POSITIONS
 			SERIALIZE_FIELD(GameObject*, _tp_pos1);
@@ -66,6 +66,7 @@ namespace Hachiko
 			SERIALIZE_FIELD(GameObject*, _tp_pos3);
 
 			SERIALIZE_FIELD(GameObject*, _performance_menu);
+			SERIALIZE_FIELD(GameObject*, _player_stats);
 
 			std::vector<math::float3> teleport_positions;
 			int teleport_iterator = -1;
@@ -74,6 +75,7 @@ namespace Hachiko
 			bool is_performance = false;
 			bool is_vsync = false;
 			bool is_navmesh = false;
+			bool show_player_stats = false;
 		};
 	} // namespace Scripting
 } // namespace Hachiko

@@ -41,6 +41,8 @@ namespace Hachiko
         void SetGlobalRotation(const Quat& new_rotation);
         void SetGlobalRotationEuler(const float3& new_rotation_euler);
 
+        float3 AsConsistentEulerAngles(const float3& euler_angles) const;
+        void FixEulerAngleSymbol(float& euler_angle) const;
         [[nodiscard]] bool IsDirty() const
         {
             return dirty;

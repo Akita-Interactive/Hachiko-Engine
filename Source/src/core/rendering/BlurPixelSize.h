@@ -28,4 +28,6 @@ namespace Hachiko::BlurPixelSize
     int ToIndex(Type size);
 
     Type FromIndex(int index);
+
+    int ToInt(Type size);
 }

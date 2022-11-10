@@ -1,0 +1,43 @@
+name: Centipede
+default_node: 0
+clips:
+  - clip_name: none
+    clips_id: 0
+    clips_loop: false
+  - clip_name: Idle
+    clips_id: 3115560420449961924
+    clips_loop: true
+  - clip_name: Run
+    clips_id: 621176544835310018
+    clips_loop: true
+  - clip_name: Die
+    clips_id: 11763322258457322543
+    clips_loop: false
+nodes:
+  - node_name: Idle
+    node_clip_name: Idle
+  - node_name: Run
+    node_clip_name: Run
+  - node_name: Die
+    node_clip_name: Die
+transitions:
+  - transition_source: Idle
+    transition_target: Run
+    transition_trigger: isRun
+    transition_blend: 300
+  - transition_source: Idle
+    transition_target: Die
+    transition_trigger: isDie
+    transition_blend: 300
+  - transition_source: Run
+    transition_target: Die
+    transition_trigger: isDie
+    transition_blend: 300
+  - transition_source: Die
+    transition_target: Idle
+    transition_trigger: isIdle
+    transition_blend: 300
+  - transition_source: Run
+    transition_target: Idle
+    transition_trigger: isIdle
+    transition_blend: 300

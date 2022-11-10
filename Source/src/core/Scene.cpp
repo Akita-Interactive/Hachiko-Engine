@@ -5,13 +5,11 @@
 #include "components/ComponentCamera.h"
 #include "components/ComponentMeshRenderer.h"
 #include "components/ComponentImage.h"
-#include "components/ComponentParticleSystem.h"
 
 #include "modules/ModuleEditor.h"
 #include "modules/ModuleCamera.h"
 #include "modules/ModuleEvent.h"
 #include "modules/ModuleNavigation.h"
-#include "modules/ModuleProgram.h"
 
 #include "resources/ResourceMaterial.h"
 #include "resources/ResourceAnimation.h"
@@ -19,7 +17,7 @@
 #include <debugdraw.h>
 #include <algorithm>
 
-#include "batching/BatchManager.h"
+#include "Batching/BatchManager.h"
 
 Hachiko::Scene::Scene() :
     name(UNNAMED_SCENE),
@@ -43,12 +41,16 @@ Hachiko::Scene::~Scene()
 
 void Hachiko::Scene::CleanScene()
 {
-    App->editor->SetSelectedGO(nullptr);
     delete root;
     delete skybox;
     delete quadtree;
     delete batch_manager;
     loaded = false;
+
+    // Important that this gets executed after all the GameObjects in the scene
+    // is deleted as this publishes an event, and unnecessary code may execute
+    // because of it:
+    App->editor->SetSelectedGO(nullptr);
 }
 
 Hachiko::ComponentCamera* Hachiko::Scene::GetMainCamera() const
@@ -109,17 +111,17 @@ void Hachiko::Scene::RebuildBatching()
     rebuild_batch = false;
 }
 
-Hachiko::GameObject* Hachiko::Scene::Raycast(const float3& origin, const float3& destination, float3* closest_hit, GameObject* parent_filter, bool active_only) const
+Hachiko::GameObject* Hachiko::Scene::RayCast(const float3& origin, const float3& destination, float3* closest_hit, GameObject* parent_filter, bool active_only) const
 {
     LineSegment line_seg(origin, destination);
-    return Raycast(line_seg, true, closest_hit, parent_filter, active_only);
+    return RayCast(line_seg, true, closest_hit, parent_filter, active_only);
 }
 
-Hachiko::GameObject* Hachiko::Scene::BoundingRaycast(const float3& origin, const float3& destination, GameObject* parent_filter, bool active_only) const
+Hachiko::GameObject* Hachiko::Scene::BoundingRayCast(const float3& origin, const float3& destination, GameObject* parent_filter, bool active_only) const
 {
     LineSegment line_seg(origin, destination);
     // Pass false to not use triangles
-    return Raycast(line_seg, false, nullptr, parent_filter, active_only);
+    return RayCast(line_seg, false, nullptr, parent_filter, active_only);
 }
 
 Hachiko::GameObject* Hachiko::Scene::Find(UID id) const
@@ -127,7 +129,7 @@ Hachiko::GameObject* Hachiko::Scene::Find(UID id) const
     return root->Find(id);
 }
 
-Hachiko::GameObject* Hachiko::Scene::Raycast(const LineSegment& segment, bool triangle_level, float3* closest_hit, GameObject* parent_filter, bool active_only) const
+Hachiko::GameObject* Hachiko::Scene::RayCast(const LineSegment& segment, bool triangle_level, float3* closest_hit, GameObject* parent_filter, bool active_only) const
 {
     GameObject* selected = nullptr;
     float closest_hit_distance = inf;
@@ -191,13 +193,13 @@ Hachiko::GameObject* Hachiko::Scene::Raycast(const LineSegment& segment, bool tr
                 continue;
             }
 
-            // Rough Raycast
+            // Rough ray cast:
             float hit_far;
             if (local_segment.Intersects(mesh_renderer->GetOBB(), hit_distance, hit_far))
             {
                 if (hit_distance < closest_hit_distance)
                 {
-                    // Bounding box raycast does not set intersection point
+                    // Bounding box ray cast does not set intersection point:
                     closest_hit_distance = hit_distance;
                     selected = game_object;
                 }
@@ -294,6 +296,25 @@ void Hachiko::Scene::Load(const YAML::Node& node, bool meshes_only)
     loaded = true;
 }
 
+void Hachiko::Scene::GetResources(const YAML::Node& node, std::map<Resource::Type, std::set<UID>>& resources)
+{
+    for (unsigned i = 0; i < static_cast<unsigned>(TextureCube::Side::COUNT); ++i)
+    {
+        std::string side_name = TextureCube::SideString(static_cast<TextureCube::Side>(i));
+        UID resource_id = node[SKYBOX_NODE][TextureCube::SideString(static_cast<TextureCube::Side>(i))].as<UID>();
+        if (resource_id)
+        {
+            resources[Resource::Type::TEXTURE].insert(resource_id);
+        }
+    }
+
+    const YAML::Node children_node = node[CHILD_NODE];
+    for (unsigned i = 0; i < children_node.size(); ++i)
+    {
+        GameObject::CollectResources(children_node[i], resources);
+    }
+}
+
 void Hachiko::Scene::AmbientLightConfig::LoadAmbientParams(const YAML::Node& node)
 {
     if (!node[AMBIENT_LIGHT].IsDefined())
@@ -314,13 +335,13 @@ void Hachiko::Scene::AmbientLightConfig::SaveAmbientParams(YAML::Node& node)
 
 void Hachiko::Scene::FogConfig::LoadFogParams(const YAML::Node& node)
 {
-    if (!node[FOG].IsDefined())
+    if (!node[FOG_PROPERTY].IsDefined())
     {
         return;
     }
     
-    YAML::Node fog_node = node[FOG];
-    enabled = fog_node[FOG].as<bool>();
+    YAML::Node fog_node = node[FOG_PROPERTY];
+    enabled = fog_node[FOG_PROPERTY].as<bool>();
     color = fog_node[FOG_COLOR].as<float3>();
     global_density = fog_node[FOG_GLOBAL_DENSITY].as<float>();
     height_falloff = fog_node[FOG_HEIGHT_FALLOFF].as<float>();
@@ -328,8 +349,8 @@ void Hachiko::Scene::FogConfig::LoadFogParams(const YAML::Node& node)
 
 void Hachiko::Scene::FogConfig::SaveFogParams(YAML::Node& node)
 {
-    YAML::Node fog_node = node[FOG];
-    fog_node[FOG] = enabled;
+    YAML::Node fog_node = node[FOG_PROPERTY];
+    fog_node[FOG_PROPERTY] = enabled;
     fog_node[FOG_COLOR] = color;
     fog_node[FOG_GLOBAL_DENSITY] = global_density;
     fog_node[FOG_HEIGHT_FALLOFF] = height_falloff;
@@ -337,22 +358,27 @@ void Hachiko::Scene::FogConfig::SaveFogParams(YAML::Node& node)
 
 void Hachiko::Scene::AmbientLightOptionsMenu()
 {
-    ImGui::PushItemWidth(100.0f);
-    ImGui::Text("Ambient");
-    ImGui::DragFloat("Ambient Intensity", &ambient_light.intensity, 0.001, 0.f, 5.f);
+    ImGui::TextWrapped("Ambient");
+    Widgets::DragFloatConfig cfg;
+    cfg.speed = 0.001f;
+    cfg.min = 0.0f;
+    cfg.max = 5.0f;
+    DragFloat("Ambient Intensity", ambient_light.intensity, &cfg);
     ImGuiUtils::CompactColorPicker("Ambient Color", ambient_light.color.ptr());
-    ImGui::PopItemWidth();
 }
 
 void Hachiko::Scene::FogOptionsMenu()
 {
-    ImGui::PushItemWidth(100.0f);
-    ImGui::Text("Fog");
-    ImGui::Checkbox("Use Fog", &fog.enabled);
+    ImGui::TextWrapped("Fog");
+    Widgets::Checkbox("Use Fog", &fog.enabled);
     ImGuiUtils::CompactOpaqueColorPicker("Fog Color", fog.color.ptr());
-    ImGui::DragFloat("Global Density", &fog.global_density, 0.001, 0.f, 1.f);
-    ImGui::DragFloat("Height Falloff", &fog.height_falloff, 0.001, 0.f, 1.f);
-    ImGui::PopItemWidth();
+    Widgets::DragFloatConfig cfg;
+    cfg.speed = 0.001f;
+    cfg.min = 0.0f;
+    cfg.max = 1.0f;
+    cfg.format = "%.3f";
+    DragFloat("Global Density", fog.global_density, &cfg);
+    DragFloat("Height Falloff", fog.height_falloff, &cfg);
 }
 
 void Hachiko::Scene::SkyboxOptionsMenu()

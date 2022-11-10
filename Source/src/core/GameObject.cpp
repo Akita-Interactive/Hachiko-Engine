@@ -261,6 +261,21 @@ Hachiko::Component* Hachiko::GameObject::CreateComponent(Component::Type type)
 
     return new_component;
 }
+void Hachiko::GameObject::SetActiveNonRecursive(bool set_active)
+{
+    if (!active && set_active)
+    {
+        Start();
+    }
+    else if (active && !set_active)
+    {
+        for (Component* component : components)
+        {
+            component->OnDisable();
+        }
+    }
+    active = set_active;
+}
 
 void Hachiko::GameObject::SetActive(bool set_active)
 {
@@ -272,6 +287,13 @@ void Hachiko::GameObject::SetActive(bool set_active)
     if (!active && set_active)
     {
         Start();
+    }
+    else if (active && !set_active)
+    {
+        for (Component* component : components)
+        {
+            component->OnDisable();
+        }
     }
     active = set_active;
 }
@@ -323,6 +345,8 @@ void Hachiko::GameObject::Stop()
 
 void Hachiko::GameObject::Update()
 {
+    if (!active || (parent != nullptr && !parent->active))   return;
+
     if (transform->HasChanged())
     {
         OnTransformUpdated();
@@ -528,8 +552,7 @@ void Hachiko::GameObject::Load(const YAML::Node& node, bool as_prefab, bool mesh
         }
         else if (type == Component::Type::SCRIPT)
         {
-            std::string script_name =
-                components_node[i][SCRIPT_NAME].as<std::string>();
+            std::string script_name = components_node[i][SCRIPT_NAME].as<std::string>();
             component = (Component*)App->scripting_system->InstantiateScript(script_name, this);
 
             if (component != nullptr)
@@ -575,6 +598,47 @@ void Hachiko::GameObject::Load(const YAML::Node& node, bool as_prefab, bool mesh
     }
 }
 
+void Hachiko::GameObject::CollectResources(const YAML::Node& node, std::map<Resource::Type, std::set<UID>>& resources)
+{
+    const YAML::Node components_node = node[COMPONENT_NODE];
+    for (unsigned i = 0; i < components_node.size(); ++i)
+    {
+        const auto type = static_cast<Component::Type>(components_node[i][COMPONENT_TYPE].as<int>());
+
+        switch (type)
+        {
+            case Component::Type::ANIMATION:
+                ComponentAnimation::CollectResources(components_node[i], resources);
+                break;
+            case Component::Type::MESH_RENDERER:
+                ComponentMeshRenderer::CollectResources(components_node[i], resources);
+                break;
+            case Component::Type::IMAGE:
+                ComponentImage::CollectResources(components_node[i], resources);
+                break;
+            case Component::Type::TEXT:
+                ComponentText::CollectResources(components_node[i], resources);
+                break;
+            case Component::Type::PARTICLE_SYSTEM:
+                ComponentParticleSystem::CollectResources(components_node[i], resources);
+                break;
+            case Component::Type::BILLBOARD:
+                ComponentBillboard::CollectResources(components_node[i], resources);
+                break;
+        }
+    }
+
+    const YAML::Node children_nodes = node[CHILD_NODE];
+    if (!children_nodes.IsDefined())
+    {
+        return;
+    }
+
+    for (unsigned i = 0; i < children_nodes.size(); ++i)
+    {
+        CollectResources(children_nodes[i], resources);
+    }
+}
 
 void Hachiko::GameObject::SavePrefabReferences(YAML::Node& node, std::vector<const GameObject*>& object_collection, std::vector<const Component*>& component_collection) const
 {
@@ -610,6 +674,40 @@ void Hachiko::GameObject::LoadPrefabReferences(std::vector<const GameObject*>& o
     for (unsigned i = 0; i < children.size(); ++i)
     {
         children[i]->LoadPrefabReferences(object_collection, component_collection);
+    }
+}
+
+void Hachiko::GameObject::SetTimeScaleMode(TimeScaleMode time_scale_mode) const
+{
+    for (Component* component : components)
+    {
+        component->SetTimeScaleMode(time_scale_mode);
+    }
+}
+
+void Hachiko::GameObject::SetOutlineType(
+    const Outline::Type outline_type, 
+    const bool recursive)
+{
+    ComponentMeshRenderer* mesh_renderer = 
+        GetComponent<ComponentMeshRenderer>();
+
+    if (mesh_renderer)
+    {
+        mesh_renderer->SetOutlineType(outline_type);
+    }
+
+    if (!recursive)
+    {
+        return;
+    }
+
+    std::vector<ComponentMeshRenderer*> mesh_renderers = 
+        GetComponentsInDescendants<ComponentMeshRenderer>();
+
+    for (ComponentMeshRenderer* current : mesh_renderers)
+    {
+        current->SetOutlineType(outline_type);
     }
 }
 
@@ -721,12 +819,12 @@ Hachiko::GameObject* Hachiko::GameObject::FindDescendantWithName(const std::stri
     return nullptr;
 }
 
-void Hachiko::GameObject::ChangeEmissiveColor(float4 color, float time, bool include_children)
+void Hachiko::GameObject::ChangeEmissiveColor(float4 color, bool include_children, bool override_flag)
 {
     std::vector<ComponentMeshRenderer*> v_mesh_renderer = GetComponents<ComponentMeshRenderer>();
     for (int i = 0; i < v_mesh_renderer.size(); ++i)
     {
-        v_mesh_renderer[i]->OverrideEmissive(color, time);
+        v_mesh_renderer[i]->OverrideEmissive(color, override_flag);
     }
 
     if (!include_children)
@@ -734,7 +832,46 @@ void Hachiko::GameObject::ChangeEmissiveColor(float4 color, float time, bool inc
 
     for (GameObject* child : children)
     {
-        child->ChangeEmissiveColor(color, time, include_children);
+        child->ChangeEmissiveColor(color, include_children, override_flag);
+    }
+}
+
+std::vector<float4> Hachiko::GameObject::GetEmissiveColors() const
+{
+    std::vector<ComponentMeshRenderer*> v_mesh_renderer = GetComponents<ComponentMeshRenderer>();
+
+    std::vector<float4> emissive_colors;
+    emissive_colors.reserve(v_mesh_renderer.size());
+
+    for (ComponentMeshRenderer* renderer : v_mesh_renderer)
+    {
+        emissive_colors.push_back(
+            renderer->GetOverrideEmissiveColor());
+    }
+
+    if (emissive_colors.empty())
+    {
+        emissive_colors.push_back(float4::zero);
+    }
+
+    return emissive_colors;
+}
+
+
+void Hachiko::GameObject::ResetEmissive(bool include_children)
+{
+    std::vector<ComponentMeshRenderer*> v_mesh_renderer = GetComponents<ComponentMeshRenderer>();
+    for (int i = 0; i < v_mesh_renderer.size(); ++i)
+    {
+        v_mesh_renderer[i]->LiftOverrideEmissive();
+    }
+
+    if (!include_children)
+        return;
+
+    for (GameObject* child : children)
+    {
+        child->ResetEmissive(include_children);
     }
 }
 
@@ -752,6 +889,23 @@ void Hachiko::GameObject::ChangeTintColor(float4 color, bool include_children)
     for (GameObject* child : children)
     {
         child->ChangeTintColor(color, include_children);
+    }
+}
+
+void Hachiko::GameObject::ChangeDissolveProgress(float progress, bool include_children) 
+{
+    std::vector<ComponentMeshRenderer*> v_mesh_renderer = GetComponents<ComponentMeshRenderer>();
+    for (ComponentMeshRenderer* component_mesh : v_mesh_renderer)
+    {
+        component_mesh->SetDissolveProgress(progress);
+    }
+
+    if (!include_children)
+        return;
+
+    for (GameObject* child : children)
+    {
+        child->ChangeDissolveProgress(progress, include_children);
     }
 }
 
@@ -781,4 +935,29 @@ const OBB* Hachiko::GameObject::GetFirstMeshRendererOBB() const
         return &comp_mesh_renderer[0]->GetOBB();
     }
     return nullptr;
+}
+
+void Hachiko::GameObject::SimplifyChildren()
+{
+    std::vector<GameObject*> aux_children = children;
+    for (int i = 0; i < aux_children.size(); ++i)
+    {
+        aux_children[i]->Simplify(this);
+
+        if (aux_children[i]->components.size() <= 1)
+            delete aux_children[i];
+    }
+}
+
+void Hachiko::GameObject::Simplify(GameObject* target) 
+{
+    while (children.size() > 0)
+    {
+        children[0]->Simplify(target);
+        
+        if (children[0]->components.size() <= 1)
+            delete children[0];
+        else
+            children[0]->SetNewParent(target);
+    }
 }

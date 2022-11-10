@@ -3,6 +3,8 @@
 #include "Component.h"
 #include "Globals.h"
 
+#include "resources/Resource.h"
+
 class FTLabel;
 
 namespace Hachiko
@@ -24,6 +26,7 @@ namespace Hachiko
 
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
+        static void CollectResources(const YAML::Node& node, std::map<Resource::Type, std::set<UID>>& resources);
 
         HACHIKO_API void SetText(const char* new_text);
         HACHIKO_API void SetFontSize(int new_size);
@@ -38,6 +41,7 @@ namespace Hachiko
         void RefreshLabel(ComponentTransform2D* transform);
         void BuildLabel(ComponentTransform2D* transform);
 
+        bool build_font = true;
         bool dirty = true;
 
         ResourceFont* font = nullptr;

@@ -33,11 +33,14 @@ void Hachiko::Scripting::RoomTeleporter::OnStart()
 	if (!_image_transform) return;
 
 	// Center image on the screen
-	_image_transform->SetAnchor(float2(0.5));
+	float2 anchor = float2(0.5);
+	_image_transform->SetAnchor(anchor);
 
 	// Make image occupy entire screen (Scale multiplies final size)
-	_image_transform->SetSize(float2(10.f));
-	_image_transform->SetScale(float2(25000.f));
+	float2 size = float2(10.f);
+	_image_transform->SetSize(size);
+	float2 scale = float2(25000.f);
+	_image_transform->SetScale(scale);
 
 	// Set initial color to black without alpha
 	_fade_image->SetColor(_clear_color);

@@ -193,19 +193,47 @@ void Hachiko::ModuleNavigation::DebugDraw()
 void Hachiko::ModuleNavigation::DrawOptionsGui()
 {
     ImGui::Separator();
-    ImGui::Text("Navmesh Editor");       
-    if (ImGui::Button("Rebuild Navmesh"))
+    ImGui::TextWrapped("Navmesh editor");       
+    if (ImGui::Button("Rebuild navmesh",ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
     {
         RebuildCurrentNavmesh(App->scene_manager->GetActiveScene());
     }
         
     if (scene_navmesh)
     {
-        if (ImGui::CollapsingHeader("Params"))
+        if (ImGui::CollapsingHeader("Parameters"))
         {
             scene_navmesh->DrawOptionsGui();
         }
     }
+}
+
+bool Hachiko::ModuleNavigation::ValidPath(const math::float3& start, const math::float3& end) const
+{
+    dtQueryFilter filter;
+    dtPolyRef start_reference;
+    dtPolyRef end_reference;
+    float start_nearestPt[3] = {FLT_MAX, FLT_MAX, FLT_MAX};
+    float end_nearestPt[3] = {FLT_MAX, FLT_MAX, FLT_MAX};
+
+    scene_navmesh->navigation_query->findNearestPoly(start.ptr(), float3(0.1f, 0.1f, 0.1f).ptr(), &filter, &start_reference, start_nearestPt);
+    if (start_nearestPt[0] >= FLT_MAX) return false;
+
+    scene_navmesh->navigation_query->findNearestPoly(end.ptr(), float3(0.1f, 0.1f, 0.1f).ptr(), &filter, &end_reference, end_nearestPt);
+    if (end_nearestPt[0] >= FLT_MAX) return false;
+
+    dtPolyRef path[20];
+    int pathCount = 0;
+
+    scene_navmesh->navigation_query->findPath(
+        start_reference, end_reference, 
+        start_nearestPt, end_nearestPt, 
+        &filter, 
+        path, 
+        &pathCount, 
+        20);
+
+    return path[pathCount - 1] == end_reference;
 }
 
 float3 Hachiko::ModuleNavigation::GetCorrectedPosition(const math::float3& position, const math::float3& extents) const

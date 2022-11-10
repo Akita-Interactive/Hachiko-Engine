@@ -14,8 +14,8 @@ bool Hachiko::ModuleWindow::Init()
     HE_LOG("INITIALIZING MODULE: WINDOW");
 
     GetMonitorResolution(max_width, max_height);
-    width = static_cast<int>(max_width * WINDOWED_RATIO);
-    height = static_cast<int>(max_height * WINDOWED_RATIO);
+    width = static_cast<int>(max_width * WINDOWED_RATIO * 0.95);
+    height = static_cast<int>(max_height * WINDOWED_RATIO * 0.95);
 
     editor_prefs = App->preferences->GetEditorPreference();
 
@@ -32,7 +32,7 @@ bool Hachiko::ModuleWindow::Init()
     }
     else
     {
-        Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_MAXIMIZED;
+        Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI;
 
         if (fullscreen)
         {
@@ -44,7 +44,13 @@ bool Hachiko::ModuleWindow::Init()
         }
 
         App->renderer->SetOpenGLAttributes();
+
+#ifdef PLAY_BUILD
+        window = SDL_CreateWindow("Erimos", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
+#else
         window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
+#endif // PLAY_BUILD
+
 
         if (window == nullptr)
         {
@@ -55,6 +61,14 @@ bool Hachiko::ModuleWindow::Init()
         {
             // Get window surface, it must be updated on resize
             screen_surface = SDL_GetWindowSurface(window);
+
+            // So that the engine, while loading, is black instead of that
+            // f***ing eye killing white:
+            SDL_FillRect(
+                screen_surface, 
+                NULL, 
+                SDL_MapRGB(screen_surface->format, 0, 0, 0));
+            SDL_UpdateWindowSurface(window);
         }
         SDL_DisplayMode mode;
         SDL_GetDisplayMode(0, 0, &mode);
@@ -130,25 +144,24 @@ void Hachiko::ModuleWindow::SetVsync(bool vsync_enabled)
 
 void Hachiko::ModuleWindow::OptionsMenu()
 {
-    if (ImGui::Checkbox("Fullscreen", &fullscreen))
+    if (Widgets::Checkbox("Fullscreen", &fullscreen))
     {
         App->window->SetFullScreen(fullscreen);
     }
 
-    ImGui::SameLine();
-    if (ImGui::Checkbox("Vsync", &vsync))
+    if (Widgets::Checkbox("Vsync", &vsync))
     {
         SetVsync(vsync);
     }
 
     if (!fullscreen)
     {
-        if (ImGui::Checkbox("Resizable", &resizable))
+        if (Widgets::Checkbox("Resizable", &resizable))
         {
             SetResizable(resizable);
         }
     }
-    ImGui::Text("Monitor Refresh Rate: %d", refresh_rate);
+    Widgets::Label("Monitor refresh rate", std::to_string(refresh_rate));
 }
 
 void Hachiko::ModuleWindow::GetMonitorResolution(int& width, int& height)

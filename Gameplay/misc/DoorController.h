@@ -8,14 +8,17 @@ namespace Hachiko
 	class ComponentTransform;
 	namespace Scripting
 	{
+		class AudioManager;
+
 		class DoorController : public Script
 		{
 			SERIALIZATION_METHODS(false)
 
-				enum State
+			enum State
 			{
 				CLOSED = 0,
-				OPEN = 1
+				OPENNING = 1,
+				OPEN = 2
 			};
 
 		// Methods
@@ -24,6 +27,7 @@ namespace Hachiko
 			~DoorController() override = default;
 
 			void OnAwake() override;
+			void OnStart() override;
 			void OnUpdate() override;
 
 			void Open();
@@ -42,6 +46,8 @@ namespace Hachiko
 		private:
 			State _prev_state = State::OPEN;
 			State _state = State::OPEN;
+
+			float _elapsed_time = 0.0f;
 		};
 	}
 	

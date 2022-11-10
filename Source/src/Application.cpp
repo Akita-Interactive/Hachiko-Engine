@@ -13,14 +13,13 @@
 #include "modules/ModuleDebugDraw.h"
 #include "modules/ModuleEvent.h"
 #include "modules/ModuleScriptingSystem.h"
-#include "Modules/ModuleResources.h"
+#include "modules/ModuleResources.h"
 #include "modules/ModuleUserInterface.h"
 #include "modules/ModuleDebugMode.h"
 #include "modules/ModuleAudio.h"
 #include "modules/ModuleNavigation.h"
 
 #include "core/preferences/PreferenceManager.h"
-
 
 Hachiko::Application::Application()
 {
@@ -50,6 +49,7 @@ Hachiko::Application::~Application()
     {
         delete *it;
     }
+
     delete preferences;
 }
 
@@ -61,22 +61,25 @@ bool Hachiko::Application::Init()
 
     file_system.Init();
 
+    // Execute Init:
     for (auto it = modules.begin(); it != modules.end() && ret; ++it)
     {
         ret = (*it)->Init();
     }
 
+    delta = 0;
+    EngineTimer::Start();
+
+    // GameTimer is triggered when the scene is loaded on PLAY_BUILD or when
+    // Play button on engine was hit. Therefore it won't be started here.
+
+    // Execute Start:
     for (auto it = modules.begin(); it != modules.end() && ret; ++it)
     {
         ret = (*it)->Start();
     }
 
-    delta = 0;
-    EngineTimer::Start();
-    #ifdef PLAY_BUILD 
-        GameTimer::Start();
-    #endif
-    return ret;
+    return ReturnStatusWithQuit(ret);
 }
 
 UpdateStatus Hachiko::Application::Update()
@@ -86,23 +89,39 @@ UpdateStatus Hachiko::Application::Update()
     GameTimer::Update();
 
     auto ret = UpdateStatus::UPDATE_CONTINUE;
-
-    for (auto it = modules.begin(); it != modules.end() && ret == UpdateStatus::UPDATE_CONTINUE; ++it)
+    
+    if (!loading)
     {
-        ret = (*it)->PreUpdate(static_cast<float>(delta));
+        for (auto it = modules.begin(); it != modules.end() && ret == UpdateStatus::UPDATE_CONTINUE; ++it)
+        {
+            ret = (*it)->PreUpdate(static_cast<float>(delta));
+        }
+
+        for (auto it = modules.begin(); it != modules.end() && ret == UpdateStatus::UPDATE_CONTINUE; ++it)
+        {
+            ret = (*it)->Update(static_cast<float>(delta));
+        }
+
+        for (auto it = modules.begin(); it != modules.end() && ret == UpdateStatus::UPDATE_CONTINUE; ++it)
+        {
+            ret = (*it)->PostUpdate(static_cast<float>(delta));
+        }
     }
 
-    for (auto it = modules.begin(); it != modules.end() && ret == UpdateStatus::UPDATE_CONTINUE; ++it)
+    else
     {
-        ret = (*it)->Update(static_cast<float>(delta));
+        scene_manager->CheckSceneLoading();
+
+        renderer->DrawLoadingScreen(static_cast<float>(delta));
+        renderer->PostUpdate(static_cast<float>(delta));
     }
 
-    for (auto it = modules.begin(); it != modules.end() && ret == UpdateStatus::UPDATE_CONTINUE; ++it)
-    {
-        ret = (*it)->PostUpdate(static_cast<float>(delta));
-    }
+    return ReturnStatusWithQuit(ret);
+}
 
-    return ret;
+void Hachiko::Application::MarkAsQuitting(const bool value)
+{
+    should_quit = value;
 }
 
 bool Hachiko::Application::CleanUp()
@@ -115,10 +134,21 @@ bool Hachiko::Application::CleanUp()
     }
 
     preferences->SaveConfigurationFile();
+
     return ret;
 }
 
 void Hachiko::Application::RequestBrowser(const char* url)
 {
     ShellExecuteA(nullptr, "open", url, nullptr, nullptr, SW_SHOWNORMAL);
+}
+
+UpdateStatus Hachiko::Application::ReturnStatusWithQuit(UpdateStatus status) const
+{
+    return should_quit ? UpdateStatus::UPDATE_STOP : status;
+}
+
+bool Hachiko::Application::ReturnStatusWithQuit(bool status) const
+{
+    return !should_quit && status;
 }

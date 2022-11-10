@@ -1,0 +1,452 @@
+prefab_name: Level (Stalactites)
+name: Level (Stalactites)
+enabled: true
+component:
+  - !<transform>
+    type: 1
+    enabled: true
+    position: [0, 0, 0]
+    rotation: [-0, 0, -0]
+    scale: [1, 1, 1]
+  - !<script>
+    type: 15
+    enabled: true
+    class_name: StalagmiteManager
+    "'_falling_cooldown@float'": 1
+child:
+  - name: Stalagmite
+    enabled: false
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-8.373, 2.213, 4.24]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+      - !<script>
+        type: 15
+        enabled: true
+        class_name: Stalagmite
+        "'_explosion_effect@GameObject*'": 6
+        "'GEO@GameObject*'": 3
+        "'_obstacle@GameObject*'": 8
+    child:
+      - name: GEO
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.1, 0, 1.3]
+            rotation: [-90, 0, 0]
+            scale: [50, 50, 50]
+          - !<animation>
+            type: 14
+            enabled: true
+            state_machine: 0
+        child:
+          - name: LaserBlock
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.002, 0.057, 0]
+                rotation: [90, 0, -0]
+                scale: [0.06, 0.06, 0.06]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 1654487118907036717
+                navigable: false
+                visible: false
+                casting_shadow: false
+                material_id: 6750369022920963075
+                tint_color: [1, 1, 1, 1]
+          - name: Stalactite_GEO
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.002, 0.026, -0.08]
+                rotation: [180, 0, -0]
+                scale: [0.005, 0.005, 0.004]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 2634121074263680820
+                navigable: false
+                visible: true
+                casting_shadow: true
+                material_id: 3759531071522823328
+                tint_color: [1, 1, 1, 1]
+      - name: ExplosionIndicatorHelper
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, -1.3, 0]
+            rotation: [-0, 7.901, -0]
+            scale: [6, 0.1, 6]
+        child:
+          - name: Cylinder001
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-90, 0, 0]
+                scale: [1, 1, 1]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 10210867973034302559
+                navigable: false
+                visible: true
+                casting_shadow: true
+                material_id: 6462450398853139216
+                tint_color: [1, 1, 1, 1]
+      - name: StObstacle
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.2085, -1.595, -0.2]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+          - !<obstacle>
+            type: 18
+            enabled: true
+            obstacle_type: 0
+            obstacle_size: [2, 3, 1]
+  - name: Stalagmite
+    enabled: false
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-8.373, 2.213, 4.24]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+      - !<script>
+        type: 15
+        enabled: true
+        class_name: Stalagmite
+        "'_explosion_effect@GameObject*'": 13
+        "'GEO@GameObject*'": 10
+        "'_obstacle@GameObject*'": 15
+    child:
+      - name: GEO
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.1, 0, 1.3]
+            rotation: [-90, 0, 0]
+            scale: [50, 50, 50]
+          - !<animation>
+            type: 14
+            enabled: true
+            state_machine: 0
+        child:
+          - name: LaserBlock
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.002, 0.057, 0]
+                rotation: [90, 0, -0]
+                scale: [0.06, 0.06, 0.06]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 1654487118907036717
+                navigable: false
+                visible: false
+                casting_shadow: false
+                material_id: 6750369022920963075
+                tint_color: [1, 1, 1, 1]
+          - name: Stalactite_GEO
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.002, 0.026, -0.08]
+                rotation: [-180, 0, -0]
+                scale: [0.005, 0.005, 0.004]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 2634121074263680820
+                navigable: false
+                visible: true
+                casting_shadow: true
+                material_id: 3759531071522823328
+                tint_color: [1, 1, 1, 1]
+      - name: ExplosionIndicatorHelper
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, -1.3, 0]
+            rotation: [-0, 7.901, -0]
+            scale: [6, 0.1, 6]
+        child:
+          - name: Cylinder001
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-90, 0, 0]
+                scale: [1, 1, 1]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 10210867973034302559
+                navigable: false
+                visible: true
+                casting_shadow: true
+                material_id: 6462450398853139216
+                tint_color: [1, 1, 1, 1]
+      - name: StObstacle
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.2085, -1.595, -0.2]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+          - !<obstacle>
+            type: 18
+            enabled: true
+            obstacle_type: 0
+            obstacle_size: [2, 3, 1]
+  - name: Stalagmite
+    enabled: false
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-8.373, 2.213, 4.24]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+      - !<script>
+        type: 15
+        enabled: true
+        class_name: Stalagmite
+        "'_explosion_effect@GameObject*'": 20
+        "'GEO@GameObject*'": 17
+        "'_obstacle@GameObject*'": 22
+    child:
+      - name: GEO
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.1, 0, 1.3]
+            rotation: [-90, 0, 0]
+            scale: [50, 50, 50]
+          - !<animation>
+            type: 14
+            enabled: true
+            state_machine: 0
+        child:
+          - name: LaserBlock
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.002, 0.057, 0]
+                rotation: [90, 0, -0]
+                scale: [0.06, 0.06, 0.06]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 1654487118907036717
+                navigable: false
+                visible: false
+                casting_shadow: false
+                material_id: 6750369022920963075
+                tint_color: [1, 1, 1, 1]
+          - name: Stalactite_GEO
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.002, 0.026, -0.08]
+                rotation: [-180, 0, -0]
+                scale: [0.005, 0.005, 0.004]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 2634121074263680820
+                navigable: false
+                visible: true
+                casting_shadow: true
+                material_id: 3759531071522823328
+                tint_color: [1, 1, 1, 1]
+      - name: ExplosionIndicatorHelper
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, -1.3, 0]
+            rotation: [-0, 7.901, -0]
+            scale: [6, 0.1, 6]
+        child:
+          - name: Cylinder001
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-90, 0, 0]
+                scale: [1, 1, 1]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 10210867973034302559
+                navigable: false
+                visible: true
+                casting_shadow: true
+                material_id: 6462450398853139216
+                tint_color: [1, 1, 1, 1]
+      - name: StObstacle
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.2085, -1.595, -0.2]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+          - !<obstacle>
+            type: 18
+            enabled: true
+            obstacle_type: 0
+            obstacle_size: [2, 3, 1]
+  - name: Stalagmite
+    enabled: false
+    component:
+      - !<transform>
+        type: 1
+        enabled: true
+        position: [-8.373, 2.213, 4.24]
+        rotation: [-0, 0, -0]
+        scale: [1, 1, 1]
+      - !<script>
+        type: 15
+        enabled: true
+        class_name: Stalagmite
+        "'_explosion_effect@GameObject*'": 27
+        "'GEO@GameObject*'": 24
+        "'_obstacle@GameObject*'": 29
+    child:
+      - name: GEO
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.1, 0, 1.3]
+            rotation: [-90, 0, 0]
+            scale: [50, 50, 50]
+          - !<animation>
+            type: 14
+            enabled: true
+            state_machine: 0
+        child:
+          - name: LaserBlock
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.002, 0.057, 0]
+                rotation: [90, 0, -0]
+                scale: [0.06, 0.06, 0.06]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 1654487118907036717
+                navigable: false
+                visible: false
+                casting_shadow: false
+                material_id: 6750369022920963075
+                tint_color: [1, 1, 1, 1]
+          - name: Stalactite_GEO
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [-0.002, 0.026, -0.08]
+                rotation: [-180, 0, -0]
+                scale: [0.005, 0.005, 0.004]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 2634121074263680820
+                navigable: false
+                visible: true
+                casting_shadow: true
+                material_id: 3759531071522823328
+                tint_color: [1, 1, 1, 1]
+      - name: ExplosionIndicatorHelper
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0, -1.3, 0]
+            rotation: [-0, 7.901, -0]
+            scale: [6, 0.1, 6]
+        child:
+          - name: Cylinder001
+            enabled: false
+            component:
+              - !<transform>
+                type: 1
+                enabled: true
+                position: [0, 0, 0]
+                rotation: [-90, 0, 0]
+                scale: [1, 1, 1]
+              - !<mesh_renderer>
+                type: 2
+                enabled: true
+                mesh_id: 10210867973034302559
+                navigable: false
+                visible: true
+                casting_shadow: true
+                material_id: 6462450398853139216
+                tint_color: [1, 1, 1, 1]
+      - name: StObstacle
+        enabled: false
+        component:
+          - !<transform>
+            type: 1
+            enabled: true
+            position: [0.2085, -1.595, -0.2]
+            rotation: [-0, 0, -0]
+            scale: [1, 1, 1]
+          - !<obstacle>
+            type: 18
+            enabled: true
+            obstacle_type: 0
+            obstacle_size: [2, 3, 1]

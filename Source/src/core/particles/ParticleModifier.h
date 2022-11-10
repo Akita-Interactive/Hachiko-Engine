@@ -14,7 +14,7 @@ namespace Hachiko
         ParticleModifier(std::string name, bool active);
         virtual ~ParticleModifier() = default;
 
-        virtual void Update(std::vector<Particle>&)
+        virtual void Update(std::vector<Particle>&, float delta_time)
         {
         }
 
