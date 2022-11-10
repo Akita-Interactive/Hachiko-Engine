@@ -1162,10 +1162,11 @@ void Hachiko::Scripting::EnemyController::StartParasiteState()
 	HE_LOG("PARASITE");
 #endif
 
-	bool drop_parasyte =  (rand() % 100) < _drop_rate;
-	if(!drop_parasyte)
+	const bool drop_parasite = RandomUtil::RandomIntBetween(0, 100) < _drop_rate;
+
+	if (!drop_parasite)
 	{
-		// This makes parasyte state end instantly
+		// This makes parasite state end instantly
 		_parasite_dissolving_time_progress = _parasite_dissolve_time;
 		return;
 	}
