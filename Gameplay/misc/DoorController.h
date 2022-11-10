@@ -27,6 +27,7 @@ namespace Hachiko
 			~DoorController() override = default;
 
 			void OnAwake() override;
+			void OnStart() override;
 			void OnUpdate() override;
 
 			void Open();

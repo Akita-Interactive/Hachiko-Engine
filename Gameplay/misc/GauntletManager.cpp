@@ -94,16 +94,8 @@ void Hachiko::Scripting::GauntletManager::OnUpdate()
 	}
 	else
 	{
-		if (_closing_door && _elapsed_time < 2.0f)
-		{
-			_elapsed_time += Time::DeltaTimeScaled();
-			_closing_door->ChangeDissolveProgress(_elapsed_time, true);
-		}
-		else
-		{
-			ControllCameraPos();
-			CheckRoundStatus();
-		}
+		ControllCameraPos();
+		CheckRoundStatus();
 	}
 
 }
