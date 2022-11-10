@@ -195,6 +195,7 @@ namespace Hachiko
             EnemyState _force_state = EnemyState::INVALID;
 
             Stats* _combat_stats;
+            SERIALIZE_FIELD(int, _drop_rate);
             SERIALIZE_FIELD(int, _state_num);
             SERIALIZE_FIELD(bool, _worm);
             SERIALIZE_FIELD(int, _aggro_range);
