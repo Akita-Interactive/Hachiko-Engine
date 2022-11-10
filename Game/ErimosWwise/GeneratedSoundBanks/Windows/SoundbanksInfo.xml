@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="626769978" Language="SFX" Hash="966131789">
+		<SoundBank Id="626769978" Language="SFX" Hash="1086212822">
 			<ObjectPath>\SoundBanks\Default Work Unit\BackgroundMusic</ObjectPath>
 			<ShortName>BackgroundMusic</ShortName>
 			<Path>BackgroundMusic.bnk</Path>
@@ -26,6 +26,10 @@
 							<ShortName>ER_Boss_Step 1B.wav</ShortName>
 							<Path>SFX\ER_Boss_Step 1B_D79FB2B7.wem</Path>
 						</File>
+						<File Id="73355444" Language="SFX">
+							<ShortName>ER_lv 1_EXP_v3_108bpm.wav</ShortName>
+							<Path>SFX\ER_lv 1_EXP_v3_108bpm_D79FB2B7.wem</Path>
+						</File>
 						<File Id="101484339" Language="SFX">
 							<ShortName>Boss_Stage3_155bpm.wav</ShortName>
 							<Path>SFX\Boss_Stage3_155bpm_D79FB2B7.wem</Path>
@@ -37,18 +41,6 @@
 						<File Id="126846833" Language="SFX">
 							<ShortName>Exp_b_108bpm.wav</ShortName>
 							<Path>SFX\Exp_b_108bpm_D79FB2B7.wem</Path>
-						</File>
-						<File Id="181335723" Language="SFX">
-							<ShortName>Com_b_108bpm.wav</ShortName>
-							<Path>SFX\Com_b_108bpm_D79FB2B7.wem</Path>
-						</File>
-						<File Id="220998542" Language="SFX">
-							<ShortName>Com_e_108bpm.wav</ShortName>
-							<Path>SFX\Com_e_108bpm_D79FB2B7.wem</Path>
-						</File>
-						<File Id="283120831" Language="SFX">
-							<ShortName>Com_d_108bpm.wav</ShortName>
-							<Path>SFX\Com_d_108bpm_D79FB2B7.wem</Path>
 						</File>
 						<File Id="341546302" Language="SFX">
 							<ShortName>Exp_a_108bpm.wav</ShortName>
@@ -62,10 +54,6 @@
 							<ShortName>Boss_Stage2_155bpm.wav</ShortName>
 							<Path>SFX\Boss_Stage2_155bpm_D79FB2B7.wem</Path>
 						</File>
-						<File Id="503682454" Language="SFX">
-							<ShortName>Com_a_108bpm.wav</ShortName>
-							<Path>SFX\Com_a_108bpm_D79FB2B7.wem</Path>
-						</File>
 						<File Id="504217965" Language="SFX">
 							<ShortName>ER_Lv1_combate_108bpm_v2.wav</ShortName>
 							<Path>SFX\ER_Lv1_combate_108bpm_v2_D79FB2B7.wem</Path>
@@ -74,10 +62,6 @@
 							<ShortName>Erimos_lv 1_exploration_108bpm.wav</ShortName>
 							<Path>SFX\Erimos_lv 1_exploration_108bpm_D79FB2B7.wem</Path>
 						</File>
-						<File Id="715960795" Language="SFX">
-							<ShortName>Com_c_108bpm.wav</ShortName>
-							<Path>SFX\Com_c_108bpm_D79FB2B7.wem</Path>
-						</File>
 						<File Id="718840818" Language="SFX">
 							<ShortName>Exp_d_108bpm.wav</ShortName>
 							<Path>SFX\Exp_d_108bpm_D79FB2B7.wem</Path>
@@ -85,14 +69,6 @@
 						<File Id="742142085" Language="SFX">
 							<ShortName>ER_Boss_Step 1.wav</ShortName>
 							<Path>SFX\ER_Boss_Step 1_D79FB2B7.wem</Path>
-						</File>
-						<File Id="745144069" Language="SFX">
-							<ShortName>ER_Victory_novoice_v2_155bpm.wav</ShortName>
-							<Path>SFX\ER_Victory_novoice_v2_155bpm_D79FB2B7.wem</Path>
-						</File>
-						<File Id="759444810" Language="SFX">
-							<ShortName>Com_108bpm_full.wav</ShortName>
-							<Path>SFX\Com_108bpm_full_D79FB2B7.wem</Path>
 						</File>
 						<File Id="808930464" Language="SFX">
 							<ShortName>ER_Lv2_explore_133bpm.wav</ShortName>
@@ -109,6 +85,10 @@
 						<File Id="988655692" Language="SFX">
 							<ShortName>Exp_e_108bpm.wav</ShortName>
 							<Path>SFX\Exp_e_108bpm_D79FB2B7.wem</Path>
+						</File>
+						<File Id="1038887575" Language="SFX">
+							<ShortName>ER_Victory_2_155bpm.wav</ShortName>
+							<Path>SFX\ER_Victory_2_155bpm_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 					<SwitchContainers>
@@ -154,13 +134,7 @@
 											<Children>
 												<SwitchContainer SwitchValue="{B9D34D9B-4164-4F24-B1C3-D91B169DA95F}">
 													<Media>
-														<File Id="181335723"/>
-														<File Id="220998542"/>
-														<File Id="283120831"/>
-														<File Id="503682454"/>
 														<File Id="504217965"/>
-														<File Id="715960795"/>
-														<File Id="759444810"/>
 													</Media>
 												</SwitchContainer>
 											</Children>
@@ -177,6 +151,7 @@
 											<Children>
 												<SwitchContainer SwitchValue="{B92814EE-2B24-4C85-AE4E-9753BE866E50}">
 													<Media>
+														<File Id="73355444"/>
 														<File Id="126846833"/>
 														<File Id="341546302"/>
 														<File Id="628761569"/>
@@ -270,7 +245,7 @@
 											<Children>
 												<SwitchContainer SwitchValue="{7441A8D7-1473-42C8-84AC-E7692335FD53}">
 													<Media>
-														<File Id="745144069"/>
+														<File Id="1038887575"/>
 													</Media>
 												</SwitchContainer>
 											</Children>
@@ -394,7 +369,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="877642339" Language="SFX" Hash="2200963487">
+		<SoundBank Id="877642339" Language="SFX" Hash="2604044624">
 			<ObjectPath>\SoundBanks\Default Work Unit\Cinematics</ObjectPath>
 			<ShortName>Cinematics</ShortName>
 			<Path>Cinematics.bnk</Path>
@@ -420,9 +395,9 @@
 				</Event>
 				<Event Id="1322598858" Name="Play_OutroCinematic" ObjectPath="\Events\Default Work Unit\Play_OutroCinematic">
 					<IncludedMemoryFiles>
-						<File Id="388462357" Language="SFX">
-							<ShortName>ES_Nonetheless (Sting Version) - Rockin' For Decades.wav</ShortName>
-							<Path>SFX\ES_Nonetheless (Sting Version) - Rockin' For Decades_10C4C929.wem</Path>
+						<File Id="528118981" Language="SFX">
+							<ShortName>ER_animatica final_155bpm.wav</ShortName>
+							<Path>SFX\ER_animatica final_155bpm_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -566,7 +541,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="2385628198" Language="SFX" Hash="1843680655">
+		<SoundBank Id="2385628198" Language="SFX" Hash="3108458487">
 			<ObjectPath>\SoundBanks\Default Work Unit\Footsteps</ObjectPath>
 			<ShortName>Footsteps</ShortName>
 			<Path>Footsteps.bnk</Path>
@@ -646,7 +621,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3768541028" Language="SFX" Hash="3551626619">
+		<SoundBank Id="3768541028" Language="SFX" Hash="2782891940">
 			<ObjectPath>\SoundBanks\Default Work Unit\Attacks</ObjectPath>
 			<ShortName>Attacks</ShortName>
 			<Path>Attacks.bnk</Path>
@@ -901,7 +876,7 @@
 						</File>
 						<File Id="1032651945" Language="SFX">
 							<ShortName>ES_PREL Shimmer Swell 18 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_PREL Shimmer Swell 18 - SFX Producer_7795CB90.wem</Path>
+							<Path>SFX\ES_PREL Shimmer Swell 18 - SFX Producer_0B758C29.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -1004,7 +979,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3909959462" Language="SFX" Hash="214774194">
+		<SoundBank Id="3909959462" Language="SFX" Hash="3028615030">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enviroment</ObjectPath>
 			<ShortName>Enviroment</ShortName>
 			<Path>Enviroment.bnk</Path>
@@ -1076,7 +1051,7 @@
 						</File>
 						<File Id="478553311" Language="SFX">
 							<ShortName>ES_Magic Spell Fire 2 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Magic Spell Fire 2 - SFX Producer_0C6AFD41.wem</Path>
+							<Path>SFX\ES_Magic Spell Fire 2 - SFX Producer_4BF7B05F.wem</Path>
 						</File>
 						<File Id="785410759" Language="SFX">
 							<ShortName>ES_Magic Spell Whoosh 3 - SFX Producer.wav</ShortName>
@@ -1084,7 +1059,7 @@
 						</File>
 						<File Id="924759275" Language="SFX">
 							<ShortName>ES_Magic Spell Fire 1 - SFX Producer.wav</ShortName>
-							<Path>SFX\ES_Magic Spell Fire 1 - SFX Producer_94D12824.wem</Path>
+							<Path>SFX\ES_Magic Spell Fire 1 - SFX Producer_1921F7F8.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

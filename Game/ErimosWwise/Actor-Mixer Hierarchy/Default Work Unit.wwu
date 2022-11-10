@@ -58,7 +58,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-4</Value>
+												<Value>-2</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -273,7 +273,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>1</Value>
+												<Value>-1</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -504,7 +504,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-3</Value>
+												<Value>-1</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -911,7 +911,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-7</Value>
+										<Value>-9</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -3573,7 +3573,7 @@
 								</Sound>
 								<BlendContainer Name="HideAndSand" ID="{A2905973-8F9A-4F8F-9504-D52A69E8E83C}" ShortID="698102155">
 									<PropertyList>
-										<Property Name="3DSpatialization" Type="int16" Value="2"/>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
 										<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 										<Property Name="Highpass" Type="int16">
 											<ValueList>
@@ -3595,7 +3595,7 @@
 										<Property Name="SpeakerPanning3DSpatializationMix" Type="int32" Value="0"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-2</Value>
+												<Value>-7</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -4812,6 +4812,11 @@
 													</Modifier>
 												</ModifierInfo>
 											</ModifierList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-2</Value>
+											</ValueList>
 										</Property>
 									</PropertyList>
 									<ReferenceList>
@@ -6275,6 +6280,13 @@
 									<ObjectLists/>
 								</RandomSequenceContainer>
 								<BlendContainer Name="Claw" ID="{DD9F3642-57B9-45B0-9A50-42E0CAA61B57}" ShortID="411278929">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
@@ -6285,13 +6297,6 @@
 									</ReferenceList>
 									<ChildrenList>
 										<RandomSequenceContainer Name="Full" ID="{68383C84-AB14-490E-8588-210150A30D47}" ShortID="499562671">
-											<PropertyList>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>-3</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
@@ -7456,7 +7461,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>1</Value>
+												<Value>5</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -7519,7 +7524,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>8</Value>
+												<Value>4</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -7558,7 +7563,7 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="ES_Nonetheless (Sting Version) - Rockin' For Decades" ID="{83E83E2C-22FF-4663-B21D-100D6492B050}" ShortID="994018169">
+								<Sound Name="ER_animatica final_155bpm" ID="{D266D3E8-C182-4461-B401-DE51E513F050}" ShortID="273920389">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26705DC5-E31B-46D5-83DF-C11FE3FB6B93}"/>
@@ -7568,17 +7573,17 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="ES_Nonetheless (Sting Version) - Rockin' For Decades" ID="{45FF9920-DD85-48F5-B668-AF70279F8476}">
+										<AudioFileSource Name="ER_animatica final_155bpm" ID="{A99EAE2D-FA89-4E78-B1B0-29236A1965C8}">
 											<Language>SFX</Language>
-											<AudioFile>ES_Nonetheless (Sting Version) - Rockin' For Decades.wav</AudioFile>
+											<AudioFile>ER_animatica final_155bpm.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="388462357"/>
+												<MediaID ID="528118981"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="ES_Nonetheless (Sting Version) - Rockin' For Decades" ID="{45FF9920-DD85-48F5-B668-AF70279F8476}" Platform="Linked"/>
+										<ActiveSource Name="ER_animatica final_155bpm" ID="{A99EAE2D-FA89-4E78-B1B0-29236A1965C8}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
