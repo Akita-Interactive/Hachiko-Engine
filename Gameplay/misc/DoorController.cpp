@@ -15,7 +15,7 @@ void Hachiko::Scripting::DoorController::OnAwake()
 	_open_door_mesh = _door_prefab->children[1];
 }
 
-void Hachiko::Scripting::DoorController::OnAwake()
+void Hachiko::Scripting::DoorController::OnStart()
 {
 	Close();
 }
