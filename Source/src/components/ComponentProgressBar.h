@@ -65,6 +65,24 @@ namespace Hachiko
             fill_direction = new_direction;
         }
 
+        [[nodiscard]] GameObject* GetBackground() const
+        {
+            if (game_object->children.size() < 2)
+            {
+                return nullptr;
+            }
+            return game_object->children[0];
+        }
+
+        [[nodiscard]] GameObject* GetFill() const
+        {
+            if (game_object->children.size() < 2)
+            {
+                return nullptr;
+            }
+            return game_object->children[1];
+        }
+
         void Save(YAML::Node& node) const override;
         void Load(const YAML::Node& node) override;
 

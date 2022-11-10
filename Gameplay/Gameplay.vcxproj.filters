@@ -543,6 +543,7 @@
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="effects\BloomAnimator.h" />
     <ClInclude Include="misc\OrbController.h" />
+    <ClInclude Include="entities\TimeScaleModeManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scriptingUtil\gameplaypch.cpp">
@@ -836,6 +837,7 @@
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="effects\BloomAnimator.cpp" />
     <ClCompile Include="misc\OrbController.cpp" />
+    <ClCompile Include="entities\TimeScaleModeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\vendors\MathGeoLib\Math\float2.inl">

@@ -13,8 +13,11 @@ void Hachiko::Scripting::Centipedes::OnAwake()
 	_player = Scenes::GetPlayer();
 	player_transform = _player->GetComponent<ComponentTransform>();
 	agent = game_object->GetComponent<ComponentAgent>();
+	agent->SetTimeScaleMode(TimeScaleMode::SCALED);
 	animation = game_object->GetComponent<ComponentAnimation>();
+	animation->SetTimeScaleMode(TimeScaleMode::SCALED);
 	_splash_effect_billboard = _damage_effect->GetComponent<ComponentBillboard>();
+	_splash_effect_billboard->SetTimeScaleMode(TimeScaleMode::SCALED);
 	audio_source = game_object->GetComponent<ComponentAudioSource>();
 
 	animation->StartAnimating();

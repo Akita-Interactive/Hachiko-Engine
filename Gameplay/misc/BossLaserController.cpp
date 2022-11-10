@@ -43,7 +43,7 @@ void Hachiko::Scripting::BossLaserController::OnUpdate()
 		CheckPlayerCollision();
 		if (_toggle_activation)
 		{
-			_elapsed_time += Time::DeltaTime();
+			_elapsed_time += Time::DeltaTimeScaled();
 			if (_elapsed_time >= _toggle_active_time)
 			{
 				ChangeState(INACTIVE);
@@ -58,7 +58,7 @@ void Hachiko::Scripting::BossLaserController::OnUpdate()
 		}
 
 		AdjustLength();
-		_elapsed_time += Time::DeltaTime();
+		_elapsed_time += Time::DeltaTimeScaled();
 		_scale = (_elapsed_time / _activation_time) * _max_scale;
 		if (_elapsed_time >= _activation_time)
 		{
@@ -69,7 +69,7 @@ void Hachiko::Scripting::BossLaserController::OnUpdate()
 	case INACTIVE:
 		if (_toggle_activation)
 		{
-			_elapsed_time += Time::DeltaTime();
+			_elapsed_time += Time::DeltaTimeScaled();
 			if (_elapsed_time >= _toggle_inactive_time)
 			{
 				ChangeState(ACTIVATING);
@@ -129,7 +129,7 @@ void Hachiko::Scripting::BossLaserController::RotateTowardsPlayer()
 			rotation_direction = -1.0f;
 		}
 
-		euler_rotation.y += Time::DeltaTime() * _tracking_speed * rotation_direction;
+		euler_rotation.y += Time::DeltaTimeScaled() * _tracking_speed * rotation_direction;
 		transform->SetLocalRotationEuler(euler_rotation);
 	}
 }

@@ -51,7 +51,14 @@ namespace Hachiko
             SERIALIZE_FIELD(float, _toggle_active_time);
             SERIALIZE_FIELD(float, _toggle_inactive_time);
             SERIALIZE_FIELD(float, _dissolving_time);
+            SERIALIZE_FIELD(GameObject* , _charging);
+            SERIALIZE_FIELD(GameObject* , _beam);
+            SERIALIZE_FIELD(GameObject* , _beam_reduced);
+            SERIALIZE_FIELD(GameObject* , _beam_crystals);
             SERIALIZE_FIELD(GameObject* , _sparks);
+            SERIALIZE_FIELD(bool, _boss_level1);
+            SERIALIZE_FIELD(bool, _boss_level2);
+            SERIALIZE_FIELD(bool, _boss_level_wall);
             
         private:
             State _state = ACTIVE;
@@ -69,7 +76,13 @@ namespace Hachiko
             GameObject* _laser_colliders = nullptr;
             GameObject* _player = nullptr;
             ComponentAudioSource* _audio_source;
+            ComponentParticleSystem* _charging_particles = nullptr;
+            ComponentParticleSystem* _beam_particles = nullptr;
+            ComponentParticleSystem* _beam_reduced_particles = nullptr;
+            ComponentParticleSystem* _beam_crystals_particles = nullptr;
             ComponentParticleSystem* _sparks_particles = nullptr;
+
+            bool _beam_drawing;
         };
     }
 }

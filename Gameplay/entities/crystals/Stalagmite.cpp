@@ -14,6 +14,7 @@ void Hachiko::Scripting::Stalagmite::ActiveStalagmite()
 	game_object->ChangeDissolveProgress(1.0f, true);
 	_obstacle_comp = _obstacle->GetComponent<ComponentObstacle>();
 	_audio_source = game_object->GetComponent<ComponentAudioSource>();
+	_area_indicator->GetComponent<ComponentBillboard>()->SetTimeScaleMode(TimeScaleMode::SCALED);
 }
 
 void Hachiko::Scripting::Stalagmite::ActiveEffects()

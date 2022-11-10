@@ -27,7 +27,7 @@ void Hachiko::WindowScene::Init()
         const auto state = evt.GetEventData<GameStateEventPayload>().GetState();
         if (state == GameStateEventPayload::State::STARTED)
         {
-            DrawScene();
+            DrawScene(false);
         }
     };
     App->event->Subscribe(Event::Type::GAME_STATE, updateViewportSize);
@@ -72,7 +72,7 @@ void Hachiko::WindowScene::Update()
     ImGui::SameLine();
 
     ToolbarMenu();
-    DrawScene();
+    DrawScene(is_in_play_mode);
 
     if (!is_in_play_mode)
     {
@@ -144,7 +144,7 @@ float2 Hachiko::WindowScene::NormalizePositionToScene(const float2& position) co
     return float2(mouse_viewport_pos.x / texture_size.x, mouse_viewport_pos.y / texture_size.y);
 }
 
-void Hachiko::WindowScene::DrawScene()
+void Hachiko::WindowScene::DrawScene(const bool is_in_play_mode)
 {
     ImVec2 size = ImGui::GetContentRegionAvail();
 
@@ -183,7 +183,6 @@ void Hachiko::WindowScene::DrawScene()
         static_cast<intptr_t>(App->renderer->GetTextureId()));
 
     // Construct the image of frame buffer from size and uvs:
-    const bool is_in_play_mode = App->scene_manager->IsScenePlaying();
     const ImVec4 border_color = is_in_play_mode ? 
             ImVec4(FLOAT4_TO_ARGS(play_mode_blinker.current_color)) :
             ImVec4(0, 0, 0, 0);
@@ -240,14 +239,17 @@ void Hachiko::WindowScene::DrawScene()
     ComponentCamera* camera = App->camera->GetRenderingCamera();
     float4x4 view = camera->GetViewMatrix(IS_TRANSPOSED);
 
-    ImGuizmo::ViewManipulate(
-        view.ptr(), 
-        4, 
-        ImVec2(
-            guizmo_rect_origin.x + texture_size.x - imguizmo_size.x, 
-            guizmo_rect_origin.y + texture_size.y - imguizmo_size.x), 
-        imguizmo_size, 
-        0x10101010);
+    if (!is_in_play_mode)
+    {
+        ImGuizmo::ViewManipulate(
+            view.ptr(), 
+            4, 
+            ImVec2(
+                guizmo_rect_origin.x + texture_size.x - imguizmo_size.x, 
+                guizmo_rect_origin.y + texture_size.y - imguizmo_size.x), 
+            imguizmo_size, 
+            0x10101010);
+    }
 
     if (ImGui::IsWindowFocused())
     {

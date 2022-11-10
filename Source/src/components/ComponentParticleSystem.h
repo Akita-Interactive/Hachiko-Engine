@@ -47,6 +47,9 @@ namespace Hachiko
         HACHIKO_API void Pause();
         HACHIKO_API void Restart();
         HACHIKO_API void Stop() override;
+        HACHIKO_API float GetParticlesLifetime();
+        HACHIKO_API void SetParticlesLifetime(float new_lifetime);
+        HACHIKO_API void DrawParticles(bool draw);
 
     private:
         bool initialized = false;

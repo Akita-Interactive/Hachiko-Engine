@@ -228,7 +228,7 @@ void Hachiko::Scripting::CombatManager::RunBulletSimulation()
 		if (stats.current_charge < stats.charge_time)
 		{
 			// Do not launch yet
-			stats.current_charge += Time::DeltaTime();
+			stats.current_charge += Time::DeltaTimeScaled();
 			//bullet->GetTransform()->SetGlobalScale(float3(stats.GetChargedPercent()));
 			SetBulletTrajectory(i);
 			stats.update_ui = true;
@@ -270,7 +270,7 @@ void Hachiko::Scripting::CombatManager::RunBulletSimulation()
 		}
 
 		// If no collision just lower lifetime
-		stats.elapsed_lifetime += Time::DeltaTime();
+		stats.elapsed_lifetime += Time::DeltaTimeScaled();
 	}
 }
 
@@ -281,7 +281,7 @@ void Hachiko::Scripting::CombatManager::UpdateBulletTrajectory(unsigned bullet_i
 	ComponentTransform* bullet_transform = bullet->GetTransform();
 	float3 current_position = bullet_transform->GetGlobalPosition();
 	stats.prev_position = current_position;
-	float3 new_position = current_position + stats.direction * stats.speed * Time::DeltaTime();
+	float3 new_position = current_position + stats.direction * stats.speed * Time::DeltaTimeScaled();
 	bullet_transform->SetGlobalPosition(new_position);
 }
 

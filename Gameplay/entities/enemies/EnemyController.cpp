@@ -20,6 +20,7 @@
 
 Hachiko::Scripting::EnemyController::EnemyController(GameObject* game_object)
 	: Script(game_object, "EnemyController")
+	, _drop_rate(50)
 	, _aggro_range(4)
 	, _attack_range(3.0f)
 	, _attack_delay(0.3f)
@@ -272,6 +273,7 @@ void Hachiko::Scripting::EnemyController::GetComponents()
 	_player_controller = _player->GetComponent<PlayerController>();
 
 	animation = game_object->GetComponent<ComponentAnimation>();
+	animation->SetTimeScaleMode(TimeScaleMode::SCALED);
 	transform = game_object->GetTransform();
 
 	_combat_manager = Scenes::GetCombatManager()->GetComponent<CombatManager>();
@@ -283,6 +285,7 @@ void Hachiko::Scripting::EnemyController::GetComponents()
 	_audio_manager = _audio_manager_game_object->GetComponent<AudioManager>();
 
 	_component_agent = game_object->GetComponent<ComponentAgent>();
+	_component_agent->SetTimeScaleMode(TimeScaleMode::SCALED);
 }
 
 void Hachiko::Scripting::EnemyController::SetStats()
@@ -578,7 +581,7 @@ void Hachiko::Scripting::EnemyController::BeetleUpdate()
 {
 	if (damage_effect_progress >= 0.0f)
 	{
-		damage_effect_progress -= Time::DeltaTime() / damage_effect_duration;
+		damage_effect_progress -= Time::DeltaTimeScaled() / damage_effect_duration;
 		float progress = damage_effect_progress / damage_effect_duration;
 		_enemy_body->ChangeEmissiveColor(float4(1.0f, 1.0f, 1.0f, progress), true);
 	}
@@ -597,7 +600,7 @@ void Hachiko::Scripting::EnemyController::WormUpdate()
 {
 	if (damage_effect_progress >= 0.0f)
 	{
-		damage_effect_progress -= Time::DeltaTime() / damage_effect_duration;
+		damage_effect_progress -= Time::DeltaTimeScaled() / damage_effect_duration;
 		float progress = damage_effect_progress / damage_effect_duration;
 		_enemy_body->ChangeEmissiveColor(float4(1.0f, 1.0f, 1.0f, progress), true);
 	}
@@ -1158,6 +1161,15 @@ void Hachiko::Scripting::EnemyController::StartParasiteState()
 	std::cout << "PARASITE" << std::endl;
 	HE_LOG("PARASITE");
 #endif
+
+	const bool drop_parasite = RandomUtil::RandomIntBetween(0, 100) < _drop_rate;
+
+	if (!drop_parasite)
+	{
+		// This makes parasite state end instantly
+		_parasite_dissolving_time_progress = _parasite_dissolve_time;
+		return;
+	}
 
 	if (_parasite)
 	{

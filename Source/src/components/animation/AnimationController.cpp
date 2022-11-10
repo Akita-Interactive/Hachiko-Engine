@@ -49,6 +49,9 @@ void Hachiko::AnimationController::Stop()
 
 void Hachiko::AnimationController::UpdateInstance(Instance* instance, unsigned elapsed, bool reverse)
 {
+    if (time_scale_mode == TimeScaleMode::SCALED && Time::GetTimeScale() == 0.0f)
+        return;
+
     if (reverse)
     {
         if (current->current_animation != nullptr && current->current_animation->GetDuration() > 0)

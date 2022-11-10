@@ -55,6 +55,7 @@ void Hachiko::Scripting::CrystalExplosion::OnAwake()
 		spawn_billboard = boss_spawn_go->GetComponent<ComponentBillboard>();
 	}
 	effects_pool = Scenes::GetCombatVisualEffectsPool()->GetComponent<CombatVisualEffectsPool>();
+	cp_animation->SetTimeScaleMode(TimeScaleMode::SCALED);
 }
 
 void Hachiko::Scripting::CrystalExplosion::OnStart()
@@ -71,7 +72,7 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 
 	if (damage_effect_remaining_time >= 0.0f)
 	{
-		damage_effect_remaining_time -= Time::DeltaTime();
+		damage_effect_remaining_time -= Time::DeltaTimeScaled();
 	}
 
 	if (damage_effect_remaining_time >= 0.0f)
@@ -89,7 +90,7 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 	{
 		if (cp_animation->IsAnimationStopped())
 		{
-			_current_regen_time += Time::DeltaTime();
+			_current_regen_time += Time::DeltaTimeScaled();
 
 			if (_current_regen_time >= _regen_time)
 			{
@@ -123,7 +124,7 @@ void Hachiko::Scripting::CrystalExplosion::OnUpdate()
 		}
 		else
 		{
-			_current_explosion_timer += Time::DeltaTime();
+			_current_explosion_timer += Time::DeltaTimeScaled();
 			return;
 		}
 	}
@@ -148,6 +149,7 @@ void Hachiko::Scripting::CrystalExplosion::StartExplosion()
 
 	for (GameObject* child : _explosion_indicator->children)
 	{
+		child->SetTimeScaleMode(TimeScaleMode::SCALED);
 		child->SetActive(true);
 		child->GetComponent<ComponentBillboard>()->Restart();
 	}
@@ -258,7 +260,7 @@ float3 Hachiko::Scripting::CrystalExplosion::GetShakeOffset()
 		r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 		float z = (r - 0.5f) * shake_magnitude * _shake_intensity;
 
-		_current_regen_time += Time::DeltaTime();
+		_current_regen_time += Time::DeltaTimeScaled();
 		shake_magnitude = (1 - (_current_regen_time / _seconds_shaking)) * (1 - (_current_regen_time / _seconds_shaking));
 		return float3(x, 0, z);
 	}
