@@ -13,6 +13,10 @@ void Hachiko::Scripting::DoorController::OnAwake()
 	door_obstacle = _door_prefab->GetComponent<ComponentObstacle>();
 	_closed_door_mesh = _door_prefab->children[0];
 	_open_door_mesh = _door_prefab->children[1];
+}
+
+void Hachiko::Scripting::DoorController::OnAwake()
+{
 	Close();
 }
 
