@@ -172,7 +172,6 @@ void Hachiko::ModuleResources::LoadSceneResources(const YAML::Node& node)
                     {
                         scene_loaded_texures.insert(*it);
                     }
-#ifndef PLAY_BUILD
                     else if (resource_type == Resource::Type::MATERIAL)
                     {
                         ResourceMaterial* resource_material = static_cast<ResourceMaterial*>(res);
@@ -198,7 +197,6 @@ void Hachiko::ModuleResources::LoadSceneResources(const YAML::Node& node)
                             scene_loaded_texures.insert(resource_material->emissive->GetID());
                         }
                     }
-#endif
                 }
             }
         }
