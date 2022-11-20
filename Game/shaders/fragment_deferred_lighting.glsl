@@ -47,7 +47,7 @@ void main()
     
     if (mode == 0)
     {
-        vec3 hdr_color = vec3(fragment_diffuse);
+        vec3 hdr_color = vec3(0.0);
 
         float fragment_shadow = render_shadows == 1.0 ? CalculateShadowExponentialVariance(
             shadow_map, 
@@ -79,7 +79,7 @@ void main()
         hdr_color += applied_shadow * spot_pbr;
         
         vec3 ambient_light = GetAmbientLight(fragment_normal, reflect(-view_direction, fragment_normal), dot(fragment_normal, view_direction), pow(1.0 - fragment_smoothness, 2), fragment_diffuse, fragment_specular);
-        hdr_color += applied_shadow * ambient_light;
+        hdr_color += ambient_light;
 
         hdr_color *= fragment_ao;
 
